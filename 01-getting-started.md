@@ -50,7 +50,6 @@ Installing Tempest into a project means that it will copy one or two files into 
 
 You can choose which files you want to install, and you can always rerun the `install` command at a later point in time:
 
-![](img/01-tempest-install.png)
 
 ## A basic Tempest project
 
