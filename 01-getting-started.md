@@ -34,19 +34,19 @@ composer require tempest/framework
 Installing Tempest this way will give you access to the tempest console as a composer binary:
 
 ```
-php vendor/bin/tempest.php
+./vendor/bin/tempest
 ```
 
 Optionally, you can choose to install Tempest's entry points in your project:
 
 ```
-php vendor/bin/tempest.php install
+./vendor/bin/tempest install
 ```
 
 Installing Tempest into a project means that it will copy one or two files into that project:
 
 - `public/index.php` — the web application entry point
-- `tempest.php` – the console application entry point
+- `tempest` – the console application entry point
 
 You can choose which files you want to install, and you can always rerun the `install` command at a later point in time:
 
