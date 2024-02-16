@@ -41,7 +41,7 @@ You can pass in optional data to the parent view as well:
 $this->extends('View/base.view.php', title: 'Blog');
 ```
 
-The parent view, in turn, can look like this, where `$this->slot` is the content from the child's view.
+The parent view, in turn, can look like this, where `$this->slot()` will the content from the child's view.
 
 ```php
 <?php /** @var \Tempest\View\GenericView $this */?>
@@ -50,14 +50,75 @@ The parent view, in turn, can look like this, where `$this->slot` is the content
     <title><?= $this->title ?? 'Home' ?></title>
 </head>
 <body>
-<?= $this->slot ?? '' ?>
+<?= $this->slot() ?? '' ?>
 </body>
 </html>
 ```
 
 ### Named slots
 
-TODO
+If you want even more flexibility between parent and child views, you can rely on named slots to pass HTML between different parts of your views. Let's consider this parent view:
+
+```php
+<?php /** @var \Tempest\View\GenericView $this */?>
+<html lang="en">
+<head>
+    <title><?= $this->title ?? 'Home' ?></title>
+    
+    <?= $this->slot('styles') ?>
+
+    <?= $this->slot('scripts') ?>
+</head>
+<body>
+<?= $this->slot() ?>
+</body>
+</html>
+```
+
+This parent view allows child views to dynamically inject styles and scripts in the right places, while still using familiar HTML syntax. It looks like this:
+
+```php
+<?php 
+/** @var \Tempest\View\GenericView $this */ 
+$this->extends('View/base.view.php');
+?>
+
+<x-slot name="styles">
+    <style>
+        body {
+            background-color: red;
+        }
+    </style>
+</x-slot>
+
+<x-slot name="scripts">
+    <script>
+        console.log('hi');
+    </script>
+</x-slot>
+
+The body of the view
+```
+
+Keep in mind that named slots are flexible. You don't have to declare all of them, and they don't need to be ordered the same way as the parent declared them:
+
+
+```php
+<?php 
+/** @var \Tempest\View\GenericView $this */ 
+$this->extends('View/base.view.php');
+?>
+
+The first part of the body.
+
+<x-slot name="scripts">
+    <script>
+        console.log('hi');
+    </script>
+</x-slot>
+
+The second part, the styles slot isn't present in this example.
+```
 
 ### Including views
 
