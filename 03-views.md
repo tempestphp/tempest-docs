@@ -122,7 +122,11 @@ The second part, the styles slot isn't present in this example.
 
 ### Including views
 
-TODO
+If you want to render a view within a view, you can do so by including it:
+
+```php
+<?= $this->include('Views/include-child.php', title: "other title", body: "Hello world") ?>
+```
 
 ### View Models
 
