@@ -1,0 +1,36 @@
+
+@font-face {
+    font-family: "Argon";
+    src: url("fonts/MonaspaceArgon-Bold.woff") format("woff");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Argon";
+    src: url("fonts/MonaspaceArgon-ExtraBold.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Neon";
+    src: url("fonts/MonaspaceNeon-Light.woff") format("woff");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Neon";
+    src: url("fonts/MonaspaceNeon-Medium.woff") format("woff");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "Radon";
+    src: url("fonts/MonaspaceRadon-Light.woff") format("woff");
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Radon";
+    src: url("fonts/MonaspaceRadon-Regular.woff") format("woff");
+    font-weight: bold;
+}

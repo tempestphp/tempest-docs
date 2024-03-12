@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+use Tempest\AppConfig;
+use Tempest\Application\Environment;
+use Tempest\Tempest;
+use function Tempest\env;
+
+try {
+    require_once __DIR__ . '/vendor/autoload.php';
+} catch (Throwable) {
+    require_once getcwd() . '/../autoload.php';
+}
+
+Tempest::boot(__DIR__)->console()->run();
+
+exit;
