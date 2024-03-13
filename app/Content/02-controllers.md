@@ -64,6 +64,8 @@ final <hljs keyword>readonly</hljs> class BookController
 }
 ```
 
+A full overview of `<hljs type>Request</hljs>` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Http/Request.php).
+
 #### A note on data mapping
 
 The `<hljs prop>map</hljs>` function is another powerful feature that sets Tempest apart. We'll discuss it more in depth when looking at models, but it's already worth mentioning: Tempest can treat any kind of object as "a model", and is able to map data into those objects from different sources.
@@ -72,7 +74,69 @@ You could map a request class with its data to a model class, but you could also
 
 ### Responses
 
-// TODO
+Tempest controllers must return one of two objects: a `<hljs type>View</hljs>` or a `<hljs type>Response</hljs>`. Returning a view is a shorthand for returning a successful response _with_ that view.
+
+```php
+final <hljs keyword>readonly</hljs> class BookController
+{
+    #[<hljs type>Get</hljs>(<hljs prop>uri</hljs>: '<hljs value>/books/{book}</hljs>')]
+    public function show(<hljs type>Book</hljs> $book, <hljs type>User</hljs> $user): View
+    {
+        return <hljs prop>view</hljs>('Front/books/detail.view.php',
+            <hljs prop>book</hljs>: $book,
+            <hljs prop>user</hljs>: $user,
+        );
+    }
+}
+```
+
+You can read all about views in the [next chapter](/03-views).
+
+Returning responses can be done with the `<hljs prop>response</hljs>` function:
+
+
+```php
+final <hljs keyword>readonly</hljs> class BookController
+{
+    #[<hljs type>Get</hljs>(<hljs prop>uri</hljs>: '<hljs value>/books/{book}</hljs>')]
+    public function show(<hljs type>Book</hljs> $book, <hljs type>User</hljs> $user): Response
+    {
+        return <hljs prop>response</hljs>()
+            -><hljs prop>setBody</hljs>('raw body content')
+            -><hljs prop>setView</hljs>('Front/books/detail.view.php', <hljs prop>book</hljs>: $book)
+            -><hljs prop>setStatus</hljs>(<hljs type>Status</hljs>::<hljs prop>CREATED</hljs>)
+            -><hljs prop>addHeader</hljs>('x-custom-header', 'value')
+            -><hljs prop>addSession</hljs>('session-name', 'value')
+            -><hljs prop>removeSession</hljs>('other-session-name')
+            -><hljs prop>addCookie</hljs>(new <hljs type>Cookie</hljs>('cookie-name', 'value'))
+            -><hljs prop>removeCookie</hljs>('other-cookie-name')
+            -><hljs prop>flash</hljs>('All went fine!')
+        ;
+    }
+}
+```
+
+A full overview of `<hljs type>Response</hljs>` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Http/Response.php).
+
+#### Response Objects
+
+You're free to implement your own custom responses, Tempest also provides some [convenient Response implementations](https://github.com/tempestphp/tempest-framework/tree/main/src/Http/Responses) for you out of the box (wip). 
+
+```php
+use <hljs type>Tempest\Http\IsResponse</hljs>;
+use <hljs type>Tempest\Http\Response</hljs>;
+use <hljs type>Tempest\Http\Status</hljs>;
+
+final class CreatedResponse implements Response
+{
+    use <hljs type>IsResponse</hljs>;
+
+    public function __construct() 
+    {
+        $this-><hljs prop>status</hljs> = <hljs type>Status</hljs>::<hljs prop>CREATED</hljs>;
+    }
+}
+```
 
 ### Custom Routes
 
@@ -113,7 +177,7 @@ final <hljs keyword>readonly</hljs> class BookController
 
 ### Generating URIs
 
-In order to generate URIs, you can use the `<hljs prop>uri</hljs>` function like so:
+You can generate URIs referencing controller methods by using the `<hljs prop>uri</hljs>` function:
 
 ```php
 // Invokable classes can be referenced directly:
@@ -129,25 +193,9 @@ In order to generate URIs, you can use the `<hljs prop>uri</hljs>` function like
 // /books/1
 ```
 
-### Route mapping
+### Route Binding
 
-URI parameters will be automatically mapped into method parameters:
-
-```php
-final <hljs keyword>readonly</hljs> class BookController
-{
-    #[<hljs type>Post</hljs>('<hljs value>/books/{id}/update</hljs>')]
-    public function store(<hljs type>int</hljs> $id): Response
-    {
-        // …
-        
-        return <hljs prop>response</hljs>()
-            -><hljs prop>redirect</hljs>(<hljs prop>uri</hljs>([<hljs keyword>self</hljs>::class, 'show'], <hljs prop>id</hljs>: $id)) 
-    }
-}
-```
-
-Tempest can also map ids to model instances — a topic we'll cover in depth soon.
+Tempest will map IDs to model instances — a topic we'll cover in depth in the [Models chapter](/04-models).
 
 ```php
 final <hljs keyword>readonly</hljs> class BookController

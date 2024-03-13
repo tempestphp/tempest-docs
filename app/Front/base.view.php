@@ -13,10 +13,10 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
 </head>
-<body class="relative pt-16">
+<body class="relative">
 
-<div class="text-center py-4 bg-[#4f95d1] font-bold text-white fixed top-0 w-full z-[99]">
-    These docs are still a work in progress.
+<div class="text-center py-4 bg-[#4f95d1] font-bold text-white w-full z-[99] mb-4">
+    Tempest is still a <span class="comment text-white">work in progress</span>. You can <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">help out</a>.
 </div>
 
 <?= $this->slot() ?>

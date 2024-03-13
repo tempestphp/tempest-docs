@@ -1,10 +1,10 @@
 :root {
-    --color-red: #EA4334;
-    --color-blue: #4285F4;
-    --color-green: #34A853;
-    --color-yellow: #FCBC05;
+    --color-red: #D14F57;
+    --color-blue: #4f95d1;
+    --color-green: #46B960;
+    --color-yellow: #C9D14F;
     --color-purple: #9d3af6;
-    --color-black: #222;
+    --color-black: #515248;
 }
 
 .prose pre {

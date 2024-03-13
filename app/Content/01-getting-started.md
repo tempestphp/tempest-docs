@@ -93,7 +93,7 @@ app
 
 From Tempest's perspective, it's all the same.
 
-Discovery works by scanning you project code, and looking at each file and method individually to determine what that code does. For production apps, Tempest will cache these results as PHP code, so there's absolutely no performance overhead to doing so.
+Discovery works by scanning you project code, and looking at each file and method individually to determine what that code does. For production apps, Tempest will cache the discovery process, so there's no performance overhead that comes with it.
 
 As an example, Tempest is able to determine which methods are controller methods based on their route attributes:
 
