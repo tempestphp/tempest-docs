@@ -27,7 +27,7 @@ You can access your app by using PHP's built-in server.
 
 ```text
 ./tempest serve
-<hljs comment>PHP 8.3.3 Development Server (http://localhost:8000) started</hljs>
+PHP 8.3.3 Development Server (http://localhost:8000) started
 ```
 
 ### Tempest as a package
@@ -98,14 +98,14 @@ Discovery works by scanning you project code, and looking at each file and metho
 As an example, Tempest is able to determine which methods are controller methods based on their route attributes:
 
 ```php
-final <hljs keyword>readonly</hljs> class BlogPostController
+final readonly class BlogPostController
 {
-    #[<hljs type>Get</hljs>(<hljs value>'/blog'</hljs>)]
-    public function index(): <hljs type>View</hljs>
+    #[Get('/blog')]
+    public function index(): View
     { /* … */ }
     
-    #[<hljs type>Get</hljs>(<hljs value>'/blog/{post}'</hljs>)]
-    public function show(<hljs type>Post</hljs> $post): <hljs type>Response</hljs>
+    #[Get('/blog/{post}')]
+    public function show(Post $post): Response
     { /* … */ }
 }
 ```
@@ -113,12 +113,12 @@ final <hljs keyword>readonly</hljs> class BlogPostController
 And likewise, it's able to detect console commands based on their console command attribute:
 
 ```php
-final <hljs keyword>readonly</hljs> class RssSyncCommand
+final readonly class RssSyncCommand
 {
-    public function __construct(<hljs keyword>private</hljs> <hljs type>Console</hljs> $console) {}
+    public function __construct(private Console $console) {}
 
-    #[<hljs type>ConsoleCommand</hljs>('<hljs value>rss:sync</hljs>')]
-    public function __invoke(<hljs type>bool</hljs> $force = <hljs keyword>false</hljs>): <hljs type>void</hljs>  
+    #[ConsoleCommand('rss:sync')]
+    public function __invoke(bool $force = false): void  
     { /* … */ }
 }
 ```

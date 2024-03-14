@@ -26,7 +26,8 @@ final readonly class DocsController
     ): View
     {
         return new DocsView(
-            chapters: $chapters->all(),
+//            chapters: $chapters->all(),
+            chapters: [],
             currentChapter: $chapters->find($slug),
         );
     }

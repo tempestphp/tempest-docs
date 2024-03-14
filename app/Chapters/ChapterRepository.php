@@ -16,6 +16,8 @@ readonly class ChapterRepository
 
         $content = file_get_contents($path);
 
+        $this->markdown->convert($content);
+
         return Chapter::fromMarkdown($slug, $this->markdown->convert($content));
     }
 
