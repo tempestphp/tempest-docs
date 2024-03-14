@@ -3,6 +3,7 @@
 namespace App\Highlight;
 
 use App\Highlight\Languages\PhpLanguage;
+use App\Highlight\Languages\ViewLanguage;
 
 final class Highlighter
 {
@@ -12,6 +13,7 @@ final class Highlighter
     )
     {
         $this->languages['php'] = new PhpLanguage();
+        $this->languages['view'] = new ViewLanguage();
     }
 
     public function parse(string $content, string $language): string
@@ -24,7 +26,6 @@ final class Highlighter
 
         $parsed = [];
 
-        $content = html_entity_decode($content);
         $lines = explode(PHP_EOL, $content);
 
         foreach ($lines as $line) {

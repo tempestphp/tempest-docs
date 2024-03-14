@@ -4,7 +4,7 @@ title: Views
 
 Tempest views are plain PHP files. Every view has access to its data via `$this` calls. By adding an `@var` docblock to your view files, you'll get static insights and autocompletion.
 
-```php
+```view
 <?php /** @var \Tempest\View\GenericView $this */ ?>
 
 Hello, <?= $this->name ?>
