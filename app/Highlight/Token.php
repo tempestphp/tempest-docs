@@ -2,14 +2,15 @@
 
 namespace App\Highlight;
 
-enum Token: string
+final class Token
 {
-    case BACKGROUND = 'background';
-    case KEYWORD = 'keyword';
-    case PROPERTY = 'property';
-    case ATTRIBUTE = 'attribute';
-    case TYPE = 'type';
-    case GENERIC = 'generic';
-    case VALUE = 'value';
-    case COMMENT = 'comment';
+    public int $length;
+
+    public function __construct(
+        public int $offset,
+        public string $value,
+        public TokenType $type,
+    ) {
+        $this->length = strlen($this->value);
+    }
 }

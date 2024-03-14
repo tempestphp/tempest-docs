@@ -4,5 +4,13 @@ namespace App\Highlight;
 
 interface Language
 {
-    public function parse(string $content, Theme $theme): string;
+    /**
+     * @return array<string, \App\Highlight\TokenType>
+     */
+    public function getLineRules(): array;
+
+    /**
+     * @return array<string, \App\Highlight\TokenType>
+     */
+    public function getTokenRules(): array;
 }

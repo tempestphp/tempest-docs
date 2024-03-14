@@ -1,0 +1,41 @@
+.prose pre {
+    background-color: #f3f3f3;
+    color: #000;
+    max-width: 100%;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.hl-keyword {
+    color: #4F95D1;
+}
+
+.hl-property {
+    color: #46B960;
+}
+
+.hl-attribute {
+    font-family: "Radon", serif;
+}
+
+.hl-type {
+    color: #D14F57;
+}
+
+.hl-generic {
+    color: #9D3AF6;
+}
+
+.hl-value {
+    color: #515248;
+}
+
+.hl-comment {
+    color: #888888;
+    font-style: italic;
+    font-family: "Radon", serif;
+}
+
+.hl-blur {
+    filter: blur(2px);
+}

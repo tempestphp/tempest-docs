@@ -3,169 +3,119 @@
 namespace App\Highlight\Languages;
 
 use App\Highlight\Language;
-use App\Highlight\Theme;
-use App\Highlight\Token;
+use App\Highlight\TokenType;
 
 final class PhpLanguage implements Language
 {
-    public function parse(string $content, Theme $theme): string
-    {
-        $rules = [];
-
-        foreach ($this->getTypeRules() as $rule) {
-            $rules[$rule] = Token::TYPE;
-        }
-
-        foreach ($this->getKeywordRules() as $rule) {
-            $rules[$rule] = Token::KEYWORD;
-        }
-
-        foreach ($this->getPropertyRules() as $rule) {
-            $rules[$rule] = Token::PROPERTY;
-        }
-
-        foreach ($this->getAttributeRules() as $rule) {
-            $rules[$rule] = Token::ATTRIBUTE;
-        }
-
-        $compiled = [];
-        $map = [];
-        $id = 'a';
-
-        foreach ($rules as $rule => $token) {
-            $rule = str_replace('?<id>', "?<{$id}>", $rule);
-            $compiled[] = $rule;
-            $map[$id] = $token;
-            $id = str_increment($id);
-        }
-
-        $compiled = '/(' . implode(')|(', $compiled) . ')/m';
-
-        $compiled = '/((public|private|protected)\s(?<a>[\w]+)\s\$)|((?<b>public)\s)/m';
-        $content = 'public bool $hi;';
-
-        $content = preg_replace_callback(
-            $compiled,
-            function (array $matches) use ($theme, $map) {
-                $fullMatch = $matches[0];
-
-                foreach ($matches as $key => $value) {
-                    if (is_numeric($key)) {
-                        continue;
-                    }
-
-//                    $token = $map[$key];
-//
-//                    $parsedValue = $theme->parse($value, $token);
-
-                    $parsedValue = '>' . $value . '<';
-
-                    $fullMatch = str_replace($value, $parsedValue, $fullMatch);
-                }
-
-                return $fullMatch;
-            },
-            $content,
-        );
-
-        return $content;
-    }
-
-    private function getKeywordRules(): array
+    public function getLineRules(): array
     {
         return [
-            '(?<id>__halt_compiler)\s',
-            '(?<id>abstract)\s',
-            '(?<id>and)\s',
-            '(?<id>array)\s',
-            '(?<id>as)\s',
-            '(?<id>break)\s',
-            '(?<id>callable)\s',
-            '(?<id>case)\s',
-            '(?<id>catch)\s',
-            '(?<id>class)\s',
-            '(?<id>clone)\s',
-            '(?<id>const)\s',
-            '(?<id>continue)\s',
-            '(?<id>declare)\s',
-            '(?<id>default)\s',
-            '(?<id>die)\s',
-            '(?<id>do)\s',
-            '(?<id>echo)\s',
-            '(?<id>else)\s',
-            '(?<id>elseif)\s',
-            '(?<id>empty)\s',
-            '(?<id>enddeclare)\s',
-            '(?<id>endfor)\s',
-            '(?<id>endforeach)\s',
-            '(?<id>endif)\s',
-            '(?<id>endswitch)\s',
-            '(?<id>endwhile)\s',
-            '(?<id>eval)\s',
-            '(?<id>exit)\s',
-            '(?<id>extends)\s',
-            '(?<id>final)\s',
-            '(?<id>finally)\s',
-            '(?<id>fn)\s',
-            '(?<id>for)\s',
-            '(?<id>foreach)\s',
-            '(?<id>function)\s',
-            '(?<id>global)\s',
-            '(?<id>goto)\s',
-            '(?<id>if)\s',
-            '(?<id>implements)\s',
-            '(?<id>include)\s',
-            '(?<id>include_once)\s',
-            '(?<id>instanceof)\s',
-            '(?<id>insteadof)\s',
-            '(?<id>interface)\s',
-            '(?<id>isset)\s',
-            '(?<id>list)\s',
-            '(?<id>match)\s',
-            '(?<id>namespace)\s',
-            '(?<id>new)\s',
-            '(?<id>or)\s',
-            '(?<id>print)\s',
-            '(?<id>private)\s',
-            '(?<id>protected)\s',
-            '(?<id>public)\s',
-            '(?<id>readonly)\s',
-            '(?<id>require)\s',
-            '(?<id>require_once)\s',
-            '(?<id>return)\s',
-            '(?<id>static)\s',
-            '(?<id>switch)\s',
-            '(?<id>throw)\s',
-            '(?<id>trait)\s',
-            '(?<id>try)\s',
-            '(?<id>unset)\s',
-            '(?<id>use)\s',
-            '(?<id>var)\s',
-            '(?<id>while)\s',
-            '(?<id>xor)\s',
-            '(?<id>yield)\s',
-            '(?<id>yield from)\s',
+            '\#\[(.*?)\]' => TokenType::ATTRIBUTE, // single-line attributes
         ];
     }
 
-    private function getTypeRules(): array
+    public function getTokenRules(): array
     {
         return [
-            '(public|private|protected)\s(?<id>[\w]+)\s\$', // property types
-            'class (?<id>[\w]+)', // class names
-            '\(\): (?<id>[\w]+)', // return types
-        ];
-    }
+            // COMMENTS
+            '^[\s]*(?<match>\/\*\*)' => TokenType::COMMENT, // /**
+            '^[\s]*(?<match>\*.*)' => TokenType::COMMENT, // * and */
+            '(?<match>\/\*.*\*\/)' => TokenType::COMMENT, // * and */
+            '(?<match>\/\/.*)' => TokenType::COMMENT, // //
 
-    private function getPropertyRules(): array
-    {
-        return [];
-    }
+            // TYPES
+            '\#\[(?<match>[\w]+)' => TokenType::TYPE, // Attributes
+            'implements\s(?<match>[\w]+)' => TokenType::TYPE, // implements Foo
+            ',\s(?<match>[\w]+)' => TokenType::TYPE, // , Foo
+            'extends\s(?<match>.*)$' => TokenType::TYPE, // extends Foo
+            'use (?<match>[\w\\\\]+)' => TokenType::TYPE, // import statements
+            '(public|private|protected)\s(?<match>[\(\)\|\&\?\w]+)\s\$' => TokenType::TYPE, // property types
+            'class (?<match>[\w]+)' => TokenType::TYPE, // class names
+            '\)\:\s(?<match>[\(\)\|\&\?\w]+)' => TokenType::TYPE, // return types
+            '(?<match>[\w]+)\:\:' => TokenType::TYPE, // Class::
+            '(?<match>[\|\&\?\w]+)\s\$' => TokenType::TYPE, // (Foo $foo)
+            'new (?<match>[\w]+)' => TokenType::TYPE, // new Foo
 
-    private function getAttributeRules(): array
-    {
-        return [
-            '\#\[(?<id>.*)+\]', // single-line attributes
+            // PROPERTIES
+            '(public|private|protected)\s([\(\)\|\&\?\w]+)\s(?<match>\$[\w]+)' => TokenType::PROPERTY, // class properties
+            '(?<match>[\w]+):\s' => TokenType::PROPERTY, // named arguments
+            '->(?<match>[\w]+)' => TokenType::PROPERTY, // property access
+            'function (?<match>[\w]+)' => TokenType::PROPERTY, // function names
+            '\:\:(?<match>[\w]+)' => TokenType::PROPERTY, // ::PROP
+            '\b(?<match>[a-z][\w]+)\(' => TokenType::PROPERTY, // function call
+
+            // KEYWORDS
+            '(?<match>__halt_compiler)\s' => TokenType::KEYWORD,
+            '(?<match>abstract)\s' => TokenType::KEYWORD,
+            '(?<match>and)\s' => TokenType::KEYWORD,
+            '(?<match>array)\s' => TokenType::KEYWORD,
+            '(?<match>as)\s' => TokenType::KEYWORD,
+            '(?<match>break)\s' => TokenType::KEYWORD,
+            '(?<match>callable)\s' => TokenType::KEYWORD,
+            '(?<match>case)\s' => TokenType::KEYWORD,
+            '(?<match>catch)\s' => TokenType::KEYWORD,
+            '(?<match>class)\s' => TokenType::KEYWORD,
+            '(?<match>clone)\s' => TokenType::KEYWORD,
+            '(?<match>const)\s' => TokenType::KEYWORD,
+            '(?<match>continue)\s' => TokenType::KEYWORD,
+            '(?<match>declare)\s' => TokenType::KEYWORD,
+            '(?<match>default)\s' => TokenType::KEYWORD,
+            '(?<match>die)\s' => TokenType::KEYWORD,
+            '(?<match>do)\s' => TokenType::KEYWORD,
+            '(?<match>echo)\s' => TokenType::KEYWORD,
+            '(?<match>else)\s' => TokenType::KEYWORD,
+            '(?<match>elseif)\s' => TokenType::KEYWORD,
+            '(?<match>empty)\s' => TokenType::KEYWORD,
+            '(?<match>enddeclare)\s' => TokenType::KEYWORD,
+            '(?<match>endfor)\s' => TokenType::KEYWORD,
+            '(?<match>endforeach)\s' => TokenType::KEYWORD,
+            '(?<match>endif)\s' => TokenType::KEYWORD,
+            '(?<match>endswitch)\s' => TokenType::KEYWORD,
+            '(?<match>endwhile)\s' => TokenType::KEYWORD,
+            '(?<match>eval)\s' => TokenType::KEYWORD,
+            '(?<match>exit)\s' => TokenType::KEYWORD,
+            '(?<match>extends)\s' => TokenType::KEYWORD,
+            '(?<match>final)\s' => TokenType::KEYWORD,
+            '(?<match>finally)\s' => TokenType::KEYWORD,
+            '(?<match>fn)\s' => TokenType::KEYWORD,
+            '(?<match>for)\s' => TokenType::KEYWORD,
+            '(?<match>foreach)\s' => TokenType::KEYWORD,
+            '(?<match>function)\s' => TokenType::KEYWORD,
+            '(?<match>global)\s' => TokenType::KEYWORD,
+            '(?<match>goto)\s' => TokenType::KEYWORD,
+            '(?<match>if)\s' => TokenType::KEYWORD,
+            '(?<match>implements)\s' => TokenType::KEYWORD,
+            '(?<match>include)\s' => TokenType::KEYWORD,
+            '(?<match>include_once)\s' => TokenType::KEYWORD,
+            '(?<match>instanceof)\s' => TokenType::KEYWORD,
+            '(?<match>insteadof)\s' => TokenType::KEYWORD,
+            '(?<match>interface)\s' => TokenType::KEYWORD,
+            '(?<match>isset)\s' => TokenType::KEYWORD,
+            '(?<match>list)\s' => TokenType::KEYWORD,
+            '(?<match>match)\s' => TokenType::KEYWORD,
+            '(?<match>namespace)\s' => TokenType::KEYWORD,
+            '(?<match>new)\s' => TokenType::KEYWORD,
+            '(?<match>or)\s' => TokenType::KEYWORD,
+            '(?<match>print)\s' => TokenType::KEYWORD,
+            '(?<match>private)\s' => TokenType::KEYWORD,
+            '(?<match>protected)\s' => TokenType::KEYWORD,
+            '(?<match>public)\s' => TokenType::KEYWORD,
+            '(?<match>readonly)\s' => TokenType::KEYWORD,
+            '(?<match>require)\s' => TokenType::KEYWORD,
+            '(?<match>require_once)\s' => TokenType::KEYWORD,
+            '(?<match>return)\s' => TokenType::KEYWORD,
+            '(?<match>static)\s' => TokenType::KEYWORD,
+            '(?<match>switch)\s' => TokenType::KEYWORD,
+            '(?<match>throw)\s' => TokenType::KEYWORD,
+            '(?<match>trait)\s' => TokenType::KEYWORD,
+            '(?<match>try)\s' => TokenType::KEYWORD,
+            '(?<match>unset)\s' => TokenType::KEYWORD,
+            '(?<match>use)\s' => TokenType::KEYWORD,
+            '(?<match>var)\s' => TokenType::KEYWORD,
+            '(?<match>while)\s' => TokenType::KEYWORD,
+            '(?<match>xor)\s' => TokenType::KEYWORD,
+            '(?<match>yield)\s' => TokenType::KEYWORD,
+            '(?<match>yield from)\s' => TokenType::KEYWORD,
         ];
     }
 }
