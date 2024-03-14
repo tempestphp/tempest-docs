@@ -15,7 +15,7 @@ interface Language
     public function getLinePatterns(): array;
 
     /**
-     * @return array<string, \App\Highlight\TokenType>
+     * @return array<string, \App\Highlight\TokenType>|\App\Highlight\TokenPattern[]
      */
     public function getTokenPatterns(): array;
 }

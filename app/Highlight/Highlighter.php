@@ -4,6 +4,7 @@ namespace App\Highlight;
 
 use App\Highlight\Languages\PhpLanguage;
 use App\Highlight\Languages\ViewLanguage;
+use App\Highlight\Patterns\Php\GenericTokenPattern;
 
 final class Highlighter
 {
@@ -50,12 +51,19 @@ final class Highlighter
             );
         }
 
-        // Individual token patterns
+        // Token patterns
         /** @var Token[] $tokens */
         $tokens = [];
 
-        foreach ($language->getTokenPatterns() as $pattern => $tokenType) {
-            preg_match_all("/$pattern/", $content, $matches, PREG_OFFSET_CAPTURE);
+        foreach ($language->getTokenPatterns() as $key => $pattern) {
+            if ($pattern instanceof TokenType) {
+                $pattern = new GenericTokenPattern(
+                    $key,
+                    $pattern,
+                );
+            }
+
+            $matches = $pattern->match($content);
 
             $match = $matches['match'] ?? null;
 
@@ -70,7 +78,7 @@ final class Highlighter
                 $token = new Token(
                     offset: $offset,
                     value: $value,
-                    type: $tokenType,
+                    type: $pattern->getTokenType(),
                     pattern: $pattern,
                     language: $language,
                 );

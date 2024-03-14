@@ -10,7 +10,7 @@ final class Token
         public int $offset,
         public string $value,
         public TokenType $type,
-        public ?string $pattern = null,
+        public ?TokenPattern $pattern = null,
         public ?Language $language = null,
     ) {
         $this->length = strlen($this->value);

@@ -3,6 +3,27 @@
 namespace App\Highlight\Languages;
 
 use App\Highlight\Language;
+use App\Highlight\Patterns\Php\AttributeTokenPattern;
+use App\Highlight\Patterns\Php\ClassNameTokenPattern;
+use App\Highlight\Patterns\Php\ClassPropertyTokenPattern;
+use App\Highlight\Patterns\Php\ConstantPropertyTokenPattern;
+use App\Highlight\Patterns\Php\ExtendsTokenPattern;
+use App\Highlight\Patterns\Php\FunctionCallTokenPattern;
+use App\Highlight\Patterns\Php\NestedFunctionCallTokenPattern;
+use App\Highlight\Patterns\Php\FunctionNameTokenPattern;
+use App\Highlight\Patterns\Php\ImplementsTokenPattern;
+use App\Highlight\Patterns\Php\MultilineDoubleDocCommentTokenPattern;
+use App\Highlight\Patterns\Php\MultilineSingleDocCommentTokenPattern;
+use App\Highlight\Patterns\Php\NamedArgumentTokenPattern;
+use App\Highlight\Patterns\Php\NamespaceTokenPattern;
+use App\Highlight\Patterns\Php\NewObjectTokenPattern;
+use App\Highlight\Patterns\Php\ParameterTypeTokenPattern;
+use App\Highlight\Patterns\Php\PropertyAccessTokenPattern;
+use App\Highlight\Patterns\Php\PropertyTypesTokenPattern;
+use App\Highlight\Patterns\Php\ReturnTypeTokenPattern;
+use App\Highlight\Patterns\Php\SinglelineDocCommentTokenPattern;
+use App\Highlight\Patterns\Php\StaticClassCallTokenPattern;
+use App\Highlight\Patterns\Php\UseTokenPattern;
 use App\Highlight\TokenType;
 
 final class PhpLanguage implements Language
@@ -23,31 +44,31 @@ final class PhpLanguage implements Language
     {
         return [
             // COMMENTS
-//            '^[\s]*(?<match>\/\*\*)' => TokenType::COMMENT, // /**
-//            '^[\s]*(?<match>\*.*)' => TokenType::COMMENT, // * and */
-            '(?<match>\/\*.*\*\/)' => TokenType::COMMENT, // * and */
-//            '(?<match>\/\/.*)' => TokenType::COMMENT, // //
+            new MultilineDoubleDocCommentTokenPattern(),
+            new MultilineSingleDocCommentTokenPattern(),
+            new SinglelineDocCommentTokenPattern(),
 
             // TYPES
-            '\#\[(?<match>[\w]+)' => TokenType::TYPE, // Attributes
-            'implements\s(?<match>[\w]+)' => TokenType::TYPE, // implements Foo
-            'extends\s(?<match>.*)$' => TokenType::TYPE, // extends Foo
-            'use (?<match>[\w\\\\]+)' => TokenType::TYPE, // import statements
-            '(public|private|protected)\s(?<match>[\(\)\|\&\?\w]+)\s\$' => TokenType::TYPE, // property types
-            'class (?<match>[\w]+)' => TokenType::TYPE, // class names
-            '\)\:\s(?<match>[\(\)\|\&\?\w]+)' => TokenType::TYPE, // return types
-            '(?<match>[\w]+)\:\:' => TokenType::TYPE, // Class::
-            '(?<match>[\|\&\?\w]+)\s\$' => TokenType::TYPE, // (Foo $foo)
-            'new (?<match>[\w]+)' => TokenType::TYPE, // new Foo
+            new AttributeTokenPattern(),
+            new ImplementsTokenPattern(),
+            new ExtendsTokenPattern(),
+            new UseTokenPattern(),
+            new NamespaceTokenPattern(),
+            new PropertyTypesTokenPattern(),
+            new ClassNameTokenPattern(),
+            new ReturnTypeTokenPattern(),
+            new StaticClassCallTokenPattern(),
+            new ParameterTypeTokenPattern(),
+            new NewObjectTokenPattern(),
 
             // PROPERTIES
-            '(public|private|protected)\s([\(\)\|\&\?\w]+)\s(?<match>\$[\w]+)' => TokenType::PROPERTY, // class properties
-            '(?<match>[\w]+):\s' => TokenType::PROPERTY, // named arguments
-            '-\&gt\;(?<match>[\w]+)' => TokenType::PROPERTY, // property access and object function calls
-            'function (?<match>[\w]+)' => TokenType::PROPERTY, // function names
-            '(\s|\()(?<match>[\w]+)\(' => TokenType::PROPERTY, // function calls
-            '\:\:(?<match>[\w]+)' => TokenType::PROPERTY, // ::PROP
-            '\s(?<match>[a-z][\w]+)\(' => TokenType::PROPERTY, // function call
+            new ClassPropertyTokenPattern(),
+            new NamedArgumentTokenPattern(),
+            new PropertyAccessTokenPattern(),
+            new FunctionNameTokenPattern(),
+            new NestedFunctionCallTokenPattern(),
+            new FunctionCallTokenPattern(),
+            new ConstantPropertyTokenPattern(),
 
             // KEYWORDS
             '\b(?<match>__halt_compiler)\s' => TokenType::KEYWORD,
