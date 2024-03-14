@@ -87,7 +87,7 @@ If you want even more flexibility between parent and child views, you can rely o
 
 This parent view allows child views to dynamically inject styles and scripts in the right places, while still using familiar HTML syntax. It looks like this:
 
-```php
+```view
 <?php 
 /** @var \Tempest\View\GenericView $this */ 
 $this->extends('View/base.view.php');

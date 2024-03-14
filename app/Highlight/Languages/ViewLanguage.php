@@ -19,8 +19,8 @@ final class ViewLanguage implements Language
     public function getTokenPatterns(): array
     {
         return [
-            '&lt;(?<match>[\w]+)' => TokenType::KEYWORD,
-            '&lt;\/(?<match>[\w]+)' => TokenType::KEYWORD,
+            '&lt;(?<match>[\w\-]+)' => TokenType::KEYWORD,
+            '&lt;\/(?<match>[\w\-]+)' => TokenType::KEYWORD,
             '(?<match>[\w]+)=&quot;' => TokenType::PROPERTY,
             '(?<match>\&lt;!--(.|\n)*--&gt;)' => TokenType::COMMENT,
         ];
