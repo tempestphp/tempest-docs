@@ -3,7 +3,6 @@
     "require": {
         "tempest/framework": "dev-main",
         "league/commonmark": "^2.4",
-        "spatie/commonmark-highlighter": "^3.0",
         "symfony/yaml": "^6.3"
     },
     "require-dev": {

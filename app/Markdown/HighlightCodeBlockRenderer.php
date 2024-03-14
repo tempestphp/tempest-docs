@@ -2,13 +2,15 @@
 
 namespace App\Markdown;
 
+use App\Highlight\Highlighter;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Renderer\Block\FencedCodeRenderer as BaseFencedCodeRenderer;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
-use Spatie\CommonMarkHighlighter\FencedCodeRenderer;
+use League\CommonMark\Renderer\NodeRendererInterface;
 
-class HighlightCodeBlockRenderer extends FencedCodeRenderer
+class HighlightCodeBlockRenderer implements NodeRendererInterface
 {
     public function render(Node $node, ChildNodeRendererInterface $childRenderer)
     {
@@ -16,38 +18,22 @@ class HighlightCodeBlockRenderer extends FencedCodeRenderer
             throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);
         }
 
-        $element = parent::render($node, $childRenderer);
+        $renderer = new BaseFencedCodeRenderer();
 
-        $content = $element->getContents();
+        $language = $node->getInfoWords()[0] ?? 'txt';
 
-        $content = preg_replace_callback('/\&lt;[\w\s\<\"\=\-\>\/]+hljs[\w\s\<\"\=\-\>\/]+/', function ($match) {
-            $match = str_replace('<span class="hljs-title">', '', $match[0] ?? '');
+        $highlight = new Highlighter();
 
-            $match = str_replace('</span>', '', $match);
+        /** @var \League\CommonMark\Util\HtmlElement $codeBlock */
+        $codeBlock = $renderer->render($node, $childRenderer);
 
-            return $match;
-        }, $content);
+        /** @var string $codeText */
+        $codeText = $codeBlock->getContents(false)->getContents();
 
-        $content = str_replace('&lt;/hljs&gt;', '</span>', $content);
+        $codeBlock->setContents($highlight->parse($codeText, $language));
 
-        $lines = explode(PHP_EOL, $content);
+        $codeBlock->setContents($codeBlock->getContents());
 
-        $regex = '/\&lt\;hljs([\w\s]+)&gt;/';
-
-        foreach ($lines as $index => $line) {
-            $line = preg_replace_callback($regex, function ($matches) {
-                $class = $matches[1] ?? '';
-
-                return "<span class=\"hljs-highlight {$class}\">";
-            }, $line);
-
-            $lines[$index] = $line;
-        }
-
-        unset($lines[array_key_last($lines)]);
-
-        $element->setContents(implode(PHP_EOL, $lines) . '</code>');
-
-        return $element;
+        return $codeBlock;
     }
 }
