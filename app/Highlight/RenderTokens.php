@@ -16,7 +16,7 @@ final class RenderTokens
         $parsed = $content;
         $parsedOffset = 0;
         $bufferedOffset = 0;
-
+//dump($tokens);
         foreach ($tokens as $key => $currentToken) {
             $tokenType = $currentToken->type;
 

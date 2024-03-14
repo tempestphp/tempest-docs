@@ -36,14 +36,14 @@ final class Highlighter
                 function ($matches) use ($closure) {
                     $content = $matches['match'] ?? null;
 
-                    if (!$content) {
+                    if (! $content) {
                         return $matches[0];
                     }
 
                     return str_replace(
                         search: $content,
                         replace: $closure($content, $this),
-                        subject: $matches[0]
+                        subject: $matches[0],
                     );
                 },
                 $content,
@@ -67,13 +67,17 @@ final class Highlighter
                 $offset = $item[1];
                 $value = $item[0];
 
-                $tokens[] = new Token(
+                $token = new Token(
                     offset: $offset,
                     value: $value,
                     type: $tokenType,
                     pattern: $pattern,
-                    language: $language
+                    language: $language,
                 );
+
+                if (! $this->tokenAlreadyPresent($tokens, $token)) {
+                    $tokens[] = $token;
+                }
             }
         }
 
@@ -95,5 +99,16 @@ final class Highlighter
         }
 
         return $parsed;
+    }
+
+    private function tokenAlreadyPresent(array $tokens, Token $token): bool
+    {
+        foreach ($tokens as $tokenToCompare) {
+            if ($tokenToCompare->equals($token)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

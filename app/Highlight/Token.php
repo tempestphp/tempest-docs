@@ -15,4 +15,11 @@ final class Token
     ) {
         $this->length = strlen($this->value);
     }
+
+    public function equals(Token $other): bool
+    {
+        return $this->value === $other->value
+            && $this->offset === $other->offset;
+//            && $this->type === $other->type;
+    }
 }

@@ -1,5 +1,3 @@
 ```php
-/** @var \Tempest\View\GenericView $this */
-
-final readonly class HomeController
+->redirect(uri([self::class, 'show'], id: $book->id));
 ```
