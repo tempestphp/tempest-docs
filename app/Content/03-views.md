@@ -29,7 +29,7 @@ final readonly class HomeController
 
 Views can extend from other views like so:
 
-```php
+```view
 <?php 
 /** @var \Tempest\View\GenericView $this */ 
 $this->extends('View/base.view.php');

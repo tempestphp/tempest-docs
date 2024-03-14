@@ -24,26 +24,38 @@ final class Highlighter
             return $content;
         }
 
-        $parsed = [];
-
-        $lines = explode(PHP_EOL, $content);
-
-        foreach ($lines as $line) {
-            $parsed[] = $this->parseLine($line, $language);
-        }
-
-        return implode(PHP_EOL, $parsed);
+        return $this->parseContent($content, $language);
     }
 
-    private function parseLine(string $content, Language $language): string
+    private function parseContent(string $content, Language $language): string
     {
-        $tokenRules = $language->getTokenRules();
+        // Language injection patterns
+        foreach ($language->getInjectionPatterns() as $pattern => $closure) {
+            $content = preg_replace_callback(
+                "/$pattern/",
+                function ($matches) use ($closure) {
+                    $content = $matches['match'] ?? null;
 
+                    if (!$content) {
+                        return $matches[0];
+                    }
+
+                    return str_replace(
+                        search: $content,
+                        replace: $closure($content, $this),
+                        subject: $matches[0]
+                    );
+                },
+                $content,
+            );
+        }
+
+        // Individual token patterns
         /** @var Token[] $tokens */
         $tokens = [];
 
-        foreach ($tokenRules as $rule => $tokenType) {
-            preg_match_all("/$rule/", $content, $matches, PREG_OFFSET_CAPTURE);
+        foreach ($language->getTokenPatterns() as $pattern => $tokenType) {
+            preg_match_all("/$pattern/", $content, $matches, PREG_OFFSET_CAPTURE);
 
             $match = $matches['match'] ?? null;
 
@@ -55,38 +67,31 @@ final class Highlighter
                 $offset = $item[1];
                 $value = $item[0];
 
-                $tokens[$offset] = new Token($offset, $value, $tokenType);
+                $tokens[] = new Token(
+                    offset: $offset,
+                    value: $value,
+                    type: $tokenType,
+                    pattern: $pattern,
+                    language: $language
+                );
             }
         }
 
-        ksort($tokens);
+        $parsed = (new RenderTokens())($content, $tokens);
 
-        $parsed = $content;
-        $parsedOffset = 0;
+        // Full line patterns
+        foreach ($language->getLinePatterns() as $pattern => $tokenType) {
+            preg_match_all("/$pattern/", $parsed, $matches);
 
-        foreach ($tokens as $offset => $token) {
-            $parsedToken = $token->type->parse($token->value);
+            $matches = $matches[0];
 
-            $parsed = substr_replace(
-                $parsed,
-                $parsedToken,
-                $offset + $parsedOffset,
-                $token->length,
-            );
-
-            $parsedOffset += strlen($parsedToken) - $token->length;
-        }
-
-        foreach ($language->getLineRules() as $rule => $tokenType) {
-            preg_match("/$rule/", $parsed, $matches);
-
-            $match = $matches[0] ?? null;
-
-            if (! $match) {
-                continue;
+            foreach ($matches as $match) {
+                $parsed = str_replace(
+                    search: $match,
+                    replace: $tokenType->parse($match),
+                    subject: $parsed,
+                );
             }
-            
-            $parsed = $tokenType->parse($parsed);
         }
 
         return $parsed;

@@ -5,12 +5,17 @@ namespace App\Highlight;
 interface Language
 {
     /**
-     * @return array<string, \App\Highlight\TokenType>
+     * @return array<string, \Closure>
      */
-    public function getLineRules(): array;
+    public function getInjectionPatterns(): array;
 
     /**
      * @return array<string, \App\Highlight\TokenType>
      */
-    public function getTokenRules(): array;
+    public function getLinePatterns(): array;
+
+    /**
+     * @return array<string, \App\Highlight\TokenType>
+     */
+    public function getTokenPatterns(): array;
 }

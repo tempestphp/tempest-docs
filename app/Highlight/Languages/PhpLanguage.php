@@ -7,21 +7,26 @@ use App\Highlight\TokenType;
 
 final class PhpLanguage implements Language
 {
-    public function getLineRules(): array
+    public function getInjectionPatterns(): array
+    {
+        return [];
+    }
+
+    public function getLinePatterns(): array
     {
         return [
             '\#\[(.*?)\]' => TokenType::ATTRIBUTE, // single-line attributes
         ];
     }
 
-    public function getTokenRules(): array
+    public function getTokenPatterns(): array
     {
         return [
             // COMMENTS
-            '^[\s]*(?<match>\/\*\*)' => TokenType::COMMENT, // /**
-            '^[\s]*(?<match>\*.*)' => TokenType::COMMENT, // * and */
+//            '^[\s]*(?<match>\/\*\*)' => TokenType::COMMENT, // /**
+//            '^[\s]*(?<match>\*.*)' => TokenType::COMMENT, // * and */
             '(?<match>\/\*.*\*\/)' => TokenType::COMMENT, // * and */
-            '(?<match>\/\/.*)' => TokenType::COMMENT, // //
+//            '(?<match>\/\/.*)' => TokenType::COMMENT, // //
 
             // TYPES
             '\#\[(?<match>[\w]+)' => TokenType::TYPE, // Attributes
@@ -39,83 +44,82 @@ final class PhpLanguage implements Language
             // PROPERTIES
             '(public|private|protected)\s([\(\)\|\&\?\w]+)\s(?<match>\$[\w]+)' => TokenType::PROPERTY, // class properties
             '(?<match>[\w]+):\s' => TokenType::PROPERTY, // named arguments
-            '->(?<match>[\w]+)' => TokenType::PROPERTY, // property access
-            '-\&gt\;(?<match>[\w]+)' => TokenType::PROPERTY, // property access (escaped)
+            '-\&gt\;(?<match>[\w]+)' => TokenType::PROPERTY, // property access and object function calls
             'function (?<match>[\w]+)' => TokenType::PROPERTY, // function names
             '\:\:(?<match>[\w]+)' => TokenType::PROPERTY, // ::PROP
-            '\b(?<match>[a-z][\w]+)\(' => TokenType::PROPERTY, // function call
+            '\s(?<match>[a-z][\w]+)\(' => TokenType::PROPERTY, // function call
 
             // KEYWORDS
-            '\b(?<match>__halt_compiler)\b' => TokenType::KEYWORD,
-            '\b(?<match>abstract)\b' => TokenType::KEYWORD,
-            '\b(?<match>and)\b' => TokenType::KEYWORD,
-            '\b(?<match>array)\b' => TokenType::KEYWORD,
-            '\b(?<match>as)\b' => TokenType::KEYWORD,
-            '\b(?<match>break)\b' => TokenType::KEYWORD,
-            '\b(?<match>callable)\b' => TokenType::KEYWORD,
-            '\b(?<match>case)\b' => TokenType::KEYWORD,
-            '\b(?<match>catch)\b' => TokenType::KEYWORD,
-            '\b(?<match>class)\b' => TokenType::KEYWORD,
-            '\b(?<match>clone)\b' => TokenType::KEYWORD,
-            '\b(?<match>const)\b' => TokenType::KEYWORD,
-            '\b(?<match>continue)\b' => TokenType::KEYWORD,
-            '\b(?<match>declare)\b' => TokenType::KEYWORD,
-            '\b(?<match>default)\b' => TokenType::KEYWORD,
-            '\b(?<match>die)\b' => TokenType::KEYWORD,
-            '\b(?<match>do)\b' => TokenType::KEYWORD,
-            '\b(?<match>echo)\b' => TokenType::KEYWORD,
-            '\b(?<match>else)\b' => TokenType::KEYWORD,
-            '\b(?<match>elseif)\b' => TokenType::KEYWORD,
-            '\b(?<match>empty)\b' => TokenType::KEYWORD,
-            '\b(?<match>enddeclare)\b' => TokenType::KEYWORD,
-            '\b(?<match>endfor)\b' => TokenType::KEYWORD,
-            '\b(?<match>endforeach)\b' => TokenType::KEYWORD,
-            '\b(?<match>endif)\b' => TokenType::KEYWORD,
-            '\b(?<match>endswitch)\b' => TokenType::KEYWORD,
-            '\b(?<match>endwhile)\b' => TokenType::KEYWORD,
-            '\b(?<match>eval)\b' => TokenType::KEYWORD,
-            '\b(?<match>exit)\b' => TokenType::KEYWORD,
-            '\b(?<match>extends)\b' => TokenType::KEYWORD,
-            '\b(?<match>final)\b' => TokenType::KEYWORD,
-            '\b(?<match>finally)\b' => TokenType::KEYWORD,
-            '\b(?<match>fn)\b' => TokenType::KEYWORD,
-            '\b(?<match>for)\b' => TokenType::KEYWORD,
-            '\b(?<match>foreach)\b' => TokenType::KEYWORD,
-            '\b(?<match>function)\b' => TokenType::KEYWORD,
-            '\b(?<match>global)\b' => TokenType::KEYWORD,
-            '\b(?<match>goto)\b' => TokenType::KEYWORD,
-            '\b(?<match>if)\b' => TokenType::KEYWORD,
-            '\b(?<match>implements)\b' => TokenType::KEYWORD,
-            '\b(?<match>include)\b' => TokenType::KEYWORD,
-            '\b(?<match>include_once)\b' => TokenType::KEYWORD,
-            '\b(?<match>instanceof)\b' => TokenType::KEYWORD,
-            '\b(?<match>insteadof)\b' => TokenType::KEYWORD,
-            '\b(?<match>interface)\b' => TokenType::KEYWORD,
-            '\b(?<match>isset)\b' => TokenType::KEYWORD,
-            '\b(?<match>list)\b' => TokenType::KEYWORD,
-            '\b(?<match>match)\b' => TokenType::KEYWORD,
-            '\b(?<match>namespace)\b' => TokenType::KEYWORD,
-            '\b(?<match>new)\b' => TokenType::KEYWORD,
-            '\b(?<match>or)\b' => TokenType::KEYWORD,
-            '\b(?<match>print)\b' => TokenType::KEYWORD,
-            '\b(?<match>private)\b' => TokenType::KEYWORD,
-            '\b(?<match>protected)\b' => TokenType::KEYWORD,
-            '\b(?<match>public)\b' => TokenType::KEYWORD,
-            '\b(?<match>readonly)\b' => TokenType::KEYWORD,
-            '\b(?<match>require)\b' => TokenType::KEYWORD,
-            '\b(?<match>require_once)\b' => TokenType::KEYWORD,
-            '\b(?<match>return)\b' => TokenType::KEYWORD,
-            '\b(?<match>static)\b' => TokenType::KEYWORD,
-            '\b(?<match>switch)\b' => TokenType::KEYWORD,
-            '\b(?<match>throw)\b' => TokenType::KEYWORD,
-            '\b(?<match>trait)\b' => TokenType::KEYWORD,
-            '\b(?<match>try)\b' => TokenType::KEYWORD,
-            '\b(?<match>unset)\b' => TokenType::KEYWORD,
-            '\b(?<match>use)\b' => TokenType::KEYWORD,
-            '\b(?<match>while)\b' => TokenType::KEYWORD,
-            '\b(?<match>xor)\b' => TokenType::KEYWORD,
-            '\b(?<match>yield)\b' => TokenType::KEYWORD,
-            '\b(?<match>yield from)\b' => TokenType::KEYWORD,
+            '(\s|^)(?<match>__halt_compiler)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>abstract)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>and)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>array)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>as)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>break)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>callable)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>case)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>catch)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>class)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>clone)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>const)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>continue)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>declare)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>default)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>die)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>do)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>echo)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>else)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>elseif)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>empty)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>enddeclare)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>endfor)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>endforeach)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>endif)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>endswitch)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>endwhile)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>eval)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>exit)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>extends)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>final)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>finally)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>fn)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>for)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>foreach)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>function)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>global)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>goto)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>if)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>implements)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>include)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>include_once)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>instanceof)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>insteadof)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>interface)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>isset)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>list)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>match)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>namespace)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>new)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>or)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>print)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>private)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>protected)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>public)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>readonly)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>require)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>require_once)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>return)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>static)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>switch)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>throw)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>trait)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>try)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>unset)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>use)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>while)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>xor)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>yield)\s' => TokenType::KEYWORD,
+            '(\s|^)(?<match>yield from)\s' => TokenType::KEYWORD,
         ];
     }
 }

@@ -12,7 +12,17 @@ enum TokenType: string
     case VALUE = 'value';
     case COMMENT = 'comment';
 
-    public function parse(string $value): string
+    public static function inject(string $language)
+    {
+
+    }
+
+    public function parse(string $content): string
+    {
+        return "{$this->before()}{$content}{$this->after()}";
+    }
+
+    public function before(): string
     {
         $class = match ($this) {
             TokenType::KEYWORD => 'hl-keyword',
@@ -24,6 +34,11 @@ enum TokenType: string
             TokenType::ATTRIBUTE => 'hl-attribute',
         };
 
-        return "<span class=\"{$class}\">{$value}</span>";
+        return "<span class=\"{$class}\">";
+    }
+
+    public function after(): string
+    {
+        return '</span>';
     }
 }
