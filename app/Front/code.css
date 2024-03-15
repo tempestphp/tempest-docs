@@ -2,7 +2,7 @@
     --background-color: #f3f3f3;
     --text-color: #000;
     --keyword-color: #4F95D1;
-    --property-color: #46B960;
+    --property-color: #46b98d;
     --type-color: #D14F57;
     --generic-color: #9D3AF6;
     --value-color: #515248;
@@ -16,6 +16,7 @@
     overflow-x: auto;
     width: 100%;
 }
+
 
 .hl-keyword {
     color: var(--keyword-color);
@@ -44,7 +45,6 @@
 .hl-comment {
     color: var(--comment-color);
     font-style: italic;
-    font-family: "Radon", serif;
 }
 
 .hl-blur {
