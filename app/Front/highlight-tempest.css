@@ -1,17 +1,28 @@
+:root {
+    --background-color: #f3f3f3;
+    --text-color: #000;
+    --keyword-color: #4F95D1;
+    --property-color: #46B960;
+    --type-color: #D14F57;
+    --generic-color: #9D3AF6;
+    --value-color: #515248;
+    --comment-color: #888888;
+}
+
 .prose pre {
-    background-color: #f3f3f3;
-    color: #000;
+    background-color: var(--background-color);
+    color: var(--text-color);
     max-width: 100%;
     overflow-x: auto;
     width: 100%;
 }
 
 .hl-keyword {
-    color: #4F95D1;
+    color: var(--keyword-color);
 }
 
 .hl-property {
-    color: #46B960;
+    color: var(--property-color);
 }
 
 .hl-attribute {
@@ -19,19 +30,19 @@
 }
 
 .hl-type {
-    color: #D14F57;
+    color: var(--type-color);
 }
 
 .hl-generic {
-    color: #9D3AF6;
+    color: var(--generic-color);
 }
 
 .hl-value {
-    color: #515248;
+    color: var(--value-color);
 }
 
 .hl-comment {
-    color: #888888;
+    color: var(--comment-color);
     font-style: italic;
     font-family: "Radon", serif;
 }
