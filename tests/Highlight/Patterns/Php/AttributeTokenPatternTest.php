@@ -15,7 +15,17 @@ class AttributeTokenPatternTest extends TestCase
         $this->assertMatches(
             pattern: new AttributeTokenPattern(),
             content: '#[Foo(prop: hi)]',
-            expected: 'Foo',
+            expected: '#[Foo(prop: hi)]',
+        );
+
+        $this->assertMatches(
+            pattern: new AttributeTokenPattern(),
+            content: '#[Foo(
+                prop: hi,
+            )]',
+            expected: '#[Foo(
+                prop: hi,
+            )]',
         );
     }
 }

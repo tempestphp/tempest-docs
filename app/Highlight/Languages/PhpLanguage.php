@@ -4,6 +4,7 @@ namespace App\Highlight\Languages;
 
 use App\Highlight\Language;
 use App\Highlight\Patterns\Php\AttributeTokenPattern;
+use App\Highlight\Patterns\Php\AttributeTypeTokenPattern;
 use App\Highlight\Patterns\Php\ClassNameTokenPattern;
 use App\Highlight\Patterns\Php\ClassPropertyTokenPattern;
 use App\Highlight\Patterns\Php\ConstantPropertyTokenPattern;
@@ -25,7 +26,6 @@ use App\Highlight\Patterns\Php\ReturnTypeTokenPattern;
 use App\Highlight\Patterns\Php\SinglelineDocCommentTokenPattern;
 use App\Highlight\Patterns\Php\StaticClassCallTokenPattern;
 use App\Highlight\Patterns\Php\UseTokenPattern;
-use App\Highlight\TokenType;
 
 final class PhpLanguage implements Language
 {
@@ -37,7 +37,8 @@ final class PhpLanguage implements Language
     public function getTokenPatterns(): array
     {
         return [
-            '(?<match>\#\[(.*?)\])' => TokenType::ATTRIBUTE, // single-line attributes
+            // ATTRIBUTES
+            new AttributeTokenPattern(),
 
             // COMMENTS
             new MultilineDoubleDocCommentTokenPattern(),
@@ -45,7 +46,7 @@ final class PhpLanguage implements Language
             new SinglelineDocCommentTokenPattern(),
 
             // TYPES
-            new AttributeTokenPattern(),
+            new AttributeTypeTokenPattern(),
             new ImplementsTokenPattern(),
             new ExtendsTokenPattern(),
             new UseTokenPattern(),

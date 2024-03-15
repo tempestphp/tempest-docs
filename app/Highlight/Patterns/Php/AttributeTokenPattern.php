@@ -12,11 +12,11 @@ final readonly class AttributeTokenPattern implements TokenPattern
 
     public function getPattern(): string
     {
-        return '\#\[(?<match>[\w]+)';
+        return '(?<match>\#\[(.|\n)*?\])';
     }
 
     public function getTokenType(): TokenType
     {
-        return TokenType::TYPE;
+        return TokenType::ATTRIBUTE;
     }
 }
