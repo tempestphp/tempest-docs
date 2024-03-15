@@ -5,11 +5,11 @@ namespace Tests\Highlight\Patterns\Html;
 use App\Highlight\Patterns\Html\HtmlCommentPattern;
 use App\Highlight\Patterns\Html\OpenTagPattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
 class HtmlCommentPatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {

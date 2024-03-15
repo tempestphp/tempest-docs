@@ -4,11 +4,11 @@ namespace Tests\Highlight\Patterns\Html;
 
 use App\Highlight\Patterns\Html\TagAttributePattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
 class TagAttributePatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {

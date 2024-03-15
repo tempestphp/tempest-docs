@@ -4,11 +4,11 @@ namespace Tests\Highlight\Patterns\Php;
 
 use App\Highlight\Patterns\Php\ParameterTypePattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
-class ParameterTypeTokenPatternTest extends TestCase
+class ParameterTypePatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {

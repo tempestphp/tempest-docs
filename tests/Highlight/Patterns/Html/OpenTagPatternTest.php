@@ -5,11 +5,11 @@ namespace Tests\Highlight\Patterns\Html;
 use App\Highlight\Patterns\Html\OpenTagPattern;
 use App\Highlight\Patterns\Php\AttributeTypePattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
 class OpenTagPatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {

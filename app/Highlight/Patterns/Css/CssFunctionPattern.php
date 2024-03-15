@@ -1,22 +1,22 @@
 <?php
 
-namespace App\Highlight\Patterns\Php;
+namespace App\Highlight\Patterns\Css;
 
 use App\Highlight\Pattern;
 use App\Highlight\Patterns\IsPattern;
 use App\Highlight\Tokens\TokenType;
 
-final readonly class MultilineSingleDocCommentPattern implements Pattern
+final readonly class CssFunctionPattern implements Pattern
 {
     use IsPattern;
 
     public function getPattern(): string
     {
-        return '/(?<match>\/\*(.|\n)*?\*\/)/m';
+        return '(?<match>[\w]+)\(';
     }
 
     public function getTokenType(): TokenType
     {
-        return TokenType::COMMENT;
+        return TokenType::KEYWORD;
     }
 }

@@ -4,11 +4,11 @@ namespace Tests\Highlight\Patterns\Php;
 
 use App\Highlight\Patterns\Php\KeywordPattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
-class KeywordTokenPatternTest extends TestCase
+class KeywordPatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {

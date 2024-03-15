@@ -2,6 +2,7 @@
 
 namespace App\Highlight;
 
+use App\Highlight\Languages\CssLanguage;
 use App\Highlight\Languages\PhpLanguage;
 use App\Highlight\Languages\HtmlLanguage;
 use App\Highlight\Tokens\ParseTokens;
@@ -15,6 +16,7 @@ final class Highlighter
     {
         $this->languages['php'] = new PhpLanguage();
         $this->languages['html'] = new HtmlLanguage();
+        $this->languages['css'] = new CssLanguage();
     }
 
     public function parse(string $content, string $language): string

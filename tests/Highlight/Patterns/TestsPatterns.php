@@ -4,7 +4,7 @@ namespace Tests\Highlight\Patterns;
 
 use App\Highlight\Pattern;
 
-trait TestsTokenPatterns
+trait TestsPatterns
 {
     public function assertMatches(
         Pattern $pattern,

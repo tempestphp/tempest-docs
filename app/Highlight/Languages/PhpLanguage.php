@@ -27,7 +27,7 @@ use App\Highlight\Patterns\Php\SinglelineDocCommentPattern;
 use App\Highlight\Patterns\Php\StaticClassCallPattern;
 use App\Highlight\Patterns\Php\UsePattern;
 
-final class PhpLanguage implements Language
+class PhpLanguage implements Language
 {
     public function getInjections(): array
     {

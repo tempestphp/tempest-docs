@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Highlight\Patterns\Php;
+namespace App\Highlight\Patterns\Css;
 
 use App\Highlight\Pattern;
 use App\Highlight\Patterns\IsPattern;
 use App\Highlight\Tokens\TokenType;
 
-final readonly class MultilineSingleDocCommentPattern implements Pattern
+final readonly class CssCommentPattern implements Pattern
 {
     use IsPattern;
 

@@ -12,7 +12,7 @@ final readonly class MultilineDoubleDocCommentPattern implements Pattern
 
     public function getPattern(): string
     {
-        return '/(?<match>\/\*\*(.|\n)*\*\/)/m';
+        return '/(?<match>\/\*\*(.|\n)*?\*\/)/m';
     }
 
     public function getTokenType(): TokenType

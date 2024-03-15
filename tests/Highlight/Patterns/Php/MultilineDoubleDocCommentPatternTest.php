@@ -4,11 +4,11 @@ namespace Tests\Highlight\Patterns\Php;
 
 use App\Highlight\Patterns\Php\MultilineDoubleDocCommentPattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
-class MultilineDoubleDocCommentTokenPatternTest extends TestCase
+class MultilineDoubleDocCommentPatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {
@@ -18,13 +18,23 @@ class MultilineDoubleDocCommentTokenPatternTest extends TestCase
 use App\Highlight\Token;
 
 /**
- * @return hello 
+ * @return a 
  */
 final class PhpLanguage implements Language
+
+/**
+ * @return b 
+ */
             ',
-            expected: '/**
- * @return hello 
+            expected: [
+                '/**
+ * @return a 
  */',
+                '/**
+ * @return b 
+ */',
+
+            ],
         );
     }
 }

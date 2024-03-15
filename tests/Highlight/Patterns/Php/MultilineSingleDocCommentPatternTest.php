@@ -5,11 +5,11 @@ namespace Tests\Highlight\Patterns\Php;
 use App\Highlight\Patterns\Php\MultilineDoubleDocCommentPattern;
 use App\Highlight\Patterns\Php\MultilineSingleDocCommentPattern;
 use PHPUnit\Framework\TestCase;
-use Tests\Highlight\Patterns\TestsTokenPatterns;
+use Tests\Highlight\Patterns\TestsPatterns;
 
-class MultilineSingleDocCommentTokenPatternTest extends TestCase
+class MultilineSingleDocCommentPatternTest extends TestCase
 {
-    use TestsTokenPatterns;
+    use TestsPatterns;
 
     public function test_pattern()
     {

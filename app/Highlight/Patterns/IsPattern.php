@@ -10,7 +10,7 @@ trait IsPattern
     {
         $pattern = $this->getPattern();
 
-        if (!str_starts_with($pattern, '/')) {
+        if (! str_starts_with($pattern, '/')) {
             $pattern = "/$pattern/";
         }
 
