@@ -23,8 +23,8 @@ final readonly class MarkdownInitializer implements Initializer
             ->addExtension(new CommonMarkCoreExtension())
             ->addExtension(new FrontMatterExtension())
             ->addRenderer(FencedCode::class, new HighlightCodeBlockRenderer())
-            ->addRenderer(Code::class, new HighlightInlineCodeRenderer());
-
+//            ->addRenderer(Code::class, new HighlightInlineCodeRenderer())
+;
         return new MarkdownConverter($environment);
     }
 }

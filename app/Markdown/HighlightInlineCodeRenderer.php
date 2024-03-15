@@ -21,7 +21,7 @@ class HighlightInlineCodeRenderer implements NodeRendererInterface
             return '<code>' . $content . '</code>';
         }
 
-        $content = str_replace('</hljs>', '</span>', $content);
+        $content = str_replace('', '</span>', $content);
 
         $regex = '/<hljs([\w\s]+)>/';
 

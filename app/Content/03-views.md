@@ -4,22 +4,22 @@ title: Views
 
 Tempest views are plain PHP files. Every view has access to its data via `$this` calls. By adding an `@var` docblock to your view files, you'll get static insights and autocompletion.
 
-```php
-<?php /** @var <hljs type>\Tempest\View\GenericView</hljs> $this */ ?>
+```html
+<?php /** @var \Tempest\View\GenericView $this */ ?>
 
-Hello, <?= $this-><hljs prop>name</hljs> ?>
+Hello, <?= $this->name ?>
 ```
 
 ```php
-final <hljs keyword>readonly</hljs> class HomeController
+final readonly class HomeController
 {
-    #[<hljs type>Get</hljs>(<hljs prop>uri</hljs>: '<hljs value>/home</hljs>')]
+    #[Get(uri: '/home')]
     public function __invoke(): View
     {
-        return <hljs prop>view</hljs>('Views/home.view.php')
-            -><hljs prop>data</hljs>(
-                <hljs prop>name</hljs>: 'Brent',
-                <hljs prop>date</hljs>: new <hljs type>DateTime</hljs>(),
+        return view('Views/home.view.php')
+            ->data(
+                name: 'Brent',
+                date: new DateTime(),
             )
     }
 }
@@ -29,83 +29,83 @@ final <hljs keyword>readonly</hljs> class HomeController
 
 Views can extend from other views like so:
 
-```php
+```html
 <?php 
-/** @var <hljs type>\Tempest\View\GenericView</hljs> $this */ 
-$this-><hljs prop>extends</hljs>('View/base.view.php');
+/** @var \Tempest\View\GenericView $this */ 
+$this->extends('View/base.view.php');
 ?>
 
-Hello, <?= $this-><hljs prop>name</hljs> ?>
+Hello, <?= $this->name ?>
 ```
 
 You can pass in optional data to the parent view as well:
 
 ```php
-$this-><hljs prop>extends</hljs>('View/base.view.php', <hljs prop>title</hljs>: 'Blog');
+$this->extends('View/base.view.php', title: 'Blog');
 ```
 
 The parent view, can look define _slots_ by using `$this->slot()`. Each slot can render content from the child's view. The default slot can be called without any name.
 
-```php
-<?php /** @var <hljs type>\Tempest\View\GenericView</hljs> $this */?>
+```html
+<?php /** @var \Tempest\View\GenericView $this */?>
 
-<<hljs keyword>html</hljs> <hljs prop>lang</hljs>="en">
+<html lang="en">
 
-    <<hljs keyword>head</hljs>>
-        <<hljs keyword>title</hljs>><?= $this-><hljs prop>title</hljs> ?? 'Home' ?></<hljs keyword>title</hljs>>
-    </<hljs keyword>head</hljs>>
+    <head>
+        <title><?= $this->title ?? 'Home' ?></title>
+    </head>
     
-    <<hljs keyword>body</hljs>>
-        <hljs comment><!-- 
+    <body>
+        <!-- 
             Everything rendered in the child view 
             will be placed inside this slot: 
-        --></hljs>
+        -->
         
-        <?= $this-><hljs prop>slot</hljs>() ?>
-    </<hljs keyword>body</hljs>>
+        <?= $this->slot() ?>
+    </body>
 
-</<hljs keyword>html</hljs>>
+</html>
 ```
 
 ### Named slots
 
 If you want even more flexibility between parent and child views, you can rely on named slots to pass HTML between different parts of your views. Let's consider this parent view:
 
-```php
-<<hljs keyword>head</hljs>>
-    <<hljs keyword>title</hljs>><?= $this-><hljs prop>title</hljs> ?? 'Home' ?></<hljs keyword>title</hljs>>
+```html
+<head>
+    <title><?= $this->title ?? 'Home' ?></title>
     
-    <?= $this-><hljs prop>slot</hljs>('styles') ?>
+    <?= $this->slot('styles') ?>
 
-    <?= $this-><hljs prop>slot</hljs>('scripts') ?>
-</<hljs keyword>head</hljs>>
+    <?= $this->slot('scripts') ?>
+</head>
 
-<<hljs keyword>body</hljs>>
-    <?= $this-><hljs prop>slot</hljs>() ?>
-</<hljs keyword>body</hljs>>
+<body>
+    <?= $this->slot() ?>
+</body>
 ```
 
 This parent view allows child views to dynamically inject styles and scripts in the right places, while still using familiar HTML syntax. It looks like this:
 
-```php
+```html
 <?php 
-/** @var <hljs type>\Tempest\View\GenericView</hljs> $this */ 
-$this-><hljs prop>extends</hljs>('View/base.view.php');
+/** @var \Tempest\View\GenericView $this */ 
+$this->extends('View/base.view.php');
 ?>
 
-<<hljs keyword>x-slot</hljs> <hljs prop>name</hljs>="styles">
-    <<hljs keyword>style</hljs>>
-        <hljs keyword>body</hljs> {
-            <hljs prop>background-color</hljs>: red;
+<x-slot name="styles">
+    <style>
+        body {
+            background-color: red;
         }
-    </<hljs keyword>style</hljs>>
-</<hljs keyword>x-slot</hljs>>
+    </style>
+</x-slot>
 
-<<hljs keyword>x-slot</hljs> <hljs prop>name</hljs>="scripts">
-    <<hljs keyword>script</hljs>>
-        console.<hljs prop>log</hljs>('hi');
-    </<hljs keyword>script</hljs>>
-</<hljs keyword>x-slot</hljs>>
+<x-slot name="scripts">
+    <script>
+        console.log('hi');
+    </script>
+</x-slot>
 
 The body of the view
 ```
@@ -113,14 +113,14 @@ The body of the view
 Keep in mind that named slots are flexible. You don't have to declare all of them, and they don't need to be ordered the same way as the parent declared them:
 
 
-```txt
+```html
 The first part of the body.
 
-<<hljs keyword>x-slot</hljs> <hljs prop>name</hljs>="scripts">
-    <<hljs keyword>script</hljs>>
-        console.<hljs prop>log</hljs>('hi');
-    </<hljs keyword>script</hljs>>
-</<hljs keyword>x-slot</hljs>>
+<x-slot name="scripts">
+    <script>
+        console.log('hi');
+    </script>
+</x-slot>
 
 The second part, the styles slot isn't present in this example.
 ```
@@ -130,29 +130,29 @@ The second part, the styles slot isn't present in this example.
 If you want to render a view within a view, you can do so by including it:
 
 ```php
-<?= $this-><hljs prop>include</hljs>('Views/include-child.php', <hljs prop>title</hljs>: "other title", <hljs prop>body</hljs>: "Hello world") ?>
+<?= $this->include('Views/include-child.php', title: "other title", body: "Hello world") ?>
 ```
 
 ### View Models
 
-Calling the `<hljs prop>view</hljs>()` helper function in controllers means you'll use the `<hljs type>GenericView</hljs>` implementation provided by Tempest.
+Calling the `view()` helper function in controllers means you'll use the `GenericView` implementation provided by Tempest.
 
 Many views however might benefit by using a dedicated class — a View Model. View Models will provide improved static insights both in your controllers and view files, and will allow you to expose custom methods to your views.
 
-A View Model is a class the implements `<hljs type>View</hljs>`, it can optionally set a path to a fixed view file, and provide data in its constructor. 
+A View Model is a class the implements `View`, it can optionally set a path to a fixed view file, and provide data in its constructor. 
 
 ```php
-use <hljs type>Tempest\View\View</hljs>;
-use <hljs type>Tempest\View\IsView</hljs>;
+use Tempest\View\View;
+use Tempest\View\IsView;
 
 final class HomeView implements View
 {
-    use <hljs type>IsView</hljs>;
+    use IsView;
 
     public function __construct(
-        <hljs keyword>public readonly</hljs> <hljs type>string</hljs> <hljs prop>$name</hljs>,
+        public readonly string $name,
     ) {
-        $this-><hljs prop>path</hljs>('Modules/Home/home.view.php');
+        $this->path('Modules/Home/home.view.php');
     }
 }
 ```
@@ -160,13 +160,13 @@ final class HomeView implements View
 Once you've made a View Model, you can use it in your controllers like so:
 
 ```php
-final <hljs keyword>readonly</hljs> class HomeController
+final readonly class HomeController
 {
-    #[<hljs type>Get</hljs>(<hljs prop>uri</hljs>: '/')]
-    public function __invoke(): <hljs type>HomeView</hljs>
+    #[Get(uri: '/')]
+    public function __invoke(): HomeView
     {
-        return new <hljs type>HomeView</hljs>(
-            <hljs prop>name</hljs>: 'Brent',
+        return new HomeView(
+            name: 'Brent',
         );
     }
 }
@@ -174,13 +174,13 @@ final <hljs keyword>readonly</hljs> class HomeController
 
 Its view file would look like this:
 
-```php
+```html
 <?php
-/** @var <hljs type>\App\Modules\Home\HomeView</hljs> $this */
-$this-><hljs prop>extends</hljs>('Views/base.view.php');
+/** @var \App\Modules\Home\HomeView $this */
+$this->extends('Views/base.view.php');
 ?>
 
-Hello, <?= $this-><hljs prop>name</hljs> ?>
+Hello, <?= $this->name ?>
 ```
 
 Note that you could also extend from within the View Model:
@@ -188,23 +188,23 @@ Note that you could also extend from within the View Model:
 ```php
 final class HomeView implements View
 {
-    use <hljs type>IsView</hljs>;
+    use IsView;
 
     public function __construct(
-        <hljs keyword>public readonly</hljs> <hljs type>string</hljs> $name,
+        public readonly string $name,
     ) {
-        $this-><hljs prop>path</hljs>('Modules/Home/home.view.php');
-        $this-><hljs prop>extends</hljs>('Views/base.view.php');
+        $this->path('Modules/Home/home.view.php');
+        $this->extends('Views/base.view.php');
     }
 }
 ```
 
 So that its view file would look like this:
 
-```php
-<?php /** @var <hljs type>\App\Modules\Home\HomeView</hljs> $this */ ?>
+```html
+<?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
-Hello, <?= $this-><hljs prop>name</hljs> ?>
+Hello, <?= $this->name ?>
 ```
 
 On top of that, View Models can expose methods to view files:
@@ -214,39 +214,39 @@ final class BlogPostView implements View
 {
     // …
     
-    public function formatDate(<hljs type>DateTimeImmutable</hljs> $date): string
+    public function formatDate(DateTimeImmutable $date): string
     {
-        return $date-><hljs prop>format</hljs>('Y-m-d');
+        return $date->format('Y-m-d');
     }
 }
 ```
 
 Which can be used like so:
 
-```php
-<?php /** @var <hljs type>\App\Modules\Home\HomeView</hljs> $this */ ?>
+```html
+<?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
-<?= $this-><hljs prop>formatDate</hljs>($post-><hljs prop>date</hljs>) ?>
+<?= $this->formatDate($post->date) ?>
 ```
 
 View Models are an excellent way of moving view-related complexity away from the controller, while simultaneously improving static insights.
 
-Finally, View Models can be passed into the `<hljs prop>response</hljs>` function, allowing you to control additional headers, the response's status code, etc.
+Finally, View Models can be passed into the `response` function, allowing you to control additional headers, the response's status code, etc.
 
 ```php
-final <hljs keyword>readonly</hljs> class HomeController
+final readonly class HomeController
 {
-    #[<hljs type>Get</hljs>(<hljs prop>uri</hljs>: '/')]
-    public function __invoke(): <hljs type>Response</hljs>
+    #[Get(uri: '/')]
+    public function __invoke(): Response
     {
-        $view = new <hljs type>HomeView</hljs>(
-            <hljs prop>name</hljs>: 'Brent',
+        $view = new HomeView(
+            name: 'Brent',
         );
         
-        return <hljs prop>response</hljs>()
-            -><hljs prop>setView</hljs>($view)
-            -><hljs prop>setStatus</hljs>(<hljs type>Status</hljs>::<hljs prop>CREATED</hljs>)
-            -><hljs prop>addHeader</hljs>('x-custom-header', 'value');
+        return response()
+            ->setView($view)
+            ->setStatus(Status::CREATED)
+            ->addHeader('x-custom-header', 'value');
     }
 }
 ```

@@ -6,6 +6,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <?= $this->slot('styles') ?>
     <link href="/main.css" rel="stylesheet">
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
@@ -21,5 +23,6 @@
 
 <?= $this->slot() ?>
 
+<?= $this->slot('scripts') ?>
 </body>
 </html>
