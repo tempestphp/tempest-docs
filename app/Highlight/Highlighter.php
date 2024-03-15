@@ -80,7 +80,6 @@ final class Highlighter
                     value: $value,
                     type: $pattern->getTokenType(),
                     pattern: $pattern,
-                    language: $language,
                 );
 
                 if (! $this->tokenAlreadyPresent($tokens, $token)) {

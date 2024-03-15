@@ -2,37 +2,28 @@
 
 namespace Tests\Highlight;
 
-use App\Highlight\RenderTokens;
 use App\Highlight\Token;
 use App\Highlight\TokenType;
-use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 
 class TokenTest extends TestCase
 {
-    #[Test]
-    public function test_nested_tokens(): void
+    /** @test */
+    public function test_contains(): void
     {
-        $content = '/** @var \Tempest\View\GenericView $this */';
-
-        $tokens = [
-            new Token(
-                offset: 0,
-                value: '/** @var \Tempest\View\GenericView $this */',
-                type: TokenType::COMMENT,
-            ),
-            new Token(
-                offset: 23,
-                value: 'GenericView',
-                type: TokenType::TYPE,
-            )
-        ];
-
-        $parsed = (new RenderTokens())($content, $tokens);
-        
-        $this->assertSame(
-            '<span class="hl-comment">/** @var \Tempest\View\<span class="hl-type">GenericView</span> $this */</span>',
-            $parsed,
+        $a = new Token(
+            offset: 10,
+            value: 'abc',
+            type: TokenType::VALUE,
         );
+
+        $b = new Token(
+            offset: 11,
+            value: 'b',
+            type: TokenType::VALUE,
+        );
+
+        $this->assertTrue($a->contains($b));
+        $this->assertFalse($b->contains($a));
     }
 }

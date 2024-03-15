@@ -7,47 +7,66 @@ final class RenderTokens
     /**
      * @param string $content
      * @param \App\Highlight\Token[] $tokens
+     * @param int $parsedOffset
      * @return string
      */
-    public function __invoke(string $content, array $tokens): string
+    public function __invoke(
+        string $content,
+        array $tokens,
+        int $parsedOffset = 0
+    ): string
     {
         usort($tokens, fn (Token $a, Token $b) => $a->offset <=> $b->offset);
 
-        $parsed = $content;
-        $parsedOffset = 0;
-        $bufferedOffset = 0;
-//dump($tokens);
-        foreach ($tokens as $key => $currentToken) {
-            $tokenType = $currentToken->type;
+        /** @var \App\Highlight\Token[] $groupedTokens */
+        $groupedTokens = [];
 
-            $before = $tokenType->before();
-            $after = $tokenType->after();
+        while($token = current($tokens)) {
+            $token = $token->cloneWithoutParent();
 
-            $parsedToken = $before . $currentToken->value . $after;
+            foreach ($tokens as $compareKey => $compareToken) {
+                if ($token->contains($compareToken)) {
+                    $token->addChild($compareToken);
+                    unset($tokens[$compareKey]);
+                }
+            }
 
-            $parsed = substr_replace(
-                $parsed,
-                $parsedToken,
+            if ($token->parent === null) {
+                $groupedTokens[] = $token;
+            }
+
+            next($tokens);
+        }
+
+        $output = $content;
+
+        foreach ($groupedTokens as $currentToken) {
+            $value = $currentToken->hasChildren()
+                ? ($this)(
+                    content: $currentToken->value,
+                    tokens: $currentToken->children,
+                    parsedOffset: -1 * $currentToken->offset,
+                )
+                : $currentToken->value;
+
+            $renderedToken = $currentToken->before() . $value . $currentToken->after();
+
+            $output = substr_replace(
+                $output,
+                $renderedToken,
                 $currentToken->offset + $parsedOffset,
                 $currentToken->length,
             );
 
-            $parsedOffset += strlen($before);
-            
-            $nextToken = $tokens[$key + 1] ?? null;
-
-            if ($nextToken && $nextToken->offset < $currentToken->length) {
-                // If the next token is nested within the current token's scope,
-                // we won't count the afterLength as an offset right now,
-                // but postpone it util it actually should be counted.
-                // This allows for nested tokens
-                $bufferedOffset += strlen($after);
-            } else {
-                $parsedOffset += strlen($after) + $bufferedOffset;
-                $bufferedOffset = 0;
+            foreach ($currentToken->children as $childToken) {
+                $parsedOffset += strlen($childToken->before()) + strlen($childToken->after());
             }
+
+            $parsedOffset += strlen($currentToken->before()) + strlen($currentToken->after());
         }
 
-        return $parsed;
+//        dd($output);
+        
+        return $output;
     }
 }
