@@ -25,9 +25,4 @@ final class ViewLanguage implements Language
             '(?<match>\&lt;!--(.|\n)*--&gt;)' => TokenType::COMMENT,
         ];
     }
-
-    public function getLinePatterns(): array
-    {
-        return [];
-    }
 }

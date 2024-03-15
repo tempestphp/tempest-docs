@@ -10,11 +10,6 @@ interface Language
     public function getInjectionPatterns(): array;
 
     /**
-     * @return array<string, \App\Highlight\TokenType>
-     */
-    public function getLinePatterns(): array;
-
-    /**
      * @return array<string, \App\Highlight\TokenType>|\App\Highlight\TokenPattern[]
      */
     public function getTokenPatterns(): array;

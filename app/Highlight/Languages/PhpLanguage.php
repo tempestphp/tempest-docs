@@ -34,16 +34,9 @@ final class PhpLanguage implements Language
         return [];
     }
 
-    public function getLinePatterns(): array
-    {
-        return [
-        ];
-    }
-
     public function getTokenPatterns(): array
     {
         return [
-
             '(?<match>\#\[(.*?)\])' => TokenType::ATTRIBUTE, // single-line attributes
 
             // COMMENTS

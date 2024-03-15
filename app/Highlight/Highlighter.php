@@ -88,24 +88,7 @@ final class Highlighter
             }
         }
 
-        $parsed = (new RenderTokens())($content, $tokens);
-
-        // Full line patterns
-        foreach ($language->getLinePatterns() as $pattern => $tokenType) {
-            preg_match_all("/$pattern/", $parsed, $matches);
-
-            $matches = $matches[0];
-
-            foreach ($matches as $match) {
-                $parsed = str_replace(
-                    search: $match,
-                    replace: $tokenType->parse($match),
-                    subject: $parsed,
-                );
-            }
-        }
-
-        return $parsed;
+        return (new RenderTokens())($content, $tokens);
     }
 
     private function tokenAlreadyPresent(array $tokens, Token $token): bool
