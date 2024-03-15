@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\ParameterTypeTokenPattern;
+use App\Highlight\Patterns\Php\ParameterTypePattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class ParameterTypeTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new ParameterTypeTokenPattern(),
+            pattern: new ParameterTypePattern(),
             content: 'function foo(Bar $bar, Baz $baz)',
             expected: ['Bar', 'Baz'],
         );

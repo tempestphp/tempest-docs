@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\ImplementsTokenPattern;
+use App\Highlight\Patterns\Php\ImplementsPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class ImplementsTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new ImplementsTokenPattern(),
+            pattern: new ImplementsPattern(),
             content: 'class Foo implements Bar',
             expected: 'Bar',
         );

@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\NamedArgumentTokenPattern;
+use App\Highlight\Patterns\Php\NamedArgumentPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,19 +13,19 @@ class NamedArgumentTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new NamedArgumentTokenPattern(),
+            pattern: new NamedArgumentPattern(),
             content: '#[Foo(prop: hi)]',
             expected: 'prop',
         );
 
         $this->assertMatches(
-            pattern: new NamedArgumentTokenPattern(),
+            pattern: new NamedArgumentPattern(),
             content: 'foo(bar: $a, baz: $b)',
             expected: ['bar', 'baz'],
         );
 
         $this->assertMatches(
-            pattern: new NamedArgumentTokenPattern(),
+            pattern: new NamedArgumentPattern(),
             content: 'foo(
                 bar: $a, 
                 baz: $b

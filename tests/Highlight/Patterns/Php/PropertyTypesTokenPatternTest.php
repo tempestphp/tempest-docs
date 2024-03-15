@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\PropertyTypesTokenPattern;
+use App\Highlight\Patterns\Php\PropertyTypesPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,37 +13,37 @@ class PropertyTypesTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new PropertyTypesTokenPattern(),
+            pattern: new PropertyTypesPattern(),
             content: 'public Bar $bar',
             expected: 'Bar',
         );
 
         $this->assertMatches(
-            pattern: new PropertyTypesTokenPattern(),
+            pattern: new PropertyTypesPattern(),
             content: 'protected Bar $bar',
             expected: 'Bar',
         );
 
         $this->assertMatches(
-            pattern: new PropertyTypesTokenPattern(),
+            pattern: new PropertyTypesPattern(),
             content: 'private Bar $bar',
             expected: 'Bar',
         );
 
         $this->assertMatches(
-            pattern: new PropertyTypesTokenPattern(),
+            pattern: new PropertyTypesPattern(),
             content: 'public Foo|Bar $bar',
             expected: 'Foo|Bar',
         );
 
         $this->assertMatches(
-            pattern: new PropertyTypesTokenPattern(),
+            pattern: new PropertyTypesPattern(),
             content: 'public Foo|Bar&Baz $bar',
             expected: 'Foo|Bar&Baz',
         );
 
         $this->assertMatches(
-            pattern: new PropertyTypesTokenPattern(),
+            pattern: new PropertyTypesPattern(),
             content: 'public (Bar&Baz)|null $bar',
             expected: '(Bar&Baz)|null',
         );

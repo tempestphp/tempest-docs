@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\FunctionCallTokenPattern;
+use App\Highlight\Patterns\Php\FunctionCallPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class FunctionCallTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new FunctionCallTokenPattern(),
+            pattern: new FunctionCallPattern(),
             content: 'foo()',
             expected: 'foo',
         );

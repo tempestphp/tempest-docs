@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\MultilineDoubleDocCommentTokenPattern;
+use App\Highlight\Patterns\Php\MultilineDoubleDocCommentPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class MultilineDoubleDocCommentTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new MultilineDoubleDocCommentTokenPattern(),
+            pattern: new MultilineDoubleDocCommentPattern(),
             content: '
 use App\Highlight\Token;
 

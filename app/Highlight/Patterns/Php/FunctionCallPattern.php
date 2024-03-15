@@ -2,17 +2,17 @@
 
 namespace App\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\IsTokenPattern;
-use App\Highlight\TokenPattern;
+use App\Highlight\Patterns\IsPattern;
+use App\Highlight\Pattern;
 use App\Highlight\TokenType;
 
-final readonly class FunctionNameTokenPattern implements TokenPattern
+final readonly class FunctionCallPattern implements Pattern
 {
-    use IsTokenPattern;
+    use IsPattern;
 
     public function getPattern(): string
     {
-        return 'function (?<match>[\w]+)';
+        return '\b(?<match>[a-z][\w]+)\(';
     }
 
     public function getTokenType(): TokenType

@@ -3,29 +3,29 @@
 namespace App\Highlight\Languages;
 
 use App\Highlight\Language;
-use App\Highlight\Patterns\Php\AttributeTokenPattern;
-use App\Highlight\Patterns\Php\AttributeTypeTokenPattern;
-use App\Highlight\Patterns\Php\ClassNameTokenPattern;
-use App\Highlight\Patterns\Php\ClassPropertyTokenPattern;
-use App\Highlight\Patterns\Php\ConstantPropertyTokenPattern;
-use App\Highlight\Patterns\Php\ExtendsTokenPattern;
-use App\Highlight\Patterns\Php\FunctionCallTokenPattern;
-use App\Highlight\Patterns\Php\KeywordTokenPattern;
-use App\Highlight\Patterns\Php\NestedFunctionCallTokenPattern;
-use App\Highlight\Patterns\Php\FunctionNameTokenPattern;
-use App\Highlight\Patterns\Php\ImplementsTokenPattern;
-use App\Highlight\Patterns\Php\MultilineDoubleDocCommentTokenPattern;
-use App\Highlight\Patterns\Php\MultilineSingleDocCommentTokenPattern;
-use App\Highlight\Patterns\Php\NamedArgumentTokenPattern;
-use App\Highlight\Patterns\Php\NamespaceTokenPattern;
-use App\Highlight\Patterns\Php\NewObjectTokenPattern;
-use App\Highlight\Patterns\Php\ParameterTypeTokenPattern;
-use App\Highlight\Patterns\Php\PropertyAccessTokenPattern;
-use App\Highlight\Patterns\Php\PropertyTypesTokenPattern;
-use App\Highlight\Patterns\Php\ReturnTypeTokenPattern;
-use App\Highlight\Patterns\Php\SinglelineDocCommentTokenPattern;
-use App\Highlight\Patterns\Php\StaticClassCallTokenPattern;
-use App\Highlight\Patterns\Php\UseTokenPattern;
+use App\Highlight\Patterns\Php\AttributePattern;
+use App\Highlight\Patterns\Php\AttributeTypePattern;
+use App\Highlight\Patterns\Php\ClassNamePattern;
+use App\Highlight\Patterns\Php\ClassPropertyPattern;
+use App\Highlight\Patterns\Php\ConstantPropertyPattern;
+use App\Highlight\Patterns\Php\ExtendsPattern;
+use App\Highlight\Patterns\Php\FunctionCallPattern;
+use App\Highlight\Patterns\Php\KeywordPattern;
+use App\Highlight\Patterns\Php\NestedFunctionCallPattern;
+use App\Highlight\Patterns\Php\FunctionNamePattern;
+use App\Highlight\Patterns\Php\ImplementsPattern;
+use App\Highlight\Patterns\Php\MultilineDoubleDocCommentPattern;
+use App\Highlight\Patterns\Php\MultilineSingleDocCommentPattern;
+use App\Highlight\Patterns\Php\NamedArgumentPattern;
+use App\Highlight\Patterns\Php\NamespacePattern;
+use App\Highlight\Patterns\Php\NewObjectPattern;
+use App\Highlight\Patterns\Php\ParameterTypePattern;
+use App\Highlight\Patterns\Php\PropertyAccessPattern;
+use App\Highlight\Patterns\Php\PropertyTypesPattern;
+use App\Highlight\Patterns\Php\ReturnTypePattern;
+use App\Highlight\Patterns\Php\SinglelineDocCommentPattern;
+use App\Highlight\Patterns\Php\StaticClassCallPattern;
+use App\Highlight\Patterns\Php\UsePattern;
 
 final class PhpLanguage implements Language
 {
@@ -38,106 +38,106 @@ final class PhpLanguage implements Language
     {
         return [
             // ATTRIBUTES
-            new AttributeTokenPattern(),
+            new AttributePattern(),
 
             // COMMENTS
-            new MultilineDoubleDocCommentTokenPattern(),
-            new MultilineSingleDocCommentTokenPattern(),
-            new SinglelineDocCommentTokenPattern(),
+            new MultilineDoubleDocCommentPattern(),
+            new MultilineSingleDocCommentPattern(),
+            new SinglelineDocCommentPattern(),
 
             // TYPES
-            new AttributeTypeTokenPattern(),
-            new ImplementsTokenPattern(),
-            new ExtendsTokenPattern(),
-            new UseTokenPattern(),
-            new NamespaceTokenPattern(),
-            new PropertyTypesTokenPattern(),
-            new ClassNameTokenPattern(),
-            new ReturnTypeTokenPattern(),
-            new StaticClassCallTokenPattern(),
-            new ParameterTypeTokenPattern(),
-            new NewObjectTokenPattern(),
+            new AttributeTypePattern(),
+            new ImplementsPattern(),
+            new ExtendsPattern(),
+            new UsePattern(),
+            new NamespacePattern(),
+            new PropertyTypesPattern(),
+            new ClassNamePattern(),
+            new ReturnTypePattern(),
+            new StaticClassCallPattern(),
+            new ParameterTypePattern(),
+            new NewObjectPattern(),
 
             // PROPERTIES
-            new ClassPropertyTokenPattern(),
-            new NamedArgumentTokenPattern(),
-            new PropertyAccessTokenPattern(),
-            new FunctionNameTokenPattern(),
-            new NestedFunctionCallTokenPattern(),
-            new FunctionCallTokenPattern(),
-            new ConstantPropertyTokenPattern(),
+            new ClassPropertyPattern(),
+            new NamedArgumentPattern(),
+            new PropertyAccessPattern(),
+            new FunctionNamePattern(),
+            new NestedFunctionCallPattern(),
+            new FunctionCallPattern(),
+            new ConstantPropertyPattern(),
 
             // KEYWORDS
-            new KeywordTokenPattern('__halt_compiler'),
-            new KeywordTokenPattern('abstract'),
-            new KeywordTokenPattern('and'),
-            new KeywordTokenPattern('array'),
-            new KeywordTokenPattern('as'),
-            new KeywordTokenPattern('break'),
-            new KeywordTokenPattern('callable'),
-            new KeywordTokenPattern('case'),
-            new KeywordTokenPattern('catch'),
-            new KeywordTokenPattern('class'),
-            new KeywordTokenPattern('clone'),
-            new KeywordTokenPattern('const'),
-            new KeywordTokenPattern('continue'),
-            new KeywordTokenPattern('declare'),
-            new KeywordTokenPattern('default'),
-            new KeywordTokenPattern('die'),
-            new KeywordTokenPattern('do'),
-            new KeywordTokenPattern('echo'),
-            new KeywordTokenPattern('else'),
-            new KeywordTokenPattern('elseif'),
-            new KeywordTokenPattern('empty'),
-            new KeywordTokenPattern('enddeclare'),
-            new KeywordTokenPattern('endfor'),
-            new KeywordTokenPattern('endforeach'),
-            new KeywordTokenPattern('endif'),
-            new KeywordTokenPattern('endswitch'),
-            new KeywordTokenPattern('endwhile'),
-            new KeywordTokenPattern('eval'),
-            new KeywordTokenPattern('exit'),
-            new KeywordTokenPattern('extends'),
-            new KeywordTokenPattern('final'),
-            new KeywordTokenPattern('finally'),
-            new KeywordTokenPattern('fn'),
-            new KeywordTokenPattern('for'),
-            new KeywordTokenPattern('foreach'),
-            new KeywordTokenPattern('function'),
-            new KeywordTokenPattern('global'),
-            new KeywordTokenPattern('goto'),
-            new KeywordTokenPattern('if'),
-            new KeywordTokenPattern('implements'),
-            new KeywordTokenPattern('include'),
-            new KeywordTokenPattern('include_once'),
-            new KeywordTokenPattern('instanceof'),
-            new KeywordTokenPattern('insteadof'),
-            new KeywordTokenPattern('interface'),
-            new KeywordTokenPattern('isset'),
-            new KeywordTokenPattern('list'),
-            new KeywordTokenPattern('match'),
-            new KeywordTokenPattern('namespace'),
-            new KeywordTokenPattern('new'),
-            new KeywordTokenPattern('or'),
-            new KeywordTokenPattern('print'),
-            new KeywordTokenPattern('private'),
-            new KeywordTokenPattern('protected'),
-            new KeywordTokenPattern('public'),
-            new KeywordTokenPattern('readonly'),
-            new KeywordTokenPattern('require'),
-            new KeywordTokenPattern('require_once'),
-            new KeywordTokenPattern('return'),
-            new KeywordTokenPattern('static'),
-            new KeywordTokenPattern('switch'),
-            new KeywordTokenPattern('throw'),
-            new KeywordTokenPattern('trait'),
-            new KeywordTokenPattern('try'),
-            new KeywordTokenPattern('unset'),
-            new KeywordTokenPattern('use'),
-            new KeywordTokenPattern('while'),
-            new KeywordTokenPattern('xor'),
-            new KeywordTokenPattern('yield'),
-            new KeywordTokenPattern('yield from'),
+            new KeywordPattern('__halt_compiler'),
+            new KeywordPattern('abstract'),
+            new KeywordPattern('and'),
+            new KeywordPattern('array'),
+            new KeywordPattern('as'),
+            new KeywordPattern('break'),
+            new KeywordPattern('callable'),
+            new KeywordPattern('case'),
+            new KeywordPattern('catch'),
+            new KeywordPattern('class'),
+            new KeywordPattern('clone'),
+            new KeywordPattern('const'),
+            new KeywordPattern('continue'),
+            new KeywordPattern('declare'),
+            new KeywordPattern('default'),
+            new KeywordPattern('die'),
+            new KeywordPattern('do'),
+            new KeywordPattern('echo'),
+            new KeywordPattern('else'),
+            new KeywordPattern('elseif'),
+            new KeywordPattern('empty'),
+            new KeywordPattern('enddeclare'),
+            new KeywordPattern('endfor'),
+            new KeywordPattern('endforeach'),
+            new KeywordPattern('endif'),
+            new KeywordPattern('endswitch'),
+            new KeywordPattern('endwhile'),
+            new KeywordPattern('eval'),
+            new KeywordPattern('exit'),
+            new KeywordPattern('extends'),
+            new KeywordPattern('final'),
+            new KeywordPattern('finally'),
+            new KeywordPattern('fn'),
+            new KeywordPattern('for'),
+            new KeywordPattern('foreach'),
+            new KeywordPattern('function'),
+            new KeywordPattern('global'),
+            new KeywordPattern('goto'),
+            new KeywordPattern('if'),
+            new KeywordPattern('implements'),
+            new KeywordPattern('include'),
+            new KeywordPattern('include_once'),
+            new KeywordPattern('instanceof'),
+            new KeywordPattern('insteadof'),
+            new KeywordPattern('interface'),
+            new KeywordPattern('isset'),
+            new KeywordPattern('list'),
+            new KeywordPattern('match'),
+            new KeywordPattern('namespace'),
+            new KeywordPattern('new'),
+            new KeywordPattern('or'),
+            new KeywordPattern('print'),
+            new KeywordPattern('private'),
+            new KeywordPattern('protected'),
+            new KeywordPattern('public'),
+            new KeywordPattern('readonly'),
+            new KeywordPattern('require'),
+            new KeywordPattern('require_once'),
+            new KeywordPattern('return'),
+            new KeywordPattern('static'),
+            new KeywordPattern('switch'),
+            new KeywordPattern('throw'),
+            new KeywordPattern('trait'),
+            new KeywordPattern('try'),
+            new KeywordPattern('unset'),
+            new KeywordPattern('use'),
+            new KeywordPattern('while'),
+            new KeywordPattern('xor'),
+            new KeywordPattern('yield'),
+            new KeywordPattern('yield from'),
         ];
     }
 }

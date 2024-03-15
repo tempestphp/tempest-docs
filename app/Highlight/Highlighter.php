@@ -4,7 +4,7 @@ namespace App\Highlight;
 
 use App\Highlight\Languages\PhpLanguage;
 use App\Highlight\Languages\ViewLanguage;
-use App\Highlight\Patterns\Php\GenericTokenPattern;
+use App\Highlight\Patterns\Php\GenericPattern;
 
 final class Highlighter
 {
@@ -57,7 +57,7 @@ final class Highlighter
 
         foreach ($language->getTokenPatterns() as $key => $pattern) {
             if ($pattern instanceof TokenType) {
-                $pattern = new GenericTokenPattern(
+                $pattern = new GenericPattern(
                     $key,
                     $pattern,
                 );

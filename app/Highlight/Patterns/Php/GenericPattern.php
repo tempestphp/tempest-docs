@@ -2,13 +2,13 @@
 
 namespace App\Highlight\Patterns\Php;
 
-use App\Highlight\TokenPattern;
-use App\Highlight\Patterns\IsTokenPattern;
+use App\Highlight\Pattern;
+use App\Highlight\Patterns\IsPattern;
 use App\Highlight\TokenType;
 
-final readonly class GenericTokenPattern implements TokenPattern
+final readonly class GenericPattern implements Pattern
 {
-    use IsTokenPattern;
+    use IsPattern;
 
     public function __construct(
         private string $pattern,

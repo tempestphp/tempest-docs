@@ -2,12 +2,12 @@
 
 namespace Tests\Highlight\Patterns;
 
-use App\Highlight\TokenPattern;
+use App\Highlight\Pattern;
 
 trait TestsTokenPatterns
 {
     public function assertMatches(
-        TokenPattern $pattern,
+        Pattern $pattern,
         string $content,
         string|array $expected,
     ): void {

@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\KeywordTokenPattern;
+use App\Highlight\Patterns\Php\KeywordPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,19 +13,19 @@ class KeywordTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new KeywordTokenPattern('match'),
+            pattern: new KeywordPattern('match'),
             content: 'match ()',
             expected: 'match',
         );
 
         $this->assertMatches(
-            pattern: new KeywordTokenPattern('return'),
+            pattern: new KeywordPattern('return'),
             content: 'return ()',
             expected: 'return',
         );
 
         $this->assertMatches(
-            pattern: new KeywordTokenPattern('class'),
+            pattern: new KeywordPattern('class'),
             content: 'class ()',
             expected: 'class',
         );

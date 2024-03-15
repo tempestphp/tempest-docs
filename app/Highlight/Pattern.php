@@ -2,7 +2,7 @@
 
 namespace App\Highlight;
 
-interface TokenPattern
+interface Pattern
 {
     public function match(string $content): array;
 

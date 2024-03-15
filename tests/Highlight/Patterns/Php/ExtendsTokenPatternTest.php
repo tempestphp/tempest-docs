@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\ExtendsTokenPattern;
+use App\Highlight\Patterns\Php\ExtendsPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class ExtendsTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new ExtendsTokenPattern(),
+            pattern: new ExtendsPattern(),
             content: 'class Foo extends Bar',
             expected: 'Bar',
         );

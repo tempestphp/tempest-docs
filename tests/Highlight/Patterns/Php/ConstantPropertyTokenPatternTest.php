@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\ConstantPropertyTokenPattern;
+use App\Highlight\Patterns\Php\ConstantPropertyPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,13 +13,13 @@ class ConstantPropertyTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new ConstantPropertyTokenPattern(),
+            pattern: new ConstantPropertyPattern(),
             content: 'Foo::BAR',
             expected: 'BAR',
         );
 
         $this->assertMatches(
-            pattern: new ConstantPropertyTokenPattern(),
+            pattern: new ConstantPropertyPattern(),
             content: 'Foo::BAR()',
             expected: 'BAR',
         );

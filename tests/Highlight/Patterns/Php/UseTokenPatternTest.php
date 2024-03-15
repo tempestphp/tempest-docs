@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\UseTokenPattern;
+use App\Highlight\Patterns\Php\UsePattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class UseTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new UseTokenPattern(),
+            pattern: new UsePattern(),
             content: 'use Foo\Bar\Baz;',
             expected: 'Foo\Bar\Baz',
         );

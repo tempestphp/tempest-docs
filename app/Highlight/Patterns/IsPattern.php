@@ -2,7 +2,7 @@
 
 namespace App\Highlight\Patterns;
 
-trait IsTokenPattern
+trait IsPattern
 {
     public abstract function getPattern(): string;
 

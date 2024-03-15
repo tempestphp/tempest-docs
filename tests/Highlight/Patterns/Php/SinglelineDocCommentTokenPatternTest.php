@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\SinglelineDocCommentTokenPattern;
+use App\Highlight\Patterns\Php\SinglelineDocCommentPattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,7 +13,7 @@ class SinglelineDocCommentTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new SinglelineDocCommentTokenPattern(),
+            pattern: new SinglelineDocCommentPattern(),
             content: '$bar // foo',
             expected: '// foo',
         );

@@ -2,7 +2,7 @@
 
 namespace Tests\Highlight\Patterns\Php;
 
-use App\Highlight\Patterns\Php\AttributeTypeTokenPattern;
+use App\Highlight\Patterns\Php\AttributeTypePattern;
 use PHPUnit\Framework\TestCase;
 use Tests\Highlight\Patterns\TestsTokenPatterns;
 
@@ -13,13 +13,13 @@ class AttributeTypeTokenPatternTest extends TestCase
     public function test_pattern()
     {
         $this->assertMatches(
-            pattern: new AttributeTypeTokenPattern(),
+            pattern: new AttributeTypePattern(),
             content: '#[Foo(prop: hi)]',
             expected: 'Foo',
         );
 
         $this->assertMatches(
-            pattern: new AttributeTypeTokenPattern(),
+            pattern: new AttributeTypePattern(),
             content: '
 #[Foo(
         uri: "/books/create",
