@@ -29,12 +29,12 @@ use App\Highlight\Patterns\Php\UsePattern;
 
 final class PhpLanguage implements Language
 {
-    public function getInjectionPatterns(): array
+    public function getInjections(): array
     {
         return [];
     }
 
-    public function getTokenPatterns(): array
+    public function getPatterns(): array
     {
         return [
             // ATTRIBUTES

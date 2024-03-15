@@ -2,9 +2,9 @@
 
 namespace Tests\Highlight;
 
-use App\Highlight\RenderTokens;
-use App\Highlight\Token;
-use App\Highlight\TokenType;
+use App\Highlight\Tokens\RenderTokens;
+use App\Highlight\Tokens\Token;
+use App\Highlight\Tokens\TokenType;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 

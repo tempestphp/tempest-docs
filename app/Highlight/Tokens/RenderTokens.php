@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Highlight;
+namespace App\Highlight\Tokens;
 
 final class RenderTokens
 {
     /**
      * @param string $content
-     * @param \App\Highlight\Token[] $tokens
+     * @param \App\Highlight\Tokens\Token[] $tokens
      * @param int $parsedOffset
      * @return string
      */
@@ -18,7 +18,7 @@ final class RenderTokens
     {
         usort($tokens, fn (Token $a, Token $b) => $a->offset <=> $b->offset);
 
-        /** @var \App\Highlight\Token[] $groupedTokens */
+        /** @var \App\Highlight\Tokens\Token[] $groupedTokens */
         $groupedTokens = [];
 
         while($token = current($tokens)) {

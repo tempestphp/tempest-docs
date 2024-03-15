@@ -2,8 +2,8 @@
 
 namespace Tests\Highlight;
 
-use App\Highlight\Token;
-use App\Highlight\TokenType;
+use App\Highlight\Tokens\Token;
+use App\Highlight\Tokens\TokenType;
 use PHPUnit\Framework\TestCase;
 
 class TokenTest extends TestCase

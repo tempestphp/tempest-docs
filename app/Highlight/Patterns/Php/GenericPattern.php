@@ -4,7 +4,7 @@ namespace App\Highlight\Patterns\Php;
 
 use App\Highlight\Pattern;
 use App\Highlight\Patterns\IsPattern;
-use App\Highlight\TokenType;
+use App\Highlight\Tokens\TokenType;
 
 final readonly class GenericPattern implements Pattern
 {

@@ -4,7 +4,7 @@ title: Views
 
 Tempest views are plain PHP files. Every view has access to its data via `$this` calls. By adding an `@var` docblock to your view files, you'll get static insights and autocompletion.
 
-```view
+```html
 <?php /** @var \Tempest\View\GenericView $this */ ?>
 
 Hello, <?= $this->name ?>
@@ -29,7 +29,7 @@ final readonly class HomeController
 
 Views can extend from other views like so:
 
-```view
+```html
 <?php 
 /** @var \Tempest\View\GenericView $this */ 
 $this->extends('View/base.view.php');
@@ -46,7 +46,7 @@ $this->extends('View/base.view.php', title: 'Blog');
 
 The parent view, can look define _slots_ by using `$this->slot()`. Each slot can render content from the child's view. The default slot can be called without any name.
 
-```php
+```html
 <?php /** @var \Tempest\View\GenericView $this */?>
 
 <html lang="en">
@@ -71,7 +71,7 @@ The parent view, can look define _slots_ by using `$this->slot()`. Each slot can
 
 If you want even more flexibility between parent and child views, you can rely on named slots to pass HTML between different parts of your views. Let's consider this parent view:
 
-```php
+```html
 <head>
     <title><?= $this->title ?? 'Home' ?></title>
     
@@ -87,7 +87,7 @@ If you want even more flexibility between parent and child views, you can rely o
 
 This parent view allows child views to dynamically inject styles and scripts in the right places, while still using familiar HTML syntax. It looks like this:
 
-```view
+```html
 <?php 
 /** @var \Tempest\View\GenericView $this */ 
 $this->extends('View/base.view.php');
@@ -113,7 +113,7 @@ The body of the view
 Keep in mind that named slots are flexible. You don't have to declare all of them, and they don't need to be ordered the same way as the parent declared them:
 
 
-```txt
+```html
 The first part of the body.
 
 <x-slot name="scripts">
@@ -174,7 +174,7 @@ final readonly class HomeController
 
 Its view file would look like this:
 
-```php
+```html
 <?php
 /** @var \App\Modules\Home\HomeView $this */
 $this->extends('Views/base.view.php');
@@ -201,7 +201,7 @@ final class HomeView implements View
 
 So that its view file would look like this:
 
-```php
+```html
 <?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
 Hello, <?= $this->name ?>
@@ -223,7 +223,7 @@ final class BlogPostView implements View
 
 Which can be used like so:
 
-```php
+```html
 <?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
 <?= $this->formatDate($post->date) ?>

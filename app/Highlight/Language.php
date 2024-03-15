@@ -5,12 +5,12 @@ namespace App\Highlight;
 interface Language
 {
     /**
-     * @return array<string, \Closure>
+     * @return \App\Highlight\Injection[]
      */
-    public function getInjectionPatterns(): array;
+    public function getInjections(): array;
 
     /**
-     * @return array<string, \App\Highlight\TokenType>|\App\Highlight\Pattern[]
+     * @return \App\Highlight\Pattern[]
      */
-    public function getTokenPatterns(): array;
+    public function getPatterns(): array;
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Highlight;
+namespace App\Highlight\Tokens;
 
 enum TokenType: string
 {

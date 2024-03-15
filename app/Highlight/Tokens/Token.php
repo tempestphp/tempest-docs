@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Highlight;
+namespace App\Highlight\Tokens;
+
+use App\Highlight\Pattern;
 
 final class Token
 {
