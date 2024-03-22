@@ -62,7 +62,7 @@ You can choose which files you want to install, and you can always rerun the `in
 
 ## A basic Tempest project
 
-Tempest won't impose any fixed file structure on you: one of the core principles of Tempest is that it will scan you project code for you, and it will automatically discover any files it needs to. For example: Tempest is able to differentiate between a controller method and a console command by looking at the code, instead of relying on naming conventions. This is what's called **discovery**, and it's one of Tempest's most powerful features. 
+Tempest won't impose any fixed file structure on you: one of the core principles of Tempest is that it will scan your project code for you, and it will automatically discover any files it needs to. For example: Tempest is able to differentiate between a controller method and a console command by looking at the code, instead of relying on naming conventions. This is what's called **discovery**, and it's one of Tempest's most powerful features. 
 
 You can make a project that looks like this:
 
