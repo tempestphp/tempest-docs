@@ -151,7 +151,7 @@ final readonly class AdminRoute extends Route
         parent::__construct(
             uri: $uri,
             method: $method,
-            middelware: [
+            middleware: [
                 AdminMiddleware::class,
                 LogUserActionsMiddleware::class,
             ]
