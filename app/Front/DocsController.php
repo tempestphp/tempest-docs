@@ -16,18 +16,16 @@ final readonly class DocsController
     #[Get('/')]
     public function home(): Response
     {
-        return response()->redirect(uri([self::class, 'show'], slug: '01-getting-started'));
+        return response()->redirect(uri([self::class, 'show'], category: 'web', slug: '01-getting-started'));
     }
 
-    #[Get('/{slug}')]
-    public function show(
-        string $slug,
-        ChapterRepository $chapters,
-    ): View
+    #[Get('/{category}/{slug}')]
+    public function show(string $category, string $slug, ChapterRepository $chapterRepository): View
     {
         return new DocsView(
-            chapters: $chapters->all(),
-            currentChapter: $chapters->find($slug),
+            chapters: $chapterRepository->all(),
+            currentChapter: $chapterRepository->find($category, $slug),
+            chapterRepository: $chapterRepository,
         );
     }
 }

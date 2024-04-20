@@ -12,9 +12,9 @@ readonly class ChapterRepository
         private MarkdownConverter $markdown,
     ) {}
 
-    public function find(string $slug): Chapter
+    public function find(string $category, string $slug): Chapter
     {
-        $content = $this->getContent($slug);
+        $content = $this->getContent($category, $slug);
 
         $markdown = $this->markdown->convert($content);
 
@@ -24,6 +24,7 @@ readonly class ChapterRepository
 
         return new Chapter(...[
             ...[
+                'category' => $category,
                 'slug' => $slug,
                 'body' => $markdown->getContent()
             ],
@@ -34,14 +35,16 @@ readonly class ChapterRepository
     /**
      * @return \App\Chapters\Chapter[]
      */
-    public function all(): array
+    public function all(string $category = '*'): array
     {
         return array_map(
-            function (string $content) {
-                $slug = pathinfo($content, PATHINFO_FILENAME);
+            function (string $path) {
+                preg_match('/(?<category>[\w]+)\/(?<slug>[\w-]+)\.md/', $path, $matches);
 
-                $content = $this->getContent($slug);
+                $slug = $matches['slug'];
+                $category = $matches['category'];
 
+                $content = file_get_contents($path);
                 /** @var array $frontMatter */
                 $frontMatter = YamlFrontMatter::parse($content)->matter();
 
@@ -49,19 +52,20 @@ readonly class ChapterRepository
 
                 return new Chapter(...[
                     ...[
+                        'category' => $category,
                         'slug' => $slug,
                         'body' => ''
                     ],
                     ...$frontMatter,
                 ]);
             },
-            glob(__DIR__ . "/../Content/*.md"),
+            glob(__DIR__ . "/../Content/{$category}/*.md"),
         );
     }
 
-    private function getContent(string $slug): string
+    private function getContent(string $category, string $slug): string
     {
-        $path = glob(__DIR__ . "/../Content/{$slug}*.md")[0] ?? __DIR__ . "/../Content/{$slug}.md";
+        $path = glob(__DIR__ . "/../Content/{$category}/{$slug}*.md")[0] ?? __DIR__ . "/../Content/{$slug}.md";
 
         return file_get_contents($path);
     }

@@ -1,3 +1,7 @@
+<?php
+/** @var \App\Front\DocsView $this */
+?>
+
 <div class="
     max-w-full md:max-w-[1000px] mx-auto
     md:grid md:grid-cols-12
@@ -7,47 +11,58 @@
             md:sticky md:top-0 md:pt-4 md:px-6 md:text-right
             px-2
         ">
-            <h1 class="text-[#4f95d1] font-bold text-2xl">Tempest</h1>
-
             <div class="
-                flex justify-start
-                gap-1
+                flex
+                gap-4
                 flex-wrap
-                text-white
                 mt-4
 
                 md:mt-4
                 md:grid
-                md:gap-1
+                md:gap-4
                 md:border-r-2
                 md:border-[#4f95d1]
                 md:px-4
                 md:py-2
                 md:justify-end
+                justify-start
             ">
-                <?php foreach ($this->chapters as $chapter) { ?>
-                    <a href="<?= $chapter->getUri() ?>" class="
-                        bg-[#4f95d1]
-                        px-4 py-2
-                        text-sm
-                        inline-block
-                        rounded
+                <h1 class="text-[#4f95d1] font-bold text-2xl">Tempest</h1>
 
-                        md:bg-transparent
-                        md:px-0
-                        md:py-1
-                        md:inline
-                        md:text-base
-                        <?= $this->isCurrent($chapter) ? 'font-bold text-white md:text-[#4f95d1]' : 'md:text-black' ?>"
-                    >
-                        <?= $chapter->title ?>
-                    </a>
+                <?php foreach (['intro', 'console', 'web', 'highlight'] as $category) { ?>
+                    <div class="flex flex-col">
+                        <?php if($category !== 'intro') { ?>
+                            <h2 class="font-bold text-lg">
+                                <?= ucfirst($category) ?>
+                            </h2>
+                        <?php } ?>
+
+                        <?php foreach ($this->chaptersForCategory($category) as $chapter) { ?>
+                            <a href="<?= $chapter->getUri() ?>" class="
+                                bg-[#4f95d1]
+                                px-4 py-2
+                                text-sm
+                                font-normal
+                                inline-block
+                                rounded
+
+                                md:bg-transparent
+                                md:px-0
+                                md:py-1
+                                md:inline
+                                md:text-base
+                                <?= $this->isCurrent($chapter) ? 'font-bold text-white md:text-[#4f95d1]' : 'md:text-black' ?>"
+                            >
+                                <?= $chapter->title ?>
+                            </a>
+                        <?php } ?>
+                    </div>
                 <?php } ?>
             </div>
         </div>
     </div>
 
-    <div class="px-2 md:px-6 pt-4 md:col-span-9">
+    <div class="px-2 md:px-6 pt-8 md:col-span-9">
         <?php if ($this->currentChapter) { ?>
             <div class="prose">
                 <h1>

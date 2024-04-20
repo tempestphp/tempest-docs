@@ -2,7 +2,7 @@
     --background-color: #f3f3f3;
     --text-color: #000;
     --keyword-color: #4F95D1;
-    --property-color: #46b98d;
+    --property-color: #4CB966;
     --type-color: #D14F57;
     --generic-color: #9D3AF6;
     --value-color: #515248;
@@ -49,4 +49,68 @@
 
 .hl-blur {
     filter: blur(2px);
+}
+
+.hl-hl {
+    background-color: #22DDDD33;
+    display: inline-block;
+    line-height: 1.9em;
+    padding: 0 5px;
+}
+
+.hl-console-underline {
+    text-decoration: underline;
+}
+
+.hl-console-strong {
+    font-weight: bold;
+}
+
+.hl-console-comment {
+    color: #888888;
+}
+
+.hl-console-em {
+    color: #4F95D1;
+}
+
+.hl-console-question {
+    background-color: #4F95D1;
+    color: #fff;
+    display: inline-block;
+    line-height: 1.9em;
+    padding: 0 5px;
+}
+
+.hl-console-error {
+    background-color: #D14F57;
+    color: #fff;
+    display: inline-block;
+    line-height: 1.9em;
+    padding: 0 5px;
+}
+
+.hl-console-success {
+    background-color: #4CB966;
+    color: #fff;
+    display: inline-block;
+    line-height: 1.9em;
+    padding: 0 5px;
+}
+
+.hl-console-h1 {
+    background-color: #4AB1D1;
+    color: #fff;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 2em;
+    padding: 0 5px;
+}
+
+.hl-console-h2 {
+    background-color: #4F95D1;
+    color: #fff;
+    display: inline-block;
+    line-height: 1.8em;
+    padding: 0 5px;
 }
