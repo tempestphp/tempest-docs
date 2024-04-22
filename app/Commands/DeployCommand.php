@@ -2,8 +2,8 @@
 
 namespace App\Commands;
 
-use App\Console;
-use App\ConsoleCommand;
+use Tempest\Console\Console;
+use Tempest\Console\ConsoleCommand;
 
 final readonly class DeployCommand
 {
