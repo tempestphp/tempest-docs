@@ -2,10 +2,12 @@
 title: Getting Started
 ---
 
-`tempest/console` is a standalone package used to build console applications. You can install it like so:
+`tempest/console` is a standalone package used to build console applications. [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/tempest-console)! 
+
+You can install `tempest/console` like so:
 
 ```
-composer require tempest/console
+composer require tempest/console:dev-main
 ```
 
 And run it like so:

@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-Tempest is a PHP MVC framework that gets out of your way. Its design philosophy is that developers should write as little framework-related code as possible, so that they can focus on application code instead.
+Tempest is a PHP MVC framework that gets out of your way. [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/tempest-framework)! Tempest's design philosophy is that developers should write as little framework-related code as possible, so that they can focus on application code instead.
 
 ## Installation
 

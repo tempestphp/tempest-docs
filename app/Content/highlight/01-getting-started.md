@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-You can read about why I started this package [here](https://stitcher.io/blog/a-syntax-highlighter-that-doesnt-suck).
+`tempest/highglight` is a package for server-side, high performance, and flexible code highlighting. [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/highlight)!
 
 ## Quickstart
 
