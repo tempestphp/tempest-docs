@@ -5,3 +5,19 @@
 @tailwind components;
 @tailwind utilities;
 
+div a.menu-link {
+    line-height: 1.4em;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-feature-settings: normal;
+    font-variation-settings: normal;
+}
+
+video {
+    width: 100%;
+    outline: none;
+}
+
+video::-webkit-media-controls-panel {
+    background-image: none !important;
+    filter: brightness(0.4);
+}

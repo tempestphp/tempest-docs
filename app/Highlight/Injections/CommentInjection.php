@@ -19,17 +19,23 @@ final readonly class CommentInjection implements Injection
 
     public function style(string $content): string
     {
-        $comment = implode(
-            PHP_EOL,
-            [
-                '/*',
-                ...array_map(
-                    fn (string $line) => "* {$line}",
-                    explode(PHP_EOL, $content),
-                ),
-                '*/',
-            ],
-        );
+        $lines = explode(PHP_EOL, $content);
+
+        if (count($lines) > 1) {
+            $comment = implode(
+                PHP_EOL,
+                [
+                    '/*',
+                    ...array_map(
+                        fn (string $line) => " * {$line}",
+                        $lines,
+                    ),
+                    ' */',
+                ],
+            );
+        } else {
+            $comment = '/* ' . $lines[0] . ' */';
+        }
 
         return sprintf(
             '%s%s%s',

@@ -29,7 +29,7 @@
             ">
                 <h1 class="text-[#4f95d1] font-bold text-2xl">Tempest</h1>
 
-                <?php foreach (['intro', 'console', 'web', 'highlight'] as $category) { ?>
+                <?php foreach (['intro', 'console', 'highlight', 'framework'] as $category) { ?>
                     <div class="flex flex-col">
                         <?php if($category !== 'intro') { ?>
                             <h2 class="font-bold text-lg">
@@ -39,10 +39,9 @@
 
                         <?php foreach ($this->chaptersForCategory($category) as $chapter) { ?>
                             <a href="<?= $chapter->getUri() ?>" class="
-                                bg-[#4f95d1]
+                                menu-link
                                 px-4 py-2
                                 text-sm
-                                font-normal
                                 inline-block
                                 rounded
 
@@ -51,7 +50,8 @@
                                 md:py-1
                                 md:inline
                                 md:text-base
-                                <?= $this->isCurrent($chapter) ? 'font-bold text-white md:text-[#4f95d1]' : 'md:text-black' ?>"
+                                <?= $this->isCurrent($chapter) ? 'font-bold md:text-[#4f95d1]' : 'md:text-black' ?>
+                            "
                             >
                                 <?= $chapter->title ?>
                             </a>

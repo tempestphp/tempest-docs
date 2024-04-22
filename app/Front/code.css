@@ -51,6 +51,14 @@
     filter: blur(2px);
 }
 
+.hl-strong {
+    font-weight: bold;
+}
+
+.hl-em {
+    font-style: italic;
+}
+
 .hl-hl {
     background-color: #22DDDD33;
     display: inline-block;
@@ -113,4 +121,40 @@
     display: inline-block;
     line-height: 1.8em;
     padding: 0 5px;
+}
+
+.hl-a {
+    background-color: #FFFF0077;
+}
+
+.hl-b {
+    background-color: #FF00FF33;
+}
+
+.hl-addition {
+    min-width: 100%;
+    background-color: #00FF0022;
+}
+
+.hl-deletion {
+    min-width: 100%;
+    background-color: #FF000011;
+}
+
+.hl-gutter {
+    display: inline-block;
+    font-size: 0.9em;
+    color: #555;
+    padding: 0 1ch;
+    user-select: none;
+}
+
+.hl-gutter-addition {
+    background-color: #34A853;
+    color: #fff;
+}
+
+.hl-gutter-deletion {
+    background-color: #EA4334;
+    color: #fff;
 }

@@ -38,7 +38,7 @@ final class DocsView implements View
     {
         $current = null;
 
-        foreach ($this->chapters as $chapter) {
+        foreach ($this->chaptersForCategory($this->currentChapter->category) as $chapter) {
             if ($current) {
                 return $chapter;
             }

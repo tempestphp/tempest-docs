@@ -2,10 +2,10 @@
 title: Building Console Commands
 ---
 
-Any method tagged with the `{php}#[ConsoleCommand]` attribute will be automatically available via the console. By default, you don't have to pass in any parameters, as Tempest will use the class and method names to generate a command name:
+Any method tagged with the `{php}#[ConsoleCommand]` attribute will be automatically discovered and be available within the console application. By default, you don't have to pass in any parameters to the `{php}#[ConsoleCommand]` attribute, since Tempest will use the class and method names to generate a command name:
 
 ```php
-use App\ConsoleCommand;
+use Tempest\Console\ConsoleCommand;
 
 final readonly class Package
 {
@@ -17,6 +17,8 @@ final readonly class Package
 }
 ```
 
+These two methods will be accessible via the `package:all` and `package:info` commands:
+
 ```console
 ~ ./console
 
@@ -25,7 +27,7 @@ final readonly class Package
  <strong><em>package:info</strong></em> <<em>name</em>>
 ```
 
-Note how a method's parameter list is used to define the command's definition:
+Tempest will use method's parameter list to define the command's definition. For example, this parameter list:
 
 ```php
 final readonly class Package
@@ -34,17 +36,17 @@ final readonly class Package
     public function make(
         string $name, 
         string $description = '', 
-        bool $force = false
+        bool $force = false,
     ): void {}
 }
 ```
+
+Will generate this command definition:
 
 ```console
 ~ ./console
 
 <h2>Package</h2>
- <strong><em>package:all</strong></em>
- <strong><em>package:info</strong></em> <<em>name</em>>
  <strong><em>package:make</strong></em> <<em>name</em>> [<em>description</em>=''] [<em>--force</em>=false]
 ```
 
@@ -61,4 +63,17 @@ final readonly class Package
     )]
     public function all(): void {}
 }
+```
+
+Finally, you can add optional `{php}#[ConsoleArgument]` attributes to parameters as well:
+
+```php
+public function info(
+    #[ConsoleArgument(
+        description: 'The name of the package',
+        help: 'Extended help text for this argument',
+        aliases: ['n'],
+    )]
+    string $name,
+): void {}
 ```
