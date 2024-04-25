@@ -8,6 +8,7 @@
     "tailwindcss": "^3.4.1"
   },
   "dependencies": {
-    "highlight.js": "^11.9.0"
+    "highlight.js": "^11.9.0",
+    "puppeteer": "^22.7.0"
   }
 }
