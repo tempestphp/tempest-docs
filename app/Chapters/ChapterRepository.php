@@ -41,6 +41,10 @@ readonly class ChapterRepository
             function (string $path) {
                 preg_match('/(?<category>[\w]+)\/(?<slug>[\w-]+)\.md/', $path, $matches);
 
+                if (!isset($matches['slug'])) {
+                    return null;
+                }
+
                 $slug = $matches['slug'];
                 $category = $matches['category'];
 
