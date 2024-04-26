@@ -114,6 +114,35 @@ $result = $this->console->progressBar(
   <source src="/img/progress.mp4" type="video/mp4" />
 </video>
 
+### The `search` component
+
+The `search` component shows an interactive search box with selectable results:
+
+```php
+$data = ['Brent', 'Paul', 'Aidan', 'Roman'];
+
+$result = $this->console->search(
+    'Search',
+    function (string $query) use ($data): array {
+        if ($query === '') {
+            return [];
+        }
+
+        return array_filter(
+            $data,
+            fn (string $name) => str_contains(
+                strtolower($name), 
+                strtolower($query)
+            ),
+        );
+    }
+);
+```
+
+<video autoplay muted controls loop>
+  <source src="/img/search.mp4" type="video/mp4" />
+</video>
+
 ## Making your own components
 
 The docs for this section are still a work in progress, but you can check out the [existing components](https://github.com/tempestphp/tempest-console/tree/main/src/Components) to understand how they work. 
