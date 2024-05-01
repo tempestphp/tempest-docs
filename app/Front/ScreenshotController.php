@@ -6,6 +6,7 @@ use League\CommonMark\MarkdownConverter;
 use Spatie\Browsershot\Browsershot;
 use Tempest\AppConfig;
 use Tempest\Highlight\Highlighter;
+use Tempest\Highlight\Themes\CssTheme;
 use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
@@ -34,9 +35,10 @@ final readonly class ScreenshotController
     #[Get('/code/preview')]
     public function preview(
         Request $request,
-        Highlighter $highlighter,
         MarkdownConverter $markdown,
     ): View {
+        $highlighter = new Highlighter(new CssTheme());
+
         if ($slide = $request->get('slide')) {
             $code = $markdown->convert(file_get_contents(__DIR__ . "/../Content/slides/{$slide}.md"))->getContent();
         } else {
