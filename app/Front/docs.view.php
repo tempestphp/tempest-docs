@@ -73,9 +73,10 @@
         <?php } ?>
 
         <div class="bg-[#4f95d1] text-white font-bold rounded-md p-4 flex justify-between gap-2 my-6">
-            <div>
-                Tempest on
+            <div class="flex gap-1">
                 <a href="https://github.com/tempestphp/tempest-framework" class="underline hover:no-underline">GitHub</a>
+                •
+                <a href="https://discord.gg/pPhpTGUMPQ" class="underline hover:no-underline">Discord</a>
             </div>
             <?php if ($next = $this->nextChapter()) { ?>
                 <a href="<?= $next->getUri() ?>" class="underline hover:no-underline">Next: <?= $next->title ?></a>
