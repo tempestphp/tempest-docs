@@ -8,6 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install SSH Key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          known_hosts: 'just-a-placeholder-so-we-dont-get-errors'
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -20,22 +29,22 @@ jobs:
       - name: Install dependencies
         run: |
           composer update
-          npm i
+#          npm i
 
-      - name: List Installed Dependencies
-        run: composer show -D
-
-      - name: Setup .env
-        run: cp .env.example .env
-
-      - name: Run Tempest console
-        run: php ./tempest
-
-      - name: Run Tempest Server in the background
-        run: php ./tempest serve &
-
-      - name: Test GET request
-        run: curl http://localhost:8000
+#      - name: List Installed Dependencies
+#        run: composer show -D
+#
+#      - name: Setup .env
+#        run: cp .env.example .env
+#
+#      - name: Run Tempest console
+#        run: php ./tempest
+#
+#      - name: Run Tempest Server in the background
+#        run: php ./tempest serve &
+#
+#      - name: Test GET request
+#        run: curl http://localhost:8000
 
       - name: Deploy
         run: php ./tempest deploy
