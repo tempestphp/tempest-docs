@@ -287,16 +287,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "8.13.35",
+            "version": "8.13.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "cd52d7b27572ee45d31ca0d61b394638ed9a6bae"
+                "reference": "9ca4179e4332d21578cb29f0c0406f0a2b8803e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/cd52d7b27572ee45d31ca0d61b394638ed9a6bae",
-                "reference": "cd52d7b27572ee45d31ca0d61b394638ed9a6bae",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/9ca4179e4332d21578cb29f0c0406f0a2b8803e3",
+                "reference": "9ca4179e4332d21578cb29f0c0406f0a2b8803e3",
                 "shasum": ""
             },
             "require": {
@@ -358,7 +358,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php"
             },
-            "time": "2024-04-19T12:41:30+00:00"
+            "time": "2024-05-03T06:27:03+00:00"
         },
         {
             "name": "giggsey/locale",
@@ -1972,16 +1972,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf"
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/7c3aff79d10325257a001fcf92d991f24fc967cf",
-                "reference": "7c3aff79d10325257a001fcf92d991f24fc967cf",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
+                "reference": "0e0d29ce1f20deffb4ab1b016a7257c4f1e789a1",
                 "shasum": ""
             },
             "require": {
@@ -1990,7 +1990,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -2019,7 +2019,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -2035,7 +2035,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-05-23T14:45:45+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -2729,12 +2729,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-console.git",
-                "reference": "8e0b733893a66081e1779d87d119270e6d4b0382"
+                "reference": "8b43fc239269773498053333df7ac310f1d1bba9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-console/zipball/8e0b733893a66081e1779d87d119270e6d4b0382",
-                "reference": "8e0b733893a66081e1779d87d119270e6d4b0382",
+                "url": "https://api.github.com/repos/tempestphp/tempest-console/zipball/8b43fc239269773498053333df7ac310f1d1bba9",
+                "reference": "8b43fc239269773498053333df7ac310f1d1bba9",
                 "shasum": ""
             },
             "require": {
@@ -2773,7 +2773,7 @@
                 "issues": "https://github.com/tempestphp/tempest-console/issues",
                 "source": "https://github.com/tempestphp/tempest-console/tree/main"
             },
-            "time": "2024-04-27T10:38:20+00:00"
+            "time": "2024-05-04T03:14:11+00:00"
         },
         {
             "name": "tempest/core",
@@ -2781,12 +2781,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-core.git",
-                "reference": "82c7aa5f1df79abc9d5f145b236980bf9a3d45aa"
+                "reference": "5ab5d449ab8850cb84a1f38341f4b42c5b35fd34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-core/zipball/82c7aa5f1df79abc9d5f145b236980bf9a3d45aa",
-                "reference": "82c7aa5f1df79abc9d5f145b236980bf9a3d45aa",
+                "url": "https://api.github.com/repos/tempestphp/tempest-core/zipball/5ab5d449ab8850cb84a1f38341f4b42c5b35fd34",
+                "reference": "5ab5d449ab8850cb84a1f38341f4b42c5b35fd34",
                 "shasum": ""
             },
             "require": {
@@ -2807,6 +2807,9 @@
             "default-branch": true,
             "type": "library",
             "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
                 "psr-4": {
                     "Tempest\\": "src/"
                 }
@@ -2820,7 +2823,7 @@
                 "issues": "https://github.com/tempestphp/tempest-core/issues",
                 "source": "https://github.com/tempestphp/tempest-core/tree/main"
             },
-            "time": "2024-04-19T06:58:09+00:00"
+            "time": "2024-05-02T12:17:48+00:00"
         },
         {
             "name": "tempest/framework",
@@ -2828,12 +2831,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "12b2fdf31caa3dcc33d382d6b0e7d613c4a9b1d4"
+                "reference": "9d6fc7b385410aba889e80aea3469c3a3c268529"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/12b2fdf31caa3dcc33d382d6b0e7d613c4a9b1d4",
-                "reference": "12b2fdf31caa3dcc33d382d6b0e7d613c4a9b1d4",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/9d6fc7b385410aba889e80aea3469c3a3c268529",
+                "reference": "9d6fc7b385410aba889e80aea3469c3a3c268529",
                 "shasum": ""
             },
             "require": {
@@ -2886,20 +2889,20 @@
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
                 "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
-            "time": "2024-04-26T10:53:48+00:00"
+            "time": "2024-05-04T03:37:17+00:00"
         },
         {
             "name": "tempest/highlight",
-            "version": "2.3.1",
+            "version": "2.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "abab8b516d76727402459cc73755f5568fddfce2"
+                "reference": "5dfa74a35bf96960e63993a6c177cab097ca0240"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/abab8b516d76727402459cc73755f5568fddfce2",
-                "reference": "abab8b516d76727402459cc73755f5568fddfce2",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/5dfa74a35bf96960e63993a6c177cab097ca0240",
+                "reference": "5dfa74a35bf96960e63993a6c177cab097ca0240",
                 "shasum": ""
             },
             "require": {
@@ -2931,7 +2934,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.3.1"
+                "source": "https://github.com/tempestphp/highlight/tree/2.3.3"
             },
             "funding": [
                 {
@@ -2939,7 +2942,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-25T11:41:26+00:00"
+            "time": "2024-05-02T08:32:19+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -5287,16 +5290,16 @@
         },
         {
             "name": "symfony/event-dispatcher-contracts",
-            "version": "v3.4.2",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher-contracts.git",
-                "reference": "4e64b49bf370ade88e567de29465762e316e4224"
+                "reference": "8f93aec25d41b72493c6ddff14e916177c9efc50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/4e64b49bf370ade88e567de29465762e316e4224",
-                "reference": "4e64b49bf370ade88e567de29465762e316e4224",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher-contracts/zipball/8f93aec25d41b72493c6ddff14e916177c9efc50",
+                "reference": "8f93aec25d41b72493c6ddff14e916177c9efc50",
                 "shasum": ""
             },
             "require": {
@@ -5306,7 +5309,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -5343,7 +5346,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/event-dispatcher-contracts/tree/v3.4.2"
+                "source": "https://github.com/symfony/event-dispatcher-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -5359,7 +5362,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-01-23T14:51:35+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -5712,21 +5715,22 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v3.4.2",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "11bbf19a0fb7b36345861e85c5768844c552906e"
+                "reference": "bd1d9e59a81d8fa4acdcea3f617c581f7475a80f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/11bbf19a0fb7b36345861e85c5768844c552906e",
-                "reference": "11bbf19a0fb7b36345861e85c5768844c552906e",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/bd1d9e59a81d8fa4acdcea3f617c581f7475a80f",
+                "reference": "bd1d9e59a81d8fa4acdcea3f617c581f7475a80f",
                 "shasum": ""
             },
             "require": {
                 "php": ">=8.1",
-                "psr/container": "^1.1|^2.0"
+                "psr/container": "^1.1|^2.0",
+                "symfony/deprecation-contracts": "^2.5|^3"
             },
             "conflict": {
                 "ext-psr": "<1.1|>=2"
@@ -5734,7 +5738,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.4-dev"
+                    "dev-main": "3.5-dev"
                 },
                 "thanks": {
                     "name": "symfony/contracts",
@@ -5774,7 +5778,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/service-contracts/tree/v3.4.2"
+                "source": "https://github.com/symfony/service-contracts/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -5790,7 +5794,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-12-19T21:51:00+00:00"
+            "time": "2024-04-18T09:32:20+00:00"
         },
         {
             "name": "symfony/stopwatch",
