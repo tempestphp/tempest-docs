@@ -7,3 +7,5 @@ npm run dev
 ```
 
 Read all about Tempest in [the docs](https://github.com/tempestphp/tempest-docs/blob/master/01-getting-started.md).
+
+[Join the Tempest Discord](https://discord.gg/pPhpTGUMPQ)
