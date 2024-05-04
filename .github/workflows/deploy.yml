@@ -1,0 +1,44 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath, soap, intl, gd, exif, iconv, imagick, fileinfo
+
+      - name: Install dependencies
+        run: |
+          composer update
+          npm i
+
+      - name: List Installed Dependencies
+        run: composer show -D
+
+      - name: Setup .env
+        run: cp .env.example .env
+
+      - name: Run Tempest console
+        run: php ./tempest
+
+      - name: Run Tempest Server in the background
+        run: php ./tempest serve &
+
+      - name: Test GET request
+        run: curl http://localhost:8000
+
+      - name: Deploy
+        run: php ./tempest deploy
+
+
+
