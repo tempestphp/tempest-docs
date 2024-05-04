@@ -18,7 +18,8 @@
 <body class="relative">
 
 <div class="text-center py-4 bg-[#4f95d1] font-bold text-white w-full z-[99] mb-4">
-    Tempest is still a <span class="comment text-white">work in progress</span>. You can <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">help out</a>.
+    Tempest is still a <span class="hl-attribute text-white">work in progress</span>. Visit our <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">GitHub</a> or
+    <a href="https://discord.gg/pPhpTGUMPQ" class="underline hover:no-underline">Discord</a>.
 </div>
 
 <?= $this->slot() ?>
