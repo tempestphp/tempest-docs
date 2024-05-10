@@ -121,6 +121,25 @@ public function __invoke()
 }
 ```
 
+### CautionMiddleware
+
+Adds a warning before running the command in production or staging.
+
+```php
+#[ConsoleCommand(
+    middleware: [CautionMiddleware::class]
+)]
+public function __invoke()
+{
+    $this->console->error('something cautionous');
+}
+```
+
+```console
+<h2>Caution! Do you wish to continue?</h2> [<em><u>yes</u></em>/no] 
+<error>something cautionous</error> 
+```
+
 ## Building your own middleware
 
 You can create your own middleware by implementing the `{php}ConsoleMiddleware` interface:
