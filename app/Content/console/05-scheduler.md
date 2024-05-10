@@ -2,8 +2,6 @@
 title: Scheduling
 ---
 
-**Note: this feature is still a work in progress and not yet merged.**
-
 `tempest/console` comes with a built-in scheduler to run commands repeatedly in the background. You can schedule console commands, as well as plain functions that aren't directly accessible via the console.
 
 In order for the scheduler to run, you'll have to configure a single cron job on your server:

@@ -2729,12 +2729,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-console.git",
-                "reference": "8b43fc239269773498053333df7ac310f1d1bba9"
+                "reference": "1f82ecf7d1cdbeacc728e2c17c36f5e08058fc1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-console/zipball/8b43fc239269773498053333df7ac310f1d1bba9",
-                "reference": "8b43fc239269773498053333df7ac310f1d1bba9",
+                "url": "https://api.github.com/repos/tempestphp/tempest-console/zipball/1f82ecf7d1cdbeacc728e2c17c36f5e08058fc1a",
+                "reference": "1f82ecf7d1cdbeacc728e2c17c36f5e08058fc1a",
                 "shasum": ""
             },
             "require": {
@@ -2773,7 +2773,7 @@
                 "issues": "https://github.com/tempestphp/tempest-console/issues",
                 "source": "https://github.com/tempestphp/tempest-console/tree/main"
             },
-            "time": "2024-05-04T03:14:11+00:00"
+            "time": "2024-05-10T04:06:21+00:00"
         },
         {
             "name": "tempest/core",
@@ -2781,12 +2781,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-core.git",
-                "reference": "5ab5d449ab8850cb84a1f38341f4b42c5b35fd34"
+                "reference": "4e72952e2256603d055ffd61738bfe7d53579c6c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-core/zipball/5ab5d449ab8850cb84a1f38341f4b42c5b35fd34",
-                "reference": "5ab5d449ab8850cb84a1f38341f4b42c5b35fd34",
+                "url": "https://api.github.com/repos/tempestphp/tempest-core/zipball/4e72952e2256603d055ffd61738bfe7d53579c6c",
+                "reference": "4e72952e2256603d055ffd61738bfe7d53579c6c",
                 "shasum": ""
             },
             "require": {
@@ -2823,7 +2823,7 @@
                 "issues": "https://github.com/tempestphp/tempest-core/issues",
                 "source": "https://github.com/tempestphp/tempest-core/tree/main"
             },
-            "time": "2024-05-02T12:17:48+00:00"
+            "time": "2024-05-08T07:16:33+00:00"
         },
         {
             "name": "tempest/framework",
@@ -2831,12 +2831,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "9d6fc7b385410aba889e80aea3469c3a3c268529"
+                "reference": "d6a8ae2f5f0da4319df87ef135642b82710424d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/9d6fc7b385410aba889e80aea3469c3a3c268529",
-                "reference": "9d6fc7b385410aba889e80aea3469c3a3c268529",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/d6a8ae2f5f0da4319df87ef135642b82710424d7",
+                "reference": "d6a8ae2f5f0da4319df87ef135642b82710424d7",
                 "shasum": ""
             },
             "require": {
@@ -2889,20 +2889,20 @@
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
                 "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
-            "time": "2024-05-04T03:37:17+00:00"
+            "time": "2024-05-10T04:12:17+00:00"
         },
         {
             "name": "tempest/highlight",
-            "version": "2.3.3",
+            "version": "2.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "5dfa74a35bf96960e63993a6c177cab097ca0240"
+                "reference": "d90ed95e9f3d8e0ea5645c99de2cea742a560513"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/5dfa74a35bf96960e63993a6c177cab097ca0240",
-                "reference": "5dfa74a35bf96960e63993a6c177cab097ca0240",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/d90ed95e9f3d8e0ea5645c99de2cea742a560513",
+                "reference": "d90ed95e9f3d8e0ea5645c99de2cea742a560513",
                 "shasum": ""
             },
             "require": {
@@ -2934,7 +2934,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.3.3"
+                "source": "https://github.com/tempestphp/highlight/tree/2.3.5"
             },
             "funding": [
                 {
@@ -2942,7 +2942,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-02T08:32:19+00:00"
+            "time": "2024-05-09T06:37:58+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -3184,16 +3184,16 @@
         },
         {
             "name": "composer/xdebug-handler",
-            "version": "3.0.4",
+            "version": "3.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/xdebug-handler.git",
-                "reference": "4f988f8fdf580d53bdb2d1278fe93d1ed5462255"
+                "reference": "6c1925561632e83d60a44492e0b344cf48ab85ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/4f988f8fdf580d53bdb2d1278fe93d1ed5462255",
-                "reference": "4f988f8fdf580d53bdb2d1278fe93d1ed5462255",
+                "url": "https://api.github.com/repos/composer/xdebug-handler/zipball/6c1925561632e83d60a44492e0b344cf48ab85ef",
+                "reference": "6c1925561632e83d60a44492e0b344cf48ab85ef",
                 "shasum": ""
             },
             "require": {
@@ -3230,7 +3230,7 @@
             "support": {
                 "irc": "ircs://irc.libera.chat:6697/composer",
                 "issues": "https://github.com/composer/xdebug-handler/issues",
-                "source": "https://github.com/composer/xdebug-handler/tree/3.0.4"
+                "source": "https://github.com/composer/xdebug-handler/tree/3.0.5"
             },
             "funding": [
                 {
@@ -3246,20 +3246,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-03-26T18:29:49+00:00"
+            "time": "2024-05-06T16:37:16+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.54.0",
+            "version": "v3.56.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "2aecbc8640d7906c38777b3dcab6f4ca79004d08"
+                "reference": "4429303e62a4ce583ddfe64ff5c34c76bcf74931"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/2aecbc8640d7906c38777b3dcab6f4ca79004d08",
-                "reference": "2aecbc8640d7906c38777b3dcab6f4ca79004d08",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/4429303e62a4ce583ddfe64ff5c34c76bcf74931",
+                "reference": "4429303e62a4ce583ddfe64ff5c34c76bcf74931",
                 "shasum": ""
             },
             "require": {
@@ -3331,7 +3331,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.54.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.56.0"
             },
             "funding": [
                 {
@@ -3339,7 +3339,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-04-17T08:12:13+00:00"
+            "time": "2024-05-07T15:50:05+00:00"
         },
         {
             "name": "larapack/dd",
