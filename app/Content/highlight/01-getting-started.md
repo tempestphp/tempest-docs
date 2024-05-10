@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-`tempest/highglight` is a package for server-side, high performance, and flexible code highlighting. [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/highlight)!
+`tempest/highlight` is a package for server-side, high-performance, and flexible code highlighting. [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/highlight)!
 
 ## Quickstart
 
