@@ -16,7 +16,7 @@ And run it like so:
 {:hl-comment:#!/usr/bin/env php:}
 <?php
 
-use App\ConsoleApplication;
+use Tempest\Console\ConsoleApplication;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
