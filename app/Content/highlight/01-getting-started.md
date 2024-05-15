@@ -205,7 +205,6 @@ If you're using `league/commonmark`, you can highlight codeblocks and inline cod
 ```php
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
-use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\MarkdownConverter;
 use Tempest\Highlight\CommonMark\HighlightExtension;
 

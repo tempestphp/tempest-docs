@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2c8389ed319bae457da117ce90740520",
+    "content-hash": "1200340fe6747edb04f657f1beec77b6",
     "packages": [
+        {
+            "name": "assertchris/ellison",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/assertchris/ellison-php.git",
+                "reference": "26dbc8b319d1bc4f5a08885b6e721cd482f42fca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/assertchris/ellison-php/zipball/26dbc8b319d1bc4f5a08885b6e721cd482f42fca",
+                "reference": "26dbc8b319d1bc4f5a08885b6e721cd482f42fca",
+                "shasum": ""
+            },
+            "require-dev": {
+                "pestphp/pest": "3.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AC\\Ellison\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christopher Pitt",
+                    "email": "me@assertchris.io"
+                }
+            ],
+            "description": "Simple library that helps identify complex sentences and poor word choices",
+            "support": {
+                "issues": "https://github.com/assertchris/ellison-php/issues",
+                "source": "https://github.com/assertchris/ellison-php/tree/1.0.2"
+            },
+            "time": "2024-05-10T14:14:03+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.12.1",
@@ -2893,27 +2933,32 @@
         },
         {
             "name": "tempest/highlight",
-            "version": "2.3.5",
+            "version": "2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "d90ed95e9f3d8e0ea5645c99de2cea742a560513"
+                "reference": "de642cfba6c979229b78c86c7084d266743495b3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/d90ed95e9f3d8e0ea5645c99de2cea742a560513",
-                "reference": "d90ed95e9f3d8e0ea5645c99de2cea742a560513",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/de642cfba6c979229b78c86c7084d266743495b3",
+                "reference": "de642cfba6c979229b78c86c7084d266743495b3",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.3"
             },
             "require-dev": {
+                "assertchris/ellison": "^1.0.2",
                 "friendsofphp/php-cs-fixer": "^3.21",
                 "larapack/dd": "^1.1",
                 "league/commonmark": "^2.4",
                 "phpstan/phpstan": "^1.10.0",
                 "phpunit/phpunit": "^10.0"
+            },
+            "suggest": {
+                "assertchris/ellison": "Allows you to analyse sentence complexity",
+                "league/commonmark": "Adds markdown support"
             },
             "type": "library",
             "autoload": {
@@ -2934,7 +2979,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.3.5"
+                "source": "https://github.com/tempestphp/highlight/tree/2.4.1"
             },
             "funding": [
                 {
@@ -2942,7 +2987,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-05-09T06:37:58+00:00"
+            "time": "2024-05-15T06:42:31+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -6087,5 +6132,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
