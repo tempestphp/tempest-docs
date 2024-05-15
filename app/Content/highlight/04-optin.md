@@ -84,3 +84,5 @@ The `ellison` language is now available:
 Hello world!
 ```
 </pre>
+
+You can play around with it [here](/ellison).

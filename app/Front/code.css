@@ -185,8 +185,4 @@
 
 pre[data-lang="ellison"] {
     text-wrap: wrap;
-
-    & p {
-        margin: 0;
-    }
 }

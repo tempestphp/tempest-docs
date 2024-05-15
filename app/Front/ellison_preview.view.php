@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <title>Code | Tempest</title>
+    <title>Ellison | Tempest</title>
 
     <style>
         <?= file_get_contents(__DIR__ . '/../../public/main.css') ?>
@@ -13,16 +13,13 @@
         }
 
         body {
-            font-size: 1.5em;
-        }
-
-        body, pre {
-            background: #fff;
+            font-size: 16px;
         }
 
         pre {
-            line-height: 1.6em;
-            max-width: 60vw;
+            background: #fff;
+            font-family: Georgia,Times,Times New Roman,serif;
+            width: 70ch;
         }
     </style>
 
@@ -32,9 +29,8 @@
     <link rel="manifest" href="/favicon/site.webmanifest">
 </head>
 <body>
-
-<div class="flex justify-center items-center min-h-full my-16">
-    <pre class="p-6 px-8 rounded"><?= $this->raw('code') ?></pre>
+<div class="flex justify-center my-8">
+    <pre data-lang="ellison"><?= $this->raw('ellison') ?></pre>
 </div>
 </body>
 </html>
