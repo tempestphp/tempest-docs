@@ -28,8 +28,8 @@ ConsoleApplication::boot()->run();
 `tempest/console` uses on Tempest's discovery to find and register console commands. That means you don't have to register any commands manually, and any method within your codebase using the `{php}#[ConsoleCommand]` attribute will automatically be discovered by your console application.
 
 ```php
-use App\Console;
-use App\ConsoleCommand;
+use Tempest\Console\Console;
+use Tempest\Console\ConsoleCommand;
 
 final readonly class InteractiveCommand
 {

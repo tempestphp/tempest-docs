@@ -21,6 +21,8 @@ You can manually trigger a schedule run as well:
 Any method using the `{php}#[Schedule]` attribute will be run by the scheduler. As with everything Tempest, these methods are discovered automatically.
 
 ```php
+use Tempest\Console\Schedule;
+
 final readonly class Jobs
 {
     #[Schedule(Every::HOUR)]

@@ -145,6 +145,8 @@ public function __invoke(): void
 You can create your own middleware by implementing the `{php}ConsoleMiddleware` interface:
 
 ```php
+use Tempest\Console\ConsoleMiddleware;
+
 final readonly class HelloWorldMiddleware implements ConsoleMiddleware
 {
     public function __construct(private Console $console)
