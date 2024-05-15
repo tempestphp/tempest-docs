@@ -53,3 +53,26 @@ The following tags are available:
 - `<error>Error</error>` results in `{console}<error>Error</error>`
 - `<success>Success</success>` results in `{console}<success>Success</success>`
 - `<comment>Comment</comment>` results in `{console}<comment>Comment</comment>`
+
+## Exit codes
+
+Console commands may return an exit code if they wish to, but that's optional. If no exit code is provided, one will be automatically determined for you. 
+
+```php
+use Tempest\Console\ExitCode
+
+final readonly class Package
+{
+    #[ConsoleCommand]
+    public function all(): ExitCode 
+    {
+        if (! $this->hasBeenSetup()) {
+            return ExitCode::ERROR;
+        }
+        
+        // …
+        
+        return ExitCode::SUCCESS;
+    }
+}
+```

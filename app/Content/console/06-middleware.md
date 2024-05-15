@@ -33,7 +33,7 @@ final readonly class ForceCommand
     #[ConsoleCommand(
         middleware: [ForceMiddleware::class]
     )]
-    public function __invoke() { /* … */ }
+    public function __invoke(): void { /* … */ }
 }
 ```
 
@@ -110,7 +110,7 @@ Adds the global `--force` and `-f` flags to all commands. Using these flags will
 #[ConsoleCommand(
     middleware: [ForceMiddleware::class]
 )]
-public function __invoke()
+public function __invoke(): void
 {
     // This part will be skipped when the `-f` flag is applied
     if (! $this->console->confirm('continue?')) {
@@ -119,6 +119,25 @@ public function __invoke()
 
     $this->console->writeln('continued');
 }
+```
+
+### CautionMiddleware
+
+Adds a warning before running the command in production or staging.
+
+```php
+#[ConsoleCommand(
+    middleware: [CautionMiddleware::class]
+)]
+public function __invoke(): void
+{
+    $this->console->error('something cautionous');
+}
+```
+
+```console
+<h2>Caution! Do you wish to continue?</h2> [<em><u>yes</u></em>/no] 
+<error>something cautionous</error> 
 ```
 
 ## Building your own middleware
@@ -132,13 +151,13 @@ final readonly class HelloWorldMiddleware implements ConsoleMiddleware
     {
     }
 
-    public function __invoke(Invocation $invocation, callable $next): void
+    public function __invoke(Invocation $invocation, callable $next): ExitCode
     {
         if ($invocation->argumentBag->get('hello')) {
             $this->console->writeln('Hello world!')
         }
 
-        $next($invocation);
+        return $next($invocation);
     }
 }
 ```
