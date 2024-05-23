@@ -50,7 +50,11 @@ final readonly class CodeController
 
     private function trim(string $code): string
     {
-        preg_match_all('/^\s+/m', $code, $matches);
+        preg_match_all('/^ +/m', $code, $matches);
+
+        if ($matches[0] === []) {
+            return $code;
+        }
 
         $indentation = min(array_map(
             fn (string $spaces) => strlen($spaces),
