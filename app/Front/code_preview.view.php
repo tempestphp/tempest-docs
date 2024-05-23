@@ -33,7 +33,7 @@
 </head>
 <body>
 
-<div class="flex justify-center items-center min-h-full my-16">
+<div class="flex justify-center items-center min-h-full">
     <pre class="p-6 px-8 rounded"><?= $this->raw('code') ?></pre>
 </div>
 </body>

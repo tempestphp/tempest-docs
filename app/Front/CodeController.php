@@ -33,15 +33,30 @@ final readonly class CodeController
     public function preview(
         Request $request,
         MarkdownConverter $markdown,
-    ): View {
+    ): View
+    {
         $highlighter = new Highlighter(new CssTheme());
 
         if ($slide = $request->get('slide')) {
             $code = $markdown->convert(file_get_contents(__DIR__ . "/../Content/slides/{$slide}.md"))->getContent();
         } else {
-            $code = $highlighter->parse(base64_decode($request->getSessionValue('code') ?? base64_encode('// Hello World')), 'php');
+            $code = $this->trim(base64_decode($request->getSessionValue('code') ?? base64_encode('// Hello World')));
+
+            $code = $highlighter->parse($code, $request->get('lang') ?? 'php');
         }
 
         return view('Front/code_preview.view.php')->data(code: $code);
+    }
+
+    private function trim(string $code): string
+    {
+        preg_match_all('/^\s+/m', $code, $matches);
+
+        $indentation = min(array_map(
+            fn (string $spaces) => strlen($spaces),
+            $matches[0],
+        ));
+
+        return preg_replace('/^\s{' . $indentation . '}/m', '', $code);
     }
 }
