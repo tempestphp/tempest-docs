@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Front;
 
 use League\CommonMark\MarkdownConverter;
@@ -9,9 +11,11 @@ use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
-use Tempest\View\View;
+
 use function Tempest\redirect;
 use function Tempest\view;
+
+use Tempest\View\View;
 
 final readonly class CodeController
 {
@@ -33,8 +37,7 @@ final readonly class CodeController
     public function preview(
         Request $request,
         MarkdownConverter $markdown,
-    ): View
-    {
+    ): View {
         $highlighter = new Highlighter(new CssTheme());
 
         if ($slide = $request->get('slide')) {

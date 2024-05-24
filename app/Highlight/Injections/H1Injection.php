@@ -7,7 +7,6 @@ namespace App\Highlight\Injections;
 use App\Highlight\IsTagInjection;
 use Tempest\Highlight\Escape;
 use Tempest\Highlight\Injection;
-use Tempest\Highlight\Themes\TerminalStyle;
 
 final readonly class H1Injection implements Injection
 {

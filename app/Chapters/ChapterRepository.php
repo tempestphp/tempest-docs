@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Chapters;
 
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
@@ -10,7 +12,8 @@ readonly class ChapterRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {}
+    ) {
+    }
 
     public function find(string $category, string $slug): Chapter
     {
@@ -26,7 +29,7 @@ readonly class ChapterRepository
             ...[
                 'category' => $category,
                 'slug' => $slug,
-                'body' => $markdown->getContent()
+                'body' => $markdown->getContent(),
             ],
             ...$frontMatter,
         ]);
@@ -41,7 +44,7 @@ readonly class ChapterRepository
             function (string $path) {
                 preg_match('/(?<category>[\w]+)\/(?<slug>[\w-]+)\.md/', $path, $matches);
 
-                if (!isset($matches['slug'])) {
+                if (! isset($matches['slug'])) {
                     return null;
                 }
 
@@ -58,7 +61,7 @@ readonly class ChapterRepository
                     ...[
                         'category' => $category,
                         'slug' => $slug,
-                        'body' => ''
+                        'body' => '',
                     ],
                     ...$frontMatter,
                 ]);

@@ -3,6 +3,7 @@
 /** @var \Tempest\View\GenericView $this */
 
 use App\Front\EllisonController;
+
 use function Tempest\uri;
 
 $this->extends('Front/base.view.php');

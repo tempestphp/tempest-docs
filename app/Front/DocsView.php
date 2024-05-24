@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Front;
 
 use App\Chapters\Chapter;
@@ -16,9 +18,8 @@ final class DocsView implements View
         public array $chapters,
         public Chapter $currentChapter,
         public ChapterRepository $chapterRepository,
-    )
-    {
-        $this->extends('Front/base.view.php', title: $this->currentChapter?->title ?? null);
+    ) {
+        $this->extends('Front/base.view.php', title: $this->currentChapter->title);
         $this->path('Front/docs.view.php');
     }
 

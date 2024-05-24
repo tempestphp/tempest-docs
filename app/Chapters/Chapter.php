@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Chapters;
 
 use App\Front\DocsController;
+
 use function Tempest\uri;
 
 final readonly class Chapter

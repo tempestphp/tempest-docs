@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Commands;
 
 use Tempest\Console\Console;
@@ -7,7 +9,9 @@ use Tempest\Console\ConsoleCommand;
 
 final readonly class DeployCommand
 {
-    public function __construct(private Console $console) {}
+    public function __construct(private Console $console)
+    {
+    }
 
     #[ConsoleCommand('deploy')]
     public function __invoke(): void

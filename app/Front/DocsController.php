@@ -7,16 +7,18 @@ namespace App\Front;
 use App\Chapters\ChapterRepository;
 use Tempest\Http\Get;
 use Tempest\Http\Response;
-use Tempest\View\View;
-use function Tempest\response;
+
+use Tempest\Http\Responses\Redirect;
 use function Tempest\uri;
+
+use Tempest\View\View;
 
 final readonly class DocsController
 {
     #[Get('/')]
     public function home(): Response
     {
-        return response()->redirect(uri([self::class, 'show'], category: 'console', slug: '01-getting-started'));
+        return new Redirect(uri([self::class, 'show'], category: 'console', slug: '01-getting-started'));
     }
 
     #[Get('/{category}/{slug}')]
@@ -29,4 +31,3 @@ final readonly class DocsController
         );
     }
 }
-

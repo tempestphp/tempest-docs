@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Front;
 
 use Tempest\Highlight\Highlighter;
@@ -8,9 +10,11 @@ use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
-use Tempest\View\View;
+
 use function Tempest\redirect;
 use function Tempest\view;
+
+use Tempest\View\View;
 
 final readonly class EllisonController
 {

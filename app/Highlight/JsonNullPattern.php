@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Highlight;
 
 use Tempest\Highlight\IsPattern;
