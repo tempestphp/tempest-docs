@@ -64,7 +64,7 @@ final readonly class BookController
 }
 ```
 
-A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Http/Request.php).
+A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/Request.php).
 
 ### A note on data mapping
 
@@ -186,7 +186,7 @@ final readonly class AdminRoute extends Route
         parent::__construct(
             uri: $uri,
             method: $method,
-            middelware: [
+            middleware: [
                 AdminMiddleware::class,
                 LogUserActionsMiddleware::class,
             ]
