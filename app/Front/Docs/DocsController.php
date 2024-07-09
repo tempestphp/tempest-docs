@@ -2,16 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Front;
+namespace App\Front\Docs;
 
 use App\Chapters\ChapterRepository;
 use Tempest\Http\Get;
 use Tempest\Http\Response;
-
 use Tempest\Http\Responses\Redirect;
-use function Tempest\uri;
-
 use Tempest\View\View;
+use function Tempest\uri;
 
 final readonly class DocsController
 {
@@ -25,9 +23,8 @@ final readonly class DocsController
     public function show(string $category, string $slug, ChapterRepository $chapterRepository): View
     {
         return new DocsView(
-            chapters: $chapterRepository->all(),
-            currentChapter: $chapterRepository->find($category, $slug),
             chapterRepository: $chapterRepository,
+            currentChapter: $chapterRepository->find($category, $slug),
         );
     }
 }

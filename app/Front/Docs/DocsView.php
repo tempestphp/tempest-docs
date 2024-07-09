@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Front;
+namespace App\Front\Docs;
 
 use App\Chapters\Chapter;
 use App\Chapters\ChapterRepository;
@@ -14,13 +14,10 @@ final class DocsView implements View
     use IsView;
 
     public function __construct(
-        /** @var Chapter[] $chapters */
-        public array $chapters,
-        public Chapter $currentChapter,
         public ChapterRepository $chapterRepository,
+        public Chapter $currentChapter,
     ) {
-        $this->extends('Front/base.view.php', title: $this->currentChapter->title);
-        $this->path('Front/docs.view.php');
+        $this->path = __DIR__ . '/docs.view.php';
     }
 
     public function isCurrent(Chapter $other): bool

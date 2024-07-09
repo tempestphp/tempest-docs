@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Front;
+namespace App\Front\Code;
 
 use League\CommonMark\MarkdownConverter;
 use Tempest\Highlight\Highlighter;
@@ -11,18 +11,16 @@ use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
-
+use Tempest\View\View;
 use function Tempest\redirect;
 use function Tempest\view;
-
-use Tempest\View\View;
 
 final readonly class CodeController
 {
     #[Get('/code')]
     public function paste(): View
     {
-        return view('Front/code.view.php');
+        return view(__DIR__ . '/code.view.php');
     }
 
     #[Post('/code')]
@@ -48,7 +46,7 @@ final readonly class CodeController
             $code = $highlighter->parse($code, $request->get('lang') ?? 'php');
         }
 
-        return view('Front/code_preview.view.php')->data(code: $code);
+        return view(__DIR__ . '/code_preview.view.php')->data(code: $code);
     }
 
     private function trim(string $code): string

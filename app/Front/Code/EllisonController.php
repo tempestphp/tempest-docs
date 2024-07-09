@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Front;
+namespace App\Front\Code;
 
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
@@ -10,18 +10,16 @@ use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
-
+use Tempest\View\View;
 use function Tempest\redirect;
 use function Tempest\view;
-
-use Tempest\View\View;
 
 final readonly class EllisonController
 {
     #[Get('/ellison')]
     public function paste(): View
     {
-        return view('Front/ellison.view.php');
+        return view(__DIR__ . '/ellison.view.php');
     }
 
     #[Post('/ellison')]
@@ -40,6 +38,6 @@ final readonly class EllisonController
 
         $ellison = $highlighter->parse(base64_decode($request->getSessionValue('ellison') ?? base64_encode('Hello World')), 'ellison');
 
-        return view('Front/ellison_preview.view.php')->data(ellison: $ellison);
+        return view(__DIR__ .  '/ellison_preview.view.php')->data(ellison: $ellison);
     }
 }

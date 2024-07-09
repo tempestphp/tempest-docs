@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace App\Chapters;
 
-use App\Front\DocsController;
-
+use App\Front\Docs\DocsController;
 use function Tempest\uri;
 
 final readonly class Chapter
