@@ -2,7 +2,7 @@
 title: Views
 ---
 
-Tempest supports two templating engines: Tempest Views, and Blade. Tempest Views is an experimental templating engine, while Blade has widespread support because of Laravel. Tempest Views is the default templating engine. The end of this page discusses how to install Blade instead.
+Tempest supports two templating engines: Tempest views, and Blade. Tempest views is an experimental templating engine, while Blade has widespread support because of Laravel. Tempest views is the default templating engine. The end of this page discusses how to install Blade instead.
 
 ## View files
 
@@ -265,7 +265,7 @@ Creating view components is as easy as making a class implement `{php}ViewCompon
 
 ## Using Blade
 
-In case you prefer to use Blade instead of Tempest Views, you can switch to Blade with a couple of steps. First, install Blade:
+In case you prefer to use Blade instead of Tempest views, you can switch to Blade with a couple of steps. First, install Blade:
 
 ```
 composer require jenssegers/blade
