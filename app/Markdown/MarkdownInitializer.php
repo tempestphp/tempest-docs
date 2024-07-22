@@ -6,6 +6,7 @@ namespace App\Markdown;
 
 use App\Highlight\ExtendedJsonLanguage;
 use App\Highlight\TempestConsoleWebLanguage;
+use App\Highlight\TempestViewLanguage;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
@@ -30,6 +31,7 @@ final readonly class MarkdownInitializer implements Initializer
         $highlighter = (new Highlighter(new CssTheme()));
 
         $highlighter
+            ->addLanguage(new TempestViewLanguage())
             ->addLanguage(new TempestConsoleWebLanguage())
             ->addLanguage(new ExtendedJsonLanguage())
         ;

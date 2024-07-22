@@ -1,7 +1,7 @@
 {
     "name": "tempest/app",
     "require": {
-        "tempest/framework": "dev-view-renderer",
+        "tempest/framework": "dev-main",
         "league/commonmark": "^2.4",
         "symfony/yaml": "^6.3",
         "spatie/yaml-front-matter": "^2.0",
@@ -43,5 +43,10 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "license": "MIT"
+    "license": "MIT",
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
 }
