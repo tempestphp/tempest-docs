@@ -2,7 +2,7 @@
 title: Views
 ---
 
-Tempest supports two templating engines: Tempest Views, and Blade (TODO). Tempest Views is an experimental templating engine, while Blade has widespread support because of Laravel. Tempest Views is the default templating engine. The end of this page discusses how to install Blade instead.
+Tempest supports two templating engines: Tempest Views, and Blade. Tempest Views is an experimental templating engine, while Blade has widespread support because of Laravel. Tempest Views is the default templating engine. The end of this page discusses how to install Blade instead.
 
 ## View files
 
@@ -282,7 +282,7 @@ return new BladeConfig(
         __DIR__ . '/../views/',
     ],
     
-    cachePath: __DIR__ . '/../views/cache/',   
+    cachePath: __DIR__ . '/../views/cache/',
 );
 ```
 
