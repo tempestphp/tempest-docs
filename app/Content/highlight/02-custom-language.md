@@ -2,7 +2,7 @@
 title: Building a custom language
 ---
 
-Yesterday, I wrote about the _why_ of [making a new syntax highlighter](/blog/a-syntax-highlighter-that-doesnt-suck). Today I want to write about the _how_.
+Yesterday, I wrote about the _why_ of [making a new syntax highlighter](https://stitcher.io/blog/a-syntax-highlighter-that-doesnt-suck). Today I want to write about the _how_.
 
 <iframe width="560" height="345" src="https://www.youtube.com/embed/cZugbAR8Fyg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
