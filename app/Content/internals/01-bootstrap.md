@@ -14,7 +14,7 @@ Here's a short summary of what booting Tempest looks like.
 
 Tempest provides two applications: `ConsoleApplication` and `HttpApplication`. Their name already suggests the difference between the two. Here's how to boot an application:
 
-- As soon you've got a configured container object from the kernel, you can resolve a specific application from it: `$application = container->get(ConsoleApplication::class)`.
+- As soon you've got a configured container object from the kernel, you can resolve a specific application from it: `$application = $container->get(ConsoleApplication::class)`.
 - You can provide additional application-specific configuration and setup if needed.
 - Finally, you can call `$application->run()` to run it.
 
