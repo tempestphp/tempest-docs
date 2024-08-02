@@ -17,7 +17,6 @@ use Tempest\Container\Container;
 use Tempest\Container\Initializer;
 use Tempest\Container\Singleton;
 use Tempest\Highlight\CommonMark\CodeBlockRenderer;
-use Tempest\Highlight\CommonMark\InlineCodeBlockRenderer;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
 

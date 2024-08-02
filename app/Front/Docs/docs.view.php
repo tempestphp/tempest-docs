@@ -29,7 +29,7 @@
             ">
                     <h1 class="text-[#4f95d1] font-bold text-2xl">Tempest</h1>
 
-                    <?php foreach (['intro', 'console', 'highlight', 'framework'] as $category) { ?>
+                    <?php foreach (['framework', 'console', 'highlight', 'internals'] as $category) { ?>
                         <div class="flex flex-col">
                             <?php if ($category !== 'intro') { ?>
                                 <h2 class="font-bold text-lg">
