@@ -20,9 +20,9 @@ use Tempest\Highlight\CommonMark\CodeBlockRenderer;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
 
-#[Singleton]
 final readonly class MarkdownInitializer implements Initializer
 {
+    #[Singleton]
     public function initialize(Container $container): MarkdownConverter
     {
         $environment = new Environment();
