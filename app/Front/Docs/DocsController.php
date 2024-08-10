@@ -16,7 +16,7 @@ final readonly class DocsController
     #[Get('/')]
     public function home(): Response
     {
-        return new Redirect(uri([self::class, 'show'], category: 'console', slug: '01-getting-started'));
+        return new Redirect(uri([self::class, 'show'], category: 'framework', slug: '01-getting-started'));
     }
 
     #[Get('/{category}/{slug}')]
