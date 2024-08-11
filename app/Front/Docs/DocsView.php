@@ -48,4 +48,9 @@ final class DocsView implements View
 
         return null;
     }
+
+    public function categories(): array
+    {
+        return ['intro', 'framework', 'console', 'highlight', 'internals'];
+    }
 }
