@@ -88,7 +88,7 @@
             </div>
         </div>
 
-        <div class="px-2 md:px-6 pt-8 md:col-span-9">
+        <div class="px-4 md:px-6 pt-8 md:col-span-9">
             <?php if ($this->currentChapter) { ?>
                 <div class="prose">
                     <h1>
