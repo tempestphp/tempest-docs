@@ -16,7 +16,7 @@
     </head>
     <body class="relative">
 
-    <div class="text-center py-4 bg-[#4f95d1] font-bold text-white w-full z-[99] mb-4 flex items-center gap-2 justify-center">
+    <div class="px-4 text-center py-4 bg-[#4f95d1] font-bold text-white w-full z-[99] mb-4 flex items-center gap-2 justify-center">
         <img src="/favicon/favicon-32x32.png" alt="favicon" class="h-[20px] hidden md:inline-block">
         <span>
         Tempest is still a <span class="hl-attribute text-white">work in progress</span>. Visit our <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">GitHub</a> or
