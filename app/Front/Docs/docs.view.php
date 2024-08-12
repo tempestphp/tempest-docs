@@ -76,7 +76,7 @@
                                 md:py-1
                                 md:inline
                                 md:text-base
-                                <?= $this->isCurrent($chapter) ? 'font-bold md:text-[#4f95d1]' : 'md:text-black' ?>
+                                <?= $this->isCurrent($chapter) ? 'font-bold text-[#4f95d1]' : '' ?>
                             "
                                 >
                                     <?= $chapter->title ?>
