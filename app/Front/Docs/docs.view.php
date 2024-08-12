@@ -2,6 +2,20 @@
 
 <x-base :title="$this->currentChapter->title">
 
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                menu.classList.add('block');
+            } else {
+                menu.classList.remove('block');
+                menu.classList.add('hidden');
+            }
+        }
+    </script>
+    
     <div class="
     max-w-full md:max-w-[1000px] mx-auto
     md:grid md:grid-cols-12
@@ -11,12 +25,24 @@
             md:top-0 md:pt-4 md:px-6 md:text-right
             px-2
         ">
-                <div class="
-                flex
+                <div class="md:hidden">
+                    <button onclick="toggleMenu()" class="flex gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
+                        </svg>
+                        <span>Menu</span>
+                    </button>
+                </div>
+
+                <div id="menu" class="
+                hidden
                 gap-4
                 flex-wrap
                 mt-4
+                bg-blue-50
+                p-4
 
+                md:bg-transparent
                 md:mt-4
                 md:grid
                 md:gap-4
