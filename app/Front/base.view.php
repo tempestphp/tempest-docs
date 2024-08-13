@@ -14,7 +14,7 @@
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
         <link rel="manifest" href="/favicon/site.webmanifest">
     </head>
-    <body class="relative">
+    <body class="relative font-sans antialiased">
 
     <div class="px-4 text-center py-4 bg-[#4f95d1] font-bold text-white w-full z-[99] mb-4 flex items-center gap-2 justify-center">
         <img src="/favicon/favicon-32x32.png" alt="favicon" class="h-[20px] hidden md:inline-block">
