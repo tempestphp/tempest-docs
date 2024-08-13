@@ -10,9 +10,10 @@ The first alpha version of Tempest will be the first version that's publicly ann
 
 Before we can tag this release, there are a [handful of issues](https://github.com/tempestphp/tempest-framework/milestone/2) to be solved still.
 
-- **Improvements to migrations**
-- **`:elseif` attribute**
-- **Switch all Reflection usages to Tempest's Reflector wrapper**
+- ✅ **Improvements to migrations**
+- ✅ **`:elseif` attribute**
+- ✅ **Switch all Reflection usages to Tempest's Reflector wrapper**
+- **Support for standalone SQL migrations**
 - **CSRF support in forms**
 - **Improved file support in requests**
 - **Kernel refactor**
