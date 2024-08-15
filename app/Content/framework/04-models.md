@@ -2,7 +2,7 @@
 title: Models
 ---
 
-In contrast to many popular ORMs, Tempest models aren't required to be tied to the database. A model's persisted data can be loaded from any kind of data source: an external API, JSON, Redis, XML, … In essence, a model is nothing more than a class with public typed properties. Tempest will use this type information to determine how data should be mapped between objects.
+In contrast to many popular ORMs, Tempest models aren't required to be tied to the database. A model's persisted data can be loaded from any kind of data source: an external API, JSON, Redis, XML, … In essence, a model is nothing more than a class with public typed properties and methods. Tempest will use a model class' type information to determine how data should be mapped between objects.
 
 In other words, a model can be as simple as this class:
 
@@ -82,11 +82,51 @@ return new DatabaseConfig(
 
 ### Migrations
 
-TODO: write docs
+Migrations are used to manage database tables that hold persisted model data. Migrations are discovered, so you can create them wherever you like, as long as they implement the `{php}Migration` interface:
+
+```php
+final readonly class CreateBookTable implements Migration
+{
+    public function getName(): string
+    {
+        return '2024-08-12_create_book_table';
+    }
+
+    public function up(): Statement|null
+    {
+        return CreateTableStatement::forModel(Book::class)
+            ->primary()
+            ->text('title')
+            ->datetime('createdAt')
+            ->datetime('publishedAt', nullable: true)
+            ->integer('author_id', unsigned: true)
+            ->belongsTo('Book.author_id', 'Author.id');
+    }
+
+    public function down(): Statement|null
+    {
+        return DropTableStatement::forModel(Book::class);
+    }
+}
+```
+
+Please take note of some naming conventions:
+
+- Model tables use the **model's short classname**, use the `::forModel()` method for convenience
+- Fields map 1 to 1 to a **model's property names**. It's up to you to use camelCase or snake_case
+- Relation fields are always suffixed with `_id`. In this case, `author_id` will map to the `Book::$author` property
+
+You can run migrations via the Tempest console:
+
+```
+./tempest migrate:up
+./tempest migrate:down
+./tempest migrate:fresh {:hl-comment:# Drop all tables and rerun migrate:up:} 
+```
 
 ### Database persistence
 
-Let's take a look at the methods provided by the `{php}DatabaseModel` interface:
+Any class implementing `DatabaseModel` provides a range of methods to make interaction between the model and the database easier. Let's take a look at this interface:
 
 ```php
 interface Model
@@ -132,7 +172,27 @@ interface Model
 
 ### Model query builder
 
-TODO: write docs
+Important to note is the `DatbaseModel::query()` method, which allows you to create more complex queries for model classes. It's important to note that Tempest deliberately takes a simplistic approach to its model query builder. If you want to build real complex queries, you should write them directly in SQL, and map them to model classes like so:
+
+```php
+$books = map(new Query("
+    SELECT * 
+    FROM Book
+    LEFT JOIN …
+    HAVING … 
+"))->collection()->to(Book::class);
+```
+
+For simpler queries, you can use the query builder API.
+
+```php
+$books = Book::query()
+    ->with('author.publisher')
+    ->where('createdAt < :olderThan', olderThan: $olderThan)
+    ->orderBy('createdAt DESC')
+    ->limit(5)
+    ->all();
+```
 
 ### Model relations
 
