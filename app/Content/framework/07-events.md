@@ -42,3 +42,7 @@ Triggering an event can be done with the `event()` function:
 ```php
 event(new MigrationMigrated($name));
 ```
+
+## Eventbus Middleware
+
+// TODO
