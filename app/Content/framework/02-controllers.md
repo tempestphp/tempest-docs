@@ -64,7 +64,7 @@ final readonly class BookController
 }
 ```
 
-A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Http/Request.php).
+A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/Request.php).
 
 ### A note on data mapping
 
@@ -103,7 +103,7 @@ If you're returning responses Tempest has a bunch of responses built-in:
 - `{php}Redirect` — the redirect response
 - `{php}ServerError` — a 500 server error response
 
-A full overview of responses can be found [here](https://github.com/tempestphp/tempest-framework/tree/main/src/Http/Responses).
+A full overview of responses can be found [here](https://github.com/tempestphp/tempest-framework/tree/main/src/Tempest/Http/Responses).
 
 Returning responses from controllers looks like this:
 
@@ -186,7 +186,7 @@ final readonly class AdminRoute extends Route
         parent::__construct(
             uri: $uri,
             method: $method,
-            middelware: [
+            middleware: [
                 AdminMiddleware::class,
                 LogUserActionsMiddleware::class,
             ]
