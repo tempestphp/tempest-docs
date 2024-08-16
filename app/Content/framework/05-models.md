@@ -112,6 +112,20 @@ final readonly class CreateBookTable implements Migration
 }
 ```
 
+As an alternative, you can write plain SQL files which will be discovered as migrations as well. The file name will be used as the migration's name. Note that you can have multiple queries in one sql file, each of them will be run as a separate migrations:
+
+```sql
+-- app/Migrations/2024-08-16_create_publisher_table.sql
+
+CREATE TABLE Publisher
+(
+    `id`   INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name` TEXT NOT NULL
+);
+
+-- You can add several queries into one sql file if you want to
+```
+
 Please take note of some naming conventions:
 
 - Model tables use the **model's short classname**, use the `::forModel()` method for convenience
