@@ -85,6 +85,8 @@ return new DatabaseConfig(
 Migrations are used to manage database tables that hold persisted model data. Migrations are discovered, so you can create them wherever you like, as long as they implement the `{php}Migration` interface:
 
 ```php
+use Tempest\Database\QueryStatement;
+
 final readonly class CreateBookTable implements Migration
 {
     public function getName(): string
@@ -92,7 +94,7 @@ final readonly class CreateBookTable implements Migration
         return '2024-08-12_create_book_table';
     }
 
-    public function up(): Statement|null
+    public function up(): QueryStatement|null
     {
         return CreateTableStatement::forModel(Book::class)
             ->primary()
@@ -103,7 +105,7 @@ final readonly class CreateBookTable implements Migration
             ->belongsTo('Book.author_id', 'Author.id');
     }
 
-    public function down(): Statement|null
+    public function down(): QueryStatement|null
     {
         return DropTableStatement::forModel(Book::class);
     }
