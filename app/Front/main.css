@@ -18,3 +18,13 @@ video::-webkit-media-controls-panel {
     background-image: none !important;
     filter: brightness(0.4);
 }
+
+h1, h2, h3, h4, h5, h6 {
+    & .heading-permalink {
+        display: none;
+    }
+
+    &:hover .heading-permalink {
+        display: inline;
+    }
+}

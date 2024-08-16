@@ -50,7 +50,7 @@ final class Book implements DatabaseModel
 }
 ```
 
-### Database config
+## Database config
 
 In order to connect to a database, you'll have to create a database config file:
 
@@ -80,7 +80,7 @@ return new DatabaseConfig(
 );
 ```
 
-### Migrations
+## Migrations
 
 Migrations are used to manage database tables that hold persisted model data. Migrations are discovered, so you can create them wherever you like, as long as they implement the `{php}Migration` interface:
 
@@ -124,7 +124,7 @@ You can run migrations via the Tempest console:
 ./tempest migrate:fresh {:hl-comment:# Drop all tables and rerun migrate:up:} 
 ```
 
-### Database persistence
+## Database persistence
 
 Any class implementing `DatabaseModel` provides a range of methods to make interaction between the model and the database easier. Let's take a look at this interface:
 
@@ -170,7 +170,7 @@ interface Model
 }
 ```
 
-### Model query builder
+## Model query builder
 
 Important to note is the `DatbaseModel::query()` method, which allows you to create more complex queries for model classes. It's important to note that Tempest deliberately takes a simplistic approach to its model query builder. If you want to build real complex queries, you should write them directly in SQL, and map them to model classes like so:
 
@@ -194,6 +194,6 @@ $books = Book::query()
     ->all();
 ```
 
-### Model relations
+## Model relations
 
 TODO: write docs

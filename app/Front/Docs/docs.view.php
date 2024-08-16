@@ -70,6 +70,7 @@
                                 text-md
                                 inline-block
                                 rounded
+                                hover:text-[#4f95d1] hover:underline
 
                                 md:bg-transparent
                                 md:px-0
@@ -81,6 +82,29 @@
                                 >
                                     <?= $chapter->title ?>
                                 </a>
+
+                                <?php
+                                    if($this->isCurrent($chapter) && ($subChapters = $this->getSubChapters()) !== []):
+                                ?>
+                                <div class="
+                                    hidden
+                                    md:grid
+                                    md:border-r
+                                    md:border-[#4f95d1]
+                                    md:pr-2
+                                    text-sm
+                                    gap-2
+                                    mb-4
+                                    pt-2
+                                    pb-2
+                                ">
+                                    <?php foreach ($subChapters as $url => $title): ?>
+                                        <a href="<?= $url ?>" class="hover:text-[#4f95d1] hover:underline">
+                                            <?= $title ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                                <?php endif ?>
                             <?php } ?>
                         </div>
                     <?php } ?>

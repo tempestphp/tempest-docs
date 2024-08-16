@@ -27,6 +27,19 @@ final class DocsView implements View
             && $this->currentChapter->slug === $other->slug;
     }
 
+    public function getSubChapters(): array
+    {
+        preg_match_all('/<h2 id="(?<uri>.*)">(?<title>.*)<a href/', $this->currentChapter->body, $matches);
+
+        $subChapters = [];
+
+        foreach ($matches[0] as $key => $match) {
+            $subChapters['#' . $matches['uri'][$key]] = $matches['title'][$key];
+        }
+
+        return $subChapters;
+    }
+
     public function chaptersForCategory(string $category): array
     {
         return $this->chapterRepository->all($category);

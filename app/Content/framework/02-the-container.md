@@ -1,5 +1,5 @@
 ---
-title: The Container
+title: The Container and Config
 ---
 
 Tempest's dependency container is the heart of the framework. Anything you do framework related will be run through the container, meaning you'll have autowiring everywhere: from controllers to console commands, from event handlers to the command bus:
@@ -189,3 +189,7 @@ final readonly class BladeInitializer implements DynamicInitializer
     }
 }
 ```
+
+## Config
+
+// TODO

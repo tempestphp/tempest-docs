@@ -66,6 +66,10 @@ final readonly class BookController
 
 A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/Request.php).
 
+### Middleware
+
+// TODO
+
 ### A note on data mapping
 
 The `{php}map()` function is another powerful feature that sets Tempest apart. We'll discuss it more in depth when looking at models, but it's already worth mentioning: Tempest can treat any kind of object as "a model", and is able to map data into those objects from different sources.
