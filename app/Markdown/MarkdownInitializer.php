@@ -31,7 +31,7 @@ final readonly class MarkdownInitializer implements Initializer
             'heading_permalink' => [
                 'html_class' => 'heading-permalink',
                 'id_prefix' => 'content',
-                'apply_id_to_heading' => true,
+                'apply_id_to_heading' => false,
                 'heading_class' => '',
                 'fragment_prefix' => 'content',
                 'insert' => 'after',
