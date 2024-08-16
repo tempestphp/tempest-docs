@@ -91,10 +91,10 @@
                                     md:grid
                                     md:border-r
                                     md:border-[#4f95d1]
-                                    mr-4
                                     md:pr-2
                                     text-sm
                                     gap-2
+                                    mr-2
                                     mt-2
                                     mb-4
                                     pt-2
