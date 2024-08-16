@@ -71,10 +71,10 @@ final readonly class EventBusDiscovery implements Discovery
     ) {
     }
 
-    public function discover(ReflectionClass $class): void
+    public function discover(ClassReflector $class): void
     {
-        foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
-            $eventHandler = Attributes::find(EventHandler::class)->in($method)->first();
+        foreach ($class->getPublicMethods() as $method) {
+            $eventHandler = $method->getAttribute(EventHandler::class);
 
             // Extra checks to determine whether
             // we can actually use the current method as an event handler
@@ -86,7 +86,7 @@ final readonly class EventBusDiscovery implements Discovery
             $this->eventBusConfig->addHandler(
                 eventHandler: $eventHandler,
                 eventName: $type->getName(),
-                reflectionMethod: $method,
+                method: $method,
             );
         }
     }
@@ -142,7 +142,7 @@ final readonly class ViewComponentDiscovery implements Discovery, DiscoversPath
     ) {
     }
 
-    public function discover(ReflectionClass $class): void
+    public function discover(ClassReflector $class): void
     {
         // …
     }
