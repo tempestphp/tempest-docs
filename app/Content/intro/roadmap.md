@@ -13,12 +13,13 @@ Before we can tag this release, there are a [handful of issues](https://github.c
 - ✅ **Improvements to migrations**
 - ✅ **`:elseif` attribute**
 - ✅ **Switch all Reflection usages to Tempest's Reflector wrapper**
-- **Support for standalone SQL migrations**
+- ✅ **Support for standalone SQL migrations**
+- ✅ **Improved query builder**
 - **CSRF support in forms**
 - **Improved file support in requests**
 - **Kernel refactor**
-- **Improved query builder**
 - **Updated documentation**
+- **Static pages support**
 
 ## 1.0-alpha2
 
