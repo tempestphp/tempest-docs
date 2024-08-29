@@ -20,6 +20,7 @@ Before we can tag this release, there are a [handful of issues](https://github.c
 - **Kernel refactor**
 - **Updated documentation**
 - **Static pages support**
+- **MySQL and Postgres support**
 
 ## 1.0-alpha2
 
