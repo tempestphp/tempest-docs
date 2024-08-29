@@ -8,6 +8,7 @@ use App\Chapters\ChapterRepository;
 use Tempest\Http\Get;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\Redirect;
+use Tempest\Http\StaticRoute;
 use Tempest\View\View;
 use function Tempest\uri;
 
@@ -19,7 +20,10 @@ final readonly class DocsController
         return new Redirect(uri([self::class, 'show'], category: 'framework', slug: '01-getting-started'));
     }
 
-    #[Get('/{category}/{slug}')]
+    #[
+        StaticRoute(DocsDataProvider::class),
+        Get('/{category}/{slug}')
+    ]
     public function show(string $category, string $slug, ChapterRepository $chapterRepository): View
     {
         return new DocsView(

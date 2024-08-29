@@ -40,7 +40,7 @@ readonly class ChapterRepository
      */
     public function all(string $category = '*'): array
     {
-        return array_map(
+        return array_filter(array_map(
             function (string $path) {
                 preg_match('/(?<category>[\w]+)\/(?<slug>[\w-]+)\.md/', $path, $matches);
 
@@ -67,7 +67,7 @@ readonly class ChapterRepository
                 ]);
             },
             glob(__DIR__ . "/../Content/{$category}/*.md"),
-        );
+        ));
     }
 
     private function getContent(string $category, string $slug): string

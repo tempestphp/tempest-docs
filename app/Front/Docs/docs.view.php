@@ -136,7 +136,7 @@
                         href="<?= $this->nextChapter()?->getUri() ?>"
                         class="underline hover:no-underline"
                 >
-                    Next: <?= $this->nextChapter()->title ?>
+                    Next: <?= $this->nextChapter()?->title ?>
                 </a>
             </div>
         </div>
