@@ -22,6 +22,7 @@
 ">
         <div class="md:col-span-3">
             <div class="
+            md:sticky md:h-screen overflow-auto
             md:top-0 md:pt-4 md:px-6 md:text-right
             px-2
         ">
