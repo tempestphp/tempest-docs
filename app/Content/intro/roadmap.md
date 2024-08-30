@@ -15,11 +15,9 @@ Before we can tag this release, there are a [handful of issues](https://github.c
 - ✅ **Switch all Reflection usages to Tempest's Reflector wrapper**
 - ✅ **Support for standalone SQL migrations**
 - ✅ **Improved query builder**
-- **CSRF support in forms**
+- ✅ **Updated documentation**
+- ✅ **Static pages support**
 - **Improved file support in requests**
-- **Kernel refactor**
-- **Updated documentation**
-- **Static pages support**
 - **MySQL and Postgres support**
 
 ## 1.0-alpha2
