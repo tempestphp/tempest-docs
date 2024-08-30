@@ -20,10 +20,8 @@ final readonly class DocsController
         return new Redirect(uri([self::class, 'show'], category: 'framework', slug: '01-getting-started'));
     }
 
-    #[
-        StaticPage(DocsDataProvider::class),
-        Get('/{category}/{slug}')
-    ]
+    #[StaticPage(DocsDataProvider::class)]
+    #[Get('/{category}/{slug}')]
     public function show(string $category, string $slug, ChapterRepository $chapterRepository): View
     {
         return new DocsView(
