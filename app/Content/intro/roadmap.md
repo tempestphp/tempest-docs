@@ -60,5 +60,4 @@ Tempest 1.0 will be a lightweight version of the framework, with several useful 
 - 1.1: **auth, htmx support, improved form support, and app events**
 - 1.2: **queue manager**
 - 1.3: **mail support**
-- 1.4: **static site generation**
-- 1.5: **event bus improvements, possibly with ES support**
+- 1.4: **Event bus improvements, possibly with ES support**
