@@ -50,7 +50,7 @@ final readonly class MigrateUpCommand
     {
         $this->migrationManager->up();
 
-        $this->success("Everything migrated");
+        $this->console->success("Everything migrated");
     }
 
     #[EventHandler]
