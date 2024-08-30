@@ -2988,12 +2988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "c6633a1a0ef35452ae4c4b427417bb1036a0ac23"
+                "reference": "7ff8749c5b7a458e5a19cc55cb1d91638e9e2028"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/c6633a1a0ef35452ae4c4b427417bb1036a0ac23",
-                "reference": "c6633a1a0ef35452ae4c4b427417bb1036a0ac23",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/7ff8749c5b7a458e5a19cc55cb1d91638e9e2028",
+                "reference": "7ff8749c5b7a458e5a19cc55cb1d91638e9e2028",
                 "shasum": ""
             },
             "require": {
@@ -3089,20 +3089,20 @@
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
                 "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
-            "time": "2024-08-30T07:09:29+00:00"
+            "time": "2024-08-30T08:28:15+00:00"
         },
         {
             "name": "tempest/highlight",
-            "version": "2.10.1",
+            "version": "2.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "e7711dd64e4e79958376848d96c913eb62d23b5a"
+                "reference": "fb3309cb2fb6a2353d58b4da49040ad532c21a76"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/e7711dd64e4e79958376848d96c913eb62d23b5a",
-                "reference": "e7711dd64e4e79958376848d96c913eb62d23b5a",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/fb3309cb2fb6a2353d58b4da49040ad532c21a76",
+                "reference": "fb3309cb2fb6a2353d58b4da49040ad532c21a76",
                 "shasum": ""
             },
             "require": {
@@ -3139,7 +3139,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.10.1"
+                "source": "https://github.com/tempestphp/highlight/tree/2.10.2"
             },
             "funding": [
                 {
@@ -3147,7 +3147,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-30T06:23:41+00:00"
+            "time": "2024-08-30T07:52:11+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
