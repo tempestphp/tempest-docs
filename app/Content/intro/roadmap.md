@@ -44,7 +44,7 @@ Depending on the feedback from the first two alpha versions, we might opt into a
 
 There's no hard deadline on when Tempest 1.0 should be tagged. It's clear that we'll have to wait until PHP 8.4 has been released, though it could be a couple of months longer still. 
 
-The following features will be included in Tempest 1.0:
+The following features will be **included in Tempest 1.0**:
 
 - **MVC support**
 - **Console application support**
