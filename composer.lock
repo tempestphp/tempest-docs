@@ -1431,85 +1431,6 @@
             "time": "2024-08-07T15:39:19+00:00"
         },
         {
-            "name": "php-http/discovery",
-            "version": "1.19.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-http/discovery.git",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/0700efda8d7526335132360167315fdab3aeb599",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0|^2.0",
-                "php": "^7.1 || ^8.0"
-            },
-            "conflict": {
-                "nyholm/psr7": "<1.0",
-                "zendframework/zend-diactoros": "*"
-            },
-            "provide": {
-                "php-http/async-client-implementation": "*",
-                "php-http/client-implementation": "*",
-                "psr/http-client-implementation": "*",
-                "psr/http-factory-implementation": "*",
-                "psr/http-message-implementation": "*"
-            },
-            "require-dev": {
-                "composer/composer": "^1.0.2|^2.0",
-                "graham-campbell/phpspec-skip-example-extension": "^5.0",
-                "php-http/httplug": "^1.0 || ^2.0",
-                "php-http/message-factory": "^1.0",
-                "phpspec/phpspec": "^5.1 || ^6.1 || ^7.3",
-                "sebastian/comparator": "^3.0.5 || ^4.0.8",
-                "symfony/phpunit-bridge": "^6.4.4 || ^7.0.1"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "Http\\Discovery\\Composer\\Plugin",
-                "plugin-optional": true
-            },
-            "autoload": {
-                "psr-4": {
-                    "Http\\Discovery\\": "src/"
-                },
-                "exclude-from-classmap": [
-                    "src/Composer/Plugin.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Márk Sági-Kazár",
-                    "email": "mark.sagikazar@gmail.com"
-                }
-            ],
-            "description": "Finds and installs PSR-7, PSR-17, PSR-18 and HTTPlug implementations",
-            "homepage": "http://php-http.org",
-            "keywords": [
-                "adapter",
-                "client",
-                "discovery",
-                "factory",
-                "http",
-                "message",
-                "psr17",
-                "psr7"
-            ],
-            "support": {
-                "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.19.4"
-            },
-            "time": "2024-03-29T13:00:05+00:00"
-        },
-        {
             "name": "phpoption/phpoption",
             "version": "1.9.3",
             "source": {
@@ -3067,12 +2988,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "1bde5e1ada713c9eaf96126e38b75cbc49835027"
+                "reference": "c6633a1a0ef35452ae4c4b427417bb1036a0ac23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/1bde5e1ada713c9eaf96126e38b75cbc49835027",
-                "reference": "1bde5e1ada713c9eaf96126e38b75cbc49835027",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/c6633a1a0ef35452ae4c4b427417bb1036a0ac23",
+                "reference": "c6633a1a0ef35452ae4c4b427417bb1036a0ac23",
                 "shasum": ""
             },
             "require": {
@@ -3090,7 +3011,6 @@
                 "masterminds/html5": "^2.9",
                 "monolog/monolog": "^3.7.0",
                 "php": "^8.3",
-                "php-http/discovery": "^1.19.2",
                 "psr/clock": "^1.0.0",
                 "psr/http-client": "^1.0.0",
                 "psr/http-factory": "^1.0",
@@ -3169,20 +3089,20 @@
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
                 "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
-            "time": "2024-08-29T13:08:32+00:00"
+            "time": "2024-08-30T07:09:29+00:00"
         },
         {
             "name": "tempest/highlight",
-            "version": "2.10.0",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "d44dacd784a903bdb97a5c577b162345780f0878"
+                "reference": "e7711dd64e4e79958376848d96c913eb62d23b5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/d44dacd784a903bdb97a5c577b162345780f0878",
-                "reference": "d44dacd784a903bdb97a5c577b162345780f0878",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/e7711dd64e4e79958376848d96c913eb62d23b5a",
+                "reference": "e7711dd64e4e79958376848d96c913eb62d23b5a",
                 "shasum": ""
             },
             "require": {
@@ -3219,7 +3139,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.10.0"
+                "source": "https://github.com/tempestphp/highlight/tree/2.10.1"
             },
             "funding": [
                 {
@@ -3227,7 +3147,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-27T12:46:40+00:00"
+            "time": "2024-08-30T06:23:41+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -7006,5 +6926,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

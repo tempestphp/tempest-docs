@@ -10,15 +10,33 @@ use Tempest\Console\ConsoleCommand;
 final readonly class Package
 {
     public function __construct(
-        {*private Console $console,*}
+        private Console $console,
     ) {}
     
     #[ConsoleCommand]
-    public function all(): void {}
+    public function all(): void 
+    {
+        // …
+    }
 }
 ```
 
-## Initializers
+On top of that, Tempest configuration files are PHP objects, meaning they'll be registered in the container as singletons as well:
+
+```php
+
+final readonly class Package
+{
+    public function __construct(
+        private Console $console,
+        private AppConfig $config,
+    ) {}
+}
+```
+
+Tempest will automatically discover configuration files, please read the [Config](#content-config) section for more info.
+
+## Dependency Initializers
 
 When you need fine-grained control over how a dependency is constructed instead of relying on Tempest's autowiring capabilities, you can use initializer classes. Initializers are classes that know how to construct a specific class or interface. Whenever that class or interface is requested from the container, Tempest will use the initializer class to construct it.
 
@@ -192,4 +210,25 @@ final readonly class BladeInitializer implements DynamicInitializer
 
 ## Config
 
-// TODO
+As mentioned, configuration is represented by objects in Tempest. Tempest provides many configuration classes for you, although the framework is designed to use them as little as possible. Whenever you need fine-grained control over part of the framework's config, you can create a `Config` folder in your main project folder. This folder can contain plain PHP files, each file can return a config instance:
+
+```php
+// app/Config/database.php
+<?php
+
+use Tempest\Database\DatabaseConfig;
+use Tempest\Database\Drivers\MySqlDriver;
+use function Tempest\env;
+
+return new DatabaseConfig(
+    driver: new MySqlDriver(
+        host: env('DB_HOST')
+        port: env('DB_PORT')
+        username: env('DB_USERNAME')
+        password: env('DB_PASSWORD'),
+        database: env('DB_NAME'),
+    ),
+);
+```
+
+Project-level configuration files will be discovered automatically, and will overwrite Tempest's default config. In this example, the default `DatabaseConfig` object will be overwritten by your custom one, using MySQL instead of SQLite, and retrieving its credentials from environment variables.
