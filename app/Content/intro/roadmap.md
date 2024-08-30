@@ -26,6 +26,16 @@ This version will bundle fixes and feedback changes from the first alpha version
 
 Meanwhile, we also want to look into supporting **Tempest Views as a PhpStorm plugin**. It's still unclear whether we will succeed in adding IDE support, but we'll try to have this fixed before the 1.0 release.
 
+On top of that, we'll work on some more finetunings:
+
+- **Internal kernel refactor**
+- **Make all subsplit components work on their own**
+- **Ability to skip any file from discovery**
+- **Responsive image view component**
+- **`tempest deploy` command**
+- **CSRF support**
+- **Support for multiple database connections**
+
 ## Next alphas
 
 Depending on the feedback from the first two alpha versions, we might opt into adding more alpha versions before 1.0.
