@@ -66,15 +66,48 @@ final readonly class BookController
 
 A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/Request.php).
 
-### Middleware
-
-// TODO
-
 ### A note on data mapping
 
 The `{php}map()` function is another powerful feature that sets Tempest apart. We'll discuss it more in depth when looking at models, but it's already worth mentioning: Tempest can treat any kind of object as "a model", and is able to map data into those objects from different sources.
 
 You could map a request class with its data to a model class, but you could also map a model object to a JSON array; you could map JSON data to models, a model to an array, and so on. The `{php}map()` function will detect what kind of data source its dealing with and what kind of target that data should be mapped into.
+
+## Middleware
+
+Middleware can be applied to handle tasks in between receiving a request and sending a response. Middleware can be applied to routes via the `#[Route]` attribute:
+
+```php
+final readonly class BookClass
+{
+    #[Get(
+        uri: '/books', 
+        middleware: [BooksMiddleware::class],
+    )]
+    public function index(): Response
+    {
+        // …
+    }
+}
+```
+
+A middleware class, in turn, should implement the `\Tempest\Http\HttpMiddleware` interface:
+
+```php
+final readonly class BooksMiddleware implements HttpMiddleware
+{
+    public function __invoke(Request $request, callable $next): Response
+    {
+        /** @var \Tempest\Http\Response $response */
+        $response = $next($request);
+        
+        $response->addHeader('x-book', 'true');
+        
+        return $response;
+    }
+}
+```
+
+Note that you can create [custom routes](#content-custom-routes) to make reusable middleware stacks.
 
 ## Responses
 
@@ -177,7 +210,7 @@ final class BookCreated implements Response
 }
 ```
 
-### Custom Routes
+## Custom Routes
 
 Thanks to route attributes, you can make your own, custom `Route` implementations. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
 
@@ -214,7 +247,7 @@ final readonly class BookController
 }
 ```
 
-### Generating URIs
+## Generating URIs
 
 You can generate URIs referencing controller methods by using the `uri` function:
 
@@ -232,9 +265,9 @@ uri([BookController::class, 'show'], id: $book->id);
 // /books/1
 ```
 
-### Route Binding
+## Route Binding
 
-Tempest will map IDs to model instances — a topic we'll cover in depth in the [Models chapter](/04-models).
+Tempest will map IDs to model instances:
 
 ```php
 final readonly class BookController
