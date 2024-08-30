@@ -113,3 +113,7 @@ Tempest will generate static HTML pages, but it won't take care of serving them.
 ### Other web servers
 
 If you use other webservers and want their config listed on this page, feel free to send a [pull request](https://github.com/tempestphp/tempest-docs/tree/main/app/Content/framework/10-static-pages.md) to the docs site.
+
+## Deployments
+
+Finally, keep in mind that static pages should be regenerated on every deploy. You should add the `{txt}./tempest static:generate` command in your deployment pipeline.
