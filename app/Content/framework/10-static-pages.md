@@ -30,7 +30,7 @@ You can also remove all statically generated pages with the `{txt}static:clean` 
 
 ## Data providers
 
-Since most pages require some form of dynamic data, static pages can be assigned a data provider, which can generate multiple pages for one controller action.
+Since most pages require some form of dynamic data, static pages can be assigned a data provider, which will generate multiple pages for one controller action.
 
 Let's take a look at the controller action for this docs website:
 
@@ -61,9 +61,9 @@ final readonly class DocsDataProvider implements DataProvider
 }
 ```
 
-A data provider's goal is to provide data so that multiple pages can be generated for one controller action. In case of the docs controller, it needs a `$category` and `$slug`, as well as a `$chapterRepository`. That latter one is injected by the container, so we don't need to worry about it here. What we _do_ need to provide is a category and slug for each page we want to generate. 
+A data provider's goal is to generate multiple pages for one controller action. It does so by yielding an array of controller action parameters for every page the needs to be generated. In case of the docs controller, the action needs a `$category` and `$slug`, as well as a `$chapterRepository`. That `$chapterRepository` is injected by the container, so we don't need to worry about it here. What we _do_ need to provide is a category and slug for each page we want to generate. 
 
-For example, that's pretty easy to do: we essentially want to generate a page for every doc chapter, which the `ChapterRepository` already can provide. So eventually, our data provider looks like this:
+In other words: we want to generate a page for every docs chapter. We can use the `ChapterRepository` to get a list of all available chapters. Eventually, our data provider looks like this:
 
 ```php
 final readonly class DocsDataProvider implements DataProvider
