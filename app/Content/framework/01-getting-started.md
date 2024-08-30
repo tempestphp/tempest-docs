@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-**Tempest is a PHP framework that gets out of your way**. It's design philosophy is that developers should write as little framework-related code as possible, so that they can **focus on application code** instead.
+**Tempest is a PHP framework that gets out of your way**. Its design philosophy is that developers should write as little framework-related code as possible, so that they can **focus on application code** instead.
 
 Tempest embraces **modern PHP syntax** (`^8.4`), covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#content-a-basic-tempest-project) to massively improve developer experience.
 
