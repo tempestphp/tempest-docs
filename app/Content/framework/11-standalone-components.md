@@ -85,11 +85,7 @@ composer require tempest/event-bus
 ```
 
 ```php
-$kernel = new Kernel(new AppConfig(
-    root: __DIR__
-));
-
-$container = $kernel->init();
+$container = Tempest::boot();
 
 // You can manually resolve the event bus from the container
 $eventBus = $container->get(\Tempest\EventBus\EventBus::class);
@@ -109,12 +105,7 @@ composer require tempest/command-bus
 ```
 
 ```php
-
-$kernel = new Kernel(new AppConfig(
-    root: __DIR__
-));
-
-$container = $kernel->init();
+$container = Tempest::boot();
 
 // You can manually resolve the command bus from the container
 $commandBus = $container->get(\Tempest\CommandBus\CommandBus::class);
