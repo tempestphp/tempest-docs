@@ -19,6 +19,6 @@ final readonly class Chapter
 
     public function getUri(): string
     {
-        return uri([DocsController::class, 'show'], category: $this->category, slug: $this->slug);
+        return uri(DocsController::class, category: $this->category, slug: $this->slug);
     }
 }
