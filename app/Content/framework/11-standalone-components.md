@@ -4,6 +4,8 @@ title: Standalone Components
 
 Many Tempest components can be installed as standalone packages in existing or new projects: `tempest/console`, `tempest/http`, `tempest/event-bus`, `tempest/debug`, `tempest/command-bus`, etc.
 
+**A note up front**: since Tempest is still in its early stages, some components depend on `tempest/core`, which shouldn't. There's a lot of work to be done to make components like `tempest/mapper` truly independent.
+
 ## tempest/console
 
 ```
@@ -64,6 +66,22 @@ HttpApplication::boot(
 
 Note that the `root` path passed in `HttpApplication::boot` should point to your project's root folder.
 
+## tempest/container
+
+`tempest/container` is Tempest's standalone container implementation. Note that this package doesn't provide discovery, so initializers will need to be added manually.
+
+```
+composer require tempest/container
+```
+
+```php
+$container = new Tempest\Container\GenericContainer();
+
+$container->addInitializer(FooInitializer::class);
+
+$foo = $container->get(Foo::class);
+```
+
 ## tempest/debug
 
 `tempest/debug` provides the `lw`, `ld` and `ll` functions. This package is truly standalone, but when installed in a Tempest project, it will also automatically write to configured log files.
@@ -113,4 +131,18 @@ $commandBus->dispatch(new MyCommand());
 
 // Or use the `command` function, which is shipped with the package
 \Tempest\command(new \Brendt\MyEvent());
+```
+
+## tempest/mapper
+
+`tempest/mapper` maps data between many types of sources, from arrays to objects, objects to JSON, …
+
+```
+composer require tempest/mapper
+```
+
+```php
+Tempest::boot();
+
+$foo = map(['name' => 'Hi'])->to(Foo::class);
 ```
