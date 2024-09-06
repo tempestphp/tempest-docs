@@ -4,7 +4,7 @@ title: Getting Started
 
 **Tempest is a PHP framework that gets out of your way**. Its design philosophy is that developers should write as little framework-related code as possible, so that they can **focus on application code** instead.
 
-Tempest embraces **modern PHP syntax** (`^8.4`), covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#content-a-basic-tempest-project) to improve developer experience.
+Tempest embraces **modern PHP syntax**, covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#content-a-basic-tempest-project) to improve developer experience.
 
 Tempest can be installed **as a standalone PHP project**, as well as **a package within existing projects**. The framework modules — like, for example, `tempest/console` or `tempest/event-bus` — can also be installed **individually**, including in projects built on other frameworks.
 
@@ -62,6 +62,8 @@ final readonly class MigrateUpCommand
 ```
 
 Ready to give it a try? [**Give Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework) and [**join our Discord server**](https://discord.gg/pPhpTGUMPQ)!
+
+Currently, Tempest is a work in progress, you can [check up on the roadmap here](/intro/roadmap).
 
 ## Installation
 
