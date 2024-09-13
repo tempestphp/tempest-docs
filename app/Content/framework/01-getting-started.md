@@ -61,9 +61,7 @@ final readonly class MigrateUpCommand
 }
 ```
 
-Ready to give it a try? [**Give Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework) and [**join our Discord server**](https://discord.gg/pPhpTGUMPQ)!
-
-Currently, Tempest is a work in progress, you can [check up on the roadmap here](/intro/roadmap).
+Ready to give it a try? Keep on reading, and [**give Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework), you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ) as well!
 
 ## Installation
 

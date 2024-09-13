@@ -17,8 +17,8 @@ Before we can tag this release, there are a [handful of issues](https://github.c
 - ✅ **Improved query builder**
 - ✅ **Updated documentation**
 - ✅ **Static pages support**
-- ✅**MySQL support**
-- **Improved file support in requests**
+- ✅ **MySQL support**
+- ✅ **Improved file support in requests**
 
 ## 1.0-alpha2
 
