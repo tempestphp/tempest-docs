@@ -118,7 +118,6 @@ Installing Tempest into a project means copying one or more of these files into 
 
 You can choose which files you want to install, and you can always rerun the `install` command at a later point in time.
 
-
 ## Project structure
 
 Tempest won't impose any file structure on you: one of its core features is that it will scan all project and package code for you, and it will automatically discover any files the framework needs to know about. For example: Tempest is able to differentiate between a controller method and a console command by looking at the code, instead of relying on naming conventions or verbose configuration files. This concept is called **discovery**, and it's one of Tempest's most powerful features.
@@ -182,4 +181,30 @@ final readonly class RssSyncCommand
 }
 ```
 
-If you want to, you can read the [internal documentation about discovery](/internals/02-discovery) to learn more. 
+If you want to, you can read the [internal documentation about discovery](/internals/02-discovery) to learn more.
+
+One important note to make is that you can disable all discovery cache for local development by added the follow environment variable:
+
+```env
+{:hl-comment:# .env:}
+{:hl-property:DISCOVERY_CACHE:}={:hl-keyword:false:}
+```
+
+Furthermore, you can always clear discovery caches via the terminal:
+
+```console
+./tempest discovery:clear
+
+<em>Tempest\Core\DiscoveryDiscovery</em> cleared successful
+<em>Tempest\Http\RouteDiscovery</em> cleared successful
+<em>Tempest\Http\Static\StaticPageDiscovery</em> cleared successful
+<em>Tempest\View\ViewComponentDiscovery</em> cleared successful
+<em>Tempest\Mapper\MapperDiscovery</em> cleared successful
+<em>Tempest\Console\Discovery\ScheduleDiscovery</em> cleared successful
+<em>Tempest\Console\Discovery\ConsoleCommandDiscovery</em> cleared successful
+<em>Tempest\Database\MigrationDiscovery</em> cleared successful
+<em>Tempest\EventBus\EventBusDiscovery</em> cleared successful
+<em>Tempest\Container\InitializerDiscovery</em> cleared successful
+<em>Tempest\CommandBus\CommandBusDiscovery</em> cleared successful
+<success>Done</success>
+```
