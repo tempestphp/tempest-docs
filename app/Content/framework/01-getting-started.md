@@ -72,7 +72,7 @@ You can install Tempest in two ways: as a web app with a basic frontend bootstra
 If you want to start a new Tempest project, you can use `tempest/app` as the starting point. Use `composer create-project` to start:
 
 ```txt
-composer create-project tempest/app my-app
+composer create-project tempest/app:dev-main my-app
 cd my-app
 ```
 
@@ -94,7 +94,7 @@ PHP 8.3.3 Development Server (http://localhost:8000) started
 If you don't need an app scaffold, you can opt to install `tempest/framework` as a standalone package. You could do this in any project; it could already contain code, or it could be an empty project.
 
 ```txt
-composer require tempest/framework
+composer require tempest/framework:dev-main
 ```
 
 Installing Tempest this way will give you access to the tempest console as a composer binary:
