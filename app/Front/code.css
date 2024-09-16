@@ -26,9 +26,9 @@
     color: var(--property-color);
 }
 
-.hl-attribute {
-    font-family: "Radon", serif;
-}
+/*.hl-attribute {*/
+/*    font-family: "Radon", serif;*/
+/*}*/
 
 .hl-type {
     color: var(--type-color);
