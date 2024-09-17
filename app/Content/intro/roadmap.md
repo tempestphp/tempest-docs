@@ -4,22 +4,6 @@ title: Roadmap
 
 Tempest is still a <span class="hl-attribute">work in progress</span>, this page outlines the next milestones. You're more than welcome to [contribute to Tempest](https://github.com/tempestphp/tempest-framework), you can even work on features in future milestones if anything is of particular interest to you. The best way to get in touch about Tempest development is to [join our Discord server](https://discord.gg/pPhpTGUMPQ).
 
-## 1.0-alpha1
-
-The first alpha version of Tempest will be the first version that's publicly announced. The goal of announcing this version is to get initial reactions from people reading the docs and playing with the framework. This version won't be stable, and there will be breaking changes after it.
-
-Before we can tag this release, there are a [handful of issues](https://github.com/tempestphp/tempest-framework/milestone/2) to be solved still.
-
-- ✅ **Improvements to migrations**
-- ✅ **`:elseif` attribute**
-- ✅ **Switch all Reflection usages to Tempest's Reflector wrapper**
-- ✅ **Support for standalone SQL migrations**
-- ✅ **Improved query builder**
-- ✅ **Updated documentation**
-- ✅ **Static pages support**
-- ✅ **MySQL support**
-- ✅ **Improved file support in requests**
-
 ## 1.0-alpha2
 
 This version will bundle fixes and feedback changes from the first alpha version. Most notably, this version will also support **PHP 8.4 as the minimum**, and use property hooks wherever possible. This is the last big breaking change prior to tagging version 1.0.
