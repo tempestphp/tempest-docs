@@ -11,7 +11,7 @@ use function Tempest\uri;
             <h1 class="text-4xl font-extrabold text-center font-argon">The framework that gets out of your way.</h1>
 
             <h2 class="text-xl font-body px-4 md:px-0">
-                <span class="tempest">Tempest</span> is the PHP framework that makes you focus on your code.
+                <span class="tempest">Tempest</span> is the PHP framework that makes you focus on <span class="font-bold">your code</span>.
             </h2>
 
             <nav class="flex flex-wrap gap-2 mt-8">
