@@ -36,7 +36,26 @@ h1, h2, h3, h4, h5, h6 {
             100% 100%,
             0 calc(100% - 10vw)
     );
-    z-index: 0;
+    position: relative;
+}
+
+.slope-2 {
+    clip-path: polygon(
+            0 5%,
+            100% 0,
+            100% 100%,
+            0 95%
+    );
+    position: relative;
+}
+
+.slope-3 {
+    clip-path: polygon(
+            0 20%,
+            100% 0,
+            100% 100%,
+            0 100%
+    );
     position: relative;
 }
 

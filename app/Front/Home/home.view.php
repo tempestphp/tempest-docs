@@ -52,6 +52,13 @@ use function Tempest\uri;
             </x-slot>
         </x-codeblock>
 
+        <div class="header-gradient slope-2 flex justify-center text-white text-xl p-4 py-8 md:p-16">
+            <div class="md:max-w-[50%]">
+                Tempest has already managed to become something more than an exercise, and you seem to have the experience, mentality and passion to lead its future to much greater heights. —
+                <a class=" underline hover:no-underline" href="https://www.reddit.com/r/PHP/comments/1fi2dny/introducing_tempest_the_framework_that_gets_out/lngag06/">Reddit</a>
+            </div>
+        </div>
+
         <x-codeblock>
             <x-slot name="code">
                 <?= $this->code2 ?>
@@ -83,7 +90,7 @@ use function Tempest\uri;
         </x-codeblock>
     </div>
 
-    <div class="py-16 px-4 md:px-16 flex justify-center mt-8 bg-[#4f95d1] text-white font-bold header-gradient">
+    <div class="slope-3 pt-24 md:pt-32 py-16 px-4 md:px-16 flex justify-center mt-8 bg-[#4f95d1] text-white font-bold header-gradient">
         <div class="grid gap-4 place-items-center">
             <h2 class="text-2xl">
                 Get started with <span class="tempest">Tempest</span> today, now in alpha!
