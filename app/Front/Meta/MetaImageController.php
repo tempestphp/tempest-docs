@@ -51,8 +51,8 @@ final readonly class MetaImageController
                 ->windowSize(1200, 628)
                 ->deviceScaleFactor(2);
 
-            if ($path = env('BROWSERSHOT_PATH')) {
-                $browsershot->setIncludePath("\$PATH:{$path}");
+            if ($includePath = env('BROWSERSHOT_PATH')) {
+                $browsershot->setIncludePath("\$PATH:{$includePath}");
             }
 
             if ($nodePath = env('BROWSERSHOT_NODE_PATH')) {
