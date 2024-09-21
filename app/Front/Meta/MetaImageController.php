@@ -11,6 +11,7 @@ use Tempest\Http\Responses\File;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Ok;
 use Tempest\View\ViewRenderer;
+use function Tempest\env;
 use function Tempest\path;
 use function Tempest\view;
 
@@ -45,12 +46,20 @@ final readonly class MetaImageController
         }
 
         if (! is_file($path) || $request->has('nocache')) {
-            Browsershot::html($html)
+            $browsershot = Browsershot::html($html)
                 ->setOption('args', ['--disable-web-security'])
-                ->setIncludePath('$PATH:/Users/brent/.nvm/versions/node/v20.5.0/bin')
                 ->windowSize(1200, 628)
-                ->deviceScaleFactor(2)
-                ->save($path);
+                ->deviceScaleFactor(2);
+
+            if ($nodePath = env('BROWSERSHOT_NODE_PATH')) {
+                $browsershot->setNodeBinary($nodePath);
+            }
+
+            if ($npmPath = env('BROWSERSHOT_NPM_PATH')) {
+                $browsershot->setNodeBinary($npmPath);
+            }
+
+            $browsershot->save($path);
         }
 
         return (new File($path));
