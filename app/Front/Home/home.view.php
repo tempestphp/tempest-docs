@@ -11,7 +11,8 @@ use function Tempest\uri;
             <h1 class="text-4xl font-extrabold text-center font-argon">The framework that gets out of your way.</h1>
 
             <h2 class="text-xl font-body px-4 md:px-0">
-                <span class="tempest">Tempest</span> is the PHP framework that makes you focus on <span class="font-bold">your code</span>.
+                <span class="tempest">Tempest</span> is the PHP framework that makes you focus on
+                <span class="font-bold">your code</span>.
             </h2>
 
             <nav class="flex flex-wrap gap-2 mt-8">
@@ -79,6 +80,14 @@ use function Tempest\uri;
             </x-slot>
         </x-codeblock>
 
+
+        <div class="header-gradient slope-2 flex justify-center text-white text-xl p-4 py-8 md:p-16">
+            <div class="md:max-w-[50%]">
+                Tempest is a work of art 👌 —
+                <a class=" underline hover:no-underline" href="https://x.com/LukeDowning19/status/1836083961174397420">Twitter</a>
+            </div>
+        </div>
+
         <x-codeblock>
             <x-slot name="code">
                 <?= $this->code6 ?>
@@ -90,7 +99,7 @@ use function Tempest\uri;
         </x-codeblock>
     </div>
 
-    <div class="slope-3 pt-24 md:pt-32 py-16 px-4 md:px-16 flex justify-center mt-8 bg-[#4f95d1] text-white font-bold header-gradient">
+    <div class="slope-3 md:pt-32 py-16 px-4 md:px-16 flex justify-center mt-8 bg-[#4f95d1] text-white font-bold header-gradient">
         <div class="grid gap-4 place-items-center">
             <h2 class="text-2xl">
                 Get started with <span class="tempest">Tempest</span> today, now in alpha!
