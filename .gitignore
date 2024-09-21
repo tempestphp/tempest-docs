@@ -7,3 +7,4 @@ vendor/
 .idea
 log
 public/**/**.html
+public/meta

@@ -2,10 +2,9 @@
 
 use App\Front\Docs\DocsController;
 use function Tempest\uri;
-
 ?>
 
-<x-base>
+<x-base title="Console" :meta="\App\Front\Meta\MetaType::CONSOLE">
     <div class="flex items-center justify-center bg-[#4f95d1] text-white slope header-gradient">
         <div class="grid gap-4 content-center place-items-center mt-[25vh] mb-[35vh] relative px-4">
             <h1 class="text-2xl md:text-4xl font-extrabold text-center font-argon md:max-w-[60%]">A revolutionary way of building console applications in PHP.</h1>

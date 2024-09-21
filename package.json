@@ -9,6 +9,6 @@
   },
   "dependencies": {
     "highlight.js": "^11.9.0",
-    "puppeteer": "^22.7.0"
+    "puppeteer": "^22.15.0"
   }
 }

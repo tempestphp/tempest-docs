@@ -1,7 +1,19 @@
+<?php
+
+use App\Front\Meta\MetaType;
+
+?>
 <x-component name="x-base">
     <html lang="en">
     <head>
         <title><?= ($this->title ?? null) ? "{$this->title} | Tempest" : "Tempest" ?></title>
+
+        <?php $metaType = $this->meta ?? MetaType::FRAMEWORK; ?>
+
+        <meta property="og:image" content="<?= $metaType->uri() ?>"/>
+        <meta property="twitter:image" content="<?= $metaType->uri() ?>"/>
+        <meta name="image" content="<?= $metaType->uri() ?>"/>
+        <meta name="twitter:card" content="summary_large_image"/>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
