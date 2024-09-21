@@ -17,8 +17,14 @@ final readonly class HomeController
     #[Get('/')]
     public function __invoke(): View
     {
-        $codeBlocks = arr(['1', '2'])
-            ->mapWithKeys(fn (string $index) => yield "code{$index}" => $this->markdown->convert(file_get_contents(__DIR__ . "/code-{$index}.md")));
+        $codeBlocks = arr(glob(__DIR__ . '/*.md'))
+            ->mapWithKeys(function (string $path) {
+                preg_match('/(\d+).md/', $path, $matches);
+
+                $index = $matches[1];
+
+                return yield "code{$index}" => $this->markdown->convert(file_get_contents($path));
+            });
 
         return view(__DIR__ . '/home.view.php', ...$codeBlocks);
     }

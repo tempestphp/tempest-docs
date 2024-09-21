@@ -1,4 +1,6 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
 @font-face {
     font-family: "Argon";
     src: url("/fonts/MonaspaceArgon-Bold.woff") format("woff");
@@ -33,4 +35,26 @@
     font-family: "Radon";
     src: url("/fonts/MonaspaceRadon-Regular.woff") format("woff");
     font-weight: bold;
+}
+
+.font-neon {
+    font-family: "Neon", sans-serif;
+}
+
+.font-radon {
+    font-family: "Radon", sans-serif;
+}
+
+.font-argon {
+    font-family: "Argon", sans-serif;
+}
+
+.font-open-sans {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings: "wdth" 100;
+}
+
+.font-body {
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }

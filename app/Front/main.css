@@ -28,3 +28,28 @@ h1, h2, h3, h4, h5, h6 {
         display: inline;
     }
 }
+
+.slope {
+    clip-path: polygon(
+            0 0,
+            100% 0,
+            100% 100%,
+            0 calc(100% - 10vw)
+    );
+    z-index: 0;
+    position: relative;
+}
+
+.header-gradient {
+    background: linear-gradient(135deg, #0171bc 0%, #1b1429 100%);
+}
+
+.tempest {
+    color: #1b1429;
+    font-weight: bold;
+    background: #29abe2;
+    padding: .3em .3em .2em;
+    border-radius: 5px;
+    font-family: Argon, monospace;
+    margin: 0 .1em;
+}

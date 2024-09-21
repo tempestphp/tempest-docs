@@ -1,27 +1,27 @@
 ```php
-final readonly class MigrateUpCommand
+final readonly class InteractiveCommand
 {
-    public function __construct(
-        private Console $console,
-        private MigrationManager $migrationManager,
-    ) {}
+    use HasConsole;
 
-    #[ConsoleCommand(
-        name: 'migrate:up',
-        description: 'Run all new migrations',
-        middleware: [ForceMiddleware::class, CautionMiddleware::class],
-    )]
-    public function __invoke(): void
+    #[ConsoleCommand('hello:world')]
+    public function __invoke(string $name, bool $continue = false): void
     {
-        $this->migrationManager->up();
-
-        $this->console->success("Everything migrated");
-    }
-
-    #[EventHandler]
-    public function onMigrationMigrated(MigrationMigrated $migrationMigrated): void
-    {
-        $this->console->writeln("- {$migrationMigrated->name}");
+        $this->writeln("Hello {$name}!");
+        
+        if (! $continue && ! $this->confirm('Are you sure about this?')) {
+            return;
+        }
+        
+        $framework = $this->ask(
+            question: 'What\'s your favourite framework?',
+            options: [
+                'Tempest',
+                'Laravel',
+                'Symfony',
+            ],       
+        );
+        
+        $this->success($framework);
     }
 }
 ```
