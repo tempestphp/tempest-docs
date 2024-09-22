@@ -32,11 +32,11 @@ final readonly class MetaImageController
             return new NotFound();
         }
 
-        $css = file_get_contents( __DIR__ . "/../../../public/main.css");
-
-        $html = $this->viewRenderer->render(view($type->getViewPath(), css: $css));
-
         if ($request->has('html')) {
+            $css = file_get_contents( __DIR__ . "/../../../public/main.css");
+
+            $html = $this->viewRenderer->render(view($type->getViewPath(), css: $css));
+
             return new Ok($html);
         }
 
