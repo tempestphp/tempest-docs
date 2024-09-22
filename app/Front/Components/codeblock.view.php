@@ -3,7 +3,7 @@
         <div class="
             border-2
             rounded border-[#1b1429]
-            shadow-lg p-6 bg-[#fafafa]
+            shadow-lg p-6 bg-[#fefefe]
             mx-2
             overflow-x-scroll
             md:overflow-x-auto
@@ -13,7 +13,7 @@
             <x-slot name="code" />
         </div>
 
-        <p class="text-center md:max-w-[30vw]">
+        <p class="text-center md:max-w-[30vw] font-bold">
             <x-slot name="text" />
         </p>
     </div>

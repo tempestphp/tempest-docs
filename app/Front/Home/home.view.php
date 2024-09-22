@@ -6,6 +6,14 @@ use function Tempest\uri;
 ?>
 
 <x-base>
+    <x-slot name="styles">
+        <style>
+            body {
+                background-color: #f6ffff;
+            }
+        </style>
+    </x-slot>
+
     <div class="flex items-center justify-center bg-[#4f95d1] text-white slope header-gradient">
         <div class="grid gap-4 content-center place-items-center mt-[25vh] mb-[35vh] relative px-4">
             <h1 class="text-4xl font-extrabold text-center font-argon">The framework that gets out of your way.</h1>

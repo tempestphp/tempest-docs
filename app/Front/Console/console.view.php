@@ -5,6 +5,14 @@ use function Tempest\uri;
 ?>
 
 <x-base title="Console" :meta="\App\Front\Meta\MetaType::CONSOLE">
+    <x-slot name="styles">
+        <style>
+            body {
+                background-color: #f6ffff;
+            }
+        </style>
+    </x-slot>
+
     <div class="flex items-center justify-center bg-[#4f95d1] text-white slope header-gradient">
         <div class="grid gap-4 content-center place-items-center mt-[25vh] mb-[35vh] relative px-4">
             <h1 class="text-2xl md:text-4xl font-extrabold text-center font-argon md:max-w-[60%]">A revolutionary way of building console applications in PHP.</h1>
@@ -71,7 +79,7 @@ use function Tempest\uri;
             </x-slot>
         </x-codeblock>
 
-        <div class="grid justify-center gap-4 place-items-center p-2">
+        <div class="grid justify-center gap-4 place-items-center p-2 bg-white">
             <video autoplay muted controls loop class="shadow-lg md:max-w-[60%] p-4 rounded">
                 <source src="/img/ask-c.mp4" type="video/mp4"/>
             </video>
