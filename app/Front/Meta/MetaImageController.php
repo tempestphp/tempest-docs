@@ -33,9 +33,7 @@ final readonly class MetaImageController
         }
 
         if ($request->has('html')) {
-            $css = file_get_contents( __DIR__ . "/../../../public/main.css");
-
-            $html = $this->viewRenderer->render(view($type->getViewPath(), css: $css));
+            $html = $this->viewRenderer->render(view($type->getViewPath()));
 
             return new Ok($html);
         }
