@@ -13,6 +13,7 @@ use Tempest\Http\Responses\Ok;
 use Tempest\View\ViewRenderer;
 use function Tempest\env;
 use function Tempest\path;
+use function Tempest\uri;
 use function Tempest\view;
 
 final readonly class MetaImageController
@@ -46,7 +47,7 @@ final readonly class MetaImageController
         }
 
         if (! is_file($path) || $request->has('nocache')) {
-            $browsershot = Browsershot::html($html)
+            $browsershot = Browsershot::url(uri(self::class, type: $type->value, html: true))
                 ->setOption('args', ['--disable-web-security'])
                 ->windowSize(1200, 628)
                 ->deviceScaleFactor(2);
