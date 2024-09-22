@@ -52,7 +52,7 @@ final readonly class MetaImageController
                 ->deviceScaleFactor(2);
 
             if ($includePath = env('BROWSERSHOT_PATH')) {
-                $browsershot->setIncludePath("\$PATH:{$includePath}");
+                $browsershot->setIncludePath("{$includePath}:\$PATH");
             }
 
             if ($nodePath = env('BROWSERSHOT_NODE_PATH')) {
@@ -60,7 +60,7 @@ final readonly class MetaImageController
             }
 
             if ($npmPath = env('BROWSERSHOT_NPM_PATH')) {
-                $browsershot->setNodeBinary($npmPath);
+                $browsershot->setNpmBinary($npmPath);
             }
 
             $browsershot->save($path);
