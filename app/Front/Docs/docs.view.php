@@ -2,10 +2,10 @@
 
 <x-base :title="$this->currentChapter->title">
 
-    <div class="px-4 text-center py-4 bg-[#4f95d1] font-bold text-white w-full z-[99] mb-4 flex items-center gap-2 justify-center">
+    <div class="px-4 text-center py-4 bg-[var(--card)] font-bold text-[var(--card-foreground)] w-full z-[99] mb-4 flex items-center gap-2 justify-center">
         <img src="/favicon/favicon-32x32.png" alt="favicon" class="h-[20px] hidden md:inline-block">
         <span>
-        Tempest is still a <span class="hl-attribute text-white">work in progress</span>. Visit our <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">GitHub</a> or
+        Tempest is still a <span class="hl-attribute">work in progress</span>. Visit our <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">GitHub</a> or
         <a href="https://discord.gg/pPhpTGUMPQ" class="underline hover:no-underline">Discord</a>
     </span>
     </div>
@@ -25,6 +25,7 @@
     </script>
     
     <div class="
+    docs
     max-w-full md:max-w-[1000px] mx-auto
     md:grid md:grid-cols-12
 ">
@@ -35,7 +36,7 @@
             px-2
         ">
                 <div class="md:hidden">
-                    <button onclick="toggleMenu()" class="flex gap-2">
+                    <button onclick="toggleMenu()" class="flex gap-2 bg-[--background] text-[var(--foreground)]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5" />
                         </svg>
@@ -44,62 +45,63 @@
                 </div>
 
                 <div id="menu" class="
-                hidden
-                gap-4
-                flex-wrap
-                mt-4
-                bg-blue-50
-                p-4
+                    hidden
+                    gap-4
+                    flex-wrap
+                    mt-4
+                    bg-[var(--menu-background)]
+                    p-4
 
-                md:bg-transparent
-                md:mt-4
-                md:grid
-                md:gap-4
-                md:border-r-2
-                md:border-[#4f95d1]
-                md:px-4
-                md:py-2
-                md:justify-end
-                justify-start
-            ">
-                    <h1 class="text-[#4f95d1] font-bold text-2xl">Tempest</h1>
+                    md:bg-transparent
+                    md:mt-4
+                    md:grid
+                    md:gap-4
+                    md:border-r-2
+                    md:border-[var(--border)]
+                    md:px-4
+                    md:py-2
+                    md:justify-end
+                    justify-start
+                ">
+                    <h1 class="text-[var(--primary)] font-bold text-2xl">Tempest</h1>
 
                     <?php foreach ($this->categories() as $category) { ?>
                         <div class="flex flex-col">
                             <?php if ($category !== 'intro') { ?>
-                                <h2 class="font-bold text-lg">
+                                <h2 class="font-bold text-lg text-[var(--foreground)]">
                                     <?= ucfirst($category) ?>
                                 </h2>
                             <?php } ?>
 
                             <?php foreach ($this->chaptersForCategory($category) as $chapter) { ?>
                                 <a href="<?= $chapter->getUri() ?>" class="
-                                menu-link
-                                px-4 py-2
-                                text-md
-                                inline-block
-                                rounded
-                                hover:text-[#4f95d1] hover:underline
+                                    menu-link
+                                    px-4 py-2
+                                    text-md
+                                    inline-block
+                                    rounded
+                                    hover:text-[--primary] hover:underline
+                                    text-[--foreground]
 
-                                md:bg-transparent
-                                md:px-0
-                                md:py-1
-                                md:inline
-                                md:text-base
-                                <?= $this->isCurrent($chapter) ? 'font-bold text-[#4f95d1]' : '' ?>
-                            "
+                                    md:bg-transparent
+                                    md:px-0
+                                    md:py-1
+                                    md:inline
+                                    md:text-base
+                                    <?= $this->isCurrent($chapter) ? 'font-bold text-[--primary]' : '' ?>
+                                "
                                 >
                                     <?= $chapter->title ?>
                                 </a>
 
                                 <?php
                                     if($this->isCurrent($chapter) && ($subChapters = $this->getSubChapters()) !== []):
-                                ?>
+                                        ?>
                                 <div class="
                                     hidden
                                     md:grid
                                     md:border-r
-                                    md:border-[#4f95d1]
+                                    md:border-[var(--border)]
                                     md:pr-2
                                     text-sm
                                     gap-2
@@ -110,7 +112,7 @@
                                     pb-2
                                 ">
                                     <?php foreach ($subChapters as $url => $title): ?>
-                                        <a href="<?= $url ?>" class="hover:text-[#4f95d1] hover:underline">
+                                        <a href="<?= $url ?>" class="hover:text-[--primary] hover:underline text--[--foreground] transition">
                                             <?= $title ?>
                                         </a>
                                     <?php endforeach; ?>
@@ -125,7 +127,7 @@
 
         <div class="px-4 md:px-6 pt-8 md:col-span-9">
             <?php if ($this->currentChapter) { ?>
-                <div class="prose">
+                <div class="prose dark:prose-invert">
                     <h1>
                         <?= $this->currentChapter->title ?>
                     </h1>
@@ -133,7 +135,7 @@
                 </div>
             <?php } ?>
 
-            <div class="bg-[#4f95d1] text-white font-bold rounded-md p-4 flex justify-between gap-2 my-6">
+            <div class="bg-[--card] text-[--card-foreground] font-bold rounded-md p-4 flex justify-between gap-2 my-6">
                 <div class="flex gap-1">
                     <a href="https://github.com/tempestphp/tempest-framework" class="underline hover:no-underline">GitHub</a>
                     •
