@@ -38,6 +38,14 @@ body:has(.docs) {
 	color: var(--foreground);
 }
 
+.prose {
+	max-width: 80ch;
+}
+
+.prose h2 {
+	scroll-margin-top: 40px;
+}
+
 .prose a {
 	color: var(--link-color);
 }

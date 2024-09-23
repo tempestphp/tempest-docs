@@ -24,7 +24,7 @@
     }
   </script>
   <!-- Main container -->
-  <main class="docs max-w-full md:max-w-[1000px] mx-auto md:grid md:grid-cols-12">
+  <main class="docs max-w-full md:max-w-[1500px] mx-auto md:grid md:grid-cols-12">
     <div class="md:col-span-3">
       <div class="
         md:sticky md:h-screen overflow-auto
@@ -90,29 +90,6 @@
                 >
                   <?= $chapter->title ?>
                 </a>
-
-                <?php if ($this->isCurrent($chapter) && ($subChapters = $this->getSubChapters()) !== []): ?>
-                <div class="
-                  hidden
-                  md:grid
-                  md:border-r
-                  md:border-[--border]
-                  md:pr-2
-                  text-sm
-                  gap-2
-                  mr-2
-                  mt-2
-                  mb-4
-                  pt-2
-                  pb-2
-                ">
-                  <?php foreach ($subChapters as $url => $title): ?>
-                    <a href="<?= $url ?>" class="hover:text-[--primary] hover:underline text--[--foreground] transition">
-                      <?= $title ?>
-                    </a>
-                  <?php endforeach; ?>
-                </div>
-                <?php endif ?>
               <?php } ?>
             </div>
           <?php } ?>
@@ -121,7 +98,7 @@
     </div>
 
     <!-- Docs content -->
-    <div class="px-4 md:px-6 pt-8 md:col-span-9">
+    <div class="px-4 md:px-6 pt-8 md:col-span-6">
       <?php if ($this->currentChapter) { ?>
         <div class="prose dark:prose-invert">
           <h1>
@@ -149,5 +126,30 @@
         </a>
       </div>
     </div>
+
+    <?php if (($subChapters = $this->getSubChapters()) !== []): ?>
+    <aside class="col-span-2">
+      <div class="
+          md:sticky md:h-screen overflow-auto
+          md:top-0 md:pt-9 md:pl-12
+          pl-4
+        ">
+        <div class="
+            hidden
+            md:grid
+            md:pl-2
+            text-sm
+            mr-2 mt-2 mb-4
+        ">
+            <h2 class="font-bold text-[--primary] mb-3">On this page</h2>
+            <?php foreach ($subChapters as $url => $title): ?>
+            <a href="<?= $url ?>" class="hover:text-[--primary] hover:underline text--[--foreground] transition mb-1.5">
+                <?= $title ?>
+            </a>
+            <?php endforeach; ?>
+        </div>
+      </div>
+    </aside>
+    <?php endif ?>
   </main>
 </x-base>
