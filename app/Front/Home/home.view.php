@@ -8,9 +8,10 @@ use function Tempest\uri;
 <x-base>
     <div class="@HeroBlock">
         <header class="flex gap-4 items-center text-white justify-between max-w-screen-xl mx-auto py-8  w-full px-4">
-            <img src="/img/logo.svg" alt="Tempest" class="w-[80px]" />
+            <img src="/img/logo.svg" alt="Tempest" width="120" />
 
             <nav class="flex gap-8 items-center text-white text-[15px] font-light">
+                <a href="/console">Console</a>
                 <a href="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Documentation</a>
                 <a href="https://github.com/tempestphp/tempest-framework" target="_blank" rel="noopener noreferrer"><img src="/img/github.svg" class="size-[1.5rem]" alt="TempestPHP on Github" /></a>
             </nav>
@@ -23,6 +24,8 @@ use function Tempest\uri;
                 <p class="text-center font-light">Focus on your code and the framework takes care of the rest.</p>
 
                 <div class="flex sm:flex-row flex-col gap-2">
+
+
                     <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Read the docs</x-button>
                     <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
                 </div>
