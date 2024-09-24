@@ -5,72 +5,92 @@
 @tailwind components;
 @tailwind utilities;
 
+.\@HeroBlock {
+  @apply bg-no-repeat bg-bottom;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 87, 190, 85%) 0%,
+      rgba(0, 61, 132, 85%) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(0, 87, 190, 100%) 0%,
+      rgba(0, 87, 190, 0%),
+      rgba(0, 87, 190, 100%) 100%
+    ),
+    url("/img/bg-dark-theme@2x.jpg");
+  background-color: rgba(0, 87, 190, 1);
+  background-size: 100%, 1232px 100%, 1232px auto;
+  position: relative;
+}
+
 div a.menu-link {
-    line-height: 1.4em;
+  line-height: 1.4em;
 }
 
 video {
-    width: 100%;
-    outline: none;
+  width: 100%;
+  outline: none;
 }
 
 video::-webkit-media-controls-panel {
-    background-image: none !important;
-    filter: brightness(0.4);
+  background-image: none !important;
+  filter: brightness(0.4);
 }
 
-h1, h2, h3, h4, h5, h6 {
-    & .heading-permalink {
-        display: none;
-    }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  & .heading-permalink {
+    display: none;
+  }
 
-    &:hover .heading-permalink {
-        display: inline;
-    }
+  &:hover .heading-permalink {
+    display: inline;
+  }
 }
 
 @media (min-width: 800px) {
-    .slope {
-        clip-path: polygon(
-                0 0,
-                100% 0,
-                100% 100%,
-                0 calc(100% - 10vw)
-        );
-        position: relative;
-    }
+  .\@HeroBlock {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 92%);
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80px); */
+    padding-bottom: 80px;
+  }
 
-    .slope-2 {
-        clip-path: polygon(
-                0 5%,
-                100% 0,
-                100% 100%,
-                0 95%
-        );
-        position: relative;
-    }
+  .slope {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 24px));
+    position: relative;
+  }
 
-    .slope-3 {
-        clip-path: polygon(
-                0 20%,
-                100% 0,
-                100% 100%,
-                0 100%
-        );
-        position: relative;
-    }
+  .slope-2 {
+    clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 calc(100% - 24px));
+    position: relative;
+  }
+
+  .slope-3 {
+    clip-path: polygon(0 0, 100% 24px, 100% 100%, 0 100%);
+    position: relative;
+  }
+
+  .slope-4 {
+    clip-path: polygon(0 0, 100% 24px, 100% calc(100% - 24px), 0 100%);
+    position: relative;
+  }
 }
 
 .header-gradient {
-    background: linear-gradient(135deg, #0171bc 0%, #1b1429 100%);
+  background: linear-gradient(135deg, #0171bc 0%, #1b1429 100%);
 }
 
 .tempest {
-    color: #1b1429;
-    font-weight: bold;
-    background: #29abe2;
-    padding: .3em .3em .2em;
-    border-radius: 5px;
-    font-family: Argon, monospace;
-    margin: 0 .1em;
+  color: #1b1429;
+  font-weight: bold;
+  background: #29abe2;
+  padding: 0.3em 0.3em 0.2em;
+  border-radius: 5px;
+  font-family: Argon, monospace;
+  margin: 0 0.1em;
 }
