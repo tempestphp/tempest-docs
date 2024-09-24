@@ -10,6 +10,15 @@ module.exports = {
           500: "#0057BE",
           600: "#003D84",
         },
+        //
+        // Blues from the Tempest logo
+        //
+        // "tempest-blue": {
+        //   400: "#00E7FF",
+        //   500: "#29ABE2",
+        //   600: "#0071BC",
+        //   950: "#1B1429"
+        // }
       },
       fontFamily: {
         display: ["Archivo", ...defaultTheme.fontFamily.sans],
