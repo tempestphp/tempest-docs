@@ -3,6 +3,17 @@
 use App\Front\Docs\DocsController;
 use function Tempest\uri;
 
+/** @var object{
+ *     commit: object{
+ *          url: string,
+ *          message: string,
+ *      },
+ *      html_url: string,
+ *      author: object{
+ *          login: string
+ *      }
+ *   } $commit
+ */
 ?>
 
 <x-base>
@@ -23,10 +34,12 @@ use function Tempest\uri;
                 <p class="text-center font-light">Focus on your code and the framework takes care of the rest.</p>
 
                 <div class="flex sm:flex-row flex-col gap-2">
-
-
                     <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Read the docs</x-button>
                     <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
+                </div>
+
+                <div :if="$commit">
+                    🌊 <span class="font-bold">Latest commit: </span><a target="_blank" rel="noopener noreferrer" href="<?= $commit->html_url ?>" class="underline hover:no-underline"><?= $commit->commit->message ?></a> by <?= $commit->author->login ?>
                 </div>
             </div>
 
