@@ -83,11 +83,15 @@ h6 {
   }
 }
 
+.tempest-logo {
+  border: 2px solid red;
+}
+
 .\@HeroBlock {
   @apply bg-no-repeat bg-bottom;
   background-image: linear-gradient(
       to bottom,
-      #0071BCCC 0%,
+      #0071BCCC 20%,
       #1B1429CC 100%
     ),
     linear-gradient(
