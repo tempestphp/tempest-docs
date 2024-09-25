@@ -50,7 +50,7 @@ use function Tempest\uri;
                         Zero-config controllers and routing
                     </x-feature-header>
                     <p class="font-light">
-                        Tempest's dependency container is the heart of the framework. Anything you do framework related will be run through the container, meaning you'll have autowiring everywhere – from controllers to console commands, from event handlers to the command bus
+                        Tempest features a unique concept called <a class="underline hover:no-underline" href="/docs/framework/01-getting-started#content-project-structure">discovery</a>. Tempest will scan your code and find out what to do with it: from controller routes to event handlers, from console commands to dependency initializers; Tempest will detect everything without you having to write a single line of configuration or bootstrap code.
                     </p>
                 </div>
 
@@ -71,7 +71,7 @@ use function Tempest\uri;
                         An amazing new view engine
                     </x-feature-header>
                     <p class="font-light">
-                        With clean, component-based syntax, you can easily loop through data, conditionally display content, and create responsive layouts. It keeps your code lightweight and maintainable while delivering seamless, dynamic user experiences.
+                        Tempest dares to reimagine templating in PHP with a clean and modern front-end engine, inspired by clean and modern front-end frameworks. Do you prefer something tried and tested? Tempest has support for Blade as well!
                     </p>
                 </div>
 
@@ -88,7 +88,7 @@ use function Tempest\uri;
                         An ORM that embraces PHP
                     </x-feature-header>
                     <p class="font-light">
-                        Define your models with simple, clean code. Complete with built-in validation, optional relationships, and seamless array handling. With our ORM, you can focus on building features without getting bogged down by complex database management.
+                        Define models with simple, clean code. Complete with built-in validation, relations, migrations, and more. We don't try to reinvent database querying from scratch, so whenever you need a complex query, you can write SQL directly.
                     </p>
                 </div>
                 <x-codeblock-home>
@@ -115,7 +115,7 @@ use function Tempest\uri;
                         Frictionless console commands
                     </x-feature-header>
                     <p class="font-light">
-                        Just define your command, handle input dynamically, and deliver instant feedback. Whether it’s asking for confirmation or gathering user preferences, our streamlined approach empowers you to build smarter, more engaging console interactions with ease.
+                        Just define your command, handle input dynamically, and deliver instant feedback. Tempest doesn't bother you with complex command definitions, just write your PHP code, and Tempest will figure out the rest. Interactive console components <a class="underline hover:no-underline" href="/docs/console/04-components">included</a>!
                     </p>
                 </div>
                 <x-codeblock-home>
@@ -133,7 +133,7 @@ use function Tempest\uri;
                         Static pages out of the box
                     </x-feature-header>
                     <p class="font-light">
-                        Get static pages up and running right out of the box with zero hassle. Simply define your routes, and yhr framework takes care of the rest—fetching the content and rendering it dynamically.
+                        Get static pages up and running right out of the box with zero hassle. Simply define your routes, and Tempest takes care of the rest — fetching the content and rendering it dynamically.
                     </p>
                 </div>
                 <x-codeblock-home>
@@ -147,7 +147,6 @@ use function Tempest\uri;
             <blockquote class="max-w-2xl w-full mx-auto text-[1.25rem]">
                 <p> Tempest is a work of art 👌</p>
                 <cite class="mt-3"><a class="text-[0.9375rem] mt-4 underline hover:no-underline not-italic" href="https://x.com/LukeDowning19/status/1836083961174397420">– Twitter</a></cite>
-
             </blockquote>
         </div>
 
@@ -159,9 +158,11 @@ use function Tempest\uri;
                 <div class="col-span-5 md:col-span-2 flex flex-col justify-center gap-4">
                     <x-feature-header>
                         And much more!
-
                     </x-feature-header>
 
+                    <p class="font-light">
+                        Configuration objects instead of arrays for easy autocompletion and injection, caching, a powerful dependency container at its heart, autowiring everywhere, there's so much to show. <a class="underline hover:no-underline" href="/docs">Take a look</a>!
+                    </p>
                 </div>
                 <x-codeblock-home>
                     <?= $this->code6 ?>

@@ -13,6 +13,12 @@ use function Tempest\uri;
 
 final readonly class DocsController
 {
+    #[Get('/docs')]
+    public function docsIndex(): Redirect
+    {
+        return $this->frameworkIndex();
+    }
+
     #[Get('/framework/01-getting-started')]
     public function frameworkIndex(): Redirect
     {
