@@ -68,7 +68,7 @@ use function Tempest\uri;
 
                 <div class="col-span-5 md:col-span-2 flex flex-col justify-center gap-4">
                     <x-feature-header>
-                        An amazing new view engine
+                        An refreshing new templating engine
                     </x-feature-header>
                     <p class="font-light">
                         Tempest dares to reimagine templating in PHP with a clean and modern front-end engine, inspired by clean and modern front-end frameworks. Do you prefer something tried and tested? Tempest has support for Blade as well!
