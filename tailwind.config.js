@@ -7,8 +7,10 @@ module.exports = {
     extend: {
       colors: {
         "tempest-blue": {
-          500: "#0057BE",
-          600: "#003D84",
+          100: "#00E7FF",
+          300: "#29ABE2",
+          500: "#0071BC",
+          600: "#1B1429",
         },
         //
         // Blues from the Tempest logo
