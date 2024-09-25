@@ -161,7 +161,7 @@ use function Tempest\uri;
                     </x-feature-header>
 
                     <p class="font-light">
-                        Configuration objects instead of arrays for easy autocompletion and injection, caching, a powerful dependency container at its heart, autowiring everywhere, there's so much to show. <a class="underline hover:no-underline" href="/docs">Take a look</a>!
+                        Configuration objects instead of arrays for easy autocompletion and injection, caching, a powerful dependency container at its heart, autowiring everywhere, there's so much to show. <a class="underline hover:no-underline" href="/docs/framework/01-getting-started">Take a look</a>!
                     </p>
                 </div>
                 <x-codeblock-home>
