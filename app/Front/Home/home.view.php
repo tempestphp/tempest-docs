@@ -37,13 +37,13 @@ use function Tempest\uri;
                         <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z" />
                         <circle cx="12" cy="13" r="3" />
                     </svg>
-                    <span>Photo by <a href="https://unsplash.com/@maxlarochelle" class="underline" target="_blank" rel="noreferrer noopener">Max LaRochelle</a>
+                    <span>Photo by <a href="https://unsplash.com/@lc_photography" class="underline" target="_blank" rel="noreferrer noopener">Leon Contreras</a>
                     </span>
             </div>
         </div>
     </div>
     <div class="w-full flex flex-col ">
-        <div class="w-full -mt-12 z-10 pb-24">
+        <div class="w-full -mt-20 z-10 pb-24">
             <div class="w-full max-w-screen-xl mx-auto px-4 grid grid-cols-5 gap-6 md:gap-16">
                 <div class="col-span-5 md:col-span-2 flex flex-col justify-center gap-4 pt-24">
                     <x-feature-header>
