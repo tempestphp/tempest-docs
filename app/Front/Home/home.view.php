@@ -38,7 +38,7 @@ use function Tempest\uri;
                     <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
                 </div>
 
-                <div :if="$commit">
+                <div :if="$commit" class="text-center">
                     🌊 <span class="font-bold">Latest commit: </span><a target="_blank" rel="noopener noreferrer" href="<?= $commit->html_url ?>" class="underline hover:no-underline"><?= $commit->commit->message ?></a> by <?= $commit->author->login ?>
                 </div>
             </div>
