@@ -90,30 +90,16 @@ The only thing left to do is to generate the static pages:
 ```console
 ./tempest static:generate
 
-- <em>/framework/01-getting-started</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/01-getting-started.html</u>
-- <em>/framework/02-the-container</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/02-the-container.html</u>
-- <em>/framework/03-controllers</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/03-controllers.html</u>
-- <em>/framework/04-views</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/04-views.html</u>
-- <em>/framework/05-models</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/05-models.html</u>
+- <em>/framework/01-getting-started</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/01-getting-started/index.html</u>
+- <em>/framework/02-the-container</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/02-the-container/index.html</u>
+- <em>/framework/03-controllers</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/03-controllers/index.html</u>
+- <em>/framework/04-views</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/04-views/index.html</u>
+- <em>/framework/05-models</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/05-models/index.html</u>
 - <comment>…</comment>
 ```
 
-## Server setup
-
-Tempest will generate static HTML pages, but it won't take care of serving them. The goal of these pages is to not run PHP at all, and have your web server serve them directly.
-
-### Nginx
-
-```
-{:hl-keyword:location:} / {
-    {:hl-property:try_files:} {:hl-strong:$uri.html:} $uri $uri/ /index.php?$query_string;
-}
-```
-
-### Other web servers
-
-If you use other webservers and want their config listed on this page, feel free to send a [pull request](https://github.com/tempestphp/tempest-docs/tree/main/app/Content/framework/10-static-pages.md) to the docs site.
-
 ## Deployments
+
+All static pages are compiled to `./public/path-to-page/index.html`, most webservers will automatically serve these static pages for you without any additional setup.
 
 Finally, keep in mind that static pages should be regenerated on every deploy. You should add the `{txt}./tempest static:generate` command in your deployment pipeline.
