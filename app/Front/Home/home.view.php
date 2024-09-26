@@ -31,7 +31,6 @@ use function Tempest\uri;
         <div class="flex flex-col gap-4 min-h-[512px] px-4 items-center justify-center py-8 max-w-screen-xl mx-auto w-full text-white">
             <div class=" flex-1 flex flex-col items-center justify-center gap-8">
                 <h1 class="text-[1.5rem] md:text-[2.5rem] max-w-[640px] leading-[1.1] text-center font-display font-extrabold">The PHP framework that gets out of your way.</h1>
-                <p class="text-center font-light">Focus on your code and Tempest takes care of the rest.</p>
 
                 <div class="flex sm:flex-row flex-col gap-2">
                     <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Read the docs</x-button>
