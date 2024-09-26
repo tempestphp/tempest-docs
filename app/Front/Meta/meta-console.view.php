@@ -1,13 +1,5 @@
 <x-meta-image>
-    <div class="grid gap-8 content-center place-items-center relative p-32 text-center">
-        <h1 class="
-            text-4xl
-            font-extrabold
-            font-argon leading-[1.5em]">
-            A revolutionary way of building console applications in PHP.
-        </h1>
-        <h2 class="text-6xl font-body px-4 md:px-0">
-            <span class="tempest">tempest/console</span>
-        </h2>
+    <div class="flex-1 flex flex-col items-center justify-center gap-8">
+        <h1 class="max-w-[66%] leading-[1.2] text-center font-display font-extrabold">A revolutionary way of building console applications in PHP.</h1>
     </div>
 </x-meta-image>
