@@ -6,7 +6,7 @@ Here's a short summary of what booting Tempest looks like.
 
 - Tempest boots using the `\Tempest\Framework\Application\Kernel` class, the first step is to build the container
 - Then there are **bootstrap** classes, each with an individual task. You find them in `\Tempest\Framework\Application\Bootstraps`
-- Two bootstraps (`DiscoveryLocationBootstrap` and `DiscoveryBootstrap`) are tasked with setting up and executing **discovery**, which is the mechanism that will scan the whole codebase, and automatically register classes, you can read about it in the [next chapter](/internals/02-discovery).
+- Two bootstraps (`DiscoveryLocationBootstrap` and `DiscoveryBootstrap`) are tasked with setting up and executing **discovery**, which is the mechanism that will scan the whole codebase, and automatically register classes, you can read about it in the [next chapter](/docs/internals/02-discovery).
 - The other bootstrap (`ConfigBootstrap`) is used for loading **config**. For now, loading config happens independent of discovery, but we plan on refactoring that.
 - When bootstrapping is completed, the kernel return a fully configured container, which can be used to boot an application.
 

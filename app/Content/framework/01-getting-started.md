@@ -4,7 +4,7 @@ title: Getting Started
 
 **Tempest is a PHP framework that gets out of your way**. Its design philosophy is that developers should write as little framework-related code as possible, so that they can **focus on application code** instead.
 
-Tempest embraces **modern PHP syntax**, covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#content-a-basic-tempest-project) to improve developer experience.
+Tempest embraces **modern PHP syntax**, covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#content-project-structure) to improve developer experience.
 
 Tempest can be installed **as a standalone PHP project**, as well as **a package within existing projects**. The framework modules — like, for example, `tempest/console` or `tempest/event-bus` — can also be installed **individually**, including in projects built on other frameworks.
 
@@ -181,7 +181,7 @@ final readonly class RssSyncCommand
 }
 ```
 
-If you want to, you can read the [internal documentation about discovery](/internals/02-discovery) to learn more.
+If you want to, you can read the [internal documentation about discovery](/docs/internals/02-discovery) to learn more.
 
 One important note to make is that you can disable all discovery cache for local development by added the follow environment variable:
 

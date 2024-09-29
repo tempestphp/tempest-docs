@@ -32,7 +32,7 @@ The `{php}Console` interface has a bunch of methods you can use:
 - `{php}error({:hl-type:string:} $line): {:hl-type:Console:}` — write an error styled line to the terminal
 - `{php}success({:hl-type:string:} $line): {:hl-type:Console:}` — write a success styled line to the terminal
 - `{php}when({:hl-type:mixed:} $expression, {:hl-type:callable:} $callback): {:hl-type:Console:}` — only perform an action when a condition is met. The console is passed to the callable.
-- `{php}component({:hl-type:ConsoleComponent:} $component, {:hl-type:array:} $validation = []): {:hl-type:mixed:}` — render a [console component](/console/04-components).
+- `{php}component({:hl-type:ConsoleComponent:} $component, {:hl-type:array:} $validation = []): {:hl-type:mixed:}` — render a [console component](/docs/console/04-components).
 
 ## Output styling
 

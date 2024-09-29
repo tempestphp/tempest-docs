@@ -127,7 +127,7 @@ final readonly class BookController
 }
 ```
 
-You can read all about views in the [next chapter](/03-views).
+You can read all about views in the [next chapter](/docs/framework/04-views).
 
 If you're returning responses Tempest has a bunch of responses built-in:
 
