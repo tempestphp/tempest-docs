@@ -86,6 +86,32 @@ final readonly class MarkdownInitializer implements Initializer
 }
 ```
 
+## Autowired dependencies
+
+Oftentimes, you want to link a default implementation to an interface. In these cases, it might feel like overhead to create an initializer class with one line of code:
+
+```php
+final readonly class BlogRepositoryInitializer implements Initializer
+{
+    public function initialize(Container $container): BlogRepository
+    {
+        return new FileBlogRepository();
+    }
+}
+```
+
+For simple one-to-one mappings, you can skip the initializer, and use the `#[Autowire]` attribute instead. Add the attribute to the default implementation, and Tempest will link that class to whatever interface it implements: 
+
+```php
+#[Autowire]
+final readonly class FileBlogRepository implements BlogRepository
+{
+    // …
+}
+```
+
+(Note: autowired classes can also be defined as singletons, keep on reading.)
+
 ## Singletons
 
 If you need to register a class as a singleton in the container, you can use the `{php}#[Singleton]` attribute. Any class can have this attribute:

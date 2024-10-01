@@ -94,6 +94,22 @@ composer require tempest/debug
 ld($variable);
 ```
 
+## tempest/view
+
+Tempest's view renderer can be used to render views.
+
+```
+composer require tempest/view
+```
+
+```php
+$container = Tempest::boot(__DIR__);
+
+$view  view(__DIR__ . '/src/b.view.php');
+
+echo $container->get(ViewRenderer::class)->render($view);
+```
+
 ## tempest/event-bus
 
 Tempest's event bus can be used as a standalone package, in order for event handlers to be discovered, you'll have to boot Tempest's kernel and resolve the event bus from the container:
