@@ -11,6 +11,7 @@ module.exports = {
           300: "#29ABE2",
           500: "#0071BC",
           600: "#1B1429",
+          950: "#1B1429",
         },
         //
         // Blues from the Tempest logo

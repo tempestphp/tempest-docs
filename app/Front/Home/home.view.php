@@ -18,15 +18,7 @@ use function Tempest\uri;
 
 <x-base>
     <div class="@HeroBlock">
-        <header class="flex flex-wrap gap-4 items-center text-white justify-between max-w-screen-xl mx-auto py-8  w-full px-4">
-            <x-tempest-logo />
-
-            <nav class="flex flex-wrap justify-center w-full sm:w-auto gap-4 sm:gap-8 items-center text-white text-[15px] font-light">
-                <a href="/console">Console</a>
-                <a href="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Documentation</a>
-                <a href="https://github.com/tempestphp/tempest-framework" target="_blank" rel="noopener noreferrer"><img src="/img/github.svg" class="hidden sm:inline-block sm:size-[1.5rem]" alt="TempestPHP on Github" /></a>
-            </nav>
-        </header>
+        <x-header />
 
         <div class="flex flex-col gap-4 min-h-[512px] px-4 items-center justify-center py-8 max-w-screen-xl mx-auto w-full text-white">
             <div class=" flex-1 flex flex-col items-center justify-center gap-8">
@@ -182,16 +174,5 @@ use function Tempest\uri;
             </div>
         </div>
 
-        <div class="slope-3 md:pt-32 py-16 px-4 md:px-16 flex justify-center mt-8 bg-tempest-blue-600 text-white font-bold ">
-            <div class="flex flex-col gap-8 place-items-center">
-                <h2 class="text-2xl">
-                    Get started with <span class="tempest">Tempest</span> today, now in alpha!
-                </h2>
-
-                <nav class="flex flex-wrap gap-2 mt-6 md:mt-0">
-                    <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Read the docs</x-button>
-                    <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
-                </nav>
-            </div>
-        </div>
+        <x-footer />
 </x-base>
