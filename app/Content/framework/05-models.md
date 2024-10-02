@@ -58,7 +58,7 @@ In order to connect to a database, you'll have to create a database config file:
 // app/Config/database.php
 
 return new DatabaseConfig(
-    driver: new SQLiteDriver(
+    connection: new SQLiteConnection(
         path: __DIR__ . '/../database.sqlite',
     ),
 );
@@ -70,7 +70,7 @@ Tempest has three available database drivers: `{php}SQLiteDriver`, `{php}MySqlDr
 use function Tempest\env;
 
 return new DatabaseConfig(
-    driver: new MySqlDriver(
+    connection: new MySqlConnection(
         host: env('DB_HOST'),
         port: env('DB_PORT'),
         username: env('DB_USERNAME'),
