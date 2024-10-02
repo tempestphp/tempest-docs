@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Front\Docs;
 
-use App\Chapters\ChapterRepository;
 use Tempest\Http\Get;
 use Tempest\Http\Responses\Redirect;
 use Tempest\Http\StaticPage;
@@ -27,7 +26,7 @@ final readonly class DocsController
     
     #[StaticPage(DocsDataProvider::class)]
     #[Get('/docs/{category}/{slug}')]
-    public function __invoke(string $category, string $slug, ChapterRepository $chapterRepository): View
+    public function __invoke(string $category, string $slug, DocsRepository $chapterRepository): View
     {
         return new DocsView(
             chapterRepository: $chapterRepository,

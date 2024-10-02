@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Front\Docs;
 
-use App\Chapters\Chapter;
-use App\Chapters\ChapterRepository;
 use Tempest\View\IsView;
 use Tempest\View\View;
 
@@ -14,13 +12,13 @@ final class DocsView implements View
     use IsView;
 
     public function __construct(
-        public ChapterRepository $chapterRepository,
-        public Chapter $currentChapter,
+        public DocsRepository $chapterRepository,
+        public DocsChapter $currentChapter,
     ) {
         $this->path = __DIR__ . '/docs.view.php';
     }
 
-    public function isCurrent(Chapter $other): bool
+    public function isCurrent(DocsChapter $other): bool
     {
         return
             $this->currentChapter->category === $other->category
@@ -45,7 +43,7 @@ final class DocsView implements View
         return $this->chapterRepository->all($category);
     }
 
-    public function nextChapter(): ?Chapter
+    public function nextChapter(): ?DocsChapter
     {
         $current = null;
 

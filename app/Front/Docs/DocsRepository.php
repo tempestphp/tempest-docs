@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace App\Chapters;
+namespace App\Front\Docs;
 
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
-readonly class ChapterRepository
+readonly class DocsRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
     ) {
     }
 
-    public function find(string $category, string $slug): Chapter
+    public function find(string $category, string $slug): DocsChapter
     {
         $content = $this->getContent($category, $slug);
 
@@ -25,7 +25,7 @@ readonly class ChapterRepository
             'title' => $slug,
         ];
 
-        return new Chapter(...[
+        return new DocsChapter(...[
             ...[
                 'category' => $category,
                 'slug' => $slug,
@@ -36,7 +36,7 @@ readonly class ChapterRepository
     }
 
     /**
-     * @return \App\Chapters\Chapter[]
+     * @return \App\Front\Docs\DocsChapter[]
      */
     public function all(string $category = '*'): array
     {
@@ -57,7 +57,7 @@ readonly class ChapterRepository
 
                 $frontMatter['title'] ??= $slug;
 
-                return new Chapter(...[
+                return new DocsChapter(...[
                     ...[
                         'category' => $category,
                         'slug' => $slug,
@@ -66,13 +66,13 @@ readonly class ChapterRepository
                     ...$frontMatter,
                 ]);
             },
-            glob(__DIR__ . "/../Content/{$category}/*.md"),
+            glob(__DIR__ . "/Content/{$category}/*.md"),
         ));
     }
 
     private function getContent(string $category, string $slug): string
     {
-        $path = glob(__DIR__ . "/../Content/{$category}/{$slug}*.md")[0] ?? __DIR__ . "/../Content/{$slug}.md";
+        $path = glob(__DIR__ . "/Content/{$category}/{$slug}*.md")[0] ?? __DIR__ . "/Content/{$slug}.md";
 
         return file_get_contents($path);
     }

@@ -1779,16 +1779,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.19.4",
+            "version": "1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599"
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/0700efda8d7526335132360167315fdab3aeb599",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/82fe4c73ef3363caed49ff8dd1539ba06044910d",
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d",
                 "shasum": ""
             },
             "require": {
@@ -1852,9 +1852,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.19.4"
+                "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
-            "time": "2024-03-29T13:00:05+00:00"
+            "time": "2024-10-02T11:20:13+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -4040,12 +4040,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "157212204a081e188350e56995688b0d4e677c5e"
+                "reference": "e361f26c615f0a37f7142c27f5e354857754377d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/157212204a081e188350e56995688b0d4e677c5e",
-                "reference": "157212204a081e188350e56995688b0d4e677c5e",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e361f26c615f0a37f7142c27f5e354857754377d",
+                "reference": "e361f26c615f0a37f7142c27f5e354857754377d",
                 "shasum": ""
             },
             "require": {
@@ -4081,6 +4081,7 @@
                 "vlucas/phpdotenv": "^5.6"
             },
             "replace": {
+                "tempest/auth": "self.version",
                 "tempest/cache": "self.version",
                 "tempest/clock": "self.version",
                 "tempest/command-bus": "self.version",
@@ -4134,6 +4135,7 @@
                 ],
                 "psr-4": {
                     "Tempest\\Log\\": "src/Tempest/Log/src",
+                    "Tempest\\Auth\\": "src/Tempest/Auth/src/",
                     "Tempest\\Core\\": "src/Tempest/Core/src",
                     "Tempest\\Http\\": "src/Tempest/Http/src",
                     "Tempest\\View\\": "src/Tempest/View/src",
@@ -4168,7 +4170,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-01T08:48:42+00:00"
+            "time": "2024-10-02T12:07:57+00:00"
         },
         {
             "name": "tempest/highlight",

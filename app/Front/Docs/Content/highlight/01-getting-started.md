@@ -29,7 +29,7 @@ All supported languages can be found in the [GitHub repository](https://github.c
 There are a [bunch of themes](https://github.com/tempestphp/highlight/tree/main/src/Themes/Css) included in this package. You can load them either by importing the correct CSS file into your project's CSS file, or you can manually copy a stylesheet.
 
 ```css
-@import "../vendor/tempest/highlight/src/Themes/Css/highlight-light-lite.css";
+@import "../../../../../vendor/tempest/highlight/src/Themes/Css/highlight-light-lite.css";
 ```
 
 You can build your own CSS theme with just a couple of classes, copy over [the base stylesheet](https://github.com/tempestphp/highlight/tree/main/src/Themes/Css/highlight-light-lite.css), and make adjustments however you like. Note that `pre` tag styling isn't included in this package.

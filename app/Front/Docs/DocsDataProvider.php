@@ -2,14 +2,13 @@
 
 namespace App\Front\Docs;
 
-use App\Chapters\ChapterRepository;
 use Generator;
 use Tempest\Http\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider
 {
     public function __construct(
-        private ChapterRepository $chapterRepository
+        private DocsRepository $chapterRepository
     ) {}
 
     public function provide(): Generator

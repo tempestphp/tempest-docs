@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\Chapters;
+namespace App\Front\Docs;
 
-use App\Front\Docs\DocsController;
 use function Tempest\uri;
 
-final readonly class Chapter
+final readonly class DocsChapter
 {
     public function __construct(
         public string $category,
