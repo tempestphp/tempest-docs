@@ -38,7 +38,7 @@ final readonly class DocsRedirectMiddleware implements HttpMiddleware
         }
 
         // Redirect to slug without number
-        if ($path->afterLast('/')->matches('/\d+-/')) {
+        if ($path->trim('/')->afterLast('/')->matches('/\d+-/')) {
             return new Redirect($path->replaceRegex('/\d+-/', ''));
         }
 
