@@ -40,11 +40,15 @@ final class MigrateUpCommand
 }
 ```
 
+Note that handler method names can be anything: invokable methods, `handleMigrationMigrated()`, `onMigrationMigrated()`, `whateverYouWant()`, …
+
 Triggering an event can be done with the `event()` function:
 
 ```php
 event(new MigrationMigrated($name));
 ```
+
+Whenever an event is triggered, all its handlers will be resolved and executed.
 
 ## Eventbus Middleware
 

@@ -19,13 +19,13 @@ final readonly class CreateUser
 }
 ```
 
-Just like controller actions and console commands, command handlers are discovered automatically: every method tagged with `#[CommandHandler]` will be registered as one. The command this method accepts is determined by the parameter type.
+Just like controller actions and console commands, command handlers are discovered automatically: every method tagged with `#[CommandHandler]` will be registered as one. Tempest knows which command a method handles by looking at the type of the first parameter:
 
 ```php
 final class UserHandlers
 {
     #[CommandHandler]
-    public function onCreateUser(CreateUser $createUser): void
+    public function handleCreateUser(CreateUser $createUser): void
     {
         User::create(
             name: $createUser->name,
@@ -38,11 +38,15 @@ final class UserHandlers
 }
 ```
 
-Triggering an event can be done with the `command()` function:
+Note that handler method names can be anything: invokable methods, `handleCreateUser()`, `handleCreateUser()`, `whateverYouWant()`, …
+
+Dispatching a command can be done with the `command()` function:
 
 ```php
 command(new CreateUser($name));
 ```
+
+Whenever a command is dispatched, the handler will be resolved and executed.
 
 ## Commandbus Middleware
 
