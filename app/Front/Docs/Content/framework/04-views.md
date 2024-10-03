@@ -202,6 +202,36 @@ And here's how you'd use it:
 </div>
 ```
 
+### A note on attribute naming
+
+There are a handful of caveats you need to know about when it comes to attribute names being mapped to variables:
+
+1. camelCase or PascalCase attribute names are automatically converted to all-lowercase variables, this is due to limitations in PHP's DOM extension: all attribute names are automatically converted to lowercase:
+
+```html
+<x-parent metaType="test" />
+
+<!-- The variable in the parent component is called $metatype -->
+```
+
+2. kebab-cased attributes are converted to camelCase variables:
+
+```html
+<x-parent meta-type="test" />
+
+<!-- The variable in the parent component is called $metaType -->
+```
+
+3. snake_cased attributes are converted to camelCase variables:
+
+```html
+<x-parent meta_type="test" />
+
+<!-- The variable in the parent component is called $metaType -->
+```
+
+Because of these caveats, **it is recommended to always use kebab-cased attribute names**.
+
 ### View component classes
 
 Instead of defining view components directly within a view file, you a provide a class to represent the view components. The benefit of doing so is that you've got access to a lot more functionality from within PHP.
