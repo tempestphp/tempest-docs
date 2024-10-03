@@ -128,9 +128,10 @@ CREATE TABLE Publisher
 
 Please take note of some naming conventions:
 
-- Model tables use the **model's short classname**, use the `::forModel()` method for convenience
-- Fields map 1 to 1 to a **model's property names**. It's up to you to use camelCase or snake_case
-- Relation fields are always suffixed with `_id`. In this case, `author_id` will map to the `Book::$author` property
+- Model tables use the **model's short classname** by default, use the `::forModel()` method for convenience. Also note that when you rename a model class, old migrations might break and need your attention.
+- If you'd like to prevent name change problems, you can use a hardcoded table name: `new CreateTableStatement('books')`
+- Fields map 1 to 1 to a **model's property names**. It's up to you to use camelCase or snake_case.
+- Relation fields are always suffixed with `_id`. In this case, `author_id` will map to the `Book::$author` property.
 
 You can run migrations via the Tempest console:
 
