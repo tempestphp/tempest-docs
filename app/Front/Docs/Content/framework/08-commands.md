@@ -46,7 +46,25 @@ Dispatching a command can be done with the `command()` function:
 command(new CreateUser($name));
 ```
 
-Whenever a command is dispatched, the handler will be resolved and executed.
+Alternatively to using the `command()` function, you can inject the `CommandBus`, and dispatch commands like so:
+
+```php
+use Tempest\CommandBus\CommandBus;
+
+final readonly class UserController()
+{
+    public function __construct(
+        private CommandBus $commandBus,
+    ) {}
+    
+    public function create(): Response
+    {
+        // …
+        
+        $this->commandBus->dispatch(new CreateUser($name));
+    }
+}
+```
 
 ## Commandbus Middleware
 

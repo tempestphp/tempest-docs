@@ -9,7 +9,7 @@ Tempest comes with a built-in event bus, which can be used to dispatch events th
 Events themselves are simple data classes. They don't have to implement anything:
 
 ```php
-final readonly class MigrationMigrated
+final readonly class UserCreated
 {
     public function __construct(
         public string $name,
@@ -21,34 +21,92 @@ Just like controller actions and console commands, event handlers are discovered
 
 ```php
 #[Singleton]
-final class MigrateUpCommand
+final class CreateUserCommand
 {
-    private int $count = 0;
-
-    #[ConsoleCommand('migrate:up')]
-    public function __invoke(): void
+    #[ConsoleCommand('create:user')]
+    public function __invoke(string $name): void
     {
         // …
     }
 
     #[EventHandler]
-    public function onMigrationMigrated(MigrationMigrated $migrationMigrated): void
+    public function onUserCreated(UserCreated $userCreated): void
     {
-        $this->console->writeln("- {$migrationMigrated->name}");
-        $this->count += 1;
+        $this->console->writeln("- {$userCreated->name}");
     }
 }
 ```
 
-Note that handler method names can be anything: invokable methods, `handleMigrationMigrated()`, `onMigrationMigrated()`, `whateverYouWant()`, …
+Note that handler method names can be anything: invokable methods, `handleUserCreated()`, `onUserCreated()`, `whateverYouWant()`, …
 
 Triggering an event can be done with the `event()` function:
 
 ```php
-event(new MigrationMigrated($name));
+event(new UserCreated($name));
 ```
 
-Whenever an event is triggered, all its handlers will be resolved and executed.
+Alternatively to using the `event()` function, you can inject the `EventBus`, and dispatch commands like so:
+
+```php
+use Tempest\EventBus\EventBus;
+
+final readonly class UserController()
+{
+    public function __construct(
+        private EventBus $eventBus,
+    ) {}
+    
+    public function create(): Response
+    {
+        // …
+        
+        $this->eventBus->dispatch(new UserCreated($name));
+    }
+}
+```
+
+## Named events
+
+Sometimes you want to broadcast an event to indicated that something happened, without attaching any data (and thus no object) to it. You can do exactly that as well:
+
+```php
+event('custom_event_happened');
+```
+
+Listening for such an event can be done like so:
+
+```php
+final class ProjectHandlers
+{
+    #[EventHandler('custom_event_happened')]
+    public function onSomethingHappened(): void
+    {
+        // …
+    }
+}
+```
+
+Note that, while hardcoded strings are available, it's highly recommended to use enums as event names:
+
+```php
+enum CustomEvent
+{
+    case HAPPENED;
+}
+```
+
+```php
+event(CustomEvent::HAPPENED);
+
+final class ProjectHandlers
+{
+    #[EventHandler(CustomEvent::HAPPENED)]
+    public function onSomethingHappened(): void
+    {
+        // …
+    }
+}
+```
 
 ## Eventbus Middleware
 
