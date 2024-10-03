@@ -42,6 +42,7 @@ final readonly class DocsRedirectMiddleware implements HttpMiddleware
             return new Redirect($path->replaceRegex('/\d+-/', ''));
         }
 
+        // Redirect to docs index if not found
         if ($response instanceof NotFound) {
             return new Redirect(uri([DocsController::class, 'frameworkIndex']));
         }
