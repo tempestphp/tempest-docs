@@ -2763,12 +2763,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "97e0e91f2165f7432e8f0da38475352e0f35b8a9"
+                "reference": "5e0bc576c566c05b1d483abbcadaa86967027661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/97e0e91f2165f7432e8f0da38475352e0f35b8a9",
-                "reference": "97e0e91f2165f7432e8f0da38475352e0f35b8a9",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/5e0bc576c566c05b1d483abbcadaa86967027661",
+                "reference": "5e0bc576c566c05b1d483abbcadaa86967027661",
                 "shasum": ""
             },
             "require": {
@@ -2853,7 +2853,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-01T08:32:35+00:00"
+            "time": "2024-10-02T06:33:23+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -4040,12 +4040,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "e361f26c615f0a37f7142c27f5e354857754377d"
+                "reference": "672ea02f4901eb2e16ee8951ec12b63ba209fa5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e361f26c615f0a37f7142c27f5e354857754377d",
-                "reference": "e361f26c615f0a37f7142c27f5e354857754377d",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/672ea02f4901eb2e16ee8951ec12b63ba209fa5f",
+                "reference": "672ea02f4901eb2e16ee8951ec12b63ba209fa5f",
                 "shasum": ""
             },
             "require": {
@@ -4170,7 +4170,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-02T12:07:57+00:00"
+            "time": "2024-10-03T09:20:27+00:00"
         },
         {
             "name": "tempest/highlight",

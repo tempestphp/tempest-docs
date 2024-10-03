@@ -28,6 +28,8 @@ You can also remove all statically generated pages with the `{txt}static:clean` 
 ./tempest static:clean
 ```
 
+Note that `{txt}static:clean` will **remove all HTML pages in your public folder**, use this command with caution! 
+
 ## Data providers
 
 Since most pages require some form of dynamic data, static pages can be assigned a data provider, which will generate multiple pages for one controller action.

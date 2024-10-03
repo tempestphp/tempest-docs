@@ -6,7 +6,7 @@ namespace App\Front\Docs;
 
 use function Tempest\uri;
 
-final readonly class DocsChapter
+final class DocsChapter
 {
     public function __construct(
         public string $category,

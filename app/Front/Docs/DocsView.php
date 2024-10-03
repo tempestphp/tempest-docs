@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Front\Docs;
 
+use Tempest\Support\ArrayHelper;
 use Tempest\View\IsView;
 use Tempest\View\View;
 
@@ -38,7 +39,7 @@ final class DocsView implements View
         return $subChapters;
     }
 
-    public function chaptersForCategory(string $category): array
+    public function chaptersForCategory(string $category): ArrayHelper
     {
         return $this->chapterRepository->all($category);
     }
