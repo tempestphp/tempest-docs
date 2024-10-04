@@ -6,19 +6,17 @@ Tempest is still a <span class="hl-attribute">work in progress</span>, this page
 
 ## 1.0-alpha2
 
-This version will bundle fixes and feedback changes from the first alpha version. Most notably, this version will also support **PHP 8.4 as the minimum**, and use property hooks wherever possible. This is the last big breaking change prior to tagging version 1.0.
+- Authentication and authorization
+- `str` and `arr` helpers
+- Cache
+- Internal kernel refactor
+- Ability to skip any file from discovery
 
-Meanwhile, we also want to look into supporting **Tempest Views as a PhpStorm plugin**. It's still unclear whether we will succeed in adding IDE support, but we'll try to have this fixed before the 1.0 release.
+## 1.0-alpha3
 
-On top of that, we'll work on some more finetunings:
-
-- **Internal kernel refactor**
-- **Make all subsplit components work on their own**
-- **Ability to skip any file from discovery**
-- **Responsive image view component**
-- **`tempest deploy` command**
-- **CSRF support**
-- **Support for multiple database connections**
+- Filesystem
+- Improved route regex support
+- Vendor file publishing
 
 ## Next alphas
 
@@ -26,7 +24,7 @@ Depending on the feedback from the first two alpha versions, we might opt into a
 
 ## 1.0 and beyond
 
-There's no hard deadline on when Tempest 1.0 should be tagged. It's clear that we'll have to wait until PHP 8.4 has been released, though it could be a couple of months longer still. 
+There's no hard deadline on when Tempest 1.0 should be tagged. It's clear that we'll have to wait until PHP 8.4 has been released, though it could be a couple of months longer still.
 
 The following features will be **included in Tempest 1.0**:
 
@@ -34,9 +32,9 @@ The following features will be **included in Tempest 1.0**:
 - **Console application support**
 - **ORM and database support**
 - **Event bus**
-- **Command bus** 
+- **Command bus**
 - **Logging**
-- **Mapping and validation** 
+- **Mapping and validation**
 - **Tempest Views**
 
 Tempest 1.0 will be a lightweight version of the framework, with several useful features still missing. We plan on added features like queue management and mail support in subsequent minor versions:
