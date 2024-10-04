@@ -17,7 +17,7 @@ use function Tempest\uri;
         </div>
     </div>
 
-    <div class="prose max-w-screen-md mx-auto py-8 md:py-16 md:px-24 px-2">
+    <div class="blog prose max-w-screen-md mx-auto py-8 md:py-16 md:px-24 px-2">
         <?= $post->content ?>
     </div>
 
