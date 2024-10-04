@@ -10,6 +10,8 @@ use function Tempest\uri;
     <x-tempest-logo />
 
     <nav class="flex flex-wrap justify-center w-full sm:w-auto gap-4 sm:gap-8 items-center text-white text-[15px] font-light">
+      <a href="/rss">RSS</a>
+      <a href="/discord">Discord</a>
       <a href="/blog">Blog</a>
       <a href="/console">Console</a>
       <a href="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Documentation</a>
