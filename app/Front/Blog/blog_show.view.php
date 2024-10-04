@@ -23,4 +23,8 @@
             </div>
         </div>
     </div>
+
+    <div class="prose dark:prose-invert max-w-screen-md mx-auto py-24 px-24">
+        <?= $post->content ?>
+    </div>
 </x-base>

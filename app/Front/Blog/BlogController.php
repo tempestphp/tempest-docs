@@ -11,18 +11,18 @@ use function Tempest\view;
 final readonly class BlogController
 {
     #[Get('/blog')]
-    public function index(BlogRepository $repository): Response
+    public function index(BlogRepository $repository): View
     {
-        return new Redirect('/');
+//        return new Redirect('/');
         $posts = $repository->all();
 
         return view(__DIR__ . '/blog_index.view.php', posts: $posts);
     }
 
     #[Get('/blog/{slug}')]
-    public function show(string $slug, BlogRepository $repository): Response
+    public function show(string $slug, BlogRepository $repository): View
     {
-        return new Redirect('/');
+//        return new Redirect('/');
         $post = $repository->find($slug);
 
         return view(__DIR__ . '/blog_show.view.php', post: $post);

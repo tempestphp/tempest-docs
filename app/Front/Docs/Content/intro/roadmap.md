@@ -17,6 +17,7 @@ Tempest is still a <span class="hl-attribute">work in progress</span>, this page
 - Filesystem
 - Improved route regex support
 - Vendor file publishing
+- Async commands
 
 ## Next alphas
 
