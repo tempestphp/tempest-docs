@@ -12,7 +12,7 @@ enum MetaType: string
 
     public function uri(): string
     {
-        return uri(MetaImageController::class, type: $this->value);
+        return uri([MetaImageController::class, 'default'], type: $this->value);
     }
 
     public function getViewPath(): string

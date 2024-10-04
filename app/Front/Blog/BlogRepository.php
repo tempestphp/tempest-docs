@@ -2,10 +2,10 @@
 
 namespace App\Front\Blog;
 
+use _PHPStan_ab84e5579\Nette\Neon\Exception;
 use DateTimeImmutable;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
-use League\CommonMark\Output\RenderedContent;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\ArrayHelper;
 use function Tempest\map;
@@ -20,21 +20,29 @@ final readonly class BlogRepository
     /**
      * @return ArrayHelper<\App\Front\Blog\BlogPost>
      */
-    public function all(): ArrayHelper
+    public function all(bool $loadContent = false): ArrayHelper
     {
         return arr(glob(__DIR__ . '/Content/*.md'))
-            ->map(function (string $path) {
+            ->map(function (string $path) use ($loadContent) {
                 $content = file_get_contents($path);
 
                 preg_match('/\d+-\d+-\d+-(?<slug>.*)\.md/', $path, $matches);
 
                 $slug = $matches['slug'];
 
-                return [
+                $data = [
                     'slug' => $slug,
                     'createdAt' => $this->parseDate($path),
                     ...YamlFrontMatter::parse($content)->matter(),
                 ];
+
+                if ($loadContent) {
+                    $content = $this->parseContent($path);
+
+                    $data['content'] = $content->getContent();
+                }
+
+                return $data;
             })
             ->mapTo(BlogPost::class);
     }
@@ -47,28 +55,33 @@ final readonly class BlogRepository
             return null;
         }
 
+        $content = $this->parseContent($path);
+
+        $data = [
+            'slug' => $slug,
+            'content' => $content->getContent(),
+            'createdAt' => $this->parseDate($path),
+            ...$content->getFrontMatter()
+        ];
+
+        return map($data)->to(BlogPost::class);
+    }
+
+    private function parseContent(string $path): ?RenderedContentWithFrontMatter
+    {
         $content = @file_get_contents($path);
 
         if (! $content) {
             return null;
         }
 
-        /** @var RenderedContentWithFrontMatter $parsed */
         $parsed = $this->markdown->convert($content);
 
-        $data = [
-            'slug' => $slug,
-            'content' => $parsed->getContent(),
-            'createdAt' => $this->parseDate($path),
-            ...$parsed->getFrontMatter()
-        ];
+        if (! $parsed instanceof RenderedContentWithFrontMatter) {
+            throw new Exception("Missing frontmatter in {$path}");
+        }
 
-        return map($data)->to(BlogPost::class);
-    }
-
-    private function parseSlug(string $path): string
-    {
-        ld($path);
+        return $parsed;
     }
 
     private function parseDate(string $path): DateTimeImmutable
