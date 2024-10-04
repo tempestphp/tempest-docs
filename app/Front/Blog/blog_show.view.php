@@ -17,7 +17,7 @@ use function Tempest\uri;
         </div>
     </div>
 
-    <div class="prose dark:prose-invert max-w-screen-md mx-auto py-8 md:py-16 md:px-24 px-2 prose-stone">
+    <div class="prose dark:prose-invert max-w-screen-md mx-auto py-8 md:py-16 md:px-24 px-2">
         <?= $post->content ?>
     </div>
 
