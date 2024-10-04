@@ -18,6 +18,10 @@
     --border: var(--primary);
 }
 
+.prose {
+    color: #000;
+}
+
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #121212;
