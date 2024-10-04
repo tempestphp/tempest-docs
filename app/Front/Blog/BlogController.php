@@ -7,6 +7,7 @@ use Tempest\Cache\Cache;
 use Tempest\Http\Get;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\Ok;
+use Tempest\Http\StaticPage;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;
 use function Tempest\view;
@@ -14,6 +15,7 @@ use function Tempest\view;
 final readonly class BlogController
 {
     #[Get('/blog')]
+    #[StaticPage]
     public function index(BlogRepository $repository): View
     {
         $posts = $repository->all();
@@ -22,6 +24,7 @@ final readonly class BlogController
     }
 
     #[Get('/blog/{slug}')]
+    #[StaticPage(BlogDataProvider::class)]
     public function show(string $slug, BlogRepository $repository): View
     {
         $post = $repository->find($slug);
