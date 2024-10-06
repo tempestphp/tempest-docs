@@ -72,7 +72,7 @@ You can install Tempest in two ways: as a web app with a basic frontend bootstra
 If you want to start a new Tempest project, you can use `tempest/app` as the starting point. Use `composer create-project` to start:
 
 ```txt
-composer create-project tempest/app:1.0-alpha2 my-app
+composer create-project tempest/app my-app --stability alpha
 cd my-app
 ```
 

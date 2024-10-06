@@ -1,7 +1,7 @@
 ## Project scaffold for [Tempest](https://github.com/tempestphp), an MVC micro framework that gets out of your way.
 
 ```php
-composer create-project tempest/app <project-name>
+composer create-project tempest/app <project-name> --stability alpha
 cd <project-name>
 npm run dev
 ```
