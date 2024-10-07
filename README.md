@@ -1,11 +1,7 @@
-## Project scaffold for [Tempest](https://github.com/tempestphp), an MVC micro framework that gets out of your way.
+# Tempest PHP Docs
+This repository contains the source code for [the Tempest website](https://tempestphp.com). The source code for the
+framework itself can be found at [`tempestphp/tempest-framework`](https://github.com/tempestphp/tempest-framework).
 
-```php
-composer create-project tempest/app <project-name> --stability alpha
-cd <project-name>
-npm run dev
-```
+---
 
-Read all about Tempest in [the docs](https://github.com/tempestphp/tempest-docs/blob/main/app/Content/framework/01-getting-started.md).
-
-[Join the Tempest Discord](https://discord.gg/pPhpTGUMPQ)
+[Join the Tempest Discord](https://tempestphp.com/discord)
