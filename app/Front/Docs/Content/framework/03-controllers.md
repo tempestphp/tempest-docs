@@ -45,7 +45,7 @@ final readonly class UserController
     }
 }
 ```
-#### Custom regex
+### Custom regex
 
 It is also possible to add custom regex for dynamic segments.
 
