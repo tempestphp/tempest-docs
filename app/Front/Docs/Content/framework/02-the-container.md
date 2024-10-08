@@ -234,6 +234,37 @@ final readonly class BladeInitializer implements DynamicInitializer
 }
 ```
 
+## Built-in types dependencies
+
+Besides being able to depend on objects, sometimes you'd want to depend on built-in types like `string`, `int` or more often `array`. It is possible to depend on these built-in types, but these cannot be autowired and must be initialized through a [tagged singleton](#content-tagged-singletons).
+
+For example if we want to group a specific set of validators together as a tagged collection, you can initialize them in a tagged singleton initializer like so:
+
+```php
+
+final readonly class BookValidatorsInitializer implements Initializer
+{
+    #[Singleton(tag: 'book-validators')]
+    public function initialize(Container $container): array
+    {
+        return [
+            $container->get(HeaderValidator::class),
+            $container->get(BodyValidator::class),
+            $container->get(FooterValidator::class),
+        ];
+    }
+}
+```
+
+Now you can use this group of validators as a normal tagged value in your container:
+
+```php
+final readonly class BookController
+{
+    public function __constructor(#[Tagged('book-validators') private readonly array $contentValidators) { /* … */ }
+}
+```
+
 ## Config
 
 As mentioned, configuration is represented by objects in Tempest. Tempest provides many configuration classes for you, although the framework is designed to use them as little as possible. Whenever you need fine-grained control over part of the framework's config, you can create a `Config` folder in your main project folder. This folder can contain plain PHP files, each file can return a config instance:
