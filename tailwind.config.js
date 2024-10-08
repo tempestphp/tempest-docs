@@ -2,7 +2,7 @@ const defaultTheme = require("tailwindcss/defaultTheme");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./app/**/*.{view.php,html,js}"],
+  content: ["./app/**/*.{view.php,html,js,md}"],
   theme: {
     extend: {
       colors: {
@@ -11,6 +11,7 @@ module.exports = {
           300: "#29ABE2",
           500: "#0071BC",
           600: "#1B1429",
+          950: "#1B1429",
         },
         //
         // Blues from the Tempest logo

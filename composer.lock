@@ -1445,6 +1445,75 @@
             "time": "2024-06-28T09:40:51+00:00"
         },
         {
+            "name": "nette/php-generator",
+            "version": "v4.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/php-generator.git",
+                "reference": "c90961e782ae86e517fe5ed732eb2b512945565b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/c90961e782ae86e517fe5ed732eb2b512945565b",
+                "reference": "c90961e782ae86e517fe5ed732eb2b512945565b",
+                "shasum": ""
+            },
+            "require": {
+                "nette/utils": "^3.2.9 || ^4.0",
+                "php": "8.0 - 8.4"
+            },
+            "require-dev": {
+                "jetbrains/phpstorm-attributes": "dev-master",
+                "nette/tester": "^2.4",
+                "nikic/php-parser": "^4.18 || ^5.0",
+                "phpstan/phpstan": "^1.0",
+                "tracy/tracy": "^2.8"
+            },
+            "suggest": {
+                "nikic/php-parser": "to use ClassType::from(withBodies: true) & ClassType::fromCode()"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.1-dev"
+                }
+            },
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                },
+                {
+                    "name": "Nette Community",
+                    "homepage": "https://nette.org/contributors"
+                }
+            ],
+            "description": "🐘 Nette PHP Generator: generates neat PHP code for you. Supports new PHP 8.3 features.",
+            "homepage": "https://nette.org",
+            "keywords": [
+                "code",
+                "nette",
+                "php",
+                "scaffolding"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/php-generator/issues",
+                "source": "https://github.com/nette/php-generator/tree/v4.1.6"
+            },
+            "time": "2024-09-10T09:31:55+00:00"
+        },
+        {
             "name": "nette/schema",
             "version": "v1.3.0",
             "source": {
@@ -1591,6 +1660,64 @@
                 "source": "https://github.com/nette/utils/tree/v4.0.5"
             },
             "time": "2024-08-07T15:39:19+00:00"
+        },
+        {
+            "name": "nikic/php-parser",
+            "version": "v5.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nikic/PHP-Parser.git",
+                "reference": "3abf7425cd284141dc5d8d14a9ee444de3345d1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/3abf7425cd284141dc5d8d14a9ee444de3345d1a",
+                "reference": "3abf7425cd284141dc5d8d14a9ee444de3345d1a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-json": "*",
+                "ext-tokenizer": "*",
+                "php": ">=7.4"
+            },
+            "require-dev": {
+                "ircmaxell/php-yacc": "^0.0.7",
+                "phpunit/phpunit": "^9.0"
+            },
+            "bin": [
+                "bin/php-parse"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpParser\\": "lib/PhpParser"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Nikita Popov"
+                }
+            ],
+            "description": "A PHP parser written in PHP",
+            "keywords": [
+                "parser",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/nikic/PHP-Parser/issues",
+                "source": "https://github.com/nikic/PHP-Parser/tree/v5.3.0"
+            },
+            "time": "2024-09-29T13:56:26+00:00"
         },
         {
             "name": "nunomaduro/collision",
@@ -1779,16 +1906,16 @@
         },
         {
             "name": "php-http/discovery",
-            "version": "1.19.4",
+            "version": "1.20.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-http/discovery.git",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599"
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-http/discovery/zipball/0700efda8d7526335132360167315fdab3aeb599",
-                "reference": "0700efda8d7526335132360167315fdab3aeb599",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/82fe4c73ef3363caed49ff8dd1539ba06044910d",
+                "reference": "82fe4c73ef3363caed49ff8dd1539ba06044910d",
                 "shasum": ""
             },
             "require": {
@@ -1852,9 +1979,9 @@
             ],
             "support": {
                 "issues": "https://github.com/php-http/discovery/issues",
-                "source": "https://github.com/php-http/discovery/tree/1.19.4"
+                "source": "https://github.com/php-http/discovery/tree/1.20.0"
             },
-            "time": "2024-03-29T13:00:05+00:00"
+            "time": "2024-10-02T11:20:13+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -2763,12 +2890,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "7caff963290448129aaf95cf83d18f43d40eccd2"
+                "reference": "5e0bc576c566c05b1d483abbcadaa86967027661"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/7caff963290448129aaf95cf83d18f43d40eccd2",
-                "reference": "7caff963290448129aaf95cf83d18f43d40eccd2",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/5e0bc576c566c05b1d483abbcadaa86967027661",
+                "reference": "5e0bc576c566c05b1d483abbcadaa86967027661",
                 "shasum": ""
             },
             "require": {
@@ -2853,7 +2980,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-09-25T14:21:43+00:00"
+            "time": "2024-10-02T06:33:23+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -4040,12 +4167,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "72e88c8c7420744ac4c18f18d55b7c74f4a31ee7"
+                "reference": "19d001bde2fbb2b2433fb6c4aebf6b538dfb8fb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/72e88c8c7420744ac4c18f18d55b7c74f4a31ee7",
-                "reference": "72e88c8c7420744ac4c18f18d55b7c74f4a31ee7",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/19d001bde2fbb2b2433fb6c4aebf6b538dfb8fb0",
+                "reference": "19d001bde2fbb2b2433fb6c4aebf6b538dfb8fb0",
                 "shasum": ""
             },
             "require": {
@@ -4064,6 +4191,8 @@
                 "laminas/laminas-diactoros": "^3.3",
                 "masterminds/html5": "^2.9",
                 "monolog/monolog": "^3.7.0",
+                "nette/php-generator": "^4.1.6",
+                "nikic/php-parser": "^5.3",
                 "nunomaduro/collision": "^8.4",
                 "php": "^8.3",
                 "php-http/discovery": "^1.19.2",
@@ -4081,6 +4210,7 @@
                 "vlucas/phpdotenv": "^5.6"
             },
             "replace": {
+                "tempest/auth": "self.version",
                 "tempest/cache": "self.version",
                 "tempest/clock": "self.version",
                 "tempest/command-bus": "self.version",
@@ -4090,6 +4220,7 @@
                 "tempest/database": "self.version",
                 "tempest/debug": "self.version",
                 "tempest/event-bus": "self.version",
+                "tempest/generation": "self.version",
                 "tempest/http": "self.version",
                 "tempest/http-client": "self.version",
                 "tempest/log": "self.version",
@@ -4111,6 +4242,7 @@
                 "phpstan/phpstan": "^1.10.0",
                 "phpunit/phpunit": "^11.3.5",
                 "rector/rector": "^1.2",
+                "spatie/phpunit-snapshot-assertions": "^5.1.6",
                 "spaze/phpstan-disallowed-calls": "^3.1",
                 "symplify/monorepo-builder": "^11.2"
             },
@@ -4134,6 +4266,7 @@
                 ],
                 "psr-4": {
                     "Tempest\\Log\\": "src/Tempest/Log/src",
+                    "Tempest\\Auth\\": "src/Tempest/Auth/src/",
                     "Tempest\\Core\\": "src/Tempest/Core/src",
                     "Tempest\\Http\\": "src/Tempest/Http/src",
                     "Tempest\\View\\": "src/Tempest/View/src",
@@ -4148,6 +4281,7 @@
                     "Tempest\\Container\\": "src/Tempest/Container/src",
                     "Tempest\\Framework\\": "src/Tempest/Framework",
                     "Tempest\\CommandBus\\": "src/Tempest/CommandBus/src",
+                    "Tempest\\Generation\\": "src/Tempest/Generation/src",
                     "Tempest\\HttpClient\\": "src/Tempest/HttpClient/src",
                     "Tempest\\Reflection\\": "src/Tempest/Reflection/src",
                     "Tempest\\Validation\\": "src/Tempest/Validation/src"
@@ -4164,11 +4298,11 @@
             },
             "funding": [
                 {
-                    "url": "https://github.com/brendt",
+                    "url": "https://github.com/tempestphp",
                     "type": "github"
                 }
             ],
-            "time": "2024-09-26T18:43:55+00:00"
+            "time": "2024-10-04T04:15:27+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4874,64 +5008,6 @@
                 }
             ],
             "time": "2024-06-12T14:39:25+00:00"
-        },
-        {
-            "name": "nikic/php-parser",
-            "version": "v5.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb",
-                "reference": "23c79fbbfb725fb92af9bcf41065c8e9a0d49ddb",
-                "shasum": ""
-            },
-            "require": {
-                "ext-ctype": "*",
-                "ext-json": "*",
-                "ext-tokenizer": "*",
-                "php": ">=7.4"
-            },
-            "require-dev": {
-                "ircmaxell/php-yacc": "^0.0.7",
-                "phpunit/phpunit": "^9.0"
-            },
-            "bin": [
-                "bin/php-parse"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpParser\\": "lib/PhpParser"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Nikita Popov"
-                }
-            ],
-            "description": "A PHP parser written in PHP",
-            "keywords": [
-                "parser",
-                "php"
-            ],
-            "support": {
-                "issues": "https://github.com/nikic/PHP-Parser/issues",
-                "source": "https://github.com/nikic/PHP-Parser/tree/v5.2.0"
-            },
-            "time": "2024-09-15T16:40:33+00:00"
         },
         {
             "name": "phar-io/manifest",

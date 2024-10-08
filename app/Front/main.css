@@ -31,9 +31,14 @@
         --code-background: #171717;
         --border: transparent;
     }
+
+    /* TODO: this is a quickfix */
+    .prose, .prose h1, .prose h2 {
+        color: rgb(209, 213, 219);
+    }
 }
 
-body:has(.docs) {
+body:has(.docs), body:has(.blog) {
     background-color: var(--background);
     color: var(--foreground);
 }
