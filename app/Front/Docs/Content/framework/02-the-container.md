@@ -261,7 +261,9 @@ Now you can use this group of validators as a normal tagged value in your contai
 ```php
 final readonly class BookController
 {
-    public function __constructor(#[Tagged('book-validators') private readonly array $contentValidators) { /* … */ }
+    public function __constructor(
+        #[Tagged('book-validators')] private readonly array $contentValidators,
+    ) { /* … */ }
 }
 ```
 
