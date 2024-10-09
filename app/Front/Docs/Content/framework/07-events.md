@@ -39,6 +39,20 @@ final class CreateUserCommand
 
 Note that handler method names can be anything: invokable methods, `handleUserCreated()`, `onUserCreated()`, `whateverYouWant()`, …
 
+Alternatively, event listeners can be registered as closures on the `EventBus` instance:
+
+```php
+#[ConsoleCommand(name: 'users:sync')]
+public function __invoke(): void
+{
+	$this->eventBus->listen(UserCreated::class, function (UserCreated $event) {
+		$this->console->info("User {$event->name} created.");
+	});
+
+	$this->synchronizeUsers();
+}
+```
+
 Triggering an event can be done with the `event()` function:
 
 ```php
@@ -50,7 +64,7 @@ Alternatively to using the `event()` function, you can inject the `EventBus`, an
 ```php
 use Tempest\EventBus\EventBus;
 
-final readonly class UserController()
+final readonly class UserController
 {
     public function __construct(
         private EventBus $eventBus,
