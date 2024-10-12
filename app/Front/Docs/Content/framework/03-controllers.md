@@ -145,7 +145,7 @@ final readonly class BooksMiddleware implements HttpMiddleware
 }
 ```
 
-Note that you can create [custom routes](#content-custom-routes) to make reusable middleware stacks.
+Note that you can create [custom routes](#custom-routes) to make reusable middleware stacks.
 
 ## Responses
 
