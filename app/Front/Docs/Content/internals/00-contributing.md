@@ -140,11 +140,11 @@ __✅&nbsp;Good Example__
 __❌&nbsp;Bad Example__
 > Value should be a valid email address!
 
-# Release Workflow
+## Release Workflow
  
 **Tempest uses sub-splits to allow components to be installed as individual packages. The following outlines how this process works.**
 
-## Workflow Steps
+### Workflow Steps
 
 1. **Trigger Event**
     - When a pull request is merged, or a new tag is created, the `.github/workflows/subsplit-packages.yml` action is run.
@@ -167,11 +167,11 @@ __❌&nbsp;Bad Example__
     - This action takes any changes and pushes them to the sub-split repository determined by combining the "Organization" and "Repository" values returned in step 2.
     - Depending on whether a tag is found or not, a tag is also supplied so the repository is tagged appropriately.
 
-# Commit and merge conventions
+## Commit and merge conventions
 
 Commits must all respect the [conventional commit specification](https://www.conventionalcommits.org/en/), so the changelog and release notes are generated using the commit history.
 
-## Commit descriptions
+### Commit descriptions
 
 Commit descriptions **should not** start with an uppercase letter and should use [imperative mood](https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/SubmittingPatches?h=v2.36.1#n181):
 
@@ -180,7 +180,7 @@ Commit descriptions **should not** start with an uppercase letter and should use
 + feat(support): add some cool feature
 ```
 
-## Commit scopes
+### Commit scopes
 
 Scopes are not mandatory, but are highly recommended for consistency and easy of read. The following scopes are the most commonly used:
 
@@ -206,7 +206,7 @@ chore: update dependencies
 style: apply php-cs-fixer
 ```
 
-## Pull requests
+### Pull requests
 
 Pull request titles and descriptions should be as explicit as possible to ease the review process.
 
