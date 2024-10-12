@@ -134,10 +134,10 @@ A class named `Uuid` is an example of a long acronym (Uuid) used as the first wo
 2. __Error Message Formatting__:
     - __Avoid Ending Punctuation__: When crafting error messages for validation rules, refrain from including ending punctuation such as periods, exclamation marks, or question marks. This helps in maintaining a uniform style and prevents inconsistency in error message presentation.
 
-__:white_check_mark: Good Example__
+__✅ Good Example__
 > Value should be a valid email address
 
-__:x: Bad Example__
+__❌ Bad Example__
 > Value should be a valid email address!
 
 # Release Workflow
