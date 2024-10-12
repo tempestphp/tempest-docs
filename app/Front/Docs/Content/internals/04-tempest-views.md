@@ -107,18 +107,6 @@ Variables passed to view components are only available directly via `$variable`,
 </x-component>
 ```
 
-A view can define local variables that are available within the whole view:
-
-```html
-<!-- home.view.php -->
-
-<?php
-$this->newVariable = 'foo';
-?>
-```
-
-TODO: work in progress ([https://github.com/tempestphp/tempest-framework/issues/579](https://github.com/tempestphp/tempest-framework/issues/579))
-
 ## Attributes
 
 All attributes prefixed with `:` will be parsed as PHP code, these are called **expression attributes**. Expression attributes can be added on any element: both on regular HTML elements, and view component elements. 
