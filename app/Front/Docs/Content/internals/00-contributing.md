@@ -51,7 +51,7 @@ Once the feature request has been opened, the Tempest team will:
 * Ask any clarifying question to help better understand the use case.
 * If the feature requested is accepted, the Tempest team will assign the "Uncharted Waters" label. A Tempest team member or a member of the community can contribute the code for this.
 
-* **We welcome all contributions and greatly value your time and effort. To ensure your work aligns with Tempest's vision and avoids unnecessary effort, we aim to provide clear guidance and feedback throughout the process.**
+**We welcome all contributions and greatly value your time and effort. To ensure your work aligns with Tempest's vision and avoids unnecessary effort, we aim to provide clear guidance and feedback throughout the process.**
 
 ## Contribute Documentation
 Documentation is how users learn about the framework, and developers begin to understand how Tempest works under the hood. It's critical to everything we do! Thank you in advance for your assistance in ensuring Tempest documentation is extensive, user-friendly, and up-to-date.
@@ -129,15 +129,15 @@ A class named `Uuid` is an example of a long acronym (Uuid) used as the first wo
 
 ---
 
-#### Validaton Class Formatting
+#### Validation Class Formatting
 1. __Use of `final` and `readonly`__: Ensure that validation rules are declared as [final and readonly](#final-and-readonly-as-a-default) whenever possible. This practice promotes immutability and prevents inadvertent changes to the validation logic.
 2. __Error Message Formatting__:
     - __Avoid Ending Punctuation__: When crafting error messages for validation rules, refrain from including ending punctuation such as periods, exclamation marks, or question marks. This helps in maintaining a uniform style and prevents inconsistency in error message presentation.
 
-__✅ Good Example__
+__✅&nbsp;Good Example__
 > Value should be a valid email address
 
-__❌ Bad Example__
+__❌&nbsp;Bad Example__
 > Value should be a valid email address!
 
 # Release Workflow
