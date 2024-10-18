@@ -54,7 +54,7 @@ use function Tempest\uri;
                         Zero-config controllers and routing
                     </x-feature-header>
                     <p class="font-light">
-                        Tempest features a unique concept called <a class="underline hover:no-underline" href="/docs/framework/01-getting-started#content-project-structure">discovery</a>. Tempest will scan your code and find out what to do with it: from controller routes to event handlers, from console commands to dependency initializers; Tempest will detect everything without you having to write a single line of configuration or bootstrap code.
+                        Tempest features a unique concept called <a class="underline hover:no-underline" href="/docs/framework/01-getting-started#project-structure">discovery</a>. Tempest will scan your code and find out what to do with it: from controller routes to event handlers, from console commands to dependency initializers; Tempest will detect everything without you having to write a single line of configuration or bootstrap code.
                     </p>
                 </div>
 

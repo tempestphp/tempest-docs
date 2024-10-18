@@ -27,6 +27,44 @@ final readonly class HomeController
 }
 ```
 
+### Dynamic routes
+You can define dynamic segments in your route URIs by wrapping them in curly braces {}. The segment name inside the braces will be passed as a parameter to your controller method.
+
+Here's an example:
+```php
+final readonly class UserController
+{
+    #[Get(uri: '/users/{id}')]
+    public function showUser(int $id): View
+    {
+        // Fetch the user by ID
+        $user = $this->userService->getUserById($id);
+
+        // Pass the user to the view
+        return view('user.view.php', ['user' => $user]);
+    }
+}
+```
+### Custom regex
+
+It is also possible to add custom regex for dynamic segments.
+
+Here's an example:
+
+```php
+final readonly class UserController
+{
+    #[Get(uri: '/users/{id:[0-9]+}')]
+    public function showUser(int $id): View
+    {
+        // Fetch the user by ID
+        $user = $this->userService->getUserById($id);
+
+        // Pass the user to the view
+        return view('user.view.php', ['user' => $user]);
+    }
+}
+```
 
 ## Requests
 
@@ -107,7 +145,7 @@ final readonly class BooksMiddleware implements HttpMiddleware
 }
 ```
 
-Note that you can create [custom routes](#content-custom-routes) to make reusable middleware stacks.
+Note that you can create [custom routes](#custom-routes) to make reusable middleware stacks.
 
 ## Responses
 
