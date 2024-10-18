@@ -14,7 +14,7 @@ use App\Front\Meta\MetaType;
         $metaImageUri = $metaImageUri ?? null;
 
         if ($metaImageUri === null) {
-            $metaType = $this->meta ?? MetaType::FRAMEWORK;
+            $metaType = $meta ?? MetaType::FRAMEWORK;
             $metaImageUri = $metaType->uri();
         }
         ?>
