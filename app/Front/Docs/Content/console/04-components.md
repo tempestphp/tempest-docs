@@ -92,7 +92,7 @@ $password = $this->console->password(confirm: true);
 ```
 
 <video autoplay muted controls loop>
-  <source src="/img/confirm.mp4" type="video/mp4" />
+  <source src="/img/password.mp4" type="video/mp4" />
 </video>
 
 ### The `progress` component
