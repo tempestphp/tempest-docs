@@ -7,7 +7,7 @@
         bg-gradient-to-b from-white/10 to-white/0
         rounded-[7px] border-white
         text-center
-    " href="<?= $this->uri ?? '#' ?>">
+    " href="<?= $uri ?? '#' ?>">
     <x-slot />
   </a>
 </x-component>

@@ -7,6 +7,7 @@ use Tempest\Http\Get;
 use Tempest\Http\StaticPage;
 use Tempest\HttpClient\HttpClient;
 use Tempest\View\View;
+use Throwable;
 use function Tempest\Support\arr;
 use function Tempest\view;
 
@@ -21,7 +22,11 @@ final readonly class HomeController
     #[Get('/')]
     public function __invoke(): View
     {
-        $commit = json_decode($this->httpClient->get('https://api.github.com/repos/tempestphp/tempest-framework/commits')->getBody())[0] ?? null;
+        try {
+            $commit = json_decode($this->httpClient->get('https://api.github.com/repos/tempestphp/tempest-framework/commits')->getBody())[0] ?? null;
+        } catch (Throwable) {
+            $commit = null;
+        }
 
         $codeBlocks = arr(glob(__DIR__ . '/*.md'))
             ->mapWithKeys(function (string $path) {

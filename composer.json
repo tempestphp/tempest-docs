@@ -1,7 +1,7 @@
 {
     "name": "tempest/app",
     "require": {
-        "tempest/framework": "dev-main",
+        "tempest/framework": "dev-view-cache",
         "league/commonmark": "^2.4",
         "symfony/yaml": "^6.3",
         "spatie/yaml-front-matter": "^2.0",
