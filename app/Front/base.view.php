@@ -7,10 +7,11 @@ use App\Front\Meta\MetaType;
     <html lang="en">
 
     <head>
-        <title><?= ($this->title ?? null) ? "{$this->title} | Tempest" : "Tempest" ?></title>
+        <title :if="$title ?? null">{{ $title }} | Tempest</title>
+        <title :else>Tempest</title>
 
         <?php
-        $metaImageUri = $this->metaImageUri ?? null;
+        $metaImageUri = $metaImageUri ?? null;
 
         if ($metaImageUri === null) {
             $metaType = $this->meta ?? MetaType::FRAMEWORK;
@@ -41,7 +42,7 @@ use App\Front\Meta\MetaType;
 
     <x-slot/>
 
-    <x-slot name="scripts"></x-slot>
+    <x-slot name="scripts" />
     </body>
 
     </html>

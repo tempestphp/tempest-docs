@@ -14,6 +14,7 @@ use function Tempest\uri;
             <a href="/rss">RSS</a>
             <a href="/discord">Discord</a>
             <a href="/blog">Blog</a>
+            <a href="/view">View</a>
             <a href="/console">Console</a>
             <a href="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Docs</a>
             <a href="https://github.com/tempestphp/tempest-framework" target="_blank" rel="noopener noreferrer"><img src="/img/github.svg" class="hidden sm:inline-block sm:size-[1.5rem]" alt="TempestPHP on Github"/></a>
