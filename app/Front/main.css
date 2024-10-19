@@ -144,14 +144,16 @@ h6 {
     background: linear-gradient(135deg, #0171bc 0%, #1b1429 100%);
 }
 
-.tempest {
-    color: #1b1429;
-    font-weight: bold;
-    background: #29abe2;
-    padding: 0.3em 0.3em 0.2em;
-    border-radius: 5px;
-    font-family: Argon, monospace;
-    margin: 0 0.1em;
+@media (min-width: 600px) {
+    .tempest {
+        color: #1b1429;
+        font-weight: bold;
+        background: #29abe2;
+        padding: 0.3em 0.3em 0.2em;
+        border-radius: 5px;
+        font-family: Argon, monospace;
+        margin: 0 0.1em;
+    }
 }
 
 .meta-image {

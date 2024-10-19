@@ -67,9 +67,7 @@ use function Tempest\uri;
 
 
         <div class="w-full bg-zinc-50 slope-2 py-24">
-
             <div class="w-full max-w-screen-xl mx-auto px-4 grid grid-cols-5 gap-6 md:gap-16">
-
                 <div class="col-span-5 md:col-span-2 flex flex-col justify-center gap-4">
                     <x-feature-header>
                         A refreshing new templating engine
@@ -111,9 +109,7 @@ use function Tempest\uri;
 
 
         <div class="w-full py-24">
-
             <div class="w-full max-w-screen-xl mx-auto px-4 grid grid-cols-5 gap-6 md:gap-16">
-
                 <div class="col-span-5 md:col-span-2 flex flex-col justify-center gap-4">
                     <x-feature-header>
                         Frictionless console commands
