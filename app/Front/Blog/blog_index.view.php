@@ -38,4 +38,6 @@
             </div>
         </div>
     </div>
+
+    <x-footer />
 </x-base>
