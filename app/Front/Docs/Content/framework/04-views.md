@@ -2,11 +2,11 @@
 title: Views
 ---
 
-Tempest supports two templating engines: Tempest views, and Blade. Tempest views is an experimental templating engine, while Blade has widespread support because of Laravel. Tempest views is the default templating engine. The end of this page discusses how to install Blade instead.
+Tempest supports two templating engines: Tempest View, and Blade. Tempest View is a new templating engine, while Blade has widespread support because of Laravel. Tempest View is the default templating engine when creating Tempest projects, but the end of this page discusses how to install and switch to Blade instead.
 
 ## View files
 
-Tempest views are plain PHP files, though they also support a custom syntax. You can mix or choose a preferred style. 
+Tempest Views are plain PHP files, although they also support a custom syntax. You can mix or choose a preferred style. 
 
 This is the standard PHP style:
 
@@ -39,6 +39,8 @@ And this is the custom syntax:
     </x-post>
 </div>
 ```
+
+Think of the custom style as an extension of HTML, we'll dive deeper into the syntax later in this chapter.
 
 ## Returning Views
 
@@ -396,19 +398,15 @@ HTML;
 
 ## View caching
 
-Tempest views are compiled to plain PHP code before being rendered. By default, this cache is enabled. For local development however, you want the view cache to be disabled:
+Tempest views are compiled to plain PHP code before being rendered. In production, these compiled views should be cached. Enabling the view cache on production can be done by setting the `{txt}{:hl-property:CACHE:}` environment variable:
 
 ```env
 {:hl-comment:# .env:}
 
-{:hl-property:CACHE:}={:hl-keyword:false:}
+{:hl-property:CACHE:}={:hl-keyword:true:}
 ```
 
-**Note: this environment property will be renamed to `{txt}{:hl-property:VIEW_CACHE:}` in the near future.**
-
-**Note: the view cache will be disabled by default in the near future.**
-
-For production project, it'll be important to **clear the view cache on deployment**. You can read more about caching in [the dedicated chapter](/docs/framework/caching). For now, it's good enough to note that you can run `tempest cache:clear --all` to clear view caches on deployment.
+For production projects with view caching enabled, it'll be important to **clear that view cache on deployment**. You do that by running `tempest cache:clear --all` on every deploy. You can read more about caching and view caching in [the cache chapter](/docs/framework/caching).
 
 ## Using Blade
 
