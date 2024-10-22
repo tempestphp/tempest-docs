@@ -4171,12 +4171,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "e00d0cd35f8c07fde1cdae549c70c7605647fff8"
+                "reference": "580c3259e2c4802338ec2f0e03a74583dba3b09b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e00d0cd35f8c07fde1cdae549c70c7605647fff8",
-                "reference": "e00d0cd35f8c07fde1cdae549c70c7605647fff8",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/580c3259e2c4802338ec2f0e03a74583dba3b09b",
+                "reference": "580c3259e2c4802338ec2f0e03a74583dba3b09b",
                 "shasum": ""
             },
             "require": {
@@ -4306,20 +4306,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-19T05:24:30+00:00"
+            "time": "2024-10-22T07:37:49+00:00"
         },
         {
             "name": "tempest/highlight",
-            "version": "2.10.4",
+            "version": "2.10.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "6ea557376f26f5d1c2949b136facd493ff703722"
+                "reference": "2d119afdac7aa98927dbbcf239e5cff86b74faf0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/6ea557376f26f5d1c2949b136facd493ff703722",
-                "reference": "6ea557376f26f5d1c2949b136facd493ff703722",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/2d119afdac7aa98927dbbcf239e5cff86b74faf0",
+                "reference": "2d119afdac7aa98927dbbcf239e5cff86b74faf0",
                 "shasum": ""
             },
             "require": {
@@ -4356,7 +4356,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.10.4"
+                "source": "https://github.com/tempestphp/highlight/tree/2.10.5"
             },
             "funding": [
                 {
@@ -4364,7 +4364,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-10-18T11:24:42+00:00"
+            "time": "2024-10-20T04:44:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -5512,16 +5512,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.36",
+            "version": "10.5.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "aa0a8ce701ea7ee314b0dfaa8970dc94f3f8c870"
+                "reference": "c7cffa0efa2b70c22366523e6d804c9419eb2400"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/aa0a8ce701ea7ee314b0dfaa8970dc94f3f8c870",
-                "reference": "aa0a8ce701ea7ee314b0dfaa8970dc94f3f8c870",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c7cffa0efa2b70c22366523e6d804c9419eb2400",
+                "reference": "c7cffa0efa2b70c22366523e6d804c9419eb2400",
                 "shasum": ""
             },
             "require": {
@@ -5542,7 +5542,7 @@
                 "phpunit/php-timer": "^6.0.0",
                 "sebastian/cli-parser": "^2.0.1",
                 "sebastian/code-unit": "^2.0.0",
-                "sebastian/comparator": "^5.0.2",
+                "sebastian/comparator": "^5.0.3",
                 "sebastian/diff": "^5.1.1",
                 "sebastian/environment": "^6.1.0",
                 "sebastian/exporter": "^5.1.2",
@@ -5593,7 +5593,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.36"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.37"
             },
             "funding": [
                 {
@@ -5609,7 +5609,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-10-08T15:36:51+00:00"
+            "time": "2024-10-19T13:03:41+00:00"
         },
         {
             "name": "react/cache",
@@ -7608,5 +7608,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }
