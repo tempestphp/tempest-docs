@@ -16,6 +16,8 @@
 	--link-hover-color: var(--primary);
 	--code-background: #f3f3f3;
 	--border: var(--primary);
+	--primary-dark: #1B1429;
+	--docsearch-primary-color: var(--primary);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -32,7 +34,7 @@
 		--border: transparent;
 
 		/* Primary colors */
-		--docsearch-primary-color: #8ab4fa;
+		--docsearch-primary-color: var(--primary);
 		--docsearch-highlight-color: #8ab4fa;
 		--docsearch-text-color: #e4e4e4;
 		--docsearch-muted-color: #a0a0a0;
@@ -182,6 +184,29 @@ h6 {
 	background-image: linear-gradient(to bottom, #0071bccc 20%, #1b1429cc 100%),
 		linear-gradient(to right, #0071bc 0%, rgba(0, 87, 190, 0%), #0071bc 100%),
 		url('/img/bg-dark-theme-2@2x.jpg');
+}
+
+
+.DocSearch-Button-Keys,
+.DocSearch-Search-Icon {
+	display: none;
+}
+
+.DocSearch-Button {
+	background-color: var(--primary-dark);
+	color: #fff;
+	display: flex;
+	height: auto;
+	padding: .3em .8em;
+}
+
+.DocSearch-Button-Placeholder {
+	font-size: 0.8em;
+	padding: 0;
+}
+
+.DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover {
+	color: var(--primary);
 }
 
 .DocSearch-Logo .cls-1,
