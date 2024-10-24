@@ -2,13 +2,24 @@
 
 <x-base :title="$this->currentChapter->title">
   <!-- Banner -->
-  <div class="px-4 text-center py-4 bg-[--card] font-bold text-[--card-foreground] w-full z-[99] mb-4 flex items-center gap-2 justify-center">
+  <div class="dark px-4 text-center py-4 bg-[--card] font-bold text-[--card-foreground] w-full z-[99] mb-4 flex items-center gap-2 justify-center">
     <img src="/favicon/favicon-32x32.png" alt="favicon" class="h-[20px] hidden md:inline-block">
     <span>
       Tempest is still a <span class="hl-attribute">work in progress</span>. Visit our <a href="https://github.com/tempestphp/tempest-framework/issues" class="underline hover:no-underline">GitHub</a> or
       <a href="https://discord.gg/pPhpTGUMPQ" class="underline hover:no-underline">Discord</a>
     </span>
+    <div id="docsearch"></div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        window.docsearch({
+            container: '#docsearch',
+            appId: 'WCE34U42S7',
+            indexName: 'tempestphp',
+            apiKey: '9bf1ba721d34be73279c688e50e94472',
+        })
+    })
+  </script>
   <!-- Toggling menu -->
   <script>
     function toggleMenu() {

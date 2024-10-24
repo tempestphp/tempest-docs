@@ -1,76 +1,107 @@
-@import "code.css";
-@import "fonts.css";
+@import 'code.css';
+@import 'fonts.css';
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-    --background: #ffffff;
-    --foreground: #000000;
-    --card: #4e96d1;
-    --card-foreground: #ffffff;
-    --primary: #4f95d1;
-    --primary-foreground: #ffffff;
-    --link-color: #4f95d1;
-    --link-hover-color: var(--primary);
-    --code-background: #f3f3f3;
-    --border: var(--primary);
+	--background: #ffffff;
+	--foreground: #000000;
+	--card: #4e96d1;
+	--card-foreground: #ffffff;
+	--primary: #4f95d1;
+	--primary-foreground: #ffffff;
+	--link-color: #4f95d1;
+	--link-hover-color: var(--primary);
+	--code-background: #f3f3f3;
+	--border: var(--primary);
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --background: #121212;
-        --foreground: #cdd6f4;
-        --card: #1e1e1e;
-        --card-foreground: #cdd6f4;
-        --primary: #89b4fa;
-        --primary-foreground: #1e1e2e;
-        --link-color: #89b4fa;
-        --link-hover-color: var(--primary);
-        --code-background: #171717;
-        --border: transparent;
-    }
+	:root {
+		--background: #121212;
+		--foreground: #cdd6f4;
+		--card: #1e1e1e;
+		--card-foreground: #cdd6f4;
+		--primary: #89b4fa;
+		--primary-foreground: #1e1e2e;
+		--link-color: #89b4fa;
+		--link-hover-color: var(--primary);
+		--code-background: #171717;
+		--border: transparent;
 
-    /* TODO: this is a quickfix */
-    .prose, .prose h1, .prose h2 {
-        color: rgb(209, 213, 219);
-    }
+		/* Primary colors */
+		--docsearch-primary-color: #8ab4fa;
+		--docsearch-highlight-color: #8ab4fa;
+		--docsearch-text-color: #e4e4e4;
+		--docsearch-muted-color: #a0a0a0;
+
+		/* Searchbox styling */
+		--docsearch-searchbox-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+		--docsearch-searchbox-background: #1e1e1e;
+		--docsearch-searchbox-focus-background: #252525;
+
+		/* Key styling */
+		--docsearch-key-gradient: linear-gradient(to bottom, #2a2a2a, #222222);
+		--docsearch-key-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.4);
+
+		/* Modal and footer styling */
+		--docsearch-modal-background: #1a1a1a;
+		--docsearch-footer-background: #252525;
+		--docsearch-modal-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+		--docsearch-footer-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+
+		/* Logo and hits styling */
+		--docsearch-logo-color: #8ab4fa;
+		--docsearch-hit-background: #252525;
+		--docsearch-hit-selected-background: #202020;
+		--docsearch-hit-color: #e4e4e4;
+		--docsearch-hit-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	}
+
+	/* TODO: this is a quickfix */
+	.prose,
+	.prose h1,
+	.prose h2 {
+		color: rgb(209, 213, 219);
+	}
 }
 
-body:has(.docs), body:has(.blog) {
-    background-color: var(--background);
-    color: var(--foreground);
+body:has(.docs),
+body:has(.blog) {
+	background-color: var(--background);
+	color: var(--foreground);
 }
 
 .prose {
-    max-width: 80ch;
+	max-width: 80ch;
 }
 
 .prose h2 {
-    scroll-margin-top: 40px;
+	scroll-margin-top: 40px;
 }
 
 .prose a {
-    color: var(--link-color);
+	color: var(--link-color);
 }
 
 .prose a {
-    color: var(--link-hover-color);
+	color: var(--link-hover-color);
 }
 
 div a.menu-link {
-    line-height: 1.4em;
+	line-height: 1.4em;
 }
 
 video {
-    width: 100%;
-    outline: none;
+	width: 100%;
+	outline: none;
 }
 
 video::-webkit-media-controls-panel {
-    background-image: none !important;
-    filter: brightness(0.4);
+	background-image: none !important;
+	filter: brightness(0.4);
 }
 
 h1,
@@ -79,94 +110,95 @@ h3,
 h4,
 h5,
 h6 {
-    & .heading-permalink {
-        display: none;
-    }
+	& .heading-permalink {
+		display: none;
+	}
 
-    &:hover .heading-permalink {
-        display: inline;
-    }
+	&:hover .heading-permalink {
+		display: inline;
+	}
 }
 
 .tempest-logo {
-    border: 2px solid red;
+	border: 2px solid red;
 }
 
 .\@HeroBlock {
-    @apply bg-no-repeat bg-bottom;
-    background-image: linear-gradient(
-            to bottom,
-            #0071BCCC 20%,
-            #1B1429CC 100%
-    ),
-    linear-gradient(
-            to right,
-            #0071BC 0%,
-            rgba(0, 87, 190, 0%),
-            #0071BC 100%
-    ),
-    url("/img/bg-dark-theme-2@2x.jpg");
-    background-position: top;
-    background-color: #0071BC;
-    background-size: 100%, 1232px 100%, 1232px auto;
-    position: relative;
+	@apply bg-no-repeat bg-bottom;
+	background-image: linear-gradient(to bottom, #0071bccc 20%, #1b1429cc 100%),
+		linear-gradient(to right, #0071bc 0%, rgba(0, 87, 190, 0%), #0071bc 100%),
+		url('/img/bg-dark-theme-2@2x.jpg');
+	background-position: top;
+	background-color: #0071bc;
+	background-size: 100%, 1232px 100%, 1232px auto;
+	position: relative;
 }
 
 @media (min-width: 800px) {
-    .\@HeroBlock {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
-        /*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80px);*/
-        padding-bottom: 80px;
-    }
+	.\@HeroBlock {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+		/*clip-path: polygon(0 0, 100% 0, 100% 100%, 0 80px);*/
+		padding-bottom: 80px;
+	}
 
-    .slope {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 24px));
-        position: relative;
-    }
+	.slope {
+		clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 24px));
+		position: relative;
+	}
 
-    .slope-2 {
-        clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 calc(100% - 24px));
-        position: relative;
-    }
+	.slope-2 {
+		clip-path: polygon(0 24px, 100% 0, 100% 100%, 0 calc(100% - 24px));
+		position: relative;
+	}
 
-    .slope-3 {
-        clip-path: polygon(0 0, 100% 24px, 100% 100%, 0 100%);
-        position: relative;
-    }
+	.slope-3 {
+		clip-path: polygon(0 0, 100% 24px, 100% 100%, 0 100%);
+		position: relative;
+	}
 
-    .slope-4 {
-        clip-path: polygon(0 0, 100% 24px, 100% calc(100% - 24px), 0 100%);
-        position: relative;
-    }
+	.slope-4 {
+		clip-path: polygon(0 0, 100% 24px, 100% calc(100% - 24px), 0 100%);
+		position: relative;
+	}
 }
 
 .header-gradient {
-    background: linear-gradient(135deg, #0171bc 0%, #1b1429 100%);
+	background: linear-gradient(135deg, #0171bc 0%, #1b1429 100%);
 }
 
 @media (min-width: 600px) {
-    .tempest {
-        color: #1b1429;
-        font-weight: bold;
-        background: #29abe2;
-        padding: 0.3em 0.3em 0.2em;
-        border-radius: 5px;
-        font-family: Argon, monospace;
-        margin: 0 0.1em;
-    }
+	.tempest {
+		color: #1b1429;
+		font-weight: bold;
+		background: #29abe2;
+		padding: 0.3em 0.3em 0.2em;
+		border-radius: 5px;
+		font-family: Argon, monospace;
+		margin: 0 0.1em;
+	}
 }
 
 .meta-image {
-    background-image: linear-gradient(
-            to bottom,
-            #0071BCCC 20%,
-            #1B1429CC 100%
-    ),
-    linear-gradient(
-            to right,
-            #0071BC 0%,
-            rgba(0, 87, 190, 0%),
-            #0071BC 100%
-    ),
-    url("/img/bg-dark-theme-2@2x.jpg");
+	background-image: linear-gradient(to bottom, #0071bccc 20%, #1b1429cc 100%),
+		linear-gradient(to right, #0071bc 0%, rgba(0, 87, 190, 0%), #0071bc 100%),
+		url('/img/bg-dark-theme-2@2x.jpg');
+}
+
+.DocSearch-Logo .cls-1,
+.DocSearch-Logo .cls-2 {
+	fill: var(--docsearch-logo-color) !important;
+}
+.DocSearch-Logo .cls-2 {
+	fill-rule: evenodd;
+}
+
+[class*='DocSearch'] .DocSearch-Hit a {
+	background-color: var(--docsearch-hit-background);
+}
+[class*='DocSearch'] .DocSearch-Hit[aria-selected='true'] a {
+	background-color: var(--docsearch-hit-selected-background);
+}
+
+.DocSearch-Input {
+	outline: none !important;
 }
