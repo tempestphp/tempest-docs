@@ -28,9 +28,10 @@ use App\Front\Meta\MetaType;
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <x-slot name="styles"/>
-        <link href="/main.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=source-code-pro:500|archivo:700,900" rel="stylesheet"/>
+        <link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"/>
+        <link href="/main.css" rel="stylesheet">
 
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
@@ -39,10 +40,9 @@ use App\Front\Meta\MetaType;
     </head>
 
     <body class="relative font-sans antialiased">
-
     <x-slot/>
-
     <x-slot name="scripts" />
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
     </body>
 
     </html>
