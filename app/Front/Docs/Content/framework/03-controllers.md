@@ -314,3 +314,46 @@ final readonly class BookController
     public function show(Book $book): Response { /* … */ }
 }
 ```
+
+## Deferring tasks
+
+Sometimes you might want to handle some tasks after a response has been sent to the client. For example: you want to send an email but don't want the client to wait until it has been sent. Or, you want to keep track of page visits, but don't want the client having to wait until you update your analytics database.
+
+These cases are well suited for deferred tasks: tasks that are executed after the response already has been sent. 
+
+```php
+use function Tempest\defer;
+
+final readonly class AuthController
+{
+    #[Post('/register')]
+    public function register(): Redirect
+    {  
+        $user = // …
+        
+        defer(function () use ($user) {
+            // Send mail to user
+        });
+        
+        return new Redirect('/');
+    }
+}
+```
+
+```php
+use function Tempest\defer;
+
+final readonly class PageVisitedMiddleware implements HttpMiddleware
+{
+    public function __invoke(Request $request, callable $next): Response
+    {
+        defer(function () use ($request) {
+            event(new PageVisited($request->getUri()));
+        });
+
+        return $next($request);
+    }
+}
+```
+
+Note that task deferring only works if [`fastcgi_finish_request()`](https://www.php.net/manual/en/function.fastcgi-finish-request.php) is available within your PHP installation. If it's not available, deferred tasks will still be run, but the client response will only complete after all tasks have been finished as well.
