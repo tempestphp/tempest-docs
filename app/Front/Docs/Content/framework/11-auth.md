@@ -73,6 +73,7 @@ Tempest's authenticator and authorizer are compatible with any class implementin
 
 ```
 ./tempest install auth
+./tempest migrate:up
 ```
 
 With this `User` model, you already have a lot of helper methods in place to build your own user management flow:

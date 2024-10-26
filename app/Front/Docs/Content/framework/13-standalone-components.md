@@ -47,7 +47,7 @@ Note that `tempest/console` is shipped with `tempest/http` as well so that you c
 You can install the necessary files with the built-in tempest console:
 
 ```console
-./vendor/bin/tempest install
+./vendor/bin/tempest install framework
 ```
 
 Or you can manually create an `index.php` file in your project's public folder:

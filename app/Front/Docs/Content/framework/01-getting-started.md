@@ -106,7 +106,7 @@ Installing Tempest this way will give you access to the tempest console as a com
 Optionally, you can choose to install Tempest's entry points in your project:
 
 ```txt
-./vendor/bin/tempest install
+./vendor/bin/tempest install framework
 ```
 
 Installing Tempest into a project means copying one or more of these files into that project:
