@@ -87,6 +87,7 @@ Tempest comes with a `cache:clear` command which allows you to pick which caches
 
 <h2>Which caches do you want to clear?</h2> 
 > [ ] <em>Tempest\Core\DiscoveryCache</em>
+  [ ] <em>Tempest\Core\ConfigCache</em>
   [ ] <em>Tempest\View\ViewCache</em>
   [ ] <em>Tempest\Cache\ProjectCache</em>
   [ ] <em>…</em>
@@ -98,6 +99,7 @@ If you want to clear all caches, you can use the `--all` flag:
 ./tempest cache:clear --all
 
 <em>Tempest\Core\DiscoveryCache</em> cleared successfully
+<em>Tempest\Core\ConfigCache</em> cleared successfully
 <em>Tempest\View\ViewCache</em> cleared successfully
 <em>Tempest\Cache\ProjectCache</em> cleared successfully
 <em>…</em> cleared successfully
@@ -125,6 +127,9 @@ If, however, you need more fine-grained control over which caches are enabled or
 {:hl-comment:# Enable or disable discovery cache:}
 {:hl-property:DISCOVERY_CACHE:}={:hl-keyword:false:}
 
+{:hl-comment:# Enable or disable config cache:}
+{:hl-property:CONFIG_CACHE:}={:hl-keyword:false:}
+
 {:hl-comment:# Enable or disable view cache:}
 {:hl-property:VIEW_CACHE:}={:hl-keyword:false:}
 
@@ -140,6 +145,7 @@ Finally, you can use the `cache:status` command to verify which cashes are enabl
 ./tempest cache:status
 
 <em>Tempest\Core\DiscoveryCache</em> <success>enabled</success>
+<em>Tempest\Core\ConfigCache</em> <success>enabled</success>
 <em>Tempest\View\ViewCache</em> <error>disabled</error>
 <em>Tempest\Cache\ProjectCache</em> <error>disabled</error>
 ```
