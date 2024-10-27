@@ -54,17 +54,6 @@ final readonly class AuthInstaller implements Installer
             $this->publish(
                 source: $source,
                 destination: $destination,
-                callback: function (string $source, string $destination): void {
-                    (new ClassManipulator($source))
-                        // Set the right namespace
-                        ->setNamespace(src_namespace())
-                        
-                        // Remove the `#[DoNotDiscover]` attribute
-                        ->removeClassAttribute(DoNotDiscover::class)
-                        
-                        // Save the newly generated class in the right location
-                        ->save($destination);
-                },
             );
         }
     }
@@ -92,7 +81,24 @@ Running the installer looks like this:
 <success>Done</success> 
 ```
 
-Note how, within installer classes, you can use the `src_namespace()` and `src_path()` functions to generate paths to the project's source folder. This folder be either `src/` or `app/`, depending on the project's preferences. On top of that, you can use `\Tempest\Generation\ClassManipulator`, which has a range of helper methods to generate and manipulate classes.
+Note that you can use `src_path()` to generate paths to the project's source folder. This folder be either `src/` or `app/`, depending on the project's preferences. If you're using the `PublishesFiles` trait, then Tempest will also automatically adjust class namespaces and remove `#[DoNotDiscover]` attributes when publishing files.
+
+On top of that, you can pass a callback to the `publish()` method, which gives you even more control over the published files:
+
+```php
+public function install(): void
+{
+    // …
+    
+    $this->publish(
+        source: $source,
+        destination: $destination,
+        callback: function (string $source, string $destination): void {
+            // …
+        },
+    );
+}
+```
 
 Installers are resolved via the container, which means you can inject any dependency you need. You can also interact with the console from within the `install()` method if you want to (if you use the `PublishesFiles` trait, you have the console available automatically):
 
