@@ -16,28 +16,27 @@
 
 
     <div class="w-full flex flex-col ">
-        <div class="w-full z-10 py-24">
-            <div class="w-full max-w-screen-md mx-auto grid gap-4 px-24">
+        <div class="w-full z-10 md:py-24 pt-12">
+            <div class="w-full max-w-screen-md mx-auto grid gap-12 md:px-24 px-8">
                 <?php foreach ($posts as $post): ?>
-                    <a href="<?= $post->getUri() ?>" class="grid gap-2">
-                        <span class="text-2xl font-bold">
+                    <a href="<?= $post->getUri() ?>" class="grid gap-2 hover:bg-tempest-blue-500 hover:underline rounded-lg hover:text-white p-4">
+                        <span class="text-2xl font-bold flex items-baseline gap-2">
                             <?= $post->title ?>
+
+                            <span class="text-sm font-medium">
+                                <?= $post->createdAt->format('F d, Y') ?>
+                            </span>
                         </span>
                         <?php if ($post->description ?? null): ?>
                             <span>
                                 <?= $post->description ?>
                             </span>
                         <?php endif ?>
-                        <span class="flex">
-                            <span class="bg-tempest-blue-500 px-2 py-1 text-sm font-bold text-white rounded">
-                                <?= $post->createdAt->format('Y-m-d') ?>
-                            </span>
-                        </span>
                     </a>
                 <?php endforeach; ?>
             </div>
         </div>
     </div>
 
-    <x-footer />
+    <x-footer/>
 </x-base>

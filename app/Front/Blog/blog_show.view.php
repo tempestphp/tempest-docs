@@ -18,6 +18,9 @@ use function Tempest\uri;
     </div>
 
     <div class="blog prose max-w-screen-md mx-auto py-8 md:py-16 md:px-24 px-2">
+        <p class="text-sm">
+            Written by <?= $post->author ?> on <?= $post->createdAt->format('F d, Y') ?> — <a href="/blog">Back</a>
+        </p>
         <?= $post->content ?>
     </div>
 

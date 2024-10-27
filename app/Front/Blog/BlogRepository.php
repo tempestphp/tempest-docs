@@ -23,6 +23,7 @@ final readonly class BlogRepository
     public function all(bool $loadContent = false): ArrayHelper
     {
         return arr(glob(__DIR__ . '/Content/*.md'))
+            ->reverse()
             ->map(function (string $path) use ($loadContent) {
                 $content = file_get_contents($path);
 
