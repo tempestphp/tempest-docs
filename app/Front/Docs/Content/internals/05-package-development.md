@@ -56,6 +56,8 @@ final readonly class AuthInstaller implements Installer
                 destination: $destination,
             );
         }
+    
+        $this->publishImports();
     }
 }
 ```
@@ -97,6 +99,8 @@ public function install(): void
             // …
         },
     );
+    
+    $this->publishImports();
 }
 ```
 
@@ -123,11 +127,17 @@ final readonly class MyPackageInstaller implements Installer
                 // …
             },
         );
+        
+        $this->publishImports();
     }
 }
 ```
 
 Finally, Installers will be discovered by Tempest, so you only need to implement the `\Tempest\Core\Installer` interface.
+
+### Publishing imports
+
+As you can see in the previous examples, `$this->publishImports()` is always called within the `install()` method. Calling this method will loop over all published files, and adjust any imports that reference to published files. 
 
 ## Testing helpers
 
