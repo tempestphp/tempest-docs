@@ -110,7 +110,7 @@ PHP 8.3.3 Development Server (http://localhost:8000) started
 If you don't need an app scaffold, you can opt to install `tempest/framework` as a standalone package. You could do this in any project; it could already contain code, or it could be an empty project.
 
 ```txt
-composer require tempest/framework:1.0-alpha2
+composer require tempest/framework:1.0-alpha.3
 ```
 
 Installing Tempest this way will give you access to the tempest console as a composer binary:

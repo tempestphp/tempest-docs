@@ -24,13 +24,15 @@ use function Tempest\uri;
             <div class=" flex-1 flex flex-col items-center justify-center gap-8">
                 <h1 class="text-[1.5rem] md:text-[2.5rem] max-w-[640px] leading-[1.1] text-center font-display font-extrabold">The PHP framework that gets out of your way.</h1>
 
+                <div class="flex gap-3 my-8 flex-col text-center items-center ">
+                    <div class="bg-tempest-blue-950/[90%] px-4 py-2 rounded-[9px] text-white border border-tempest-blue-500 font-medium font-mono text-[16px]">
+                        <span class="text-tempest-blue-100 font-normal">composer</span> require tempest/framework:1.0-alpha.3
+                    </div>
+                </div>
+
                 <div class="flex sm:flex-row flex-col gap-2">
                     <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Read the docs</x-button>
                     <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
-                </div>
-
-                <div :if="$commit" class="text-center">
-                    🌊 <span class="font-bold">Latest commit: </span><a target="_blank" rel="noopener noreferrer" href="<?= $commit->html_url ?>" class="underline hover:no-underline"><?= $commit->commit->message ?></a> by <?= $commit->author->login ?>
                 </div>
             </div>
 

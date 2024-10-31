@@ -7,7 +7,7 @@ title: Getting Started
 You can install `tempest/console` like so:
 
 ```
-composer require tempest/console:1.0-alpha2
+composer require tempest/console:1.0-alpha.3
 ```
 
 And run it like so:
