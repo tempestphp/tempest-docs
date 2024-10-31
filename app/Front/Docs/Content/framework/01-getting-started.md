@@ -11,6 +11,14 @@ Tempest can be installed **as a standalone PHP project**, as well as **a package
 Since code says more than words, here's a Tempest controller:
 
 ```php
+// app/BookController.php
+
+use Tempest\Http\Get;
+use Tempest\Http\Post;
+use Tempest\Http\Response;
+use Tempest\Http\Responses\Ok;
+use Tempest\Http\Responses\Redirect;
+
 final readonly class BookController
 {
     #[Get('/books/{book}')]
@@ -34,6 +42,14 @@ final readonly class BookController
 And here's a Tempest console command:
 
 ```php
+// app/MigrateUpCommand.php
+
+use Tempest\Console\Console;
+use Tempest\Console\ConsoleCommand;
+use Tempest\Console\Middleware\ForceMiddleware;
+use Tempest\Console\Middleware\CautionMiddleware;
+use Tempest\EventBus\EventHandler;
+
 final readonly class MigrateUpCommand
 {
     public function __construct(
@@ -156,6 +172,12 @@ Discovery works by scanning you project code, and looking at each file and metho
 As an example, Tempest is able to determine which methods are controller methods based on their route attributes:
 
 ```php
+// app/BlogPostController.php
+
+use Tempest\Http\Get;
+use Tempest\Http\Response;
+use Tempest\View\View;
+
 final readonly class BlogPostController
 {
     #[Get('/blog')]
@@ -171,9 +193,14 @@ final readonly class BlogPostController
 And likewise, it's able to detect console commands based on their console command attribute:
 
 ```php
+// src/RssSyncCommand.php
+
+use Tempest\Console\HasConsole;
+use Tempest\Console\ConsoleCommand;
+
 final readonly class RssSyncCommand
 {
-    public function __construct(private Console $console) {}
+    use HasConsole;
 
     #[ConsoleCommand('rss:sync')]
     public function __invoke(bool $force = false): void  
