@@ -28,23 +28,20 @@ final readonly class CodeController
     {
         $code = $request->get('code');
 
-        return (new Redirect(uri([self::class, 'preview'])))->addSession('code', base64_encode($code));
+        $code = urlencode(base64_encode($code));
+
+        return (new Redirect(uri([self::class, 'preview']) . '?code=' . $code));
     }
 
     #[Get('/code/preview')]
-    public function preview(
-        Request $request,
-        MarkdownConverter $markdown,
-    ): View {
+    public function preview(Request $request): View {
         $highlighter = new Highlighter(new CssTheme());
 
-        if ($slide = $request->get('slide')) {
-            $code = $markdown->convert(file_get_contents(__DIR__ . "/../Content/slides/{$slide}.md"))->getContent();
-        } else {
-            $code = $this->trim(base64_decode($request->getSessionValue('code') ?? base64_encode('// Hello World')));
+        $code = $request->get('code') ?? urlencode(base64_encode('// Hello world'));
 
-            $code = $highlighter->parse($code, $request->get('lang') ?? 'php');
-        }
+        $language  = $request->get('lang') ?? 'php';
+
+        $code = $highlighter->parse(urldecode(base64_decode($code)), $language);
 
         return view(__DIR__ . '/code_preview.view.php')->data(code: $code);
     }
