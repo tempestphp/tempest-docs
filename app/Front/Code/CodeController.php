@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Front\Code;
 
 use League\CommonMark\MarkdownConverter;
+use Tempest\Container\Tag;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
 use Tempest\Http\Get;
@@ -34,9 +35,7 @@ final readonly class CodeController
     }
 
     #[Get('/code/preview')]
-    public function preview(Request $request): View {
-        $highlighter = new Highlighter(new CssTheme());
-
+    public function preview(Request $request, #[Tag('project')] Highlighter $highlighter): View {
         $code = $request->get('code') ?? urlencode(base64_encode('// Hello world'));
 
         $language  = $request->get('lang') ?? 'php';

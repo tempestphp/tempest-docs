@@ -42,13 +42,7 @@ final readonly class MarkdownInitializer implements Initializer
             ],
         ]);
 
-        $highlighter = (new Highlighter(new CssTheme()));
-
-        $highlighter
-            ->addLanguage(new TempestViewLanguage())
-            ->addLanguage(new TempestConsoleWebLanguage())
-            ->addLanguage(new ExtendedJsonLanguage())
-        ;
+        $highlighter = $container->get(Highlighter::class, tag: 'project');
 
         $environment
             ->addExtension(new CommonMarkCoreExtension())
