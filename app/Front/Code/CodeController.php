@@ -10,9 +10,9 @@ use Tempest\Highlight\Themes\CssTheme;
 use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
-use Tempest\Http\Response;
+use Tempest\Http\Responses\Redirect;
 use Tempest\View\View;
-use function Tempest\redirect;
+use function Tempest\uri;
 use function Tempest\view;
 
 final readonly class CodeController
@@ -23,12 +23,12 @@ final readonly class CodeController
         return view(__DIR__ . '/code.view.php');
     }
 
-    #[Post('/code')]
-    public function submit(Request $request): Response
+    #[Post('/code/submit')]
+    public function submit(Request $request): Redirect
     {
         $code = $request->get('code');
 
-        return redirect([self::class, 'preview'])->addSession('code', base64_encode($code));
+        return (new Redirect(uri([self::class, 'preview'])))->addSession('code', base64_encode($code));
     }
 
     #[Get('/code/preview')]
