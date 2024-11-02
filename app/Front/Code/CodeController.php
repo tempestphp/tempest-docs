@@ -30,7 +30,7 @@ final readonly class CodeController
 
         $code = urlencode(base64_encode($code));
 
-        return (new Redirect(uri([self::class, 'preview']) . '?code=' . $code));
+        return (new Redirect(uri([self::class, 'preview']) . '?lang=php&code=' . $code));
     }
 
     #[Get('/code/preview')]
