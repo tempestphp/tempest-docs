@@ -135,6 +135,11 @@ h6 {
 	position: relative;
 }
 
+.hero-bg-screenshot {
+	@apply hero-bg;
+	background-size: 200%;
+}
+
 .\@HeroBlock {
 	@apply bg-no-repeat bg-bottom;
 	@apply hero-bg;
