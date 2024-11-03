@@ -390,6 +390,33 @@ final readonly class BookController
 }
 ```
 
+### Binding to an enum
+
+Tempest can also bind to a string backed enum which causes all enum values to be available as routes.
+
+```php
+// app/Genre.php
+
+enum Genre: string
+{
+    case Thriller = 'thriller';
+    case Fantasy = 'fantasy';
+    case ScienceFiction = 'science-fiction';
+}
+
+// app/BookController.php
+
+use Tempest\Http\Get;
+use http\Env\Response;
+
+final readonly class BookController
+{
+    #[Get('/books/{genre}')]
+    public function show(Genre $genre): Response { /* … */ }
+}
+```
+
+
 ## Deferring tasks
 
 Sometimes you might want to handle some tasks after a response has been sent to the client. For example: you want to send an email but don't want the client to wait until it has been sent. Or, you want to keep track of page visits, but don't want the client having to wait until you update your analytics database.
