@@ -1,97 +1,67 @@
-<?php /** @var \Tempest\View\GenericView $this */ ?>
+<x-base>
 
-<html lang="en">
-<head>
-    <title>Code | Tempest</title>
+    <x-slot name="scripts">
+        <script src="/html2canvas.min.js" defer></script>
+        <script src="/filesaver.min.js" defer></script>
 
-    <style>
-        <?= file_get_contents(__DIR__ . '/../../public/main.css') ?>
+        <script>
+            const makeScreenshot = document.getElementById('make-screenshot');
 
-        pre, code {
-            color: #000;
-            background-color: #f3f3f3;
-        }
+            makeScreenshot.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
 
-        body {
-            font-size: 1.5em;
-        }
+                let screenshot = document.getElementById("screenshot");
+                screenshot.classList.add('hero-bg-screenshot');
+                html2canvas(screenshot, {
+                    allowTaint: true,
+                    useCORS: true,
+                })
+                    .then(function (canvas) {
+                        screenshot.classList.remove('hero-bg-screenshot');
+                        canvas.toBlob(function (blob) {
+                            const date  = new Date;
 
-        body, pre {
-            background: #fff;
-        }
+                            const timestamp = date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay() + '_' + date.getHours() + '-' + date.getMinutes() +  '-' + date.getSeconds();
 
-        pre {
-            line-height: 1.6em;
-            max-width: 60vw;
-        }
+                            saveAs(blob, "screenshot-" + timestamp + ".png");
+                        });
+                    })
+                    .catch((e) => {
+                        screenshot.classList.remove('hero-bg-screenshot');
+                    });
 
-        .hl-keyword {
-            color: #4285F4;
-        }
 
-        .hl-property {
-            color: #34A853;
-        }
+            });
+        </script>
+    </x-slot>
 
-        .hl-attribute {
-            font-style: italic;
-            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        }
+    <div class="bg-red p-4 fixed z-[99] right-0 top-0 flex gap-2">
+        <button
+                id="make-screenshot"
+                class="
+            bg-white
+            p-2
+            rounded-full
+            shadow-xl
+            border-2 border-transparent
+            hover:bg-tempest-blue-500
+            hover:text-white
+            hover:border-white
+        ">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/>
+            </svg>
+        </button>
+    </div>
 
-        .hl-type {
-            color: #EA4334;
-        }
+    <div class="hero-bg h-full flex items-center justify-center">
+        <div class="p-24" id="screenshot">
+            <x-codeblock-home class="max-h-[80%]">
+                <pre><?= $code ?></pre>
+            </x-codeblock-home>
+        </div>
+    </div>
 
-        .hl-generic {
-            color: #9d3af6;
-        }
-
-        .hl-number,
-        .hl-boolean,
-        .hl-value {
-            color: #000;
-        }
-
-        .hl-variable {
-            color: #000;
-        }
-
-        .hl-comment {
-            color: #888888;
-        }
-
-        .hl-blur {
-            filter: blur(2px);
-        }
-
-        .hl-strong {
-            font-weight: bold;
-        }
-
-        .hl-em {
-            font-style: italic;
-        }
-
-        .hl-addition {
-            min-width: 100%;
-            background-color: #00FF0022;
-        }
-
-        .hl-deletion {
-            min-width: 100%;
-            background-color: #FF000011;
-        }
-    </style>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/favicon/site.webmanifest">
-</head>
-<body>
-
-<div class="flex justify-center items-center min-h-full">
-    <pre class="p-6 px-8 rounded"><?= $this->raw('code') ?></pre>
-</div>
-</body>
-</html>
+</x-base>

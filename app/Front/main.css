@@ -125,15 +125,25 @@ h6 {
 	border: 2px solid red;
 }
 
-.\@HeroBlock {
-	@apply bg-no-repeat bg-bottom;
+.hero-bg {
 	background-image: linear-gradient(to bottom, #0071bccc 20%, #1b1429cc 100%),
-		linear-gradient(to right, #0071bc 0%, rgba(0, 87, 190, 0%), #0071bc 100%),
-		url('/img/bg-dark-theme-2@2x.jpg');
+	linear-gradient(to right, #0071bc 0%, rgba(0, 87, 190, 0%), #0071bc 100%),
+	url('/img/bg-dark-theme-2@2x.jpg');
 	background-position: top;
 	background-color: #0071bc;
-	background-size: 100%, 1232px 100%, 1232px auto;
+	background-size: cover;
 	position: relative;
+}
+
+.hero-bg-screenshot {
+	@apply hero-bg;
+	background-size: 200%;
+}
+
+.\@HeroBlock {
+	@apply bg-no-repeat bg-bottom;
+	@apply hero-bg;
+	background-size: 100%, 1232px 100%, 1232px auto;
 }
 
 @media (min-width: 800px) {

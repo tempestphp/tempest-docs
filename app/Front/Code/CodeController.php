@@ -5,14 +5,15 @@ declare(strict_types=1);
 namespace App\Front\Code;
 
 use League\CommonMark\MarkdownConverter;
+use Tempest\Container\Tag;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
 use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
-use Tempest\Http\Response;
+use Tempest\Http\Responses\Redirect;
 use Tempest\View\View;
-use function Tempest\redirect;
+use function Tempest\uri;
 use function Tempest\view;
 
 final readonly class CodeController
@@ -23,28 +24,23 @@ final readonly class CodeController
         return view(__DIR__ . '/code.view.php');
     }
 
-    #[Post('/code')]
-    public function submit(Request $request): Response
+    #[Post('/code/submit')]
+    public function submit(Request $request): Redirect
     {
         $code = $request->get('code');
 
-        return redirect([self::class, 'preview'])->addSession('code', base64_encode($code));
+        $code = urlencode(base64_encode($code));
+
+        return (new Redirect(uri([self::class, 'preview']) . '?lang=php&code=' . $code));
     }
 
     #[Get('/code/preview')]
-    public function preview(
-        Request $request,
-        MarkdownConverter $markdown,
-    ): View {
-        $highlighter = new Highlighter(new CssTheme());
+    public function preview(Request $request, #[Tag('project')] Highlighter $highlighter): View {
+        $code = $request->get('code') ?? urlencode(base64_encode('// Hello world'));
 
-        if ($slide = $request->get('slide')) {
-            $code = $markdown->convert(file_get_contents(__DIR__ . "/../Content/slides/{$slide}.md"))->getContent();
-        } else {
-            $code = $this->trim(base64_decode($request->getSessionValue('code') ?? base64_encode('// Hello World')));
+        $language  = $request->get('lang') ?? 'php';
 
-            $code = $highlighter->parse($code, $request->get('lang') ?? 'php');
-        }
+        $code = $highlighter->parse(urldecode(base64_decode($code)), $language);
 
         return view(__DIR__ . '/code_preview.view.php')->data(code: $code);
     }
