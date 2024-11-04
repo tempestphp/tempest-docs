@@ -28,6 +28,11 @@ return new ConsoleConfig(
 Individual middleware can be added on top of this stack by passing it into the `{php}#[ConsoleCommand]` attribute:
 
 ```php
+// app/ForceCommand.php
+
+use Tempest\Console\ConsoleCommand;
+use Tempest\Console\Middleware\ForceMiddleware;
+
 final readonly class ForceCommand
 {
     #[ConsoleCommand(
@@ -107,6 +112,8 @@ Adds the global `--help` and `-h` flags to all commands.
 Adds the global `--force` and `-f` flags to all commands. Using these flags will cause tempest to skip all `{php}$console->confirm()` calls.
 
 ```php
+use Tempest\Console\Middleware\ForceMiddleware;
+
 #[ConsoleCommand(
     middleware: [ForceMiddleware::class]
 )]
@@ -126,6 +133,8 @@ public function __invoke(): void
 Adds a warning before running the command in production or staging.
 
 ```php
+use Tempest\Console\Middleware\CautionMiddleware;
+
 #[ConsoleCommand(
     middleware: [CautionMiddleware::class]
 )]
@@ -146,6 +155,7 @@ You can create your own middleware by implementing the `{php}ConsoleMiddleware` 
 
 ```php
 use Tempest\Console\ConsoleMiddleware;
+use Tempest\Console\ConsoleMiddlewareCallable;
 
 final readonly class HelloWorldMiddleware implements ConsoleMiddleware
 {
@@ -153,7 +163,7 @@ final readonly class HelloWorldMiddleware implements ConsoleMiddleware
     {
     }
 
-    public function __invoke(Invocation $invocation, callable $next): ExitCode
+    public function __invoke(Invocation $invocation, ConsoleMiddlewareCallable $next): ExitCode
     {
         if ($invocation->argumentBag->get('hello')) {
             $this->console->writeln('Hello world!')

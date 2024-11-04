@@ -170,14 +170,14 @@ A middleware class, in turn, should implement the `\Tempest\Http\HttpMiddleware`
 // app/BooksMiddleware.php
 
 use Tempest\Http\HttpMiddleware;
+use Tempest\Http\HttpMiddlewareCallable;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
 
 final readonly class BooksMiddleware implements HttpMiddleware
 {
-    public function __invoke(Request $request, callable $next): Response
+    public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
-        /** @var \Tempest\Http\Response $response */
         $response = $next($request);
         
         $response->addHeader('x-book', 'true');

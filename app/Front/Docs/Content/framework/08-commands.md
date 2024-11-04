@@ -9,6 +9,8 @@ Tempest comes with a built-in command bus, which can be used to dispatch a comma
 Commands themselves are simple data classes. They don't have to implement anything:
 
 ```php
+// app/CreateUser.php
+
 final readonly class CreateUser
 {
     public function __construct(
@@ -22,6 +24,10 @@ final readonly class CreateUser
 Just like controller actions and console commands, command handlers are discovered automatically: every method tagged with `#[CommandHandler]` will be registered as one. Tempest knows which command a method handles by looking at the type of the first parameter:
 
 ```php
+// app/UserHandlers.php
+
+use Tempest\CommandBus\CommandHandler;
+
 final class UserHandlers
 {
     #[CommandHandler]
@@ -43,12 +49,16 @@ Note that handler method names can be anything: invokable methods, `handleCreate
 Dispatching a command can be done with the `command()` function:
 
 ```php
+use function Tempest\command;
+
 command(new CreateUser($name));
 ```
 
 Alternatively to using the `command()` function, you can inject the `CommandBus`, and dispatch commands like so:
 
 ```php
+// app/UserController.php
+
 use Tempest\CommandBus\CommandBus;
 
 final readonly class UserController()
@@ -71,13 +81,18 @@ final readonly class UserController()
 Whenever commands are dispatched, they are passed to the commandbus, which will pass the command along to each of its handlers. Similar to web requests and console commands, this commandbus supports middleware. Commandbus middleware can be used to, for example, do logging for specific commands, add metadata to commands, or anything else. Commandbus middleware are classes that implement the `CommandbusMiddleware` interface, and look like this:
 
 ```php
+// app/MyCommandBusMiddleware.php
+
+use Tempest\CommandBus\CommandBusMiddleware;
+use Tempest\CommandBus\CommandBusMiddlewareCallable;
+
 class MyCommandBusMiddleware implements CommandBusMiddleware
 {
     public function __construct(
         private Logger $logger,
     ) {}
 
-    public function __invoke(object $command, callable $next): void
+    public function __invoke(object $command, CommandBusMiddlewareCallable $next): void
     {
         $next($command);
         
