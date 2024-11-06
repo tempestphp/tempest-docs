@@ -350,16 +350,16 @@ As mentioned, configuration is represented by objects in Tempest. Tempest provid
 // app/database.config.php
 
 use Tempest\Database\DatabaseConfig;
-use Tempest\Database\Drivers\MySqlDriver;
+use Tempest\Database\Connections\MySqlConnection;
 use function Tempest\env;
 
 return new DatabaseConfig(
-    driver: new MySqlDriver(
-        host: env('DB_HOST')
-        port: env('DB_PORT')
-        username: env('DB_USERNAME')
+    connection: new MySqlConnection(
+        host: env('DB_HOST'),
+        port: env('DB_PORT'),
+        username: env('DB_USERNAME'),
         password: env('DB_PASSWORD'),
-        database: env('DB_NAME'),
+        database: env('DB_DATABASE'),
     ),
 );
 ```
