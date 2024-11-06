@@ -103,8 +103,8 @@ use function Tempest\uri;
 
         <div class="w-full bg-tempest-blue-500 py-24 slope-2 px-4">
             <blockquote class="max-w-2xl w-full mx-auto text-[1.25rem] text-white text-center">
-                <p>Tempest has already managed to become something more than an exercise, and you seem to have the experience, mentality and passion to lead its future to much greater heights.</p>
-                <cite class="mt-3"><a class="text-[0.9375rem] mt-4 underline hover:no-underline not-italic" href="https://www.reddit.com/r/PHP/comments/1fi2dny/introducing_tempest_the_framework_that_gets_out/lngag06/">– Reddit</a></cite>
+                <p>I really like the way this framework turns out. It is THE framework in the PHP space out there for which I am most excited about as it allows me to make up the project structure myself. Only thing missing right now is async commands but it will come. So: Great job!</p>
+                <cite class="mt-3"><a class="text-[0.9375rem] mt-4 underline hover:no-underline not-italic" href="https://github.com/tempestphp/tempest-framework/issues/681">– GitHub</a></cite>
             </blockquote>
         </div>
 
@@ -147,8 +147,8 @@ use function Tempest\uri;
 
         <div class="w-full slope-4 bg-tempest-blue-500 text-white py-24 -mt-6 text-center px-4">
             <blockquote class="max-w-2xl w-full mx-auto text-[1.25rem]">
-                <p> Tempest is a work of art 👌</p>
-                <cite class="mt-3"><a class="text-[0.9375rem] mt-4 underline hover:no-underline not-italic" href="https://x.com/LukeDowning19/status/1836083961174397420">– Twitter</a></cite>
+                <p>Tempest has already managed to become something more than an exercise, and you seem to have the experience, mentality and passion to lead its future to much greater heights.</p>
+                <cite class="mt-3"><a class="text-[0.9375rem] mt-4 underline hover:no-underline not-italic" href="https://www.reddit.com/r/PHP/comments/1fi2dny/introducing_tempest_the_framework_that_gets_out/lngag06/">– Reddit</a></cite>
             </blockquote>
         </div>
 

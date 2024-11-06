@@ -5,6 +5,7 @@ namespace App\Front\Docs;
 use Tempest\Core\KernelEvent;
 use Tempest\EventBus\EventHandler;
 use Tempest\Http\HttpMiddleware;
+use Tempest\Http\HttpMiddlewareCallable;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
@@ -25,11 +26,10 @@ final readonly class DocsRedirectMiddleware implements HttpMiddleware
         $this->router->addMiddleware(self::class);
     }
 
-    public function __invoke(Request $request, callable $next): Response
+    public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
         $path = str($request->getPath());
 
-        /** @var \Tempest\Http\Response $response */
         $response = $next($request);
 
         // If not a docs page, let's just continue normal flow
