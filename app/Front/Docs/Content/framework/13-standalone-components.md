@@ -105,7 +105,7 @@ composer require tempest/view
 ```php
 $container = Tempest::boot(__DIR__);
 
-$view  view(__DIR__ . '/src/b.view.php');
+$view = view(__DIR__ . '/src/b.view.php');
 
 echo $container->get(ViewRenderer::class)->render($view);
 ```
