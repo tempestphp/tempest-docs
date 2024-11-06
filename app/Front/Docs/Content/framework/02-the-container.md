@@ -221,6 +221,62 @@ $container->get(Highlighter::class, tag: 'cli');
 
 You can read [this blog post](https://stitcher.io/blog/tagged-singletons) for a more in-depth explanation on tagged singletons.
 
+## Injected properties
+
+While constructor injection is almost always the preferred way to go, Tempest also offers the ability to inject values straight into properties, without them being requested by the constructor. You can mark any property — public, protected, or private — with the `#[Inject]` attribute. Whenever a class instance is resolved via the container, its properties marked for injection will be provided the right value. 
+
+```php
+// Tempest/Console/src/HasConsole.php
+
+use Tempest\Container\Inject;
+
+trait HasConsole
+{
+    #[Inject]
+    private readonly Console $console;
+    
+    // …
+}
+```
+
+Keep in mind that injected properties are _technically_ a form of service location because an injected property has is tightly coupled to the dependency container. While it's recommended to rely on constructor injection by default, injected properties _can_ offer flexibility when using traits without having to claim the constructor within that trait.
+
+For example, without injected properties, the above example would have to define a constructor within the trait to inject the `Console` dependency:
+
+
+```php
+trait HasConsole
+{
+    public function __construct(
+        private readonly Console $console,  
+    ) {}
+    
+    // …
+}
+```
+
+On its own, that isn't a problem, but it causes some usability issues when using this trait in classes that require other dependencies as well:
+
+```php
+use Tempest\Console\HasConsole;
+
+class MyCommand
+{
+    use HasConsole;
+
+    public function __construct(
+        private BlogPostRepository $repository,
+        
+        // The `HasConsole` trait breaks if you didn't remember to explicitly inject it here
+        private Console $console, 
+    ) {}
+    
+    // …
+}
+```
+
+For these edge cases, it's nicer to make the trait self-contained without having to rely on constructor injection. That's why injected properties are supported. 
+
 ## Dynamic initializers
 
 Some edge cases require more flexibility to match a requested class to an initializer. Let's take the example of route model binding. Let's say you have a controller like this: 
