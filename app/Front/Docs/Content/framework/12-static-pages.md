@@ -5,6 +5,13 @@ title: Static Pages
 Tempest comes with a built-in static site generator. When a controller action is tagged with `#[StaticPage]`, it can be compiled by Tempest as a static HTML page. These pages can then directly be served via your webserver.
 
 ```php
+// app/HomeController.php
+
+use Tempest\Http\Get;
+use Tempest\Http\StaticPage;
+use Tempest\View\View;
+use function Tempest\view;
+
 final readonly class HomeController
 {
     #[StaticPage]
@@ -37,6 +44,12 @@ Since most pages require some form of dynamic data, static pages can be assigned
 Let's take a look at the controller action for this docs website:
 
 ```php
+// app/DocsController.php
+
+use Tempest\Http\Get;
+use Tempest\Http\StaticPage;
+use Tempest\View\View;
+
 final readonly class DocsController
 {
     #[StaticPage(DocsDataProvider::class)]
@@ -54,6 +67,10 @@ final readonly class DocsController
 In this case, the `#[StaticPage]` attribute gets a reference to the `DocsDataProvider`, which implements the `\Tempest\Http\DataProvider` interface:
 
 ```php
+// app/DocsDataProvider.php
+
+use Tempest\Http\DataProvider;
+
 final readonly class DocsDataProvider implements DataProvider
 {
     public function provide(): Generator
@@ -68,6 +85,10 @@ A data provider's goal is to generate multiple pages for one controller action. 
 In other words: we want to generate a page for every docs chapter. We can use the `ChapterRepository` to get a list of all available chapters. Eventually, our data provider looks like this:
 
 ```php
+// app/DocsDataProvider.php
+
+use Tempest\Http\DataProvider;
+
 final readonly class DocsDataProvider implements DataProvider
 {
     public function __construct(

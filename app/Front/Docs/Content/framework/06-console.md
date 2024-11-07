@@ -21,6 +21,8 @@ Tempest's console component can be used both within the framework, and as a stan
 And you can create console commands like so:
 
 ```php
+// app/Package.php
+
 use Tempest\Console\ConsoleCommand;
 
 final readonly class Package

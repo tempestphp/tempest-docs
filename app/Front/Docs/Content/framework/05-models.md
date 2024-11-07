@@ -7,6 +7,11 @@ In contrast to many popular ORMs, Tempest models aren't required to be tied to t
 In other words, a model can be as simple as this class:
 
 ```php
+// app/Book.php
+
+use Tempest\Validation\Rules\Length;
+use App\Author;
+
 final class Book
 {
     public function __construct(
@@ -15,7 +20,7 @@ final class Book
     
         public ?Author $author = null,
     
-        /** @var \App\Modules\Books\Models\Chapter[] */
+        /** @var \App\Chapter[] */
         public array $chapters = [],
     ) {}
 }
@@ -24,6 +29,8 @@ final class Book
 Retrieving and persisting a model from a data source is done via Tempest's `{php}map()` function:
 
 ```php
+use function Tempest\map;
+
 map('path/to/books.json')->collection->to(Book::class);
 
 map($book)->to(MapTo::JSON);
@@ -34,6 +41,13 @@ map($book)->to(MapTo::JSON);
 Because database persistence is a pretty common use case, Tempest provides an implementation for models that should interact with the database specifically. Any model class can implement the `{php}DatabaseModel` interface, and use the `{php}IsDatabaseModel` trait like so:
 
 ```php
+// app/Book.php
+
+use Tempest\Database\DatabaseModel;
+use Tempest\Database\IsDatabaseModel;
+use Tempest\Validation\Rules\Length;
+use App\Author;
+
 final class Book implements DatabaseModel
 {
     use IsDatabaseModel;
@@ -44,7 +58,7 @@ final class Book implements DatabaseModel
     
         public ?Author $author = null,
     
-        /** @var \App\Modules\Books\Models\Chapter[] */
+        /** @var \App\Chapter[] */
         public array $chapters = [],
     ) {}
 }
@@ -55,7 +69,9 @@ final class Book implements DatabaseModel
 In order to connect to a database, you'll have to create a database config file:
 
 ```php
-// app/Config/database.php
+// app/Config/database.config.php
+
+use Tempest\Database\DatabaseConfig;
 
 return new DatabaseConfig(
     connection: new SQLiteConnection(
@@ -67,6 +83,10 @@ return new DatabaseConfig(
 Tempest has three available database drivers: `{php}SQLiteDriver`, `{php}MySqlDriver`, and `{php}PostgreSqlDriver`. Note that you can use environment variables in config files like so:
 
 ```php
+// app/Config/database.config.php
+
+use Tempest\Database\DatabaseConfig;
+use Tempest\Database\Connections\MySqlConnection;
 use function Tempest\env;
 
 return new DatabaseConfig(
@@ -85,7 +105,12 @@ return new DatabaseConfig(
 Migrations are used to manage database tables that hold persisted model data. Migrations are discovered, so you can create them wherever you like, as long as they implement the `{php}Migration` interface:
 
 ```php
+// app/CreateBookTable.php
+
+use Tempest\Database\Migration;
 use Tempest\Database\QueryStatement;
+use Tempest\Database\QueryStatements\CreateTableStatement;
+use Tempest\Database\QueryStatements\DropTableStatement;
 
 final readonly class CreateBookTable implements Migration
 {
@@ -192,6 +217,9 @@ interface Model
 Important to note is the `DatbaseModel::query()` method, which allows you to create more complex queries for model classes. It's important to note that Tempest deliberately takes a simplistic approach to its model query builder. If you want to build real complex queries, you should write them directly in SQL, and map them to model classes like so:
 
 ```php
+use Tempest\Database\Query;
+use function Tempest\map;
+
 $books = map(new Query("
     SELECT * 
     FROM Book

@@ -5,7 +5,10 @@ title: Input and output
 Every command can read and write from and to the terminal by injecting the `{php}Console` interface. You don't have to configure anything, Tempests takes care of injecting the right dependencies for you behind the scenes:
 
 ```php
+// app/Package.php
+
 use Tempest\Console\Console;
+use Tempest\Console\ConsoleCommand;
 
 final readonly class Package
 {
@@ -34,6 +37,30 @@ The `{php}Console` interface has a bunch of methods you can use:
 - `{php}when({:hl-type:mixed:} $expression, {:hl-type:callable:} $callback): {:hl-type:Console:}` — only perform an action when a condition is met. The console is passed to the callable.
 - `{php}component({:hl-type:ConsoleComponent:} $component, {:hl-type:array:} $validation = []): {:hl-type:mixed:}` — render a [console component](/docs/console/04-components).
 
+## HasConsole
+
+Instead of manually injecting the `Console` in your console command classes, you can also use the `HasConsole` trait. This trait will inject `Console` for you, and also provides shorthand methods on the class itself, instead of having to call `$this->console` manually:
+
+```php
+// app/Package.php
+
+use Tempest\Console\HasConsole;
+use Tempest\Console\ConsoleCommand;
+
+final readonly class Package
+{
+    use HasConsole;
+    
+    #[ConsoleCommand]
+    public function all(): void 
+    {
+        $answer = $this->ask('Please give your name');
+        
+        $this->writeln('Hello');
+    }
+}
+```
+
 ## Output styling
 
 This packages uses [`tempest/highlight`](https://github.com/tempestphp/highlight) to style console output. You can use HTML-like tags to style the output like so:
@@ -59,6 +86,9 @@ The following tags are available:
 Console commands may return an exit code if they wish to, but that's optional. If no exit code is provided, one will be automatically determined for you. 
 
 ```php
+// app/Package.php
+
+use Tempest\Console\ConsoleCommand;
 use Tempest\Console\ExitCode
 
 final readonly class Package

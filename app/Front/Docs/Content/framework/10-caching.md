@@ -9,7 +9,7 @@ Tempest comes with a simple wrapper around PSR-6, which means you can use all PS
 Tempest will use file caching by default. You can however configure another adapter via `CacheConfig`:
 
 ```php
-// Config/cache.php
+// app/Config/cache.config.php
 
 use Tempest\Cache\CacheConfig;
 use Symfony\Component\Cache\Adapter\FilesystemAdapter;
@@ -28,6 +28,11 @@ return new CacheConfig(
 To be able to cache stuff, you need to inject the `Cache` interface wherever you need it, and you're ready to go:
 
 ```php
+// app/RssController.php
+
+use Tempest\Cache\Cache;
+use Tempest\Http\Response;
+
 final readonly class RssController
 {
     public function __construct(
@@ -60,8 +65,12 @@ If you need more fine-grained control, the `Cache` interface has the following m
 It's important to note that the pool configured in `CacheConfig` is used for the default cache, also known as the **project cache**. If needed, you can create your own caches with different adapters like so:
 
 ```php
+// app/RedisCache.php
+
+use Tempest\Container\Singleton;
 use Tempest\Cache\Cache;
 use Tempest\Cache\IsCache;
+use Psr\Cache\CacheItemPoolInterface;
 use Symfony\Component\Cache\Adapter\RedisAdapter;
 
 #[Singleton]

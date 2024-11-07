@@ -9,7 +9,7 @@ Console middleware can be applied both globally (to all console commands), or on
 The global middleware stack is defined within `{php}ConsoleConfig`. Note that the default stack is provided out of the box, you only need to add a custom config file if you want to change this stack.
 
 ```php
-// Config/console.php
+// app/Config/console.config.php
 
 use Tempest\Console\ConsoleConfig;
 
@@ -30,11 +30,14 @@ Individual middleware can be added on top of this stack by passing it into the `
 ```php
 // app/ForceCommand.php
 
+use Tempest\Console\HasConsole;
 use Tempest\Console\ConsoleCommand;
 use Tempest\Console\Middleware\ForceMiddleware;
 
 final readonly class ForceCommand
 {
+    use HasConsole;
+    
     #[ConsoleCommand(
         middleware: [ForceMiddleware::class]
     )]
@@ -154,19 +157,20 @@ public function __invoke(): void
 You can create your own middleware by implementing the `{php}ConsoleMiddleware` interface:
 
 ```php
+// app/HelloWorldMiddleware.php
+
+use Tempest\Console\HasConsole;
 use Tempest\Console\ConsoleMiddleware;
 use Tempest\Console\ConsoleMiddlewareCallable;
 
 final readonly class HelloWorldMiddleware implements ConsoleMiddleware
 {
-    public function __construct(private Console $console)
-    {
-    }
+    use HasConsole;
 
     public function __invoke(Invocation $invocation, ConsoleMiddlewareCallable $next): ExitCode
     {
         if ($invocation->argumentBag->get('hello')) {
-            $this->console->writeln('Hello world!')
+            $this->writeln('Hello world!')
         }
 
         return $next($invocation);

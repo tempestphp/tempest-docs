@@ -28,12 +28,16 @@ ConsoleApplication::boot()->run();
 `tempest/console` uses on Tempest's discovery to find and register console commands. That means you don't have to register any commands manually, and any method within your codebase using the `{php}#[ConsoleCommand]` attribute will automatically be discovered by your console application.
 
 ```php
+// app/InteractiveCommand.php
+
 use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
 
 final readonly class InteractiveCommand
 {
-    public function __construct(private Console $console) {}
+    public function __construct(
+        private Console $console,
+    ) {}
 
     #[ConsoleCommand('hello:world')]
     public function __invoke(): void
@@ -48,7 +52,7 @@ Tempest will discover all console commands within namespaces configured as compo
 ```json
 "autoload": {
     "psr-4": {
-        {:hl-hl:"App\\": "app/":}
+        "App\\": "app/"
     }
 },
 ```
@@ -57,12 +61,15 @@ In case you need more fine-grained control over which directories to discover, y
 
 ```php
 use Tempest\AppConfig;
-
-// …
+use Tempest\Core\DiscoveryLocation;
+use Tempest\Console\ConsoleApplication;
 
 $appConfig = new AppConfig(
     discoveryLocations: [
-        {:hl-hl:new DiscoveryLocation('App\\', __DIR__ . '/app/'):}
+        new DiscoveryLocation(
+            namespace: 'App\\', 
+            path: __DIR__ . '/app/',
+        ),
     ],
 );
 

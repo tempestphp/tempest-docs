@@ -21,7 +21,10 @@ You can manually trigger a schedule run as well:
 Any method using the `{php}#[Schedule]` attribute will be run by the scheduler. As with everything Tempest, these methods are discovered automatically.
 
 ```php
+// app/Jobs.php
+
 use Tempest\Console\Schedule;
+use Tempest\Console\Scheduler\Every;
 
 final readonly class Jobs
 {
@@ -49,6 +52,9 @@ For most common scheduling use-cases, the `{php}Every` enum can be used:
 In case you need more fine-grained control, you can pass in an `{php}Interval` object instead:
 
 ```php
+use Tempest\Console\Schedule;
+use Tempest\Console\Scheduler\Interval;
+
 #[Schedule(new Interval(hours: 2, minutes: 30))]
 public function syncRss(): void
 {
@@ -56,9 +62,13 @@ public function syncRss(): void
 }
 ```
 
-Keep in mind that scheduled task don't have to be console commands, but they _can_ be both if you need to run a task both manually, as well as a scheduled background task.
+Keep in mind that scheduled task don't have to be console commands, but they _can_ be both if you need to run a task both manually, and a scheduled background task.
 
 ```php
+use Tempest\Console\ConsoleCommand;
+use Tempest\Console\Schedule;
+use Tempest\Console\Scheduler\Interval;
+
 #[Schedule(Every::HOUR)]
 #[ConsoleCommand('rss:sync')]
 public function syncRss(): void
@@ -72,9 +82,15 @@ public function syncRss(): void
 Any scheduled task can inject `Console` and write to it as if it's running as a normal console command:
 
 ```php
+// app/Jobs.php
+
+use Tempest\Console\HasConsole;
+use Tempest\Console\Schedule;
+use Tempest\Console\Scheduler\Every;
+
 final readonly class Jobs
 {
-    public function __construct(private Console $console) {}
+    use HasConsole;
     
     #[Schedule(Every::HOUR)]
     public function syncRss(): void

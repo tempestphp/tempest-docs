@@ -9,6 +9,8 @@ Logging in (authentication )and verifying whether a user is allowed to perform a
 Logging in a user can be done with the `Authenticator` class:
 
 ```php
+// app/AuthController.php
+
 use Tempest\Auth\Authenticator;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
@@ -40,7 +42,10 @@ You can protect controller routes using the `#[Allow]` attribute:
 
 
 ```php
+// app/AdminController.php
+
 use Tempest\Auth\Allow;
+use Tempest\Http\Response;
 
 final readonly class AdminController
 {
@@ -55,7 +60,10 @@ final readonly class AdminController
 Tempest uses a permission-based authorizer. That means that, in order for users to be allowed access to a route, they'll need to be granted the right permission. Permissions can be represented as strings or enums:
 
 ```php
+// app/AdminController.php
+
 use Tempest\Auth\Allow;
+use Tempest\Http\Response;
 
 final readonly class AdminController
 {
@@ -79,6 +87,8 @@ Tempest's authenticator and authorizer are compatible with any class implementin
 With this `User` model, you already have a lot of helper methods in place to build your own user management flow:
 
 ```php
+use App\Auth\User;
+
 $user = (new User(
     name: 'Brent',
     email: 'brendt@stitcher.io',

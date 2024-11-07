@@ -26,7 +26,7 @@ Wherever you call `ld()` or `lw()` from, the output will also be written to the 
 - The **server log**, which should be manually configured in `LogConfig`:
 
 ```php
-// app/Config/log.php
+// app/Config/log.config.php
 
 use Tempest\Log\LogConfig;
 
@@ -52,6 +52,12 @@ Finally, the `ll()` function will do exactly the same as `lw()`, but **only writ
 On top of debug logging, Tempest includes a monolog implementation which allows you to log to one or more channels. Writing to the logger is as simple as injecting `\Tempest\Log\Logger` wherever you'd like:
 
 ```php
+// app/Rss.php
+
+use Tempest\Console\Console;
+use Tempest\Console\ConsoleCommand;
+use Tempest\Log\Logger;
+
 final readonly class Rss
 {
     public function __construct(
@@ -72,7 +78,7 @@ final readonly class Rss
 If you're familiar with [monolog](https://seldaek.github.io/monolog/), you know how it supports multiple handlers to handle a log message. Tempest adds a small layer on top of these handlers called channels, they  can be configured within `LogConfig`:
 
 ```php
-// app/Config/log.php
+// app/Config/log.config.php
 
 use Tempest\Log\LogConfig;
 use Tempest\Log\Channels\AppendLogChannel;

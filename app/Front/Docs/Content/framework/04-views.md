@@ -29,15 +29,23 @@ This is the standard PHP style:
 And this is the custom syntax:
 
 ```html
-<div>
+<x-base title="Home">
     <x-post :foreach="$this->posts as $post">
-        {!! $post->title !!} <!-- Without escaping -->
-        
+        {!! $post->title !!}
+
         <span :if="$this->showDate($post)">
-            {{ $post->date }} <!-- With escaping -->
+            {{ $post->date }}
+        </span>
+        <span :else>
+            -
         </span>
     </x-post>
-</div>
+    <div :forelse>
+        <p>It's quite empty here…</p>
+    </div>
+
+    <x-footer />
+</x-base>
 ```
 
 Think of the custom style as an extension of HTML, we'll dive deeper into the syntax later in this chapter.
@@ -47,6 +55,12 @@ Think of the custom style as an extension of HTML, we'll dive deeper into the sy
 Returning views from controllers can be done in two ways: either by using the `{php}view()` function, or by returning a `{php}View` object.
 
 ```php
+// app/HomeController.php
+
+use Tempest\Http\Get;
+use Tempest\View\View;
+use function Tempest\view;
+
 final readonly class HomeController
 {
     #[Get(uri: '/home')]
@@ -76,6 +90,7 @@ Tempest supports both a custom echo tag, and raw PHP tags to write data to views
 
 ```html
 {{ $var }}
+{!! $var !!}
 
 <?= $var ?>
 ```
@@ -89,6 +104,8 @@ The benefit of view objects — a dedicated class that represents a view — is 
 A view object is a class that implements the `View` interface, it can optionally set a path to a fixed view file, and provide data in its constructor.
 
 ```php
+// app/HomeView.php
+
 use Tempest\View\View;
 use Tempest\View\IsView;
 
@@ -108,6 +125,8 @@ final class HomeView implements View
 The view file itself looks like this, note how we add a docblock to indicated that `$this` is an instance of `HomeView`.
 
 ```html
+<!-- app/home.view.php -->
+
 <?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
 Hello, {{ $this->name }}
@@ -116,6 +135,10 @@ Hello, {{ $this->name }}
 Not only variables, but also view object methods are available within view file. Let's say our view object has a method `formatDate()`: 
 
 ```php
+// app/HomeView.php
+
+use Tempest\View\View;
+
 final class HomeView implements View
 {
     // …
@@ -135,26 +158,6 @@ Then a view file can access it like so:
 
 View objects are an excellent way of encapsulating view-related logic and complexity, moving it away from controllers, while simultaneously improving static insights.
 
-Finally, view object can be passed directly into the `response()` function, giving you control over additional headers, the response's status code, etc.
-
-```php
-final readonly class HomeController
-{
-    #[Get(uri: '/')]
-    public function __invoke(): Response
-    {
-        $view = new HomeView(
-            name: 'Brent',
-        );
-        
-        return response()
-            ->setView($view)
-            ->setStatus(Status::CREATED)
-            ->addHeader('x-custom-header', 'value');
-    }
-}
-```
-
 
 ## View components
 
@@ -163,7 +166,7 @@ Tempest views don't have concepts like _extending_ or _including_ other views. I
 Let's say you want a base layout that can be used by all other views. You could create a base component like so:
 
 ```html
-<!-- components/x-base.view.php -->
+<!-- app/components/x-base.view.php -->
 
 <x-component name="x-base">
     <html lang="en">
@@ -185,6 +188,8 @@ This component will be automatically discovered. Note that, in order for view co
 Once a view component is discovered, you can use it in any other view. In our example, you can wrap any view you want within the `{html}<x-base></x-base>` tags, and the view's content will be injected within the base layout:
 
 ```html
+<!-- app/home.view.php -->
+
 <x-base :title="$this->post->title">
     <article>
         {{ $this->post->body }} 
@@ -203,6 +208,8 @@ As you can see, data to the parent component can be passed via attributes: all a
 Both attributes in the above example will be available as `$title` in the `{html}<x-base/>` component: 
 
 ```html
+<!-- app/components/x-base.view.php -->
+
 <x-component name="x-base">
     <title :if="$title">{{ $title }} | Tempest</title>
     <title :else>Tempest</title>
@@ -256,7 +263,8 @@ Instead of extending or including views, Tempest relies on view components. From
 Here's an example of inheritance with view components:
 
 ```html
-<!-- x-base.view.php -->
+<!-- app/components/x-base.view.php -->
+
 <x-component name="x-base">
     <html lang="en">
         <head>
@@ -270,8 +278,11 @@ Here's an example of inheritance with view components:
         </body>
     </html>
 </x-component>
+```
 
-<!-- home.view.php -->
+```html
+<!-- app/home.view.php -->
+
 <x-base title="Hello World">
     Contents
 </x-base>
@@ -280,7 +291,8 @@ Here's an example of inheritance with view components:
 And here's an example of inclusion with view components:
 
 ```html
-<!-- x-input.view.php -->
+<!-- app/components/x-input.view.php -->
+
 <x-component name="x-input">
     <div>
         <label :for="$name">{{ $label }}</label>
@@ -288,8 +300,11 @@ And here's an example of inclusion with view components:
         <input :type="$type" :name="$name" :id="$name" />
     </div>
 </x-component>
+```
 
+```html
 <!-- home.view.php -->
+
 <x-input name="user_email" type="email" label="Provide your email address" />
 ```
 
@@ -298,7 +313,8 @@ And here's an example of inclusion with view components:
 When using views components for inheritance, you can define zero, one, or more slots. Slots are used to inject data in from the view that's using this component. There's a default slot named `<x-slot />`, but you can define an arbitrary amount of named slots as well. 
 
 ```html
-<!-- x-base.view.php -->
+<!-- app/components/x-base.view.php -->
+
 <x-component name="x-base">
     <html lang="en">
         <head>
@@ -316,7 +332,8 @@ When using views components for inheritance, you can define zero, one, or more s
 ```
 
 ```html
-<!-- home.view.php -->
+<!-- app/home.view.php -->
+
 <x-base title="Hello World">
     <!-- This part will be injected into the styles slot -->
     <x-slot name="styles">
@@ -341,8 +358,8 @@ View components can live solely within a `.view.php` file, in which case they ar
 For example, here's the implementation of `{html}<x-input>`, a view component shipped with Tempest that will render an input field, together with its original values and errors. It needs access to the `Session` to retrieve validation errors. This is a good use case for a view component class: 
 
 ```php
-// …
 use Tempest\View\ViewComponent;
+use Tempest\View\Elements\ViewComponentElement;
 
 final readonly class Input implements ViewComponent
 {
@@ -420,7 +437,7 @@ composer require illuminate/view:~11.7.0
 Next, create a blade config file:
 
 ```php
-// app/Config/blade.php
+// app/Config/blade.config.php
 
 return new BladeConfig(
     viewPaths: [
@@ -434,7 +451,7 @@ return new BladeConfig(
 Finally, switch over to using the Blade renderer:
 
 ```php
-// app/Config/view.php
+// app/Config/view.config.php
 
 return new ViewConfig(
     rendererClass: \Tempest\View\Renderers\BladeViewRenderer::class,

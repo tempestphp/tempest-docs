@@ -5,6 +5,8 @@ title: Building Console Commands
 Any method tagged with the `{php}#[ConsoleCommand]` attribute will be automatically discovered and be available within the console application. By default, you don't have to pass in any parameters to the `{php}#[ConsoleCommand]` attribute, since Tempest will use the class and method names to generate a command name:
 
 ```php
+// app/Package.php
+
 use Tempest\Console\ConsoleCommand;
 
 final readonly class Package
@@ -30,6 +32,10 @@ These two methods will be accessible via the `package:all` and `package:info` co
 Tempest will use method's parameter list to define the command's definition. For example, this parameter list:
 
 ```php
+// app/Package.php
+
+use Tempest\Console\ConsoleCommand;
+
 final readonly class Package
 {
     #[ConsoleCommand]
@@ -53,6 +59,10 @@ Will generate this command definition:
 For more fine-grained control, the `{php}#[ConsoleCommand]` attribute takes a couple of optional parameters:
 
 ```php
+// app/Package.php
+
+use Tempest\Console\ConsoleCommand;
+
 final readonly class Package
 {
     #[ConsoleCommand(
@@ -68,6 +78,8 @@ final readonly class Package
 Finally, you can add optional `{php}#[ConsoleArgument]` attributes to parameters as well:
 
 ```php
+use Tempest\Console\ConsoleArgument;
+
 public function info(
     #[ConsoleArgument(
         description: 'The name of the package',
