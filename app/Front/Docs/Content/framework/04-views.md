@@ -413,6 +413,30 @@ HTML;
 }
 ```
 
+## A note on boolean attributes
+
+The HTML spec describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present. The most common example is probably the `selected` attribute on `{html}<option>` tags, though there are a lot more (you can find them listed among others in [this table](https://html.spec.whatwg.org/multipage/indices.html#attributes-3)). 
+
+Tempest comes with built-in support to toggle boolean attributes on and off, you use expression attributes combined with boolean variables like so:
+
+```html
+<option :value="$value" :selected="$selected">{{ $label }}</option>
+```
+
+This will be compiled to this:
+
+```html
+<option :value="value" {:hl-property:selected:}>Label</option>
+```
+
+Or this:
+
+```html
+<option :value="value">Label</option>
+```
+
+Depending on whether `$selected` evaluates to `true` or `false`.
+
 ## View caching
 
 Tempest views are compiled to plain PHP code before being rendered. In production, these compiled views should be cached. Enabling the view cache on production can be done by setting the `{txt}{:hl-property:CACHE:}` environment variable:
