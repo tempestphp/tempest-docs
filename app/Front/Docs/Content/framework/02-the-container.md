@@ -233,7 +233,7 @@ use Tempest\Container\Inject;
 trait HasConsole
 {
     #[Inject]
-    private readonly Console $console;
+    private Console $console;
     
     // …
 }
