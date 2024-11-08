@@ -22,17 +22,21 @@
                     <a href="<?= $post->getUri() ?>" class="grid gap-2 hover:bg-tempest-blue-500 hover:underline rounded-lg hover:text-white p-4">
                         <span class="text-2xl font-bold flex items-baseline gap-2">
                             <?= $post->title ?>
-
-                            <span class="text-sm font-medium">
-                                <?= $post->createdAt->format('F d, Y') ?>
-                            </span>
                         </span>
                         <?php if ($post->description ?? null): ?>
-                            <span>
+                            <span class="text-base">
                                 <?= $post->description ?>
                             </span>
                         <?php endif ?>
+                        <span class="text-sm font-light">
+                            <?php if ($post->author ?? null): ?>
+                                Written by <?= $post->author ?> on
+                            <?php endif ?>
+                            <?= $post->createdAt->format('F d, Y') ?>
+                        </span>
                     </a>
+
+                    <hr class="w-3/5 mx-auto">
                 <?php endforeach; ?>
             </div>
         </div>

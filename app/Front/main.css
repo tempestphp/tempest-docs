@@ -64,6 +64,7 @@
 
 	/* TODO: this is a quickfix */
 	.prose,
+	.prose strong,
 	.prose h1,
 	.prose h2 {
 		color: rgb(209, 213, 219);

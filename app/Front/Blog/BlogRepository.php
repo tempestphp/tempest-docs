@@ -2,8 +2,8 @@
 
 namespace App\Front\Blog;
 
-use _PHPStan_ab84e5579\Nette\Neon\Exception;
 use DateTimeImmutable;
+use Exception;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
