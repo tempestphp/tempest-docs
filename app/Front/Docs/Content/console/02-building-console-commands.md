@@ -22,7 +22,7 @@ final readonly class Package
 These two methods will be accessible via the `package:all` and `package:info` commands:
 
 ```console
-~ ./console
+~ ./tempest
 
 <h2>Package</h2>
  <strong><em>package:all</strong></em>
@@ -50,7 +50,7 @@ final readonly class Package
 Will generate this command definition:
 
 ```console
-~ ./console
+~ ./tempest
 
 <h2>Package</h2>
  <strong><em>package:make</strong></em> <<em>name</em>> [<em>description</em>=''] [<em>--force</em>=false]
