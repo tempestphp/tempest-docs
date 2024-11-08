@@ -197,6 +197,7 @@ h6 {
 	background-image: linear-gradient(to bottom, #0071bccc 20%, #1b1429cc 100%),
 		linear-gradient(to right, #0071bc 0%, rgba(0, 87, 190, 0%), #0071bc 100%),
 		url('/img/bg-dark-theme-2@2x.jpg');
+	box-shadow: inset 0 0 0 30px #1b1429;
 }
 
 

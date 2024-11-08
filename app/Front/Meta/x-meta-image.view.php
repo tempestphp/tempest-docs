@@ -12,7 +12,7 @@ use function Tempest\uri;
     </head>
     <body class="bg-[#333] flex justify-center items-center ">
 
-    <div class="meta-image w-[1200px] h-[628px] flex justify-center items-center text-[60px] text-white">
+    <div class="meta-image w-[1200px] h-[628px] flex justify-center items-center text-[60px] text-white relative">
         <div class="m-12">
             <x-slot/>
         </div>
