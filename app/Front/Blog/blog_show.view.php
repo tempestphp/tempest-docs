@@ -6,7 +6,7 @@ use App\Front\Meta\MetaImageController;
 use function Tempest\uri;
 
 ?>
-<x-base meta-image-uri="<?= uri([MetaImageController::class, 'blog'], slug: $post->slug) ?>">
+<x-base meta-image-uri="<?= uri([MetaImageController::class, 'blog'], slug: $post->slug) ?>" :title="$post->title">
     <div class="@HeroBlock">
         <x-header />
 
