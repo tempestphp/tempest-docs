@@ -22,6 +22,7 @@ final readonly class DocsController
         return new Redirect(uri([self::class, '__invoke'], category: 'framework', slug: 'getting-started'));
     }
 
+    #[Get('/docs/console')]
     #[Get('/console/01-getting-started')]
     public function consoleIndex(): Redirect
     {
