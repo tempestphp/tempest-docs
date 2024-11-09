@@ -14,8 +14,10 @@ use function Tempest\uri;
 
 final readonly class DocsController
 {
+    #[Get('/docs')]
+    #[Get('/docs/framework')]
     #[Get('/framework/01-getting-started')]
-    public function frameworkIndex(): Redirect
+    public function redirect(): Redirect
     {
         return new Redirect(uri([self::class, '__invoke'], category: 'framework', slug: 'getting-started'));
     }
