@@ -98,7 +98,7 @@ final readonly class Make
 
 Which differences do you notice? 
 
-- Compare the verbose `configure()` method in Symfony, vs Laravel's `$definition` string, vs Tempest's approach. Which one feels the most natural? The only thing you need to know in Tempest is PHP. In Symfony you need a separate configure method and learn about the configuration API, while in Laravel you need to remember the textual syntax for the definition command. That's all unnecessary boilerplate. Tempest skips all the boilerplate, and figures out how to build a console definition for you based on the PHP parameters you actually need. That's what's meant when we say that "Tempest gets out of your way". The framework helps you, not the other way around.
+- Compare the verbose `configure()` method in Symfony, vs Laravel's `$signature` string, vs Tempest's approach. Which one feels the most natural? The only thing you need to know in Tempest is PHP. In Symfony you need a separate configure method and learn about the configuration API, while in Laravel you need to remember the textual syntax for the signature property. That's all unnecessary boilerplate. Tempest skips all the boilerplate, and figures out how to build a console definition for you based on the PHP parameters you actually need. That's what's meant when we say that "Tempest gets out of your way". The framework helps you, not the other way around.
 
 ```console
 ~ ./tempest
