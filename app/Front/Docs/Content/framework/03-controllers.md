@@ -133,7 +133,7 @@ final readonly class BookController
 }
 ```
 
-A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/Request.php).
+A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/src/Request.php).
 
 ### A note on data mapping
 
