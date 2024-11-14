@@ -61,22 +61,7 @@ final readonly class CodeController
         return view(__DIR__ . '/code_preview.view.php')->data(
             code: $highlightedCode,
             editUrl: $editUrl,
+            language: $language,
         );
-    }
-
-    private function trim(string $code): string
-    {
-        preg_match_all('/^ */m', $code, $matches);
-
-        if ($matches[0] === []) {
-            return $code;
-        }
-
-        $indentation = min(array_map(
-            fn (string $spaces) => strlen($spaces),
-            $matches[0],
-        ));
-
-        return preg_replace('/^\s{' . $indentation . '}/m', '', $code);
     }
 }

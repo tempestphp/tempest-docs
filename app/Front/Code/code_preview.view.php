@@ -74,9 +74,9 @@
     </div>
 
     <div class="hero-bg h-full flex items-center justify-center">
-        <div class="p-24" id="screenshot">
+        <div class="p-12" id="screenshot" >
             <x-codeblock-home class="max-h-[80%]">
-                <pre><?= $code ?></pre>
+                <pre data-lang="<?= $language ?>"><?= $code ?></pre>
             </x-codeblock-home>
         </div>
     </div>

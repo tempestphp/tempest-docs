@@ -140,7 +140,7 @@ h6 {
 
 .hero-bg-screenshot {
 	@apply hero-bg;
-	background-size: 200%;
+	background-size: 120%;
 }
 
 .\@HeroBlock {
@@ -240,4 +240,8 @@ h6 {
 
 .DocSearch-Input {
 	outline: none !important;
+}
+
+pre[data-lang="console"] {
+	line-height: 2.1em;
 }
