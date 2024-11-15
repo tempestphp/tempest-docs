@@ -68,6 +68,9 @@
 	.prose p,
 	.prose :where(code):not(:where([class~="not-prose"],[class~="not-prose"] *)),
 	.prose h1,
+	.prose h3,
+	.prose h4,
+	.prose h5,
 	.prose h2 {
 		color: rgb(209, 213, 219);
 	}
