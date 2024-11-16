@@ -80,7 +80,7 @@ The following tags are available:
 - `<error>Error</error>` results in `{console}<error>Error</error>`
 - `<success>Success</success>` results in `{console}<success>Success</success>`
 - `<comment>Comment</comment>` results in `{console}<comment>Comment</comment>`
-- `<style bg-red fg-blue underline>Styled</style>` results in `{console}<error><u><em>Styled</em></u></error>`
+- `<style="bg-red fg-blue underline">Styled</style>` results in `{console}<error><u><em>Styled</em></u></error>`
 
 ## Exit codes
 
