@@ -84,7 +84,7 @@ The following tags are available:
 
 ## Exit codes
 
-Console commands may return an exit code if they wish to, but that's optional. If no exit code is provided, one will be automatically determined for you. 
+Console commands may return an exit code if they wish to, but that's optional. By default, Tempest will infer the correct exit code for you.
 
 ```php
 // app/Package.php
@@ -95,15 +95,48 @@ use Tempest\Console\ExitCode
 final readonly class Package
 {
     #[ConsoleCommand]
-    public function all(): ExitCode 
+    public function all(): void 
     {
         if (! $this->hasBeenSetup()) {
-            return ExitCode::ERROR;
+            // Tempest will infer 1 as the exit code, indicating an error occurred
+            throw new HasNotBeenSetupException(); 
         }
         
         // …
-        
-        return ExitCode::SUCCESS;
+     
+        // Nothing is returned, meaning the command executed successfully   
     }
+}
+```
+
+If you want more control over which exit code is returned, you can return any integer between 0 and 255, the meaning of a specific exit code will depend on your application.
+
+```php
+#[ConsoleCommand]
+public function all(): int 
+{
+    if (! $this->hasBeenSetup()) {
+        return 12; // custom exit code
+    }
+    
+    // …
+    
+    return 0; // always means success
+}
+```
+
+For your convenience, Tempest comes with an `ExitCode` enum that has a handful of predefined exit codes, which are generally accepted to be "standard exit codes".
+
+```php
+#[ConsoleCommand]
+public function all(): ExitCode 
+{
+    if (! $this->hasBeenSetup()) {
+        return ExitCode::ERROR;
+    }
+    
+    // …
+    
+    return ExitCode::SUCCESS;
 }
 ```
