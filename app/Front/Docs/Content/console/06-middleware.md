@@ -167,7 +167,7 @@ final readonly class HelloWorldMiddleware implements ConsoleMiddleware
 {
     use HasConsole;
 
-    public function __invoke(Invocation $invocation, ConsoleMiddlewareCallable $next): int|ExitCode
+    public function __invoke(Invocation $invocation, ConsoleMiddlewareCallable $next): ExitCode|int
     {
         if ($invocation->argumentBag->get('hello')) {
             $this->writeln('Hello world!')
