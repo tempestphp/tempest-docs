@@ -13,6 +13,9 @@ Out of the box, these `Route` attributes are available:
 - `\Tempest\Http\Route`
 - `\Tempest\Http\Get`
 - `\Tempest\Http\Post`
+- `\Tempest\Http\Delete`
+- `\Tempest\Http\Put`
+- `\Tempest\Http\Patch`
 
 You can use them like so:
 
