@@ -18,7 +18,7 @@ final class Book
         #[Length(min: 1, max: 120)]
         public string $title,
     
-        public ?Author $author = null,
+        public Author $author,
     
         /** @var \App\Chapter[] */
         public array $chapters = [],
@@ -137,7 +137,7 @@ final readonly class CreateBookTable implements Migration
 }
 ```
 
-As an alternative, you can write plain SQL files which will be discovered as migrations as well. The file name will be used as the migration's name. Note that you can have multiple queries in one sql file, each of them will be run as a separate migrations:
+As an alternative, you can write plain SQL files which will be discovered as migrations as well. The file name will be used as the migration's name. Note that you can have multiple queries in one sql file, each of them will be run as a separate migration:
 
 ```sql
 -- app/Migrations/2024-08-16_create_publisher_table.sql
@@ -214,18 +214,18 @@ interface Model
 
 ## Model query builder
 
-Important to note is the `DatbaseModel::query()` method, which allows you to create more complex queries for model classes. It's important to note that Tempest deliberately takes a simplistic approach to its model query builder. If you want to build real complex queries, you should write them directly in SQL, and map them to model classes like so:
+Important to note is the `DatbaseModel::query()` method, which allows you to create more complex queries for model classes.Tempest deliberately takes a simplistic approach to its model query builder. If you want to build truly complex queries, you should write them directly in SQL, and map them to model classes like so:
 
 ```php
 use Tempest\Database\Query;
 use function Tempest\map;
 
-$books = map(new Query("
+$books = map(new Query(<<<SQL
     SELECT * 
     FROM Book
     LEFT JOIN …
     HAVING … 
-"))->collection()->to(Book::class);
+SQL))->collection()->to(Book::class);
 ```
 
 For simpler queries, you can use the query builder API.
@@ -241,4 +241,31 @@ $books = Book::query()
 
 ## Model relations
 
-TODO: write docs
+Relations between models are primarily determined by a model's property type information. Tempest tries to infer as much information as possible from plain PHP code, so that you don't have to provide unnecessary configuration.
+
+```php
+// app/Book.php
+
+use Tempest\Database\DatabaseModel;
+use Tempest\Database\IsDatabaseModel;
+use Tempest\Validation\Rules\Length;
+use App\Author;
+
+final class Book implements DatabaseModel
+{
+    use IsDatabaseModel;
+    
+    public function __construct(
+        // This is a BelongsTo relation.
+        // Tempest will infer the relation based on the property's name and its type
+        public Author $author, 
+    
+        // This is a HasMany relation
+        // Tempest will infer the related model based on the doc block
+        /** @var \App\Chapter[] */
+        public array $chapters = [],
+    ) {}
+}
+```
+
+We're still finetuning the relation API, you can follow the progress in [this issue](https://github.com/tempestphp/tempest-framework/issues/756). 
