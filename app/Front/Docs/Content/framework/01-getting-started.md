@@ -208,30 +208,56 @@ final readonly class RssSyncCommand
 }
 ```
 
-If you want to, you can read the [internal documentation about discovery](/docs/internals/02-discovery) to learn more.
+## Discovery in production
 
-One important note to make is that you can disable all discovery cache for local development by added the follow environment variable:
+While discovery is a really powerful feature, it also comes with some performance considerations. In production environments, you want to make sure that the discovery workflow is cached. That's done like this:
 
 ```env
 {:hl-comment:# .env:}
-{:hl-property:DISCOVERY_CACHE:}={:hl-keyword:false:}
+{:hl-property:DISCOVERY_CACHE:}={:hl-keyword:true:}
 ```
 
-Furthermore, you can always clear discovery caches via the terminal:
+What's important though, is that production discovery cache will also need to be pre-generated. You can do this by running the `discovery:generate` command:
 
 ```console
-./tempest discovery:clear
-
-<em>Tempest\Core\DiscoveryDiscovery</em> cleared successful
-<em>Tempest\Http\RouteDiscovery</em> cleared successful
-<em>Tempest\Http\Static\StaticPageDiscovery</em> cleared successful
-<em>Tempest\View\ViewComponentDiscovery</em> cleared successful
-<em>Tempest\Mapper\MapperDiscovery</em> cleared successful
-<em>Tempest\Console\Discovery\ScheduleDiscovery</em> cleared successful
-<em>Tempest\Console\Discovery\ConsoleCommandDiscovery</em> cleared successful
-<em>Tempest\Database\MigrationDiscovery</em> cleared successful
-<em>Tempest\EventBus\EventBusDiscovery</em> cleared successful
-<em>Tempest\Container\InitializerDiscovery</em> cleared successful
-<em>Tempest\CommandBus\CommandBusDiscovery</em> cleared successful
-<success>Done</success>
+~ ./tempest discovery:generate
+<em>Clearing existing discovery cache…</em>
+<success>Discovery cached has been cleared</success>
+<em>Generating new discovery cache… (cache strategy used: all)</em>
+<success>Done</success> 1114 items cached
 ```
+
+In other words: it's best that you include the `discovery:generate` command in your deployment pipeline. Make sure to run it before you run any other Tempest commands.
+
+## Discovery for local development
+
+By default, discovery cache will be disabled in local development. Depending on your local setup, it's likely that you won't run into noticeable slowdowns. However, for larger projects, you might benefit from enabling _partial discovery cache_:
+
+```env
+{:hl-comment:# .env:}
+{:hl-property:DISCOVERY_CACHE:}={:hl-keyword:partial:}
+```
+
+This caching strategy will only cache discovery for vendor files. Keep in mind that you will also have to generate the discovery cache:
+
+```console
+~ ./tempest discovery:generate
+<em>Clearing existing discovery cache…</em>
+<success>Discovery cached has been cleared</success>
+<em>Generating new discovery cache… (cache strategy used: partial)</em>
+<success>Done</success> 111 items cached
+```
+
+If you're using partial discovery cache, it is recommended to automatically run `discovery:generate` after every composer update: 
+
+```json
+{:hl-comment:// …:}
+
+"scripts": {
+    "post-package-update": [
+        "php tempest discovery:generate"
+    ]
+}
+```
+
+Note that, if you've created your project using `tempest/app`, you'll have the `post-package-update` script already included. If you want to, you can read the [internal documentation about discovery](/docs/internals/02-discovery) to learn more.
