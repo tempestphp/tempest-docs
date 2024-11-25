@@ -57,7 +57,7 @@
 .hl-keyword {
 	color: var(--code-keyword);
 }
-.hl-property {
+.hl-property, .hl-property > .hl-keyword {
 	color: var(--code-property);
 }
 .hl-type {
