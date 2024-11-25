@@ -33,7 +33,7 @@
     ],
     "scripts": {
         "post-package-update": [
-            "php tempest discovery:generate"
+            "php8.3 tempest discovery:generate"
         ],
         "phpunit": "vendor/bin/phpunit --display-warnings --display-skipped --display-deprecations --display-errors --display-notices",
         "csfixer": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
