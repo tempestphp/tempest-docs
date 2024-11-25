@@ -2,7 +2,7 @@
 title: Discovery
 ---
 
-Tempest uses a pretty unique design when it comes to bootstrapping an application, more specifically when it comes to loading framework related code. Instead of having to manually registering project code or packages, Tempest will scan your codebase and automatically detect code that should be loaded. This concept is called **Discovery**.
+Tempest has a unique design when it comes to bootstrapping an application, more specifically when it comes to loading framework related code. Instead of having to manually registering project code or packages, Tempest will scan your codebase and automatically detect code that should be loaded. This concept is called **Discovery**.
 
 Discovery is powered by composer metadata: all packages that depend on Tempest, as well as your project code, will be passed to Tempest's discovery. Discovery uses a variety of rules to determine which code does what. Discovery can look at file names, attributes, interfaces, return types, and more. For example, web routes are discovered based on route attributes:
 
@@ -17,13 +17,7 @@ final readonly class HomeController
 }
 ```
 
-View components in turn are discovered by containing a `{html}<x-component>` tag:
-
-```html
-<x-component name="x-base">
-```
-
-And initializers are discovered based on the `Initializer` interface, together with their return type:
+And another example: initializers are discovered based on the `Initializer` interface, together with their return type:
 
 ```php
 final readonly class MarkdownInitializer implements Initializer
@@ -59,10 +53,15 @@ Since Tempest uses discovery to discover discovery classes, the only thing you n
 Here's for example a simplified event bus discovery implementation:
 
 ```php
+use Tempest\Core\Discovery;
+use Tempest\Core\DiscoveryLocation;
+use Tempest\Core\IsDiscovery;
+use Tempest\Reflection\ClassReflector;
+use Tempest\EventBus\EventBusConfig;
+
 final readonly class EventBusDiscovery implements Discovery
 {
-    // Use this trait to simplify discovery caching
-    use HandlesDiscoveryCache;
+    use IsDiscovery;
 
     public function __construct(
         // Discovery classes are autowired,
@@ -71,7 +70,7 @@ final readonly class EventBusDiscovery implements Discovery
     ) {
     }
 
-    public function discover(ClassReflector $class): void
+    public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         foreach ($class->getPublicMethods() as $method) {
             $eventHandler = $method->getAttribute(EventHandler::class);
@@ -81,35 +80,27 @@ final readonly class EventBusDiscovery implements Discovery
             
             // …
             
-            // Finally, we register this method in the event bus config.
-            // This config object is used in turn by the event bus 
-            $this->eventBusConfig->addHandler(
-                eventHandler: $eventHandler,
-                eventName: $type->getName(),
-                method: $method,
-            );
+            // Finally, we add all discovery-related data into `$this->discoveryItems`:
+            $this->discoveryItems->add($location, [$eventName, $eventHandler, $method]); 
         }
-    }
-
-    // In order to cache this discovery class, we need to provide a payload.
-    // In this case, we should serialize the registered handlers from the event bus config class
-    public function createCachePayload(): string
-    {
-        return serialize($this->eventBusConfig->handlers);
-    }
-
-    // To restore a cached discovery class, we need to unserialize that cached payload
-    // and place it back into the event bus config
-    public function restoreCachePayload(Container $container, string $payload): void
-    {
-        $handlers = unserialize($payload);
-
-        $this->eventBusConfig->handlers = $handlers;
+        
+        // Next, the `apply` method is called whenever discovery is ready to be applied into the framework.
+        // In this case, we want to loop over all registered discovery items, and add them into the event bus config.
+        public function apply(): void
+        {
+            foreach ($this->discoveryItems as [$eventName, $eventHandler, $method]) {
+                $this->eventBusConfig->addClassMethodHandler(
+                    event: $eventName,
+                    handler: $eventHandler,
+                    reflectionMethod: $method,
+                );
+            }
+        }
     }
 }
 ```
 
-### Discovery on files instead of classes
+## Discovery on files instead of classes
 
 In some cases, you want to not just discover classes, but also files. Think about view components:
 
@@ -132,6 +123,13 @@ In some cases, you want to not just discover classes, but also files. Think abou
 In this case, you can implement the additional `\Tempest\Discovery\DiscoversPath` interface. It will allow a discovery class to discover all paths that aren't classes as well:
 
 ```php
+use Tempest\Core\Discovery;
+use Tempest\Core\DiscoversPath;
+use Tempest\Core\DiscoveryLocation;
+use Tempest\Core\IsDiscovery;
+use Tempest\Reflection\ClassReflector;
+use Tempest\View\ViewConfig;
+use Tempest\View\Components\AnonymousViewComponent;
 
 final readonly class ViewComponentDiscovery implements Discovery, DiscoversPath
 {
@@ -142,12 +140,12 @@ final readonly class ViewComponentDiscovery implements Discovery, DiscoversPath
     ) {
     }
 
-    public function discover(ClassReflector $class): void
+    public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         // …
     }
 
-    public function discoverPath(string $path): void
+    public function discoverPath(DiscoveryLocation $location, string $path): void
     {
         if (! str_ends_with($path, '.view.php')) {
             return;
@@ -155,12 +153,27 @@ final readonly class ViewComponentDiscovery implements Discovery, DiscoversPath
 
         // …
 
-        $this->viewConfig->addViewComponent(
-            name: $matches['name'],
-            viewComponent: new AnonymousViewComponent(
+        $this->discoveryItems->add($location, [
+            $matches['name'],
+            new AnonymousViewComponent(
                 contents: $matches['header'] . $matches['view'],
                 file: $path,
             ),
-        );
+        ]);
     }
+    
+    public function apply(): void
+    {
+        foreach ($this->discoveryItems as [$name, $viewComponent]) {
+            if (is_string($viewComponent)) {
+                $viewComponent = new ClassReflector($viewComponent);
+            }
+
+            $this->viewConfig->addViewComponent(
+                name: $name,
+                viewComponent: $viewComponent,
+            );
+        }
+    }
+}
 ```
