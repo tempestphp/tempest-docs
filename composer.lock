@@ -2505,16 +2505,16 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "4.3.0",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "601f2758191d8c46b2ea587eea935a87da4f39e8"
+                "reference": "3ff350cd0a36943759e2932a27d8cd18c11e5fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/601f2758191d8c46b2ea587eea935a87da4f39e8",
-                "reference": "601f2758191d8c46b2ea587eea935a87da4f39e8",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/3ff350cd0a36943759e2932a27d8cd18c11e5fdc",
+                "reference": "3ff350cd0a36943759e2932a27d8cd18c11e5fdc",
                 "shasum": ""
             },
             "require": {
@@ -2561,7 +2561,7 @@
                 "webpage"
             ],
             "support": {
-                "source": "https://github.com/spatie/browsershot/tree/4.3.0"
+                "source": "https://github.com/spatie/browsershot/tree/4.4.0"
             },
             "funding": [
                 {
@@ -2569,7 +2569,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-08-22T09:14:07+00:00"
+            "time": "2024-11-25T16:02:22+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -3872,12 +3872,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "2e466a3a0642bbb9507547513d2537559ff2741a"
+                "reference": "acbc6aafd90e1a325673f1be239ec3eebe76905d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/2e466a3a0642bbb9507547513d2537559ff2741a",
-                "reference": "2e466a3a0642bbb9507547513d2537559ff2741a",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/acbc6aafd90e1a325673f1be239ec3eebe76905d",
+                "reference": "acbc6aafd90e1a325673f1be239ec3eebe76905d",
                 "shasum": ""
             },
             "require": {
@@ -3898,7 +3898,7 @@
                 "monolog/monolog": "^3.7.0",
                 "nette/php-generator": "^4.1.6",
                 "nikic/php-parser": "^5.3",
-                "php": "^8.3",
+                "php": "^8.4",
                 "psr-discovery/http-client-implementations": "1.x-dev",
                 "psr-discovery/http-factory-implementations": "1.x-dev",
                 "psr/cache": "^3.0",
@@ -4011,7 +4011,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-25T09:35:06+00:00"
+            "time": "2024-11-26T08:31:08+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -7488,7 +7488,7 @@
     },
     "prefer-stable": true,
     "prefer-lowest": false,
-    "platform": [],
-    "platform-dev": [],
-    "plugin-api-version": "2.3.0"
+    "platform": {},
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
 }
