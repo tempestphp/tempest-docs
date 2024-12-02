@@ -1,5 +1,5 @@
 ---
-title: The Eventbus
+title: The Event Bus
 ---
 
 Tempest comes with a built-in event bus, which can be used to dispatch events throughout your application.

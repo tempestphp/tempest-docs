@@ -413,6 +413,66 @@ HTML;
 }
 ```
 
+## Expression attributes
+
+Expression attributes are attributes that will be evaluated as PHP code. We've already mentioned how expression attributes can be used to pass data into view components:
+
+```html
+<x-base :title="$this->post->title"></x-base>
+```
+
+But they can also be used to print out data as attribute values:
+
+```html
+<div :data-lang="$language"></div>
+
+<!-- Will be rendered as -->
+<div data-lang="php"></div>
+```
+
+There are a couple of rules to take into account when using expression attributes.
+
+1. You can use PHP expressions in expression attributes. For example:
+
+```html
+<a :href="strtoupper('string')"></a>
+
+<!-- Or -->
+<a :href="$url ?? 'default'"></a>
+```
+
+2. You're not allowed to use echo tags in expression attributes:
+
+```html
+<!-- InvalidExpressionAttribute -->
+
+<a :href="{{ $href }}"></a>
+<a :href="<?php $href ?>"></a>
+<a :href="<?= $href ?>"></a>
+```
+
+3. Expression attributes can be used to pass data — including objects to view components:
+
+```html
+<x-post :post="$post"></x-post>
+```
+
+4. However, only stringable values or expressions that evaluate to something printable can be used on normal HTML elements:
+
+```html
+<!-- Invalid: cannot print $post -->
+<div :post="$post"></div>
+```
+
+5. Expression attributes on view components will never be automatically be printed anywhere within the view component. They will be available as variables though:
+
+```html
+<x-component>
+    <h2>{{ $post->title }}</h2>
+    <p>{{ $post->description }}</p>
+</x-component>
+```
+
 ## A note on boolean attributes
 
 The HTML spec describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present. The most common example is probably the `selected` attribute on `{html}<option>` tags, though there are a lot more (you can find them listed among others in [this table](https://html.spec.whatwg.org/multipage/indices.html#attributes-3)). 

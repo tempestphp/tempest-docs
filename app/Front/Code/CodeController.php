@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace App\Front\Code;
 
-use League\CommonMark\MarkdownConverter;
 use Tempest\Container\Tag;
 use Tempest\Highlight\Highlighter;
-use Tempest\Highlight\Themes\CssTheme;
 use Tempest\Http\Get;
 use Tempest\Http\Post;
 use Tempest\Http\Request;
@@ -19,9 +17,19 @@ use function Tempest\view;
 final readonly class CodeController
 {
     #[Get('/code')]
-    public function paste(): View
+    public function paste(Request $request): View
     {
-        return view(__DIR__ . '/code.view.php');
+        $language = $request->get('lang') ?? 'php';
+        $code = $request->get('code') ?? '';
+
+        if ($code) {
+            $code = urldecode(base64_decode($code));
+        }
+
+        return view(__DIR__ . '/code.view.php',
+            code: $code,
+            language: $language,
+        );
     }
 
     #[Post('/code/submit')]
@@ -29,35 +37,31 @@ final readonly class CodeController
     {
         $code = $request->get('code');
 
+        $language = $request->get('lang', 'php');
+
         $code = urlencode(base64_encode($code));
 
-        return (new Redirect(uri([self::class, 'preview']) . '?lang=php&code=' . $code));
+        return (new Redirect(uri([self::class, 'preview']) . '?lang=' . $language . '&code=' . $code));
     }
 
     #[Get('/code/preview')]
-    public function preview(Request $request, #[Tag('project')] Highlighter $highlighter): View {
+    public function preview(Request $request, #[Tag('project')] Highlighter $highlighter): View
+    {
         $code = $request->get('code') ?? urlencode(base64_encode('// Hello world'));
 
-        $language  = $request->get('lang') ?? 'php';
+        $language = $request->get('lang') ?? 'php';
 
-        $code = $highlighter->parse(urldecode(base64_decode($code)), $language);
+        $editUrl = uri([self::class, 'paste'],
+            lang: $language,
+            code: $code,
+        );
 
-        return view(__DIR__ . '/code_preview.view.php')->data(code: $code);
-    }
+        $highlightedCode = $highlighter->parse(urldecode(base64_decode($code)), $language);
 
-    private function trim(string $code): string
-    {
-        preg_match_all('/^ */m', $code, $matches);
-
-        if ($matches[0] === []) {
-            return $code;
-        }
-
-        $indentation = min(array_map(
-            fn (string $spaces) => strlen($spaces),
-            $matches[0],
-        ));
-
-        return preg_replace('/^\s{' . $indentation . '}/m', '', $code);
+        return view(__DIR__ . '/code_preview.view.php')->data(
+            code: $highlightedCode,
+            editUrl: $editUrl,
+            language: $language,
+        );
     }
 }

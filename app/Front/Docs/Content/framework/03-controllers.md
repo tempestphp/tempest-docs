@@ -13,6 +13,9 @@ Out of the box, these `Route` attributes are available:
 - `\Tempest\Http\Route`
 - `\Tempest\Http\Get`
 - `\Tempest\Http\Post`
+- `\Tempest\Http\Delete`
+- `\Tempest\Http\Put`
+- `\Tempest\Http\Patch`
 
 You can use them like so:
 
@@ -133,7 +136,7 @@ final readonly class BookController
 }
 ```
 
-A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/Request.php).
+A full overview of `Request` objects can be found [here](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Http/src/Request.php).
 
 ### A note on data mapping
 
