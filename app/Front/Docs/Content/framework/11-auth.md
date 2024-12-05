@@ -12,9 +12,9 @@ Logging in a user can be done with the `Authenticator` class:
 // app/AuthController.php
 
 use Tempest\Auth\Authenticator;
-use Tempest\Http\Request;
-use Tempest\Http\Response;
-use Tempest\Http\Responses\Redirect;
+use Tempest\Router\Request;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\Redirect;
 
 final readonly class AuthController 
 {
@@ -45,7 +45,7 @@ You can protect controller routes using the `#[Allow]` attribute:
 // app/AdminController.php
 
 use Tempest\Auth\Allow;
-use Tempest\Http\Response;
+use Tempest\Router\Response;
 
 final readonly class AdminController
 {
@@ -63,7 +63,7 @@ Tempest uses a permission-based authorizer. That means that, in order for users 
 // app/AdminController.php
 
 use Tempest\Auth\Allow;
-use Tempest\Http\Response;
+use Tempest\Router\Response;
 
 final readonly class AdminController
 {

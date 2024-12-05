@@ -4,10 +4,10 @@ namespace App\Front\Blog;
 
 use DateTimeImmutable;
 use Tempest\Cache\Cache;
-use Tempest\Http\Get;
-use Tempest\Http\Response;
-use Tempest\Http\Responses\Ok;
-use Tempest\Http\StaticPage;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\Ok;
+use Tempest\Router\StaticPage;
 use Tempest\Support\ArrayHelper;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;

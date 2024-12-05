@@ -6,12 +6,13 @@ namespace App\Front\Code;
 
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
-use Tempest\Http\Get;
-use Tempest\Http\Post;
-use Tempest\Http\Request;
-use Tempest\Http\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Post;
+use Tempest\Router\Request;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\Redirect;
 use Tempest\View\View;
-use function Tempest\redirect;
+use function Tempest\uri;
 use function Tempest\view;
 
 final readonly class EllisonController
@@ -27,7 +28,7 @@ final readonly class EllisonController
     {
         $ellison = trim($request->get('ellison'));
 
-        return redirect([self::class, 'preview'])->addSession('ellison', base64_encode($ellison));
+        return new Redirect(uri([self::class, 'preview']))->addSession('ellison', base64_encode($ellison));
     }
 
     #[Get('/ellison/preview')]

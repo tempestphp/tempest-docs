@@ -3,8 +3,8 @@
 namespace App\Front\Home;
 
 use League\CommonMark\MarkdownConverter;
-use Tempest\Http\Get;
-use Tempest\Http\StaticPage;
+use Tempest\Router\Get;
+use Tempest\Router\StaticPage;
 use Tempest\HttpClient\HttpClient;
 use Tempest\View\View;
 use Throwable;

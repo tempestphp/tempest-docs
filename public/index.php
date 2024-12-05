@@ -1,6 +1,6 @@
 <?php
 
-use Tempest\Http\HttpApplication;
+use Tempest\Router\HttpApplication;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

@@ -3,7 +3,7 @@
 namespace App\Front\Blog;
 
 use Generator;
-use Tempest\Http\DataProvider;
+use Tempest\Router\DataProvider;
 
 final readonly class BlogDataProvider implements DataProvider
 {

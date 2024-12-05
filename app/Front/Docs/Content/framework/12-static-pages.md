@@ -7,8 +7,8 @@ Tempest comes with a built-in static site generator. When a controller action is
 ```php
 // app/HomeController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\StaticPage;
+use Tempest\Router\Get;
+use Tempest\Router\StaticPage;
 use Tempest\View\View;
 use function Tempest\view;
 
@@ -46,8 +46,8 @@ Let's take a look at the controller action for this docs website:
 ```php
 // app/DocsController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\StaticPage;
+use Tempest\Router\Get;
+use Tempest\Router\StaticPage;
 use Tempest\View\View;
 
 final readonly class DocsController
@@ -64,12 +64,12 @@ final readonly class DocsController
 }
 ```
 
-In this case, the `#[StaticPage]` attribute gets a reference to the `DocsDataProvider`, which implements the `\Tempest\Http\DataProvider` interface:
+In this case, the `#[StaticPage]` attribute gets a reference to the `DocsDataProvider`, which implements the `\Tempest\Router\DataProvider` interface:
 
 ```php
 // app/DocsDataProvider.php
 
-use Tempest\Http\DataProvider;
+use Tempest\Router\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider
 {
@@ -87,7 +87,7 @@ In other words: we want to generate a page for every docs chapter. We can use th
 ```php
 // app/DocsDataProvider.php
 
-use Tempest\Http\DataProvider;
+use Tempest\Router\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider
 {

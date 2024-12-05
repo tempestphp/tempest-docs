@@ -13,11 +13,11 @@ Since code says more than words, here's a Tempest controller:
 ```php
 // app/BookController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\Post;
-use Tempest\Http\Response;
-use Tempest\Http\Responses\Ok;
-use Tempest\Http\Responses\Redirect;
+use Tempest\Router\Get;
+use Tempest\Router\Post;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\Ok;
+use Tempest\Router\Responses\Redirect;
 
 final readonly class BookController
 {
@@ -174,8 +174,8 @@ As an example, Tempest is able to determine which methods are controller methods
 ```php
 // app/BlogPostController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
 use Tempest\View\View;
 
 final readonly class BlogPostController

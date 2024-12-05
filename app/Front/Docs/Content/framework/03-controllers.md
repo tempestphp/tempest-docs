@@ -10,19 +10,19 @@ In Tempest, a controller action can be any class' method, as long as it's annota
 
 Out of the box, these `Route` attributes are available:
 
-- `\Tempest\Http\Route`
-- `\Tempest\Http\Get`
-- `\Tempest\Http\Post`
-- `\Tempest\Http\Delete`
-- `\Tempest\Http\Put`
-- `\Tempest\Http\Patch`
+- `\Tempest\Router\Route`
+- `\Tempest\Router\Get`
+- `\Tempest\Router\Post`
+- `\Tempest\Router\Delete`
+- `\Tempest\Router\Put`
+- `\Tempest\Router\Patch`
 
 You can use them like so:
 
 ```php
 // app/HomeController.php
 
-use Tempest\Http\Get;
+use Tempest\Router\Get;
 use Tempest\View\View;
 use function view;
 
@@ -43,7 +43,7 @@ Here's an example:
 ```php
 // app/UserController.php
 
-use Tempest\Http\Get;
+use Tempest\Router\Get;
 use Tempest\View\View;
 use function Tempest\view;
 
@@ -70,7 +70,7 @@ Here's an example:
 ```php
 // app/UserController.php
 
-use Tempest\Http\Get;
+use Tempest\Router\Get;
 use Tempest\View\View;
 use function Tempest\view;
 
@@ -95,8 +95,8 @@ Any web app will soon need to validate and access request data. In Tempest, that
 ```php
 // app/BookRequest.php
 
-use Tempest\Http\Request;
-use Tempest\Http\IsRequest;
+use Tempest\Router\Request;
+use Tempest\Router\IsRequest;
 use Tempest\Validation\Rules\Length;
 
 final class BookRequest implements Request
@@ -119,8 +119,8 @@ Once you've created your request class, you can add it as an argument to your co
 ```php
 // app/BookController.php
 
-use Tempest\Http\Post;
-use Tempest\Http\Responses\Redirect;
+use Tempest\Router\Post;
+use Tempest\Router\Responses\Redirect;
 use function Tempest\map;
 use function Tempest\uri;
 
@@ -151,8 +151,8 @@ Middleware can be applied to handle tasks in between receiving a request and sen
 ```php
 // app/BookClass.php
 
-use Tempest\Http\Get;
-use Tempest\Http\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
 
 final readonly class BookClass
 {
@@ -167,15 +167,15 @@ final readonly class BookClass
 }
 ```
 
-A middleware class, in turn, should implement the `\Tempest\Http\HttpMiddleware` interface:
+A middleware class, in turn, should implement the `\Tempest\Router\HttpMiddleware` interface:
 
 ```php
 // app/BooksMiddleware.php
 
-use Tempest\Http\HttpMiddleware;
-use Tempest\Http\HttpMiddlewareCallable;
-use Tempest\Http\Request;
-use Tempest\Http\Response;
+use Tempest\Router\HttpMiddleware;
+use Tempest\Router\HttpMiddlewareCallable;
+use Tempest\Router\Request;
+use Tempest\Router\Response;
 
 final readonly class BooksMiddleware implements HttpMiddleware
 {
@@ -199,7 +199,7 @@ Tempest controllers must return one of two objects: a `{php}View` or a `{php}Res
 ```php
 // app/BookController.php
 
-use Tempest\Http\Get;
+use Tempest\Router\Get;
 use Tempest\View\View;
 use function Tempest\view;
 
@@ -236,10 +236,10 @@ Returning responses from controllers looks like this:
 ```php
 // app/AdminDownloadController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\Responses\Download;
-use Tempest\Http\Responses\Redirect;
-use Tempest\Http\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Responses\Download;
+use Tempest\Router\Responses\Redirect;
+use Tempest\Router\Response;
 
 final readonly class AdminDownloadController
 {  
@@ -266,10 +266,10 @@ Tempest will automatically infer the response's content type from the request's 
 ```php
 // app/JsonController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\ContentType;
-use Tempest\Http\Response;
-use Tempest\Http\Responses\Ok;
+use Tempest\Router\Get;
+use Tempest\Router\ContentType;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\Ok;
 
 final readonly class JsonController
 {  
@@ -292,9 +292,9 @@ If you want to, you can create your own Response objects for your specific use c
 ```php
 // app/BookCreated.php
 
-use Tempest\Http\IsResponse;
-use Tempest\Http\Response;
-use Tempest\Http\Status;
+use Tempest\Router\IsResponse;
+use Tempest\Router\Response;
+use Tempest\Router\Status;
 
 final class BookCreated implements Response
 {
@@ -316,8 +316,8 @@ Thanks to route attributes, you can make your own, custom `Route` implementation
 // app/AdminRoute.php
 
 use \Attribute;
-use Tempest\Http\Route;
-use Tempest\Http\Method;
+use Tempest\Router\Route;
+use Tempest\Router\Method;
 
 #[Attribute]
 final readonly class AdminRoute extends Route
@@ -341,8 +341,8 @@ You can now use this `AdminRoute` attribute for all controller methods that shou
 ```php
 // app/BookController
 
-use Tempest\Http\Method;
-use Tempest\Http\Response;
+use Tempest\Router\Method;
+use Tempest\Router\Response;
 
 final readonly class BookController
 {
@@ -383,8 +383,8 @@ Tempest will map IDs to model instances:
 ```php
 // app/BookController.php
 
-use Tempest\Http\Get;
-use http\Env\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
 
 final readonly class BookController
 {
@@ -409,8 +409,8 @@ enum Genre: string
 
 // app/BookController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
 
 final readonly class BookController
 {
@@ -429,8 +429,8 @@ These cases are well suited for deferred tasks: tasks that are executed after th
 ```php
 // app/AuthController.php
 
-use Tempest\Http\Post;
-use Tempest\Http\Responses\Redirect;
+use Tempest\Router\Post;
+use Tempest\Router\Responses\Redirect;
 use function Tempest\defer;
 
 final readonly class AuthController
@@ -452,9 +452,9 @@ final readonly class AuthController
 ```php
 // app/PageVisitedMiddleware.php
 
-use Tempest\Http\HttpMiddleware;
-use Tempest\Http\Request;
-use Tempest\Http\Response;
+use Tempest\Router\HttpMiddleware;
+use Tempest\Router\Request;
+use Tempest\Router\Response;
 use function Tempest\defer;
 
 final readonly class PageVisitedMiddleware implements HttpMiddleware

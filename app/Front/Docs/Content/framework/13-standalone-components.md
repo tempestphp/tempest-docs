@@ -55,7 +55,7 @@ Or you can manually create an `index.php` file in your project's public folder:
 ```php
 
 <?php
-use \Tempest\Http\HttpApplication;
+use \Tempest\Router\HttpApplication;
 
 require_once __DIR__ . '/vendor/autoload.php';
 

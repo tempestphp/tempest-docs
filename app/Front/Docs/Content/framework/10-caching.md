@@ -31,7 +31,7 @@ To be able to cache stuff, you need to inject the `Cache` interface wherever you
 // app/RssController.php
 
 use Tempest\Cache\Cache;
-use Tempest\Http\Response;
+use Tempest\Router\Response;
 
 final readonly class RssController
 {

@@ -284,8 +284,8 @@ Some edge cases require more flexibility to match a requested class to an initia
 ```php
 // app/BookController.php
 
-use Tempest\Http\Get;
-use Tempest\Http\Response;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
 
 final readonly class BookController
 {

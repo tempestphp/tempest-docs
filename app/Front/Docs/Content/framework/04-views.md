@@ -57,7 +57,7 @@ Returning views from controllers can be done in two ways: either by using the `{
 ```php
 // app/HomeController.php
 
-use Tempest\Http\Get;
+use Tempest\Router\Get;
 use Tempest\View\View;
 use function Tempest\view;
 

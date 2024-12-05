@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Front\Docs;
 
-use Tempest\Http\Get;
-use Tempest\Http\Response;
-use Tempest\Http\Responses\NotFound;
-use Tempest\Http\Responses\Redirect;
-use Tempest\Http\StaticPage;
+use Tempest\Router\Get;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\NotFound;
+use Tempest\Router\Responses\Redirect;
+use Tempest\Router\StaticPage;
 use Tempest\View\View;
 use function Tempest\uri;
 

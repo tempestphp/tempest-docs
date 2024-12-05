@@ -4,13 +4,13 @@ namespace App\Front\Docs;
 
 use Tempest\Core\KernelEvent;
 use Tempest\EventBus\EventHandler;
-use Tempest\Http\HttpMiddleware;
-use Tempest\Http\HttpMiddlewareCallable;
-use Tempest\Http\Request;
-use Tempest\Http\Response;
-use Tempest\Http\Responses\NotFound;
-use Tempest\Http\Responses\Redirect;
-use Tempest\Http\Router;
+use Tempest\Router\HttpMiddleware;
+use Tempest\Router\HttpMiddlewareCallable;
+use Tempest\Router\Request;
+use Tempest\Router\Response;
+use Tempest\Router\Responses\NotFound;
+use Tempest\Router\Responses\Redirect;
+use Tempest\Router\Router;
 use function Tempest\Support\str;
 use function Tempest\uri;
 
