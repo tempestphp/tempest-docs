@@ -6,16 +6,19 @@ Controllers are the core of any web app, they route an HTTP request through the 
 
 ## Routing
 
-In Tempest, a controller action can be any class' method, as long as it's annotated with a `Route` attribute. Tempest offers some convenient Route attributes out of the box, and you can write your own if you need to.
+In Tempest, a controller action can be any class' method, as long as it's annotated with an attribute which implements the `Route` interface. Tempest offers some convenient Route attributes out of the box, and you can write your own if you need to.
 
-Out of the box, these `Route` attributes are available:
+Out of the box, these Route attributes are available:
 
-- `\Tempest\Http\Route`
 - `\Tempest\Http\Get`
 - `\Tempest\Http\Post`
 - `\Tempest\Http\Delete`
 - `\Tempest\Http\Put`
 - `\Tempest\Http\Patch`
+- `\Tempest\Http\Options`
+- `\Tempest\Http\Connect`
+- `\Tempest\Http\Trace`
+- `\Tempest\Http\Head`
 
 You can use them like so:
 
@@ -146,7 +149,7 @@ You could map a request class with its data to a model class, but you could also
 
 ## Middleware
 
-Middleware can be applied to handle tasks in between receiving a request and sending a response. Middleware can be applied to routes via the `#[Route]` attribute:
+Middleware can be applied to handle tasks in between receiving a request and sending a response. Middleware can be applied to routes via the attributes which extends the `Route` interface, such as `#[Get]`, `#[Post]` or more:
 
 ```php
 // app/BookClass.php
@@ -320,18 +323,20 @@ use Tempest\Http\Route;
 use Tempest\Http\Method;
 
 #[Attribute]
-final readonly class AdminRoute extends Route
+final readonly class AdminRoute implements Route
 {
-    public function __construct(string $uri, Method $method)
-    {
-        parent::__construct(
-            uri: $uri,
-            method: $method,
-            middleware: [
-                AdminMiddleware::class,
-                LogUserActionsMiddleware::class,
-            ]
-        );
+    use IsRoute;
+
+    public function __construct(
+        string $uri, 
+        Method $method,
+    ) {
+        $this->uri = $uri;
+        $this->method = $method;
+        $this->middleware = [
+            AdminMiddleware::class,
+            LogUserActionsMiddleware::class,
+        ];
     }
 }
 ```
