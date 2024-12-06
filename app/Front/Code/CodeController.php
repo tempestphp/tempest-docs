@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Front\Code;
 
+use League\CommonMark\MarkdownConverter;
 use Tempest\Container\Tag;
 use Tempest\Highlight\Highlighter;
 use Tempest\Http\Get;
@@ -62,6 +63,16 @@ final readonly class CodeController
             code: $highlightedCode,
             editUrl: $editUrl,
             language: $language,
+        );
+    }
+
+    #[Get('/code/slide/{slide}')]
+    public function slide(string $slide, MarkdownConverter $markdown): View
+    {
+        $code = $markdown->convert(file_get_contents(__DIR__ . '/Content/' . $slide . '.md'))->getContent();
+
+        return view(__DIR__ . '/code_slide.view.php')->data(
+            code: $code,
         );
     }
 }
