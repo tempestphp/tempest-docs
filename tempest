@@ -3,11 +3,7 @@
 
 use Tempest\Console\ConsoleApplication;
 
-try {
-    require_once __DIR__ . '/vendor/autoload.php';
-} catch (Throwable) {
-    require_once getcwd() . '/../autoload.php';
-}
+require_once __DIR__ . '/vendor/autoload.php';
 
 ConsoleApplication::boot()->run();
 
