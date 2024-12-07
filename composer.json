@@ -32,9 +32,6 @@
         }
     ],
     "scripts": {
-        "post-package-update": [
-            "php8.4 tempest discovery:generate"
-        ],
         "phpunit": "vendor/bin/phpunit --dihttps://open.spotify.com/playlist/00nS9d3m7QE6O5NY0fPGKVsplay-warnings --display-skipped --display-deprecations --display-errors --display-notices",
         "csfixer": "vendor/bin/php-cs-fixer fix --allow-risky=yes",
         "phpstan": "vendor/bin/phpstan analyse app",
