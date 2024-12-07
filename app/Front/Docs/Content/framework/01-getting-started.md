@@ -4,7 +4,7 @@ title: Getting Started
 
 **Tempest is a PHP framework that gets out of your way**. Its design philosophy is that developers should write as little framework-related code as possible, so that they can **focus on application code** instead.
 
-Tempest embraces **modern PHP syntax**, covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#project-structure) to improve developer experience.
+Tempest embraces **modern PHP syntax** and covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#project-structure) to improve developer experience.
 
 Tempest can be installed **as a standalone PHP project**, as well as **a package within existing projects**. The framework modules — like, for example, `tempest/console` or `tempest/event-bus` — can also be installed **individually**, including in projects built on other frameworks.
 
@@ -77,7 +77,7 @@ final readonly class MigrateUpCommand
 }
 ```
 
-Ready to give it a try? Keep on reading, [**give Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and you can check out our [contributing guide](/docs/internals/contributing)!
+Ready to give it a try? Keep on reading and consider [**giving Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and you can check out our [contributing guide](/docs/internals/contributing)!
 
 ## Installation
 
@@ -92,7 +92,7 @@ composer create-project tempest/app my-app --stability alpha
 cd my-app
 ```
 
-The project scaffold includes a basic frontend setup including tailwind:
+The project scaffold includes a basic frontend setup including Tailwind:
 
 ```txt
 npm run dev
@@ -217,7 +217,7 @@ While discovery is a really powerful feature, it also comes with some performanc
 {:hl-property:DISCOVERY_CACHE:}={:hl-keyword:true:}
 ```
 
-What's important though, is that production discovery cache will also need to be pre-generated. You can do this by running the `discovery:generate` command:
+What's important though, is that the production discovery cache will also need to be pre-generated. You can do this by running the `discovery:generate` command:
 
 ```console
 ~ ./tempest discovery:generate
@@ -231,7 +231,7 @@ In other words: it's best that you include the `discovery:generate` command in y
 
 ## Discovery for local development
 
-By default, discovery cache will be disabled in local development. Depending on your local setup, it's likely that you won't run into noticeable slowdowns. However, for larger projects, you might benefit from enabling _partial discovery cache_:
+By default, the discovery cache will be disabled in local development. Depending on your local setup, it's likely that you won't run into noticeable slowdowns. However, for larger projects, you might benefit from enabling a _partial discovery cache_:
 
 ```env
 {:hl-comment:# .env:}
@@ -248,7 +248,7 @@ This caching strategy will only cache discovery for vendor files. Keep in mind t
 <success>Done</success> 111 items cached
 ```
 
-If you're using partial discovery cache, it is recommended to automatically run `discovery:generate` after every composer update: 
+If you're using a partial discovery cache, it is recommended to automatically run `discovery:generate` after every composer update: 
 
 ```json
 {:hl-comment:// …:}
