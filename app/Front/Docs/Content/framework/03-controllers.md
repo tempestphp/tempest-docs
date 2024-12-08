@@ -313,7 +313,7 @@ final class BookCreated implements Response
 
 ## Custom Routes
 
-Thanks to route attributes, you can make your own, custom `Route` implementations. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
+Thanks to the `Route` interface, you can make your own route attributes. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
 
 ```php
 // app/AdminRoute.php
@@ -321,15 +321,17 @@ Thanks to route attributes, you can make your own, custom `Route` implementation
 use \Attribute;
 use Tempest\Router\Route;
 use Tempest\Router\Method;
+use Tempest\Router\HttpMiddleware;
 
 #[Attribute]
 final readonly class AdminRoute implements Route
 {
-    use IsRoute;
-
+    /** @var HttpMiddleware[]  */
+    public array $middleware;
+    
     public function __construct(
-        string $uri, 
-        Method $method,
+        public string $uri, 
+        public Method $method,
     ) {
         $this->uri = $uri;
         $this->method = $method;
