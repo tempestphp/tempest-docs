@@ -313,7 +313,7 @@ final class BookCreated implements Response
 
 ## Custom Routes
 
-Thanks to `Route` interface, you can make your own, custom route attribute. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
+Thanks to the `Route` interface, you can make your own route attributes. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
 
 ```php
 // app/AdminRoute.php
