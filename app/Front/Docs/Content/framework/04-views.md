@@ -6,7 +6,7 @@ Tempest supports two templating engines: Tempest View, and Blade. Tempest View i
 
 ## View files
 
-Tempest Views are plain PHP files, although they also support a custom syntax. You can mix or choose a preferred style. 
+Tempest Views are plain PHP files, although they also support a custom syntax. You can mix or choose a preferred style.
 
 This is the standard PHP style:
 
@@ -15,7 +15,7 @@ This is the standard PHP style:
     <?php foreach ($this->posts as $post): ?>
         <li>
             <?= $post->title ?>
-            
+
             <?php if($this->showDate($post)): ?>
                 <span>
                     <?= $post->date ?>
@@ -71,9 +71,9 @@ final readonly class HomeController
                 name: 'Brent',
                 date: new DateTime(),
             );
-            
+
         // Or
-        
+
         return new HomeView(
             name: 'Brent',
             date: new DateTime(),
@@ -132,7 +132,7 @@ The view file itself looks like this, note how we add a docblock to indicated th
 Hello, {{ $this->name }}
 ```
 
-Not only variables, but also view object methods are available within view file. Let's say our view object has a method `formatDate()`: 
+Not only variables, but also view object methods are available within view file. Let's say our view object has a method `formatDate()`:
 
 ```php
 // app/HomeView.php
@@ -142,7 +142,7 @@ use Tempest\View\View;
 final class HomeView implements View
 {
     // …
-    
+
     public function formatDate(DateTimeImmutable $date): string
     {
         return $date->format('Y-m-d');
@@ -175,15 +175,15 @@ Let's say you want a base layout that can be used by all other views. You could 
             <title :else>Tempest</title>
         </head>
         <body>
-    
+
         <x-slot />
-    
+
         </body>
     </html>
 </x-component>
 ```
 
-This component will be automatically discovered. Note that, in order for view components to be discovered, **they must be suffixed with `.view.php`. 
+This component will be automatically discovered. Note that, in order for view components to be discovered, **they must be suffixed with `.view.php`.
 
 Once a view component is discovered, you can use it in any other view. In our example, you can wrap any view you want within the `{html}<x-base></x-base>` tags, and the view's content will be injected within the base layout:
 
@@ -192,7 +192,7 @@ Once a view component is discovered, you can use it in any other view. In our ex
 
 <x-base :title="$this->post->title">
     <article>
-        {{ $this->post->body }} 
+        {{ $this->post->body }}
     </article>
 </x-base>
 ```
@@ -205,7 +205,7 @@ As you can see, data to the parent component can be passed via attributes: all a
 <x-base title="Hello World"></x-base>
 ```
 
-Both attributes in the above example will be available as `$title` in the `{html}<x-base/>` component: 
+Both attributes in the above example will be available as `$title` in the `{html}<x-base/>` component:
 
 ```html
 <!-- app/components/x-base.view.php -->
@@ -258,7 +258,7 @@ Because of these limitations, **it is recommended to always use kebab-cased attr
 
 ## View inheritance and inclusion
 
-Instead of extending or including views, Tempest relies on view components. From a technical point of view, there's no difference between extending or including components: each component can be embedded within a view or another component, and each component can define one or more slots to inject data in. 
+Instead of extending or including views, Tempest relies on view components. From a technical point of view, there's no difference between extending or including components: each component can be embedded within a view or another component, and each component can define one or more slots to inject data in.
 
 Here's an example of inheritance with view components:
 
@@ -272,9 +272,9 @@ Here's an example of inheritance with view components:
             <title :else>Tempest</title>
         </head>
         <body>
-    
+
         <x-slot />
-    
+
         </body>
     </html>
 </x-component>
@@ -296,7 +296,7 @@ And here's an example of inclusion with view components:
 <x-component name="x-input">
     <div>
         <label :for="$name">{{ $label }}</label>
-        
+
         <input :type="$type" :name="$name" :id="$name" />
     </div>
 </x-component>
@@ -310,7 +310,7 @@ And here's an example of inclusion with view components:
 
 ### Named slots
 
-When using views components for inheritance, you can define zero, one, or more slots. Slots are used to inject data in from the view that's using this component. There's a default slot named `<x-slot />`, but you can define an arbitrary amount of named slots as well. 
+When using views components for inheritance, you can define zero, one, or more slots. Slots are used to inject data in from the view that's using this component. There's a default slot named `<x-slot />`, but you can define an arbitrary amount of named slots as well.
 
 ```html
 <!-- app/components/x-base.view.php -->
@@ -319,13 +319,13 @@ When using views components for inheritance, you can define zero, one, or more s
     <html lang="en">
         <head>
             <!-- … -->
-            
+
             <x-slot name="styles" />
         </head>
         <body>
-    
+
         <x-slot />
-    
+
         </body>
     </html>
 </x-component>
@@ -343,7 +343,7 @@ When using views components for inheritance, you can define zero, one, or more s
             }
         </style>
     </x-slot>
-    
+
     <!-- Everything not living in a slot will be injected into the default slot -->
     <p>
         Hello World
@@ -355,7 +355,7 @@ When using views components for inheritance, you can define zero, one, or more s
 
 View components can live solely within a `.view.php` file, in which case they are called **anonymous view components**. However, it's also possible to define a class to represent a view component. One of the main benefits of doing so, is that **view component classes** are resolved via the container, meaning they can request any dependency available within your project, and Tempest will autowire it for you. View component classes are also discovered automatically, and must implement the `ViewComponent` interface.
 
-For example, here's the implementation of `{html}<x-input>`, a view component shipped with Tempest that will render an input field, together with its original values and errors. It needs access to the `Session` to retrieve validation errors. This is a good use case for a view component class: 
+For example, here's the implementation of `{html}<x-input>`, a view component shipped with Tempest that will render an input field, together with its original values and errors. It needs access to the `Session` to retrieve validation errors. This is a good use case for a view component class:
 
 ```php
 use Tempest\View\ViewComponent;
@@ -475,7 +475,7 @@ There are a couple of rules to take into account when using expression attribute
 
 ## A note on boolean attributes
 
-The HTML spec describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present. The most common example is probably the `selected` attribute on `{html}<option>` tags, though there are a lot more (you can find them listed among others in [this table](https://html.spec.whatwg.org/multipage/indices.html#attributes-3)). 
+The HTML spec describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present. The most common example is probably the `selected` attribute on `{html}<option>` tags, though there are a lot more (you can find them listed among others in [this table](https://html.spec.whatwg.org/multipage/indices.html#attributes-3)).
 
 Tempest comes with built-in support to toggle boolean attributes on and off, you use expression attributes combined with boolean variables like so:
 
@@ -527,7 +527,7 @@ return new BladeConfig(
     viewPaths: [
         __DIR__ . '/../views/',
     ],
-    
+
     cachePath: __DIR__ . '/../views/cache/',
 );
 ```
@@ -539,6 +539,38 @@ Finally, switch over to using the Blade renderer:
 
 return new ViewConfig(
     rendererClass: \Tempest\View\Renderers\BladeViewRenderer::class,
+);
+```
+
+## Using Twig
+
+In case you prefer to use Twig, you can switch to Twig exactly like Blade above. First, install Twig:
+
+```
+composer require twig/twig
+```
+
+Next, create a twig config file:
+
+```php
+// app/Config/twig.config.php
+
+return new TwigConfig(
+    viewPaths: [
+        __DIR__ . '/../views/',
+    ],
+
+    cachePath: __DIR__ . '/../views/cache/',
+);
+```
+
+Finally, switch over to using the Twig renderer:
+
+```php
+// app/Config/view.config.php
+
+return new ViewConfig(
+    rendererClass: \Tempest\View\Renderers\TwigViewRenderer::class,
 );
 ```
 
