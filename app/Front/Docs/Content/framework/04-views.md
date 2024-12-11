@@ -2,7 +2,7 @@
 title: Views
 ---
 
-Tempest supports two templating engines: Tempest View, and Blade. Tempest View is a new templating engine, while Blade has widespread support because of Laravel. Tempest View is the default templating engine when creating Tempest projects, but the end of this page discusses how to install and switch to Blade instead.
+Tempest supports three templating engines: Tempest View, Twig, and Blade. Tempest View is a new templating engine, while Twig and Blade have widespread support because of Symfony and Laravel. Tempest View is the default templating engine when creating Tempest projects, but the end of this page discusses how to install and switch to Twig or Blade instead.
 
 ## View files
 
@@ -509,39 +509,6 @@ Tempest views are compiled to plain PHP code before being rendered. In productio
 
 For production projects with view caching enabled, it'll be important to **clear that view cache on deployment**. You do that by running `tempest cache:clear --all` on every deploy. You can read more about caching and view caching in [the cache chapter](/docs/framework/caching).
 
-## Using Blade
-
-In case you prefer to use Blade instead of Tempest views, you can switch to Blade with a couple of steps. First, install Blade:
-
-```
-composer require jenssegers/blade
-composer require illuminate/view:~11.7.0
-```
-
-Next, create a blade config file:
-
-```php
-// app/Config/blade.config.php
-
-return new BladeConfig(
-    viewPaths: [
-        __DIR__ . '/../views/',
-    ],
-
-    cachePath: __DIR__ . '/../views/cache/',
-);
-```
-
-Finally, switch over to using the Blade renderer:
-
-```php
-// app/Config/view.config.php
-
-return new ViewConfig(
-    rendererClass: \Tempest\View\Renderers\BladeViewRenderer::class,
-);
-```
-
 ## Using Twig
 
 In case you prefer to use Twig, you can switch to Twig exactly like Blade above. First, install Twig:
@@ -574,4 +541,35 @@ return new ViewConfig(
 );
 ```
 
-And that's it!
+## Using Blade
+
+In case you prefer to use Blade instead of Tempest views, you can switch to Blade with a couple of steps. First, install Blade:
+
+```
+composer require jenssegers/blade
+composer require illuminate/view:~11.7.0
+```
+
+Next, create a blade config file:
+
+```php
+// app/Config/blade.config.php
+
+return new BladeConfig(
+    viewPaths: [
+        __DIR__ . '/../views/',
+    ],
+
+    cachePath: __DIR__ . '/../views/cache/',
+);
+```
+
+Finally, switch over to using the Blade renderer:
+
+```php
+// app/Config/view.config.php
+
+return new ViewConfig(
+    rendererClass: \Tempest\View\Renderers\BladeViewRenderer::class,
+);
+```
