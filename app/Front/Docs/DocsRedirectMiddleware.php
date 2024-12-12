@@ -28,7 +28,7 @@ final readonly class DocsRedirectMiddleware implements HttpMiddleware
 
     public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
-        $path = str($request->getPath());
+        $path = str($request->path);
 
         $response = $next($request);
 
