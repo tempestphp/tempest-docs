@@ -82,6 +82,8 @@ final class ParseLogCommand
             ->first()
             ?->createdAt;
 
+        $this->success(sprintf("Parsing <style=\"underline\">%s</style>", $this->config->accessLogPath));
+
         while (true) {
             // Kill the process every hour in order to prevent memory issues.
             // Supervisor will restart it automatically.
