@@ -8,3 +8,6 @@ vendor/
 log
 public/**/**.html
 public/meta
+app/database.sqlite
+access.log
+access_short.log
