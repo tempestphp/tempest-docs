@@ -8,3 +8,4 @@ php8.4 tempest discovery:generate
 php8.4 tempest migrate:up --force
 php8.4 tempest static:clean --force
 php8.4 tempest static:generate
+sudo supervisorctl restart all
