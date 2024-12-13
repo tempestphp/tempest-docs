@@ -31,7 +31,7 @@ final readonly class VisitsPerHourProjector implements Projector
     {
         $visitedAt = $pageVisited->visitedAt->setTime(
             hour: $pageVisited->visitedAt->format('H'),
-            minute: 0
+            minute: 0,
         );
 
         $day = VisitsPerHour::query()

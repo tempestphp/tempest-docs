@@ -63,7 +63,7 @@ final readonly class EventsReplayCommand
 
             $projector->clear();
 
-            $this->writeln(sprintf('Replaying <em>%s</em>', $projectorClass));
+            $this->info(sprintf('Replaying <style="underline">%s</style>', $projectorClass));
 
             $this->progressBar($storedEvents, function (StoredEvent $storedEvent) use ($projector) {
                 $projector->replay($storedEvent->getEvent());
