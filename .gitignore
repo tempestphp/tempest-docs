@@ -11,3 +11,4 @@ public/meta
 app/database.sqlite
 access.log
 access_short.log
+sync-db.sh

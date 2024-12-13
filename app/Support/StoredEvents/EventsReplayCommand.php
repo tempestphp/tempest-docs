@@ -7,8 +7,9 @@ use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
 use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
+use function Tempest\Support\str;
 
-final readonly class ReplayCommand
+final readonly class EventsReplayCommand
 {
     use HasConsole;
 
@@ -18,18 +19,41 @@ final readonly class ReplayCommand
         private Container $container,
     ) {}
 
-    #[ConsoleCommand('events:replay', middleware: [ForceMiddleware::class])]
+    #[ConsoleCommand(middleware: [ForceMiddleware::class])]
     public function __invoke(): void
     {
         $storedEvents = StoredEvent::query()
             ->orderBy('createdAt ASC')
             ->all();
 
-        foreach ($this->storedEventConfig->projectors as $projectorClass) {
-            if (! $this->confirm("Clearing {$projectorClass}, continue?")) {
-                continue;
-            }
+        $replay = $this->ask(
+            question: 'Which projects should be replayed?',
+            options: $this->storedEventConfig->projectors,
+            multiple: true,
+        );
 
+        $replayCount = count($replay);
+
+        if (! $replayCount) {
+            $this->error('No projectors selected');
+
+            return;
+        }
+
+        $confirm = $this->confirm(sprintf(
+            'We\'re going to replay %d events on %d %s, this will take a while. Continue?',
+            count($storedEvents),
+            $replayCount,
+            str('projector')->pluralize($replayCount),
+        ));
+
+        if (! $confirm) {
+            $this->error('Cancelled');
+
+            return;
+        }
+
+        foreach ($this->storedEventConfig->projectors as $projectorClass) {
             /** @var \App\Support\StoredEvents\Projector $projector */
             $projector = $this->container->get($projectorClass);
 
