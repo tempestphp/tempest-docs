@@ -54,6 +54,10 @@ final readonly class EventsReplayCommand
         }
 
         foreach ($this->storedEventConfig->projectors as $projectorClass) {
+            if (! in_array($projectorClass, $replay)) {
+                continue;
+            }
+
             /** @var \App\Support\StoredEvents\Projector $projector */
             $projector = $this->container->get($projectorClass);
 
