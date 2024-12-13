@@ -24,7 +24,9 @@ final class ParseLogCommand
         'spotify',
         '/site.webmanifest',
         '/analytics.js',
+        '/stats',
         '/rss',
+        '/img',
         '/rss/',
         '/feed',
         '/feed/',
@@ -74,6 +76,8 @@ final class ParseLogCommand
         $handle = fopen($this->config->accessLogPath, 'r');
         $now = $this->clock->now();
 
+        $this->success(sprintf("Parsing <style=\"underline\">%s</style>", $this->config->accessLogPath));
+
         // Resolve the last stored date
         $lastDate = StoredEvent::query()
             ->where('eventClass = :eventClass', eventClass: PageVisited::class)
@@ -81,8 +85,6 @@ final class ParseLogCommand
             ->limit(1)
             ->first()
             ?->createdAt;
-
-        $this->success(sprintf("Parsing <style=\"underline\">%s</style>", $this->config->accessLogPath));
 
         while (true) {
             // Kill the process every hour in order to prevent memory issues.
@@ -94,22 +96,20 @@ final class ParseLogCommand
 
             $line = str(fgets($handle) ?: '')->trim();
 
-            if ($line->equals('')) {
+            if ($line->isEmpty()) {
                 usleep(0.1 * 1000000);
-
                 fseek($handle, ftell($handle));
-
                 continue;
             }
 
             // Resolve and check date
-            $date = $line->match("/\[([\w\d\/\:\s\+]+)/")[1] ?? null;
+            $date = $line->match("/\[([\w\d\/\:]+)/")[1] ?? null;
 
             if (! $date) {
                 continue;
             }
 
-            $date = new DateTimeImmutable($date);
+            $date = new DateTimeImmutable($date . ' +0000');
 
             if ($lastDate && $lastDate >= $date) {
                 continue;
@@ -159,6 +159,8 @@ final class ParseLogCommand
 
             if ($previousDateForIp && $previousDateForIp->diff($event->visitedAt)->s < 3) {
                 self::$ips[$event->ip] = $event->visitedAt;
+
+                $this->writeln("<style=\"bg-red fg-white\"> {$date->format('Y-m-d H:i:s')} </style> {$event->url} (throttled)");
 
                 continue;
             }

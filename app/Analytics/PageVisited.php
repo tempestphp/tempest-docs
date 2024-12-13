@@ -27,6 +27,11 @@ final class PageVisited implements ShouldBeStored, HasCreatedAtDate
         }
     }
 
+    public function shouldCountVisit(): bool
+    {
+
+    }
+
     public function serialize(): string
     {
         return json_encode([
