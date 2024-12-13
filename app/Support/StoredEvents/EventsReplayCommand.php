@@ -7,6 +7,7 @@ use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
 use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
+use Tempest\Database\Query;
 use function Tempest\Support\str;
 
 final readonly class EventsReplayCommand
@@ -20,17 +21,17 @@ final readonly class EventsReplayCommand
     ) {}
 
     #[ConsoleCommand(middleware: [ForceMiddleware::class])]
-    public function __invoke(): void
+    public function __invoke(?string $replay = null): void
     {
-        $storedEvents = StoredEvent::query()
-            ->orderBy('createdAt ASC')
-            ->all();
-
-        $replay = $this->ask(
-            question: 'Which projects should be replayed?',
-            options: $this->storedEventConfig->projectors,
-            multiple: true,
-        );
+        if ($replay) {
+            $replay = [$replay];
+        } else {
+            $replay = $this->ask(
+                question: 'Which projects should be replayed?',
+                options: $this->storedEventConfig->projectors,
+                multiple: true,
+            );
+        }
 
         $replayCount = count($replay);
 
@@ -40,9 +41,11 @@ final readonly class EventsReplayCommand
             return;
         }
 
+        $eventCount = new Query(sprintf('SELECT COUNT(*) as `count` FROM `%s`', StoredEvent::table()->tableName))->fetchFirst()['count'];
+
         $confirm = $this->confirm(sprintf(
             'We\'re going to replay %d events on %d %s, this will take a while. Continue?',
-            count($storedEvents),
+            $eventCount,
             $replayCount,
             str('projector')->pluralize($replayCount),
         ));
@@ -58,16 +61,24 @@ final readonly class EventsReplayCommand
                 continue;
             }
 
+            $this->info(sprintf('Replaying <style="underline">%s</style>', $projectorClass));
+
             /** @var \App\Support\StoredEvents\Projector $projector */
             $projector = $this->container->get($projectorClass);
 
             $projector->clear();
 
-            $this->info(sprintf('Replaying <style="underline">%s</style>', $projectorClass));
+            StoredEvent::query()
+                ->orderBy('createdAt ASC')
+                ->chunk(function (array $storedEvents) use ($projector) {
+                    $this->write('.');
 
-            $this->progressBar($storedEvents, function (StoredEvent $storedEvent) use ($projector) {
-                $projector->replay($storedEvent->getEvent());
-            });
+                    foreach ($storedEvents as $storedEvent) {
+                        $projector->replay($storedEvent->getEvent());
+                    }
+                }, 500);
+
+            $this->writeln();
         }
 
         $this->success('Done');

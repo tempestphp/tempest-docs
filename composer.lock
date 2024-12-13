@@ -510,16 +510,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php",
-            "version": "8.13.51",
+            "version": "8.13.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "852ea8ac8ca3d31f9c57d7e50c4212e96c83108e"
+                "reference": "cc9a82b237d79a85be47c0b06e3943f75ab35c32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/852ea8ac8ca3d31f9c57d7e50c4212e96c83108e",
-                "reference": "852ea8ac8ca3d31f9c57d7e50c4212e96c83108e",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/cc9a82b237d79a85be47c0b06e3943f75ab35c32",
+                "reference": "cc9a82b237d79a85be47c0b06e3943f75ab35c32",
                 "shasum": ""
             },
             "require": {
@@ -583,7 +583,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php"
             },
-            "time": "2024-12-02T09:25:55+00:00"
+            "time": "2024-12-13T09:08:43+00:00"
         },
         {
             "name": "giggsey/locale",
@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "61e7abbe51d3a34ece716501cecbd0eb93d65a32"
+                "reference": "e332bbd23240460ede83ce1ee39c37b825e5b3ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/61e7abbe51d3a34ece716501cecbd0eb93d65a32",
-                "reference": "61e7abbe51d3a34ece716501cecbd0eb93d65a32",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e332bbd23240460ede83ce1ee39c37b825e5b3ee",
+                "reference": "e332bbd23240460ede83ce1ee39c37b825e5b3ee",
                 "shasum": ""
             },
             "require": {
@@ -3949,7 +3949,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-13T08:19:40+00:00"
+            "time": "2024-12-13T12:58:23+00:00"
         },
         {
             "name": "tempest/highlight",
