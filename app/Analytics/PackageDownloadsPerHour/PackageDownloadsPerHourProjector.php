@@ -29,18 +29,18 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
     #[EventHandler]
     public function onPackageDownloadsListed(PackageDownloadsListed $event): void
     {
-        $previousDate = $event->date->modify('-1 hour');
-
         $previousHour = PackageDownloadsPerHour::query()
-            ->whereField('date', $previousDate->format('Y-m-d H:00:00' ))
             ->whereField('package', $event->package)
+            ->orderBy('date DESC')
             ->first();
 
         if ($previousHour) {
-            $count = $event->total - $previousHour->count;
+            $count = $event->total - $previousHour->total;
         } else {
             $count = $event->total;
         }
+
+        $count = max($count, 0);
 
         PackageDownloadsPerHour::updateOrCreate(
             [
@@ -48,8 +48,9 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
                 'package' => $event->package,
             ],
             [
+                'total' => $event->total,
                 'count' => $count,
-            ]
+            ],
         );
     }
 }

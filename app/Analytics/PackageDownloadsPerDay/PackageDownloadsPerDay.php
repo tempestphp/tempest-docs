@@ -14,5 +14,6 @@ final class PackageDownloadsPerDay implements DatabaseModel
         public DateTimeImmutable $date,
         public string $package,
         public int $count,
+        public int $total,
     ) {}
 }
