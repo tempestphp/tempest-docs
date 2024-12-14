@@ -58,6 +58,7 @@ final readonly class ParsePackagistCommand
 
                 event(new PackageDownloadsListed(
                     package: $package,
+                    date: new DateTimeImmutable(),
                     monthly: $data['package']['downloads']['monthly'] ?? null,
                     daily: $data['package']['downloads']['daily'] ?? null,
                     total: $data['package']['downloads']['total'] ?? null,
