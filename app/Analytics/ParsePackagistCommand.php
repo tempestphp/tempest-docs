@@ -9,6 +9,7 @@ use Tempest\Console\HasConsole;
 use Tempest\Console\Schedule;
 use Tempest\Console\Scheduler\Every;
 use Tempest\HttpClient\HttpClient;
+use Throwable;
 use function Tempest\event;
 
 final readonly class ParsePackagistCommand
@@ -26,25 +27,47 @@ final readonly class ParsePackagistCommand
     {
         $packages = [
             'framework',
-            'view',
+            'app',
+            'app-console',
+            'cache',
             'console',
+            'clock',
+            'highlight',
+            'command-bus',
+            'core',
+            'database',
+            'debug',
+            'http',
+            'http-client',
+            'log',
+            'mapper',
+            'reflection',
+            'router',
+            'support',
+            'validation',
+            'view',
         ];
 
         foreach ($packages as $package) {
             $url = "https://packagist.org/packages/tempest/{$package}.json";
 
-            $data = $this->cache->resolve("packagist-{$package}", function () use ($url) {
-                return json_decode($this->httpClient->get($url)->body, associative: true);
-            }, new DateTimeImmutable('+ 30 minutes'));
+            try {
+                $data = $this->cache->resolve("packagist-{$package}", function () use ($url) {
+                    return json_decode($this->httpClient->get($url)->body, associative: true);
+                }, new DateTimeImmutable('+ 30 minutes'));
 
-            event(new PackageDownloadsListed(
-                package: $package,
-                monthly: $data['package']['downloads']['monthly'],
-                daily: $data['package']['downloads']['daily'],
-                total: $data['package']['downloads']['total'],
-            ));
+                event(new PackageDownloadsListed(
+                    package: $package,
+                    monthly: $data['package']['downloads']['monthly'] ?? null,
+                    daily: $data['package']['downloads']['daily'] ?? null,
+                    total: $data['package']['downloads']['total'] ?? null,
+                ));
 
-            $this->success("tempest/{$package}");
+                $this->success("tempest/{$package}");
+            } catch (Throwable $e) {
+                $this->error("tempest/{$package}");
+                $this->writeln($e->getMessage());
+            }
         }
     }
 }
