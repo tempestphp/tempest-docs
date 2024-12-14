@@ -12,7 +12,7 @@ use function Tempest\Support\arr;
 
 final class MigratePageVisitedEvents implements DatabaseMigration
 {
-    public string $name = '2024-12-14_01_migrate_page_visited_date_field';
+    public string $name = '2024-12-14_02_migrate_page_visited_date_field';
 
     public function up(): QueryStatement|null
     {
@@ -21,8 +21,8 @@ final class MigratePageVisitedEvents implements DatabaseMigration
         foreach ($events as $event) {
             $payload = json_decode($event->payload, true);
 
-            if (! isset($payload['date']) || ! is_string($payload['date'])) {
-                $payload['date'] = $event->createdAt->format('c');
+            if (! isset($payload['visitedAt']) || ! is_string($payload['visitedAt'])) {
+                $payload['visitedAt'] = $event->createdAt->format('c');
             }
 
             $event->payload = json_encode($payload);
