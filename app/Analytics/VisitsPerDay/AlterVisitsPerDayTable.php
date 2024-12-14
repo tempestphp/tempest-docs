@@ -8,9 +8,7 @@ use Tempest\Database\QueryStatements\AlterTableStatement;
 
 final class AlterVisitsPerDayTable implements DatabaseMigration
 {
-    public string $name {
-        get => '2024-12-13_01_alter_visits_table';
-    }
+    public string $name = '2024-12-13_01_alter_visits_table';
 
     public function up(): QueryStatement|null
     {

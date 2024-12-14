@@ -9,9 +9,7 @@ use Tempest\Database\QueryStatements\DropTableStatement;
 
 final class CreateVisitsPerHourTable implements DatabaseMigration
 {
-    public string $name {
-        get => '2024-12-13_01_create_visits_per_hour_table';
-    }
+    public string $name = '2024-12-13_01_create_visits_per_hour_table';
 
     public function up(): QueryStatement|null
     {
