@@ -13,7 +13,7 @@ final readonly class PackageDownloadsPerDayProjector implements Projector
     {
         $query = new Query(sprintf(
             "DELETE FROM %s",
-            PackageDownloadsListed::table(),
+            PackageDownloadsPerDay::table(),
         ));
 
         $query->execute();
