@@ -157,7 +157,7 @@ final class ParseLogCommand
 
             $previousDateForIp = self::$ips[$event->ip] ?? null;
 
-            if ($previousDateForIp && $previousDateForIp->diff($event->visitedAt)->s < 3) {
+            if ($previousDateForIp && $previousDateForIp->diff($event->visitedAt)->s < 1) {
                 self::$ips[$event->ip] = $event->visitedAt;
 
                 $this->writeln("<style=\"bg-red fg-white\"> {$date->format('Y-m-d H:i:s')} </style> {$event->url} (throttled)");
