@@ -8,6 +8,7 @@ use Tempest\Console\HasConsole;
 use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
 use Tempest\Database\Query;
+use function Tempest\Support\arr;
 use function Tempest\Support\str;
 
 final readonly class EventsReplayCommand
@@ -23,12 +24,14 @@ final readonly class EventsReplayCommand
     #[ConsoleCommand(middleware: [ForceMiddleware::class])]
     public function __invoke(?string $replay = null): void
     {
+        $projectors = arr($this->storedEventConfig->projectors)->sort();
+
         if ($replay) {
             $replay = [$replay];
         } else {
             $replay = $this->ask(
                 question: 'Which projects should be replayed?',
-                options: $this->storedEventConfig->projectors,
+                options: $projectors->toArray(),
                 multiple: true,
             );
         }
@@ -56,7 +59,7 @@ final readonly class EventsReplayCommand
             return;
         }
 
-        foreach ($this->storedEventConfig->projectors as $projectorClass) {
+        foreach ($projectors as $projectorClass) {
             if (! in_array($projectorClass, $replay)) {
                 continue;
             }

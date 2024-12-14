@@ -2,10 +2,13 @@
 
 namespace App\Analytics;
 
+use App\Analytics\PackageDownloadsPerHour\PackageDownloadsPerHour;
 use App\Analytics\VisitsPerDay\VisitsPerDay;
 use App\Analytics\VisitsPerHour\VisitsPerHour;
 use DateInterval;
+use DateTimeImmutable;
 use Tempest\Clock\Clock;
+use Tempest\Database\Query;
 use Tempest\Router\Get;
 use Tempest\View\View;
 use function Tempest\Support\arr;
@@ -26,6 +29,18 @@ final readonly class StatsController
             ->where('date >= ?', $now->sub(DateInterval::createFromDateString('30 days'))->format('Y-m-d H:i:s'))
             ->all());
 
+        $packageDownloadsPerHour = arr(new Query(<<<SQL
+        SELECT `date`, SUM(`count`) as `count` FROM package_downloads_per_hours WHERE `date` >= :date GROUP BY `date`
+        SQL)->fetch(
+            date: $now->sub(DateInterval::createFromDateString('24 hours'))->format('Y-m-d H:i:s'))
+        );
+
+        $packageDownloadsPerDay = arr(new Query(<<<SQL
+        SELECT `date`, SUM(`count`) as `count` FROM package_downloads_per_days WHERE date >= :date GROUP BY `date`
+        SQL)->fetch(
+            date: $now->sub(DateInterval::createFromDateString('30 days'))->format('Y-m-d H:i:s')
+        ));
+
         return view(
             __DIR__ . '/stats.view.php',
 
@@ -37,6 +52,16 @@ final readonly class StatsController
             visitsPerDay: new Chart(
                 labels: $visitsPerDay->map(fn (VisitsPerDay $item) => $item->date->format('Y-m-d')),
                 values: $visitsPerDay->map(fn (VisitsPerDay $item) => $item->count),
+            ),
+
+            packageDownloadsPerHour: new Chart(
+                labels: $packageDownloadsPerHour->map(fn (array $item) => new DateTimeImmutable($item['date'])->format('H:i')),
+                values: $packageDownloadsPerHour->map(fn (array $item) => $item['count']),
+            ),
+
+            packageDownloadsPerDay: new Chart(
+                labels: $packageDownloadsPerDay->map(fn (array $item) => new DateTimeImmutable($item['date'])->format('Y-m-d')),
+                values: $packageDownloadsPerDay->map(fn (array $item) => $item['count']),
             ),
         );
     }

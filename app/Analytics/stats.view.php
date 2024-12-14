@@ -18,6 +18,9 @@
             <div class="w-full mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-12 md:px-24 px-8">
                 <x-chart :chart="$visitsPerHour" label="Visits per hour" title="Website visits last 24 hours"></x-chart>
                 <x-chart :chart="$visitsPerDay" label="Visits per day" title="Website visits last 30 days"></x-chart>
+                <div></div>
+                <x-chart :chart="$packageDownloadsPerHour" label="Downloads per hour" title="Package downloads last 24 hours"></x-chart>
+                <x-chart :chart="$packageDownloadsPerDay" label="Downloads per day" title="Package downloads last 30 days"></x-chart>
             </div>
         </div>
     </div>
