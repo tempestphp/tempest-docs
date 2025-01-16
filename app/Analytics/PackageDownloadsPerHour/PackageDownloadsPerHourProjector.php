@@ -29,16 +29,7 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
     #[EventHandler]
     public function onPackageDownloadsListed(PackageDownloadsListed $event): void
     {
-        $previousHour = PackageDownloadsPerHour::query()
-            ->whereField('package', $event->package)
-            ->orderBy('date DESC')
-            ->first();
-
-        if ($previousHour) {
-            $count = $event->total - $previousHour->total;
-        } else {
-            $count = $event->total;
-        }
+        $count = $event->total;
 
         $count = max($count, 0);
 
