@@ -79,7 +79,7 @@ final readonly class BlogRepository
         $parsed = $this->markdown->convert($content);
 
         if (! $parsed instanceof RenderedContentWithFrontMatter) {
-            throw new Exception("Missing frontmatter in {$path}");
+            throw new Exception("Missing frontmatter or content in {$path}");
         }
 
         return $parsed;
