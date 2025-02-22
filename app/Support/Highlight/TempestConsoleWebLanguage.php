@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Support\Highlight;
 
 use App\Support\Highlight\Injections\CommentInjection;
+use App\Support\Highlight\Injections\DimInjection;
 use App\Support\Highlight\Injections\EmphasizeInjection;
 use App\Support\Highlight\Injections\ErrorInjection;
 use App\Support\Highlight\Injections\H1Injection;
@@ -32,6 +33,7 @@ final readonly class TempestConsoleWebLanguage implements Language
         return [
             new QuestionInjection(),
             new EmphasizeInjection(),
+            new DimInjection(),
             new StrongInjection(),
             new UnderlineInjection(),
             new ErrorInjection(),

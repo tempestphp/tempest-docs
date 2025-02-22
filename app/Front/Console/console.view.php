@@ -17,7 +17,7 @@ use function Tempest\uri;
                 <div class="flex gap-3 my-8 flex-col text-center items-center ">
                     <span> Start with a simple composer require </span>
                     <div class="bg-tempest-blue-950/[90%] px-4 py-2 rounded-[9px] text-white border border-tempest-blue-500 font-medium font-mono text-[16px]">
-                        <span class="text-tempest-blue-100 font-normal">composer</span> require tempest/console:1.0-alpha.4
+                        <span class="text-tempest-blue-100 font-normal">composer</span> require tempest/console:1.0-alpha.5
                     </div>
                 </div>
 

@@ -34,7 +34,7 @@ final readonly class CommentInjection implements Injection
                 ],
             );
         } else {
-            $comment = '/* ' . $lines[0] . ' */';
+            $comment = '// ' . $lines[0];
         }
 
         return sprintf(

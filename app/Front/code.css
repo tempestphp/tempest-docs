@@ -102,6 +102,10 @@
 }
 .hl-console-em {
 	color: var(--code-keyword);
+	font-weight: bold;
+}
+.hl-console-dim {
+	color: var(--code-comment);
 }
 
 .hl-console-question,
