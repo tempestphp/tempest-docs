@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "43177bc882a48bcd4a61df11081e194c",
+    "content-hash": "3c938039bf8c00ff8a1575f78fda3fc6",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -2439,16 +2439,16 @@
         },
         {
             "name": "spatie/browsershot",
-            "version": "5.0.8",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/browsershot.git",
-                "reference": "0102971ae974022ec4a7a149e8924ea355b52cc3"
+                "reference": "3ff350cd0a36943759e2932a27d8cd18c11e5fdc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/browsershot/zipball/0102971ae974022ec4a7a149e8924ea355b52cc3",
-                "reference": "0102971ae974022ec4a7a149e8924ea355b52cc3",
+                "url": "https://api.github.com/repos/spatie/browsershot/zipball/3ff350cd0a36943759e2932a27d8cd18c11e5fdc",
+                "reference": "3ff350cd0a36943759e2932a27d8cd18c11e5fdc",
                 "shasum": ""
             },
             "require": {
@@ -2459,10 +2459,10 @@
                 "symfony/process": "^6.0|^7.0"
             },
             "require-dev": {
-                "pestphp/pest": "^3.0",
+                "pestphp/pest": "^1.20",
                 "spatie/image": "^3.6",
                 "spatie/pdf-to-text": "^1.52",
-                "spatie/phpunit-snapshot-assertions": "^4.2.3|^5.0"
+                "spatie/phpunit-snapshot-assertions": "^4.2.3"
             },
             "type": "library",
             "autoload": {
@@ -2495,7 +2495,7 @@
                 "webpage"
             ],
             "support": {
-                "source": "https://github.com/spatie/browsershot/tree/5.0.8"
+                "source": "https://github.com/spatie/browsershot/tree/4.4.0"
             },
             "funding": [
                 {
@@ -2503,7 +2503,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-17T09:56:12+00:00"
+            "time": "2024-11-25T16:02:22+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "bc49c4956fc071bba26fc4824c7ba8571c270992"
+                "reference": "fc573c0cc775854d889c370d65517955c7eb7c79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/bc49c4956fc071bba26fc4824c7ba8571c270992",
-                "reference": "bc49c4956fc071bba26fc4824c7ba8571c270992",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/fc573c0cc775854d889c370d65517955c7eb7c79",
+                "reference": "fc573c0cc775854d889c370d65517955c7eb7c79",
                 "shasum": ""
             },
             "require": {
@@ -3878,7 +3878,6 @@
                 "friendsofphp/php-cs-fixer": "^3.21",
                 "guzzlehttp/psr7": "^2.6.1",
                 "illuminate/view": "~11.7.0",
-                "jenssegers/blade": "^2.0",
                 "mikey179/vfsstream": "^2.0@dev",
                 "nesbot/carbon": "^3.8",
                 "nyholm/psr7": "^1.8",
@@ -3890,10 +3889,12 @@
                 "spatie/phpunit-snapshot-assertions": "^5.1.6",
                 "spaze/phpstan-disallowed-calls": "^4.0",
                 "symplify/monorepo-builder": "^11.2",
+                "tempest/blade": "^0.1.0",
                 "twig/twig": "^3.16"
             },
             "suggest": {
-                "ext-pcntl": "Required to use some interactive console components."
+                "ext-pcntl": "Required to use some interactive console components.",
+                "ext-posix": "Required to use some interactive console components."
             },
             "default-branch": true,
             "bin": [
@@ -3956,7 +3957,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-21T17:08:04+00:00"
+            "time": "2025-02-24T07:40:19+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4421,16 +4422,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.69.1",
+            "version": "v3.70.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "13b0c0eede38c11cd674b080f2b485d0f14ffa9f"
+                "reference": "2ecd5aae0edc937f0d5aa4a22d1d705c6b2e084e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/13b0c0eede38c11cd674b080f2b485d0f14ffa9f",
-                "reference": "13b0c0eede38c11cd674b080f2b485d0f14ffa9f",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/2ecd5aae0edc937f0d5aa4a22d1d705c6b2e084e",
+                "reference": "2ecd5aae0edc937f0d5aa4a22d1d705c6b2e084e",
                 "shasum": ""
             },
             "require": {
@@ -4512,7 +4513,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.69.1"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.70.0"
             },
             "funding": [
                 {
@@ -4520,7 +4521,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-18T23:57:43+00:00"
+            "time": "2025-02-22T23:30:51+00:00"
         },
         {
             "name": "myclabs/deep-copy",
