@@ -44,6 +44,7 @@ final readonly class MetaImageController
 
         if (! is_file($path) || $request->has('nocache')) {
             $this->browsershot
+                ->windowSize(1200, 628)
                 ->setUrl(uri([self::class, 'blog',], slug: $slug, html: true))
                 ->save($path);
         }
