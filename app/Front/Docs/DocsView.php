@@ -63,6 +63,6 @@ final class DocsView implements View
 
     public function categories(): array
     {
-        return ['intro', 'framework', 'console', 'highlight', 'internals'];
+        return ['intro', 'framework', 'console', 'highlight', 'internals', 'cookbook'];
     }
 }
