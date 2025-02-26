@@ -486,13 +486,13 @@ Tempest comes with built-in support to toggle boolean attributes on and off, you
 This will be compiled to this:
 
 ```html
-<option :value="value" {:hl-property:selected:}>Label</option>
+<option value="value" {:hl-property:selected:}>Label</option>
 ```
 
 Or this:
 
 ```html
-<option :value="value">Label</option>
+<option value="value">Label</option>
 ```
 
 Depending on whether `$selected` evaluates to `true` or `false`.
