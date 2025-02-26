@@ -546,8 +546,7 @@ return new ViewConfig(
 In case you prefer to use Blade instead of Tempest views, you can switch to Blade with a couple of steps. First, install Blade:
 
 ```
-composer require jenssegers/blade
-composer require illuminate/view:~11.7.0
+composer require tempest/blade
 ```
 
 Next, create a blade config file:
