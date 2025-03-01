@@ -27,7 +27,6 @@ use App\Front\Meta\MetaType;
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <x-slot name="styles"/>
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=source-code-pro:500|archivo:700,900" rel="stylesheet"/>
         <link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"/>
@@ -38,6 +37,7 @@ use App\Front\Meta\MetaType;
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
         <link rel="manifest" href="/favicon/site.webmanifest">
 
+        <x-slot name="styles"/>
         <x-slot name="head" />
     </head>
 
