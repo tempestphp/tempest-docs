@@ -66,3 +66,26 @@ $codeBlocks = arr(glob(__DIR__ . '/*.md'))
 ```
 
 You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/ArrayHelper.php).
+
+## Enum helper
+
+The `IsEnumHelper` traits provides a bunch of useful methods that can be added to any enum:
+
+```php
+use Tempest\Support\IsEnumHelper;
+
+enum MyEnum
+{
+    use IsEnumHelper;
+    
+    case FOO;
+    case BAR;
+}
+
+MyEnum::FOO->is(MyEnum::BAR);
+MyEnum::names();
+
+// …
+```
+
+You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/IsEnumHelper.php).
