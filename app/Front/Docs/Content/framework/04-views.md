@@ -351,6 +351,36 @@ When using views components for inheritance, you can define zero, one, or more s
 </x-base>
 ```
 
+### Dynamic slots
+
+Within a view component, there will always be a variable called `$slots`, which allows you to dynamically access the available named slots within the component:
+
+```html
+<x-component name="x-tabs">
+    <x-codeblock :foreach="$slots as $slot">
+        <h1>{{ $slot->name }}</h1>
+        
+        <h2>{{ $slot->attributes['language'] }}</h2>
+        <!-- Or -->
+        <h2>{{ $slot->language }}</h2>
+        
+        <div>{!! $slot->content !!}</div>
+    </x-codeblock>
+</x-component>
+
+<x-tabs>
+    <x-slot name="php" language="PHP">This is the PHP tab</x-slot>
+    <x-slot name="js" language="JavaScript">This is the JS tab</x-slot>
+    <x-slot name="html" language="HTML">This is the HTML tab</x-slot>
+</x-tabs>
+```
+
+A `$slot` variable is an instance of `\Tempest\View\Slot`, and has a handful of properties:
+
+- `$slot->name`: the slot's name
+- `$slot->attributes`: all the attributes defined on the slot, they can also be accessed directly via `$slot->attributeName`
+- `$slot->content`: the compiled content of the slot
+
 ## View component classes
 
 View components can live solely within a `.view.php` file, in which case they are called **anonymous view components**. However, it's also possible to define a class to represent a view component. One of the main benefits of doing so, is that **view component classes** are resolved via the container, meaning they can request any dependency available within your project, and Tempest will autowire it for you. View component classes are also discovered automatically, and must implement the `ViewComponent` interface.
@@ -473,7 +503,7 @@ There are a couple of rules to take into account when using expression attribute
 </x-component>
 ```
 
-## A note on boolean attributes
+## Boolean attributes
 
 The HTML spec describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present. The most common example is probably the `selected` attribute on `{html}<option>` tags, though there are a lot more (you can find them listed among others in [this table](https://html.spec.whatwg.org/multipage/indices.html#attributes-3)).
 
@@ -496,6 +526,24 @@ Or this:
 ```
 
 Depending on whether `$selected` evaluates to `true` or `false`.
+
+## Templates
+
+Tempest views come with a built-in `{html}<x-template>` tag, which can be used to add control structures without rendering an actual HTML tag:
+
+```html
+<x-template :foreach="$posts as $post">
+    <div>{{ $post->title }}</div>
+</x-template>
+```
+
+Will be compiled to
+
+```html
+<div>Post A</div>
+<div>Post B</div>
+<div>Post C</div>
+```
 
 ## View caching
 
