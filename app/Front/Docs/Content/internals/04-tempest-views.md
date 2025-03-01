@@ -278,3 +278,17 @@ You can define multiple named slots:
     This will be appended into the main slot
 </x-my>
 ```
+
+### Named slots
+
+All named slots are available within a view component via the `$slots` variable. This is an array of `\Tempest\View\Slot` objects.
+
+```html
+<x-component name="x-my">
+    <div :forach="$slots as $slot">
+        {{ $slot->name }}
+        {{ $slot->attributes['foo'] }}
+        {!! $slot->content !!}
+    </div>
+</x-component>
+```
