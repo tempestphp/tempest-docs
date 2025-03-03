@@ -13,3 +13,4 @@ access.log
 access_big.log
 access_short.log
 sync-db.sh
+app/tempest-access.log

@@ -33,9 +33,11 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
 
         $count = max($count, 0);
 
+        $date = $event->date->setTime($event->date->format('H'), 0, 0);
+
         PackageDownloadsPerHour::updateOrCreate(
             [
-                'date' => $event->date->format('Y-m-d H:00:00'),
+                'date' => $date->format(DATE_ATOM),
                 'package' => $event->package,
             ],
             [

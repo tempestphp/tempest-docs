@@ -35,7 +35,7 @@ final readonly class PackageDownloadsPerDayProjector implements Projector
 
         PackageDownloadsPerDay::updateOrCreate(
             [
-                'date' => $event->date->format('Y-m-d 00:00:00'),
+                'date' => $event->date->format(DATE_ATOM),
                 'package' => $event->package,
             ],
             [
