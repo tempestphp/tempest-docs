@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "1b3433d839520166025c2207a98170d5c3263515"
+                "reference": "3d3a094bd4cb3456f7e41bdd7b5a4b1b059b134e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/1b3433d839520166025c2207a98170d5c3263515",
-                "reference": "1b3433d839520166025c2207a98170d5c3263515",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/3d3a094bd4cb3456f7e41bdd7b5a4b1b059b134e",
+                "reference": "3d3a094bd4cb3456f7e41bdd7b5a4b1b059b134e",
                 "shasum": ""
             },
             "require": {
@@ -3957,7 +3957,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-01T19:44:30+00:00"
+            "time": "2025-03-05T05:13:00+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4422,16 +4422,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.70.0",
+            "version": "v3.70.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "2ecd5aae0edc937f0d5aa4a22d1d705c6b2e084e"
+                "reference": "1ca468270efbb75ce0c7566a79cca8ea2888584d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/2ecd5aae0edc937f0d5aa4a22d1d705c6b2e084e",
-                "reference": "2ecd5aae0edc937f0d5aa4a22d1d705c6b2e084e",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/1ca468270efbb75ce0c7566a79cca8ea2888584d",
+                "reference": "1ca468270efbb75ce0c7566a79cca8ea2888584d",
                 "shasum": ""
             },
             "require": {
@@ -4513,7 +4513,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.70.0"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.70.2"
             },
             "funding": [
                 {
@@ -4521,7 +4521,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-22T23:30:51+00:00"
+            "time": "2025-03-03T21:07:23+00:00"
         },
         {
             "name": "myclabs/deep-copy",

@@ -1,10 +1,8 @@
 <?php
 
-use Tempest\Database\Connections\SQLiteConnection;
-use Tempest\Database\DatabaseConfig;
 
-return new DatabaseConfig(
-    connection: new SQLiteConnection(
-        path: __DIR__ . '/../database.sqlite',
-    )
+use Tempest\Database\Config\SQLiteConfig;
+
+return new SQLiteConfig(
+    path: __DIR__ . '/../database.sqlite',
 );
