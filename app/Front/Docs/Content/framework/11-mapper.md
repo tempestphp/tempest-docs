@@ -60,27 +60,43 @@ final readonly class PsrRequestToRequestMapper implements Mapper
 Sometimes, you don't want Tempest to decide which mapper should be used, but rather specify one yourself. That's done with the `map()->with()` method:
 
 ```php
-$psrRequest = map($request)->with(RequestToPsrRequestMapper::class);
+$psrRequest = map($request)->with(RequestToPsrRequestMapper::class)->do();
 ```
 
-Note that you can define a chain of mappers as well:
+Note that you need to call `->do()` to perform the actual mapping. You can define a chain of mappers as well:
 
 ```php
 $psrRequest = map($data)->with(
     ArrayToObjectMapper::class,
     ObjectToRequestMapper::class,
     RequestToPsrRequestMapper::class,
-);
+)->do();
 ```
 
-Finally, you can also provide closures to the `with()` method. These closures expect the mapper as their first parameter, and `$from` as the second. By using closures you get access to the `$from` parameter as well, allowing you to do more advanced mapping via the `with()` method:
+Next, you can also provide closures to the `with()` method. These closures expect the mapper as their first parameter, and `$from` as the second. By using closures you get access to the `$from` parameter as well, allowing you to do more advanced mapping via the `with()` method:
 
 ```php
 $result = map(['a' => 'a', 'b' => 'b'])->with(
     fn (ArrayToObjectMapper $arrayToObject, mixed $from) => $arrayToObject->map($from, ObjectA::class),
     ObjectToArrayMapper::class,
     ArrayToJsonMapper::class,
-);
+)->do();
+```
+
+Finally, `map()->with()` can also be combined with `->collection()` and `->to()`:
+
+```php
+map(['a' => 'a', 'b' => 'b'])
+    ->with(ArrayToObjectMapper::class)
+    ->to(ObjectA::class);
+
+map([
+    ['a' => 'a', 'b' => 'b'],
+    ['a' => 'c', 'b' => 'd'],
+])
+    ->with(ArrayToObjectMapper::class)
+    ->collection()
+    ->to(ObjectA::class);
 ```
 
 ## toArray and toJson
