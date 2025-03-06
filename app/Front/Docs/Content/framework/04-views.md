@@ -6,27 +6,7 @@ Tempest supports three templating engines: Tempest View, Twig, and Blade. Tempes
 
 ## View files
 
-Tempest Views are plain PHP files, although they also support a custom syntax. You can mix or choose a preferred style.
-
-This is the standard PHP style:
-
-```html
-<ul>
-    <?php foreach ($this->posts as $post): ?>
-        <li>
-            <?= $post->title ?>
-
-            <?php if($this->showDate($post)): ?>
-                <span>
-                    <?= $post->date ?>
-                </span>
-            <?php endif; ?>
-        </li>
-    <?php endforeach; ?>
-</ul>
-```
-
-And this is the custom syntax:
+Here's an example of what a Tempest view looks like:
 
 ```html
 <x-base title="Home">
@@ -48,7 +28,7 @@ And this is the custom syntax:
 </x-base>
 ```
 
-Think of the custom style as an extension of HTML, we'll dive deeper into the syntax later in this chapter.
+You can think of `tempest/view` as a superset of HTML, we'll dive deeper into the syntax later in this chapter.
 
 ## Returning Views
 
@@ -83,6 +63,23 @@ final readonly class HomeController
 ```
 
 The `{php}view()` function will construct a generic view object for you. It's more flexible, but custom view objects offer some benefits.
+
+### View paths
+
+View files can be referenced in multiple ways. You can use absolute paths:
+
+```php
+view(__DIR__ . '/../Views/home.view.php');
+```
+
+Or you can use relative paths:
+
+
+```php
+view('Views/home.view.php');
+```
+
+When you're using relative paths, Tempest will search all registered [discovery locations](/docs/internals/discovery), as well as files relative to the controller where the view was created. For example, if you write `view('./home.view.php)`, Tempest will first check whether there's a view file within the same directory as where the controller requiring this view is located.
 
 ## Escaping data
 
