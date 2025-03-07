@@ -4,7 +4,7 @@ title: Package Development
 
 Tempest comes with a handful of tools to help third-party package developers.
 
-## `#[DoNotDiscover]`
+## DoNotDiscover
 
 Tempest has an attribute called `#[DoNotDiscover]`, which you can add on classes. Any class within your package that has this attribute won't be discovered by Tempest. You can still use that class internally, or allow you package to publish it (see [installers](#installers)).
 
