@@ -139,6 +139,32 @@ Finally, Installers will be discovered by Tempest, so you only need to implement
 
 As you can see in the previous examples, `$this->publishImports()` is always called within the `install()` method. Calling this method will loop over all published files, and adjust any imports that reference to published files. 
 
+## Provider classes
+
+Unlike Symfony or Laravel, Tempest doesn't have a dedicated "service provider" concept. Instead, you're encouraged to rely on discovery and initializers. However, there might be cases where you need to "set up a bunch of things for your package", and you need a place to put that code. 
+
+In order to do that, you're encouraged to simply have an event listener for the `KernelEvent::BOOTED` event. This event is triggered when Tempest's kernel has booted, but before any application code is run. It's the perfect place to hook into Tempest's internals if you need to set up stuff specifically for your package.
+
+```php
+use Tempest\Core\KernelEvent;
+use Tempest\EventBus\EventHandler;
+
+final readonly class MyPackageProvider
+{
+    public function __construct(
+        // You can inject any dependency you like
+        private Container $container,
+    ) {}
+
+    #[EventHandler(KernelEvent::BOOTED)]
+    public function init(): void
+    {
+        // Do whatever needs to be done
+        $this->container->…
+    }
+}
+```
+
 ## Testing helpers
 
 Tempest provides a class called `\Tempest\Framework\Testing\IntegrationTest`. Your PHPUnit tests can extend from it. By doing so, your tests will automatically boot the framework, and have a range of helper methods available.
