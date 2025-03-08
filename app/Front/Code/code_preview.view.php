@@ -16,6 +16,7 @@
                 html2canvas(screenshot, {
                     allowTaint: true,
                     useCORS: true,
+                    scale: 4,
                 })
                     .then(function (canvas) {
                         screenshot.classList.remove('hero-bg-screenshot');
