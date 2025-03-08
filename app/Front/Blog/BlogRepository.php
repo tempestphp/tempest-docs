@@ -45,7 +45,8 @@ final readonly class BlogRepository
 
                 return $data;
             })
-            ->mapTo(BlogPost::class);
+            ->mapTo(BlogPost::class)
+            ->filter(fn (BlogPost $post) => $post->published);
     }
 
     public function find(string $slug): ?BlogPost

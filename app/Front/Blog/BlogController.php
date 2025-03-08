@@ -6,6 +6,7 @@ use DateTimeImmutable;
 use Tempest\Cache\Cache;
 use Tempest\Router\Get;
 use Tempest\Router\Response;
+use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Ok;
 use Tempest\Router\StaticPage;
 use Tempest\Support\ArrayHelper;
@@ -26,9 +27,13 @@ final readonly class BlogController
 
     #[Get('/blog/{slug}')]
     #[StaticPage(BlogDataProvider::class)]
-    public function show(string $slug, BlogRepository $repository): View
+    public function show(string $slug, BlogRepository $repository): Response|View
     {
         $post = $repository->find($slug);
+
+        if (! $post || ! $post->published) {
+            return new NotFound();
+        }
 
         return view(__DIR__ . '/blog_show.view.php', post: $post);
     }
@@ -36,12 +41,13 @@ final readonly class BlogController
     #[Get('/rss')]
     public function rss(
         Cache $cache,
-        BlogRepository $repository
-    ): Response {
+        BlogRepository $repository,
+    ): Response
+    {
         $xml = $cache->resolve(
             key: 'rss',
             cache: fn () => $this->renderRssFeed($repository->all(loadContent: true)),
-            expiresAt: new DateTimeImmutable('+1 hour')
+            expiresAt: new DateTimeImmutable('+1 hour'),
         );
 
         return (new Ok($xml))
