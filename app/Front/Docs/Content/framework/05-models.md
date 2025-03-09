@@ -102,16 +102,17 @@ Migrations are used to manage database tables that hold persisted model data. Mi
 ```php
 // app/CreateBookTable.php
 
-use Tempest\Database\Migration;
+use Tempest\Database\DatabaseMigration;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\CreateTableStatement;
 use Tempest\Database\QueryStatements\DropTableStatement;
 
-final readonly class CreateBookTable implements Migration
+final readonly class CreateBookTable implements DatabaseMigration
 {
-    public function getName(): string
-    {
-        return '2024-08-12_create_book_table';
+    public string $name {
+        get {
+            return '2024-08-12_create_book_table';
+        } 
     }
 
     public function up(): QueryStatement|null
