@@ -1,4 +1,4 @@
-<?php  /** @var \Tempest\View\GenericView $this */
+<?php /** @var \Tempest\View\GenericView $this */
 ?>
 
 <html lang="en">

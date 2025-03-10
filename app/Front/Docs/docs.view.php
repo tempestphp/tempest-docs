@@ -1,4 +1,4 @@
-<?php  /** @var \App\Front\Docs\DocsView $this */
+<?php /** @var \App\Front\Docs\DocsView $this */
 ?>
 
 <x-base :title="$this->currentChapter->title">
@@ -163,6 +163,8 @@
       </div>
     </aside>
     <?php endif ?>
+
+    
     
   </main>
 </x-base>
