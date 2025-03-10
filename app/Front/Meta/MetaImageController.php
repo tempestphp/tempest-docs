@@ -14,7 +14,7 @@ use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Ok;
 use Tempest\View\ViewRenderer;
 
-use function Tempest\path;
+use function Tempest\support\path;
 use function Tempest\uri;
 use function Tempest\view;
 
