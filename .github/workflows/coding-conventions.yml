@@ -26,6 +26,3 @@ jobs:
         run: |
           ./vendor/bin/mago fmt --dry-run
           ./vendor/bin/mago lint --reporting-format=github
-
-      - name: Run PHPStan
-        run: vendor/bin/phpstan --error-format=github

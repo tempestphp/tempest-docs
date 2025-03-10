@@ -10,7 +10,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10.2",
-        "phpstan/phpstan": "^1.10",
         "symfony/var-dumper": "^7.1",
         "carthage-software/mago": "^0.19.3"
     },
@@ -33,12 +32,10 @@
     ],
     "scripts": {
         "phpunit": "vendor/bin/phpunit --display-warnings --display-skipped --display-deprecations --display-errors --display-notices",
-        "phpstan": "vendor/bin/phpstan analyse app",
         "mago:fmt": "vendor/bin/mago fmt",
         "mago:lint": "vendor/bin/mago lint --fix && vendor/bin/mago lint",
         "qa": [
             "composer mago:fmt",
-            "composer phpstan",
             "composer phpunit",
             "composer mago:lint"
         ]
