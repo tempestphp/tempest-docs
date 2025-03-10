@@ -12,6 +12,7 @@ use Tempest\Router\Request;
 use Tempest\Router\Response;
 use Tempest\Router\Responses\Redirect;
 use Tempest\View\View;
+
 use function Tempest\uri;
 use function Tempest\view;
 
@@ -32,13 +33,12 @@ final readonly class EllisonController
     }
 
     #[Get('/ellison/preview')]
-    public function preview(
-        Request $request,
-    ): View {
+    public function preview(Request $request): View
+    {
         $highlighter = new Highlighter(new CssTheme());
 
-        $ellison = $highlighter->parse(base64_decode($request->getSessionValue('ellison') ?? base64_encode('Hello World')), 'ellison');
+        $ellison = $highlighter->parse(base64_decode($request->getSessionValue('ellison') ?? base64_encode('Hello World'), strict: true), 'ellison');
 
-        return view(__DIR__ .  '/ellison_preview.view.php')->data(ellison: $ellison);
+        return view(__DIR__ . '/ellison_preview.view.php')->data(ellison: $ellison);
     }
 }

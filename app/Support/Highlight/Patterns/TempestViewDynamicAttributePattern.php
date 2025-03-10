@@ -16,6 +16,7 @@ final readonly class TempestViewDynamicAttributePattern implements Pattern
         return '<.*? :(?<match>\w+)';
     }
 
+    #[\Override]
     public function getTokenType(): TokenType
     {
         return TokenTypeEnum::PROPERTY;

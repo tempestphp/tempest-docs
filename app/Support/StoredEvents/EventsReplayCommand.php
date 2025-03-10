@@ -8,6 +8,7 @@ use Tempest\Console\HasConsole;
 use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
 use Tempest\Database\Query;
+
 use function Tempest\Support\arr;
 use function Tempest\Support\str;
 
@@ -19,7 +20,8 @@ final readonly class EventsReplayCommand
         private StoredEventConfig $storedEventConfig,
         private Console $console,
         private Container $container,
-    ) {}
+    ) {
+    }
 
     #[ConsoleCommand(middleware: [ForceMiddleware::class])]
     public function __invoke(?string $replay = null): void
@@ -60,7 +62,7 @@ final readonly class EventsReplayCommand
         }
 
         foreach ($projectors as $projectorClass) {
-            if (! in_array($projectorClass, $replay)) {
+            if (! in_array($projectorClass, $replay, strict: true)) {
                 continue;
             }
 
@@ -73,13 +75,16 @@ final readonly class EventsReplayCommand
 
             StoredEvent::query()
                 ->orderBy('createdAt ASC')
-                ->chunk(function (array $storedEvents) use ($projector) {
-                    $this->write('.');
+                ->chunk(
+                    function (array $storedEvents) use ($projector) {
+                        $this->write('.');
 
-                    foreach ($storedEvents as $storedEvent) {
-                        $projector->replay($storedEvent->getEvent());
-                    }
-                }, 500);
+                        foreach ($storedEvents as $storedEvent) {
+                            $projector->replay($storedEvent->getEvent());
+                        }
+                    },
+                    500,
+                );
 
             $this->writeln();
         }

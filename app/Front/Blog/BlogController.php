@@ -12,6 +12,7 @@ use Tempest\Router\StaticPage;
 use Tempest\Support\ArrayHelper;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;
+
 use function Tempest\view;
 
 final readonly class BlogController
@@ -42,15 +43,14 @@ final readonly class BlogController
     public function rss(
         Cache $cache,
         BlogRepository $repository,
-    ): Response
-    {
+    ): Response {
         $xml = $cache->resolve(
             key: 'rss',
             cache: fn () => $this->renderRssFeed($repository->all(loadContent: true)),
             expiresAt: new DateTimeImmutable('+1 hour'),
         );
 
-        return (new Ok($xml))
+        return new Ok($xml)
             ->addHeader('Content-Type', 'application/xml;charset=UTF-8');
     }
 
@@ -58,7 +58,7 @@ final readonly class BlogController
     {
         ob_start();
 
-        include(__DIR__ . '/rss.view.php');
+        include __DIR__ . '/rss.view.php';
 
         return trim(ob_get_clean());
     }

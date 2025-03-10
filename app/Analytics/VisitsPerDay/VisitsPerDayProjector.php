@@ -9,6 +9,7 @@ use Tempest\EventBus\EventHandler;
 
 final readonly class VisitsPerDayProjector implements Projector
 {
+    #[\Override]
     public function replay(object $event): void
     {
         if ($event instanceof PageVisited) {
@@ -16,10 +17,11 @@ final readonly class VisitsPerDayProjector implements Projector
         }
     }
 
+    #[\Override]
     public function clear(): void
     {
         $query = new Query(sprintf(
-            "DELETE FROM %s",
+            'DELETE FROM %s',
             VisitsPerDay::table(),
         ));
 

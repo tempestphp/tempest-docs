@@ -10,10 +10,11 @@ use Tempest\Highlight\Themes\CssTheme;
 
 final readonly class HighlighterInitializer implements Initializer
 {
+    #[\Override]
     #[Singleton(tag: 'project')]
     public function initialize(Container $container): Highlighter
     {
-        $highlighter = (new Highlighter(new CssTheme()));
+        $highlighter = new Highlighter(new CssTheme());
 
         $highlighter
             ->addLanguage(new TempestViewLanguage())

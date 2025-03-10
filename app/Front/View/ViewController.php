@@ -6,6 +6,7 @@ use League\CommonMark\MarkdownConverter;
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
+
 use function Tempest\Support\arr;
 use function Tempest\view;
 
@@ -13,7 +14,8 @@ final readonly class ViewController
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {}
+    ) {
+    }
 
     #[StaticPage]
     #[Get('/view')]

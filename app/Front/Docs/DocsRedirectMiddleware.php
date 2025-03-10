@@ -11,6 +11,7 @@ use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Redirect;
 use Tempest\Router\Router;
+
 use function Tempest\Support\str;
 use function Tempest\uri;
 
@@ -18,7 +19,8 @@ final readonly class DocsRedirectMiddleware implements HttpMiddleware
 {
     public function __construct(
         private Router $router,
-    ) {}
+    ) {
+    }
 
     #[EventHandler(KernelEvent::BOOTED)]
     public function register(): void
@@ -26,6 +28,7 @@ final readonly class DocsRedirectMiddleware implements HttpMiddleware
         $this->router->addMiddleware(self::class);
     }
 
+    #[\Override]
     public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
         $path = str($request->path);

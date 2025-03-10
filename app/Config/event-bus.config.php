@@ -6,5 +6,5 @@ use Tempest\EventBus\EventBusConfig;
 return new EventBusConfig(
     middleware: [
         StoredEventMiddleware::class,
-    ]
+    ],
 );

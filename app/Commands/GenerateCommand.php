@@ -11,7 +11,8 @@ final readonly class GenerateCommand
 {
     public function __construct(
         private ExecuteConsoleCommand $executeConsoleCommand,
-    ) {}
+    ) {
+    }
 
     #[ConsoleCommand(name: 'generate')]
     #[Schedule(interval: Every::HALF_HOUR)]

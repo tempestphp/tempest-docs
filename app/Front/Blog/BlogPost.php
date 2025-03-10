@@ -3,6 +3,7 @@
 namespace App\Front\Blog;
 
 use DateTimeImmutable;
+
 use function Tempest\uri;
 
 final class BlogPost

@@ -28,10 +28,12 @@
                                 <?= $post->description ?>
                             </span>
                         <?php endif ?>
+                        
                         <span class="text-sm font-light">
                             <?php if ($post->author ?? null): ?>
                                 Written by <?= $post->author ?> on
                             <?php endif ?>
+                            
                             <?= $post->createdAt->format('F d, Y') ?>
                         </span>
                     </a>
