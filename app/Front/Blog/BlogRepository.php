@@ -7,7 +7,7 @@ use Exception;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
-use Tempest\Support\ArrayHelper;
+use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\map;
 use function Tempest\Support\arr;
@@ -20,9 +20,9 @@ final readonly class BlogRepository
     }
 
     /**
-     * @return ArrayHelper<\App\Front\Blog\BlogPost>
+     * @return \Tempest\Support\Arr\ImmutableArray<\App\Front\Blog\BlogPost>
      */
-    public function all(bool $loadContent = false): ArrayHelper
+    public function all(bool $loadContent = false): ImmutableArray
     {
         return arr(glob(__DIR__ . '/Content/*.md'))
             ->reverse()

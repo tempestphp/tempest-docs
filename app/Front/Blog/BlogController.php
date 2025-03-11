@@ -9,7 +9,7 @@ use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Ok;
 use Tempest\Router\StaticPage;
-use Tempest\Support\ArrayHelper;
+use Tempest\Support\Arr\ImmutableArray;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;
 
@@ -54,7 +54,7 @@ final readonly class BlogController
             ->addHeader('Content-Type', 'application/xml;charset=UTF-8');
     }
 
-    private function renderRssFeed(ArrayHelper $posts): string
+    private function renderRssFeed(ImmutableArray $posts): string
     {
         ob_start();
 
