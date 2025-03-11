@@ -2,12 +2,12 @@
 
 namespace App\Analytics;
 
-use Tempest\Support\ArrayHelper;
+use Tempest\Support\Arr\ImmutableArray;
 
 final readonly class Chart
 {
     public function __construct(
-        public ArrayHelper $labels,
-        public ArrayHelper $values,
+        public ImmutableArray $labels,
+        public ImmutableArray $values,
     ) {}
 }

@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "dff166bc2fe2f10ec165dc3559eeef655d38bc2f"
+                "reference": "8ef314cee7c92b44cdcdfbcd2581de664e3ccfad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/dff166bc2fe2f10ec165dc3559eeef655d38bc2f",
-                "reference": "dff166bc2fe2f10ec165dc3559eeef655d38bc2f",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/8ef314cee7c92b44cdcdfbcd2581de664e3ccfad",
+                "reference": "8ef314cee7c92b44cdcdfbcd2581de664e3ccfad",
                 "shasum": ""
             },
             "require": {
@@ -3875,7 +3875,7 @@
             },
             "require-dev": {
                 "aidan-casey/mock-client": "dev-master",
-                "friendsofphp/php-cs-fixer": "^3.21",
+                "carthage-software/mago": "0.19.3",
                 "guzzlehttp/psr7": "^2.6.1",
                 "illuminate/view": "~11.7.0",
                 "mikey179/vfsstream": "^2.0@dev",
@@ -3911,6 +3911,13 @@
                     "src/Tempest/Mapper/src/functions.php",
                     "src/Tempest/Reflection/src/functions.php",
                     "src/Tempest/Router/src/functions.php",
+                    "src/Tempest/Support/src/Arr/functions.php",
+                    "src/Tempest/Support/src/Html/functions.php",
+                    "src/Tempest/Support/src/Language/functions.php",
+                    "src/Tempest/Support/src/Namespace/functions.php",
+                    "src/Tempest/Support/src/Random/functions.php",
+                    "src/Tempest/Support/src/Regex/functions.php",
+                    "src/Tempest/Support/src/Str/functions.php",
                     "src/Tempest/Support/src/functions.php",
                     "src/Tempest/View/src/functions.php",
                     "src/Tempest/Vite/src/functions.php"
@@ -3957,7 +3964,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-05T12:16:24+00:00"
+            "time": "2025-03-11T07:14:51+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4422,16 +4429,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.70.2",
+            "version": "v3.71.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "1ca468270efbb75ce0c7566a79cca8ea2888584d"
+                "reference": "3825ffdc69501e1c9230291b79f036a0c0d8749d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/1ca468270efbb75ce0c7566a79cca8ea2888584d",
-                "reference": "1ca468270efbb75ce0c7566a79cca8ea2888584d",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/3825ffdc69501e1c9230291b79f036a0c0d8749d",
+                "reference": "3825ffdc69501e1c9230291b79f036a0c0d8749d",
                 "shasum": ""
             },
             "require": {
@@ -4513,7 +4520,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.70.2"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.71.0"
             },
             "funding": [
                 {
@@ -4521,7 +4528,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-03T21:07:23+00:00"
+            "time": "2025-03-07T23:06:56+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4703,16 +4710,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.12.19",
+            "version": "1.12.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789"
+                "reference": "14276fdef70575106a3392a4ed553c06a984df28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/c42ba9bab7a940ed00092ecb1c77bad98896d789",
-                "reference": "c42ba9bab7a940ed00092ecb1c77bad98896d789",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/14276fdef70575106a3392a4ed553c06a984df28",
+                "reference": "14276fdef70575106a3392a4ed553c06a984df28",
                 "shasum": ""
             },
             "require": {
@@ -4757,7 +4764,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-02-19T15:42:21+00:00"
+            "time": "2025-03-09T09:24:50+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",

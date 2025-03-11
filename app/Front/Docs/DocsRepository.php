@@ -7,7 +7,7 @@ namespace App\Front\Docs;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
-use Tempest\Support\ArrayHelper;
+use Tempest\Support\Arr\ImmutableArray;
 use function Tempest\Support\arr;
 use function Tempest\Support\str;
 
@@ -46,7 +46,7 @@ readonly class DocsRepository
     /**
      * @return \App\Front\Docs\DocsChapter[]
      */
-    public function all(string $category = '*'): ArrayHelper
+    public function all(string $category = '*'): ImmutableArray
     {
         return arr(glob(__DIR__ . "/Content/{$category}/*.md"))
             ->map(function (string $path) {
@@ -59,7 +59,7 @@ readonly class DocsRepository
                 return [
                     'slug' => $matches['slug'],
                     'index' => $matches['index'],
-                    'category' => $category,
+                    'category' => $category->toString(),
                     ...YamlFrontMatter::parse($content)->matter(),
                 ];
             })

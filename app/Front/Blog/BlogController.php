@@ -9,7 +9,7 @@ use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Ok;
 use Tempest\Router\StaticPage;
-use Tempest\Support\ArrayHelper;
+use Tempest\Support\Arr\ImmutableArray;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;
 use function Tempest\view;
@@ -50,11 +50,11 @@ final readonly class BlogController
             expiresAt: new DateTimeImmutable('+1 hour'),
         );
 
-        return (new Ok($xml))
+        return new Ok($xml)
             ->addHeader('Content-Type', 'application/xml;charset=UTF-8');
     }
 
-    private function renderRssFeed(ArrayHelper $posts): string
+    private function renderRssFeed(ImmutableArray $posts): string
     {
         ob_start();
 
