@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "65b70d15864663cb70fb806641e5d055",
+    "content-hash": "5730cfe394790e2055942cc524f53f03",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "ea48c6018abf8202601de8b75ebbf6ab48d0921d"
+                "reference": "7cf0517dac4a47afd1233391df77af7a688a89ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/ea48c6018abf8202601de8b75ebbf6ab48d0921d",
-                "reference": "ea48c6018abf8202601de8b75ebbf6ab48d0921d",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/7cf0517dac4a47afd1233391df77af7a688a89ce",
+                "reference": "7cf0517dac4a47afd1233391df77af7a688a89ce",
                 "shasum": ""
             },
             "require": {
@@ -3875,7 +3875,7 @@
             },
             "require-dev": {
                 "aidan-casey/mock-client": "dev-master",
-                "friendsofphp/php-cs-fixer": "^3.21",
+                "carthage-software/mago": "0.19.3",
                 "guzzlehttp/psr7": "^2.6.1",
                 "illuminate/view": "~11.7.0",
                 "mikey179/vfsstream": "^2.0@dev",
@@ -3964,7 +3964,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-10T16:07:34+00:00"
+            "time": "2025-03-11T12:43:49+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4112,16 +4112,16 @@
     "packages-dev": [
         {
             "name": "carthage-software/mago",
-            "version": "0.19.3",
+            "version": "0.19.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/carthage-software/mago.git",
-                "reference": "baf38bafaaa3a117d7a7ca12c685522061d53e30"
+                "reference": "a13ebd3967c3131a81a2ce801b6c620985f3e566"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/carthage-software/mago/zipball/baf38bafaaa3a117d7a7ca12c685522061d53e30",
-                "reference": "baf38bafaaa3a117d7a7ca12c685522061d53e30",
+                "url": "https://api.github.com/repos/carthage-software/mago/zipball/a13ebd3967c3131a81a2ce801b6c620985f3e566",
+                "reference": "a13ebd3967c3131a81a2ce801b6c620985f3e566",
                 "shasum": ""
             },
             "require": {
@@ -4153,7 +4153,7 @@
             ],
             "support": {
                 "issues": "https://github.com/carthage-software/mago/issues",
-                "source": "https://github.com/carthage-software/mago/tree/0.19.3"
+                "source": "https://github.com/carthage-software/mago/tree/0.19.5"
             },
             "funding": [
                 {
@@ -4161,7 +4161,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-10T13:34:20+00:00"
+            "time": "2025-03-11T11:13:40+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4340,64 +4340,6 @@
                 "source": "https://github.com/phar-io/version/tree/3.2.1"
             },
             "time": "2022-02-21T01:04:05+00:00"
-        },
-        {
-            "name": "phpstan/phpstan",
-            "version": "1.12.21",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "14276fdef70575106a3392a4ed553c06a984df28"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/14276fdef70575106a3392a4ed553c06a984df28",
-                "reference": "14276fdef70575106a3392a4ed553c06a984df28",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.2|^8.0"
-            },
-            "conflict": {
-                "phpstan/phpstan-shim": "*"
-            },
-            "bin": [
-                "phpstan",
-                "phpstan.phar"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "bootstrap.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "PHPStan - PHP Static Analysis Tool",
-            "keywords": [
-                "dev",
-                "static analysis"
-            ],
-            "support": {
-                "docs": "https://phpstan.org/user-guide/getting-started",
-                "forum": "https://github.com/phpstan/phpstan/discussions",
-                "issues": "https://github.com/phpstan/phpstan/issues",
-                "security": "https://github.com/phpstan/phpstan/security/policy",
-                "source": "https://github.com/phpstan/phpstan-src"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/ondrejmirtes",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/phpstan",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-03-09T09:24:50+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
