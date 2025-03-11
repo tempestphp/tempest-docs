@@ -38,6 +38,7 @@ final class PageVisited implements ShouldBeStored, HasCreatedAtDate
             'uri' => $this->url,
         ]);
     }
+
     #[\Override]
     public static function unserialize(string $payload): self
     {

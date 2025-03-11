@@ -32,6 +32,7 @@ final class PackageDownloadsListed implements ShouldBeStored
             'total' => $this->total,
         ]);
     }
+
     #[\Override]
     public static function unserialize(string $payload): self
     {
