@@ -13,8 +13,10 @@ final class ProjectionDiscovery implements Discovery
 
     public function __construct(
         private readonly StoredEventConfig $config,
-    ) {}
+    ) {
+    }
 
+    #[\Override]
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         if ($class->implements(Projector::class)) {
@@ -22,6 +24,7 @@ final class ProjectionDiscovery implements Discovery
         }
     }
 
+    #[\Override]
     public function apply(): void
     {
         foreach ($this->discoveryItems as $className) {

@@ -1,7 +1,9 @@
 <?php
 
 use App\Front\Docs\DocsController;
+
 use function Tempest\uri;
+
 ?>
 
 <x-base title="Console" :meta="\App\Front\Meta\MetaType::CONSOLE">

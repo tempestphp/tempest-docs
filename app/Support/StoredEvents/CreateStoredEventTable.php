@@ -12,7 +12,8 @@ final class CreateStoredEventTable implements DatabaseMigration
         get => '00-00-0000-create_stored_events_table';
     }
 
-    public function up(): QueryStatement|null
+    #[\Override]
+    public function up(): ?QueryStatement
     {
         return CreateTableStatement::forModel(StoredEvent::class)
             ->primary()
@@ -22,8 +23,10 @@ final class CreateStoredEventTable implements DatabaseMigration
             ->datetime('createdAt');
     }
 
-    public function down(): QueryStatement|null
+    #[\Override]
+    public function down(): ?QueryStatement
     {
+        // @mago-expect comment/no-untagged-todo
         // TODO: Implement down() method.
     }
 }

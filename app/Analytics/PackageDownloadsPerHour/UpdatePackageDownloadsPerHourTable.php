@@ -11,13 +11,15 @@ final class UpdatePackageDownloadsPerHourTable implements DatabaseMigration
 {
     public string $name = '2024-12-14_02_update_package_downloads_per_hour_table';
 
-    public function up(): QueryStatement|null
+    #[\Override]
+    public function up(): ?QueryStatement
     {
         return AlterTableStatement::forModel(PackageDownloadsPerHour::class)
             ->add(new IntegerStatement('total', default: 0));
     }
 
-    public function down(): QueryStatement|null
+    #[\Override]
+    public function down(): ?QueryStatement
     {
         return null;
     }

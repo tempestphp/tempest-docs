@@ -3,11 +3,12 @@
 namespace App\Front\Home;
 
 use League\CommonMark\MarkdownConverter;
+use Tempest\HttpClient\HttpClient;
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
-use Tempest\HttpClient\HttpClient;
 use Tempest\View\View;
 use Throwable;
+
 use function Tempest\Support\arr;
 use function Tempest\view;
 
@@ -16,7 +17,8 @@ final readonly class HomeController
     public function __construct(
         private MarkdownConverter $markdown,
         private HttpClient $httpClient,
-    ) {}
+    ) {
+    }
 
     #[StaticPage]
     #[Get('/')]

@@ -7,6 +7,7 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Stringable;
 use Tempest\Highlight\Highlighter;
 
 final class InlineCodeBlockRenderer implements NodeRendererInterface
@@ -16,9 +17,10 @@ final class InlineCodeBlockRenderer implements NodeRendererInterface
     ) {
     }
 
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer)
+    #[\Override]
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?Stringable
     {
-        if (! $node instanceof Code) {
+        if (! ($node instanceof Code)) {
             throw new InvalidArgumentException('Block must be instance of ' . Code::class);
         }
 

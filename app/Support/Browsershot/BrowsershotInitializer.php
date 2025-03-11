@@ -6,14 +6,16 @@ use Spatie\Browsershot\Browsershot;
 use Tempest\Container\Container;
 use Tempest\Container\Initializer;
 use Tempest\Container\Singleton;
+
 use function Tempest\env;
 
 final readonly class BrowsershotInitializer implements Initializer
 {
+    #[\Override]
     #[Singleton(tag: 'meta')]
     public function initialize(Container $container): Browsershot
     {
-        $browsershot = (new Browsershot())
+        $browsershot = new Browsershot()
             ->setOption('args', ['--disable-web-security'])
             ->windowSize(1200, 628)
             ->deviceScaleFactor(2);

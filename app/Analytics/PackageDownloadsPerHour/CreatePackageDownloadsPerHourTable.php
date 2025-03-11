@@ -11,7 +11,8 @@ final class CreatePackageDownloadsPerHourTable implements DatabaseMigration
 {
     public string $name = '2024-12-14_01_create_package_downloads_per_hour_table';
 
-    public function up(): QueryStatement|null
+    #[\Override]
+    public function up(): ?QueryStatement
     {
         return CreateTableStatement::forModel(PackageDownloadsPerHour::class)
             ->primary()
@@ -21,7 +22,8 @@ final class CreatePackageDownloadsPerHourTable implements DatabaseMigration
             ->unique('date', 'package');
     }
 
-    public function down(): QueryStatement|null
+    #[\Override]
+    public function down(): ?QueryStatement
     {
         return DropTableStatement::forModel(PackageDownloadsPerHour::class);
     }

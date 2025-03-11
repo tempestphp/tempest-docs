@@ -21,9 +21,7 @@ final class DocsView implements View
 
     public function isCurrent(DocsChapter $other): bool
     {
-        return
-            $this->currentChapter->category === $other->category
-            && $this->currentChapter->slug === $other->slug;
+        return $this->currentChapter->category === $other->category && $this->currentChapter->slug === $other->slug;
     }
 
     public function getSubChapters(): array

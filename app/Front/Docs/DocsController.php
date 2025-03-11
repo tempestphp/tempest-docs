@@ -10,6 +10,7 @@ use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Redirect;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
+
 use function Tempest\uri;
 
 final readonly class DocsController

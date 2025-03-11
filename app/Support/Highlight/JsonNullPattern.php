@@ -18,6 +18,7 @@ final readonly class JsonNullPattern implements Pattern
         return '\: (?<match>null)';
     }
 
+    #[\Override]
     public function getTokenType(): TokenType
     {
         return new DynamicTokenType('hl-null');

@@ -9,16 +9,18 @@ use Tempest\EventBus\EventHandler;
 
 final readonly class PackageDownloadsPerDayProjector implements Projector
 {
+    #[\Override]
     public function clear(): void
     {
         $query = new Query(sprintf(
-            "DELETE FROM %s",
+            'DELETE FROM %s',
             PackageDownloadsPerDay::table(),
         ));
 
         $query->execute();
     }
 
+    #[\Override]
     public function replay(object $event): void
     {
         if ($event instanceof PackageDownloadsListed) {

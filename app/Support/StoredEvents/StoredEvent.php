@@ -16,7 +16,8 @@ final class StoredEvent implements DatabaseModel
         public string $eventClass,
         public string $payload,
         public DateTimeImmutable $createdAt = new DateTimeImmutable(),
-    ) {}
+    ) {
+    }
 
     public function getEvent(): object
     {

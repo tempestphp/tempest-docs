@@ -20,6 +20,7 @@ final class PackageDownloadsListed implements ShouldBeStored
         $this->uuid = Uuid::v4()->toString();
     }
 
+    #[\Override]
     public function serialize(): string
     {
         return json_encode([
@@ -31,6 +32,8 @@ final class PackageDownloadsListed implements ShouldBeStored
             'total' => $this->total,
         ]);
     }
+
+    #[\Override]
     public static function unserialize(string $payload): self
     {
         $data = json_decode($payload, true);

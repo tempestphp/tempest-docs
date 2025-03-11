@@ -10,12 +10,14 @@ final class AlterVisitsPerDayTable implements DatabaseMigration
 {
     public string $name = '2024-12-13_01_alter_visits_table';
 
-    public function up(): QueryStatement|null
+    #[\Override]
+    public function up(): ?QueryStatement
     {
         return AlterTableStatement::forModel(VisitsPerDay::class)->unique('date');
     }
 
-    public function down(): QueryStatement|null
+    #[\Override]
+    public function down(): ?QueryStatement
     {
         return null;
     }

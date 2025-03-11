@@ -19,6 +19,7 @@ use Tempest\Highlight\Highlighter;
 
 final readonly class MarkdownInitializer implements Initializer
 {
+    #[\Override]
     #[Singleton]
     public function initialize(Container $container): MarkdownConverter
     {
@@ -45,9 +46,7 @@ final readonly class MarkdownInitializer implements Initializer
             ->addExtension(new FrontMatterExtension())
             ->addExtension(new HeadingPermalinkExtension())
             ->addRenderer(FencedCode::class, new CodeBlockRenderer($highlighter))
-            ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
-        ;
-
+            ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter));
 
         return new MarkdownConverter($environment);
     }

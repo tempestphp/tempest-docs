@@ -3,6 +3,7 @@
 /** @var \App\Front\Blog\BlogPost $post */
 
 use App\Front\Meta\MetaImageController;
+
 use function Tempest\uri;
 
 ?>
