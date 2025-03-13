@@ -8,9 +8,11 @@ use Tempest\Router\DataProvider;
 final readonly class DocsDataProvider implements DataProvider
 {
     public function __construct(
-        private DocsRepository $chapterRepository
-    ) {}
+        private DocsRepository $chapterRepository,
+    ) {
+    }
 
+    #[\Override]
     public function provide(): Generator
     {
         foreach ($this->chapterRepository->all() as $chapter) {

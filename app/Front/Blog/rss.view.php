@@ -6,7 +6,7 @@
     <id>https://tempestphp.com/rss</id>
     <link href="https://tempestphp.com/rss"/>
     <title><![CDATA[ tempestphp.com ]]></title>
-    <updated><?= date('c')?></updated>
+    <updated><?= date('c') ?></updated>
 
     <?php foreach ($posts as $post): ?>
         <entry>

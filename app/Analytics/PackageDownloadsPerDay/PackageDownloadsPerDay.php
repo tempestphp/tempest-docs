@@ -15,5 +15,6 @@ final class PackageDownloadsPerDay implements DatabaseModel
         public string $package,
         public int $count,
         public int $total,
-    ) {}
+    ) {
+    }
 }

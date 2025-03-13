@@ -11,16 +11,19 @@ use Tempest\Highlight\Languages\Html\HtmlLanguage;
 
 final class TempestViewLanguage extends HtmlLanguage
 {
+    #[\Override]
     public function getName(): string
     {
         return 'html';
     }
 
+    #[\Override]
     public function getAliases(): array
     {
         return [];
     }
 
+    #[\Override]
     public function getInjections(): array
     {
         return [
@@ -30,6 +33,7 @@ final class TempestViewLanguage extends HtmlLanguage
         ];
     }
 
+    #[\Override]
     public function getPatterns(): array
     {
         return [

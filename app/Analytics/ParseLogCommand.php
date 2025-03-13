@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Tempest\Clock\Clock;
 use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
+
 use function Tempest\event;
 use function Tempest\Support\str;
 
@@ -17,7 +18,8 @@ final class ParseLogCommand
     public function __construct(
         private readonly Clock $clock,
         private readonly AnalyticsConfig $config,
-    ) {}
+    ) {
+    }
 
     private const array URL_BLACKLIST = [
         '.png',
@@ -90,8 +92,8 @@ final class ParseLogCommand
             // Kill the process every hour in order to prevent memory issues.
             // Supervisor will restart it automatically.
             if ($now->format('H:i') === '00:00') {
-                $this->error("exit");
-                exit;
+                $this->error('exit');
+                exit();
             }
 
             $line = str(fgets($handle) ?: '')->trim();
@@ -133,7 +135,7 @@ final class ParseLogCommand
             // Resolve and check IP
             $ip = $line->match("/^([\d\.\w\:]+)/")[1] ?? null;
 
-            if (in_array($ip, self::IP_BLACKLIST)) {
+            if (in_array($ip, self::IP_BLACKLIST, strict: true)) {
                 continue;
             }
 

@@ -8,6 +8,7 @@ use Tempest\EventBus\EventBusMiddlewareCallable;
 
 final readonly class StoredEventMiddleware implements EventBusMiddleware
 {
+    #[\Override]
     public function __invoke(object $event, EventBusMiddlewareCallable $next): void
     {
         if ($event instanceof ShouldBeStored) {
@@ -15,7 +16,7 @@ final readonly class StoredEventMiddleware implements EventBusMiddleware
                 uuid: $event->uuid,
                 eventClass: $event::class,
                 payload: $event->serialize(),
-                createdAt: $event instanceof HasCreatedAtDate ? $event->createdAt : new DateTimeImmutable(),
+                createdAt: ($event instanceof HasCreatedAtDate) ? $event->createdAt : new DateTimeImmutable(),
             )->save();
         }
 

@@ -9,9 +9,10 @@ use Tempest\Database\QueryStatements\DropTableStatement;
 
 final class CreateVisitsPerDayTable implements DatabaseMigration
 {
-    public string $name ='2024-12-12_01_create_visits_table';
+    public string $name = '2024-12-12_01_create_visits_table';
 
-    public function up(): QueryStatement|null
+    #[\Override]
+    public function up(): ?QueryStatement
     {
         return CreateTableStatement::forModel(VisitsPerDay::class)
             ->primary()
@@ -19,7 +20,8 @@ final class CreateVisitsPerDayTable implements DatabaseMigration
             ->integer('count');
     }
 
-    public function down(): QueryStatement|null
+    #[\Override]
+    public function down(): ?QueryStatement
     {
         return DropTableStatement::forModel(VisitsPerDay::class);
     }

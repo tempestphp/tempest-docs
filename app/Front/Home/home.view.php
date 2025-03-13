@@ -1,6 +1,7 @@
 <?php
 
 use App\Front\Docs\DocsController;
+
 use function Tempest\uri;
 
 /** @var object{

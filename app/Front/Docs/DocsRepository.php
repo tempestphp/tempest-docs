@@ -8,6 +8,7 @@ use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatte
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
+
 use function Tempest\Support\arr;
 use function Tempest\Support\str;
 
@@ -15,7 +16,8 @@ readonly class DocsRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {}
+    ) {
+    }
 
     public function find(string $category, string $slug): ?DocsChapter
     {
@@ -29,9 +31,12 @@ readonly class DocsRepository
 
         $markdown = $this->markdown->convert($content);
 
-        $frontMatter = $markdown instanceof RenderedContentWithFrontMatter ? $markdown->getFrontMatter() : [
-            'title' => $slug,
-        ];
+        $frontMatter =
+            ($markdown instanceof RenderedContentWithFrontMatter)
+                ? $markdown->getFrontMatter()
+                : [
+                    'title' => $slug,
+                ];
 
         return new DocsChapter(...[
             ...[

@@ -10,6 +10,7 @@ use Tempest\Console\Schedule;
 use Tempest\Console\Scheduler\Every;
 use Tempest\HttpClient\HttpClient;
 use Throwable;
+
 use function Tempest\event;
 
 final readonly class ParsePackagistCommand
@@ -19,7 +20,8 @@ final readonly class ParsePackagistCommand
     public function __construct(
         private HttpClient $httpClient,
         private Cache $cache,
-    ) {}
+    ) {
+    }
 
     #[Schedule(Every::HOUR)]
     #[ConsoleCommand]
@@ -52,9 +54,11 @@ final readonly class ParsePackagistCommand
             $url = "https://packagist.org/packages/tempest/{$package}.json";
 
             try {
-                $data = $this->cache->resolve("packagist-{$package}", function () use ($url) {
-                    return json_decode($this->httpClient->get($url)->body, associative: true);
-                }, new DateTimeImmutable('+ 30 minutes'));
+                $data = $this->cache->resolve(
+                    key: "packagist-{$package}",
+                    cache: fn () => json_decode($this->httpClient->get($url)->body, associative: true),
+                    expiresAt: new DateTimeImmutable('+ 30 minutes'),
+                );
 
                 event(new PackageDownloadsListed(
                     package: $package,

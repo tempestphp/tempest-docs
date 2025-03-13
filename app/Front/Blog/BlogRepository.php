@@ -8,6 +8,7 @@ use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatte
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
+
 use function Tempest\map;
 use function Tempest\Support\arr;
 
@@ -15,7 +16,8 @@ final readonly class BlogRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {}
+    ) {
+    }
 
     /**
      * @return \Tempest\Support\Arr\ImmutableArray<\App\Front\Blog\BlogPost>
@@ -63,7 +65,7 @@ final readonly class BlogRepository
             'slug' => $slug,
             'content' => $content->getContent(),
             'createdAt' => $this->parseDate($path),
-            ...$content->getFrontMatter()
+            ...$content->getFrontMatter(),
         ];
 
         return map($data)->to(BlogPost::class);
@@ -79,7 +81,7 @@ final readonly class BlogRepository
 
         $parsed = $this->markdown->convert($content);
 
-        if (! $parsed instanceof RenderedContentWithFrontMatter) {
+        if (! ($parsed instanceof RenderedContentWithFrontMatter)) {
             throw new Exception("Missing frontmatter or content in {$path}");
         }
 
