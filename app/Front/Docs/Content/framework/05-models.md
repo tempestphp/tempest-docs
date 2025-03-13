@@ -167,7 +167,7 @@ You can run migrations via the Tempest console:
 Any class implementing `DatabaseModel` provides a range of methods to make interaction between the model and the database easier. Let's take a look at this interface:
 
 ```php
-interface Model
+interface DatabaseModel
 {
     // The model's table name. By default, it's the model's short classname 
     public static function table(): TableName;
