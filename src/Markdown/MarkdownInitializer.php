@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Support\Markdown;
+namespace Tempest\Markdown;
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
@@ -30,7 +31,7 @@ final readonly class MarkdownInitializer implements Initializer
                 'apply_id_to_heading' => true,
                 'heading_class' => '',
                 'fragment_prefix' => '',
-                'insert' => 'after',
+                'insert' => 'before',
                 'min_heading_level' => 1,
                 'max_heading_level' => 6,
                 'title' => 'Permalink',
@@ -44,9 +45,9 @@ final readonly class MarkdownInitializer implements Initializer
         $environment
             ->addExtension(new CommonMarkCoreExtension())
             ->addExtension(new FrontMatterExtension())
-            ->addExtension(new HeadingPermalinkExtension())
             ->addRenderer(FencedCode::class, new CodeBlockRenderer($highlighter))
-            ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter));
+            ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
+            ->addRenderer(Heading::class, new HeadingRenderer());
 
         return new MarkdownConverter($environment);
     }

@@ -30,7 +30,7 @@ registerPalette({ value: open })
 			/>
 			<!-- Results -->
 			<combobox-content
-				class="p-2 border-dialog-border border-t max-h-[40rem] overflow-y-auto"
+				class="p-2 border-(--ui-border) border-t max-h-[40rem] overflow-y-auto"
 				@escape-key-down="open = false"
 			>
 				<!-- No result -->
@@ -56,10 +56,10 @@ registerPalette({ value: open })
 						:as="item.type === 'uri' ? 'a' : 'button'"
 						:value="item"
 						:href="item.uri"
-						class="flex flex-col data-[highlighted]:bg-dialog-card px-4 py-2 pl-4 rounded-md w-full text-dialog-on-card text-left transition-colors"
+						class="flex flex-col dark:data-[highlighted]:bg-(--ui-bg-elevated)/60 data-[highlighted]:bg-(--ui-primary)/10 px-4 py-2 pl-4 rounded-md w-full text-(--ui-text-highlighted) text-left transition-colors"
 						@select="(e) => handleCommand(item, e)"
 					>
-						<span class="opacity-50 font-medium text-sm" v-text="item.hierarchy[1]" />
+						<span class="font-medium text-(--ui-text-dimmed) text-sm" v-text="item.hierarchy[1]" />
 						<span>{{ item.title }}</span>
 					</combobox-item>
 				</combobox-group>

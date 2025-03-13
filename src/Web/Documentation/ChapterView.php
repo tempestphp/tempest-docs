@@ -13,6 +13,7 @@ final class ChapterView implements View
     use IsView;
 
     public function __construct(
+        public string $version,
         public ChapterRepository $chapterRepository,
         public Chapter $currentChapter,
     ) {
@@ -39,7 +40,7 @@ final class ChapterView implements View
 
     public function chaptersForCategory(string $category): ImmutableArray
     {
-        return $this->chapterRepository->all($category);
+        return $this->chapterRepository->all($this->version, $category);
     }
 
     public function nextChapter(): ?Chapter

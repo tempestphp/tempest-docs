@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Support\Markdown;
+namespace Tempest\Markdown;
 
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
-use Stringable;
 use Tempest\Highlight\Highlighter;
 
 final class InlineCodeBlockRenderer implements NodeRendererInterface

@@ -44,7 +44,7 @@ final readonly class Package
 
 Tempest will automatically discover configuration files, please read the [Config](#config) section for more info.
 
-## Dependency Initializers
+## Dependency Initializers `test`
 
 When you need fine-grained control over how a dependency is constructed instead of relying on Tempest's autowiring capabilities, you can use initializer classes. Initializers are classes that know how to construct a specific class or interface. Whenever that class or interface is requested from the container, Tempest will use the initializer class to construct it.
 

@@ -40,6 +40,7 @@ final readonly class ChapterController
         }
 
         return new ChapterView(
+            version: $version,
             chapterRepository: $chapterRepository,
             currentChapter: $currentChapter,
         );

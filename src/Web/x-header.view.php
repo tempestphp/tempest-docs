@@ -8,7 +8,7 @@ use function Tempest\uri;
 <x-component name="x-header">
   <div class="absolute inset-x-0 top-0 pointer-events-none flex items-center justify-center z-[1] pr-(--scrollbar-width)">
     <header
-			class="group fixed container rounded-xl -translate-y-2 ring-[transparent] bg-[transparent] pointer-events-auto top-4 ring-1 py-4 px-8 flex items-center justify-between duration-200 data-[scrolling]:translate-y-4 data-[scrolling]:ring-header-border data-[scrolling]:backdrop-blur-sm data-[scrolling]:bg-header"
+			class="group fixed container rounded-xl -translate-y-2 ring-[transparent] bg-[transparent] pointer-events-auto top-4 ring-1 py-4 px-8 flex items-center justify-between duration-200 data-[scrolling]:translate-y-2 data-[scrolling]:ring-(--ui-border)/90 data-[scrolling]:backdrop-blur data-[scrolling]:bg-(--ui-bg)/75"
 			id="header"
 		>
       <!-- Left side -->

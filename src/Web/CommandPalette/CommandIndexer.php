@@ -55,7 +55,7 @@ final readonly class CommandIndexer
                 type: Type::JAVASCRIPT,
                 title: 'Toggle dark mode',
                 javascript: 'toggleDarkMode',
-                hierarchy: ['Commands'],
+                hierarchy: ['Commands', 'Command'],
             ),
         ]);
     }
