@@ -13,3 +13,5 @@ access_big.log
 access_short.log
 sync-db.sh
 app/tempest-access.log
+vite-tempest
+public/build/

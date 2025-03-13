@@ -1,6 +1,6 @@
 <?php
 
-use App\Front\Docs\DocsController;
+use App\Front\Docs\ChapterController;
 
 use function Tempest\uri;
 
@@ -21,7 +21,7 @@ use function Tempest\uri;
                 </div>
 
                 <div class="flex sm:flex-row flex-col gap-2">
-                    <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: 'views') ?>">Read the docs</x-button>
+                    <x-button uri="<?= uri(ChapterController::class, category: 'framework', slug: 'views') ?>">Read the docs</x-button>
                     <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
                 </div>
 

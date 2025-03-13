@@ -18,7 +18,7 @@ final class InlineCodeBlockRenderer implements NodeRendererInterface
     }
 
     #[\Override]
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?Stringable
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?string
     {
         if (! ($node instanceof Code)) {
             throw new InvalidArgumentException('Block must be instance of ' . Code::class);

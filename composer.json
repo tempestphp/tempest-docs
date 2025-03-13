@@ -17,8 +17,12 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/"
-        }
+            "App\\": "app/",
+						"Tempest\\": "src/"
+        },
+				"files": [
+					"src/GitHub/functions.php"
+				]
     },
     "autoload-dev": {
         "psr-4": {

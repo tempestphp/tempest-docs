@@ -1,6 +1,6 @@
 <?php
 
-use App\Front\Docs\DocsController;
+use App\Front\Docs\ChapterController;
 
 use function Tempest\uri;
 
@@ -24,7 +24,7 @@ use function Tempest\uri;
                 </div>
 
                 <div class="flex sm:flex-row flex-col gap-2">
-                    <x-button uri="<?= uri(DocsController::class, category: 'console', slug: 'getting-started') ?>">Read the docs</x-button>
+                    <x-button uri="<?= uri(ChapterController::class, category: 'console', slug: 'getting-started') ?>">Read the docs</x-button>
                     <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
                 </div>
 
@@ -126,7 +126,7 @@ use function Tempest\uri;
             </video>
 
             <p class>
-                Built-in interactive components, <a class="underline hover:no-underline" href="<?= uri(DocsController::class, category: 'console', slug: '01-getting-started') ?>">and much more</a>.
+                Built-in interactive components, <a class="underline hover:no-underline" href="<?= uri(ChapterController::class, category: 'console', slug: '01-getting-started') ?>">and much more</a>.
             </p>
         </div>
     </div>

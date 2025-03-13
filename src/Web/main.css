@@ -1,0 +1,154 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@font-face {
+	font-family: 'Kantumruy Pro Variable';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 700;
+	src: url(https://cdn.jsdelivr.net/fontsource/fonts/kantumruy-pro:vf@latest/latin-wght-normal.woff2)
+		format('woff2-variations');
+	unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+		U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@theme static {
+	--font-sans: 'Kantumruy Pro Variable';
+
+	--color-primary: #5f94ec;
+
+	--color-background: #f1f7ff;
+	--color-on-background: #003665;
+	--color-on-background-primary: var(--color-primary);
+	--color-on-background-muted: #30363d;
+
+	--color-input: var(--color-background);
+	--color-input-border: color-mix(in oklab, black 5%, transparent);
+	--color-on-input: var(--color-on-background);
+
+	--color-button-primary: white;
+	--color-button-primary-border: color-mix(in oklab, black 10%, transparent);
+	--color-on-button-primary: #5e5b5b;
+
+	--color-dialog: white;
+	--color-dialog-border: color-mix(in oklab, black 10%, transparent);
+	--color-dialog-shadow: color-mix(in oklab, black 5%, transparent);
+	--color-dialog-card: color-mix(in oklab, var(--color-primary) 20%, transparent);
+	--color-dialog-on-card: var(--color-on-background);
+	--color-on-dialog: var(--color-on-background);
+	--color-on-dialog-muted: color-mix(in oklab, var(--color-on-dialog) 80%, transparent);
+
+	--color-header: color-mix(in oklab, var(--color-background) 60%, transparent);
+	--color-header-border: color-mix(in oklab, black 5%, transparent);
+	--color-on-header: var(--color-on-background);
+
+	/* Falling leaves */
+	--color-leaf-1: var(--color-amber-500);
+	--color-leaf-2: var(--color-amber-600);
+	--color-leaf-3: var(--color-amber-700);
+	--color-leaf-4: var(--color-yellow-600);
+	--color-leaf-5: var(--color-yellow-700);
+	--color-leaf-6: var(--color-green-800);
+	--color-leaf-7: var(--color-green-800);
+	--color-leaf-8: var(--color-green-800);
+	--color-leaf-9: var(--color-green-900);
+
+	/* Aurora */
+	--color-aurora-1: var(--color-blue-500);
+	--color-aurora-2: var(--color-indigo-300);
+	--color-aurora-3: var(--color-blue-300);
+	--color-aurora-4: var(--color-violet-200);
+	--color-aurora-5: var(--color-blue-400);
+	--animate-aurora: aurora 60s linear infinite;
+
+	@keyframes aurora {
+		0% {
+			content: var(--tw-content);
+			background-position: 50% 50%, 50% 50%;
+		}
+		to {
+			content: var(--tw-content);
+			background-position: 350% 50%, 350% 50%;
+		}
+	}
+
+	/* Dialog animations */
+	--animate-dialog-open: dialog-open 150ms ease-out;
+	--animate-dialog-close: dialog-close 100ms ease-in;
+
+	@keyframes dialog-open {
+		from {
+			scale: 0.9;
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+			scale: 1;
+		}
+	}
+
+	@keyframes dialog-close {
+		from {
+			opacity: 1;
+			scale: 1;
+		}
+		to {
+			opacity: 0;
+			scale: 0.9;
+		}
+	}
+}
+
+.dark {
+	--color-background: #0d1117;
+	--color-on-background: #d5d5d5;
+	--color-on-background-primary: #2aabe2;
+	--color-on-background-muted: #30363d;
+
+	--color-input: transparent;
+	--color-input-border: color-mix(in oklab, white 10%, transparent);
+	--color-on-input: var(--color-on-background);
+	--color-on-input-muted: #d5d5d5;
+
+	--color-dialog: #0d1117;
+	--color-dialog-border: color-mix(in oklab, white 10%, transparent);
+	--color-dialog-shadow: color-mix(in oklab, black 20%, transparent);
+	--color-dialog-card: color-mix(in oklab, black 50%, transparent);
+	--color-dialog-on-card: var(--color-on-background);
+	--color-on-dialog: var(--color-on-background);
+	--color-on-dialog-muted: color-mix(in oklab, var(--color-on-dialog) 80%, transparent);
+
+	--color-button-primary: color-mix(in oklab, white 100%, transparent);
+	--color-button-primary-border: transparent;
+	--color-on-button-primary: var(--color-background);
+
+	--color-header: color-mix(in oklab, var(--color-background) 60%, transparent);
+	--color-header-border: color-mix(in oklab, white 10%, transparent);
+	--color-on-header: var(--color-on-background);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Focus states
+|--------------------------------------------------------------------------
+*/
+
+a:focus-visible {
+	outline: none;
+	text-decoration-line: underline;
+	text-decoration-style: dashed;
+	text-decoration-color: var(--color-on-background-primary);
+	text-underline-offset: 8px;
+	@apply transition duration-200;
+}
+
+button:focus {
+	outline: none;
+}
+
+a:focus:has(svg),
+button:focus:has(svg) {
+	@apply transition duration-200;
+	color: var(--color-on-background-primary);
+}
