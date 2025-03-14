@@ -33,7 +33,7 @@ final readonly class ChapterRepository
             throw new \RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
         }
 
-        ['title' => $title, 'category' => $category] = $markdown->getFrontMatter();
+        ['title' => $title, 'category' => $category, 'description' => $description] = $markdown->getFrontMatter() + ['description' => null];
 
         return new Chapter(
             version: $version,
@@ -41,6 +41,7 @@ final readonly class ChapterRepository
             slug: $slug,
             body: $markdown->getContent(),
             title: $title,
+            description: $description ?? null,
         );
     }
 

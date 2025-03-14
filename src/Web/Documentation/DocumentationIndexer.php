@@ -2,15 +2,18 @@
 
 namespace Tempest\Web\Documentation;
 
+use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalink;
 use League\CommonMark\MarkdownConverter;
+use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\Query;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Web\CommandPalette\Command;
 use Tempest\Web\CommandPalette\Type;
 
 use function Tempest\Support\arr;
+use function Tempest\Support\Str\to_kebab_case;
 use function Tempest\Support\Str\to_title_case;
 use function Tempest\uri;
 
@@ -51,20 +54,21 @@ final readonly class DocumentationIndexer
                     ],
                 );
 
-                /** @var HeadingPermalink[] */
+                /** @var Heading[] */
                 $matchingNodes = new Query()
-                    ->where(Query::type(HeadingPermalink::class))
+                    ->where(Query::type(Heading::class))
                     ->findAll($markdown->getDocument());
 
                 $indices = arr(iterator_to_array($matchingNodes))
-                    ->map(function (HeadingPermalink $permalink) use ($main) {
+                    ->map(function (Heading $heading) use ($main) {
                         /** @var Text */
-                        $text = $permalink->previous();
+                        $text = $heading->firstChild();
+                        $slug = to_kebab_case($text->getLiteral());
 
                         return new Command(
                             type: Type::URI,
                             title: $text->getLiteral(),
-                            uri: $main->uri . '#' . $permalink->getSlug(),
+                            uri: $main->uri . '#' . $slug,
                             hierarchy: [
                                 ...$main->hierarchy,
                                 $text->getLiteral(),

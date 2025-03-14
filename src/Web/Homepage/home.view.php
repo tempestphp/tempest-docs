@@ -1,11 +1,20 @@
 <?php
 use Tempest\Web\RedirectsController;
 use Tempest\Web\Documentation\ChapterController;
+use Tempest\Web\Blog\BlogController;
 use function Tempest\uri;
 ?>
 
-<x-base :stargazers="$stargazers">
+<x-base full-title="Tempest, the PHP framework that gets out of your way" :stargazers="$stargazers" body-class="bg-[#f1f7ff]">
   <div class="flex flex-col grow font-display">
+    <!-- Falling leaves -->
+    <x-falling-leaves class="dark:hidden" />
+    <!-- Aurora -->
+    <x-aurora class="dark:hidden" />
+    <!-- Rain -->
+    <x-rain />
+    <!-- Moonlight -->
+    <x-moonlight />
     <!-- Content -->
     <main class="container mx-auto relative flex flex-col grow">
       <!-- Hero -->

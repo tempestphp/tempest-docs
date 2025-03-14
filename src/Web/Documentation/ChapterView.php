@@ -27,12 +27,12 @@ final class ChapterView implements View
 
     public function getSubChapters(): array
     {
-        preg_match_all('/<h2 id="(?<uri>.*)">(?<title>.*)<a href/', $this->currentChapter->body, $matches);
+        preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $matches);
 
         $subChapters = [];
 
         foreach ($matches[0] as $key => $match) {
-            $subChapters['#' . $matches['uri'][$key]] = $matches['title'][$key];
+            $subChapters[$matches['uri'][$key]] = $matches['title'][$key];
         }
 
         return $subChapters;

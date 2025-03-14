@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	]
 
 	if (!container) {
-		console.warn('Container for falling leaves not found.')
 		return
 	}
 

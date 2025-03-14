@@ -2,16 +2,19 @@
 
 namespace Tempest\Web\Documentation;
 
+use Tempest\Container\Container;
 use Tempest\Core\KernelEvent;
 use Tempest\EventBus\EventHandler;
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
+use Tempest\Router\MatchedRoute;
 use Tempest\Router\Request;
 use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Redirect;
 use Tempest\Router\Router;
 
+use function Tempest\get;
 use function Tempest\Support\str;
 use function Tempest\uri;
 
@@ -33,9 +36,10 @@ final readonly class RedirectMiddleware implements HttpMiddleware
     {
         $path = str($request->path);
         $response = $next($request);
+        $matched = get(MatchedRoute::class);
 
         // If not a docs page, let's just continue normal flow
-        if (! $path->afterFirst('/')->before('/')->endsWith('.x')) {
+        if ($matched->route->uri !== '/{version}/{category}/{slug}') {
             return $response;
         }
 

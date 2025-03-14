@@ -59,7 +59,27 @@ registerPalette({ value: open })
 						class="flex flex-col dark:data-[highlighted]:bg-(--ui-bg-elevated)/60 data-[highlighted]:bg-(--ui-primary)/10 px-4 py-2 pl-4 rounded-md w-full text-(--ui-text-highlighted) text-left transition-colors"
 						@select="(e) => handleCommand(item, e)"
 					>
-						<span class="font-medium text-(--ui-text-dimmed) text-sm" v-text="item.hierarchy[1]" />
+						<div class="flex items-center gap-x-1 text-(--ui-text-dimmed)">
+							<template v-for="(breadcrumb, i) in item.hierarchy.slice(1, -1)" :key="breadcrumb">
+								<span class="inline-block font-medium text-sm" v-text="breadcrumb" />
+								<svg
+									v-if="i < item.hierarchy.length - 3"
+									xmlns="http://www.w3.org/2000/svg"
+									width="32"
+									height="32"
+									class="size-4"
+									viewBox="0 0 24 24"
+								>
+									<path
+										fill="none"
+										stroke="currentColor"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										stroke-width="2"
+										d="m7 7l5 5l-5 5m6-10l5 5l-5 5"
+									/></svg>
+							</template>
+						</div>
 						<span>{{ item.title }}</span>
 					</combobox-item>
 				</combobox-group>

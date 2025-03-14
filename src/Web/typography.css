@@ -1,17 +1,44 @@
 @plugin "@tailwindcss/typography";
 
 @utility prose {
-	@apply text-[1.1rem];
+	@apply !max-w-[80ch];
+
+	& > h2:first-child {
+		@apply !mt-0;
+	}
 
 	code {
 		&::before,
 		&::after {
 			content: none;
 		}
+
+		@apply px-1.5 pt-0.5 pb-px text-sm font-mono font-medium rounded-md inline-block border border-(--ui-border-muted) text-(--ui-text-highlighted) bg-(--ui-bg-muted);
 	}
 
-	:is(h1, h2, h3, h4, h5, h6) {
-		@apply relative text-2xl text-(--ui-text-highlighted) font-bold mt-12 mb-6 scroll-mt-[calc(48px+45px+var(--ui-header-height))] lg:scroll-mt-[calc(48px+var(--ui-header-height))] [&>a]:focus-visible:outline-(--ui-primary) [&>a>code]:border-dashed hover:[&>a>code]:border-(--ui-primary) hover:[&>a>code]:text-(--ui-primary) [&>a>code]:text-xl/7 [&>a>code]:font-bold [&>a>code]:transition-colors;
+	a:not(:is(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {
+		@apply text-(--ui-primary) border-b border-transparent hover:border-(--ui-primary) font-medium focus-visible:outline-(--ui-primary) transition-colors;
+
+		& code {
+			@apply border-dashed transition-colors;
+		}
+
+		&:hover code {
+			@apply text-(--ui-primary) border-(--ui-primary);
+		}
+	}
+
+	a {
+		@apply no-underline;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply relative text-2xl text-(--ui-text-highlighted) font-bold mt-12 mb-6 lg:scroll-mt-[calc(var(--ui-header-height))] [&>a]:focus-visible:outline-(--ui-primary) [&>a>code]:border-dashed hover:[&>a>code]:border-(--ui-primary) hover:[&>a>code]:text-(--ui-primary) [&>a>code]:text-xl/7 [&>a>code]:font-bold [&>a>code]:transition-colors;
 
 		&:hover a span {
 			@apply opacity-100;
@@ -26,7 +53,7 @@
 		}
 	}
 
-	h1 {
-		@apply font-medium;
+	h3 {
+		@apply text-xl;
 	}
 }

@@ -9,6 +9,8 @@
     "puppeteer": "^22.15.0"
   },
   "devDependencies": {
+    "@fontsource-variable/kantumruy-pro": "^5.2.5",
+    "@fontsource-variable/public-sans": "^5.2.5",
     "@innocenzi/eslint-config": "^0.22.8",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "^4.0.13",

@@ -24,12 +24,18 @@ use function Tempest\uri;
         <x-search />
       </div>
       <!-- Right side -->
-      <div class="flex items-center gap-4">
-        <a :href="uri([ChapterController::class, 'index'])" class="font-medium">Documentation</a>
-        <a :href="uri([BlogController::class, 'index'])" class="font-medium">Blog</a>
-				<a href="https://github.com/tempestphp/tempest-framework" class="flex items-center gap-x-1.5 ml-4">
+      <div class="flex items-center gap-4 font-medium">
+        <a
+					:href="uri([ChapterController::class, 'index'])"
+					:class="'transition hover:text-(--ui-text-highlighted)' . (is_uri([ChapterController::class, '__invoke']) ? 'text-(--ui-primary)' : '')"
+				>Documentation</a>
+        <a
+					:href="uri([BlogController::class, 'index'])"
+					:class="'transition hover:text-(--ui-text-highlighted)' . (is_uri([BlogController::class, 'show']) ? 'text-(--ui-primary)' : '')"
+				>Blog</a>
+				<a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
 					<x-icon name="tabler:brand-github" class="size-6" />
-					<span class="font-semibold">{{ \Tempest\GitHub\get_stargazers_count() }}</span>
+					<span class="font-semibold">{{ $stargazers_count }}</span>
 				</a>
       </div>
     </header>

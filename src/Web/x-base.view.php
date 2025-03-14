@@ -1,7 +1,8 @@
 <x-component name="x-base">
   <html lang="en" class="h-dvh flex flex-col">
   <head>
-    <title :if="isset($title)">{{ $title }} — Tempest</title>
+    <title :if="isset($fullTitle)">{{ $fullTitle }}</title>
+    <title :elseif="isset($title)">{{ $title }} — Tempest</title>
     <title :else>Tempest</title>
 
     <meta charset="UTF-8" />
@@ -56,18 +57,10 @@
 
     <x-slot name="head" />
   </head>
-  <body class="relative antialiased flex flex-col grow">
+  <body :class="($bodyClass ?? '') . ' relative antialiased flex flex-col grow'">
     <div class="absolute pointer-events-none inset-0 bg-repeat" style="background-image: url(/noise.svg)">
 			<div id="command-palette"></div>
 		</div>
-    <!-- Falling leaves -->
-    <x-falling-leaves class="dark:hidden" />
-    <!-- Aurora -->
-    <x-aurora class="dark:hidden" />
-    <!-- Rain -->
-    <x-rain />
-    <!-- Moonlight -->
-    <x-moonlight />
     <x-header :stargazers="$stargazers" />
     <x-slot />
     <x-footer />

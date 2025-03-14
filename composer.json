@@ -1,7 +1,7 @@
 {
     "name": "tempest/docs",
     "type": "project",
-		"description": "Documentation website for the Tempest framework",
+    "description": "Documentation website for the Tempest framework",
     "require": {
         "tempest/framework": "dev-main",
         "league/commonmark": "^2.6.1",
@@ -18,11 +18,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
-						"Tempest\\": "src/"
+            "Tempest\\": "src/"
         },
-				"files": [
-					"src/GitHub/functions.php"
-				]
+        "files": [
+            "src/functions.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

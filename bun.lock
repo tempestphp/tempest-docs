@@ -7,6 +7,8 @@
         "puppeteer": "^22.15.0",
       },
       "devDependencies": {
+        "@fontsource-variable/kantumruy-pro": "^5.2.5",
+        "@fontsource-variable/public-sans": "^5.2.5",
         "@innocenzi/eslint-config": "^0.22.8",
         "@tailwindcss/typography": "^0.5.16",
         "@tailwindcss/vite": "^4.0.13",
@@ -152,6 +154,10 @@
     "@floating-ui/utils": ["@floating-ui/utils@0.2.9", "", {}, "sha512-MDWhGtE+eHw5JW7lq4qhc5yRLS11ERl1c7Z6Xd0a58DozHES6EnNNwUWbMiG4J9Cgj053Bhk8zvlhFYKVhULwg=="],
 
     "@floating-ui/vue": ["@floating-ui/vue@1.1.6", "", { "dependencies": { "@floating-ui/dom": "^1.0.0", "@floating-ui/utils": "^0.2.9", "vue-demi": ">=0.13.0" } }, "sha512-XFlUzGHGv12zbgHNk5FN2mUB7ROul3oG2ENdTpWdE+qMFxyNxWSRmsoyhiEnpmabNm6WnUvR1OvJfUfN4ojC1A=="],
+
+    "@fontsource-variable/kantumruy-pro": ["@fontsource-variable/kantumruy-pro@5.2.5", "", {}, "sha512-fvNsTYeOUIikqu9BtV0C6Vqt6rSCUDj1cqH7dbcV5urHt0YrrJ8wGoyRNYat8lYgOdXXOXOM0/Qe710ScTyDHQ=="],
+
+    "@fontsource-variable/public-sans": ["@fontsource-variable/public-sans@5.2.5", "", {}, "sha512-/guMye9ATKBlF7FuQeTJqW3RBilKmgeno6O2HXNEaRHP1JpfpG4oG8HwX8Mf0w6UHHE2b4monggJr1IfR4NhuA=="],
 
     "@humanfs/core": ["@humanfs/core@0.19.1", "", {}, "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA=="],
 

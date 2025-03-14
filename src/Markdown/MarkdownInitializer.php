@@ -24,22 +24,7 @@ final readonly class MarkdownInitializer implements Initializer
     #[Singleton]
     public function initialize(Container $container): MarkdownConverter
     {
-        $environment = new Environment([
-            'heading_permalink' => [
-                'html_class' => 'heading-permalink',
-                'id_prefix' => '',
-                'apply_id_to_heading' => true,
-                'heading_class' => '',
-                'fragment_prefix' => '',
-                'insert' => 'before',
-                'min_heading_level' => 1,
-                'max_heading_level' => 6,
-                'title' => 'Permalink',
-                'symbol' => '#',
-                'aria_hidden' => true,
-            ],
-        ]);
-
+        $environment = new Environment();
         $highlighter = $container->get(Highlighter::class, tag: 'project');
 
         $environment

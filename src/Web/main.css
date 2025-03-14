@@ -1,6 +1,6 @@
 @import 'tailwindcss' theme(static);
-@import './fonts.css';
 @import './typography.css';
+@import './highlighting.css';
 
 @variant light (&:where(.light, .light *));
 @variant dark (&:where(.dark, .dark *));
@@ -67,12 +67,18 @@
 }
 
 @layer base {
+	html {
+		@apply scroll-smooth;
+	}
+
 	body {
-		@apply antialiased font-sans text-(--ui-text) bg-[#f1f7ff] dark:bg-(--ui-bg) scheme-light dark:scheme-dark;
+		@apply antialiased font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark;
 	}
 
 	:root,
 	.light {
+		--ui-header-height: calc(var(--spacing) * 28);
+
 		--ui-primary: var(--color-blue-400);
 		--ui-secondary: var(--color-green-500);
 		--ui-success: var(--color-green-500);
@@ -112,9 +118,9 @@
 		--ui-text: var(--color-neutral-200);
 		--ui-text-highlighted: var(--color-white);
 
-		--ui-bg: var(--color-neutral-900);
-		--ui-bg-muted: var(--color-neutral-800);
-		--ui-bg-elevated: var(--color-neutral-800);
+		--ui-bg: var(--color-neutral-950);
+		--ui-bg-muted: var(--color-neutral-900);
+		--ui-bg-elevated: var(--color-neutral-900);
 		--ui-bg-accented: var(--color-neutral-700);
 		--ui-bg-inverted: var(--color-white);
 
@@ -142,4 +148,39 @@ button:focus {
 a:focus:has(svg),
 button:focus:has(svg) {
 	@apply transition duration-200 text-(--ui-primary);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Scrollbars
+|--------------------------------------------------------------------------
+*/
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 4px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+	background: var(--ui-border-accented);
+	border-radius: 4px;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--ui-text-dimmed);
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ui-border-accented) transparent;
 }

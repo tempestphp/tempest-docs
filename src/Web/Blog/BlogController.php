@@ -11,7 +11,6 @@ use Tempest\Router\Responses\Ok;
 use Tempest\Router\StaticPage;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\View\View;
-use Tempest\View\ViewRenderer;
 
 use function Tempest\view;
 
