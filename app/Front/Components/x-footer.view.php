@@ -15,7 +15,7 @@ use function Tempest\uri;
             </h2>
 
             <nav class="flex flex-wrap gap-2 mt-6 md:mt-0">
-                <x-button uri="<?= uri(DocsController::class, category: 'framework', slug: '01-getting-started') ?>">Read the docs</x-button>
+                <x-button :uri="uri(DocsController::class, category: 'framework', slug: '01-getting-started')">Read the docs</x-button>
                 <x-button uri="https://github.com/tempestphp/tempest-framework">Tempest on GitHub</x-button>
             </nav>
 

@@ -19,7 +19,7 @@
         <div class="w-full z-10 md:py-24 pt-12">
             <div class="w-full max-w-screen-md mx-auto grid gap-12 md:px-24 px-8">
                 <?php foreach ($posts as $post): ?>
-                    <a href="<?= $post->getUri() ?>" class="grid gap-2 hover:bg-tempest-blue-500 hover:underline rounded-lg hover:text-white p-4">
+                    <a :href="$post->getUri()" class="grid gap-2 hover:bg-tempest-blue-500 hover:underline rounded-lg hover:text-white p-4">
                         <span class="text-2xl font-bold flex items-baseline gap-2">
                             <?= $post->title ?>
                         </span>
