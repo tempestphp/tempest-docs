@@ -1,8 +1,3 @@
-<?php
-
-use App\Front\Meta\MetaType;
-
-?>
 <x-component name="x-base">
     <html lang="en">
 
@@ -14,7 +9,7 @@ use App\Front\Meta\MetaType;
         $metaImageUri = $metaImageUri ?? null;
 
         if ($metaImageUri === null) {
-            $metaType = $meta ?? MetaType::FRAMEWORK;
+            $metaType = $meta ?? \App\Front\Meta\MetaType::FRAMEWORK;
             $metaImageUri = $metaType->uri();
         }
         ?>
