@@ -180,7 +180,25 @@ Let's say you want a base layout that can be used by all other views. You could 
 </x-component>
 ```
 
-This component will be automatically discovered. Note that, in order for view components to be discovered, **they must be suffixed with `.view.php`.
+This component will be automatically discovered. Note that, in order for view components to be discovered, they must be suffixed with `.view.php`. If you want to, you can also prefix the filename with `x-`, in which case the view component's name will be inferred from the file name, and you don't have to use the explicit `<x-component>` tag anymore:
+
+```html
+<!-- app/components/x-base.view.php -->
+
+<html lang="en">
+    <head>
+        <title :if="$title">{{ $title }} | Tempest</title>
+        <title :else>Tempest</title>
+    </head>
+    <body>
+
+    <x-slot />
+
+    </body>
+</html>
+
+<!-- This view component will be accessible as <x-base> -->
+```
 
 Once a view component is discovered, you can use it in any other view. In our example, you can wrap any view you want within the `{html}<x-base></x-base>` tags, and the view's content will be injected within the base layout:
 
