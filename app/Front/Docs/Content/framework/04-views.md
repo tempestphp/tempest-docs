@@ -436,7 +436,6 @@ Note that `{html}class` and `{html}style` attributes will be merged together, wh
 <!-- <div class="bar foo" style="text-decoration: underline; background: red;" id="overwrite"></div> -->
 ```
 
-
 ## View component classes
 
 View components can live solely within a `.view.php` file, in which case they are called **anonymous view components**. However, it's also possible to define a class to represent a view component. One of the main benefits of doing so, is that **view component classes** are resolved via the container, meaning they can request any dependency available within your project, and Tempest will autowire it for you. View component classes are also discovered automatically, and must implement the `ViewComponent` interface.
@@ -599,6 +598,31 @@ Will be compiled to
 <div>Post A</div>
 <div>Post B</div>
 <div>Post C</div>
+```
+
+## View processors
+
+View processors are classes that manipulate a view before it is rendered. They are automatically discovered and can be used to add data to multiple view files at once. Here's an already complexer example of a view processor that will add a star count from GitHub to every view that implements `WithStarCount`:
+
+```php
+use Tempest\View\View;
+use Tempest\View\ViewProcessor;
+
+class StarCountViewProcessor implements ViewProcessor
+{
+    public function __construct(
+        private Github $github,
+    ) {}
+
+    public function process(View $view): View
+    {
+        if (! $view instanceof WithStarCount) {
+            return $view;
+        }
+
+        return $view->data(starCount: $this->github->getStarCount());
+    }
+}
 ```
 
 ## View caching
