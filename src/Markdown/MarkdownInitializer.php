@@ -30,6 +30,9 @@ final readonly class MarkdownInitializer implements Initializer
         $environment
             ->addExtension(new CommonMarkCoreExtension())
             ->addExtension(new FrontMatterExtension())
+            ->addInlineParser(new TempestPackageParser())
+            ->addInlineParser(new FqcnParser())
+            ->addInlineParser(new HandleParser())
             ->addRenderer(FencedCode::class, new CodeBlockRenderer($highlighter))
             ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
             ->addRenderer(Heading::class, new HeadingRenderer());

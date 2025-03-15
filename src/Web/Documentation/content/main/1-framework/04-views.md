@@ -29,7 +29,7 @@ Here's an example of what a Tempest view looks like:
 </x-base>
 ```
 
-You can think of `tempest/view` as a superset of HTML, we'll dive deeper into the syntax later in this chapter.
+You can think of {`tempest/view`} as a superset of HTML, we'll dive deeper into the syntax later in this chapter.
 
 ## Returning views
 

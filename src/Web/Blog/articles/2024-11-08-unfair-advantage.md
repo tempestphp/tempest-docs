@@ -186,9 +186,9 @@ But.
 
 I've also seen a lot of involvement and interest in Tempest since its first alpha release. A small but dedicated community has begun to grow. We now almost have 250 members on [our Discord](https://tempestphp.com/discord), the [GitHub repository](https://github.com/tempestphp/tempest-framework) has almost reached 1k stars, we've merged 82 pull requests made by 12 people this past month, with 300 merged pull requests in total.
 
-On top of that, we have a strong core team of experienced open-source developers: [myself](https://github.com/brendt), [Aidan](https://github.com/aidan-casey), and [Enzo](https://github.com/innocenzi), flanked by another [dozen contributors](https://github.com/tempestphp/tempest-framework/graphs/contributors).
+On top of that, we have a strong core team of experienced open-source developers: {gh:brendt,myself}, {gh:aidan-casey,Aidan}, and {gh:innocenzi,Enzo Innocenzi}, flanked by another [dozen contributors](https://github.com/tempestphp/tempest-framework/graphs/contributors).
 
-We also decided to make Tempest's individual components available as standalone packages, so that people don't have to commit to Tempest in full, but can pull one or several of these components into their projects — Laravel, Symfony, or whatever they are building. [`tempest/console`](https://tempestphp.com/console/) is probably the best example, but I'm very excited about [`tempest/view`](https://tempestphp.com/view/) as well, and [there are more](https://tempestphp.com/docs/framework/standalone-components/).
+We also decided to make Tempest's individual components available as standalone packages, so that people don't have to commit to Tempest in full, but can pull one or several of these components into their projects — Laravel, Symfony, or whatever they are building. {`tempest/console`} is probably the best example, but I'm very excited about {`tempest/view`} as well, and [there are more](https://tempestphp.com/docs/framework/standalone-components/).
 
 All of that to say, my uncertainty about Tempest becoming _a thing_ or not, is quickly dissipating. People are excited about Tempest, more than I expected. It seems they are picking up on Tempest's unfair advantage, and I am excited for the future.
 

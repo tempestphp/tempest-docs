@@ -7,7 +7,7 @@ tag: Thoughts
 
 It all started with me noticing the favicon of this website (the blog you're reading right now) was missing. My first thought was that the favicon file somehow got removed from the server, but a quick network inspection told me that wasn't the case: it showed no favicon request at all.
 
-"Weird," I thought, I didn't remember making any changes to the layout code in ages. However, this website uses `tempest/view`, a new PHP templating engine, and I had been making lots of tweaks and fixes to it these past two weeks. It's still alpha, and naturally things break now and then. That's exactly the reason why I built this website with `tempest/view` from the very start: what better way to find bugs than to dogfood your own code?
+"Weird," I thought, I didn't remember making any changes to the layout code in ages. However, this website uses {`tempest/view`}, a new PHP templating engine, and I had been making lots of tweaks and fixes to it these past two weeks. It's still alpha, and naturally things break now and then. That's exactly the reason why I built this website with `tempest/view` from the very start: what better way to find bugs than to dogfood your own code?
 
 So, next option: it's probably a bug in `tempest/view`. But where exactly? I inspected the source of the page — the compiled output of `tempest/view` — and discovered that the favicon was actually there:
 
@@ -198,7 +198,7 @@ Except when it ends up in the `{html}<head>` tag of an HTML document! See, this 
 </html>
 ```
 
-That's because `{html}<x-slot>` isn't a tag allowed within `{html}<head>`! And what does the DOM parser do when it encounters an element that doesn't belong in `{html}<head>`? It will simply close the `{html}<head>` and start the `{html}<body>`. Apparently that's part of [the spec](https://www.w3.org/TR/2011/WD-html5-20110113/tokenization.html#parsing-main-inhead) (thanks to Enzo for pointing that out)!
+That's because `{html}<x-slot>` isn't a tag allowed within `{html}<head>`! And what does the DOM parser do when it encounters an element that doesn't belong in `{html}<head>`? It will simply close the `{html}<head>` and start the `{html}<body>`. Apparently that's part of [the spec](https://www.w3.org/TR/2011/WD-html5-20110113/tokenization.html#parsing-main-inhead) (thanks to {bsky:innocenzi.dev} for pointing that out)!
 
 Why is it part of the spec? As far as I understand, HTML5 allows you to write something like this (note that there's no closing `{html}</head>` tag):
 

@@ -8,7 +8,7 @@ description: "Tempest is a PHP framework that gets out of your way. Its design p
 
 Tempest embraces **modern PHP syntax** and covers a wide range of features: routing, MVC, ORM and database, rich console applications, events and commands, logging, a modern view engine, and unique capabilities such as [discovery](#project-structure) to improve developer experience.
 
-Tempest can be installed **as a standalone PHP project**, as well as **a package within existing projects**. The framework modules — like, for example, `tempest/console` or `tempest/event-bus` — can also be installed **individually**, including in projects built on other frameworks.
+Tempest can be installed **as a standalone PHP project**, as well as **a package within existing projects**. The framework modules — like, for example, {`tempest/console`} or {`tempest/event-bus`} — can also be installed **individually**, including in projects built on other frameworks.
 
 Since code says more than words, here's a Tempest controller:
 
@@ -87,7 +87,7 @@ You can install Tempest in two ways: as a web app with a basic frontend bootstra
 
 ### A standalone Tempest app
 
-If you want to start a new Tempest project, you can use `tempest/app` as the starting point. Use `composer create-project` to start:
+If you want to start a new Tempest project, you can use {`tempest/app`} as the starting point. Use `composer create-project` to start:
 
 ```txt
 composer create-project tempest/app my-app --stability alpha
@@ -262,4 +262,4 @@ If you're using a partial discovery cache, it is recommended to automatically ru
 }
 ```
 
-Note that, if you've created your project using `tempest/app`, you'll have the `post-package-update` script already included. If you want to, you can read the [internal documentation about discovery](/docs/internals/02-discovery) to learn more.
+Note that, if you've created your project using {`tempest/app`}, you'll have the `post-package-update` script already included. If you want to, you can read the [internal documentation about discovery](/docs/internals/02-discovery) to learn more.
