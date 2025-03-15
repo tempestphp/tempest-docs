@@ -1,7 +1,7 @@
 ---
 title: Start with DX
 description: Everything else is secondary
-author: Brent
+author: brent
 tag: Thoughts
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Chasing Bugs down Rabbit Holes
 description: I had to debug the most interesting bug in Tempest to date
-author: Brent
+author: brent
 tag: Thoughts
 ---
 

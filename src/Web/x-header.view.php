@@ -28,11 +28,11 @@ use function Tempest\uri;
       <div class="flex items-center gap-4 font-medium">
         <a
 					:href="uri([ChapterController::class, 'index'])"
-					class="transition hover:text-(--ui-text-highlighted) <?= is_uri([ChapterController::class, '__invoke']) ? 'text-(--ui-primary)' : '' ?>"
+					class="transition hover:text-(--ui-text-highlighted) <?= is_uri([ChapterController::class, '__invoke']) ? 'md:text-(--ui-primary)' : '' ?>"
 				>Documentation</a>
         <a
 					:href="uri([BlogController::class, 'index'])"
-					class="transition hover:text-(--ui-text-highlighted) <?= is_uri([BlogController::class, 'show']) || is_uri([BlogController::class, 'index']) ? 'text-(--ui-primary)' : '' ?>"
+					class="transition hover:text-(--ui-text-highlighted) <?= is_uri([BlogController::class, 'show']) || is_uri([BlogController::class, 'index']) ? 'md:text-(--ui-primary)' : '' ?>"
 				>Blog</a>
 				<a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
 					<x-icon name="tabler:brand-github" class="size-6" />

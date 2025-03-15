@@ -2,7 +2,7 @@
 /** @var \Tempest\Web\Documentation\ChapterView $this */
 ?>
 
-<x-base :title="$this->currentChapter->title">
+<x-base :title="$this->currentChapter->title" :copy-code-blocks="true">
   <!-- Main container -->
   <main class="container grow px-4 mx-auto xl:px-8 flex isolate">
     <!-- Sidebar -->
@@ -42,7 +42,7 @@
 							{!! $this->currentChapter->description !!}
 						</div>
 					</div>
-					<div :if="$this->currentChapter" class="prose dark:prose-invert mt-8 pb-24 space-y-12">
+					<div :if="$this->currentChapter" class="prose prose-large dark:prose-invert mt-8 pb-24 space-y-12" highlights-titles>
 						{!! $this->currentChapter->body !!}
 					</div>
 				</x-template>
@@ -67,92 +67,5 @@
 				</div>
 			</nav>
     </div>
-		<template id="copy-template">
-			<button class="absolute group top-2 right-2 size-6 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border-(--ui-border) hover:text-(--ui-text-highlighted)">
-				<x-icon name="tabler:copy" class="size-5 absolute inset-0" />
-				<x-icon name="tabler:copy-check-filled" class="size-5 absolute inset-0 opacity-0 group-[[data-copied]]:opacity-100 transition" />
-			</button>
-		</template>
   </main>
-	<script>
-    function findPreviousH2(element) {
-        while (element && element.previousElementSibling) {
-            element = element.previousElementSibling;
-            if (element.tagName === "H2") {
-                return element;
-            }
-        }
-        return null;
-    }
-
-    function updateActiveChapters() {
-        let visibleH2s = new Set();
-        let lastVisibleH2 = null;
-        const elements = document.querySelectorAll(".prose *");
-        const topMargin = 100; // Adjust this value to control the ejection margin
-
-        for (const el of elements) {
-            const rect = el.getBoundingClientRect();
-            if (rect.top - topMargin >= 0 && rect.bottom <= window.innerHeight) {
-                if (el.tagName === "H2" || el.tagName === "H1") {
-                    visibleH2s.add(el.textContent.trim());
-                    lastVisibleH2 = el;
-                } else {
-                    const previousH2 = findPreviousH2(el);
-                    if (previousH2) {
-                        visibleH2s.add(previousH2.textContent.trim());
-                    }
-                }
-            }
-        }
-        
-        document.querySelectorAll('[data-on-this-page]').forEach(link => {
-            if (visibleH2s.has(link.getAttribute('data-on-this-page'))) {
-                link.setAttribute('data-active', 'true');
-            } else {
-                link.removeAttribute('data-active');
-            }
-        });
-    }
-
-    window.addEventListener("scroll", () => {
-        requestAnimationFrame(updateActiveChapters);
-    });
-
-    document.addEventListener("DOMContentLoaded", updateActiveChapters);
-	</script>
-	<script>
-		function extractPlainText(pre, button) {
-    return Array.from(pre.childNodes)
-        .filter(node => node !== button) // Exclude the button itself
-        .map(node => 
-            node.nodeType === Node.TEXT_NODE ? node.textContent :
-            node.nodeType === Node.ELEMENT_NODE ? node.textContent : ""
-        ).join("").trim();
-		}
-
-    document.addEventListener("DOMContentLoaded", () => {
-    	document.querySelectorAll(".prose pre").forEach(pre => {
-				console.log(pre)
-						// Clone the copy button template
-						const template = document.getElementById("copy-template");
-						if (!template) return;
-						
-						const copyButton = template.content.cloneNode(true).querySelector("button");
-						pre.classList.add("relative", "group"); // Ensure positioning for absolute button placement
-						
-						// Insert button inside pre
-						pre.appendChild(copyButton);
-
-						// Copy event handler
-						copyButton.addEventListener("click", () => {
-								const content = extractPlainText(pre, copyButton);
-								navigator.clipboard.writeText(content).then(() => {
-										copyButton.setAttribute("data-copied", "true");
-                		setTimeout(() => copyButton.removeAttribute("data-copied"), 2000);
-								}).catch(err => console.error("Copy failed", err));
-						});
-				});
-		});
-	</script>
 </x-base>

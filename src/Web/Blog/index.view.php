@@ -42,7 +42,7 @@
 							{{ $post->tag }}
 						</span>
 						<span :if="$post->author" class="text-(--ui-text-muted) text-sm">
-							by <span class="font-medium">{{ $post->author }}</span> on <span class="font-medium">{{ $post->createdAt->format('F d, Y') }}</span>
+							by <span class="font-medium">{{ $post->author->getName() }}</span> on <span class="font-medium">{{ $post->createdAt->format('F d, Y') }}</span>
 						</span>
 					</div>
 				</li>

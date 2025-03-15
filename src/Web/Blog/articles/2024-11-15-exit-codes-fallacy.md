@@ -1,6 +1,6 @@
 ---
 title: Exit Code Fallacy
-author: Brent
+author: brent
 description: Was I wrong about exit codes?
 tag: Thoughts
 ---

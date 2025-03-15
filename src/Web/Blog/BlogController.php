@@ -35,7 +35,7 @@ final readonly class BlogController
             return new NotFound();
         }
 
-        return view(__DIR__ . '/blog_show.view.php', post: $post);
+        return view('./show.view.php', post: $post);
     }
 
     #[Get('/rss')]

@@ -65,6 +65,14 @@
     <x-slot />
     <x-footer />
     <x-slot name="scripts" />
+		<x-template :if="$copyCodeBlocks ?? false">
+			<template id="copy-template">
+				<button class="absolute group top-2 right-2 size-7 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border) hover:text-(--ui-text-highlighted)">
+					<x-icon name="tabler:copy" class="size-5 absolute" />
+					<x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition" />
+				</button>
+			</template>
+		</x-template>
   </body>
   </html>
 </x-component>

@@ -1,7 +1,9 @@
 @plugin "@tailwindcss/typography";
 
 @utility prose {
-	@apply !max-w-[80ch];
+	&.prose-large {
+		@apply !max-w-[80ch];
+	}
 
 	& > h2:first-child {
 		@apply !mt-0;
