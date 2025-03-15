@@ -12,8 +12,7 @@ use Tempest\Router\Responses\Redirect;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
 
-use function Tempest\Support\Arr\last;
-use function Tempest\Support\Arr\map;
+use function Tempest\Support\arr;
 use function Tempest\Support\Str\before_first;
 use function Tempest\uri;
 
@@ -23,13 +22,15 @@ final readonly class ChapterController
     #[Get('/documentation')]
     public function index(): Redirect
     {
-        $version = last(map(glob(__DIR__ . '/content/*', flags: GLOB_ONLYDIR), fn (string $directory) => basename($directory)));
+        $version = Version::default();
+        $category = basename(arr(glob(__DIR__ . "/content/{$version->value}/*", flags: GLOB_ONLYDIR))->sort()->first());
+        $slug = basename(arr(glob(__DIR__ . "/content/{$version->value}/{$category}/*.md"))->map(fn (string $path) => before_first(basename($path), '.'))->sort()->first());
 
         return new Redirect(uri(
             [self::class, '__invoke'],
             version: $version,
-            category: 'framework',
-            slug: 'getting-started',
+            category: $category,
+            slug: $slug,
         ));
     }
 

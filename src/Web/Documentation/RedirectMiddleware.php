@@ -15,6 +15,7 @@ use Tempest\Router\Responses\Redirect;
 use Tempest\Router\Router;
 
 use function Tempest\get;
+use function Tempest\Support\Regex\matches;
 use function Tempest\Support\str;
 use function Tempest\uri;
 
@@ -43,9 +44,9 @@ final readonly class RedirectMiddleware implements HttpMiddleware
             return $response;
         }
 
-        // Redirect to slug without number
-        if ($path->trim('/')->afterLast('/')->matches('/\d+-/')) {
-            return new Redirect($path->replaceRegex('/\d+-/', ''));
+        // Redirect to slugs without numbers
+        if (matches($matched->params['category'], '/^\d+-/') || matches($matched->params['slug'], '/^\d+-/')) {
+            return new Redirect($path->replaceRegex('/\/\d+-/', '/'));
         }
 
         // Redirect to docs index if not found

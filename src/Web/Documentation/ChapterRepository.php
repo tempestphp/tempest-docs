@@ -10,6 +10,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\Support\arr;
+use function Tempest\Support\Regex\replace;
 use function Tempest\Support\str;
 
 final readonly class ChapterRepository
@@ -21,7 +22,12 @@ final readonly class ChapterRepository
 
     public function find(Version $version, string $category, string $slug): ?Chapter
     {
-        $path = glob(__DIR__ . "/content/{$version->value}/{$category}/*{$slug}*.md")[0] ?? null;
+        $category = replace($category, '/^\d+-/', '');
+        $slug = replace($slug, '/^\d+-/', '');
+        $path = ImmutableArray::createFrom(recursive_search(
+            folder: __DIR__ . "/content/{$version->value}",
+            pattern: sprintf("#.*\/(\d+-)?%s\/(\d+-)?%s\.md#", preg_quote($category, '#'), preg_quote($slug, '#')),
+        ))->sort()->first();
 
         if (! $path) {
             return null;
@@ -50,7 +56,7 @@ final readonly class ChapterRepository
      */
     public function all(Version $version, string $category = '*'): ImmutableArray
     {
-        return arr(glob(__DIR__ . "/content/{$version->value}/{$category}/*.md"))
+        return arr(glob(__DIR__ . "/content/{$version->value}/*{$category}/*.md"))
             ->map(function (string $path) use ($version) {
                 $content = file_get_contents($path);
                 $category = str($path)->beforeLast('/')->afterLast('/');
