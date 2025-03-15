@@ -1,9 +1,7 @@
 @plugin "@tailwindcss/typography";
 
 @utility prose {
-	&.prose-large {
-		@apply !max-w-[80ch];
-	}
+	@apply !max-w-[unset];
 
 	& > h2:first-child {
 		@apply !mt-0;
@@ -18,7 +16,7 @@
 		@apply px-1.5 pt-0.5 pb-px text-sm font-mono font-medium rounded-md inline-block border border-(--ui-border-muted) text-(--ui-text-highlighted) bg-(--ui-bg-muted);
 	}
 
-	a:not(:is(h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {
+	a:not(:is(.not-prose, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {
 		@apply text-(--ui-primary) border-b border-transparent hover:border-(--ui-primary) font-medium focus-visible:outline-(--ui-primary) transition-colors;
 
 		& code {

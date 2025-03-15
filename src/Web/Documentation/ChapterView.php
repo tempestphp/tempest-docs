@@ -60,6 +60,21 @@ final class ChapterView implements View
         return null;
     }
 
+    public function previousChapter(): ?Chapter
+    {
+        $previous = null;
+
+        foreach ($this->chaptersForCategory($this->currentChapter->category) as $chapter) {
+            if ($this->isCurrent($chapter)) {
+                return $previous;
+            }
+
+            $previous = $chapter;
+        }
+
+        return null;
+    }
+
     public function categories(): array
     {
         return ['intro', 'framework', 'console', 'highlight', 'internals'];

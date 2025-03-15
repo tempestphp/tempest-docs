@@ -4,7 +4,7 @@
 
 <x-base :title="$this->currentChapter->title" :copy-code-blocks="true">
   <!-- Main container -->
-  <main class="container grow px-4 mx-auto xl:px-8 flex isolate">
+  <main class="container grow px-4 mx-auto xl:px-8 flex">
     <!-- Sidebar -->
 		<div class="hidden lg:block xl:px-6 sticky xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 shrink-0">
 			<!-- Menu -->
@@ -25,12 +25,36 @@
 				</div>
 			</nav>
 		</div>
+  	<!-- Mobile sidebar button -->
+		<button onclick="toggleSideBar()" class="fixed md:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
+			<x-icon name="tabler:list" class="size-6" />
+		</button>
+  	<!-- Mobile sidebar -->
+		<div data-sidebar class="hidden fixed md:hidden inset-0 overflow-auto z-[9] bg-(--ui-bg) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition opacity-100 scale-100 origin-bottom-right">
+			<!-- Menu -->
+			<nav class="flex flex-col gap-y-8 pb-16 overflow-hidden">
+				<div :foreach="$this->categories() as $category" class="flex flex-col text-right text-lg">
+					<!-- Category title -->
+					<span class="font-semibold text-(--ui-text) mb-2">
+						<?= ucfirst($category) ?>
+					</span>
+					<!-- Chapter list -->
+					<ul class="flex flex-col">
+						<li :foreach="$this->chaptersForCategory($category) as $chapter" class="-ms-px ps-1.5">
+							<a :href="$chapter->getUri()" class="inline-flex py-1 <?= $this->isCurrent($chapter) ? 'text-(--ui-primary)' : 'text-(--ui-text-muted)' ?>">
+								{{ $chapter->title }}
+							</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
     <!-- Main content -->
     <div class="grow px-2 w-full lg:pl-12 flex min-w-0">
 			<!-- Documentation page -->
 			<article class="grow w-full flex flex-col min-w-0">
-				<!-- Header -->
 				<x-template :if="$this->currentChapter">
+					<!-- Header -->
 					<div class="relative border-b border-(--ui-border) pb-8">
 						<a :href="$this->currentChapter->getUri()" class="text-(--ui-info) font-semibold">
 							{{ \Tempest\Support\Str\to_title_case($this->currentChapter->category) }}
@@ -42,16 +66,26 @@
 							{!! $this->currentChapter->description !!}
 						</div>
 					</div>
-					<div :if="$this->currentChapter" class="prose prose-large dark:prose-invert mt-8 pb-24 space-y-12" highlights-titles>
+					<!-- Docs content -->
+					<div :if="$this->currentChapter" class="prose prose-large dark:prose-invert mt-8 space-y-12" highlights-titles>
 						{!! $this->currentChapter->body !!}
 					</div>
+					<!-- Docs footer -->
+					<nav class="not-prose grid grid-cols-2 my-10 justify-between gap-4">
+						<div class="hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
+							<a :if="$this->previousChapter()" :href="$this->previousChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full">
+								<x-icon name="tabler:arrow-left" class="size-5" />
+								{{ $this->previousChapter()?->title }}
+							</a>
+						</div>
+						<div class="hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
+							<a :if="$this->nextChapter()" :href="$this->nextChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full justify-end">
+								{{ $this->nextChapter()?->title }}
+								<x-icon name="tabler:arrow-right" class="size-5" />
+							</a>
+						</div>
+					</nav>
 				</x-template>
-				<!-- Docs footer -->
-				<nav class="bg-[--card] text-[--card-foreground] font-bold rounded-md p-4 flex justify-between gap-2 my-6">
-					<a :if="$this->nextChapter()" :href="$this->nextChapter()?->getUri()" class="underline hover:no-underline">
-						Next: {{ $this->nextChapter()?->title }}
-					</a>
-				</nav>
 			</article>
 			<!-- On this page -->
 			<nav :if="($subChapters = $this->getSubChapters()) !== []" class="w-2xs shrink-0 hidden xl:block sticky max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 pl-12 pr-4">
@@ -67,5 +101,16 @@
 				</div>
 			</nav>
     </div>
+		<script>
+		function toggleSideBar() {
+			const sidebar = document.querySelector('[data-sidebar]')
+			if (sidebar.classList.contains('hidden')) {
+				sidebar.classList.remove('hidden', '!opacity-0', '!scale-80', 'pointer-event-none')
+			} else {
+				sidebar.classList.add('!opacity-0', '!scale-80', 'pointer-event-none')
+				setTimeout(() => sidebar.classList.add('hidden'), 250);
+			}
+		}
+		</script>
   </main>
 </x-base>
