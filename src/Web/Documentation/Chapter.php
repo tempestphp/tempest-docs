@@ -9,7 +9,7 @@ use function Tempest\uri;
 final class Chapter
 {
     public function __construct(
-        public string $version,
+        public Version $version,
         public string $category,
         public string $slug,
         public string $body,

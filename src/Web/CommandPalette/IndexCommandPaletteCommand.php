@@ -4,12 +4,10 @@ namespace App\Web\CommandPalette;
 
 use App\Web\Blog\BlogIndexer;
 use App\Web\Documentation\DocumentationIndexer;
+use App\Web\Documentation\Version;
 use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
 use Tempest\Console\ExitCode;
-use Tempest\Core\Kernel;
-
-use function Tempest\Support\Str\before_first;
 
 final readonly class IndexCommandPaletteCommand
 {
@@ -27,7 +25,7 @@ final readonly class IndexCommandPaletteCommand
         file_put_contents(
             __DIR__ . '/index.json',
             json_encode([
-                ...($this->documentationIndexer)(before_first(Kernel::VERSION, search: '.') . '.x'),
+                ...($this->documentationIndexer)(Version::default()),
                 ...($this->blogIndexer)(),
                 ...($this->commandIndexer)(),
             ]),

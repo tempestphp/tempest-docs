@@ -13,7 +13,7 @@ final class ChapterView implements View
     use IsView;
 
     public function __construct(
-        public string $version,
+        public Version $version,
         public ChapterRepository $chapterRepository,
         public Chapter $currentChapter,
     ) {

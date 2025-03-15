@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
-use Tempest\Core\Kernel;
+use Tempest\Router\Exceptions\NotFoundException;
 use Tempest\Router\Get;
 use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
@@ -33,10 +33,14 @@ final readonly class ChapterController
         ));
     }
 
-    #[StaticPage(DocsDataProvider::class)]
+    #[StaticPage(DocumentationDataProvider::class)]
     #[Get('/{version}/{category}/{slug}')]
     public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): View|Response
     {
+        if (is_null($version = Version::tryFrom($version))) {
+            throw new NotFoundException();
+        }
+
         $currentChapter = $chapterRepository->find($version, $category, $slug);
 
         if (! $currentChapter) {

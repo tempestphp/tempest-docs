@@ -19,9 +19,9 @@ final readonly class ChapterRepository
     ) {
     }
 
-    public function find(string $version, string $category, string $slug): ?Chapter
+    public function find(Version $version, string $category, string $slug): ?Chapter
     {
-        $path = glob(__DIR__ . "/content/{$version}/{$category}/*{$slug}*.md")[0] ?? null;
+        $path = glob(__DIR__ . "/content/{$version->value}/{$category}/*{$slug}*.md")[0] ?? null;
 
         if (! $path) {
             return null;
@@ -48,9 +48,9 @@ final readonly class ChapterRepository
     /**
      * @return ImmutableArray<Chapter>
      */
-    public function all(string $version, string $category = '*'): ImmutableArray
+    public function all(Version $version, string $category = '*'): ImmutableArray
     {
-        return arr(glob(__DIR__ . "/content/{$version}/{$category}/*.md"))
+        return arr(glob(__DIR__ . "/content/{$version->value}/{$category}/*.md"))
             ->map(function (string $path) use ($version) {
                 $content = file_get_contents($path);
                 $category = str($path)->beforeLast('/')->afterLast('/');

@@ -30,9 +30,9 @@ final readonly class DocumentationIndexer
     /**
      * @return ImmutableArray<Command>
      */
-    public function __invoke(string $version): ImmutableArray
+    public function __invoke(Version $version): ImmutableArray
     {
-        return arr(glob(__DIR__ . "/content/{$version}/*/*.md"))
+        return arr(glob(__DIR__ . "/content/{$version->value}/*/*.md"))
             ->flatMap(function (string $path) use ($version) {
                 $markdown = $this->markdown->convert(file_get_contents($path));
                 preg_match('/(?<index>\d+-)?(?<slug>.*)\.md/', pathinfo($path, PATHINFO_BASENAME), $matches);
