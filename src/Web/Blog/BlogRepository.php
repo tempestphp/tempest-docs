@@ -24,25 +24,21 @@ final readonly class BlogRepository
      */
     public function all(bool $loadContent = false): ImmutableArray
     {
-        return arr(glob(__DIR__ . '/Content/*.md'))
+        return arr(glob(__DIR__ . '/articles/*.md'))
             ->reverse()
             ->map(function (string $path) use ($loadContent) {
-                $content = file_get_contents($path);
-
                 preg_match('/\d+-\d+-\d+-(?<slug>.*)\.md/', $path, $matches);
 
-                $slug = $matches['slug'];
-
                 $data = [
-                    'slug' => $slug,
+                    'slug' => $matches['slug'],
                     'createdAt' => $this->parseDate($path),
-                    ...YamlFrontMatter::parse($content)->matter(),
+                    'tag' => null,
+                    'description' => null,
+                    ...YamlFrontMatter::parse(file_get_contents($path))->matter(),
                 ];
 
                 if ($loadContent) {
-                    $content = $this->parseContent($path);
-
-                    $data['content'] = $content->getContent();
+                    $data['content'] = $this->parseContent($path)->getContent();
                 }
 
                 return $data;
@@ -53,7 +49,7 @@ final readonly class BlogRepository
 
     public function find(string $slug): ?BlogPost
     {
-        $path = glob(__DIR__ . "/Content/*{$slug}*.md")[0] ?? null;
+        $path = glob(__DIR__ . "/articles/*{$slug}*.md")[0] ?? null;
 
         if (! $path) {
             return null;

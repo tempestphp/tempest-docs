@@ -2,6 +2,7 @@
 title: Start with DX
 description: Everything else is secondary
 author: Brent
+tag: Thoughts
 ---
 
 Within the PhpStorm team, we're preparing a blog post that digests the results of our 2024 dev ecosystem survey, and I was asked to pitch in and comment on Laravel's success. I had more thoughts than what fit into that blog post, so I decided to write them down here.

@@ -22,7 +22,7 @@ final readonly class BlogController
     {
         $posts = $repository->all();
 
-        return view(__DIR__ . '/blog-index.view.php', posts: $posts);
+        return view('./index.view.php', posts: $posts);
     }
 
     #[Get('/blog/{slug}')]

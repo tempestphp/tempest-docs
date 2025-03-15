@@ -14,7 +14,7 @@ registerPalette({ value: open })
 </script>
 
 <template>
-	<base-dialog v-model:open="open" content-class="w-full max-w-2xl" title="Command palette">
+	<base-dialog v-model:open="open" content-class="w-full h-full sm:h-auto sm:max-w-xl md:max-w-2xl" title="Command palette">
 		<combobox-root
 			:open="true"
 			:ignore-filter="true"
@@ -30,7 +30,7 @@ registerPalette({ value: open })
 			/>
 			<!-- Results -->
 			<combobox-content
-				class="p-2 border-(--ui-border) border-t max-h-[40rem] overflow-y-auto"
+				class="p-2 border-(--ui-border) border-t h-full sm:max-h-[40rem] overflow-y-auto"
 				@escape-key-down="open = false"
 			>
 				<!-- No result -->
@@ -60,24 +60,26 @@ registerPalette({ value: open })
 						@select="(e) => handleCommand(item, e)"
 					>
 						<div class="flex items-center gap-x-1 text-(--ui-text-dimmed)">
-							<template v-for="(breadcrumb, i) in item.hierarchy.slice(1, -1)" :key="breadcrumb">
-								<span class="inline-block font-medium text-sm" v-text="breadcrumb" />
-								<svg
-									v-if="i < item.hierarchy.length - 3"
-									xmlns="http://www.w3.org/2000/svg"
-									width="32"
-									height="32"
-									class="size-4"
-									viewBox="0 0 24 24"
-								>
-									<path
-										fill="none"
-										stroke="currentColor"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-width="2"
-										d="m7 7l5 5l-5 5m6-10l5 5l-5 5"
-									/></svg>
+							<template v-for="(breadcrumb, i) in item.hierarchy.slice(1)" :key="breadcrumb">
+								<template v-if="breadcrumb !== item.title">
+									<span class="inline-block font-medium text-sm" v-text="breadcrumb" />
+									<svg
+										v-if="i < item.hierarchy.length"
+										xmlns="http://www.w3.org/2000/svg"
+										width="32"
+										height="32"
+										class="last:hidden size-4"
+										viewBox="0 0 24 24"
+									>
+										<path
+											fill="none"
+											stroke="currentColor"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="m7 7l5 5l-5 5m6-10l5 5l-5 5"
+										/></svg>
+								</template>
 							</template>
 						</div>
 						<span>{{ item.title }}</span>

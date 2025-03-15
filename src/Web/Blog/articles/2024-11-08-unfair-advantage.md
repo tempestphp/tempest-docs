@@ -2,6 +2,7 @@
 title: Unfair Advantage
 author: Brent
 description: Why Tempest instead of Symfony or Laravel?
+tag: Thoughts
 ---
 
 Someone asked me: [_why Tempest_](https://bsky.app/profile/laueist.bsky.social/post/3l7y5v3bm772y)? What areas do I expect Tempest to be better in than Laravel or Symfony? What gives me certainty that Laravel or Symfony won't just be able to copy what makes Tempest currently unique? What is Tempest's _unfair advantage_ compared to existing PHP frameworks?

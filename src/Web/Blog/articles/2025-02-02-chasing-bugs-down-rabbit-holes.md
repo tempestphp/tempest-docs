@@ -2,6 +2,7 @@
 title: Chasing Bugs down Rabbit Holes
 description: I had to debug the most interesting bug in Tempest to date
 author: Brent
+tag: Thoughts
 ---
 
 It all started with me noticing the favicon of this website (the blog you're reading right now) was missing. My first thought was that the favicon file somehow got removed from the server, but a quick network inspection told me that wasn't the case: it showed no favicon request at all.

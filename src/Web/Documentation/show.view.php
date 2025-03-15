@@ -4,7 +4,7 @@
 
 <x-base :title="$this->currentChapter->title">
   <!-- Main container -->
-  <main class="container px-4 mx-auto xl:px-8 flex mt-28 isolate">
+  <main class="container grow px-4 mx-auto xl:px-8 flex isolate">
     <!-- Sidebar -->
 		<div class="hidden lg:block xl:px-6 sticky xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 shrink-0">
 			<!-- Menu -->

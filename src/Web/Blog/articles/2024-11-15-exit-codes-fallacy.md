@@ -2,6 +2,7 @@
 title: Exit Code Fallacy
 author: Brent
 description: Was I wrong about exit codes?
+tag: Thoughts
 ---
 
 Last week I wrote [a blog post](https://tempestphp.com/blog/unfair-advantage/) comparing Symfony,

@@ -18,7 +18,7 @@ const open = defineModel<boolean>('open', { required: true })
 <template>
 	<dialog-root v-model:open="open">
 		<dialog-overlay class="z-50 fixed inset-0 backdrop-blur-sm data-[state=open]:animate-dialog-open data-[state=closed]:animate-dialog-close" />
-		<dialog-content :class="contentClass" class="top-[50%] left-[50%] z-50 fixed bg-(--ui-bg) shadow-dialog-shadow shadow-xl p-0 border border-(--ui-border) rounded-lg text-(--ui-text) translate-x-[-50%] translate-y-[-50%] data-[state=open]:animate-dialog-open data-[state=closed]:animate-dialog-close">
+		<dialog-content :class="contentClass" class="top-[50%] left-[50%] z-50 fixed bg-(--ui-bg) shadow-dialog-shadow shadow-xl p-0 border border-(--ui-border) sm:rounded-lg text-(--ui-text) translate-x-[-50%] translate-y-[-50%] data-[state=open]:animate-dialog-open data-[state=closed]:animate-dialog-close">
 			<dialog-title class="sr-only">
 				{{ title }}
 			</dialog-title>

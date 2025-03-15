@@ -6,6 +6,7 @@
 @variant dark (&:where(.dark, .dark *));
 
 @theme {
+	--container-8xl: 96rem;
 	--font-display: 'Kantumruy Pro Variable';
 	--font-sans: 'Public Sans Variable';
 
@@ -74,10 +75,13 @@
 	body {
 		@apply antialiased font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark;
 	}
-
 	:root,
 	.light {
-		--ui-header-height: calc(var(--spacing) * 28);
+		--ui-header-height: --spacing(18);
+
+		@media (width > 40rem) {
+			--ui-header-height: --spacing(28);
+		}
 
 		--ui-primary: var(--color-blue-400);
 		--ui-secondary: var(--color-green-500);
@@ -105,9 +109,9 @@
 	}
 
 	.dark {
-		--ui-primary: var(--color-blue-300);
-		--ui-secondary: var(--color-green-400);
-		--ui-success: var(--color-green-400);
+		--ui-primary: var(--color-blue-400);
+		--ui-secondary: var(--color-neutral-400);
+		--ui-success: var(--color-emerald-400);
 		--ui-info: var(--color-blue-400);
 		--ui-warning: var(--color-yellow-400);
 		--ui-error: var(--color-red-400);
