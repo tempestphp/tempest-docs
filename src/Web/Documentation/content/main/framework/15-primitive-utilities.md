@@ -1,11 +1,11 @@
 ---
-title: Primitive Helpers
+title: Primitive utilities
 category: framework
 ---
 
 Tempest comes with a handful of classes that improve working with primitive types such as strings and arrays. The most important feature is an object-oriented API around PHP's built-in primitive helper functions. Let's take a look at what's available.
 
-## String Helper
+## Strings
 
 The `StringHelper` class wraps a normal string, and provides a fluent API to manipulate that string. Note that all these methods are immutable, so every call creates a new instance of `StringHelper` without modifying the original one.
 
@@ -35,7 +35,7 @@ if (! $path->startsWith('/docs')) {
 
 The `StringHelper` encapsulates many of PHP's built-in string functions, as well as several regex-based functions. You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/StringHelper.php).
 
-## Array Helper
+## Arrays
 
 The `ArrayHelper` class wraps a normal array, and provides a fluent API to manipulate it. Note that all these methods are immutable, so every call creates a new instance of `ArrayHelper` without modifying the original one.
 
@@ -68,7 +68,7 @@ $codeBlocks = arr(glob(__DIR__ . '/*.md'))
 
 You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/ArrayHelper.php).
 
-## Enum helper
+## Enums
 
 The `IsEnumHelper` traits provides a bunch of useful methods that can be added to any enum:
 

@@ -1,5 +1,5 @@
 ---
-title: Static Pages
+title: Static pages
 category: framework
 ---
 

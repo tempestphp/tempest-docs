@@ -31,7 +31,7 @@ Here's an example of what a Tempest view looks like:
 
 You can think of `tempest/view` as a superset of HTML, we'll dive deeper into the syntax later in this chapter.
 
-## Returning Views
+## Returning views
 
 Returning views from controllers can be done in two ways: either by using the `{php}view()` function, or by returning a `{php}View` object.
 

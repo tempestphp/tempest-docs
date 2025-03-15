@@ -1,5 +1,5 @@
 ---
-title: Building Console Commands
+title: Building console commands
 category: console
 ---
 

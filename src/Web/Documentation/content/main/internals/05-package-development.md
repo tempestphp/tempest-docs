@@ -1,5 +1,5 @@
 ---
-title: Package Development
+title: Package development
 category: internals
 ---
 

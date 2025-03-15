@@ -1,5 +1,5 @@
 ---
-title: The Container and Config
+title: Container and configuration
 category: framework
 ---
 

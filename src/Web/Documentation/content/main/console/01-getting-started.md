@@ -1,9 +1,11 @@
 ---
-title: Getting Started
+title: Getting started
 category: console
 ---
 
-`tempest/console` is a standalone package used to build console applications. [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/tempest-console)!
+`tempest/console` is a standalone package used to build console applications.
+
+> [**Give it a ⭐️ on GitHub**](https://github.com/tempestphp/tempest-console)!
 
 You can install `tempest/console` like so:
 

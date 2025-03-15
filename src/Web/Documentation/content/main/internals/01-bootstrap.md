@@ -1,5 +1,5 @@
 ---
-title: Framework Bootstrap
+title: Framework bootstrap
 category: internals
 ---
 

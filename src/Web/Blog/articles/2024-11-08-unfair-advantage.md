@@ -1,5 +1,5 @@
 ---
-title: Unfair Advantage
+title: Unfair advantage
 author: brent
 description: Why Tempest instead of Symfony or Laravel?
 tag: Thoughts

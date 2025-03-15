@@ -1,5 +1,5 @@
 ---
-title: Authentication and Authorization
+title: Authentication and authorization
 category: framework
 ---
 

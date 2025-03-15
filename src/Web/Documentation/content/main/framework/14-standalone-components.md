@@ -1,5 +1,5 @@
 ---
-title: Standalone Components
+title: Standalone components
 category: framework
 ---
 
@@ -7,7 +7,7 @@ Many Tempest components can be installed as standalone packages in existing or n
 
 **A note up front**: since Tempest is still in its early stages, some components depend on `tempest/core`, which shouldn't. There's a lot of work to be done to make components like `tempest/mapper` truly independent.
 
-## tempest/console
+## `tempest/console`
 
 ```
 composer require tempest/console
@@ -35,7 +35,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 ConsoleApplication::boot()->run();
 ```
 
-## tempest/http
+## `tempest/http`
 
 `tempest/http` contains all code to run a web application: router and view renderer, controllers, HTTP exception handling, view components, etc.
 
@@ -67,7 +67,7 @@ HttpApplication::boot(
 
 Note that the `root` path passed in `HttpApplication::boot` should point to your project's root folder.
 
-## tempest/container
+## `tempest/container`
 
 `tempest/container` is Tempest's standalone container implementation. Note that this package doesn't provide discovery, so initializers will need to be added manually.
 
@@ -83,7 +83,7 @@ $container->addInitializer(FooInitializer::class);
 $foo = $container->get(Foo::class);
 ```
 
-## tempest/debug
+## `tempest/debug`
 
 `tempest/debug` provides the `lw`, `ld` and `ll` functions. This package is truly standalone, but when installed in a Tempest project, it will also automatically write to configured log files.
 
@@ -95,7 +95,7 @@ composer require tempest/debug
 ld($variable);
 ```
 
-## tempest/view
+## `tempest/view`
 
 Tempest's view renderer can be used to render views.
 
@@ -111,7 +111,7 @@ $view = view(__DIR__ . '/src/b.view.php');
 echo $container->get(ViewRenderer::class)->render($view);
 ```
 
-## tempest/event-bus
+## `tempest/event-bus`
 
 Tempest's event bus can be used as a standalone package, in order for event handlers to be discovered, you'll have to boot Tempest's kernel and resolve the event bus from the container:
 
@@ -130,7 +130,7 @@ $eventBus->dispatch(new MyEvent());
 \Tempest\event(new MyEvent());
 ```
 
-## tempest/command-bus
+## `tempest/command-bus`
 
 Tempest's event bus can be used as a standalone package, in order for event handlers to be discovered, you'll have to boot Tempest's kernel and resolve the event bus from the container:
 
@@ -149,7 +149,7 @@ $commandBus->dispatch(new MyCommand());
 \Tempest\command(new \Brendt\MyEvent());
 ```
 
-## tempest/mapper
+## `tempest/mapper`
 
 `tempest/mapper` maps data between many types of sources, from arrays to objects, objects to JSON, …
 

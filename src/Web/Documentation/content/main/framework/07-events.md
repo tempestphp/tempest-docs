@@ -1,5 +1,5 @@
 ---
-title: The Event Bus
+title: Event bus
 category: framework
 description: "Tempest comes with a built-in event bus, which can be used to dispatch events throughout your application."
 ---

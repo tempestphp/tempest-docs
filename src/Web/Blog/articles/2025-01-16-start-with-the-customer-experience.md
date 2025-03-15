@@ -1,6 +1,6 @@
 ---
-title: Start with DX
-description: Everything else is secondary
+title: Start with developer experience
+description: Everything else is secondary.
 author: brent
 tag: Thoughts
 ---

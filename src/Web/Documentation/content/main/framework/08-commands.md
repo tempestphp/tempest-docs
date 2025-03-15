@@ -1,5 +1,5 @@
 ---
-title: The Command Bus
+title: Command bus
 category: framework
 ---
 
@@ -111,7 +111,7 @@ In order to _run_ an asynchronous command, you'll have to run the `tempest comma
 
 Note that async command handling is still an early feature, and will receive many improvements over time.
 
-## Command bus Middleware
+## Command bus middleware
 
 Whenever commands are dispatched, they are passed to the command bus, which will pass the command along to each of its handlers. Similar to web requests and console commands, this command bus supports middleware. Command bus middleware can be used to, for example, do logging for specific commands, add metadata to commands, or anything else. Command bus middleware are classes that implement the `CommandBusMiddleware` interface, and look like this:
 

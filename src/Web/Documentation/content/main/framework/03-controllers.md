@@ -194,7 +194,7 @@ final readonly class BooksMiddleware implements HttpMiddleware
 }
 ```
 
-Note that you can create [custom routes](#custom-routes) to make reusable middleware stacks.
+[custom routes](#custom-routes)
 
 ## Responses
 
@@ -263,7 +263,7 @@ final readonly class AdminDownloadController
 }
 ```
 
-### Content Types
+### Content types
 
 Tempest will automatically infer the response's content type from the request's Accept header. You can override its content type manually though:
 
@@ -289,7 +289,7 @@ final readonly class JsonController
 
 Note that you don't have to worry about setting content types if the request has the `Accept` header specified (wip).
 
-### Response Objects
+### Response objects
 
 If you want to, you can create your own Response objects for your specific use cases:
 
@@ -312,7 +312,7 @@ final class BookCreated implements Response
 }
 ```
 
-## Custom Routes
+## Custom routes
 
 Thanks to the `Route` interface, you can make your own route attributes. These custom route classes can be used to make route groups that add middleware, do authorization checks, etc.
 
@@ -384,7 +384,7 @@ uri([BookController::class, 'show'], id: $book->id);
 // /books/1
 ```
 
-## Route Binding
+## Route binding
 
 Tempest will map IDs to model instances:
 
