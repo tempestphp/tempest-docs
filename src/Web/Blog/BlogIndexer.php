@@ -1,12 +1,12 @@
 <?php
 
-namespace Tempest\Web\Blog;
+namespace App\Web\Blog;
 
+use App\Web\CommandPalette\Command;
+use App\Web\CommandPalette\Type;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Tempest\Support\Arr\ImmutableArray;
-use Tempest\Web\CommandPalette\Command;
-use Tempest\Web\CommandPalette\Type;
 
 use function Tempest\Support\arr;
 use function Tempest\uri;

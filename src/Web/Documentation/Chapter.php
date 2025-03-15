@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tempest\Web\Documentation;
+namespace App\Web\Documentation;
 
 use function Tempest\uri;
 

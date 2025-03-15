@@ -1,8 +1,10 @@
 <?php
-use Tempest\Web\RedirectsController;
-use Tempest\Web\Documentation\ChapterController;
-use Tempest\Web\Blog\BlogController;
+use App\Web\Blog\BlogController;
+use App\Web\Documentation\ChapterController;
+use App\Web\RedirectsController;
+
 use function Tempest\uri;
+
 ?>
 
 <x-component name="x-header">

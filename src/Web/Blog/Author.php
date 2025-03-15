@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\Web\Blog;
+namespace App\Web\Blog;
 
 enum Author: string
 {

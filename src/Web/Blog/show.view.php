@@ -1,14 +1,16 @@
 <?php
-/** @var \App\Front\Blog\BlogPost $post */
-use App\Front\Meta\MetaImageController;
+/** @var \App\Web\Blog\BlogPost $post */
+use App\Web\Meta\MetaImageController;
+
 use function Tempest\uri;
+
 ?>
 
 <x-base :meta-image-uri="uri([MetaImageController::class, 'blog'], slug: $post->slug)" :title="$post->title" :copy-code-blocks="true">
   <!-- Main container -->
   <main class="container px-4 mx-auto xl:px-8 flex flex-col grow isolate items-center relative">
     <!-- Main content -->
-    <article class="grow px-2 flex flex-col w-full md:w-auto min-w-0 lg:mt-10">
+    <article class="grow px-2 flex flex-col w-full md:w-auto min-w-0 lg:mt-10 max-w-3xl">
 			<!-- Breadcrumbs -->
 			<nav class="text-(--ui-text-dimmed) font-medium flex items-center mb-4 text-sm gap-x-1.5">
 				<x-icon name="tabler:news" class="size-5 mr-1" />

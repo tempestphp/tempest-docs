@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\Web;
+namespace App\Web;
 
 use Tempest\Router\Get;
 use Tempest\Router\Responses\Redirect;

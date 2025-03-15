@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\Web\Documentation;
+namespace App\Web\Documentation;
 
 use Generator;
 use Tempest\Router\DataProvider;

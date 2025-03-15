@@ -10,12 +10,12 @@
 
     <!-- Current meta image -->
     <?php
-      $metaImageUri = $metaImageUri ?? null;
+    $metaImageUri = $metaImageUri ?? null;
 
-      if ($metaImageUri === null) {
-          $metaType = $meta ?? \App\Front\Meta\MetaType::FRAMEWORK;
-          $metaImageUri = $metaType->uri();
-      }
+    if ($metaImageUri === null) {
+        $metaType = $meta ?? \App\Web\Meta\MetaType::FRAMEWORK;
+        $metaImageUri = $metaType->uri();
+    }
     ?>
 
     <!-- Social -->

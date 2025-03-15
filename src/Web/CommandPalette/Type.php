@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\Web\CommandPalette;
+namespace App\Web\CommandPalette;
 
 enum Type: string
 {

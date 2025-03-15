@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\Web\Blog;
+namespace App\Web\Blog;
 
 use DateTimeImmutable;
 use Exception;
@@ -20,7 +20,7 @@ final readonly class BlogRepository
     }
 
     /**
-     * @return ImmutableArray<\App\Front\Blog\BlogPost>
+     * @return ImmutableArray<\App\Web\Blog\BlogPost>
      */
     public function all(bool $loadContent = false): ImmutableArray
     {

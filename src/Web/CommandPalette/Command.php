@@ -1,21 +1,22 @@
 <?php
 
-namespace Tempest\Web\CommandPalette;
+namespace App\Web\CommandPalette;
 
 use JsonSerializable;
 
-final class Command implements JsonSerializable
+final readonly class Command implements JsonSerializable
 {
     public function __construct(
-        public readonly string $title,
-        public readonly Type $type,
-        public readonly array $hierarchy,
-        public readonly ?string $uri = null,
-        public readonly ?string $javascript = null,
-        public readonly array $fields = [],
+        public string $title,
+        public Type $type,
+        public array $hierarchy,
+        public ?string $uri = null,
+        public ?string $javascript = null,
+        public array $fields = [],
     ) {
     }
 
+    #[\Override]
     public function jsonSerialize(): array
     {
         return [

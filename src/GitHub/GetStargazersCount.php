@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\GitHub;
+namespace App\GitHub;
 
 use DateTimeImmutable;
 use Tempest\Cache\Cache;

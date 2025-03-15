@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tempest\Markdown;
+namespace App\Markdown;
 
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;

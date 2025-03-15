@@ -1,5 +1,5 @@
 <?php
-/** @var \Tempest\Web\Documentation\ChapterView $this */
+/** @var \App\Web\Documentation\ChapterView $this */
 ?>
 
 <x-base :title="$this->currentChapter->title" :copy-code-blocks="true">
@@ -17,7 +17,11 @@
 					<!-- Chapter list -->
 					<ul class="flex flex-col border-s border-(--ui-border)">
 						<li :foreach="$this->chaptersForCategory($category) as $chapter" class="-ms-px ps-1.5">
-							<a :href="$chapter->getUri()" class="group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors <?= $this->isCurrent($chapter) ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)' : 'text-(--ui-text-muted)' ?>">
+							<a :href="$chapter->getUri()" class="group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors <?= $this->isCurrent(
+    							$chapter,
+							)
+    							? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
+    							: 'text-(--ui-text-muted)' ?>">
 								{{ $chapter->title }}
 							</a>
 						</li>

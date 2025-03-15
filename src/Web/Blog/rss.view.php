@@ -1,5 +1,5 @@
 <?php
-/** @var \App\Front\Blog\BlogPost[] $posts */
+/** @var \App\Web\Blog\BlogPost[] $posts */
 ?>
 
 <feed xmlns="http://www.w3.org/2005/Atom">

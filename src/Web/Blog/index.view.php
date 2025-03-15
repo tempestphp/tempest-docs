@@ -1,5 +1,5 @@
 <?php
-/** @var \App\Front\Blog\BlogPost[] $posts */
+/** @var \App\Web\Blog\BlogPost[] $posts */
 ?>
 
 <x-base title="Blog">

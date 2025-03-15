@@ -1,6 +1,6 @@
 <?php
 
-namespace Tempest\Markdown;
+namespace App\Markdown;
 
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;

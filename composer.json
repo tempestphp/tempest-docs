@@ -17,8 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
-            "Tempest\\": "src/"
+            "App\\": "src/"
         },
         "files": [
             "src/functions.php"

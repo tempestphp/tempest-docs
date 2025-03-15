@@ -1,7 +1,9 @@
 <?php
 
-namespace Tempest\Web\Documentation;
+namespace App\Web\Documentation;
 
+use App\Web\CommandPalette\Command;
+use App\Web\CommandPalette\Type;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\Extension\HeadingPermalink\HeadingPermalink;
@@ -9,8 +11,6 @@ use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\Query;
 use Tempest\Support\Arr\ImmutableArray;
-use Tempest\Web\CommandPalette\Command;
-use Tempest\Web\CommandPalette\Type;
 
 use function Tempest\Support\arr;
 use function Tempest\Support\Str\to_kebab_case;

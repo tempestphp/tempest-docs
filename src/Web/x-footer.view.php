@@ -1,6 +1,8 @@
 <?php
-use Tempest\Web\RedirectsController;
+use App\Web\RedirectsController;
+
 use function Tempest\uri;
+
 ?>
 
 <x-component name="x-footer">

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tempest\Web\Documentation;
+namespace App\Web\Documentation;
 
 use Tempest\Core\Kernel;
 use Tempest\Router\Get;

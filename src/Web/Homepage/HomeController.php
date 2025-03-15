@@ -1,8 +1,7 @@
 <?php
 
-namespace Tempest\Web\Homepage;
+namespace App\Web\Homepage;
 
-use League\CommonMark\MarkdownConverter;
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;

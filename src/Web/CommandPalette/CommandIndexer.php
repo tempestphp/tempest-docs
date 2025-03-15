@@ -1,12 +1,12 @@
 <?php
 
-namespace Tempest\Web\CommandPalette;
+namespace App\Web\CommandPalette;
 
+use App\Web\Blog\BlogController;
+use App\Web\CommandPalette\Command;
+use App\Web\Documentation\ChapterController;
+use App\Web\RedirectsController;
 use Tempest\Support\Arr\ImmutableArray;
-use Tempest\Web\Blog\BlogController;
-use Tempest\Web\CommandPalette\Command;
-use Tempest\Web\Documentation\ChapterController;
-use Tempest\Web\RedirectsController;
 
 use function Tempest\uri;
 

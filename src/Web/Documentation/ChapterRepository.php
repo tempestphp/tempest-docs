@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tempest\Web\Documentation;
+namespace App\Web\Documentation;
 
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;

@@ -1,8 +1,10 @@
 <?php
-use Tempest\Web\RedirectsController;
-use Tempest\Web\Documentation\ChapterController;
-use Tempest\Web\Blog\BlogController;
+use App\Web\Blog\BlogController;
+use App\Web\Documentation\ChapterController;
+use App\Web\RedirectsController;
+
 use function Tempest\uri;
+
 ?>
 
 <x-base full-title="Tempest, the PHP framework that gets out of your way" :stargazers="$stargazers" body-class="bg-[#f1f7ff]">
