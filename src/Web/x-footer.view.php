@@ -6,7 +6,7 @@ use function Tempest\uri;
 ?>
 
 <x-component name="x-footer">
-  <footer class="flex items-center justify-center mb-8 gap-4 pr-(--scrollbar-width)">
+  <footer class="flex items-center justify-center mb-8 gap-4">
     <a :href="uri([RedirectsController::class, 'github'])" class="flex items-center gap-1 text-lg font-medium transition hover:text-(--ui-primary)">
       <x-icon name="tabler:brand-github" class="size-6" />
     </a>

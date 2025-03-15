@@ -73,7 +73,7 @@
 	}
 
 	body {
-		@apply antialiased font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark;
+		@apply antialiased font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark !overflow-visible !pr-0;
 	}
 	:root,
 	.light {

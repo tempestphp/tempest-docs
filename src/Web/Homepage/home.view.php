@@ -41,6 +41,16 @@ use function Tempest\uri;
           </a>
         </div>
       </section>
+      <!-- Zero-config -->
+      <section class="h-screen flex justify-center flex-col tracking-tighter px-6">
+        <span class="text-4xl md:text-5xl xl:text-6xl leading-none flex flex-col">
+          <span>Zero-config controllers and routing</span>
+          <span class="text-(--ui-primary)">focus on your business code.</span>
+        </span>
+        <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned)">
+          Tempest features a unique concept called discovery. Tempest will scan your code and find out what to do with it: from controller routes to event handlers, from console commands to dependency initializers; Tempest will detect everything without you having to write a single line of configuration or bootstrap code. 
+        </p>
+      </section>
     </main>
   </div>
 </x-base>
