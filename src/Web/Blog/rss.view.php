@@ -12,9 +12,9 @@
         <entry>
             <title><![CDATA[ <?= $post->title ?> ]]></title>
 
-            <link rel="alternate" href="<?= $post->getUri() ?>"/>
+            <link rel="alternate" href="<?= $post->uri ?>"/>
 
-            <id><?= $post->getUri() ?></id>
+            <id><?= $post->uri ?></id>
 
             <author>
                 <name><![CDATA[ Brent Roose ]]></name>
