@@ -16,6 +16,9 @@ use function Tempest\uri;
     <a :href="uri([RedirectsController::class, 'twitter'])" class="flex items-center gap-1 text-lg font-medium transition hover:text-(--ui-primary)">
       <x-icon name="tabler:brand-x" class="size-6" />
     </a>
+    <a href="/rss" class="flex items-center gap-1 text-lg font-medium transition hover:text-(--ui-primary)">
+      <x-icon name="tabler:rss" class="size-6" />
+    </a>
 		<button id="toggle-theme" class="relative size-6 cursor-pointer overflow-hidden transition hover:text-(--ui-primary)">
 			<x-icon name="tabler:moon" class="absolute inset-0 size-full dark:opacity-0 dark:translate-y-full duration-200" />
 			<x-icon name="tabler:sun" class="absolute inset-0 size-full -translate-y-full opacity-0 dark:opacity-100 dark:translate-y-0 duration-200" />
