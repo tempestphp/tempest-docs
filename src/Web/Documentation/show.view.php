@@ -6,7 +6,7 @@
   <!-- Main container -->
   <main class="container grow px-4 mx-auto xl:px-8 flex">
     <!-- Sidebar -->
-		<div class="hidden lg:block xl:px-6 sticky xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 shrink-0">
+		<div data-save-scroll="docs-sidebar" class="hidden lg:block xl:px-6 sticky xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 shrink-0">
 			<!-- Menu -->
 			<nav class="flex flex-col gap-y-6 pb-8">
 				<div :foreach="$this->categories() as $category" class="flex flex-col">
