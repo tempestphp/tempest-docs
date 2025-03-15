@@ -76,14 +76,14 @@
 					</div>
 					<!-- Docs footer -->
 					<nav class="not-prose grid grid-cols-2 my-10 justify-between gap-4">
-						<div class="hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
-							<a :if="$this->previousChapter()" :href="$this->previousChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full">
+						<div>
+							<a :if="$this->previousChapter()" :href="$this->previousChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
 								<x-icon name="tabler:arrow-left" class="size-5" />
 								{{ $this->previousChapter()?->title }}
 							</a>
 						</div>
-						<div class="hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
-							<a :if="$this->nextChapter()" :href="$this->nextChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full justify-end">
+						<div>
+							<a :if="$this->nextChapter()" :href="$this->nextChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full justify-end hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
 								{{ $this->nextChapter()?->title }}
 								<x-icon name="tabler:arrow-right" class="size-5" />
 							</a>
