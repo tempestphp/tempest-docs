@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown;
 
+use App\Markdown\CodeBlockRenderer;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
@@ -15,7 +16,6 @@ use League\CommonMark\MarkdownConverter;
 use Tempest\Container\Container;
 use Tempest\Container\Initializer;
 use Tempest\Container\Singleton;
-use Tempest\Highlight\CommonMark\CodeBlockRenderer;
 use Tempest\Highlight\Highlighter;
 
 final readonly class MarkdownInitializer implements Initializer

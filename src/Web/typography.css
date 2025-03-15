@@ -38,14 +38,14 @@
 	h4,
 	h5,
 	h6 {
-		@apply relative text-2xl text-(--ui-text-highlighted) font-bold mt-12 mb-6 lg:scroll-mt-[calc(var(--ui-header-height))] [&>a]:focus-visible:outline-(--ui-primary) [&>a>code]:border-dashed hover:[&>a>code]:border-(--ui-primary) hover:[&>a>code]:text-(--ui-primary) [&>a>code]:text-xl/7 [&>a>code]:font-bold [&>a>code]:transition-colors;
+		@apply relative text-2xl text-(--ui-text-highlighted) font-bold mt-12 mb-6 lg:scroll-mt-[calc(var(--ui-header-height))] [&>a]:focus-visible:outline-(--ui-primary) [&>a>code]:border-dashed hover:[&>a:not(.heading-permalink)>code]:border-(--ui-primary) hover:[&>a:not(.heading-permalink)>code]:text-(--ui-primary) [&>a>code]:text-xl/7 [&>a>code]:font-bold [&>a>code]:transition-colors;
 
 		&:hover a span {
 			@apply opacity-100;
 		}
 
-		& a span {
-			@apply absolute -ms-8 top-1 opacity-0 p-1 bg-(--ui-bg-elevated) hover:text-(--ui-primary) rounded-[calc(var(--ui-radius)*1.5)] hidden lg:flex text-(--ui-text-muted) transition;
+		& a span:has(svg) {
+			@apply absolute -ms-9 top-1 opacity-0 p-1 bg-(--ui-bg-elevated) hover:text-(--ui-primary) rounded-md hidden lg:flex text-(--ui-text-muted) transition border border-(--ui-border);
 		}
 
 		& a span svg {
