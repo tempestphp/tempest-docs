@@ -1,4 +1,4 @@
-function extractPlainText(pre: HTMLElement, button: HTMLButtonElement): string {
+function extractPlainText(pre: HTMLElement, button?: HTMLButtonElement): string {
 	return Array.from(pre.childNodes)
 		.filter((node) => node !== button)
 		.map((node) =>
@@ -34,6 +34,29 @@ document.addEventListener('DOMContentLoaded', () => {
 				.then(() => {
 					copyButton.setAttribute('data-copied', 'true')
 					setTimeout(() => copyButton.removeAttribute('data-copied'), 2000)
+				})
+				.catch((err) => console.error('Copy failed', err))
+		})
+	})
+})
+
+document.addEventListener('DOMContentLoaded', () => {
+	document.querySelectorAll<HTMLPreElement>('button[data-copy]').forEach((button) => {
+		button.addEventListener('click', () => {
+			const target = document.querySelector(button.dataset.copy!) as HTMLElement
+			console.log(target)
+
+			if (!target) {
+				return
+			}
+
+			const content = extractPlainText(target)
+
+			navigator.clipboard
+				.writeText(content)
+				.then(() => {
+					button.setAttribute('data-copied', 'true')
+					setTimeout(() => button.removeAttribute('data-copied'), 2000)
 				})
 				.catch((err) => console.error('Copy failed', err))
 		})
