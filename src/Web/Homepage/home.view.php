@@ -21,14 +21,14 @@ use function Tempest\uri;
     <main class="container mx-auto relative flex flex-col grow -mt-(--ui-header-height)" style="tab-size: 2">
       <!-- Hero -->
       <section class="h-screen flex justify-center flex-col tracking-tighter px-6">
-        <h1 class="text-4xl md:text-5xl xl:text-6xl leading-none flex flex-col enter-fade">
+        <h1 class="text-4xl md:text-5xl xl:text-6xl leading-none flex flex-col">
           <span>Forget about the framework,</span>
           <span class="text-(--ui-primary)">focus on your business code.</span>
         </h1>
-        <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned) enter-fade">
+        <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned)">
           Tempest embraces modern PHP syntax and covers a wide range of features, giving you all the tools you need to build solid web applications.
         </p>
-        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-4 items-center font-medium text-lg enter-fade">
+        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-4 items-center font-medium text-lg">
           <a :href="uri([ChapterController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
             Get started
           </a>
