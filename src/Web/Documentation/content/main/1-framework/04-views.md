@@ -377,6 +377,46 @@ A `$slot` variable is an instance of `\Tempest\View\Slot`, and has a handful of 
 - `$slot->attributes`: all the attributes defined on the slot, they can also be accessed directly via `$slot->attributeName`
 - `$slot->content`: the compiled content of the slot
 
+### Dynamic attributes
+
+Besides `$slots`, there will also be a variable called `$attributes` in every view component, which allows you to dynamically access the attributes that were passed to a view component. Note that only data attributes will be accessible, expression attributes will not. Also, attribute names will always be written as `kebab-case`.
+
+```html
+<x-component name="x-with-attributes">
+    <div x-data="custom {{ $attributes['x-data'] }}"></div>
+</x-component>
+
+<x-with-attributes x-data="too"></x-with-attributes>
+
+<!-- <div x-data="custom too"></div> -->
+```
+
+### Fallthrough attributes
+
+There are a handful of special attributes that will always be merged within the view component's root element: `{html}class`, `{html}style`, and `{html}id`.
+
+```html
+<x-component name="x-with-fallthrough-attributes">
+    <div></div>
+</x-component>
+
+<x-with-fallthrough-attributes class="foo" style="background: red;" id="bar"></x-with-fallthrough-attributes>
+
+<!-- <div class="foo" style="background: red;" id="bar"></div> -->
+```
+
+Note that `{html}class` and `{html}style` attributes will be merged together, while the `id` attribute will overwrite any original value defined in the view component:
+
+```html
+<x-component name="x-with-fallthrough-attributes">
+    <div class="bar" style="text-decoration: underline;" id="original"></div>
+</x-component>
+
+<x-with-fallthrough-attributes class="foo" style="background: red;" id="overwrite"></x-with-fallthrough-attributes>
+
+<!-- <div class="bar foo" style="text-decoration: underline; background: red;" id="overwrite"></div> -->
+```
+
 ## View component classes
 
 View components can live solely within a `.view.php` file, in which case they are called **anonymous view components**. However, it's also possible to define a class to represent a view component. One of the main benefits of doing so, is that **view component classes** are resolved via the container, meaning they can request any dependency available within your project, and Tempest will autowire it for you. View component classes are also discovered automatically, and must implement the `ViewComponent` interface.
@@ -539,6 +579,31 @@ Will be compiled to
 <div>Post A</div>
 <div>Post B</div>
 <div>Post C</div>
+```
+
+## View processors
+
+View processors are classes that manipulate a view before it is rendered. They are automatically discovered and can be used to add data to multiple view files at once. Here's an already complexer example of a view processor that will add a star count from GitHub to every view that implements `WithStarCount`:
+
+```php
+use Tempest\View\View;
+use Tempest\View\ViewProcessor;
+
+final class StarCountViewProcessor implements ViewProcessor
+{
+    public function __construct(
+        private readonly Github $github,
+    ) {}
+
+    public function process(View $view): View
+    {
+        if (! $view instanceof WithStarCount) {
+            return $view;
+        }
+
+        return $view->data(starCount: $this->github->getStarCount());
+    }
+}
 ```
 
 ## View caching
