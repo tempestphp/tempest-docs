@@ -19,7 +19,7 @@
 				</div>
 			</div>
 			<!-- Right -->
-			<div class="flex flex-col gap-2 p-2 text-sm bg-(--ui-bg)/20 backdrop-blur rounded-xl">
+			<div class="flex flex-col gap-2 p-2 text-sm bg-(--ui-bg)/20 rounded-xl">
 				<div :foreach="$snippets as $snippet" class="bg-(--ui-bg)/50 border border-(--ui-border) rounded-md p-4 [&_pre]:h-full [&_pre]:overflow-x-auto">
 					{!! $codeBlocks[$snippet] !!}
 				</div>
