@@ -32,12 +32,10 @@
                         
                         
                         <span class="text-sm font-light">
-                            <?php if ($post->author ?? null): ?>
-                                Written by <?= $post->author ?> on
-                            <?php endif ?>
+                            <x-template :if="$post->category">{{ $post->category }} — </x-template>
 
-                            
-                            
+                            <x-template :if="$post->author">Written by <?= $post->author ?> on</x-template>
+
                             <?= $post->createdAt->format('F d, Y') ?>
                         </span>
                     </a>

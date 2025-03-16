@@ -2,6 +2,7 @@
 title: Static Websites with Tempest
 description: Tempest makes it super convenient to convert any controller action in statically generated pages
 author: Brent
+category: Discovering Tempest
 ---
 
 Let's say you have a controller that shows blog posts — kind of like the page you're reading now:

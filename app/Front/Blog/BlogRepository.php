@@ -16,8 +16,7 @@ final readonly class BlogRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {
-    }
+    ) {}
 
     /**
      * @return \Tempest\Support\Arr\ImmutableArray<\App\Front\Blog\BlogPost>
@@ -61,11 +60,14 @@ final readonly class BlogRepository
 
         $content = $this->parseContent($path);
 
+        $frontMatter = $content->getFrontMatter();
+
         $data = [
             'slug' => $slug,
             'content' => $content->getContent(),
             'createdAt' => $this->parseDate($path),
-            ...$content->getFrontMatter(),
+            ...$frontMatter,
+            'related' => $this->getRelated($slug, $frontMatter['category'] ?? null),
         ];
 
         return map($data)->to(BlogPost::class);
@@ -95,5 +97,17 @@ final readonly class BlogRepository
         $date = $matches[0] ?? null;
 
         return new DateTimeImmutable($date ?? 'now');
+    }
+
+    private function getRelated(string $slug, ?string $category): ?BlogPost
+    {
+        if (! $category) {
+            return null;
+        }
+
+        return $this->all()
+            ->filter(fn (BlogPost $post) => $post->slug !== $slug)
+            ->filter(fn (BlogPost $post) => $post->category === $category)
+            ->first();
     }
 }

@@ -2,6 +2,7 @@
 title: Tempest's Discovery explained
 description: A deep dive into the heart of Tempest
 author: Brent
+category: Discovering Tempest
 ---
 
 At the very core of Tempest lies a concept called "discovery". It's _the_ feature that sets Tempest apart from any other framework. While frameworks like Symfony and Laravel have limited discovery capabilities for convenience, Tempest starts from discovery, and makes into what powers everything else. In this blog post, I'll explain how discovery works, why it's so powerful, and how you can easily build your own.

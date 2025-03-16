@@ -15,6 +15,8 @@ final class BlogPost
     public DateTimeImmutable $createdAt;
     public ?string $description = null;
     public bool $published = true;
+    public ?string $category = null;
+    public ?self $related = null;
 
     public function getUri(): string
     {

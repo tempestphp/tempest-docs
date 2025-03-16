@@ -23,7 +23,16 @@ use function Tempest\uri;
             Written by <?= $post->author ?> on <?= $post->createdAt->format('F d, Y') ?> — <a href="/blog">Back</a>
         </p>
         <?= $post->content ?>
+
+
+        <div :if="$post->related" class="text-center">
+            <hr>
+            <h3>Continue to read: <a :href="$post->related->getUri()" class="hover:no-underline">
+                {{ $post->related->title }}
+            </a></h3>
+        </div>
     </div>
+
 
     <x-footer />
 </x-base>
