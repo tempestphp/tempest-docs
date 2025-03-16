@@ -44,8 +44,12 @@
 			@apply opacity-100;
 		}
 
+		& a {
+			@apply inline-flex items-baseline;
+		}
+
 		& a span:has(svg) {
-			@apply absolute -ms-9 top-1 opacity-0 p-1 bg-(--ui-bg-elevated) hover:text-(--ui-primary) rounded-md hidden lg:flex text-(--ui-text-muted) transition border border-(--ui-border);
+			@apply translate-y-px absolute -ms-9 opacity-0 p-1 bg-(--ui-bg-elevated) hover:text-(--ui-primary) rounded-md hidden lg:flex text-(--ui-text-muted) transition border border-(--ui-border);
 		}
 
 		& a span svg {
