@@ -1,5 +1,5 @@
 <x-component name="x-home-section">
-	<section class="mb-20 lg:my-[10vh] flex justify-center flex-col tracking-tighter px-6">
+	<section class="mb-20 lg:mb-[7vh] flex justify-center flex-col tracking-tighter px-6">
 		<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-center">
 			<!-- Left -->
 			<div class="p-2 lg:p-0">
