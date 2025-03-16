@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "93aa76d32b9877172081a6a7b44f6825",
+    "content-hash": "343bc1f40364cc2a15b19b5cbc85ce9f",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -439,16 +439,16 @@
         },
         {
             "name": "filp/whoops",
-            "version": "2.17.0",
+            "version": "2.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/filp/whoops.git",
-                "reference": "075bc0c26631110584175de6523ab3f1652eb28e"
+                "reference": "a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/075bc0c26631110584175de6523ab3f1652eb28e",
-                "reference": "075bc0c26631110584175de6523ab3f1652eb28e",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e",
+                "reference": "a7de6c3c6c3c022f5cfc337f8ede6a14460cf77e",
                 "shasum": ""
             },
             "require": {
@@ -498,7 +498,7 @@
             ],
             "support": {
                 "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.17.0"
+                "source": "https://github.com/filp/whoops/tree/2.18.0"
             },
             "funding": [
                 {
@@ -506,7 +506,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-01-25T12:00:00+00:00"
+            "time": "2025-03-15T12:00:00+00:00"
         },
         {
             "name": "giggsey/libphonenumber-for-php",
@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "573d5575e617415f4b84567cd905465fbd258033"
+                "reference": "3551008aeff803f29b915fb95a1683a7a2205197"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/573d5575e617415f4b84567cd905465fbd258033",
-                "reference": "573d5575e617415f4b84567cd905465fbd258033",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/3551008aeff803f29b915fb95a1683a7a2205197",
+                "reference": "3551008aeff803f29b915fb95a1683a7a2205197",
                 "shasum": ""
             },
             "require": {
@@ -3964,7 +3964,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-14T12:56:39+00:00"
+            "time": "2025-03-15T17:35:32+00:00"
         },
         {
             "name": "tempest/highlight",
