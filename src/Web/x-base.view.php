@@ -10,12 +10,7 @@
 
     <!-- Current meta image -->
     <?php
-    $metaImageUri = $metaImageUri ?? null;
-
-    if ($metaImageUri === null) {
-        $metaType = $meta ?? \App\Web\Meta\MetaType::FRAMEWORK;
-        $metaImageUri = $metaType->uri();
-    }
+    $metaImageUri ??= ($meta ?? \App\Web\Meta\MetaType::HOME)->uri();
     ?>
 
     <!-- Social -->

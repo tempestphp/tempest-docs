@@ -6,10 +6,8 @@ use function Tempest\uri;
 
 enum MetaType: string
 {
-    case CONSOLE = 'console';
-    case VIEW = 'view';
-    case FRAMEWORK = 'framework';
-    case DOCS = 'docs';
+    case HOME = 'home';
+    case BLOG = 'blog';
 
     public function uri(): string
     {
@@ -19,9 +17,8 @@ enum MetaType: string
     public function getViewPath(): string
     {
         return match ($this) {
-            self::CONSOLE => __DIR__ . '/meta-console.view.php',
-            self::VIEW => __DIR__ . '/meta-view.view.php',
-            self::FRAMEWORK, self::DOCS => __DIR__ . '/meta-framework.view.php',
+            self::BLOG => __DIR__ . '/views/blog-index.view.php',
+            default => __DIR__ . '/views/default.view.php',
         };
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Web\Blog;
 
+use App\Web\Meta\MetaType;
 use DateTimeImmutable;
 use Tempest\Cache\Cache;
 use Tempest\Router\Get;
@@ -22,7 +23,7 @@ final readonly class BlogController
     {
         $posts = $repository->all();
 
-        return view('./index.view.php', posts: $posts);
+        return view('./index.view.php', posts: $posts, meta: MetaType::BLOG);
     }
 
     #[Get('/blog/{slug}')]

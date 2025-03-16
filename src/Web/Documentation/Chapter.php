@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use App\Web\Meta\MetaImageController;
+
 use function Tempest\uri;
 
 final class Chapter
@@ -21,5 +23,10 @@ final class Chapter
     public function getUri(): string
     {
         return uri(ChapterController::class, version: $this->version, category: $this->category, slug: $this->slug);
+    }
+
+    public function getMetaUri(): string
+    {
+        return uri([MetaImageController::class, 'documentation'], version: $this->version, category: $this->category, slug: $this->slug);
     }
 }

@@ -6,14 +6,14 @@
   },
   "dependencies": {
     "highlight.js": "^11.11.1",
-    "puppeteer": "^22.15.0"
+    "puppeteer": "^24.4.0"
   },
   "devDependencies": {
     "@fontsource-variable/kantumruy-pro": "^5.2.5",
     "@fontsource-variable/public-sans": "^5.2.5",
     "@innocenzi/eslint-config": "^0.22.8",
     "@tailwindcss/typography": "^0.5.16",
-    "@tailwindcss/vite": "^4.0.13",
+    "@tailwindcss/vite": "^4.0.14",
     "@vitejs/plugin-vue": "^5.2.1",
     "@vueuse/core": "^13.0.0",
     "algoliasearch": "^5.21.0",
@@ -21,10 +21,10 @@
     "fuse.js": "^7.1.0",
     "instantsearch.js": "^4.78.0",
     "minisearch": "^7.1.2",
-    "reka-ui": "^2.0.2",
-    "tailwindcss": "^4.0.13",
+    "reka-ui": "^2.1.0",
+    "tailwindcss": "^4.0.14",
     "typescript": "^5.8.2",
-    "vite": "^6.2.1",
+    "vite": "^6.2.2",
     "vite-plugin-tempest": "^0.0.2",
     "vue": "^3.5.13"
   }

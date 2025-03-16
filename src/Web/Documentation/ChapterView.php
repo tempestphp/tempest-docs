@@ -21,6 +21,10 @@ final class ChapterView implements View
         public Chapter $currentChapter,
     ) {
         $this->path = __DIR__ . '/show.view.php';
+        $this->data = [
+            'title' => $this->currentChapter->title,
+            'metaImageUri' => $this->currentChapter->getMetaUri(),
+        ];
     }
 
     public function isCurrent(Chapter $other): bool
