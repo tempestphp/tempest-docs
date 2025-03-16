@@ -1,13 +1,13 @@
 <x-component name="x-home-section">
-	<section class="my-[10vh] flex justify-center flex-col tracking-tighter px-6">
-		<div class="grid grid-cols-2 gap-x-12 items-center">
+	<section class="mb-20 lg:my-[10vh] flex justify-center flex-col tracking-tighter px-6">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-center">
 			<!-- Left -->
-			<div>
+			<div class="p-2 lg:p-0">
 				<div class="max-w-xl text-sans">
-					<span class="text-2xl md:text-4xl xl:text-5xl font-semibold leading-none flex flex-col text-display">
+					<span class="text-xl md:text-4xl xl:text-5xl font-semibold leading-none flex flex-col text-display">
 						{{ $heading }}
 					</span>
-					<p :foreach="$paragraphs as $paragraph" class="mt-1 md:mt-2 xl:mt-4 text-xl xl:text-2xl text-(--ui-text-muted)">
+					<p :foreach="$paragraphs as $paragraph" class="mt-3 md:mt-2 xl:mt-4 text-lg xl:text-2xl text-(--ui-text-muted)">
 						{{ $paragraph }}
 					</p>
 				</div>
@@ -20,7 +20,7 @@
 			</div>
 			<!-- Right -->
 			<div class="flex flex-col gap-2 p-2 text-sm bg-(--ui-bg)/20 backdrop-blur rounded-xl">
-				<div :foreach="$snippets as $snippet" class="bg-(--ui-bg)/50 border border-(--ui-border) rounded-md p-4 [&>pre]:h-full [&>pre]:overflow-x-auto">
+				<div :foreach="$snippets as $snippet" class="bg-(--ui-bg)/50 border border-(--ui-border) rounded-md p-4 [&_pre]:h-full [&_pre]:overflow-x-auto">
 					{!! $codeBlocks[$snippet] !!}
 				</div>
 			</div>
