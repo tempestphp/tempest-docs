@@ -28,11 +28,11 @@ use function Tempest\uri;
         <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned)">
             Tempest embraces modern PHP and covers a wide range of features, giving you all the tools you need to focus on your code.
         </p>
-        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-4 items-center font-medium text-lg justify-start flex-wrap">
+        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-x-4 items-center font-medium text-lg">
           <a :href="uri([ChapterController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
             Get started
           </a>
-          <a :href="uri([RedirectsController::class, 'github'])" class="text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-6 py-2.5 flex items-center gap-x-1.5 transition border border-(--ui-border)">
+          <a :href="uri([RedirectsController::class, 'github'])" class="hidden min-[401px]:flex text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-6 py-2.5 items-center gap-x-1.5 transition">
             <x-icon name="tabler:brand-github" class="size-6" />
             Source code
             <svg class="group-hover:translate-x-0 size-5 scale-85 group-hover:scale-100 transition opacity-0 group-hover:opacity-100 -translate-x-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
