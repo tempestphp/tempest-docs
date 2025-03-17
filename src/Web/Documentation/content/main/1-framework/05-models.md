@@ -186,7 +186,10 @@ interface Model
     public static function updateOrCreate(array $find, array $update): self;
 
     // Find a specific model, optionally loading relations as well
-    public static function find(Id $id, array $relations = []): ?self;
+    public static function get(Id $id, array $relations = []): ?self;
+    
+    // Create a model query with a number of field conditions
+    public static function find(mixed ...$conditions): ModelQueryBuilder;
 
     // Save a model instance to the database
     public function save(): self;
