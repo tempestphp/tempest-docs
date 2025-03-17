@@ -1,8 +1,8 @@
 ---
 title: Request Objects in Tempest
 description: Why Tempest requests are super intuitive
-author: Brent
-category: Discovering Tempest
+author: brent
+tag: Tutorial
 ---
 
 Tempest's tagline is "the framework that gets out of your way". One of the best examples of that principle in action is request validation. A pattern I learned to appreciate over the years was to represent "raw data" (like for example, request data), as typed objects in PHP — so-called "data transfer objects". The sooner I have a typed object within my app's lifecycle, the sooner I have a bunch of guarantees about that data, which makes coding a lot easier. 
