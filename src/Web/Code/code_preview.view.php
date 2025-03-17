@@ -1,5 +1,7 @@
 <x-base>
     <x-aurora class="dark:hidden"/>
+    <x-moonlight />
+    <x-rain />
 
     <div class="bg-red p-4 fixed z-[99] right-0 top-0 flex gap-2">
         <a
