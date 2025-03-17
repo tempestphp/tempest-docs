@@ -1,6 +1,6 @@
 <x-component name="x-falling-leaves">
   <!-- Leaves container -->
-  <div class="absolute inset-0 overflow-hidden pointer-events-none" id="leaves-container"></div>
+  <div class="absolute inset-0 overflow-hidden pointer-events-none motion-reduce:hidden" id="leaves-container"></div>
   <!-- Leaves templates -->
   <template id="leaf-template-1">
     <div class="leaf absolute pointer-events-none origin-center">

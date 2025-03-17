@@ -1,7 +1,8 @@
 <x-component name="x-moonlight">
   <!-- Moonlight container -->
     <div class="
-			hidden dark:block
+				hidden
+				dark:block
 				[--color-white-gradient:repeating-linear-gradient(100deg,rgba(255,255,255,.8)_0%,rgba(255,255,255,.4)_1%,transparent_10%,transparent_12%,rgba(255,255,255,.4)_16%)]
 				[background-image:var(--color-white-gradient)]
 				[background-size:300%,_200%]
@@ -14,7 +15,7 @@
 				after:inset-0
 				after:[background-image:var(--color-white-gradient)]
 				after:[background-size:200%,_100%]
-				after:animate-aurora
+				motion-safe:after:animate-aurora
 				after:[background-attachment:fixed]
 				after:mix-blend-difference
 				pointer-events-none

@@ -7,7 +7,7 @@ use function Tempest\uri;
 
 ?>
 
-<x-base full-title="Tempest, the PHP framework that gets out of your way" :stargazers="$stargazers" body-class="bg-[#f1f7ff]">
+<x-base full-title="Tempest, the PHP framework that gets out of your way" :stargazers="$stargazers" body-class="bg-[#f1f7ff] dark:bg-[black]">
   <div class="flex flex-col grow font-display">
     <!-- Falling leaves -->
     <x-falling-leaves class="dark:hidden" />
