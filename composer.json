@@ -36,6 +36,9 @@
         }
     ],
     "scripts": {
+        "post-autoload-dump": [
+            "@php ./tempest discovery:generate"
+        ],
         "phpunit": "vendor/bin/phpunit --display-warnings --display-skipped --display-deprecations --display-errors --display-notices",
         "mago:fmt": "vendor/bin/mago fmt",
         "mago:lint": "vendor/bin/mago lint --fix && vendor/bin/mago lint",
