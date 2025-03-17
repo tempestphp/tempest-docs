@@ -17,7 +17,7 @@
 	}
 
 	a:not(:is(.not-prose, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {
-		@apply text-(--ui-primary) border-b border-transparent hover:border-(--ui-primary) font-medium focus-visible:outline-(--ui-primary) transition-colors;
+		@apply hover:text-(--ui-text-highlighted) border-b border-(--ui-border-muted) hover:border-(--ui-text-muted) font-medium focus-visible:outline-(--ui-primary) transition-colors;
 
 		& code {
 			@apply border-dashed transition-colors;
