@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	let shouldRemoveLeaves = false
 
 	function createLeaf() {
-		if (activeLeaves >= MAX_LEAVES || shouldRemoveLeaves) {
+		if (activeLeaves >= MAX_LEAVES || shouldRemoveLeaves || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true) {
 			return
 		}
 

@@ -15,7 +15,7 @@
 				after:inset-0
 				after:[background-image:var(--color-white-gradient)]
 				after:[background-size:200%,_100%]
-				motion-safe:after:animate-aurora
+				not-motion-reduce:after:animate-aurora
 				after:[background-attachment:fixed]
 				after:mix-blend-difference
 				pointer-events-none
