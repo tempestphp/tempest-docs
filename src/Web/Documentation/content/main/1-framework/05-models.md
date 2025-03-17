@@ -15,31 +15,29 @@ use App\Author;
 
 final class Book
 {
-    public function __construct(
-        #[Length(min: 1, max: 120)]
-        public string $title,
+    #[Length(min: 1, max: 120)]
+    public string $title;
 
-        public Author $author,
+    public Author $author;
 
-        /** @var \App\Chapter[] */
-        public array $chapters = [],
-    ) {}
+    /** @var \App\Chapter[] */
+    public array $chapters = [];
 }
 ```
 
-Retrieving and persisting a model from a data source is done via Tempest's `{php}map()` function:
+Retrieving and persisting a model from a data source is done via Tempest's `map()` function:
 
 ```php
 use function Tempest\map;
 
 map('path/to/books.json')->collection->to(Book::class);
 
-map($book)->to(MapTo::JSON);
+map($book)->toJson();
 ```
 
 ## Database models
 
-Because database persistence is a pretty common use case, Tempest provides an implementation for models that should interact with the database specifically. Any model class can implement the `{php}DatabaseModel` interface, and use the `{php}IsDatabaseModel` trait like so:
+Because database persistence is a pretty common use case, Tempest provides an implementation for models that should interact with the database specifically. Any model class can implement the `DatabaseModel` interface, and use the `IsDatabaseModel` trait like so:
 
 ```php
 // app/Book.php
@@ -53,15 +51,13 @@ final class Book implements DatabaseModel
 {
     use IsDatabaseModel;
 
-    public function __construct(
-        #[Length(min: 1, max: 120)]
-        public string $title,
+    #[Length(min: 1, max: 120)]
+    public string $title;
 
-        public ?Author $author = null,
+    public ?Author $author = null;
 
-        /** @var \App\Chapter[] */
-        public array $chapters = [],
-    ) {}
+    /** @var \App\Chapter[] */
+    public array $chapters = [];
 }
 ```
 
@@ -79,7 +75,7 @@ return new SQLiteConfig(
 );
 ```
 
-Tempest has three available database drivers: `{php}SQLiteDriver`, `{php}MySqlDriver`, and `{php}PostgreSqlDriver`. Note that you can use environment variables in config files like so:
+Tempest has three available database drivers: `SQLiteConfig`, `MysqlConfig`, and `PostgresConfig`. Note that you can use environment variables in config files like so:
 
 ```php
 // app/Config/database.config.php
@@ -98,7 +94,7 @@ return new MysqlConfig(
 
 ## Migrations
 
-Migrations are used to manage database tables that hold persisted model data. Migrations are discovered, so you can create them wherever you like, as long as they implement the `{php}Migration` interface:
+Migrations are used to manage database tables that hold persisted model data. Migrations are discovered, so you can create them wherever you like, as long as they implement the `DatabaseMigration` interface:
 
 ```php
 // app/CreateBookTable.php
@@ -234,6 +230,30 @@ $books = Book::query()
     ->orderBy('createdAt DESC')
     ->limit(5)
     ->all();
+```
+
+## Virtual properties
+
+By default, all public properties are considered to be part of the model's query fields. In order to exclude a field from the database mapper, you should mark it as virtual:
+
+```php
+use Tempest\Database\Virtual;
+use Tempest\Database\DatabaseModel;
+use Tempest\Database\IsDatabaseModel;
+
+class Book implements DatabaseModel
+{   
+    use IsDatabaseModel;
+    
+    // …
+    
+    public DateTimeImmutable $publishedAt;
+    
+    #[Virtual]
+    public DateTimeImmutable $saleExpiresAt {
+        get => $this->publishedAt->add(new DateInterval('P5D'));
+    }
+}
 ```
 
 ## Model relations
