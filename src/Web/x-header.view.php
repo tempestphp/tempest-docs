@@ -21,6 +21,9 @@ use function Tempest\uri;
           <img src="/img/logo-transparent.svg" alt="Tempest logo" class="size-full" />
         </div>
         <span class="font-medium hidden lg:inline">Tempest</span>
+				<span class="text-xs tracking-wide font-medium text-(--ui-text-muted) bg-(--ui-bg)/50 px-2 py-1 rounded-lg border border-(--ui-border)">
+					v{{ \Tempest\Core\Kernel::VERSION }}
+				</span>
       </a>
       <!-- Center -->
       <div class="flex items-center gap-4">

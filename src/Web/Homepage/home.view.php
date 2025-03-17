@@ -42,7 +42,7 @@ use function Tempest\uri;
         </div>
         <button data-copy="#install-tempest-snippet" class="hidden md:flex group mt-6 md:mt-8 xl:mt-10  items-center justify-start gap-x-2 text-base font-mono relative cursor-pointer">
             <x-icon name="tabler:terminal" class="size-5 text-(--ui-primary)" />
-            <span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer require tempest/framework:{{ \Tempest\Core\Kernel::VERSION }}</span>
+            <span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer create-project tempest/app --stability alpha</span>
             <span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
                 <x-icon name="tabler:copy" class="size-5 absolute" />
                 <x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition text-(--ui-success)" />
@@ -51,7 +51,7 @@ use function Tempest\uri;
       </section>
       <!-- Discovery -->
 			<x-home-section
-				heading="Automatic code discovery"
+				heading="Zero-config code discovery"
 				:paragraphs="[
 					'Tempest scans your code and finds out what to do with it without you having to write a single line of configuration or bootstrap code.',
 				]"
