@@ -27,7 +27,8 @@ final class GetStargazersCount
                     return $stargazers > 999
                         ? (round($stargazers / 1000, 1) . 'K')
                         : $stargazers;
-                } catch (Throwable) {
+                } catch (Throwable $e) {
+                    ll($e);
                     return null;
                 }
             },
