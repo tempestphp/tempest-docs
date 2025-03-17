@@ -6,7 +6,7 @@
           motion-reduce:[background-image:var(--color-aurora-gradient)]
           not-motion-reduce:[background-image:var(--color-white-gradient),var(--color-aurora-gradient)]
           [background-size:300%,_200%]
-          [background-position:50%_50%,50%_50%]
+          not-motion-reduce:[background-position:50%_50%,50%_50%]
           filter
           blur-[10px]
           invert
