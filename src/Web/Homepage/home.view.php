@@ -20,15 +20,15 @@ use function Tempest\uri;
     <!-- Content -->
     <main class="container mx-auto relative flex flex-col gap-4 grow -mt-(--ui-header-height)" style="tab-size: 2">
       <!-- Hero -->
-      <section class="md:h-[85svh] min-h-[80vh] md:pt-24 flex justify-center flex-col tracking-tighter px-6 mt-32 md:mt-0">
+      <section class="md:h-[85svh] min-h-[75vh] md:pt-24 flex justify-center flex-col tracking-tighter px-6 mt-32 md:mt-0">
         <h1 class="text-4xl md:text-5xl xl:text-6xl leading-none flex flex-col">
           <span>The framework that</span>
           <span class="text-(--ui-primary)">gets out of your way.</span>
         </h1>
         <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned)">
-            Tempest embraces modern PHP and covers a wide range of features, giving you all the tools you need to <span class="font-bold">focus on your code</span>.
+            Tempest embraces modern PHP and covers a wide range of features, giving you all the tools you need to focus on your code.
         </p>
-        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-4 items-center font-medium text-lg justify-center md:justify-start flex-wrap">
+        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-4 items-center font-medium text-lg justify-start flex-wrap">
           <a :href="uri([ChapterController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
             Get started
           </a>
@@ -40,14 +40,14 @@ use function Tempest\uri;
             </svg>
           </a>
         </div>
-				<button data-copy="#install-tempest-snippet" class="group mt-6 md:mt-8 xl:mt-10 flex items-center gap-x-2 text-base font-mono relative cursor-pointer">
-					<x-icon name="tabler:terminal" class="size-5 text-(--ui-primary)" />
-					<span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer require tempest/framework:{{ \Tempest\Core\Kernel::VERSION }}</span>
-					<span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
-						<x-icon name="tabler:copy" class="size-5 absolute" />
-						<x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition text-(--ui-success)" />
-					</span>
-				</button>
+        <button data-copy="#install-tempest-snippet" class="hidden md:flex group mt-6 md:mt-8 xl:mt-10  items-center justify-start gap-x-2 text-base font-mono relative cursor-pointer">
+            <x-icon name="tabler:terminal" class="size-5 text-(--ui-primary)" />
+            <span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer require tempest/framework:{{ \Tempest\Core\Kernel::VERSION }}</span>
+            <span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
+                <x-icon name="tabler:copy" class="size-5 absolute" />
+                <x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition text-(--ui-success)" />
+            </span>
+        </button>
       </section>
       <!-- Discovery -->
 			<x-home-section
