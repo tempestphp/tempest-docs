@@ -4,6 +4,7 @@ namespace App\Web\Homepage;
 
 use League\CommonMark\MarkdownConverter;
 use Tempest\Router\Get;
+use Tempest\Router\Responses\Redirect;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
 
@@ -28,5 +29,17 @@ final readonly class HomeController
         });
 
         return view('./home.view.php', codeBlocks: $codeBlocks);
+    }
+
+    #[Get('/view')]
+    public function viewRedirect(): Redirect
+    {
+        return new Redirect('/main/framework/views');
+    }
+
+    #[Get('/console')]
+    public function consoleRedirect(): Redirect
+    {
+        return new Redirect('/main/console/getting-started');
     }
 }

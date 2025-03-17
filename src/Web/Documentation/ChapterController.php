@@ -18,6 +18,12 @@ use function Tempest\uri;
 
 final readonly class ChapterController
 {
+    #[Get('/docs/{path:.*}')]
+    public function docsRedirect(string $path): Redirect
+    {
+        return new Redirect('/main/' . $path);
+    }
+
     #[Get('/docs')]
     #[Get('/documentation')]
     public function index(): Redirect
@@ -39,7 +45,7 @@ final readonly class ChapterController
     public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): View|Response
     {
         if (is_null($version = Version::tryFrom($version))) {
-            throw new NotFoundException();
+            return new NotFound();
         }
 
         $currentChapter = $chapterRepository->find($version, $category, $slug);
