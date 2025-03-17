@@ -27,7 +27,7 @@ use function Tempest\uri;
 
 	<script>
 	document.getElementById('toggle-theme').addEventListener('click', () => {
-		applyTheme(localStorage.theme === 'dark' ? 'light' : 'dark')
+		toggleDarkMode()
 	})
 	</script>
 </x-component>
