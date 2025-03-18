@@ -16,9 +16,12 @@ final readonly class DeployCommand
     {
         $this->info('Starting deploy');
 
-        $this->task('Pulling changes', passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && git pull'"));
+        $this->info('Pulling changes');
+        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && git pull'");
+        $this->success('Done');
 
-        $this->task('Running deploy script', passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && sh deploy.sh'"));
+        $this->info('Pulling changes');
+        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && sh deploy.sh'");
 
         $this->success('Deploy success');
     }
