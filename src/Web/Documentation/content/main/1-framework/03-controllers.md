@@ -282,7 +282,7 @@ final readonly class JsonController
     {
         $data = [ /* … */ ];
 
-        return (new Ok($data))->setContentType(ContentType::JSON);
+        return new Ok($data)->setContentType(ContentType::JSON);
     }
 }
 ```

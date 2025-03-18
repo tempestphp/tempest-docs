@@ -12,7 +12,7 @@ The `ImmutableString` and `MutableString` classes wraps a normal string, and pro
 ```php
 use Tempest\Support\Str\ImmutableString;
 
-$slug = (new ImmutableString('https://tempestphp.com/docs/framework/14-primitive-helpers'))
+$slug = new ImmutableString('https://tempestphp.com/docs/framework/14-primitive-helpers')
     ->trim('/')
     ->afterLast('/')
     ->replaceRegex('/\d+-/', '')
@@ -40,7 +40,7 @@ The `ImmutableArray` and `MutableArray` classes wrap an array, and provide a flu
 ```php
 use Tempest\Support\Arr\ImmutableArray;
 
-$items = (new ImmutableArray(glob(__DIR__ . '/Content/*.md')))
+$items = new ImmutableArray(glob(__DIR__ . '/Content/*.md'))
     ->reverse()
     ->map(function (string $path) {
         // …
