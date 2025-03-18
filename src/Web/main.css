@@ -188,3 +188,7 @@ button:focus:has(svg) {
 	scrollbar-width: thin;
 	scrollbar-color: var(--ui-border-accented) transparent;
 }
+
+pre {
+	line-height: 1.65em;
+}
