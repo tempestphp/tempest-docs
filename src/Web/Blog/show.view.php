@@ -14,7 +14,7 @@ use function Tempest\uri;
 			<!-- Breadcrumbs -->
 			<nav class="text-(--ui-text-dimmed) font-medium flex items-center mb-4 text-sm gap-x-1.5">
 				<x-icon name="tabler:news" class="size-5 mr-1" />
-				<a href="." class="hover:text-(--ui-text) transition">Blog</a>
+				<a :href="uri([BlogController::class, 'index'])" class="hover:text-(--ui-text) transition">Blog</a>
 				<span>/</span>
 				<span class="text-(--ui-primary)">{{ $post->title }}</span>
 			</nav>
