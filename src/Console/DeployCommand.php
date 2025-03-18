@@ -21,7 +21,7 @@ final readonly class DeployCommand
         $this->success('Done');
 
         $this->info('Running deploy script');
-        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && sh deploy.sh'");
+        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && bash deploy.sh'");
 
         $this->success('Deploy success');
     }
