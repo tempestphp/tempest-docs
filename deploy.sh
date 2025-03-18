@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . /home/forge/.bashrc
+. ~/.nvm/nvm.sh
 
 # Composer
 php8.4 /usr/local/bin/composer install --no-dev
