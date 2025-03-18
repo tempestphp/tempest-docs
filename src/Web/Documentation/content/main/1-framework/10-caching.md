@@ -47,7 +47,7 @@ final readonly class RssController
             cache: function () {
                 return file_get_contents('https://stitcher.io/rss')
             },
-            expiresAt: (new DateTimeImmutable())->add(new DateInterval('P1D'))
+            expiresAt: new DateTimeImmutable()->add(new DateInterval('P1D'))
         )
     }
 }
