@@ -4,23 +4,25 @@ declare(strict_types=1);
 
 namespace App\Console;
 
-use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
+use Tempest\Console\HasConsole;
 
 final readonly class DeployCommand
 {
-    public function __construct(
-        private Console $console,
-    ) {
-    }
+    use HasConsole;
 
     #[ConsoleCommand('deploy')]
     public function __invoke(): void
     {
-        $this->console->info('Starting deploy');
+        $this->info('Starting deploy');
 
-        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && sh deploy.sh'");
+        $this->info('Pulling changes');
+        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && git pull'");
+        $this->success('Done');
 
-        $this->console->success('Deploy success');
+        $this->info('Running deploy script');
+        passthru("ssh forge@stitcher.io 'cd tempest.stitcher.io && bash deploy.sh'");
+
+        $this->success('Deploy success');
     }
 }

@@ -4,7 +4,7 @@ final readonly class MarkdownInitializer implements Initializer
     public function initialize(Container $container): MarkdownConverter
     {
         $environment = new Environment();
-        $highlighter = (new Highlighter(new CssTheme()));
+        $highlighter = new Highlighter(new CssTheme());
 
         $highlighter
             ->addLanguage(new TempestViewLanguage())

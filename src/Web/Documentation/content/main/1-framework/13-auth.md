@@ -89,10 +89,10 @@ With this `User` model, you already have a lot of helper methods in place to bui
 ```php
 use App\Auth\User;
 
-$user = (new User(
+$user = new User(
     name: 'Brent',
     email: 'brendt@stitcher.io',
-))
+)
     ->setPassword('password')
     ->save()
     ->grantPermission('admin');

@@ -40,7 +40,7 @@ You can build your own CSS theme with just a couple of classes, copy over [the b
 If you don't want to or can't load a CSS file, you can opt to use the `InlineTheme` class. This theme takes the path to a CSS file, and will parse it into inline styles:
 
 ```php
-$highlighter = (new Highlighter(new InlineTheme(__DIR__ . '/../src/Themes/Css/solarized-dark.css')));
+$highlighter = new Highlighter(new InlineTheme(__DIR__ . '/../src/Themes/Css/solarized-dark.css'));
 ```
 
 ### Terminal themes
@@ -63,7 +63,7 @@ echo $highlighter->parse($code, 'php');
 This package can render an optional gutter if needed.
 
 ```php
-$highlighter = (new Highlighter())->withGutter(startAt: 10);
+$highlighter = new Highlighter()->withGutter(startAt: 10);
 ```
 
 The gutter will show additions and deletions, and can start at any given line number:
