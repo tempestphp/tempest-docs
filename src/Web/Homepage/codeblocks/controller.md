@@ -8,7 +8,7 @@ final readonly class BookController
     {
         $book = map($request)->to(Book::class)->save();
 
-        return new Redirect([self::class, 'show'], book: $book->id);
+        return new Redirect(uri([self::class, 'show'], book: $book->id));
     }
 }
 ```
