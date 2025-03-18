@@ -1,4 +1,4 @@
-. /home/forge/.bashrc
+#!/bin/bash
 
 # Composer
 php8.4 /usr/local/bin/composer install --no-dev
