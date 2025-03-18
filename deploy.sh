@@ -2,6 +2,7 @@
 php8.4 /usr/local/bin/composer install --no-dev
 
 # Bun
+nvm use node
 /home/forge/.bun/bin/bun --version
 /home/forge/.bun/bin/bun install
 /home/forge/.bun/bin/bun run build
