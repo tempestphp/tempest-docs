@@ -2,7 +2,7 @@
 	<section class="mb-20 lg:mb-[7vh] flex justify-center flex-col tracking-tighter px-6">
 		<div class="grid grid-cols-1 lg:grid-cols-2 items-center">
 			<!-- Left -->
-			<div class="p-2 lg:p-0">
+			<div class="p-2 lg:p-0 mr-6">
 				<div class="max-w-xl text-sans">
 					<span class="text-xl md:text-4xl xl:text-5xl font-semibold leading-none flex flex-col text-display">
 						{{ $heading }}
