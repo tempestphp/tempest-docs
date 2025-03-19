@@ -11,7 +11,7 @@ use function Tempest\uri;
 	<!-- Header -->
   <div class="flex flex-col inset-x-0 items-center lg:justify-center z-[1] h-(--ui-header-height)">
     <header
-			class="group w-full lg:max-w-5xl xl:max-w-7xl 2xl:max-w-8xl fixed lg:rounded-xl lg:-translate-y-2 ring-[transparent] bg-[transparent] ring-1 py-4 px-8 flex items-center justify-between duration-200 lg:data-[scrolling]:translate-y-2 data-[scrolling]:ring-(--ui-border)/90 data-[scrolling]:backdrop-blur data-[scrolling]:bg-(--ui-bg)/75"
+			class="group w-full lg:max-w-5xl xl:max-w-7xl 2xl:max-w-8xl fixed lg:rounded-xl lg:-translate-y-2 ring-[transparent] bg-[transparent] ring-1 py-4 px-8 flex items-center justify-between duration-200 lg:data-[scrolling]:translate-y-2 data-[scrolling]:ring-(--ui-border)/90 data-[scrolling]:backdrop-blur data-[scrolling]:bg-(--ui-bg)/75 z-[1]"
 			id="header"
 		>
       <!-- Left side -->
