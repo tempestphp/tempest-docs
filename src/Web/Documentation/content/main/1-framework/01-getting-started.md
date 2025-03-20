@@ -20,6 +20,7 @@ use Tempest\Router\Post;
 use Tempest\Router\Response;
 use Tempest\Router\Responses\Ok;
 use Tempest\Router\Responses\Redirect;
+use function Tempest\uri;
 
 final readonly class BookController
 {
@@ -34,7 +35,7 @@ final readonly class BookController
     {
         $book = map($request)->to(Book::class)->save();
 
-        return new Redirect([self::class, 'show'], book: $book->id);
+        return new Redirect(uri([self::class, 'show'], book: $book->id));
     }
 
     // …
