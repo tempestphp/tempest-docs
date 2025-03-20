@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use Stringable;
 use Tempest\Router\Exceptions\NotFoundException;
 use Tempest\Router\Get;
 use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
 use Tempest\Router\Responses\Redirect;
 use Tempest\Router\StaticPage;
+use Tempest\Support\Str\ImmutableString;
 use Tempest\View\View;
 
 use function Tempest\Support\arr;
@@ -29,8 +31,19 @@ final readonly class ChapterController
     public function index(): Redirect
     {
         $version = Version::default();
-        $category = basename(arr(glob(__DIR__ . "/content/{$version->value}/*", flags: GLOB_ONLYDIR))->sort()->first());
-        $slug = basename(arr(glob(__DIR__ . "/content/{$version->value}/{$category}/*.md"))->map(fn (string $path) => before_first(basename($path), '.'))->sort()->first());
+
+        $category = arr(glob(__DIR__ . "/content/{$version->value}/*", flags: GLOB_ONLYDIR))
+            ->sort()
+            ->mapFirstTo(ImmutableString::class)
+            ->basename()
+            ->toString();
+
+        $slug = arr(glob(__DIR__ . "/content/{$version->value}/{$category}/*.md"))
+            ->map(fn (string $path) => before_first(basename($path), '.'))
+            ->sort()
+            ->mapFirstTo(ImmutableString::class)
+            ->basename()
+            ->toString();
 
         return new Redirect(uri(
             [self::class, '__invoke'],

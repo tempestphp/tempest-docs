@@ -9,6 +9,7 @@ use Tempest\View\IsView;
 use Tempest\View\View;
 
 use function Tempest\Support\Arr\map;
+use function Tempest\Support\Arr\map_array;
 use function Tempest\Support\str;
 
 final class ChapterView implements View
@@ -54,12 +55,12 @@ final class ChapterView implements View
     {
         $current = null;
 
-        foreach ($this->chaptersForCategory($this->currentChapter->category) as $chapter) {
+        foreach ($this->chapterRepository->all($this->version) as $chapter) {
             if ($current) {
                 return $chapter;
             }
 
-            if ($this->isCurrent($chapter)) {
+            if ($chapter->category === $this->currentChapter->category && $chapter->slug === $this->currentChapter->slug) {
                 $current = $chapter;
             }
         }
@@ -71,8 +72,8 @@ final class ChapterView implements View
     {
         $previous = null;
 
-        foreach ($this->chaptersForCategory($this->currentChapter->category) as $chapter) {
-            if ($this->isCurrent($chapter)) {
+        foreach ($this->chapterRepository->all($this->version) as $chapter) {
+            if ($chapter->category === $this->currentChapter->category && $chapter->slug === $this->currentChapter->slug) {
                 return $previous;
             }
 
@@ -84,7 +85,7 @@ final class ChapterView implements View
 
     public function categories(): array
     {
-        return map(
+        return map_array(
             array: glob(__DIR__ . "/content/{$this->version->value}/*", flags: GLOB_ONLYDIR),
             map: fn (string $path) => str($path)->afterLast('/')->replaceRegex('/^\d+-/', '')->toString(),
         );
