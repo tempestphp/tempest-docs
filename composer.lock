@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "3d7cbbd67fdfd760b95a150dfaa640557e71a4cf"
+                "reference": "0b2597511b02a5804a30bc5bb10a231a92f4fb72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/3d7cbbd67fdfd760b95a150dfaa640557e71a4cf",
-                "reference": "3d7cbbd67fdfd760b95a150dfaa640557e71a4cf",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/0b2597511b02a5804a30bc5bb10a231a92f4fb72",
+                "reference": "0b2597511b02a5804a30bc5bb10a231a92f4fb72",
                 "shasum": ""
             },
             "require": {
@@ -3965,7 +3965,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-20T17:43:24+00:00"
+            "time": "2025-03-20T21:18:59+00:00"
         },
         {
             "name": "tempest/highlight",
