@@ -192,7 +192,7 @@ final class Book
 
 ## Casters
 
-Sometimes you'll have to map textual data to complex data types. This is what casters are used for. A caster is called before writing data to a property and after reading data from a property. A common example is a caster that casts date strings to `DateTime` objects and back. Here's a simplified example:
+Sometimes you'll have to map textual data to complex data types. This is what casters are used for. A caster is called before writing data to a property. A common example is a caster that casts date strings to `DateTime` objects. Here's a simplified example:
 
 ```php
 use Tempest\Mapper\Caster;
@@ -203,20 +203,11 @@ final readonly class DateTimeCaster implements Caster
     {
         return new DateTimeImmutable($input);
     }
-
-    public function serialize(mixed $input): string
-    {
-        if (! $input instanceof DateTimeInterface) {
-            throw new CannotSerializeValue(DateTimeInterface::class);
-        }
-
-        return $input->format('c');
-    }
 }
 ```
 
 ```php
-use Tempest\Mapper\Strict;
+use Tempest\Mapper\CastWith;
 
 final class Book
 {
@@ -238,3 +229,64 @@ Note that Tempest comes with built-in casters for several types already:
 - Value objects
 
 This means you don't have to use an explicit `#[CastWith]` attribute on properties with those types. Of course, you _can_ still tag them with the `#[CastWith]` attribute if you'd like to use a different caster.
+
+Furthermore, you can define custom global casters like so:
+
+```php
+use Tempest\Mapper\Casters\CasterFactory;
+
+$container->get(CasterFactory::class)->addCaster(Carbon::class, CarbonCaster::class);
+```
+
+## Serializers
+
+Similar to casters, serializers are used to map complex data into a serialized form. A common example is a serializer that casts `DateTime` objects to strings:
+
+```php
+use Tempest\Mapper\Serializer;
+use Tempest\Mapper\Exceptions\CannotSerializeValue;
+
+final readonly class DateTimeSerializer implements Serializer
+{
+    public function serialize(mixed $input): array|string
+    {
+        if (! $input instanceof DateTimeInterface) {
+            throw new CannotSerializeValue(DateTimeInterface::class);
+        }
+        
+        return $input->format(DATE_ATOM);
+    }
+}
+```
+
+```php
+use Tempest\Mapper\SerializeWith;
+
+final class Book
+{
+    // …
+
+    #[SerializeWith(DateTimeSerializer::class)]
+    public DateTimeImmutable $publishedAt;
+}
+```
+
+Note that Tempest comes with built-in serializers for several types already:
+
+- Arrays
+- Booleans
+- DateTime and DateTimeImmutable
+- Enums
+- Floats
+- Integers
+- Value objects
+
+This means you don't have to use an explicit `#[SerializeWith]` attribute on properties with those types. Of course, you _can_ still tag them with the `#[SerializeWith]` attribute if you'd like to use a different serializer.
+
+Furthermore, you can define custom global serializers like so:
+
+```php
+use Tempest\Mapper\Casters\SerializerFactory;
+
+$container->get(SerializerFactory::class)->addSerializer(Carbon::class, CarbonSerializer::class);
+```
