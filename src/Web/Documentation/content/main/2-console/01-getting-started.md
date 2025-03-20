@@ -10,7 +10,7 @@ category: console
 You can install `tempest/console` like so:
 
 ```
-composer require tempest/console:1.0-alpha.5
+composer require tempest/console:1.0-alpha.6
 ```
 
 And run it like so:
