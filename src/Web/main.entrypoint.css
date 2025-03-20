@@ -1,9 +1,9 @@
 @import 'tailwindcss' theme(static);
-@import './typography.css';
-@import './highlighting.css';
+@import './assets/typography.css';
+@import './assets/highlighting.css';
 
-@variant light (&:where(.light, .light *));
-@variant dark (&:where(.dark, .dark *));
+@custom-variant light (&:where(.light, .light *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
 	--container-8xl: 96rem;
