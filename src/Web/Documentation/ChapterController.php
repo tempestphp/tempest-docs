@@ -57,7 +57,7 @@ final readonly class ChapterController
     #[Get('/{version}/{category}/{slug}')]
     public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): View|Response
     {
-        if (is_null($version = Version::tryFrom($version))) {
+        if (is_null($version = Version::tryFromString($version))) {
             return new NotFound();
         }
 

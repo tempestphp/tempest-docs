@@ -38,6 +38,7 @@ final readonly class RedirectMiddleware implements HttpMiddleware
         $path = str($request->path);
         $response = $next($request);
         $matched = get(MatchedRoute::class);
+        $version = Version::tryFromString($matched->params['version']);
 
         // If not a docs page, let's just continue normal flow
         if ($matched->route->uri !== '/{version}/{category}/{slug}') {
@@ -47,6 +48,11 @@ final readonly class RedirectMiddleware implements HttpMiddleware
         // Redirect to slugs without numbers
         if (matches($matched->params['category'], '/^\d+-/') || matches($matched->params['slug'], '/^\d+-/')) {
             return new Redirect($path->replaceRegex('/\/\d+-/', '/'));
+        }
+
+        // Redirect to actual version
+        if ($version->value !== $matched->params['version']) {
+            return new Redirect($path->replace("/{$matched->params['version']}/", "/{$version->value}/"));
         }
 
         // Redirect to docs index if not found
