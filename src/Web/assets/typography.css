@@ -7,6 +7,30 @@
 		@apply !mt-0;
 	}
 
+	.alert {
+		@apply my-4 relative overflow-hidden w-full rounded-md p-4 flex gap-2.5 items-start text-(--ui-text-highlighted) bg-(--ui-bg-elevated)/50 ring ring-inset ring-(--ui-border-accented);
+
+		&.alert-warning {
+			@apply bg-(--ui-warning)/10 text-(--ui-warning) ring-(--ui-warning)/25;
+		}
+
+		&.alert-success {
+			@apply bg-(--ui-success)/10 text-(--ui-success) ring-(--ui-success)/25;
+		}
+
+		div.alert-wrapper {
+			@apply flex flex-col gap-y-2;
+
+			span.alert-title {
+				@apply text-sm font-semibold inline-block;
+			}
+
+			p {
+				@apply my-0 text-sm opacity-90;
+			}
+		}
+	}
+
 	.has-pre {
 		@apply my-0;
 	}

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown;
 
+use App\Markdown\Alerts\AlertExtension;
 use App\Markdown\CodeBlockRenderer;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -30,6 +31,7 @@ final readonly class MarkdownInitializer implements Initializer
         $environment
             ->addExtension(new CommonMarkCoreExtension())
             ->addExtension(new FrontMatterExtension())
+            ->addExtension(new AlertExtension())
             ->addInlineParser(new TempestPackageParser())
             ->addInlineParser(new FqcnParser())
             ->addInlineParser(new HandleParser())
