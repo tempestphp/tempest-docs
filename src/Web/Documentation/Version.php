@@ -17,10 +17,10 @@ enum Version: string
         return self::MAIN;
     }
 
-    public static function tryFromString(string $case): ?static
+    public static function tryFromString(?string $case): ?static
     {
         return match ($case) {
-            'default', 'current' => self::default(),
+            'default', 'current', null => self::default(),
             default => self::tryFrom($case),
         };
     }
