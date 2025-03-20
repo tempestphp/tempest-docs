@@ -7,6 +7,10 @@
 		@apply !mt-0;
 	}
 
+	.has-pre {
+		@apply my-0;
+	}
+
 	code {
 		&::before,
 		&::after {
