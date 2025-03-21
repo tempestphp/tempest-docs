@@ -1,6 +1,5 @@
 ---
 title: Building a custom language
-category: highlight
 ---
 
 Let's explain how `tempest/highlight` works by implementing a new language — [Blade](https://laravel.com/docs/11.x/blade) is a good candidate. It looks something like this:

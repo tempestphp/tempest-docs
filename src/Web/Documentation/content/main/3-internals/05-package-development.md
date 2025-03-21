@@ -1,6 +1,5 @@
 ---
 title: Package development
-category: internals
 ---
 
 Tempest comes with a handful of tools to help third-party package developers.

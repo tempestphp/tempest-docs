@@ -1,6 +1,5 @@
 ---
 title: "Opt-in features"
-category: highlight
 ---
 
 `tempest/highlight` has a couple of opt-in features, if you need them.

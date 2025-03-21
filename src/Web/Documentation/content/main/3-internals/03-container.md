@@ -1,6 +1,5 @@
 ---
 title: The container
-category: internals
 ---
 
 Here's a short summary of how the Tempest container works.

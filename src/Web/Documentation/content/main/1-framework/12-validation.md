@@ -1,6 +1,5 @@
 ---
 title: Validation
-category: framework
 ---
 
 Validation with Tempest is done by taking an array of raw input data, and validating whether that array of data is valid against a class. While validation and [data mapping](/main/framework/validation) often work together, the two are separate components and can also be used separately.

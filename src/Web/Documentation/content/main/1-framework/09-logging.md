@@ -1,6 +1,5 @@
 ---
 title: Logging
-category: framework
 ---
 
 Logging is an essential part of any developer's job. Whether it's for debugging or for production monitoring. Tempest has a powerful set of tools to help you access the relevant information you need.

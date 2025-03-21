@@ -1,6 +1,5 @@
 ---
 title: Controllers
-category: framework
 ---
 
 Controllers are the core of any web app, they route an HTTP request through the necessary layers of code to finally return a response.

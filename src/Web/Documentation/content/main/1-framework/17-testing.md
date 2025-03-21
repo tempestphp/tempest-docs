@@ -1,6 +1,5 @@
 ---
 title: Testing
-category: framework
 ---
 
 Testing is a crucial part of any application. Tempest uses [PHPUnit](https://phpunit.de/) as its testing framework.

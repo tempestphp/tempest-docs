@@ -1,6 +1,5 @@
 ---
 title: Caching
-category: framework
 ---
 
 Tempest comes with a simple wrapper around PSR-6, which means you can use all PSR-6 compliant cache pools. Tempest uses [Symfony's Cache Component](https://symfony.com/doc/current/components/cache.html) as a default implementation, so all of [Symfony's adapters](https://symfony.com/doc/current/components/cache.html#available-cache-adapters) are available out of the box.

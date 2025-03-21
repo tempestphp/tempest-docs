@@ -1,6 +1,5 @@
 ---
 title: Adding tokens
-category: highlight
 ---
 
 <style>

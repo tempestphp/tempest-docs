@@ -1,6 +1,5 @@
 ---
 title: Views
-category: framework
 ---
 
 Tempest supports three templating engines: Tempest View, Twig, and Blade. Tempest View is a new templating engine, while Twig and Blade have widespread support because of Symfony and Laravel. Tempest View is the default templating engine when creating Tempest projects, but the end of this page discusses how to install and switch to Twig or Blade instead.

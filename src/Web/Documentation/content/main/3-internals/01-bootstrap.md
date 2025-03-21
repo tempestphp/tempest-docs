@@ -1,6 +1,5 @@
 ---
 title: Framework bootstrap
-category: internals
 ---
 
 Here's a short summary of what booting Tempest looks like.

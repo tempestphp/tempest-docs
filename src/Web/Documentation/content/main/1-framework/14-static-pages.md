@@ -1,6 +1,5 @@
 ---
 title: Static pages
-category: framework
 ---
 
 Tempest comes with a built-in static site generator. When a controller action is tagged with `#[StaticPage]`, it can be compiled by Tempest as a static HTML page. These pages can then directly be served via your webserver.

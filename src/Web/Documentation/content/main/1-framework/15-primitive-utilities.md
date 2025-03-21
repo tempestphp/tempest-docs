@@ -1,6 +1,5 @@
 ---
 title: Primitive utilities
-category: framework
 ---
 
 Tempest comes with a handful of classes that improve working with primitive types such as strings and arrays. The most important feature is an object-oriented API around PHP's built-in primitive helper functions. Let's take a look at what's available.

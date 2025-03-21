@@ -1,6 +1,5 @@
 ---
 title: Container and configuration
-category: framework
 ---
 
 Tempest's dependency container is the heart of the framework. Anything you do framework related will be run through the container, meaning you'll have autowiring everywhere: from controllers to console commands, from event handlers to the command bus:

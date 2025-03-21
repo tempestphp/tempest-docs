@@ -1,6 +1,5 @@
 ---
-title: Getting started
-category: console
+title: Standalone
 ---
 
 `tempest/console` is a standalone package used to build console applications.

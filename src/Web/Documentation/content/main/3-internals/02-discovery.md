@@ -1,6 +1,5 @@
 ---
 title: Discovery
-category: internals
 ---
 
 Tempest has a unique design when it comes to bootstrapping an application, more specifically when it comes to loading framework related code. Instead of having to manually registering project code or packages, Tempest will scan your codebase and automatically detect code that should be loaded. This concept is called **Discovery**.

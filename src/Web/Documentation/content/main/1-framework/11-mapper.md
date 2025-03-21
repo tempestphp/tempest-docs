@@ -1,6 +1,5 @@
 ---
 title: Mapper
-category: framework
 ---
 
 Tempest comes with a flexible mapper component that can be used to map all sorts of data to objects and back. The mapper is internally used to handle persistence between models and the database, map PSR objects to internal requests, map request data to objects, and more.

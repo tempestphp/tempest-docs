@@ -1,6 +1,5 @@
 ---
 title: Tempest views
-category: internals
 ---
 
 This page describes the technical specification for Tempest views.

@@ -1,6 +1,5 @@
 ---
 title: Console
-category: framework
 ---
 
 Tempest's console component can be used both within the framework, and as a standalone package. Console commands are discovered automatically by Tempest, and the framework ships with a console application in your project's root. You can call it like so:

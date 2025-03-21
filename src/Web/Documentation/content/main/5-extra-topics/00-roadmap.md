@@ -1,6 +1,5 @@
 ---
 title: Roadmap
-category: intro
 ---
 
 Tempest is still a work in progress, and we're actively working towards a stable 1.0 release. We keep track of that progress on [GitHub](https://github.com/tempestphp/tempest-framework/milestones).
