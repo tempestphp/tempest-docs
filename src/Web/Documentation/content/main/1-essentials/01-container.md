@@ -121,7 +121,7 @@ final class BookInitializer implements Initializer
 
 While this approach works, it would be very inconvenient to create an initializer for every model class. Furthermore, we want route binding to be provided by the framework, so we need a more generic approach.
 
-In essence, we need a way of using this initializer whenever a class that implements `{php}Model` is requested. A dynamic initializer fulfils this need, allowing you to dynamically match class names instead of relying on the return type of `initialize`:
+The {`Tempest\Container\DynamicInitializer`} interface provides a `canInitialize` method, in which the logic for matching a class may be implemented:
 
 ```php app/RouteBindingInitializer.php
 use Tempest\Container\Container;
