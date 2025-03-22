@@ -23,6 +23,9 @@ type TreeNode = Command & {
 }
 
 export function handleCommand(item: TreeNode, event: Event) {
+	// @ts-expect-error not typed
+	window.toggleCommandPalette?.()
+
 	if (item.type === 'uri') {
 		return event.preventDefault()
 	}
