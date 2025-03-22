@@ -96,11 +96,18 @@
         <div :if="($subChapters = $this->getSubChapters()) !== []" class="text-sm flex flex-col grow">
           <span class="inline-block font-bold text-[--primary] mb-3">On this page</span>
           <ul class="flex flex-col">
-            <li :foreach="$subChapters as $url => $title">
-              <a :href="$url" :data-on-this-page="$title" class="group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
-                {{ \Tempest\Support\Str\strip_tags($title) }}
-              </a>
-            </li>
+						<x-template :foreach="$subChapters as $url => $chapter">
+							<li>
+								<a :href="$url" :data-on-this-page="$chapter['title']" class="group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
+									{{ \Tempest\Support\Str\strip_tags($chapter['title']) }}
+								</a>
+							</li>
+							<li :foreach="$chapter['children'] as $url => $title">
+								<a :href="$url" :data-on-this-page="$title" class="pl-4 group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-dimmed) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
+									{{ \Tempest\Support\Str\strip_tags($title) }}</span>
+								</a>
+							</li>
+						</x-template>
           </ul>
 					<div class="my-10 mt-auto flex">
 						<a href="#top" class="border border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition rounded-lg p-2">

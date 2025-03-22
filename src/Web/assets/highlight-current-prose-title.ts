@@ -1,7 +1,7 @@
 function findPreviousH2(element: Element | null): HTMLHeadingElement | null {
 	while (element && element.previousElementSibling) {
 		element = element.previousElementSibling
-		if (element.tagName === 'H2') {
+		if (element.tagName === 'H2' || element.tagName === 'H3') {
 			return element as HTMLHeadingElement
 		}
 	}
@@ -17,7 +17,7 @@ function updateActiveChapters(): void {
 	for (const el of elements) {
 		const rect = el.getBoundingClientRect()
 		if (rect.top - topMargin >= 0 && rect.bottom <= window.innerHeight) {
-			if (el.tagName === 'H2' || el.tagName === 'H1') {
+			if (el.tagName === 'H3' || el.tagName === 'H2' || el.tagName === 'H1') {
 				if (el.textContent) {
 					visibleH2s.add(el.textContent.trim())
 				}
