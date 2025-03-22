@@ -18,6 +18,10 @@
 			@apply bg-(--ui-success)/10 text-(--ui-success) ring-(--ui-success)/25 [--tw-prose-links:var(--ui-success)];
 		}
 
+		&.alert-info {
+			@apply bg-(--ui-info)/5 text-(--ui-info) ring-(--ui-info)/25 [--tw-prose-links:var(--ui-info)];
+		}
+
 		div.alert-wrapper {
 			@apply flex flex-col gap-y-2;
 
