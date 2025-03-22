@@ -3,15 +3,13 @@ title: Introduction
 description: "Tempest is a PHP framework designed to get out of your way. Its core philosophy is to enable developers to write as little framework-specific code as possible, so that they can focus on application code instead."
 ---
 
-Tempest makes writing PHP applications pleasant thanks to its thoughtfully designed sprinkles of quality-of-life features.
+Tempest makes writing PHP applications pleasant thanks to carefully crafted quality-of-life features that feel like a natural extension of vanilla PHP.
 
 It embraces modern PHP syntax in its implementation of routing, ORM, console commands, messaging, logging, it takes inspiration from the best front-end frameworks for its templating engine syntax, and provides unique capabilities amongst other framework, such as [discovery](../3-internals/02-discovery), to improve developer experience.
 
-You may also be interested in reading how it has an [unfair advantage](/blog/unfair-advantage) over other frameworks.
+You may also be interested in reading how it has an [unfair advantage](/blog/unfair-advantage) over other frameworks. But code says more than words, so here are a few examples of code written on top of Tempest:
 
-Code says more than words, so here's what a controller look like when using Tempest:
-
-```php app/BookController.php
+```php
 use Tempest\Router\Get;
 use Tempest\Router\Post;
 use Tempest\Router\Response;
@@ -39,9 +37,9 @@ final readonly class BookController
 }
 ```
 
-And here's a Tempest console command:
+The above snippet is an example of a controller controller. It features [attribute-based routes](../1-framework/03-controllers), mapping a request to a data object using the [mapper](../1-framework/11-mapper), [URL generation](../1-framework/03-controllers#generating-uris) and [dependency injection](../1-framework/02-the-container#autowired-dependencies).
 
-```php app/MigrateUpCommand.php
+```php
 use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
 use Tempest\Console\Middleware\ForceMiddleware;
@@ -60,11 +58,21 @@ final readonly class MigrateUpCommand
         description: 'Run all new migrations',
         middleware: [ForceMiddleware::class, CautionMiddleware::class],
     )]
-    public function __invoke(): void
+    public function __invoke(bool $fresh = false): void
     {
-        $this->migrationManager->up();
+        if ($fresh) {
+            $this->migrationManager->dropAll();
+            $this->console->success("Database dropped.");
+        }
 
-        $this->console->success("Everything migrated");
+        $this->migrationManager->up();
+        $this->console->success("Migrations applied.");
+    }
+
+    #[EventHandler]
+    public function onTableDropped(TableDropped $event): void
+    {
+        $this->console->writeln("- Dropped {$event->name}");
     }
 
     #[EventHandler]
@@ -75,6 +83,10 @@ final readonly class MigrateUpCommand
 }
 ```
 
-:::warning Ready to give it a try?
+This is a [console command](../2-console/02-building-console-commands). Console commands can be defined in any class, as long as the `#[ConsoleCommand]` attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
+
+This example also shows how to [register events globally](../1-framework/07-events) using the `#[EventHandler]`.
+
+:::info Ready to give it a try?
 Keep on reading and consider [**giving Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and if you feel like contributing, you can check out our [contributing guide](/docs/internals/contributing)!
 :::
