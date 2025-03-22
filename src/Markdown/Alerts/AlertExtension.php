@@ -7,6 +7,7 @@ use League\CommonMark\Extension\ExtensionInterface;
 
 final class AlertExtension implements ExtensionInterface
 {
+    #[\Override]
     public function register(EnvironmentBuilderInterface $environment): void
     {
         $environment->addBlockStartParser(new AlertBlockStartParser());

@@ -14,11 +14,13 @@ use function Tempest\Support\str;
 
 final readonly class FqcnParser implements InlineParserInterface
 {
+    #[\Override]
     public function getMatchDefinition(): InlineParserMatch
     {
         return InlineParserMatch::regex("{`((?:\\\{1,2}\w+|\w+\\\{1,2})(?:\w+\\\{0,2})+)`}");
     }
 
+    #[\Override]
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
