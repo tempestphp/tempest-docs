@@ -16,15 +16,15 @@ Once the prerequisites are installed, you can chose your installation method. Te
 To get started with a new Tempest project, you may use {`tempest/app`} as the starting point. The `composer create-project` command will scaffold it for you:
 
 ```sh
-composer create-project tempest/app my-app --stability alpha
-cd my-app
+{:hl-keyword:composer:} create-project tempest/app {:hl-type:my-app:} --stability alpha
+{:hl-keyword:cd:} {:hl-type:my-app:}
 ```
 
 If you have a dedicated development environment, you may then access your application by opening `https://my-app.test` in your browser. Otherwise, you may use PHP's built-in server:
 
 ```sh
-php tempest serve
-# PHP 8.3.3 Development Server (http://localhost:8000) started
+{:hl-keyword:php:} tempest serve
+{:hl-comment:PHP 8.3.3 Development Server (http://localhost:8000) started:}
 ```
 
 ### Scaffolding front-end assets
@@ -32,7 +32,7 @@ php tempest serve
 Optionally, you may install a basic front-end scaffolding that includes [Vite](https://vite.dev/) and [Tailwind CSS](https://tailwindcss.com/). To do so, run the Vite installer and follow through the wizard:
 
 ```sh
-php tempest install vite --tailwind
+{:hl-keyword:php:} tempest install vite --tailwind
 ```
 
 <!-- TODO: docs -->
@@ -41,7 +41,7 @@ The assets created by this wizard, `main.entrypoint.ts` and `main.entrypoint.css
 You may then run the front-end development server, which will serve your assets on-the-fly:
 
 ```bash
-npm run dev
+{:hl-keyword:npm:} run dev
 ```
 
 ## Tempest as a package
@@ -49,13 +49,13 @@ npm run dev
 If you already have a project, you can opt to install {`tempest/framework`} as a standalone package. You could do this in any project; it could already contain code, or it could be an empty project.
 
 ```sh
-composer require tempest/framework:1.0-alpha.5
+{:hl-keyword:composer:} require tempest/framework:1.0-alpha.5
 ```
 
 Installing Tempest this way will give you access to the Tempest console, `./vendor/bin/tempest`. Optionally, you can choose to install Tempest's entry points in your project. To do so, you may run the framework installer:
 
 ```txt
-./vendor/bin/tempest install framework
+{:hl-keyword:./vendor/bin/tempest:} install framework
 ```
 
 This installer will prompt you to install the following files into your project:
@@ -84,10 +84,10 @@ The following projects structures work the same way in Tempest, without requirin
 ```txt
 app
 ├── Console
-│   └── RssSyncCommand.php
+│   └── RssSyncCommand.php
 ├── Controllers
-│   ├── BlogPostController.php
-│   └── HomeController.php
+│   ├── BlogPostController.php
+│   └── HomeController.php
 └── Views
     ├── blog.view.php
     └── home.view.php
@@ -96,9 +96,9 @@ app
 ```txt
 src
 ├── Blog
-│   ├── BlogPostController.php
-│   ├── RssSyncCommand.php
-│   └── blog.view.php
+│   ├── BlogPostController.php
+│   ├── RssSyncCommand.php
+│   └── blog.view.php
 └── Home
     ├── HomeController.php
     └── home.view.php
@@ -174,12 +174,12 @@ By default, the discovery cache is disabled in local development. Depending on y
 This caching strategy will only cache discovery for vendor files. For this reason, it is recommended to run `discovery:generate` after every composer update:
 
 ```json
-{:hl-comment:// …:}
-
-"scripts": {
+{
+  "scripts": {
     "post-package-update": [
-        "php tempest discovery:generate"
+      "php tempest discovery:generate"
     ]
+  }
 }
 ```
 

@@ -1,5 +1,5 @@
 ---
-title: Models
+title: Database
 ---
 
 In contrast to many popular ORMs, Tempest models aren't required to be tied to the database. A model's persisted data can be loaded from any kind of data source: an external API, JSON, Redis, XML, … In essence, a model is nothing more than a class with public typed properties and methods. Tempest will use a model class' type information to determine how data should be mapped between objects.
@@ -186,7 +186,7 @@ interface Model
 
     // Find a specific model, optionally loading relations as well
     public static function get(Id $id, array $relations = []): ?self;
-    
+
     // Create a model query with a number of field conditions
     public static function find(mixed ...$conditions): ModelQueryBuilder;
 
@@ -244,13 +244,13 @@ use Tempest\Database\DatabaseModel;
 use Tempest\Database\IsDatabaseModel;
 
 class Book implements DatabaseModel
-{   
+{
     use IsDatabaseModel;
-    
+
     // …
-    
+
     public DateTimeImmutable $publishedAt;
-    
+
     #[Virtual]
     public DateTimeImmutable $saleExpiresAt {
         get => $this->publishedAt->add(new DateInterval('P5D'));

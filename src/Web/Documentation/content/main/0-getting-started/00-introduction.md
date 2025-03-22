@@ -5,9 +5,9 @@ description: "Tempest is a PHP framework designed to get out of your way. Its co
 
 Tempest makes writing PHP applications pleasant thanks to carefully crafted quality-of-life features that feel like a natural extension of vanilla PHP.
 
-It embraces modern PHP syntax in its implementation of routing, ORM, console commands, messaging, logging, it takes inspiration from the best front-end frameworks for its templating engine syntax, and provides unique capabilities amongst other framework, such as [discovery](../3-internals/02-discovery), to improve developer experience.
+It embraces modern PHP syntax in its implementation of routing, ORM, console commands, messaging, logging, it takes inspiration from the best front-end frameworks for its templating engine syntax, and provides unique capabilities, such as [discovery](../3-internals/02-discovery), to improve developer experience.
 
-You may also be interested in reading how it has an [unfair advantage](/blog/unfair-advantage) over other frameworks. But code says more than words, so here are a few examples of code written on top of Tempest:
+You may be interested in reading how it has an [unfair advantage](/blog/unfair-advantage) over other frameworks—but code says more than words, so here are a few examples of code written on top of Tempest:
 
 ```php
 use Tempest\Router\Get;
@@ -86,6 +86,8 @@ final readonly class MigrateUpCommand
 This is a [console command](../2-console/02-building-console-commands). Console commands can be defined in any class, as long as the `#[ConsoleCommand]` attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
 
 This example also shows how to [register events globally](../1-framework/07-events) using the `#[EventHandler]`.
+
+---
 
 :::info Ready to give it a try?
 Keep on reading and consider [**giving Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and if you feel like contributing, you can check out our [contributing guide](/docs/internals/contributing)!
