@@ -92,16 +92,21 @@
         </x-template>
       </article>
       <!-- On this page -->
-      <nav class="w-2xs shrink-0 hidden xl:block sticky max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 pl-12 pr-4">
-        <div :if="($subChapters = $this->getSubChapters()) !== []" class="text-sm">
+      <nav class="w-2xs shrink-0 hidden xl:flex flex-col sticky max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 pl-12 pr-4">
+        <div :if="($subChapters = $this->getSubChapters()) !== []" class="text-sm flex flex-col grow">
           <span class="inline-block font-bold text-[--primary] mb-3">On this page</span>
           <ul class="flex flex-col">
-            <li :foreach="['#top' => $this->currentChapter->title, ...$subChapters] as $url => $title">
+            <li :foreach="$subChapters as $url => $title">
               <a :href="$url" :data-on-this-page="$title" class="group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
                 {{ \Tempest\Support\Str\strip_tags($title) }}
               </a>
             </li>
           </ul>
+					<div class="my-10 mt-auto flex">
+						<a href="#top" class="border border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition rounded-lg p-2">
+							<x-icon name="tabler:arrow-up" class="size-5" />
+						</a>
+					</div>
         </div>
       </nav>
     </div>

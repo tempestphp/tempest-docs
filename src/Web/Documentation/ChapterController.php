@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
-use Stringable;
-use Tempest\Router\Exceptions\NotFoundException;
 use Tempest\Router\Get;
 use Tempest\Router\Response;
 use Tempest\Router\Responses\NotFound;
