@@ -10,6 +10,7 @@ use League\CommonMark\Util\RegexHelper;
 
 final class AlertBlockStartParser implements BlockStartParserInterface
 {
+    #[\Override]
     public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
     {
         if ($cursor->isIndented()) {

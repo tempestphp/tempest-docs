@@ -10,6 +10,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\Support\arr;
+use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Regex\replace;
 use function Tempest\Support\str;
 
@@ -39,7 +40,9 @@ final readonly class ChapterRepository
             throw new \RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
         }
 
-        ['title' => $title, 'description' => $description] = $markdown->getFrontMatter() + ['description' => null];
+        $frontmatter = $markdown->getFrontMatter();
+        $title = get_by_key($frontmatter, 'title');
+        $description = get_by_key($frontmatter, 'description');
 
         return new Chapter(
             version: $version,

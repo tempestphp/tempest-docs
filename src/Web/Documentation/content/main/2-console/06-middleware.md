@@ -1,6 +1,5 @@
 ---
 title: Middleware
-category: console
 ---
 
 `tempest/console` has support for middleware, a well known concept within the context of web applications, which also makes building a lot of console features easier.

@@ -1,6 +1,5 @@
 ---
 title: Building console commands
-category: console
 ---
 
 Any method tagged with the `{php}#[ConsoleCommand]` attribute will be automatically discovered and be available within the console application. By default, you don't have to pass in any parameters to the `{php}#[ConsoleCommand]` attribute, since Tempest will use the class and method names to generate a command name:

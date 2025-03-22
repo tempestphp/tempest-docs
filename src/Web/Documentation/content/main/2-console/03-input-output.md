@@ -1,6 +1,5 @@
 ---
 title: Input and output
-category: console
 ---
 
 Every command can read and write from and to the terminal by injecting the `{php}Console` interface. You don't have to configure anything, Tempests takes care of injecting the right dependencies for you behind the scenes:

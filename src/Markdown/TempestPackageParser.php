@@ -12,11 +12,13 @@ use function Tempest\Support\str;
 
 final readonly class TempestPackageParser implements InlineParserInterface
 {
+    #[\Override]
     public function getMatchDefinition(): InlineParserMatch
     {
         return InlineParserMatch::regex("{`tempest\\/([\w-]+)`}");
     }
 
+    #[\Override]
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();

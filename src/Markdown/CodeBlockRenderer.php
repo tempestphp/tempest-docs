@@ -19,7 +19,8 @@ final class CodeBlockRenderer implements NodeRendererInterface
     ) {
     }
 
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer)
+    #[\Override]
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         if (! ($node instanceof FencedCode)) {
             throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);

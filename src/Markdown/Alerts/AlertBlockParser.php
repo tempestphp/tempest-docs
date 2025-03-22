@@ -10,8 +10,8 @@ use League\CommonMark\Util\RegexHelper;
 
 final class AlertBlockParser implements BlockContinueParserInterface
 {
-    protected $block;
-    protected $finished = false;
+    protected AlertBlock $block;
+    protected bool $finished = false;
 
     public function __construct(
         protected string $alertType,
@@ -20,25 +20,30 @@ final class AlertBlockParser implements BlockContinueParserInterface
         $this->block = new AlertBlock($alertType, $title);
     }
 
+    #[\Override]
     public function addLine(string $line): void
     {
     }
 
+    #[\Override]
     public function getBlock(): AbstractBlock
     {
         return $this->block;
     }
 
+    #[\Override]
     public function isContainer(): bool
     {
         return true;
     }
 
+    #[\Override]
     public function canContain(AbstractBlock $childBlock): bool
     {
         return true;
     }
 
+    #[\Override]
     public function canHaveLazyContinuationLines(): bool
     {
         return false;
@@ -49,6 +54,7 @@ final class AlertBlockParser implements BlockContinueParserInterface
         return true;
     }
 
+    #[\Override]
     public function tryContinue(Cursor $cursor, BlockContinueParserInterface $activeBlockParser): ?BlockContinue
     {
         if ($cursor->isIndented()) {
@@ -64,6 +70,7 @@ final class AlertBlockParser implements BlockContinueParserInterface
         return BlockContinue::at($cursor);
     }
 
+    #[\Override]
     public function closeBlock(): void
     {
         // Nothing to do here

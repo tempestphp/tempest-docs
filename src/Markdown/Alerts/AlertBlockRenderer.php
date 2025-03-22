@@ -10,14 +10,15 @@ use League\CommonMark\Util\HtmlElement;
 
 final class AlertBlockRenderer implements NodeRendererInterface
 {
-    public function render(Node $node, ChildNodeRendererInterface $htmlRenderer)
+    #[\Override]
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): mixed
     {
         if (! ($node instanceof AlertBlock)) {
             throw new \InvalidArgumentException('Incompatible node type: ' . get_class($node));
         }
 
-        if (! ($htmlRenderer instanceof HtmlRenderer)) {
-            throw new \InvalidArgumentException('Incompatible renderer type: ' . get_class($htmlRenderer));
+        if (! ($childRenderer instanceof HtmlRenderer)) {
+            throw new \InvalidArgumentException('Incompatible renderer type: ' . get_class($childRenderer));
         }
 
         $cssClass = 'alert alert-' . $node->alertType;
@@ -26,7 +27,7 @@ final class AlertBlockRenderer implements NodeRendererInterface
             attributes: ['class' => 'alert-wrapper'],
             contents: [
                 $node->title ? new HtmlElement('span', attributes: ['class' => 'alert-title'], contents: $node->title) : null,
-                $htmlRenderer->renderNodes($node->children()),
+                $childRenderer->renderNodes($node->children()),
             ],
         );
 
