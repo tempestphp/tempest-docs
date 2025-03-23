@@ -112,8 +112,8 @@
 		--ui-primary: var(--color-blue-400);
 		--ui-secondary: var(--color-neutral-400);
 		--ui-success: var(--color-emerald-400);
-		--ui-info: var(--color-blue-400);
-		--ui-warning: var(--color-yellow-400);
+		--ui-info: var(--color-blue-300);
+		--ui-warning: var(--color-orange-300);
 		--ui-error: var(--color-red-400);
 
 		--ui-text-dimmed: var(--color-neutral-500);
