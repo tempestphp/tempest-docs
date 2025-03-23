@@ -35,8 +35,16 @@
 		}
 	}
 
-	.has-pre {
-		@apply my-0;
+	.named-code-block {
+		@apply my-[1.71em] flex flex-col gap-y-0 p-1 rounded-lg border border-(--ui-border) bg-(--ui-bg-elevated)/20;
+
+    .code-block-name {
+      @apply mb-1.5 mt-1 px-2 font-mono text-(--ui-text-dimmed) text-sm;
+    }
+
+    pre {
+      @apply my-0;
+    }
 	}
 
 	code {
@@ -91,5 +99,9 @@
 
 	h3 {
 		@apply text-xl;
+	}
+
+	h4, h5, h6 {
+		@apply text-lg;
 	}
 }
