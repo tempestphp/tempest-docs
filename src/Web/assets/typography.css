@@ -85,7 +85,7 @@
 		}
 
 		& a {
-			@apply inline-flex items-baseline;
+			@apply inline-flex items-baseline gap-x-1.5;
 		}
 
 		& a span:has(svg) {
@@ -99,9 +99,17 @@
 
 	h3 {
 		@apply text-xl;
+
+    a code {
+      @apply text-xl;
+    }
 	}
 
 	h4, h5, h6 {
 		@apply text-lg;
+
+    a code {
+      @apply text-lg;
+    }
 	}
 }
