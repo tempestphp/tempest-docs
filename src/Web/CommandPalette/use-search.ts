@@ -2,10 +2,12 @@ import type { FuseResult } from 'fuse.js'
 import Fuse from 'fuse.js'
 import type { Ref } from 'vue'
 import { shallowRef, watch } from 'vue'
+import { useTimeoutFn } from '@vueuse/core'
 import index from './index.json'
 
 interface Options {
 	query: Ref<string>
+	open: Ref<boolean>
 }
 
 interface Command {
@@ -69,7 +71,7 @@ function buildHierarchyTree(items: SearchResultItem[]): Record<string, TreeNode>
 }
 
 export function useSearch(options: Options) {
-	const results = shallowRef<Record<string, TreeNode>>({ Commands: { title: 'Commands', type: 'uri', hierarchy: ['Commands'], children: index.filter((item) => item.hierarchy.at(0) === 'Commands') } })
+	const results = shallowRef<Record<string, TreeNode>>({})
 	const fuse = new Fuse(index, {
 		keys: ['title', 'hierarchy', 'fields'],
 		includeScore: true,
@@ -77,8 +79,25 @@ export function useSearch(options: Options) {
 		threshold: 0.2,
 	})
 
+	// Filters the palette commands based on the query, specifying default commands if empty
 	watch(options.query, (query) => {
-		results.value = buildHierarchyTree(fuse.search(query) as SearchResultItem[])
+		if (!query.length) {
+			results.value = { Commands: { title: 'Commands', type: 'uri', hierarchy: ['Commands'], children: index.filter((item) => item.hierarchy.at(0) === 'Commands') } }
+		} else {
+			results.value = buildHierarchyTree(fuse.search(query) as SearchResultItem[])
+		}
+	}, { immediate: true })
+
+	// Resets the command palette after 3s of being closed
+	const reset = useTimeoutFn(() => options.query.value = '', 3_000)
+	watch(options.open, (isOpen) => {
+		reset.stop()
+
+		if (isOpen) {
+			return
+		}
+
+		reset.start()
 	})
 
 	return {

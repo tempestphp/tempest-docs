@@ -8,7 +8,7 @@ import { handleCommand, useSearch } from './use-search'
 const open = ref(false)
 
 const query = ref<string>('')
-const { results } = useSearch({ query })
+const { results } = useSearch({ query, open })
 
 registerPalette({ value: open })
 </script>
@@ -56,7 +56,7 @@ registerPalette({ value: open })
 						:as="item.type === 'uri' ? 'a' : 'button'"
 						:value="item"
 						:href="item.uri"
-						class="flex flex-col dark:data-[highlighted]:bg-(--ui-bg-elevated)/60 data-[highlighted]:bg-(--ui-primary)/10 px-4 py-2 pl-4 rounded-md w-full text-(--ui-text-highlighted) text-left transition-colors"
+						class="flex flex-col data-[highlighted]:bg-(--ui-primary)/10 dark:data-[highlighted]:bg-(--ui-bg-elevated)/60 px-4 py-2 pl-4 rounded-md w-full text-(--ui-text-highlighted) text-left transition-colors"
 						@select="(e) => handleCommand(item, e)"
 					>
 						<div class="flex items-center gap-x-1 text-(--ui-text-dimmed)">
