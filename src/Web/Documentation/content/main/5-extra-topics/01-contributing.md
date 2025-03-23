@@ -4,11 +4,6 @@ title: Contributing
 
 Welcome aboard! We're excited that you are interested in contributing to the Tempest framework. We value all contributions to the project and have assembled the following resources to help you get started. Thanks for being a contributor!
 
-## How do I...
-
-* Ask about... &nbsp; [🐞  An error or bug](#report-an-error-or-bug) &nbsp; or &nbsp; [💡  A feature](#request-a-feature)
-* Make... &nbsp; [📖  A contribution to documentation](#contribute-documentation) &nbsp; or &nbsp; [🔨  A contribution to the code](#contribute-code)
-
 ## Report an error or bug
 
 To report an error or a bug, please:
