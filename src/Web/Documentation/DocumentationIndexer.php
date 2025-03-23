@@ -14,6 +14,7 @@ use Tempest\Support\Str\ImmutableString;
 
 use function Tempest\Support\arr;
 use function Tempest\Support\Arr\get_by_key;
+use function Tempest\Support\Arr\wrap;
 use function Tempest\Support\Str\to_kebab_case;
 use function Tempest\Support\Str\to_sentence_case;
 use function Tempest\uri;
@@ -45,6 +46,7 @@ final readonly class DocumentationIndexer
                 $category = $path->beforeLast('/')->afterLast('/')->replaceRegex('/\d+-/', '');
                 $chapter = $path->basename('.md')->replaceRegex('/\d+-/', '');
                 $title = get_by_key($markdown->getFrontMatter(), 'title');
+                $keywords = get_by_key($markdown->getFrontMatter(), 'keywords');
 
                 $main = new Command(
                     type: Type::URI,
@@ -54,6 +56,9 @@ final readonly class DocumentationIndexer
                         'Documentation',
                         to_sentence_case($category),
                         $title,
+                    ],
+                    fields: [
+                        ...wrap($keywords),
                     ],
                 );
 
