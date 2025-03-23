@@ -49,7 +49,7 @@ You may then run the front-end development server, which will serve your assets 
 If you already have a project, you can opt to install {`tempest/framework`} as a standalone package. You could do this in any project; it could already contain code, or it could be an empty project.
 
 ```sh
-{:hl-keyword:composer:} require tempest/framework:1.0-alpha.5
+{:hl-keyword:composer:} require tempest/framework:1.0-alpha.6
 ```
 
 Installing Tempest this way will give you access to the Tempest console, `./vendor/bin/tempest`. Optionally, you can choose to install Tempest's entry points in your project. To do so, you may run the framework installer:
