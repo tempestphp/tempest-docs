@@ -9,6 +9,7 @@ use Tempest\View\IsView;
 use Tempest\View\View;
 
 use function Tempest\Support\Arr\map;
+use function Tempest\Support\Arr\map_array;
 use function Tempest\Support\str;
 
 final class ChapterView implements View
@@ -34,12 +35,44 @@ final class ChapterView implements View
 
     public function getSubChapters(): array
     {
-        preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $matches);
+        // TODO: clean up
+        preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $h2Matches);
+        preg_match_all('/<h3.*>.*<a.*href="(?<h3uri>.*?)".*<\/span>(?<h3title>.*)<\/a><\/h3>/', $this->currentChapter->body, $h3Matches);
 
         $subChapters = [];
 
-        foreach ($matches[0] as $key => $match) {
-            $subChapters[$matches['uri'][$key]] = $matches['title'][$key];
+        foreach ($h2Matches[0] as $key => $match) {
+            $h2Uri = $h2Matches['uri'][$key];
+            $h2Title = $h2Matches['title'][$key];
+            $subChapters[$h2Uri] = [
+                'title' => $h2Title,
+                'children' => [],
+            ];
+        }
+
+        foreach ($h3Matches[0] as $key => $match) {
+            $h3Uri = $h3Matches['h3uri'][$key];
+            $h3Title = $h3Matches['h3title'][$key];
+            $parentH2Uri = null;
+            $h3Position = strpos($this->currentChapter->body, $match);
+
+            foreach ($h2Matches[0] as $h2Key => $h2Match) {
+                $h2Position = strpos($this->currentChapter->body, $h2Match);
+                if ($h2Position < $h3Position) {
+                    $parentH2Uri = $h2Matches['uri'][$h2Key];
+                } else {
+                    break;
+                }
+            }
+
+            if ($parentH2Uri !== null && isset($subChapters[$parentH2Uri])) {
+                $subChapters[$parentH2Uri]['children'][$h3Uri] = $h3Title;
+            } else {
+                $subChapters[$h3Uri] = [
+                    'title' => $h3Title,
+                    'children' => [],
+                ];
+            }
         }
 
         return $subChapters;
@@ -54,12 +87,12 @@ final class ChapterView implements View
     {
         $current = null;
 
-        foreach ($this->chaptersForCategory($this->currentChapter->category) as $chapter) {
+        foreach ($this->chapterRepository->all($this->version) as $chapter) {
             if ($current) {
                 return $chapter;
             }
 
-            if ($this->isCurrent($chapter)) {
+            if ($chapter->category === $this->currentChapter->category && $chapter->slug === $this->currentChapter->slug) {
                 $current = $chapter;
             }
         }
@@ -71,8 +104,8 @@ final class ChapterView implements View
     {
         $previous = null;
 
-        foreach ($this->chaptersForCategory($this->currentChapter->category) as $chapter) {
-            if ($this->isCurrent($chapter)) {
+        foreach ($this->chapterRepository->all($this->version) as $chapter) {
+            if ($chapter->category === $this->currentChapter->category && $chapter->slug === $this->currentChapter->slug) {
                 return $previous;
             }
 
@@ -84,7 +117,7 @@ final class ChapterView implements View
 
     public function categories(): array
     {
-        return map(
+        return map_array(
             array: glob(__DIR__ . "/content/{$this->version->value}/*", flags: GLOB_ONLYDIR),
             map: fn (string $path) => str($path)->afterLast('/')->replaceRegex('/^\d+-/', '')->toString(),
         );

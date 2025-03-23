@@ -6,15 +6,16 @@ use App\Web\CommandPalette\Command;
 use App\Web\CommandPalette\Type;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalink;
 use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\Query;
 use Tempest\Support\Arr\ImmutableArray;
+use Tempest\Support\Str\ImmutableString;
 
 use function Tempest\Support\arr;
+use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Str\to_kebab_case;
-use function Tempest\Support\Str\to_title_case;
+use function Tempest\Support\Str\to_sentence_case;
 use function Tempest\uri;
 
 /**
@@ -35,21 +36,23 @@ final readonly class DocumentationIndexer
         return arr(glob(__DIR__ . "/content/{$version->value}/*/*.md"))
             ->flatMap(function (string $path) use ($version) {
                 $markdown = $this->markdown->convert(file_get_contents($path));
-                preg_match('/(?<index>\d+-)?(?<slug>.*)\.md/', pathinfo($path, PATHINFO_BASENAME), $matches);
 
                 if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
                     throw new \RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
                 }
 
-                ['title' => $title, 'category' => $category] = $markdown->getFrontMatter();
+                $path = new ImmutableString($path);
+                $category = $path->beforeLast('/')->afterLast('/')->replaceRegex('/\d+-/', '');
+                $chapter = $path->basename('.md')->replaceRegex('/\d+-/', '');
+                $title = get_by_key($markdown->getFrontMatter(), 'title');
 
                 $main = new Command(
                     type: Type::URI,
                     title: $title,
-                    uri: uri(ChapterController::class, version: $version, category: $category, slug: $matches['slug']),
+                    uri: uri(ChapterController::class, version: $version, category: $category, slug: $chapter),
                     hierarchy: [
                         'Documentation',
-                        to_title_case($category),
+                        to_sentence_case($category),
                         $title,
                     ],
                 );

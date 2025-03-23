@@ -9,7 +9,6 @@ use Tempest\Router\StaticPage;
 use Tempest\View\View;
 
 use function Tempest\Support\Arr\map_with_keys;
-use function Tempest\Support\Str\before_last;
 use function Tempest\Support\Str\strip_end;
 use function Tempest\view;
 

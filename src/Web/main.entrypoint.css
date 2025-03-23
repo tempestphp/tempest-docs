@@ -1,0 +1,194 @@
+@import 'tailwindcss' theme(static);
+@import './assets/typography.css';
+@import './assets/highlighting.css';
+
+@custom-variant light (&:where(.light, .light *));
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+	--container-8xl: 96rem;
+	--font-display: 'Kantumruy Pro Variable';
+	--font-sans: 'Public Sans Variable';
+
+	/* Falling leaves */
+	--color-leaf-1: var(--color-amber-500);
+	--color-leaf-2: var(--color-amber-600);
+	--color-leaf-3: var(--color-amber-700);
+	--color-leaf-4: var(--color-yellow-600);
+	--color-leaf-5: var(--color-yellow-700);
+	--color-leaf-6: var(--color-green-800);
+	--color-leaf-7: var(--color-green-800);
+	--color-leaf-8: var(--color-green-800);
+	--color-leaf-9: var(--color-green-900);
+
+	/* Aurora */
+	--color-aurora-1: var(--color-blue-500);
+	--color-aurora-2: var(--color-indigo-300);
+	--color-aurora-3: var(--color-blue-300);
+	--color-aurora-4: var(--color-violet-200);
+	--color-aurora-5: var(--color-blue-400);
+	--animate-aurora: aurora 60s linear infinite;
+
+	@keyframes aurora {
+		0% {
+			content: var(--tw-content);
+			background-position: 50% 50%, 50% 50%;
+		}
+		to {
+			content: var(--tw-content);
+			background-position: 350% 50%, 350% 50%;
+		}
+	}
+
+	/* Dialog animations */
+	--animate-dialog-open: dialog-open 150ms ease-out;
+	--animate-dialog-close: dialog-close 100ms ease-in;
+
+	@keyframes dialog-open {
+		from {
+			scale: 0.9;
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+			scale: 1;
+		}
+	}
+
+	@keyframes dialog-close {
+		from {
+			opacity: 1;
+			scale: 1;
+		}
+		to {
+			opacity: 0;
+			scale: 0.9;
+		}
+	}
+}
+
+@layer base {
+	html {
+		@apply scroll-smooth;
+	}
+
+	body {
+		@apply antialiased font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark !overflow-visible !pr-0;
+	}
+	:root,
+	.light {
+		--ui-header-height: --spacing(18);
+
+		@media (width > 40rem) {
+			--ui-header-height: --spacing(28);
+		}
+
+		--ui-primary: var(--color-blue-400);
+		--ui-secondary: var(--color-green-500);
+		--ui-success: var(--color-green-500);
+		--ui-info: var(--color-blue-500);
+		--ui-warning: var(--color-yellow-500);
+		--ui-error: var(--color-red-500);
+
+		--ui-text-dimmed: var(--color-slate-400);
+		--ui-text-muted: var(--color-slate-500);
+		--ui-text-toned: var(--color-slate-600);
+		--ui-text: var(--color-slate-700);
+		--ui-text-highlighted: var(--color-slate-900);
+
+		--ui-bg: var(--color-white);
+		--ui-bg-muted: var(--color-slate-50);
+		--ui-bg-elevated: var(--color-neutral-50);
+		--ui-bg-accented: var(--color-neutral-200);
+		--ui-bg-inverted: var(--color-neutral-900);
+
+		--ui-border: var(--color-slate-200);
+		--ui-border-muted: var(--color-slate-200);
+		--ui-border-accented: var(--color-slate-300);
+		--ui-border-inverted: var(--color-slate-900);
+	}
+
+	.dark {
+		--ui-primary: var(--color-blue-400);
+		--ui-secondary: var(--color-neutral-400);
+		--ui-success: var(--color-emerald-400);
+		--ui-info: var(--color-blue-400);
+		--ui-warning: var(--color-yellow-400);
+		--ui-error: var(--color-red-400);
+
+		--ui-text-dimmed: var(--color-neutral-500);
+		--ui-text-muted: var(--color-neutral-400);
+		--ui-text-toned: var(--color-neutral-300);
+		--ui-text: var(--color-neutral-200);
+		--ui-text-highlighted: var(--color-white);
+
+		--ui-bg: var(--color-neutral-950);
+		--ui-bg-muted: var(--color-neutral-900);
+		--ui-bg-elevated: var(--color-neutral-900);
+		--ui-bg-accented: var(--color-neutral-700);
+		--ui-bg-inverted: var(--color-white);
+
+		--ui-border: var(--color-neutral-800);
+		--ui-border-muted: var(--color-neutral-700);
+		--ui-border-accented: var(--color-neutral-700);
+		--ui-border-inverted: var(--color-white);
+	}
+}
+
+/*
+|--------------------------------------------------------------------------
+| Focus states
+|--------------------------------------------------------------------------
+*/
+
+a:focus-visible {
+	@apply outline-none underline decoration-dashed decoration-(--ui-primary) underline-offset-8 transition duration-200;
+}
+
+button:focus {
+	outline: none;
+}
+
+a:not(.no-primary):focus:has(svg),
+button:focus:has(svg) {
+	@apply transition duration-200 text-(--ui-primary);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Scrollbars
+|--------------------------------------------------------------------------
+*/
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Scrollbar track */
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 4px;
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+	background: var(--ui-border-accented);
+	border-radius: 4px;
+}
+
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--ui-text-dimmed);
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: var(--ui-border-accented) transparent;
+}
+
+pre {
+	line-height: 1.65em;
+}

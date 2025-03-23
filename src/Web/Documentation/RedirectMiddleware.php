@@ -15,6 +15,8 @@ use Tempest\Router\Responses\Redirect;
 use Tempest\Router\Router;
 
 use function Tempest\get;
+use function Tempest\Support\Arr\get_by_key;
+use function Tempest\Support\Arr\map_array;
 use function Tempest\Support\Regex\matches;
 use function Tempest\Support\str;
 use function Tempest\uri;
@@ -47,6 +49,12 @@ final readonly class RedirectMiddleware implements HttpMiddleware
         // Redirect to slugs without numbers
         if (matches($matched->params['category'], '/^\d+-/') || matches($matched->params['slug'], '/^\d+-/')) {
             return new Redirect($path->replaceRegex('/\/\d+-/', '/'));
+        }
+
+        // Redirect to actual version
+        $version = Version::tryFromString(get_by_key($matched->params, 'version'));
+        if ($version->value !== $matched->params['version']) {
+            return new Redirect($path->replace("/{$matched->params['version']}/", "/{$version->value}/"));
         }
 
         // Redirect to docs index if not found

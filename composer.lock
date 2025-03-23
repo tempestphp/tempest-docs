@@ -587,35 +587,35 @@
         },
         {
             "name": "giggsey/locale",
-            "version": "2.7.0",
+            "version": "2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/Locale.git",
-                "reference": "a5c65ea3c2630f27ccb78977990eefbee6dd8f97"
+                "reference": "1cd8b3ad2d43e04f4c2c6a240495af44780f809b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/Locale/zipball/a5c65ea3c2630f27ccb78977990eefbee6dd8f97",
-                "reference": "a5c65ea3c2630f27ccb78977990eefbee6dd8f97",
+                "url": "https://api.github.com/repos/giggsey/Locale/zipball/1cd8b3ad2d43e04f4c2c6a240495af44780f809b",
+                "reference": "1cd8b3ad2d43e04f4c2c6a240495af44780f809b",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4|^8.0"
+                "php": "^8.1"
             },
             "require-dev": {
                 "ext-json": "*",
-                "friendsofphp/php-cs-fixer": "^3.64",
-                "pear/pear-core-minimal": "^1.9",
+                "friendsofphp/php-cs-fixer": "^3.66",
+                "pear/pear-core-minimal": "^1.10",
                 "pear/pear_exception": "^1.0",
                 "pear/versioncontrol_git": "^0.5",
-                "phing/phing": "^2.7",
-                "php-coveralls/php-coveralls": "^2.0",
-                "phpunit/phpunit": "^8.5|^9.5",
-                "symfony/console": "^5.0|^6.0",
-                "symfony/filesystem": "^5.0|^6.0",
-                "symfony/finder": "^5.0|^6.0",
-                "symfony/process": "^5.0|^6.0",
-                "symfony/var-exporter": "^5.2|^6.0"
+                "phing/phing": "^2.17.4",
+                "php-coveralls/php-coveralls": "^2.7",
+                "phpunit/phpunit": "^10.5.45",
+                "symfony/console": "^6.4",
+                "symfony/filesystem": "6.4",
+                "symfony/finder": "^6.4",
+                "symfony/process": "^6.4",
+                "symfony/var-exporter": "^6.4"
             },
             "type": "library",
             "autoload": {
@@ -637,9 +637,9 @@
             "description": "Locale functions required by libphonenumber-for-php",
             "support": {
                 "issues": "https://github.com/giggsey/Locale/issues",
-                "source": "https://github.com/giggsey/Locale/tree/2.7.0"
+                "source": "https://github.com/giggsey/Locale/tree/2.8.0"
             },
-            "time": "2024-11-04T11:18:07+00:00"
+            "time": "2025-03-20T14:25:27+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "be2fb4332bb13145808f8f15889f3eaf125b8e2b"
+                "reference": "0b2597511b02a5804a30bc5bb10a231a92f4fb72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/be2fb4332bb13145808f8f15889f3eaf125b8e2b",
-                "reference": "be2fb4332bb13145808f8f15889f3eaf125b8e2b",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/0b2597511b02a5804a30bc5bb10a231a92f4fb72",
+                "reference": "0b2597511b02a5804a30bc5bb10a231a92f4fb72",
                 "shasum": ""
             },
             "require": {
@@ -3846,7 +3846,8 @@
                 "symfony/var-dumper": "^7.1",
                 "symfony/var-exporter": "^7.1",
                 "tempest/highlight": "^2.11.2",
-                "vlucas/phpdotenv": "^5.6"
+                "vlucas/phpdotenv": "^5.6",
+                "voku/portable-ascii": "^2.0.3"
             },
             "replace": {
                 "tempest/auth": "self.version",
@@ -3964,20 +3965,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-17T07:36:52+00:00"
+            "time": "2025-03-20T21:18:59+00:00"
         },
         {
             "name": "tempest/highlight",
-            "version": "2.11.3",
+            "version": "2.11.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/highlight.git",
-                "reference": "ef92ffe89566038f579df5ddff2f00144c0865aa"
+                "reference": "5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/ef92ffe89566038f579df5ddff2f00144c0865aa",
-                "reference": "ef92ffe89566038f579df5ddff2f00144c0865aa",
+                "url": "https://api.github.com/repos/tempestphp/highlight/zipball/5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd",
+                "reference": "5a239a92ad6bd3e506ca86a0de3e99ac9dbcb0dd",
                 "shasum": ""
             },
             "require": {
@@ -4014,7 +4015,7 @@
             "description": "Fast, extensible, server-side code highlighting",
             "support": {
                 "issues": "https://github.com/tempestphp/highlight/issues",
-                "source": "https://github.com/tempestphp/highlight/tree/2.11.3"
+                "source": "https://github.com/tempestphp/highlight/tree/2.11.4"
             },
             "funding": [
                 {
@@ -4022,7 +4023,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-14T09:11:08+00:00"
+            "time": "2025-03-19T05:38:35+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -4107,6 +4108,80 @@
                 }
             ],
             "time": "2024-07-20T21:52:34+00:00"
+        },
+        {
+            "name": "voku/portable-ascii",
+            "version": "2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voku/portable-ascii.git",
+                "reference": "b1d923f88091c6bf09699efcd7c8a1b1bfd7351d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voku/portable-ascii/zipball/b1d923f88091c6bf09699efcd7c8a1b1bfd7351d",
+                "reference": "b1d923f88091c6bf09699efcd7c8a1b1bfd7351d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0 || ~7.0 || ~9.0"
+            },
+            "suggest": {
+                "ext-intl": "Use Intl for transliterator_transliterate() support"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "voku\\": "src/voku/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Moelleken",
+                    "homepage": "https://www.moelleken.org/"
+                }
+            ],
+            "description": "Portable ASCII library - performance optimized (ascii) string functions for php.",
+            "homepage": "https://github.com/voku/portable-ascii",
+            "keywords": [
+                "ascii",
+                "clean",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/voku/portable-ascii/issues",
+                "source": "https://github.com/voku/portable-ascii/tree/2.0.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/moelleken",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/voku",
+                    "type": "github"
+                },
+                {
+                    "url": "https://opencollective.com/portable-ascii",
+                    "type": "open_collective"
+                },
+                {
+                    "url": "https://www.patreon.com/voku",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/voku/portable-ascii",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2024-11-21T01:49:47+00:00"
         }
     ],
     "packages-dev": [

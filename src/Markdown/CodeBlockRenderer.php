@@ -19,7 +19,8 @@ final class CodeBlockRenderer implements NodeRendererInterface
     ) {
     }
 
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer)
+    #[\Override]
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         if (! ($node instanceof FencedCode)) {
             throw new InvalidArgumentException('Block must be instance of ' . FencedCode::class);
@@ -42,7 +43,7 @@ final class CodeBlockRenderer implements NodeRendererInterface
 
             if ($node->getInfoWords()[1] ?? false) {
                 return <<<HTML
-                <div class="flex flex-col gap-y-0 [&>pre]:mt-0">
+                <div class="flex flex-col gap-y-0 [&>pre]:my-0 has-pre">
                      <div class="mb-2 font-mono text-(--ui-text-dimmed) text-sm">// {$node->getInfoWords()[1]}</div>
                     {$pre}
                 </div>

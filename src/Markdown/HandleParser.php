@@ -11,11 +11,13 @@ use function Tempest\Support\str;
 
 final readonly class HandleParser implements InlineParserInterface
 {
+    #[\Override]
     public function getMatchDefinition(): InlineParserMatch
     {
         return InlineParserMatch::regex('{(twitter|x|bluesky|bsky|gh|github):(.+?)(?:,(.+))?}');
     }
 
+    #[\Override]
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();

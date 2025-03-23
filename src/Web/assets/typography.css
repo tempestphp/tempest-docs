@@ -1,0 +1,95 @@
+@plugin "@tailwindcss/typography";
+
+@utility prose {
+	@apply !max-w-[unset];
+
+	& > h2:first-child {
+		@apply !mt-0;
+	}
+
+	.alert {
+		@apply my-4 relative overflow-hidden w-full rounded-md p-4 flex gap-2.5 items-start text-(--ui-text-highlighted) bg-(--ui-bg-elevated)/50 ring ring-inset ring-(--ui-border);
+
+		&.alert-warning {
+			@apply bg-(--ui-warning)/10 text-(--ui-warning) ring-(--ui-warning)/25 [--tw-prose-links:var(--ui-warning)];
+		}
+
+		&.alert-success {
+			@apply bg-(--ui-success)/10 text-(--ui-success) ring-(--ui-success)/25 [--tw-prose-links:var(--ui-success)];
+		}
+
+		&.alert-info {
+			@apply bg-(--ui-info)/5 text-(--ui-info) ring-(--ui-info)/25 [--tw-prose-links:var(--ui-info)];
+		}
+
+		div.alert-wrapper {
+			@apply flex flex-col gap-y-2;
+
+			span.alert-title {
+				@apply text-sm font-semibold inline-block;
+			}
+
+			p {
+				@apply my-0 text-sm opacity-90;
+			}
+		}
+	}
+
+	.has-pre {
+		@apply my-0;
+	}
+
+	code {
+		&::before,
+		&::after {
+			content: none;
+		}
+
+		@apply px-1.5 pt-0.5 pb-px text-sm font-mono font-medium rounded-md inline-block border border-(--ui-border-muted) text-(--ui-text-highlighted) bg-(--ui-bg-muted);
+	}
+
+	a:not(:is(.not-prose, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {
+		@apply hover:text-(--ui-text-highlighted) border-b border-(--ui-border-muted) hover:border-(--ui-text-muted) font-medium focus-visible:outline-(--ui-primary) transition-colors;
+
+		& code {
+			@apply border-dashed transition-colors;
+		}
+
+		&:hover code {
+			@apply text-(--ui-primary) border-(--ui-primary);
+		}
+	}
+
+	a {
+		@apply no-underline;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply relative text-2xl text-(--ui-text-highlighted) font-bold mt-12 mb-6 lg:scroll-mt-[calc(var(--ui-header-height))] [&>a]:focus-visible:outline-(--ui-primary) [&>a>code]:border-dashed hover:[&>a:not(.heading-permalink)>code]:border-(--ui-primary) hover:[&>a:not(.heading-permalink)>code]:text-(--ui-primary) [&>a>code]:text-xl/7 [&>a>code]:font-bold [&>a>code]:transition-colors;
+
+		&:hover a span {
+			@apply opacity-100;
+		}
+
+		& a {
+			@apply inline-flex items-baseline;
+		}
+
+		& a span:has(svg) {
+			@apply translate-y-px absolute -ms-9 opacity-0 p-1 bg-(--ui-bg-elevated) hover:text-(--ui-primary) rounded-md hidden lg:flex text-(--ui-text-muted) transition border border-(--ui-border);
+		}
+
+		& a span svg {
+			@apply size-4;
+		}
+	}
+
+	h3 {
+		@apply text-xl;
+	}
+}

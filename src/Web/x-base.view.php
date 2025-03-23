@@ -51,7 +51,7 @@
 
     <x-slot name="head"/>
 </head>
-<body :class="trim($bodyClass ?? '')" class="relative antialiased flex flex-col grow">
+<body :class="trim($bodyClass ?? '')" class="relative antialiased flex flex-col grow selection:bg-(--ui-primary)/20 selection:text-(--ui-primary)">
 <div class="absolute pointer-events-none inset-0 bg-repeat" style="background-image: url(/noise.svg)">
     <div id="command-palette"></div>
 </div>

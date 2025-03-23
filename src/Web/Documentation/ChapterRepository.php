@@ -10,6 +10,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\Support\arr;
+use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Regex\replace;
 use function Tempest\Support\str;
 
@@ -39,7 +40,9 @@ final readonly class ChapterRepository
             throw new \RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
         }
 
-        ['title' => $title, 'category' => $category, 'description' => $description] = $markdown->getFrontMatter() + ['description' => null];
+        $frontmatter = $markdown->getFrontMatter();
+        $title = get_by_key($frontmatter, 'title');
+        $description = get_by_key($frontmatter, 'description');
 
         return new Chapter(
             version: $version,
@@ -59,13 +62,13 @@ final readonly class ChapterRepository
         return arr(glob(__DIR__ . "/content/{$version->value}/*{$category}/*.md"))
             ->map(function (string $path) use ($version) {
                 $content = file_get_contents($path);
-                $category = str($path)->beforeLast('/')->afterLast('/');
+                $category = str($path)->beforeLast('/')->afterLast('/')->replaceRegex('/^\d+-/', '');
 
                 preg_match('/(?<index>\d+-)?(?<slug>.*)\.md/', pathinfo($path, PATHINFO_BASENAME), $matches);
 
                 return [
                     'version' => $version,
-                    'slug' => $matches['slug'],
+                    'slug' => replace($matches['slug'], '/^\d+-/', ''),
                     'index' => $matches['index'],
                     'category' => $category->toString(),
                     ...YamlFrontMatter::parse($content)->matter(),

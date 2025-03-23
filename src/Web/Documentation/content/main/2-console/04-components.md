@@ -1,6 +1,5 @@
 ---
 title: Components
-category: console
 ---
 
 Console components are Tempest's way of providing interactivity via the console. There are a number

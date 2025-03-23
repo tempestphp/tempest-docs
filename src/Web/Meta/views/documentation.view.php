@@ -8,7 +8,7 @@
 		<div class="flex items-center gap-x-1 mt-1 text-xs text-(--ui-text-muted)">
 			<span>Documentation</span>
 			<span>/</span>
-			<span>{{ \Tempest\Support\Str\to_title_case($chapter->category) }}</span>
+			<span>{{ \Tempest\Support\Str\to_sentence_case($chapter->category) }}</span>
 		</div>
 	</div>
 </x-meta-image>

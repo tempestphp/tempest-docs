@@ -1,5 +1,6 @@
 <?php
 use function Tempest\uri;
+
 ?>
 
 <x-component name="x-meta-image">
