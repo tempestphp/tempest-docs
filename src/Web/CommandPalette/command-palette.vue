@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { ComboboxContent, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxLabel, ComboboxRoot } from 'reka-ui'
+import { ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxLabel, ComboboxRoot } from 'reka-ui'
 import { registerPalette } from './register-palette'
 import BaseDialog from './base-dialog.vue'
 import { handleCommand, useSearch } from './use-search'
@@ -34,14 +34,14 @@ registerPalette({ value: open })
 				@escape-key-down="open = false"
 			>
 				<!-- No result -->
-				<div v-if="!Object.values(results).filter(Boolean)?.length" class="p-4 w-full text-center grow">
+				<combobox-empty class="p-4 w-full text-center grow">
 					<template v-if="query">
 						No result. Try another query.
 					</template>
 					<template v-else>
 						Type something to search.
 					</template>
-				</div>
+				</combobox-empty>
 
 				<!-- Group by category -->
 				<combobox-group v-for="category in results" :key="category.title">
@@ -51,8 +51,8 @@ registerPalette({ value: open })
 					</combobox-label>
 					<!-- Items -->
 					<combobox-item
-						v-for="item in category.children"
-						:key="item.hierarchy.join('_')"
+						v-for="(item, c) in category.children"
+						:key="item.hierarchy.join('_') + c"
 						:as="item.type === 'uri' ? 'a' : 'button'"
 						:value="item"
 						:href="item.uri"
@@ -60,7 +60,7 @@ registerPalette({ value: open })
 						@select="(e) => handleCommand(item, e)"
 					>
 						<div class="flex items-center gap-x-1 text-(--ui-text-dimmed)">
-							<template v-for="(breadcrumb, i) in item.hierarchy.slice(1)" :key="breadcrumb">
+							<template v-for="(breadcrumb, i) in item.hierarchy.slice(1)" :key="breadcrumb + i + c">
 								<template v-if="breadcrumb !== item.title">
 									<span class="inline-block font-medium text-sm" v-text="breadcrumb" />
 									<svg
