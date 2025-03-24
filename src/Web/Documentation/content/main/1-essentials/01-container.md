@@ -37,7 +37,7 @@ Initializers are classes that know how to construct a specific class or interfac
 
 ### Implementing an initializer
 
-Initializers are classes that implement the {`\Tempest\Container\Initializer`} interface. The `initialize` method receives the container as its only parameter, and returns an instanciated object.
+Initializers are classes that implement the {`Tempest\Container\Initializer`} interface. The `initialize` method receives the container as its only parameter, and returns an instanciated object.
 
 **Most importantly**, Tempest knows which object this initializer is tied to thanks to the return type of the `initialize` method, which needs to be typed.
 

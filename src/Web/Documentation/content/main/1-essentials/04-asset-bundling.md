@@ -73,7 +73,7 @@ For Vite to bundle this file in production, it still needs to be [configured as 
 
 If you prefer, you may opt-out of the `*.entrypoint.{ts,cs,js}` naming convention and manually configure entrypoints in the Vite configuration.
 
-To do so, create a `vite.config.php` file that returns a {`\Tempest\Vite\ViteConfig`} instance. You should configure the `entrypoints` parameter:
+To do so, create a `vite.config.php` file that returns a {`Tempest\Vite\ViteConfig`} instance. You should configure the `entrypoints` parameter:
 
 ```php app/vite.config.php
 return new ViteConfig(
@@ -162,7 +162,7 @@ final class ConfigureViteNonce implements HttpMiddleware
 }
 ```
 
-The `register` method above is an [event handler](../2-tempest-in-depth/07-events) that is called when Tempest boots. It registers the middleware on the injected {`\Tempest\Router\Router`} instance, effectively registering it for every route.
+The `register` method above is an [event handler](../2-tempest-in-depth/07-events) that is called when Tempest boots. It registers the middleware on the injected {`Tempest\Router\Router`} instance, effectively registering it for every route.
 
 Alternatively, you may also set the `nonce` directly in the event handler. However, keep in mind that this would be called every time the framework boots, even when only using console commands.
 

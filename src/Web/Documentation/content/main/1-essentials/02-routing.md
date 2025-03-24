@@ -7,7 +7,7 @@ description: "Routing is the core of any web application. In Tempest, attributes
 
 In Tempest, a route may be associated to any class' method, although this is usually done in dedicated controller classes.
 
-Tempest provides many attributes, named after HTTP vebs, to attach URIs to controller actions. These attributes implement the {`\Tempest\Router\Route`} interface, so you can write your own if you need to.
+Tempest provides many attributes, named after HTTP vebs, to attach URIs to controller actions. These attributes implement the {`Tempest\Router\Route`} interface, so you can write your own if you need to.
 
 ```php app/HomeController.php
 use Tempest\Router\Get;
@@ -26,15 +26,15 @@ final readonly class HomeController
 
 Out of the box, the following attributes are available:
 
-- {`\Tempest\Router\Get`}
-- {`\Tempest\Router\Post`}
-- {`\Tempest\Router\Delete`}
-- {`\Tempest\Router\Put`}
-- {`\Tempest\Router\Patch`}
-- {`\Tempest\Router\Options`}
-- {`\Tempest\Router\Connect`}
-- {`\Tempest\Router\Trace`}
-- {`\Tempest\Router\Head`}
+- {`Tempest\Router\Get`}
+- {`Tempest\Router\Post`}
+- {`Tempest\Router\Delete`}
+- {`Tempest\Router\Put`}
+- {`Tempest\Router\Patch`}
+- {`Tempest\Router\Options`}
+- {`Tempest\Router\Connect`}
+- {`Tempest\Router\Trace`}
+- {`Tempest\Router\Head`}
 
 ## Route parameters
 
@@ -170,7 +170,7 @@ is_uri(AircraftController::class, id: 2); // false
 
 ## Accessing request data
 
-A core pattern of any web application is to access data from the current request. You may do so by injecting {`\Tempest\Router\Request`} to a controller action. This class provides access to the request's body, query parameters, method, and other attributes through dedicated class properties.
+A core pattern of any web application is to access data from the current request. You may do so by injecting {`Tempest\Router\Request`} to a controller action. This class provides access to the request's body, query parameters, method, and other attributes through dedicated class properties.
 
 ### Using request classes
 
@@ -178,7 +178,7 @@ In most situations, the data you expect to receive from a request is structured.
 
 The idiomatic way to achieve this is by using request classes. They are classes with public properties that correspond to the data you want to retrieve from the request. Tempest will automatically validate these properties using PHP's type system, in addition to optional [validation attributes](../1-tempest-in-depth/02-validation) if needed.
 
-A request class must implement {`\Tempest\Router\Request`} and should use the {`\Tempest\Router\IsRequest`} trait, which provides the default implementation.
+A request class must implement {`Tempest\Router\Request`} and should use the {`Tempest\Router\IsRequest`} trait, which provides the default implementation.
 
 ```php app/RegisterAirportRequest.php
 use Tempest\Router\Request;
@@ -263,7 +263,7 @@ final readonly class ReceiveInteractionController
 }
 ```
 
-The middleware class must be an invokable class that implements the {`\Tempest\Router\HttpMiddleware`} interface. This interface has an `{php}__invoke()` method that accepts the current request as its first parameter and {`\Tempest\Router\HttpMiddlewareCallable`} as its second parameter.
+The middleware class must be an invokable class that implements the {`Tempest\Router\HttpMiddleware`} interface. This interface has an `{php}__invoke()` method that accepts the current request as its first parameter and {`Tempest\Router\HttpMiddlewareCallable`} as its second parameter.
 
 `HttpMiddlewareCallable` is an invokable class that forwards the `$request` to its next step in the pipeline.
 
@@ -317,7 +317,7 @@ Tempest has a powerful templating system inspired by modern front-end frameworks
 
 ### Using built-in response classes
 
-Tempest provides several classes, all implementing the {`\Tempest\Router\Response`} interface, mostly named after HTTP statuses.
+Tempest provides several classes, all implementing the {`Tempest\Router\Response`} interface, mostly named after HTTP statuses.
 
 - `{php}Ok` — the 200 response. Accepts an optional body.
 - `{php}Created` — the 201 response. Accepts an optional body.
@@ -356,7 +356,7 @@ final readonly class FlightPlanController
 
 It might happen that you need to dynamically compute the response's status code, and would rather not use a condition to send the corresponding response object.
 
-You may then return an instance of {`\Tempest\Router\GenericResponse`}, specifying the status code and an optional body.
+You may then return an instance of {`Tempest\Router\GenericResponse`}, specifying the status code and an optional body.
 
 ```php app/CreateFlightController.php
 use Tempest\Router\Get;
@@ -385,7 +385,7 @@ final readonly class CreateFlightController
 
 There are situations where you might send the same kind of response in a lot of places, or you might want to have a proper API for sending a structured response.
 
-You may create your own response class by implementing {`\Tempest\Router\Response`}, which default implementation is provided by the {`\Tempest\Router\IsResponse`} trait:
+You may create your own response class by implementing {`Tempest\Router\Response`}, which default implementation is provided by the {`Tempest\Router\IsResponse`} trait:
 
 ```php app/AircraftRegistered.php
 use Tempest\Router\IsResponse;
@@ -411,7 +411,7 @@ final class AircraftRegistered implements Response
 
 Tempest is able to automatically infer the response's content type, usually inferred from the request's `Accept` header.
 
-However, you may override the content type manually by specifying the `setContentType` method on `Response` clases. This method accepts a case of {`\Tempest\Router\ContentType`}.
+However, you may override the content type manually by specifying the `setContentType` method on `Response` clases. This method accepts a case of {`Tempest\Router\ContentType`}.
 
 ```php app/JsonController.php
 use Tempest\Router\Get;
@@ -435,7 +435,7 @@ final readonly class JsonController
 
 It is often a requirement to have a bunch of routes following the same specifications—for instance, using the same middleware, or the same URI prefix.
 
-To achieve this, you may create your own route attribute, implementing the {`\Tempest\Router\Route`} interface. The constructor of the attribute may hold the logic you want to apply to the routes using it.
+To achieve this, you may create your own route attribute, implementing the {`Tempest\Router\Route`} interface. The constructor of the attribute may hold the logic you want to apply to the routes using it.
 
 ```php app/RestrictedRoute.php
 use Attribute;

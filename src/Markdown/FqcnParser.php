@@ -34,7 +34,7 @@ final readonly class FqcnParser implements InlineParserInterface
 
         [$fqcn] = $inlineContext->getSubMatches();
         $url = str($fqcn)
-            ->stripStart('\\Tempest\\')
+            ->stripStart(['\\Tempest\\', 'Tempest\\'])
             ->replaceRegex("/^(\w+)/", 'src/Tempest/$0/src')
             ->replace('\\', '/')
             ->prepend('https://github.com/tempestphp/tempest-framework/blob/main/')

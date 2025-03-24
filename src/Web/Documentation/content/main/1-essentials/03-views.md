@@ -37,7 +37,7 @@ Inside, a `x-post` [component](#view-components) is rendered multiple times than
 
 ## Rendering views
 
-As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`\Tempest\View\View`} object.
+As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
@@ -83,7 +83,7 @@ final class AircraftController
 }
 ```
 
-To create a view object, implement the {`\Tempest\View\View`} interface, and add the {`\Tempest\View\IsView`} trait, which provides the default implementation.
+To create a view object, implement the {`Tempest\View\View`} interface, and add the {`Tempest\View\IsView`} trait, which provides the default implementation.
 
 ```php app/AircraftView.php
 use Tempest\View\View;
@@ -353,7 +353,7 @@ The above example uses a slot named `styles` in its `<head>` element. The `<body
 
 Within a view component, a `$slots` variable will always be provided, allowing you to dynamically access the named slots within the component.
 
-This variable is an instance of {`\Tempest\View\Slot`}, with has a handful of properties:
+This variable is an instance of {`Tempest\View\Slot`}, with has a handful of properties:
 - `{php}$slot->name`: the slot's name
 - `{php}$slot->content`: the compiled content of the slot
 - `{php}$slot->attributes`: all the attributes defined on the slot
@@ -380,7 +380,7 @@ For instance, the snippet below implements a tab component that accepts any numb
 
 While anonymous components are useful on their own, there is sometimes the need to have more logic regarding the rendering of an element.
 
-By creating a class that implements {`\Tempest\View\ViewComponent`}, you may affect the rendering process of a component. As with everything in Tempest, class components are automatically discovered and registered.
+By creating a class that implements {`Tempest\View\ViewComponent`}, you may affect the rendering process of a component. As with everything in Tempest, class components are automatically discovered and registered.
 
 ```php ViteTagsComponent.php
 use Tempest\View\Elements\ViewComponentElement;
@@ -457,7 +457,7 @@ Optionally, it accepts an `entrypoint` attribute. If it is passed, the component
 
 In most applications, a lot of views will need access to common data. To avoid having to manually provide this data to views through controller methods, it is possible to use view processors to manipulate views before they are rendered.
 
-To create a view processor, implement the {`\Tempest\View\ViewProcessor`} interface on a class. This interface requires a `process` method, which accepts and returns the view that will be rendered.
+To create a view processor, implement the {`Tempest\View\ViewProcessor`} interface on a class. This interface requires a `process` method, which accepts and returns the view that will be rendered.
 
 ```php
 use Tempest\View\View;
@@ -552,13 +552,13 @@ return new ViewConfig(
 
 ### Using something else
 
-Tempest refers to the view configuration to determine which view renderer should be used. By default, it uses Tempest View's renderer, {`\Tempest\View\Renderers\TempestViewRenderer`}. When using Blade or Twig, we provided {`\Tempest\View\Renderers\BladeViewRenderer`} or {`\Tempest\View\Renderers\TwigViewRenderer`}, respectively.
+Tempest refers to the view configuration to determine which view renderer should be used. By default, it uses Tempest View's renderer, {`Tempest\View\Renderers\TempestViewRenderer`}. When using Blade or Twig, we provided {`Tempest\View\Renderers\BladeViewRenderer`} or {`Tempest\View\Renderers\TwigViewRenderer`}, respectively.
 
 #### Implementing your own renderer
 
-If you prefer using another templating engine, you will need to write your own renderer by implementing the {`\Tempest\View\ViewRenderer`} interface.
+If you prefer using another templating engine, you will need to write your own renderer by implementing the {`Tempest\View\ViewRenderer`} interface.
 
-This interface only requires a `render` method. It will be responsible for taking a {`\Tempest\View\View`} instance and rendering it to a PHP file.
+This interface only requires a `render` method. It will be responsible for taking a {`Tempest\View\View`} instance and rendering it to a PHP file.
 
 As an example, the Blade renderer is as simple as the following:
 

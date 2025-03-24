@@ -83,7 +83,7 @@ final readonly class AdminController
 
 ## Built-in user model
 
-Tempest's authenticator and authorizer are compatible with any class implementing the {`\Tempest\Auth\CanAuthenticate`} and {`\Tempest\Auth\CanAuthorize`} interfaces. However, Tempest comes with a pre-built `User` model that makes it easier to get started. In order to use Tempest's `User` implementation, you must install the auth files:
+Tempest's authenticator and authorizer are compatible with any class implementing the {`Tempest\Auth\CanAuthenticate`} and {`Tempest\Auth\CanAuthorize`} interfaces. However, Tempest comes with a pre-built `User` model that makes it easier to get started. In order to use Tempest's `User` implementation, you must install the auth files:
 
 ```
 ./tempest install auth
