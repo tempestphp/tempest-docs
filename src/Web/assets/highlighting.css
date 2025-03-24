@@ -3,10 +3,11 @@
 	--code-background: var(--ui-bg-elevated);
 	--code-foreground: var(--ui-text);
 	--code-keyword: #4f95d1;
-	--code-property: #4cb966;
+	--code-property: #37954e;
 	--code-type: #d14f57;
 	--code-generic: #9d3af6;
 	--code-value: #515248;
+	--code-variable: #515248;
 	--code-comment: #888888;
 	--code-highlight: #22dddd33;
 	--code-addition: #00ff0022;
@@ -31,6 +32,7 @@
 	--code-type: #25b0bc;
 	--code-generic: #b877db;
 	--code-value: #f09483;
+	--code-variable: #f09483;
 	--code-comment: #6c6f93;
 	--code-highlight: #2e303e;
 	--code-addition: #09f7a052;
@@ -75,7 +77,9 @@
 	color: var(--code-comment);
 	font-style: italic;
 }
-
+.hl-variable {
+  color: var(--code-variable);
+}
 .hl-blur {
 	filter: blur(2px);
 }
