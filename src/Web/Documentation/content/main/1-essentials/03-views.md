@@ -5,17 +5,15 @@ description: "Tempest provides a modern templating engine with syntax inspired b
 
 ## Overview
 
-Tempest uses its own templating engine, Tempest View, as the default. Its syntax is based on HTML, and is always syntactically valid HTML. Under the hood, Tempest uses [PHP 8.4's DOM parser](https://www.php.net/manual/en/book.dom.php) to parse templates before compiling them.
+Views in Tempest use a syntax that can be thought of as a superset of HTML. Under the hood, [PHP 8.4's DOM parser](https://www.php.net/manual/en/book.dom.php) is used to parse templates before compiling them.
 
-If you prefer using templating engines that have more widespread support, you may also use Blade, Twig, or any other engine, as long as you provide a way to initialize it. To do so, refer to the [related documentation](#using-other-engines).
+If you prefer using a templating engine with more widespread support, [you may also use Blade, Twig, or any other](#using-other-engines)—as long as you provide a way to initialize it.
 
 ### Syntax overview
 
-Tempest views' syntax can be thought of as a superset of HTML. The control flow is implemented using HTML attributes that start with colons `:`.
-
 The following is an example of a view that inherits the `x-base` component, passing a `title` property.
 
-Inside, a `x-post` component is rendered multiple times thanks to a foreach loop on `$this->posts`. That component has a default slot, in which the post details are rendered.
+Inside, a `x-post` [component](#view-components) is rendered multiple times thanks to a [foreach loop](#foreach-and-forelse) on `$this->posts`. That component has a default [slot](#using-slots), in which the post details are rendered. The [control flow](#control-flow-directives) is implemented using HTML attributes that start with colons `:`.
 
 ```html
 <x-base title="Home">
@@ -39,7 +37,7 @@ Inside, a `x-post` component is rendered multiple times thanks to a foreach loop
 
 ## Rendering views
 
-As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view()` function. This function is a shorthand for instanciating a {`\Tempest\View\View`} object.
+As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`\Tempest\View\View`} object.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
