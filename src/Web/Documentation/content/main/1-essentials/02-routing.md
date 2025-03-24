@@ -154,7 +154,7 @@ Note that Tempest does not have named routes, and currently doesn't plan on addi
 To determine whether the current request matches a specific controller action, Tempest provides the `\Tempest\is_uri` function. This function accepts the same arguments as `uri`, and returns a boolean.
 
 ```php
-use function Tempest\uri;
+use function Tempest\is_uri;
 
 // Current URI is: /aircraft/1
 
