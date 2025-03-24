@@ -87,7 +87,7 @@
 		--ui-secondary: var(--color-green-500);
 		--ui-success: var(--color-green-500);
 		--ui-info: var(--color-blue-500);
-		--ui-warning: var(--color-yellow-500);
+		--ui-warning: var(--color-yellow-600);
 		--ui-error: var(--color-red-500);
 
 		--ui-text-dimmed: var(--color-slate-400);
