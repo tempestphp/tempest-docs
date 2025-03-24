@@ -1,12 +1,21 @@
 ---
 title: Views
+description: "Tempest provides a modern templating engine with syntax inspired by the best front-end frameworks. However, Blade, Twig or any other engine can be used if you prefer so."
 ---
 
-Tempest supports three templating engines: Tempest View, Twig, and Blade. Tempest View is a new templating engine, while Twig and Blade have widespread support because of Symfony and Laravel. Tempest View is the default templating engine when creating Tempest projects, but the end of this page discusses how to install and switch to Twig or Blade instead.
+## Overview
 
-## View files
+Tempest uses its own templating engine, Tempest View, as the default. Its syntax is based on HTML, and is always syntactically valid HTML. Under the hood, Tempest uses [PHP 8.4's DOM parser](https://www.php.net/manual/en/book.dom.php) to parse templates before compiling them.
 
-Here's an example of what a Tempest view looks like:
+If you prefer using templating engines that have more widespread support, you may also use Blade, Twig, or any other engine, as long as you provide a way to initialize it. To do so, refer to the [related documentation](#using-other-engines).
+
+### Syntax overview
+
+Tempest views' syntax can be thought of as a superset of HTML. The control flow is implemented using HTML attributes that start with colons `:`.
+
+The following is an example of a view that inherits the `x-base` component, passing a `title` property.
+
+Inside, a `x-post` component is rendered multiple times thanks to a foreach loop on `$this->posts`. That component has a default slot, in which the post details are rendered.
 
 ```html
 <x-base title="Home">
@@ -28,543 +37,161 @@ Here's an example of what a Tempest view looks like:
 </x-base>
 ```
 
-You can think of {`tempest/view`} as a superset of HTML, we'll dive deeper into the syntax later in this chapter.
+## Rendering views
 
-## Returning views
+As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view()` function. This function is a shorthand for instanciating a {`\Tempest\View\View`} object.
 
-Returning views from controllers can be done in two ways: either by using the `{php}view()` function, or by returning a `{php}View` object.
-
-```php
-// app/HomeController.php
-
+```php app/AircraftController.php
 use Tempest\Router\Get;
 use Tempest\View\View;
 use function Tempest\view;
 
-final readonly class HomeController
+final readonly class AircraftController
 {
-    #[Get(uri: '/home')]
-    public function __invoke(): View
+    #[Get(uri: '/aircraft/{aircraft}')]
+    public function show(Aircraft $aircraft): View
     {
-        return view('Views/home.view.php')
-            ->data(
-                name: 'Brent',
-                date: new DateTime(),
-            );
-
-        // Or
-
-        return new HomeView(
-            name: 'Brent',
-            date: new DateTime(),
-        );
+        return view('aircraft.view.php', aircraft: $aircraft);
     }
 }
 ```
 
-The `{php}view()` function will construct a generic view object for you. It's more flexible, but custom view objects offer some benefits.
-
 ### View paths
 
-View files can be referenced in multiple ways. You can use absolute paths:
+The `view` function accepts the path to a view as its first parameter. This path may be relative or absolute, depending on your preference.
+
+The following three examples are equivalent:
 
 ```php
-view(__DIR__ . '/../Views/home.view.php');
+return view(__DIR__ . '/views/home.view.php');
+return view('./views/home.view.php');
+return view('views/home.view.php');
 ```
 
-Or you can use relative paths:
+### Using dedicated view objects
+
+A view object is a dedicated class that represent a specific view.
+
+Using view objects will improve static insights in your controllers and view files, and may offer more flexibiltiy regarding how the data may be constructed before being passed on to a view file.
 
 ```php
-view('Views/home.view.php');
+final class AircraftController
+{
+    #[Get('/aircraft/{type}/{aircraft}')]
+    public function show(AircraftType $type, Aircraft $aircraft): AircraftView
+    {
+        return new AircraftView($aircraft, $type);
+    }
+}
 ```
 
-When you're using relative paths, Tempest will search all registered [discovery locations](/docs/internals/discovery), as well as files relative to the controller where the view was created. For example, if you write `view('./home.view.php)`, Tempest will first check whether there's a view file within the same directory as where the controller requiring this view is located.
+To create a view object, implement the {`\Tempest\View\View`} interface, and add the {`\Tempest\View\IsView`} trait, which provides the default implementation.
 
-## Escaping data
-
-Tempest supports both a custom echo tag, and raw PHP tags to write data to views:
-
-```html
-{{ $var }}
-{!! $var !!}
-
-<?= $var ?>
-```
-
-Note how the `{{ $var }}` notation will escape values automatically, while the `<?= $var ?>` will not. There's also the `{!! $var !!}` equivalent, which will print out a variable without escaping.
-
-## View objects
-
-The benefit of view objects — a dedicated class that represents a view — is that view object will improve static insights both in your controllers and view files, and offer more flexibility for view-specific data and methods.
-
-A view object is a class that implements the `View` interface, it can optionally set a path to a fixed view file, and provide data in its constructor.
-
-```php
-// app/HomeView.php
-
+```php app/AircraftView.php
 use Tempest\View\View;
 use Tempest\View\IsView;
 
-final class HomeView implements View
+final class AircraftView implements View
 {
     use IsView;
 
     public function __construct(
-        public string $name,
-        public DateTime $date,
+        public Aircraft $aircraft,
+        public AircraftType $type,
     ) {
-        $this->path = __DIR__ . '/home.view.php';
+        $this->path = root_path('src/Aircraft/aircraft.view.php');
     }
 }
 ```
 
-The view file itself looks like this, note how we add a docblock to indicated that `$this` is an instance of `HomeView`.
+In a view file rendered by a view object, you may add a type annotation for `$this`. This allows IDEs like [PhpStorm](https://www.jetbrains.com/phpstorm/) to infer variables and methods.
 
-```html
-<!-- app/home.view.php -->
-
+```html src/Aircraft/aircraft.view.php
 <?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
-Hello, {{ $this->name }}
-```
-
-Not only variables, but also view object methods are available within view file. Let's say our view object has a method `formatDate()`:
-
-```php
-// app/HomeView.php
-
-use Tempest\View\View;
-
-final class HomeView implements View
-{
-    // …
-
-    public function formatDate(DateTimeImmutable $date): string
-    {
-        return $date->format('Y-m-d');
-    }
-}
-```
-
-Then a view file can access it like so:
-
-```html
-{{ $this->formatDate($post->date) }}
+<p :if="$this->type === AircraftType::PC24">
+	The {{ $this->aircraft->icao_code }} is a light business jet
+	produced by Pilatus Aircraft of Switzerland.
+</p>
 ```
 
 View objects are an excellent way of encapsulating view-related logic and complexity, moving it away from controllers, while simultaneously improving static insights.
 
-## View components
+## Templating syntax
 
-Tempest views don't have concepts like _extending_ or _including_ other views. Instead, Tempest follows a component-based approach, and tries to stay as close to HTML as possible. A component can be a view file or PHP class, which eventually is referenced within other view files as HTML elements.
+### Text interpolation
 
-Let's say you want a base layout that can be used by all other views. You could create a base component like so:
-
-```html
-<!-- app/components/x-base.view.php -->
-
-<x-component name="x-base">
-    <html lang="en">
-        <head>
-            <title :if="$title">{{ $title }} | Tempest</title>
-            <title :else>Tempest</title>
-        </head>
-        <body>
-
-        <x-slot />
-
-        </body>
-    </html>
-</x-component>
-```
-
-This component will be automatically discovered. Note that, in order for view components to be discovered, **they must be suffixed with `.view.php`.
-
-Once a view component is discovered, you can use it in any other view. In our example, you can wrap any view you want within the `{html}<x-base></x-base>` tags, and the view's content will be injected within the base layout:
+Text interpolation is done using the "mustache" syntax. This will escape the given variable or PHP expression before rendering it.
 
 ```html
-<!-- app/home.view.php -->
-
-<x-base :title="$this->post->title">
-    <article>
-        {{ $this->post->body }}
-    </article>
-</x-base>
+<span>Welcome, {{ $username }}</span>
 ```
 
-As you can see, data to the parent component can be passed via attributes: all attributes on a view component element will be available within the view component. Attributes prefixed with a colon `:` will be evaluated as PHP code, while normal attributes will be treated as hard-coded values:
+To avoid escaping the data, you may use the following syntax. This should only be used on trusted, sanitized data, as this can open the door to an [XSS vulnerability](https://en.wikipedia.org/wiki/Cross-site_scripting):
 
 ```html
-<x-base :title="$this->post->title"></x-base>
-
-<x-base title="Hello World"></x-base>
-```
-
-Both attributes in the above example will be available as `$title` in the `{html}<x-base/>` component:
-
-```html
-<!-- app/components/x-base.view.php -->
-
-<x-component name="x-base">
-    <title :if="$title">{{ $title }} | Tempest</title>
-    <title :else>Tempest</title>
-</x-component>
-```
-
-Please note some limitations of attribute mapping to PHP variables:
-
-1. camelCase or PascalCase attribute names are automatically converted to all-lowercase variables, this is due to limitations in PHP's DOM extension: all attribute names are automatically converted to lowercase:
-
-```html
-<x-base metaType="test" />
-```
-
-```html
-<x-component name="x-base">
-    {{ $metatype }}
-</x-component>
-```
-
-2. kebab-cased attributes are converted to camelCase variables:
-
-```html
-<x-parent meta-type="test" />
-```
-
-```html
-<x-component name="x-base">
-    {{ $metaType }}
-</x-component>
-```
-
-3. snake_cased attributes are converted to camelCase variables:
-
-```html
-<x-parent meta_type="test" />
-```
-
-```html
-<x-component name="x-base">
-    {{ $metaType }}
-</x-component>
-```
-
-Because of these limitations, **it is recommended to always use kebab-cased attribute names.**
-
-## View inheritance and inclusion
-
-Instead of extending or including views, Tempest relies on view components. From a technical point of view, there's no difference between extending or including components: each component can be embedded within a view or another component, and each component can define one or more slots to inject data in.
-
-Here's an example of inheritance with view components:
-
-```html
-<!-- app/components/x-base.view.php -->
-
-<x-component name="x-base">
-    <html lang="en">
-        <head>
-            <title :if="$title">{{ $title }} | Tempest</title>
-            <title :else>Tempest</title>
-        </head>
-        <body>
-
-        <x-slot />
-
-        </body>
-    </html>
-</x-component>
-```
-
-```html
-<!-- app/home.view.php -->
-
-<x-base title="Hello World">
-    Contents
-</x-base>
-```
-
-And here's an example of inclusion with view components:
-
-```html
-<!-- app/components/x-input.view.php -->
-
-<x-component name="x-input">
-    <div>
-        <label :for="$name">{{ $label }}</label>
-
-        <input :type="$type" :name="$name" :id="$name" />
-    </div>
-</x-component>
-```
-
-```html
-<!-- home.view.php -->
-
-<x-input name="user_email" type="email" label="Provide your email address" />
-```
-
-### Named slots
-
-When using views components for inheritance, you can define zero, one, or more slots. Slots are used to inject data in from the view that's using this component. There's a default slot named `<x-slot />`, but you can define an arbitrary amount of named slots as well.
-
-```html
-<!-- app/components/x-base.view.php -->
-
-<x-component name="x-base">
-    <html lang="en">
-        <head>
-            <!-- … -->
-
-            <x-slot name="styles" />
-        </head>
-        <body>
-
-        <x-slot />
-
-        </body>
-    </html>
-</x-component>
-```
-
-```html
-<!-- app/home.view.php -->
-
-<x-base title="Hello World">
-    <!-- This part will be injected into the styles slot -->
-    <x-slot name="styles">
-        <style>
-            body {
-                /* … */
-            }
-        </style>
-    </x-slot>
-
-    <!-- Everything not living in a slot will be injected into the default slot -->
-    <p>
-        Hello World
-    </p>
-</x-base>
-```
-
-### Dynamic slots
-
-Within a view component, there will always be a variable called `$slots`, which allows you to dynamically access the available named slots within the component:
-
-```html
-<x-component name="x-tabs">
-    <x-codeblock :foreach="$slots as $slot">
-        <h1>{{ $slot->name }}</h1>
-
-        <h2>{{ $slot->attributes['language'] }}</h2>
-        <!-- Or -->
-        <h2>{{ $slot->language }}</h2>
-
-        <div>{!! $slot->content !!}</div>
-    </x-codeblock>
-</x-component>
-
-<x-tabs>
-    <x-slot name="php" language="PHP">This is the PHP tab</x-slot>
-    <x-slot name="js" language="JavaScript">This is the JS tab</x-slot>
-    <x-slot name="html" language="HTML">This is the HTML tab</x-slot>
-</x-tabs>
-```
-
-A `$slot` variable is an instance of `\Tempest\View\Slot`, and has a handful of properties:
-
-- `$slot->name`: the slot's name
-- `$slot->attributes`: all the attributes defined on the slot, they can also be accessed directly via `$slot->attributeName`
-- `$slot->content`: the compiled content of the slot
-
-### Dynamic attributes
-
-Besides `$slots`, there will also be a variable called `$attributes` in every view component, which allows you to dynamically access the attributes that were passed to a view component. Note that only data attributes will be accessible, expression attributes will not. Also, attribute names will always be written as `kebab-case`.
-
-```html
-<x-component name="x-with-attributes">
-    <div x-data="custom {{ $attributes['x-data'] }}"></div>
-</x-component>
-
-<x-with-attributes x-data="too"></x-with-attributes>
-
-<!-- <div x-data="custom too"></div> -->
-```
-
-### Fallthrough attributes
-
-There are a handful of special attributes that will always be merged within the view component's root element: `{html}class`, `{html}style`, and `{html}id`.
-
-```html
-<x-component name="x-with-fallthrough-attributes">
-    <div></div>
-</x-component>
-
-<x-with-fallthrough-attributes class="foo" style="background: red;" id="bar"></x-with-fallthrough-attributes>
-
-<!-- <div class="foo" style="background: red;" id="bar"></div> -->
-```
-
-Note that `{html}class` and `{html}style` attributes will be merged together, while the `id` attribute will overwrite any original value defined in the view component:
-
-```html
-<x-component name="x-with-fallthrough-attributes">
-    <div class="bar" style="text-decoration: underline;" id="original"></div>
-</x-component>
-
-<x-with-fallthrough-attributes class="foo" style="background: red;" id="overwrite"></x-with-fallthrough-attributes>
-
-<!-- <div class="bar foo" style="text-decoration: underline; background: red;" id="overwrite"></div> -->
-```
-
-## View component classes
-
-View components can live solely within a `.view.php` file, in which case they are called **anonymous view components**. However, it's also possible to define a class to represent a view component. One of the main benefits of doing so, is that **view component classes** are resolved via the container, meaning they can request any dependency available within your project, and Tempest will autowire it for you. View component classes are also discovered automatically, and must implement the `ViewComponent` interface.
-
-For example, here's the implementation of `{html}<x-input>`, a view component shipped with Tempest that will render an input field, together with its original values and errors. It needs access to the `Session` to retrieve validation errors. This is a good use case for a view component class:
-
-```php
-use Tempest\View\ViewComponent;
-use Tempest\View\Elements\ViewComponentElement;
-
-final readonly class Input implements ViewComponent
-{
-    public function __construct(
-        private Session $session,
-    ) {
-    }
-
-    public static function getName(): string
-    {
-        return 'x-input';
-    }
-
-    public function compile(ViewComponentElement $element): string
-    {
-        $name = $element->getAttribute('name');
-        $label = $element->getAttribute('label');
-        $type = $element->getAttribute('type');
-        $default = $element->getAttribute('default');
-
-        $errors = $this->getErrorsFor($name);
-
-        $errorHtml = '';
-
-        if ($errors) {
-            $errorHtml = '<div>' . implode('', array_map(
-                fn (Rule $failingRule) => "<div>{$failingRule->message()}</div>",
-                $errors,
-            )) . '</div>';
-        }
-
-        return <<<HTML
 <div>
-    <label for="{$name}">{$label}</label>
-    <input type="{$type}" name="{$name}" id="{$name}" value="{$this->original($name, $default)}" />
-    {$errorHtml}
+	{!! $content !!}
 </div>
-HTML;
-    }
-
-    public function original(string $name, mixed $default = ''): mixed
-    {
-        return $this->session->get(Session::ORIGINAL_VALUES)[$name] ?? $default;
-    }
-
-    /** @return \Tempest\Validation\Rule[] */
-    public function getErrorsFor(string $name): array
-    {
-        return $this->session->get(Session::VALIDATION_ERRORS)[$name] ?? [];
-    }
-}
 ```
 
-## Expression attributes
+### Expression attributes
 
-Expression attributes are attributes that will be evaluated as PHP code. We've already mentioned how expression attributes can be used to pass data into view components:
+Expression attributes are HTML attributes that are evaluated as PHP code. Their syntax is the same as HTML attributes, except they are identified by a colon `:`:
 
 ```html
-<x-base :title="$this->post->title"></x-base>
+<html :lang="$this->user->language"></h1>
+<!-- <html lang="en"></h1> -->
 ```
 
-But they can also be used to print out data as attribute values:
+As with text interpolation, only variables and PHP expressions that return a value are allowed. Mustache and PHP opening tags cannot be used inside them:
 
 ```html
-<div :data-lang="$language"></div>
-
-<!-- Will be rendered as -->
-<div data-lang="php"></div>
+<!-- This is invalid -->
+<h1 :title="<?= $this->post->title ?>"></h1>
 ```
 
-There are a couple of rules to take into account when using expression attributes.
+When using expression attributes on normal HTML elements, only [scalar](https://www.php.net/manual/en/language.types.type-system.php#language.types.type-system.atomic.scalar) and `Stringable` values can be returned. However, any object can be passed down to a [component](#view-components).
 
-1. You can use PHP expressions in expression attributes. For example:
+### Boolean attributes
 
-```html
-<a :href="strtoupper('string')"></a>
+The HTML specification describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present.
 
-<!-- Or -->
-<a :href="$url ?? 'default'"></a>
-```
-
-2. You're not allowed to use echo tags in expression attributes:
-
-```html
-<!-- InvalidExpressionAttribute -->
-
-<a :href="{{ $href }}"></a>
-<a :href="<?php $href ?>"></a>
-<a :href="<?= $href ?>"></a>
-```
-
-3. Expression attributes can be used to pass data — including objects to view components:
-
-```html
-<x-post :post="$post"></x-post>
-```
-
-4. However, only stringable values or expressions that evaluate to something printable can be used on normal HTML elements:
-
-```html
-<!-- Invalid: cannot print $post -->
-<div :post="$post"></div>
-```
-
-5. Expression attributes on view components will never be automatically be printed anywhere within the view component. They will be available as variables though:
-
-```html
-<x-component>
-    <h2>{{ $post->title }}</h2>
-    <p>{{ $post->description }}</p>
-</x-component>
-```
-
-## Boolean attributes
-
-The HTML spec describes a special kind of attributes called [boolean attributes](https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#boolean-attribute). These attributes don't have a value, but indicate `true` whenever they are present. The most common example is probably the `selected` attribute on `{html}<option>` tags, though there are a lot more (you can find them listed among others in [this table](https://html.spec.whatwg.org/multipage/indices.html#attributes-3)).
-
-Tempest comes with built-in support to toggle boolean attributes on and off, you use expression attributes combined with boolean variables like so:
+Using an expression attribute that return a boolean variable will follow the HTML specification, effectively not rendering the attribute if the value is `false`.
 
 ```html
 <option :value="$value" :selected="$selected">{{ $label }}</option>
 ```
 
-This will be compiled to this:
+Depending on whether `$selected` evaluates to `true` or `false`, the above example may or may not render the `selected` attribute.
+
+### Control flow directives
+
+#### `:if`, `:elseif` and `:else`
+
+The `:if` directive can conditionally render the element it is attached to, depending on the result of its expression. Similarly, the `:elseif` and `:else` directives can be used on direct siblings for additional control.
 
 ```html
-<option value="value" {:hl-property:selected:}>Label</option>
+<span :if="$this->pendingUploads->isEmpty()">Import files</span>
+<span :else>Import {{ $this->pendingUploads->count() }} file(s)</span>
 ```
 
-Or this:
+#### `:foreach` and `:{:hl-keyword:forelse:}`
+
+The `:foreach` directive may be used to render the associated element multiple times based on the result of its expression. Combined with `:{:hl-keyword:forelse:}`, an empty state can be displayed when the data is empty.
 
 ```html
-<option value="value">Label</option>
+<li :foreach="$this->reports as $report">
+  {{ $report->title }}
+</li>
+<li :forelse>
+	There is no report.
+</li>
 ```
 
-Depending on whether `$selected` evaluates to `true` or `false`.
+### Templates
 
-## Templates
-
-Tempest views come with a built-in `{html}<x-template>` tag, which can be used to add control structures without rendering an actual HTML tag:
+The built-in `{html}<x-template>` element may be used as a placeholder when you want to use a directive without rendering an actual element in the DOM.
 
 ```html
 <x-template :foreach="$posts as $post">
@@ -572,7 +199,7 @@ Tempest views come with a built-in `{html}<x-template>` tag, which can be used t
 </x-template>
 ```
 
-Will be compiled to
+The example above will only render the child `div` elements:
 
 ```html
 <div>Post A</div>
@@ -580,9 +207,259 @@ Will be compiled to
 <div>Post C</div>
 ```
 
+## View components
+
+Components allow for splitting the user interface into independent and reusable pieces.
+
+Tempest doesn't have a concept of extending other views. Instead, a component may include another component using the same syntax as other HTML elements.
+
+### Registering view components
+
+To create a view component, create a `.view.php` file that starts with `x-`. These files are referred to as anonymous view components and are automatically discovered by Tempest.
+
+```html app/x-base.view.php
+<html lang="en">
+	<head>
+		<title :if="$title">{{ $title }} — AirAcme</title>
+		<title :else>AirAcme</title>
+	</head>
+	<body>
+		<x-slot />
+	</body>
+</html>
+```
+
+### Using view components
+
+All views may include a views components. In order to do so, you may simply use a component's name as a tag, including the `x-` prefix:
+
+```html app/home.view.php
+<x-base :title="$this->post->title">
+	<article>
+		{{ $this->post->body }}
+	</article>
+</x-base>
+```
+
+The example above demonstrates how to pass data to a component using an [expression attribute](#expression-attributes), as well as how pass elements as children if that component where the `<x-slot />` tag is used.
+
+### Attributes in components
+
+Attributes and [expression attributes](#expression-attributes) may be passed into view components. They work the same way as normal elements, and their values will be available in variables of the same name:
+
+```php home.view.php
+<x-base :title="$this->post->title">
+	// ...
+</x-base>
+```
+```php x-base.view.php
+// ...
+<title :if="$title">{{ $title }}</title>
+```
+
+Note that the casing of attributes will affect the associated variable name:
+- `{txt}camelCase` and `{txt}PascalCase` attributes will be converted to `$lowercase` variables
+- `{txt}kebab-case` and `{txt}snake_case` attributes will be converted to `$camelCase` variables.
+
+:::info
+The idiomatic way of using attributes is to always use `{txt}kebab-case`.
+:::
+
+### Fallthrough attributes
+
+When `{html}class` and `{html}style` attributes are used on a view component, they will automatically be added to the root node, or merged with the existing attribute if it already exists.
+
+```html x-button.view.php
+<button class="rounded-md px-2.5 py-1.5 text-sm">
+	<!-- ... -->
+</button>
+```
+
+The example above defines a button component with a default set of classes. Using this component and providing another set of classes will merge them together:
+
+```html index.view.php
+<x-button class="text-gray-100 bg-gray-900" />
+```
+
+Similarly, the `id` attribute will always replace an existing `id` attribute on the root node of a view component.
+
+### Dynamic attributes
+
+An `$attributes` variable is accessible within view components. This variable is an array that contains all attributes passed to the component, except expression attributes.
+
+Note that attributes names use `{txt}kebab-case`.
+
+```html x-badge.view.php
+<span class="px-2 py-1 rounded-md text-sm bg-gray-100 text-gray-900">
+	{{ $attributes['value'] }}
+</span>
+```
+
+### Using slots
+
+The content of components is often dynamic, depending on external context to be rendered. View components may define zero or more slot outlets, which may be used to render the given HTML fragments.
+
+```html x-button.view.php
+<button class="rounded-md px-2.5 py-1.5 text-sm text-gray-100 bg-gray-900">
+	<x-slot />
+</button>
+```
+
+The example above defines a button component with default classes, and a slot inside. This component may be used like a normal HTML element, providing the content that will be rendered in the slot outlet:
+
+```html index.view.php
+<x-button>
+	<!-- This will be injected into the <x-slot /> outlet -->
+	<x-icon name="tabler:x" />
+	<span>Delete</span>
+</x-button>
+```
+
+### Named slots
+
+When a single slot is not enough, names can be attached to them. When using a component with named slot, you may use the `<x-slot>` tag with a `name` attribute to render content in a named outlet:
+
+```html x-base.view.php
+<html lang="en">
+	<head>
+		<!-- … -->
+		<x-slot name="styles" />
+	</head>
+	<body>
+		<x-slot />
+	</body>
+</html>
+```
+
+The above example uses a slot named `styles` in its `<head>` element. The `<body>` element has a default, unnamed slot. A view component may use `<x-base>` and optionally refer to the `styles` slot using the syntax mentionned above, or simply provide content that will be injected in the default slot:
+
+```html index.view.php
+<x-base title="Hello World">
+	<!-- This part will be injected into the "styles" slot -->
+	<x-slot name="styles">
+		<style>
+			body {
+				/* … */
+			}
+		</style>
+	</x-slot>
+
+	<!-- Everything not living in a slot will be injected into the default slot -->
+	<p>
+		Hello World
+	</p>
+</x-base>
+```
+
+### Dynamic slots
+
+Within a view component, a `$slots` variable will always be provided, allowing you to dynamically access the named slots within the component.
+
+This variable is an instance of {`\Tempest\View\Slot`}, with has a handful of properties:
+- `{php}$slot->name`: the slot's name
+- `{php}$slot->content`: the compiled content of the slot
+- `{php}$slot->attributes`: all the attributes defined on the slot
+- `{php}$slot->{attribute}`: dynamically access an attribute defined on the slot
+
+For instance, the snippet below implements a tab component that accepts any number of tabs.
+
+```html x-tabs.view.php
+<div :foreach="$slots as $slot">
+	<h1 :title="$slot->title">{{ $slot->name }}</h1>
+	<p>{!! $slot->content !!}</p>
+</div>
+```
+
+```html
+<x-tabs>
+	<x-slot name="php" title="PHP">This is the PHP tab</x-slot>
+	<x-slot name="js" title="JavaScript">This is the JavaScript tab</x-slot>
+	<x-slot name="html" title="HTML">This is the HTML tab</x-slot>
+</x-tabs>
+```
+
+### View component classes
+
+While anonymous components are useful on their own, there is sometimes the need to have more logic regarding the rendering of an element.
+
+By creating a class that implements {`\Tempest\View\ViewComponent`}, you may affect the rendering process of a component. As with everything in Tempest, class components are automatically discovered and registered.
+
+```php ViteTagsComponent.php
+use Tempest\View\Elements\ViewComponentElement;
+use Tempest\View\ViewComponent;
+
+final readonly class ViteTagsComponent implements ViewComponent
+{
+    public function __construct(
+        private ViteConfig $viteConfig,
+    ) {
+    }
+
+    public static function getName(): string
+    {
+        return 'x-vite-tags';
+    }
+
+    public function compile(ViewComponentElement $element): string
+    {
+        $entrypoints = match (true) {
+            $element->hasAttribute('entrypoints') => '$entrypoints',
+            default => var_export($this->viteConfig->entrypoints, return: true),
+        };
+
+        return <<<HTML
+            <?= \Tempest\\vite_tags({$entrypoints}) ?>
+        HTML;
+    }
+}
+```
+
+The above is a simplified implementation of the built-in `{html}<x-vite-tags />`. The `{php}compile` method is expected to return normal PHP, that will not be parsed again by the templating engine.
+
+## Built-in components
+
+Besides components that you may create yourself, Tempest provides a default set of useful built-in components to improve your developer experience.
+
+### `x-icon`
+
+This component provides the ability to inject any icon from the [Iconify](https://iconify.design/) project in your templates.
+
+```html
+<x-icon name="material-symbols:php" class="size-4 text-indigo-400" />
+```
+
+The first time a specific icon is being rendered, Tempest will query the [Iconify API](https://iconify.design/docs/api/queries.html) to fetch the corresponding SVG tag. The result of this query will be cached indefinitely, so it can be reused at no furthemr cost.
+
+:::info
+Iconify has a large collection of icon sets, which you may browse using the [Icônes](https://icones.js.org/) directory.
+:::
+
+### `x-vite-tags`
+
+Tempest has built-in support for [Vite](https://vite.dev/), the most popular front-end development server and build tool. You may read more about [asset bundling](./04-assets-bundling) in the dedicated documentation.
+
+This component simply inject registered entrypoints where it is called.
+
+```html x-base.view.php
+<html lang="en">
+	<head>
+		<x-vite-tags />
+	</head>
+	<!-- ... -->
+</html>
+```
+
+Optionally, it accepts an `entrypoint` attribute. If it is passed, the component will not inject other entrypoints discovered by Tempest.
+
+```html x-base.view.php
+<x-vite-tags entrypoint="src/main.ts" />
+```
+
 ## View processors
 
-View processors are classes that manipulate a view before it is rendered. They are automatically discovered and can be used to add data to multiple view files at once. Here's an already complexer example of a view processor that will add a star count from GitHub to every view that implements `WithStarCount`:
+In most applications, a lot of views will need access to common data. To avoid having to manually provide this data to views through controller methods, it is possible to use view processors to manipulate views before they are rendered.
+
+To create a view processor, implement the {`\Tempest\View\ViewProcessor`} interface on a class. This interface requires a `process` method, which accepts and returns the view that will be rendered.
 
 ```php
 use Tempest\View\View;
@@ -591,92 +468,157 @@ use Tempest\View\ViewProcessor;
 final class StarCountViewProcessor implements ViewProcessor
 {
     public function __construct(
-        private readonly Github $github,
+        private readonly GitHub $github,
     ) {}
 
     public function process(View $view): View
     {
-        if (! $view instanceof WithStarCount) {
+        if (! $view instanceof WithStargazersCount) {
             return $view;
         }
 
-        return $view->data(starCount: $this->github->getStarCount());
+        return $view->data(stargazers: $this->github->getStarCount());
     }
 }
 ```
 
+The example above provides the `$stargazers` variable to all view classes that implement the `WithStargazersCount` interface.
+
 ## View caching
 
-Tempest views are compiled to plain PHP code before being rendered. In production, these compiled views should be cached. Enabling the view cache on production can be done by setting the `{txt}{:hl-property:CACHE:}` environment variable:
+Tempest views are always compiled to plain PHP code before being rendered. During development, this is done on-the-fly, every time. In production, these compiled views should be cached to avoid the performance overhead. This is done by setting the `{txt}{:hl-property:VIEW_CACHE:}` environment variable:
 
-```env
-{:hl-comment:# .env:}
-
-{:hl-property:CACHE:}={:hl-keyword:true:}
+```env .env
+{:hl-property:VIEW_CACHE:}={:hl-keyword:true:}
 ```
 
-For production projects with view caching enabled, it'll be important to **clear that view cache on deployment**. You do that by running `tempest cache:clear --all` on every deploy. You can read more about caching and view caching in [the cache chapter](/docs/framework/caching).
+During deployments, that cache must be cleared in order to not serve outdated views to users. You may do that by running `tempest cache:clear --all` on every deploy. You can read more about caching and view caching in [the cache chapter](../1-tempest-in-depth/04-caching).
 
-## Using Twig
+## Using other engines
 
-In case you prefer to use Twig, you can switch to Twig exactly like Blade above. First, install Twig:
+While Tempest View is simple to use, it currently lacks tooling support from editors and IDEs. You may also simply prefer other templating engines. For these reasons, you may use any other engine or your choice.
 
-```
+Out-of-the-box, Tempest has support for Twig and Blade. Note that the view loaders for other engines are not based on Tempest's discovery, so the syntax to refer to a specific view might differ.
+
+### Using Twig
+
+You will first need to install the Twig engine. It is provided by the `twig/twig` package:
+
+```sh
 composer require twig/twig
 ```
 
-Next, create a twig config file:
+The next step is to provide the configuration needed for Twig to find your view files.
 
-```php
-// app/Config/twig.config.php
-
+```php app/twig.config.php
 return new TwigConfig(
     viewPaths: [
-        __DIR__ . '/../views/',
+        __DIR__ . '/views/',
     ],
-
-    cachePath: __DIR__ . '/../views/cache/',
 );
 ```
 
-Finally, switch over to using the Twig renderer:
+Finally, update the view configuration to use the Twig renderer:
 
-```php
-// app/Config/view.config.php
-
+```php view.config.php
 return new ViewConfig(
     rendererClass: \Tempest\View\Renderers\TwigViewRenderer::class,
 );
 ```
 
-## Using Blade
+### Using Blade
 
-In case you prefer to use Blade instead of Tempest views, you can switch to Blade with a couple of steps. First, install Blade:
+You will first need to install the Blade engine. Tempest provides a bridge distributed as `tempest/blade`:
 
 ```
 composer require tempest/blade
 ```
 
-Next, create a blade config file:
+The next step is to provide the configuration needed for Blade to find your view files.
 
-```php
-// app/Config/blade.config.php
-
+```php blade.config.php
 return new BladeConfig(
     viewPaths: [
-        __DIR__ . '/../views/',
+        __DIR__ . '/views/',
     ],
-
-    cachePath: __DIR__ . '/../views/cache/',
 );
 ```
 
-Finally, switch over to using the Blade renderer:
+Finally, update the view configuration to use the Blade renderer:
 
-```php
-// app/Config/view.config.php
-
+```php view.config.php
 return new ViewConfig(
     rendererClass: \Tempest\View\Renderers\BladeViewRenderer::class,
 );
+```
+
+### Using something else
+
+Tempest refers to the view configuration to determine which view renderer should be used. By default, it uses Tempest View's renderer, {`\Tempest\View\Renderers\TempestViewRenderer`}. When using Blade or Twig, we provided {`\Tempest\View\Renderers\BladeViewRenderer`} or {`\Tempest\View\Renderers\TwigViewRenderer`}, respectively.
+
+#### Implementing your own renderer
+
+If you prefer using another templating engine, you will need to write your own renderer by implementing the {`\Tempest\View\ViewRenderer`} interface.
+
+This interface only requires a `render` method. It will be responsible for taking a {`\Tempest\View\View`} instance and rendering it to a PHP file.
+
+As an example, the Blade renderer is as simple as the following:
+
+```php
+use Tempest\Blade\Blade;
+use Tempest\View\View;
+use Tempest\View\ViewRenderer;
+
+final readonly class BladeViewRenderer implements ViewRenderer
+{
+    public function __construct(
+        private Blade $blade,
+    ) {
+    }
+
+    public function render(View|string|null $view): string
+    {
+        return $this->blade->render($view->path, $view->data);
+    }
+}
+```
+
+Once your renderer is implemented, you will need to configure Tempest to use it. This is done by creating or updating a `ViewConfig`:
+
+```php view.config.php
+return new ViewConfig(
+    rendererClass: YourOwnViewRenderer::class,
+);
+```
+
+#### Initializing your engine
+
+The renderer will be called every time a view is rendered. If your engine has an initialization step, it may be a good idea to use a singleton [initializer](../1-essentials/01-container#dependency-initializers) to construct it.
+
+As an example, here is a simplified version of the initializer that creates the `Blade` object, used by the Blade renderer:
+
+```php
+use Tempest\Blade\Blade;
+use Tempest\Container\Container;
+use Tempest\Container\DynamicInitializer;
+use Tempest\Container\Singleton;
+use Tempest\Reflection\ClassReflector;
+
+final readonly class BladeInitializer implements DynamicInitializer
+{
+    public function canInitialize(ClassReflector $class): bool
+    {
+        return $class->getName() === Blade::class;
+    }
+
+    #[Singleton]
+    public function initialize(ClassReflector $class, Container $container): object
+    {
+        $bladeConfig = $container->get(BladeConfig::class);
+
+        return new Blade(
+            viewPaths: $bladeConfig->viewPaths,
+        );
+    }
+}
 ```

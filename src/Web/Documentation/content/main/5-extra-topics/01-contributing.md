@@ -1,27 +1,12 @@
 ---
 title: Contributing
+keywords: "How do I"
 ---
 
 Welcome aboard! We're excited that you are interested in contributing to the Tempest framework. We value all contributions to the project and have assembled the following resources to help you get started. Thanks for being a contributor!
 
-## How do I...
+## Report an error or bug
 
-* Ask about...
-[🐞  An Error or Bug](#report-an-issue)
-[💡  A Feature](#request-a-feature)
-* Make...
-[📖  A Contribution to Documentation](#contribute-to-the-documentation)
-[🔨  A Contribution to the Code](#contribute-code)
-
-<!--
-TODO: Add these sections.
-* Manage...
-  * [❓  Issues and Pull Requests]()
-  * [📦  Sub-split packages]()
-  * [✅  Releases]()
--->
-
-## Report an issue
 To report an error or a bug, please:
 
 * Head over to the [issue page](https://github.com/tempestphp/tempest-framework/issues) to open an issue.
@@ -39,7 +24,8 @@ Once the issue has been opened, the Tempest team will:
 In the event that an issue is opened, but we get no response within 30 days, the issue will be closed.
 
 ## Request a feature
-Tempest is a work in progress! We recognize that some features you might benefit from or expect may be missing. If you do have a feature request, please:
+
+Tempest is a work in progress. We recognize that some features you might benefit from or expect may be missing. If you do have a feature request, please:
 
 * Head over to the [issue page](https://github.com/tempestphp/tempest-framework/issues) to open an issue.
 * Provide as much detail about the feature you are looking for and how it might benefit you and others.
@@ -49,14 +35,19 @@ Once the feature request has been opened, the Tempest team will:
 <!-- TODO: Update this section with some links -->
 * Label the issue appropriately.
 * Ask any clarifying question to help better understand the use case.
-* If the feature requested is accepted, the Tempest team will assign the "Uncharted Waters" label. A Tempest team member or a member of the community can contribute the code for this.
+* If the feature requested is accepted, the Tempest team will assign the `{txt}Uncharted waters` label. A Tempest team member or a member of the community can contribute the code for this.
 
-**We welcome all contributions and greatly value your time and effort. To ensure your work aligns with Tempest's vision and avoids unnecessary effort, we aim to provide clear guidance and feedback throughout the process.**
+:::tip
+We welcome all contributions and greatly value your time and effort. To ensure your work aligns with Tempest's vision and avoids unnecessary effort, we aim to provide clear guidance and feedback throughout the process.
+:::
 
-## Contribute to the documentation
+## Contribute documentation
+
 Documentation is how users learn about the framework, and developers begin to understand how Tempest works under the hood. It's critical to everything we do! Thank you in advance for your assistance in ensuring Tempest documentation is extensive, user-friendly, and up-to-date.
 
-**We welcome contributions of any size! Feel free to submit a pull request, even if it's just fixing a typo or adding a sentence.**
+:::tip
+We welcome contributions of any size! Feel free to submit a pull request, even if it's just fixing a typo or adding a sentence. We especially value additions coming from new users' perspectives, which help make Tempest more accessible.
+:::
 
 To contribute to Tempest's documentation, please:
 * Head over to the [Tempest docs repository](https://github.com/tempestphp/tempest-docs) to fork the project.
@@ -71,16 +62,19 @@ Once a pull request has been opened, the Tempest team will:
 * If your pull request is accepted, we will mark it as such and merge it into the project. It will be released in the next tagged version! 🎉
 
 ## Contribute code
-So you want to dive into the code! We cannot wait to get your pull request! To make the most of your time, please ensure that any contributions pertain to an approved feature request or a confirmed bug. This helps us focus on the vision for Tempest and ensuring the best developer experience.
 
-To contribute to Tempest's code, please:
-* [Setup Tempest Locally](#setting-up-tempest-locally)
+So, you want to dive into the code. To make the most of your time, please ensure that any contributions pertain to an approved feature request or a confirmed bug. This helps us focus on the vision for Tempest and ensuring the best developer experience.
+
+To contribute to Tempest's code, you will need to first [setup Tempest locally](#setting-up-tempest-locally). Then,
 * Make the relevant code changes.
 * Write tests that verify that your contribution works as expected.
 * Run `composer qa` to ensure you are adhering to our style guidelines.
-* Document your changes in the CHANGELOG following the [Keep a Changelog](https://keepachangelog.com) format.
-* Go to https://github.com/tempestphp/tempest-framework/pulls and create a pull request with your changes.
-* If your pull request is connected to an open issue, add a line in your description that says `Fixes: #xxx`, where `#xxx` is the number of the issue you're fixing.
+* Create a [pull request](https://github.com/tempestphp/tempest-framework/pulls) with your changes.
+* If your pull request is connected to an open issue, add a line in your description that says `{txt}Fixes #xxx`, where `{txt}#xxx` is the number of the issue you're fixing.
+
+:::tip Pull request titles
+We use [conventional commits](#commit-and-merge-conventions) to automatically generate readable changelogs. You may help with this by providing a clear pull request title, which will appear in the changelog and needs to be understandable without the pull request's content as a context. Read more about this in the [pull requests](#pull-requests) section.
+:::
 
 Once a pull request has been opened, the Tempest team will:
 * Use GitHub reviews to review your pull request.
@@ -89,33 +83,74 @@ Once a pull request has been opened, the Tempest team will:
 * If we decide to pass on your pull request, we will thank you for your contribution and explain our decision. We appreciate all the time contributors put into Tempest!
 * If your pull request is accepted, we will mark it as such and merge it into the project. It will be released in the next tagged version! 🎉
 
-### Setting up Tempest Locally
-* Install PHP
-* Install Composer
-* [Fork the Tempest repository.](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+### Setting up Tempest locally
 
-Then in your terminal run:
-```shell
+* Install PHP.
+* Install Composer.
+* Install [Bun](https://bun.sh) or Node.
+* [Fork and clone](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo) the Tempest repository.
+
+In your terminal, run:
+```sh
 cd /path/to/your/clone
 composer update
+bun install
+bun dev
 ```
 
 You're ready to get started!
 
+#### Linking your local Tempest to another local Tempest application
+
+If you have another Tempest application with which you want to use your local version of the framework, you may do so with [composer symlinking](https://getcomposer.org/doc/05-repositories.md#path).
+
+Add the following in your `composer.json`, replacing `{txt}/path/to/your/clone` with the absolute path to your local version of the framework:
+
+```json
+{
+  // ...
+  "repositories": [
+    {
+      "type": "path",
+      "url": "/path/to/your/clone"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true
+  // ...
+}
+```
+
+You may then run `{sh}composer require "tempest/framework:*"`.
+
+If you are also working on one of the JavaScript packages, you may also symlink them to your local Tempest application by running `{sh}bun install /path/to/your/clone/package`. Note that the path must be to the actual JavaScript package, and not the root of the framework.
+
+For instance, assuming you cloned the framework in `/Users/you/Code/forks/tempest`, the command to symlink `vite-plugin-tempest` should look like that:
+
+```sh
+bun install /Users/you/Code/forks/tempest/packages/vite-plugin-tempest
+```
+
+Do not forget to run `bun dev` in the root of your local version of the framework, so your changes can be reflected on your local application without needing to run `bun build` each time.
+
 ### Styling decisions
+
 Tempest uses a modified version of PSR-12. We automate the entire styling process because we know everyone is used to different standards and workflows. To see some of the rules we enforce, check out our [Mago](https://github.com/tempestphp/tempest-framework/blob/main/mago.toml) and [Rector](https://github.com/tempestphp/tempest-framework/blob/main/rector.php) configurations.
 
 The following outlines some other guidelines we have established for Tempest.
 
 #### `final` and `readonly` as a default
+
 Whenever possible, classes should be `final` and `readonly`. This practice promotes immutability and prevents inadvertent changes to logic.
 
-_Resources_
-* [Why I use final](https://www.youtube.com/watch?v=HiD6CwWq5Ds&ab_channel=PHPAnnotated)
+:::tip
+You may watch this [video](https://www.youtube.com/watch?v=HiD6CwWq5Ds&ab_channel=PHPAnnotated) to understand my thoughts about using `final`.
+:::
 
 ---
 
 #### Acronym casing
+
 Tempest uses a modified version of the [.NET best practices](https://learn.microsoft.com/en-us/previous-versions/dotnet/netframework-4.0/ms229043(v=vs.100)?redirectedfrom=MSDN) for acronym casing. Please see below for our guidelines:
 
 __Do capitalize all characters of two to three character acronyms, except the first word of a camel-cased identifier.__
@@ -130,26 +165,25 @@ A class named `Uuid` is an example of a long acronym (Uuid) used as the first wo
 ---
 
 #### Validation class formatting
-[final and readonly](#final-and-readonly-as-a-default)
-2. __Error Message Formatting__:
-    - __Avoid Ending Punctuation__: When crafting error messages for validation rules, refrain from including ending punctuation such as periods, exclamation marks, or question marks. This helps in maintaining a uniform style and prevents inconsistency in error message presentation.
 
-__✅&nbsp;Good Example__
-> Value should be a valid email address
+1. __Error message formatting__:
+    - __Avoid ending punctuation__. When writing error messages for validation rules, refrain from including ending punctuation such as periods, exclamation marks, or question marks. This helps in maintaining a uniform style and prevents inconsistency in error message presentation.
 
-__❌&nbsp;Bad Example__
-> Value should be a valid email address!
+```diff
+- Value should be a valid email address!
++ Value should be a valid email address
+```
 
 ## Release workflow
 
-**Tempest uses sub-splits to allow components to be installed as individual packages. The following outlines how this process works.**
+Tempest uses sub-splits to allow components to be installed as individual packages. The following outlines how this process works.
 
 ### Workflow steps
 
-1. **Trigger Event**
+1. **Trigger event**
     - When a pull request is merged, or a new tag is created, the `.github/workflows/subsplit-packages.yml` action is run.
 
-2. **Package Information Retrieval**
+2. **Package information retrieval**
     - When the `subsplit-packages.yml` is run, it calls `bin/get-packages`.
     - This PHP script uses a combination of Composer and the filesystem to return (in JSON) some information about every package. It returns the:
         - **Directory**
@@ -158,11 +192,11 @@ __❌&nbsp;Bad Example__
         - **Organization**
         - **Repository**
 
-3. **Action Matrix Creation**
+3. **Action matrix creation**
     - The result of the `get-packages` command is then used to create an action matrix.
     - This ensures that the next steps are performed for _every_ package discovered.
 
-4. **Monorepo Split Action**
+4. **Monorepo split action**
     - The `symplify/monorepo-split-github-action@v2.3.0` GitHub action is called for every package and provided the necessary information (destination repo, directory, etc.).
     - This action takes any changes and pushes them to the sub-split repository determined by combining the "Organization" and "Repository" values returned in step 2.
     - Depending on whether a tag is found or not, a tag is also supplied so the repository is tagged appropriately.
@@ -197,13 +231,13 @@ Scopes are not mandatory, but are highly recommended for consistency and easy of
 Here are some commit examples:
 
 ```
-feat(support): add `StringHelper` class
-feat(support/string): add `uuid` method
-perf(discovery): improve cache efficiency
-refactor(highlight): improve code readability
-docs: mention new `highlight` package
-chore: update dependencies
-style: apply php-cs-fixer
+{:hl-property:feat:}({:hl-keyword:support:}): add `StringHelper` class
+{:hl-property:feat:}({:hl-keyword:support/string:}): add `uuid` method
+{:hl-property:perf:}({:hl-keyword:discovery:}): improve cache efficiency
+{:hl-property:refactor:}({:hl-keyword:highlight:}): improve code readability
+{:hl-property:docs:}: mention new `highlight` package
+{:hl-property:chore:}: update dependencies
+{:hl-property:style:}: apply php-cs-fixer
 ```
 
 ### Pull requests

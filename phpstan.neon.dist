@@ -1,5 +1,0 @@
-parameters:
-	level: 4
-	paths:
-		- app
-		- tests

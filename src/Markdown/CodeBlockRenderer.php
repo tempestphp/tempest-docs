@@ -43,8 +43,8 @@ final class CodeBlockRenderer implements NodeRendererInterface
 
             if ($node->getInfoWords()[1] ?? false) {
                 return <<<HTML
-                <div class="flex flex-col gap-y-0 [&>pre]:my-0 has-pre">
-                     <div class="mb-2 font-mono text-(--ui-text-dimmed) text-sm">// {$node->getInfoWords()[1]}</div>
+                <div class="named-code-block">
+                     <div class="code-block-name">{$node->getInfoWords()[1]}</div>
                     {$pre}
                 </div>
                 HTML;

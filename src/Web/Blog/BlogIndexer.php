@@ -9,6 +9,8 @@ use League\CommonMark\MarkdownConverter;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\Support\arr;
+use function Tempest\Support\Arr\get_by_key;
+use function Tempest\Support\Arr\wrap;
 use function Tempest\uri;
 
 final readonly class BlogIndexer
@@ -29,7 +31,12 @@ final readonly class BlogIndexer
                     throw new \RuntimeException(sprintf('Blog entry [%s] is missing a frontmatter.', $path));
                 }
 
-                ['title' => $title, 'author' => $author, 'description' => $description] = $markdown->getFrontMatter();
+                $frontmatter = $markdown->getFrontMatter();
+                $title = get_by_key($frontmatter, 'title');
+                $author = get_by_key($frontmatter, 'author');
+                $description = get_by_key($frontmatter, 'description');
+                $keywords = get_by_key($frontmatter, 'keywords');
+                $tags = get_by_key($frontmatter, 'tag');
 
                 $main = new Command(
                     type: Type::URI,
@@ -37,12 +44,14 @@ final readonly class BlogIndexer
                     uri: uri([BlogController::class, 'show'], slug: $matches['slug']),
                     hierarchy: [
                         'Blog',
-                        $author,
+                        Author::tryFrom($author)?->getName() ?? 'Tempest',
                         $title,
                     ],
                     fields: [
-                        'author' => $author,
-                        'description' => $description,
+                        $author,
+                        $description,
+                        ...wrap($keywords),
+                        ...wrap($tags),
                     ],
                 );
 
