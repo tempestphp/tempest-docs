@@ -490,7 +490,7 @@ Tempest views are always compiled to plain PHP code before being rendered. Durin
 {:hl-property:VIEW_CACHE:}={:hl-keyword:true:}
 ```
 
-During deployments, that cache must be cleared in order to not serve outdated views to users. You may do that by running `tempest cache:clear --all` on every deploy. You can read more about caching and view caching in [the cache chapter](../1-tempest-in-depth/04-caching).
+During deployments, that cache must be cleared in order to not serve outdated views to users. You may do that by running `tempest view:clear` on every deploy. You can read more about caching and view caching in [the cache chapter](../1-tempest-in-depth/04-caching).
 
 ## Using other engines
 
