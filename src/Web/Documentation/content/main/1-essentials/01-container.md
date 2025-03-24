@@ -9,6 +9,10 @@ A dependency container is a system that manages the creation and resolution of o
 
 Tempest has a dependency container capable of resolving dependencies without any configuration. Most features are built upon this concept, from controllers to console commands, through event handlers and the command bus.
 
+## Injecting dependencies
+
+The constructors of classes resolved by the container may be any class or interface associated with a [dependency initializer](#dependency-initializers). Similarly, invoked methods such as [event handlers](../2-tempest-in-depth/07-events), [console commands](../3-console/02-building-console-commands) and invokable classes may also be called directly from the container.
+
 ```php src/Aircraft/AircraftService.php
 use App\Aircraft\ExternalAircraftProvider;
 use App\Aircraft\AircraftRepository;
@@ -29,6 +33,32 @@ final readonly class AircraftService
 }
 ```
 
+### Invoking a method or function
+
+If you have access to the container instance, you may call its `{php}invoke()` method to call another method, function or invokable class, resolving its dependencies along the way.
+
+Using named arguments, it is also possible to manually specify parameters on the invoked method:
+
+```php
+$this->container->invoke(TrackOperatingAircraft::class, type: AircraftType::PC12);
+```
+
+The `{php}\Tempest\invoke()` serves the same purpose when the container is not directly accessible.
+
+### Locating a dependency
+
+There are situations where it may not be possible to inject a dependency on a constructor. To work around this, Tempest provides the `{php}\Tempest\get()` function, which can resolve an object from the container.
+
+```php
+use function Tempest\get;
+
+$config = get(AppConfig::class);
+```
+
+:::warning
+Resolving services this way should only be used as a last resort. If you are interested in knowing why, you may read more about service location in this [blog post](https://stitcher.io/blog/service-locator-anti-pattern).
+:::
+
 ## Dependency initializers
 
 When you need fine-grained control over how a dependency is constructed instead of relying on Tempest's autowiring capabilities, you can use initializer classes.
@@ -37,9 +67,9 @@ Initializers are classes that know how to construct a specific class or interfac
 
 ### Implementing an initializer
 
-Initializers are classes that implement the {`Tempest\Container\Initializer`} interface. The `initialize` method receives the container as its only parameter, and returns an instanciated object.
+Initializers are classes that implement the {`Tempest\Container\Initializer`} interface. The `initialize()` method receives the container as its only parameter, and returns an instanciated object.
 
-**Most importantly**, Tempest knows which object this initializer is tied to thanks to the return type of the `initialize` method, which needs to be typed.
+**Most importantly**, Tempest knows which object this initializer is tied to thanks to the return type of the `initialize()` method, which needs to be typed.
 
 ```php app/MarkdownInitializer.php
 use Tempest\Container\Container;
