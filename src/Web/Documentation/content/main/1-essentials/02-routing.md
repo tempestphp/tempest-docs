@@ -442,8 +442,6 @@ use Attribute;
 use Tempest\Http\Method;
 use Tempest\Router\Route;
 
-use function Tempest\Support\str;
-
 #[Attribute]
 final readonly class RestrictedRoute implements Route
 {
