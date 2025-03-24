@@ -1,6 +1,13 @@
 ---
 title: Authentication and authorization
+keywords: "Experimental"
 ---
+
+## Overview
+
+:::warning
+The authentication and authorization implementations of Tempest are currently experimental. Although you can use them, please note that they are not covered by our backwards compatibility promise.
+:::
 
 Logging in (authentication )and verifying whether a user is allowed to perform a specific action (authorization) are two crucial parts of any web application. Tempest comes with a built-in authenticator and authorizer, as well as a base `User` and `Permission` model (if you want to).
 

@@ -1,5 +1,6 @@
 ---
 title: Command bus
+keywords: "Experimental"
 ---
 
 Tempest comes with a built-in command bus, which can be used to dispatch a command to its handler (synchronous or asynchronous). A command bus offers multiple advantages over a more direct approach to modelling processes: commands and their handlers can easily be tested in isolation, they are simple to serialize, and similar to the eventbus, the command bus also supports middleware.
@@ -77,6 +78,10 @@ final readonly class UserController()
 ```
 
 ## Async commands
+
+:::warning
+The asynchronous commands implementation of Tempest is currently experimental. Although you can use it, please note that it is not covered by our backwards compatibility promise.
+:::
 
 A common use case for Tempest's command bus is to dispatch asynchronous commands: commands that are executed by their handler in the background, outside the main PHP process. Making a command asynchronous is done by adding the `#[AsyncCommand]` to your command object:
 
