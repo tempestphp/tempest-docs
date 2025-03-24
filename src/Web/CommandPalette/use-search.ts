@@ -76,7 +76,7 @@ export function useSearch(options: Options) {
 		keys: ['title', 'hierarchy', 'fields'],
 		includeScore: true,
 		shouldSort: true,
-		threshold: 0.2,
+		threshold: 0.25,
 	})
 
 	// Filters the palette commands based on the query, specifying default commands if empty
