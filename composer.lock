@@ -372,16 +372,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "b115554301161fa21467629f1e1391c1936de517"
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/b115554301161fa21467629f1e1391c1936de517",
-                "reference": "b115554301161fa21467629f1e1391c1936de517",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
+                "reference": "d42c8731f0624ad6bdc8d3e5e9a4524f68801cfa",
                 "shasum": ""
             },
             "require": {
@@ -427,7 +427,7 @@
             ],
             "support": {
                 "issues": "https://github.com/egulias/EmailValidator/issues",
-                "source": "https://github.com/egulias/EmailValidator/tree/4.0.3"
+                "source": "https://github.com/egulias/EmailValidator/tree/4.0.4"
             },
             "funding": [
                 {
@@ -435,7 +435,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-12-27T00:36:43+00:00"
+            "time": "2025-03-06T22:45:56+00:00"
         },
         {
             "name": "filp/whoops",
@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "0b2597511b02a5804a30bc5bb10a231a92f4fb72"
+                "reference": "355c7573e270e71dd7c873f25bc43f0fa978296b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/0b2597511b02a5804a30bc5bb10a231a92f4fb72",
-                "reference": "0b2597511b02a5804a30bc5bb10a231a92f4fb72",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/355c7573e270e71dd7c873f25bc43f0fa978296b",
+                "reference": "355c7573e270e71dd7c873f25bc43f0fa978296b",
                 "shasum": ""
             },
             "require": {
@@ -3965,7 +3965,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-03-20T21:18:59+00:00"
+            "time": "2025-03-24T08:41:54+00:00"
         },
         {
             "name": "tempest/highlight",
