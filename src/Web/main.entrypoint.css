@@ -192,3 +192,13 @@ button:focus:has(svg) {
 pre {
 	line-height: 1.65em;
 }
+
+/*
+|--------------------------------------------------------------------------
+| Safari
+|--------------------------------------------------------------------------
+*/
+
+_::-webkit-full-page-media, _:future, :root .safari-hide {
+  display: none !important;
+}
