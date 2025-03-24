@@ -43,7 +43,7 @@ final class CodeBlockRenderer implements NodeRendererInterface
 
             if ($node->getInfoWords()[1] ?? false) {
                 return <<<HTML
-                <div class="named-code-block">
+                <div class="code-block named-code-block">
                      <div class="code-block-name">{$node->getInfoWords()[1]}</div>
                     {$pre}
                 </div>
@@ -51,8 +51,8 @@ final class CodeBlockRenderer implements NodeRendererInterface
             }
 
             return $pre;
-        } else {
-            return '<pre data-lang="' . $language . '" class="notranslate">' . $parsed . '</pre>';
         }
+
+        return '<pre data-lang="' . $language . '" class="notranslate">' . $parsed . '</pre>';
     }
 }

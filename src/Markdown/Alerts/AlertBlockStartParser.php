@@ -17,7 +17,8 @@ final class AlertBlockStartParser implements BlockStartParserInterface
             return BlockStart::none();
         }
 
-        $match = RegexHelper::matchFirst('/^:::([a-z]+) ?(.*?)$/i', $cursor->getLine());
+        $match = RegexHelper::matchFirst('/^:::(?!group)([a-z]+) ?(.*?)$/i', $cursor->getLine());
+
         if ($match === null) {
             return BlockStart::none();
         }
