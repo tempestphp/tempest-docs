@@ -1,7 +1,7 @@
 ---
 title: Asset bundling
 description: "Web applications usually need to serve assets to users. Tempest provide a seamless integration with Vite, the most popular front-end development server and build tool"
-keywords: ["vite", "frontend", "js", "css", "ts", "sri", "manifest", "assets"]
+keywords: ["vite", "frontend", "js", "css", "ts", "typescript", "javascript", "sri", "manifest", "assets"]
 ---
 
 ## Overview
