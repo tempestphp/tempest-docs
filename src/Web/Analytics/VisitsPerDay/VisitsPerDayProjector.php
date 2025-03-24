@@ -34,7 +34,7 @@ final readonly class VisitsPerDayProjector implements Projector
         $visitedAt = $pageVisited->visitedAt->setTime(0, 0);
 
         $day = VisitsPerDay::query()
-            ->whereField('date', $visitedAt->format(DATE_ATOM))
+            ->whereField('date', $visitedAt)
             ->first();
 
         if (! $day) {

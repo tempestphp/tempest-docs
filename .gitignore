@@ -12,7 +12,8 @@ access.log
 access_big.log
 access_short.log
 sync-db.sh
-app/tempest-access.log
+sync-log.sh
+tempest-access.log
 vite-tempest
 public/build/
 database.sqlite
