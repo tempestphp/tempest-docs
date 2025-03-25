@@ -89,13 +89,6 @@ final class ParseLogCommand
             ?->createdAt;
 
         while (true) {
-            // Kill the process every hour in order to prevent memory issues.
-            // Supervisor will restart it automatically.
-            if ($now->format('H:i') === '00:00') {
-                $this->error('exit');
-                exit();
-            }
-
             $line = str(fgets($handle) ?: '')->trim();
 
             if ($line->isEmpty()) {
