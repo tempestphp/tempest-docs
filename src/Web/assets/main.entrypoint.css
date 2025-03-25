@@ -1,6 +1,6 @@
 @import 'tailwindcss' theme(static);
-@import './assets/typography.css';
-@import './assets/highlighting.css';
+@import './typography.css';
+@import './highlighting.css';
 
 @custom-variant light (&:where(.light, .light *));
 @custom-variant dark (&:where(.dark, .dark *));
