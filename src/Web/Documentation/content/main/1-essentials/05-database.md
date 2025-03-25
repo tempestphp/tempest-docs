@@ -7,7 +7,7 @@ keywords: "Experimental"
 ## Overview
 
 :::warning
-The ORM implementation of Tempest is currently experimental. Although you can use it, please note that it is not covered by our backwards compatibility promise.
+The ORM implementation of Tempest is currently experimental and is not covered by our backwards compatibility promise. We are also currently discussing about the approach to take. [We'd like to hear your opinion](https://github.com/tempestphp/tempest-framework/issues/1074)!
 :::
 
 In contrast to many popular ORMs, Tempest models aren't required to be tied to the database. A model's persisted data can be loaded from any kind of data source: an external API, JSON, Redis, XML, … In essence, a model is nothing more than a class with public typed properties and methods. Tempest will use a model class' type information to determine how data should be mapped between objects.
