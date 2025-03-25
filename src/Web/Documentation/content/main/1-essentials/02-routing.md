@@ -494,3 +494,22 @@ The `defer` callback may accept any parameter that the container can inject.
 :::warning
 Task deferring only works if [`fastcgi_finish_request()`](https://www.php.net/manual/en/function.fastcgi-finish-request.php) is available within your PHP installation. If it's not available, deferred tasks will still be run, but the client response will only complete after all tasks have been finished.
 :::
+
+## Testing
+
+Tempest provides a router testing utility accessible through the `http` property of the [`IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case. You may learn more about testing in the [dedicated chapter](./07-testing).
+
+The router testing utility provides methods for all HTTP verbs. These method return an instance of [`TestResponseHelper`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/Http/TestResponseHelper.php), giving access to multiple assertion methods.
+
+```php tests/ProfileControllerTest.php
+final class ProfileControllerTest extends IntegrationTestCase
+{
+    public function test_can_render_profile(): void
+    {
+        $response = $this->http
+            ->get('/account/profile')
+            ->assertOk()
+            ->assertSee('My Profile');
+    }
+}
+```

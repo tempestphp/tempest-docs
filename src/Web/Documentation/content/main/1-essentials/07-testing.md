@@ -1,77 +1,73 @@
 ---
 title: Testing
+description: "Tempest is built with testing in mind. It ships with convenient utilities that make it easy to test application code without boilerplate."
+keywords: ["phpunit", "pest"]
 ---
 
-Testing is a crucial part of any application. Tempest uses [PHPUnit](https://phpunit.de/) as its testing framework.
-The default project scaffold contains a `tests` directory with an example test.
+## Overview
+
+Tempest uses [PHPUnit](https://phpunit.de) for testing and provides an integration through the [`Tempest\Framework\Testing\IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case. This class boots the framework with configuration suitable for testing, and provides access to multiple utilities.
+
+Testing utilities specific to components are documented in their respective chapters. For instance, testing the router is described in the [routing documentation](./02-routing#testing).
 
 ## Running tests
 
-In order to run tests, you can use the following command
+If you created a Tempest application through the [recommended installation process](../0-getting-started/01-getting-started#installation), you already have access to `tests/IntegrationTestCase`, which your application tests can inherit from.
 
-```
-vendor/bin/phpunit
-// or
+In this case, you may use the `composer phpunit` command to run your test suite.
+
+```sh
 composer phpunit
 ```
 
-For more information about PHPUnit please refer to the [official documentation](https://phpunit.de/documentation.html).
+## Creating new test files
 
-## HTTP testing
+By default, PHPUnit is configured to look for test files that end in `*Test.php` in the root `tests` directory. You may create a such a file and make it extend `IntegrationTestCase`.
 
-The tests folder contains an `IntegrationTestCase`. Extending this class you helper methods to make integration
-tests easy. For http tests you can use the `$this->http` property to make requests. All possible HTTP methods are
-available.
+```php tests/HomeControllerTest.php
+use Tests\IntegrationTestCase;
 
-The following example will test a `GET` request to `/account/profile`.
-
-```php
-class ProfileControllerTest extends IntegrationTestCase
+final class HomeControllerTest extends IntegrationTestCase
 {
-    public function test_can_render_profile(): void
+    public function test_index(): void
     {
-        $response = $this->http
-            ->get('/account/profile')
-            ->assertOk()
-            ->assertSee('My Profile');
+        $this->http
+            ->get('/')
+            ->assertOk();
     }
 }
 ```
 
-### Request body
+## Changing the location of tests
 
-To send a request body, pass an array as the second parameter to `post()`
+The `phpunit.xml` file contains a `{html}<testsuite>` element that configures the directory in which PHPUnit looks for test files. This may be changed to follow any rule of your convenience.
 
-```php
-public function test_create_user(): void
-{
-    $this->http->post('/users', [
-        'name' => 'John Doe',
-        'email' => 'john@example.com',
-        'password' => 'password',
-    ]);
-}
+For instance, you may colocate test files and their corresponding class by changing the `{html}suffix` attribute in `phpunit.xml` to the following:
+
+```diff
+<testsuites>
+	<testsuite name="Tests">
+-		<directory suffix="Test.php">./tests</directory>
++		<directory suffix="Test.php">./app</directory>
+	</testsuite>
+</testsuites>
 ```
 
-### Testing headers
+## Using Pest as a test runner
 
-You can supply request headers as a second parameter to `get`.
+[Pest](https://pestphp.com/) is a test runner built on top of PHPUnit. It provides a functional way of writing tests similar to JavaScript testing frameworks like [Vitest](https://vitest.dev/), and features an elegant console reporter.
 
-```php
-public function test_home(): void
-{
-    $this->http->get('/', ['X-Api-key', '123456']);
-}
+Pest is framework-agnostic, so you may use it in place of PHPUnit if that is your preference. The [installation process](https://pestphp.com/docs/installation) consists of removing the dependency on `phpunit/phpunit` in favor of `pestphp/pest`.
+
+```sh
+{:hl-type:composer:} remove {:hl-keyword:phpunit/phpunit:}
+{:hl-type:composer:} require {:hl-keyword:pestphp/pest:} --dev --with-all-dependencies
 ```
 
-Testing response headers can be done with the `assertHeader` method.
+The next step is to create a `tests/Pest.php` file, which will instruct Pest how to run tests. You may read more about this file in the [dedicated documentation](https://pestphp.com/docs/configuring-tests).
 
-```php
-public function test_home(): void
-{
-    $this->http
-        ->get('/')
-        ->assertHasHeader('X-Framework') // assert header exists
-        ->assertHeaderContains('Content-Type', 'text/html'); // assert header contains a value
-}
+```php tests/Pest.php
+pest()
+    ->extend(Tests\IntegrationTestCase::class)
+    ->in(__DIR__);
 ```
