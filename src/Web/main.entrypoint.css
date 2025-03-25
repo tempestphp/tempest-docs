@@ -199,6 +199,8 @@ pre {
 |--------------------------------------------------------------------------
 */
 
-_::-webkit-full-page-media, _:future, :root .safari-hide {
-  display: none !important;
+@supports (background: -webkit-named-image(i)) {
+  .safari-hide {
+    display: none !important;
+  }
 }
