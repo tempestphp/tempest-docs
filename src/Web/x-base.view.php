@@ -1,4 +1,4 @@
-<html lang="en" class="h-dvh flex flex-col">
+<html lang="en" class="h-dvh flex flex-col scroll-smooth">
 <head>
     <title :if="isset($fullTitle)">{{ $fullTitle }}</title>
     <title :elseif="isset($title)">{{ $title }} — Tempest</title>
@@ -52,7 +52,7 @@
 
     <x-slot name="head"/>
 </head>
-<body :class="trim($bodyClass ?? '')" class="relative antialiased flex flex-col grow selection:bg-(--ui-primary)/20 selection:text-(--ui-primary)">
+<body :class="trim($bodyClass ?? '')" class="relative antialiased flex flex-col grow selection:bg-(--ui-primary)/20 selection:text-(--ui-primary) font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark !overflow-visible !pr-0">
 <div class="absolute pointer-events-none inset-0 bg-repeat" style="background-image: url(/noise.svg)">
     <div id="command-palette"></div>
 </div>
