@@ -71,3 +71,5 @@ pest()
     ->extend(Tests\IntegrationTestCase::class)
     ->in(__DIR__);
 ```
+
+You may now run `./vendor/bin/pest` to run your test suite. You might also want to replace the `phpunit` script in `composer.json` by one that uses Pest.
