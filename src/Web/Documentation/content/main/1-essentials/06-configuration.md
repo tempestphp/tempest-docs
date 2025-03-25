@@ -1,13 +1,13 @@
 ---
 title: Configuration
-description: "Tempest takes a unique approach at configuration, which provides an excellent developer experience due to its inherent support from code editors."
+description: "Tempest takes a unique approach at configuration, providing an excellent developer experience due to its inherent support from code editors."
 ---
 
 ## Overview
 
 Within Tempest, configuration is represented by objects. This allows code editors to provide static insights and autocompletion during edition, resulting in an unmatched developer experience.
 
-Even though Tempest is designed to use as little configuration as possible, many configuration classes are available. This way, when fine-grained control over a specific part of the framework is needed, the default configuration can be overwritten.
+Even though the framework is designed to use as little configuration as possible, many configuration classes are available. When fine-grained control over a specific part of the framework is needed, the default configuration can be overwritten.
 
 ## Configuration files
 
@@ -41,6 +41,7 @@ final readonly class HomeController
         private AppConfig $config,
     ) {}
 
+    #[Get('/')]
     public function __invoke(): View
     {
         return view('home.view.php', environment: $this->config->environment);
