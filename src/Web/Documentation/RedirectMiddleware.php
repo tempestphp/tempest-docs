@@ -16,7 +16,6 @@ use Tempest\Router\Router;
 
 use function Tempest\get;
 use function Tempest\Support\Arr\get_by_key;
-use function Tempest\Support\Arr\map_array;
 use function Tempest\Support\Regex\matches;
 use function Tempest\Support\str;
 use function Tempest\uri;
