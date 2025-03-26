@@ -98,7 +98,7 @@ final class ParseLogCommand
             }
 
             // Resolve and check date
-            $date = $line->match("/\[([\w\d\/\:]+)/")[1] ?? null;
+            $date = $line->match("/\[([\w\d\/\:]+)/");
 
             if (! $date) {
                 continue;
@@ -111,9 +111,7 @@ final class ParseLogCommand
             }
 
             // Resolve and check URL
-            $url = $line->match("/(GET|POST)\s([\w\/\.\-]+)/");
-
-            $url = str($url[2] ?? null)->trim();
+            $url = str($line->match("/(GET|POST)\s([\w\/\.\-]+)/", match: 2));
 
             // Empty URL
             if ($url->equals('')) {
@@ -126,14 +124,14 @@ final class ParseLogCommand
             }
 
             // Resolve and check IP
-            $ip = $line->match("/^([\d\.\w\:]+)/")[1] ?? null;
+            $ip = $line->match("/^([\d\.\w\:]+)/");
 
             if (in_array($ip, self::IP_BLACKLIST, strict: true)) {
                 continue;
             }
 
             // Resolve and check UserAgent
-            $userAgent = str($line->match('/"([\,\-\w\d\.\/\s\(\)\:\;\+\=\&\~\\\\\@\{\}\%\'\!\?\[\]\<\>\|]+)"$/')[1] ?? null)->lower();
+            $userAgent = str($line->match('/"([\,\-\w\d\.\/\s\(\)\:\;\+\=\&\~\\\\\@\{\}\%\'\!\?\[\]\<\>\|]+)"$/'))->lower();
 
             foreach (self::USER_AGENT_BLACKLIST as $blockedUserAgent) {
                 if ($userAgent->contains($blockedUserAgent)) {
