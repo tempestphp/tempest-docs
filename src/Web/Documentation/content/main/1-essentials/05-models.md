@@ -1,7 +1,7 @@
 ---
 title: Models
 description: "Model classes represent the heart of our application logic. Tempest provides a powerful way of persisting model data."
-keywords: ["Experimental", "ORM"]
+keywords: ["experimental", "orm", "database"]
 ---
 
 :::warning
@@ -44,7 +44,7 @@ However, the most common use case is to persist models to databases, so Tempest 
 
 ## Database persistence
 
-Tempest comes with a bunch of query builders that can work with any object and convert them into database queries. We'll start by exploring the {`Tempest\Database\IsDatabaseModel`} trait first though: this is a higher-level trait that can be used to any object and adds a bunch of convenient shorthand methods to those objects to interact with the database. Note that using `IsDatabaseModel` is optional, we'll explore other ways of interacting with the database later in this chapter. 
+Tempest comes with a bunch of query builders that can work with any object and convert them into database queries. We'll start by exploring the {`Tempest\Database\IsDatabaseModel`} trait first though: this is a higher-level trait that can be used to any object and adds a bunch of convenient shorthand methods to those objects to interact with the database. Note that using `IsDatabaseModel` is optional, we'll explore other ways of interacting with the database later in this chapter.
 
 ```php
 use Tempest\Database\IsDatabaseModel;
@@ -131,7 +131,7 @@ use Tempest\Database\Virtual;
 class Book
 {
     // …
-    
+
     public DateTimeImmutable $publishedAt;
 
     #[Virtual]
@@ -140,7 +140,6 @@ class Book
     }
 }
 ```
-
 
 ## Migrations
 
