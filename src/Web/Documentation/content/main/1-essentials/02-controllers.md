@@ -1,13 +1,13 @@
 ---
-title: Routing
-description: "Routing is the core of any web application. In Tempest, attributes are used to route an HTTP request to any class' method, which is responsible for returning a response."
+title: "Controllers"
+description: "Controllers manage the flow of any web application. In Tempest, attributes are used to route an HTTP request to any class' method, which is responsible for returning a response."
 ---
 
 ## Overview
 
 In Tempest, a route may be associated to any class' method, although this is usually done in dedicated controller classes.
 
-Tempest provides many attributes, named after HTTP vebs, to attach URIs to controller actions. These attributes implement the {`Tempest\Router\Route`} interface, so you can write your own if you need to.
+Tempest provides many attributes, named after HTTP verbs, to attach URIs to controller actions. These attributes implement the {`Tempest\Router\Route`} interface, so you can write your own if you need to.
 
 ```php app/HomeController.php
 use Tempest\Router\Get;
