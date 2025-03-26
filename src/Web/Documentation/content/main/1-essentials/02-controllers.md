@@ -82,7 +82,7 @@ final readonly class AircraftController
 
 ### Route binding
 
-When injecting objects (like for examples, [models](/main/essentials/models)) in controller actions, Tempest can map the route parameter directly to the object, given that that object's class implements the {`Tempest\Router\Bindable`} interface:
+In controller actions, you may want to receive an object instead of a scalar value such as an identifier. This is especially useful in the case of [models](/main/essentials/models) to avoid having to write the fetching logic in each controller.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
@@ -96,6 +96,8 @@ final class AircraftController
 }
 ```
 
+Route binding may be enabled for any class that implements the {`Tempest\Router\Bindable`} interface, which requires a `resolve()` method responsible for returning the correct instance.
+
 ```php
 use Tempest\Router\Bindable;
 use Tempest\Database\IsDatabaseModel;
@@ -103,7 +105,7 @@ use Tempest\Database\IsDatabaseModel;
 final class Aircraft implements Bindable
 {
     use IsDatabaseModel;
-    
+
     public function resolve(string $input): self
     {
         return self::find(id: $input);
