@@ -5,7 +5,7 @@ keywords: ["experimental", "orm", "database"]
 ---
 
 :::warning
-The ORM Tempest is currently experimental and is not covered by our backwards compatibility promise. Important features such as query builder relationships are not polished nor documented.
+The ORM is currently experimental and is not covered by our backwards compatibility promise. Important features such as query builder relationships are not polished nor documented.
 
 We are currently discussing about taking a different approach to the ORM. [We'd like to hear your opinion](https://github.com/tempestphp/tempest-framework/issues/1074)!
 :::
