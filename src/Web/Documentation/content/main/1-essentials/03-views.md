@@ -434,7 +434,7 @@ Iconify has a large collection of icon sets, which you may browse using the [Ic√
 
 ### `x-vite-tags`
 
-Tempest has built-in support for [Vite](https://vite.dev/), the most popular front-end development server and build tool. You may read more about [asset bundling](./04-assets-bundling) in the dedicated documentation.
+Tempest has built-in support for [Vite](https://vite.dev/), the most popular front-end development server and build tool. You may read more about [asset bundling](./04-asset-bundling) in the dedicated documentation.
 
 This component simply inject registered entrypoints where it is called.
 
