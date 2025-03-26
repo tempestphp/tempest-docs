@@ -12,7 +12,7 @@ We are currently discussing about taking a different approach to the ORM. [We'd 
 
 ## Overview
 
-Any object with typed public properties can represent a model, these object don't have to implement anything:
+Any object with public, typed properties can represent a model—these objects don't have to implement anything, they may be plain-old PHP objects.
 
 ```php app/Book.php
 use Tempest\Validation\Rules\Length;
@@ -30,7 +30,9 @@ final class Book
 }
 ```
 
-For persistence, you can use [Tempest's mapper](/main/tempest-in-depth/mapper):
+## Using the mapper to instantiate models
+
+[Tempest's mapper](../2-tempest-in-depth/01-mapper) is able to map data from many different sources to a model. For instance, you can specify the path to a JSON file or object to create an instance of a model, and the other way around.
 
 ```php
 use function Tempest\map;
