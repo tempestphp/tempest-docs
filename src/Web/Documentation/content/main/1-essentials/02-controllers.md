@@ -80,23 +80,36 @@ final readonly class AircraftController
 }
 ```
 
-### Route model binding
+### Route binding
 
-When injecting [database models](./05-database#database-models) in controller actions, Tempest will map the received model identifier from the request to an instance of that model queried from the database.
+When injecting objects (like for examples, [models](/main/essentials/models)) in controller actions, Tempest can map the route parameter directly to the object, given that that object's class implements the {`Tempest\Router\Bindable`} interface:
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
 use Tempest\Router\Response;
 use App\Aircraft;
 
-final readonly class AircraftController
+final class AircraftController
 {
     #[Get('/aircraft/{aircraft}')]
     public function show(Aircraft $aircraft): Response { /* … */ }
 }
 ```
 
-If the model cannot be found in the database, Tempest will return a HTTP 404 response without entering the controller action.
+```php
+use Tempest\Router\Bindable;
+use Tempest\Database\IsDatabaseModel;
+
+final class Aircraft implements Bindable
+{
+    use IsDatabaseModel;
+    
+    public function resolve(string $input): self
+    {
+        return self::find(id: $input);
+    }
+}
+```
 
 ### Backed enum binding
 
