@@ -240,6 +240,15 @@ Both the `migrate:up` and `migrate:fresh` commands now support an optional `--va
 
 This ensures that only valid, untampered migration files are applied to the database.
 
+:::warning Rehashing Migrations
+
+The `migrate:rehash` command bypasses integrity checks to update stored migration hashes in the database. This operation can mask serious issues like tampered migration files or schema inconsistencies. Only use this command when absolutely necessary and when you're completely confident that your migration files are correct and consistent across environments.
+
+```sh
+./tempest migrate:rehash
+```
+:::
+
 ## Database configuration
 
 By default, Tempest uses a SQLite database stored in the `vendor/.tempest` directory. Changing databases is done by providing a {`Tempest\Database\Config\DatabaseConfig`} [configuration object](./06-configuration).
