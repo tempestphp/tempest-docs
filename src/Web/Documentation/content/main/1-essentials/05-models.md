@@ -206,7 +206,39 @@ A few [console commands](../3-console/02-building-console-commands) are provided
 
 {:hl-comment:# Drops all tables and rerun migrate:up:}
 ./tempest migrate:fresh
+
+{:hl-comment:# Validates the integrity of migration files:}
+./tempest migrate:validate
 ```
+
+#### Validating migrations
+
+The `migrate:validate` command checks the integrity of migration files by comparing their current hash with the stored hash in the database. If a migration file has been tampered with, the command will report it as a validation failure.
+
+```sh
+{:hl-comment:# Validate migration files:}
+./tempest migrate:validate
+```
+
+If any migration fails validation, it will be reported with an error message specifying the issue.
+
+:::info
+Only the actual SQL commands (minified and stripped of comments) are hashed during validation. This means that code-style changes, such as indentation or formatting, and comments will not impact the validation process.
+:::
+
+#### Using the `--validate` argument
+
+Both the `migrate:up` and `migrate:fresh` commands now support an optional `--validate` argument. When this argument is provided, the commands will first validate the migration files using `migrate:validate` before proceeding. If validation fails, the migration process will stop.
+
+```sh
+{:hl-comment:# Run migrations with validation:}
+./tempest migrate:up --validate
+
+{:hl-comment:# Drop all tables and rerun migrations with validation:}
+./tempest migrate:fresh --validate
+```
+
+This ensures that only valid, untampered migration files are applied to the database.
 
 ## Database configuration
 
