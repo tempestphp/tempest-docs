@@ -277,7 +277,7 @@ If any migration fails validation, it will be reported with an error message spe
 Only the actual SQL commands (minified and stripped of comments) are hashed during validation. This means that code-style changes, such as indentation or formatting, and comments will not impact the validation process.
 :::
 
-#### Rehashing Migrations
+### Rehashing Migrations
 
 The `migrate:rehash` command bypasses integrity checks to update stored migration hashes in the database.
 
