@@ -5,7 +5,7 @@
     "require": {
         "tempest/framework": "dev-main",
         "league/commonmark": "^2.6.1",
-        "symfony/yaml": "^6.4.18",
+        "symfony/yaml": "^6.4.20",
         "spatie/yaml-front-matter": "^2.1",
         "spatie/browsershot": "^4.4",
         "assertchris/ellison": "^1.0.2"
