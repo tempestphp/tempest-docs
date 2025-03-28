@@ -19,7 +19,7 @@
     <!-- Meta description -->
     <?php $description = match (true) {
         isset($description) => $description,
-        default => 'The PHP framework that gets out of your way.',
+        default => 'Tempest is a modern framework designed to enable developers to write as little framework-specific code as possible, so that they can focus on application code instead.',
     }; ?>
 
     <meta name="description" :content="$description">
