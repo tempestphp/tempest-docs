@@ -23,13 +23,13 @@ final readonly class StatsController
         $now = $clock->now();
 
         $visitsPerHour = arr(
-            VisitsPerHour::query()
+            VisitsPerHour::select()
                 ->where('date >= ?', $now->sub(DateInterval::createFromDateString('24 hours'))->format('Y-m-d H:i:s'))
                 ->all(),
         );
 
         $visitsPerDay = arr(
-            VisitsPerDay::query()
+            VisitsPerDay::select()
                 ->where('date >= ?', $now->sub(DateInterval::createFromDateString('30 days'))->format('Y-m-d H:i:s'))
                 ->all(),
         );

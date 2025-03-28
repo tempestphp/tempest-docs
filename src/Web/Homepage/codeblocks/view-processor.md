@@ -1,4 +1,4 @@
-```php src/StarCountViewProcessor.php
+```php
 final class StarCountViewProcessor implements ViewProcessor
 {
     public function __construct(

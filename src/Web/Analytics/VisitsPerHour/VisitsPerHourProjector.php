@@ -36,7 +36,7 @@ final readonly class VisitsPerHourProjector implements Projector
             minute: 0,
         );
 
-        $day = VisitsPerHour::query()
+        $day = VisitsPerHour::select()
             ->whereField('date', $visitedAt->format('Y-m-d H:i:s'))
             ->first();
 

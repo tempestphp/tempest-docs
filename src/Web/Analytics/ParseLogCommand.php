@@ -81,7 +81,7 @@ final class ParseLogCommand
         $this->success(sprintf("Parsing <style=\"underline\">%s</style>", $this->config->accessLogPath));
 
         // Resolve the last stored date
-        $lastDate = StoredEvent::query()
+        $lastDate = StoredEvent::select()
             ->where('eventClass = :eventClass', eventClass: PageVisited::class)
             ->orderBy('createdAt DESC')
             ->limit(1)

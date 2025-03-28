@@ -183,9 +183,8 @@ Next, we'll create a `Book` class, which implements `DatabaseModel` and uses the
 
 ```php
 use Tempest\Database\IsDatabaseModel;
-use Tempest\Database\DatabaseModel;
 
-final class Book implements DatabaseModel
+final class Book
 {
     use IsDatabaseModel;
 

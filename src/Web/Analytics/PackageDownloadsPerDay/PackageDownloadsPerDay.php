@@ -3,10 +3,9 @@
 namespace App\Web\Analytics\PackageDownloadsPerDay;
 
 use DateTimeImmutable;
-use Tempest\Database\DatabaseModel;
 use Tempest\Database\IsDatabaseModel;
 
-final class PackageDownloadsPerDay implements DatabaseModel
+final class PackageDownloadsPerDay
 {
     use IsDatabaseModel;
 

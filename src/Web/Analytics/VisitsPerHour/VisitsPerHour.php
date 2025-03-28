@@ -3,10 +3,9 @@
 namespace App\Web\Analytics\VisitsPerHour;
 
 use DateTimeImmutable;
-use Tempest\Database\DatabaseModel;
 use Tempest\Database\IsDatabaseModel;
 
-final class VisitsPerHour implements DatabaseModel
+final class VisitsPerHour
 {
     use IsDatabaseModel;
 

@@ -73,7 +73,7 @@ final readonly class EventsReplayCommand
 
             $projector->clear();
 
-            StoredEvent::query()
+            StoredEvent::select()
                 ->orderBy('createdAt ASC')
                 ->chunk(
                     function (array $storedEvents) use ($projector) {

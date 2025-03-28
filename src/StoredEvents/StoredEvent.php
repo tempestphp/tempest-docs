@@ -3,11 +3,10 @@
 namespace App\StoredEvents;
 
 use DateTimeImmutable;
-use Tempest\Database\DatabaseModel;
 use Tempest\Database\IsDatabaseModel;
 use Tempest\Reflection\ClassReflector;
 
-final class StoredEvent implements DatabaseModel
+final class StoredEvent
 {
     use IsDatabaseModel;
 

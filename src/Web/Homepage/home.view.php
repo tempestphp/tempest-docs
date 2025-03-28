@@ -75,7 +75,6 @@ use function Tempest\uri;
 				heading="An ORM that embraces modern PHP"
 				:paragraphs="[
 					'Define models with simple, clean code.',
-					'We don\'t try to reinvent database querying from scratch, so whenever you need a complex query, you can write SQL directly.',
 				]"
 				link-label="ORM"
 				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'framework', slug: 'models')"
@@ -89,7 +88,7 @@ use function Tempest\uri;
 				]"
 				link-label="Get started"
 				:link-uri="uri([ChapterController::class, 'index'])"
-				:snippets="['config', 'markdown-initializer']"
+				:snippets="['config', 'query', 'markdown-initializer']"
 			></x-home-section>
     </main>
   </div>

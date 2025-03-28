@@ -1,8 +1,6 @@
-```php src/Books/BookController.php
+```php
 final readonly class BookController
 {
-    // …
-
     #[Post('/books')]
     public function store(CreateBookRequest $request): Response
     {

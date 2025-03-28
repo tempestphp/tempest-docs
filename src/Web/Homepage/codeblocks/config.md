@@ -1,7 +1,4 @@
-```php src/config/database.config.php
-use Tempest\Database\Config\PostgresConfig;
-use function Tempest\env;
-
+```php
 return new PostgresConfig(
     host: env('DB_HOST'),
     port: env('DB_PORT'),
