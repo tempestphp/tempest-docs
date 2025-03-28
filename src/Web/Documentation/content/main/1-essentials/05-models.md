@@ -30,7 +30,7 @@ final class Book
 }
 ```
 
-## Using the mapper to instantiate models
+## Model mapping
 
 [Tempest's mapper](../2-tempest-in-depth/01-mapper) is able to map data from many different sources to a model. For instance, you can specify the path to a JSON file or object to create an instance of a model, and the other way around.
 
@@ -141,6 +141,51 @@ class Book
         get => $this->publishedAt->add(new DateInterval('P5D'));
     }
 }
+```
+
+## Non-object models
+
+While model objects are a convenient way of modelling data, you're not forced to use them. Instead, you can use the query builder directly to interact with the database:
+
+```php
+use function Tempest\Database\query;
+
+$data = query('chapters')
+    ->select('title', 'index')
+    ->where('title = ?', 'Timeline Taxi')
+    ->andWhere('index <> ?', '1')
+    ->orderBy('index ASC')
+    ->all();
+```
+
+```php
+query('chapters')
+    ->update(
+        title: 'Chapter 01',
+        index: 1,
+    )
+    ->where('id = ?', 10)
+    ->execute();
+```
+
+```php
+$chapters = [
+    ['chapter' => 'Chapter 01', 'index' => 1],
+    ['chapter' => 'Chapter 02', 'index' => 2],
+    ['chapter' => 'Chapter 03', 'index' => 3],
+];
+
+$query = query('chapters')
+    ->insert(...$chapters)
+    ->execute();
+```
+
+```php
+query('chapters')
+    ->delete()
+    ->where('index > ?', 10)
+    ->andWhere('book_id = ?', 1)
+    ->execute();
 ```
 
 ## Migrations
