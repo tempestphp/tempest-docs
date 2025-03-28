@@ -2,7 +2,7 @@
 /** @var \App\Web\Documentation\ChapterView $this */
 ?>
 
-<x-base :copy-code-blocks="true">
+<x-base :copy-code-blocks="true" :description="$this->currentChapter->description ?? null">
   <!-- Main container -->
   <main class="container grow px-4 mx-auto xl:px-8 flex">
     <!-- Sidebar -->
