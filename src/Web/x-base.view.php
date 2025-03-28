@@ -1,22 +1,39 @@
 <html lang="en" class="h-dvh flex flex-col scroll-smooth">
 <head>
-    <title :if="isset($fullTitle)">{{ $fullTitle }}</title>
-    <title :elseif="isset($title)">{{ $title }} — Tempest</title>
-    <title :else>Tempest</title>
+    <!-- Meta title -->
+    <?php $title = match (true) {
+        isset($fullTitle) => $fullTitle,
+        isset($title) => "{$title} — Tempest",
+        default => 'Tempest',
+    }; ?>
+
+    <title>{{ $title }}</title>
+    <meta name="title" :content="$title">
+    <meta name="twitter:title" :content="$title">
+    <meta property="og:title" :content="$title">
+    <meta itemprop="name" :content="$title">
 
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    <!-- Current meta image -->
-    <?php
-    $metaImageUri ??= ($meta ?? \App\Web\Meta\MetaType::HOME)->uri();
-    ?>
+    <!-- Meta description -->
+    <?php $description = match (true) {
+        isset($description) => $description,
+        default => 'The PHP framework that gets out of your way.',
+    }; ?>
 
-    <!-- Social -->
-    <meta property="og:image" content="<?= $metaImageUri ?>"/>
-    <meta property="twitter:image" content="<?= $metaImageUri ?>"/>
-    <meta name="image" content="<?= $metaImageUri ?>"/>
+    <meta name="description" :content="$description">
+    <meta name="twitter:description" :content="$description">
+    <meta property="og:description" :content="$description">
+    <meta itemprop="description" :content="$description">
+
+    <!-- Meta image -->
+    <?php $metaImageUri ??= ($meta ?? \App\Web\Meta\MetaType::HOME)->uri(); ?>
+    <meta property="og:image" :content="$metaImageUri"/>
+    <meta property="twitter:image" :content="$metaImageUri"/>
+    <meta name="image" :content="$metaImageUri"/>
     <meta name="twitter:card" content="summary_large_image"/>
+    <meta property="og:type" content="article">
 
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
