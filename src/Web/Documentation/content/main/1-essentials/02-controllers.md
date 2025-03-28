@@ -446,6 +446,28 @@ final readonly class JsonController
 }
 ```
 
+### Post-processing responses
+
+There are some situations in which you may need to act on a response right before it is sent to the client. For instance, you may want to display custom error error pages when an exception occurred, or redirect somewhere instead of displaying the [built-in HTTP 404](/hello-from-the-void) page.
+
+This may be done using a response processor. Similar to [view processors](./03-views#pre-processing-views), they are classes that implement the {`Tempest\Response\ResponseProcessor`} interface. In the `process()` method, you may mutate and return the response object:
+
+```php src/ErrorResponseProcessor.php
+use function Tempest\view;
+
+final class ErrorResponseProcessor implements ResponseProcessor
+{
+    public function process(Response $response): Response
+    {
+        if (! $response->status->isSuccessful()) {
+            return $response->setBody(view('./error.view.php', status: $response->status));
+        }
+
+        return $response;
+    }
+}
+```
+
 ## Custom route attributes
 
 It is often a requirement to have a bunch of routes following the same specifications—for instance, using the same middleware, or the same URI prefix.

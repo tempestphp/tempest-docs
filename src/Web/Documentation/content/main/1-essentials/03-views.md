@@ -453,11 +453,11 @@ Optionally, it accepts an `entrypoint` attribute. If it is passed, the component
 <x-vite-tags entrypoint="src/main.ts" />
 ```
 
-## View processors
+## Pre-processing views
 
-In most applications, a lot of views will need access to common data. To avoid having to manually provide this data to views through controller methods, it is possible to use view processors to manipulate views before they are rendered.
+In most applications, some views will need access to common data. To avoid having to manually provide this data to views through controller methods, it is possible to use view processors to manipulate views before they are rendered.
 
-To create a view processor, implement the {`Tempest\View\ViewProcessor`} interface on a class. This interface requires a `process` method, which accepts and returns the view that will be rendered.
+To create a view processor, create a class that implements the {`Tempest\View\ViewProcessor`} interface. It requires a `process()` method in which you may mutate and return the view that will be rendered.
 
 ```php
 use Tempest\View\View;
