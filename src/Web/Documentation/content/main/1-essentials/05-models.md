@@ -211,7 +211,13 @@ A few [console commands](../3-console/02-building-console-commands) are provided
 ./tempest migrate:validate
 ```
 
-#### Validating migrations
+### Validating migrations
+
+:::warning
+All `migrate:up` and `migrate:fresh` commands validate migration files to ensure their integrity by default.
+
+If you don't want to validate migration files, you can use the `--no-validate` argument.
+:::
 
 The `migrate:validate` command checks the integrity of migration files by comparing their current hash with the stored hash in the database. If a migration file has been tampered with, the command will report it as a validation failure.
 
@@ -226,28 +232,19 @@ If any migration fails validation, it will be reported with an error message spe
 Only the actual SQL commands (minified and stripped of comments) are hashed during validation. This means that code-style changes, such as indentation or formatting, and comments will not impact the validation process.
 :::
 
-#### Using the `--validate` argument
+##### Rehashing Migrations
 
-Both the `migrate:up` and `migrate:fresh` commands now support an optional `--validate` argument. When this argument is provided, the commands will first validate the migration files using `migrate:validate` before proceeding. If validation fails, the migration process will stop.
+The `migrate:rehash` command bypasses integrity checks to update stored migration hashes in the database.
 
-```sh
-{:hl-comment:# Run migrations with validation:}
-./tempest migrate:up --validate
+:::warning
+This operation can mask serious issues like tampered migration files or schema inconsistencies.
 
-{:hl-comment:# Drop all tables and rerun migrations with validation:}
-./tempest migrate:fresh --validate
-```
-
-This ensures that only valid, untampered migration files are applied to the database.
-
-:::warning Rehashing Migrations
-
-The `migrate:rehash` command bypasses integrity checks to update stored migration hashes in the database. This operation can mask serious issues like tampered migration files or schema inconsistencies. Only use this command when absolutely necessary and when you're completely confident that your migration files are correct and consistent across environments.
+Only use this command when absolutely necessary and when you're confident that your migration files are correct and consistent across environments.
+:::
 
 ```sh
 ./tempest migrate:rehash
 ```
-:::
 
 ## Database configuration
 
