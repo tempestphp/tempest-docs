@@ -67,7 +67,7 @@ use function Tempest\uri;
 					'Do you prefer something tried and tested? Tempest has built-in support for Blade and Twig as well.',
 				]"
 				link-label="Templating"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'framework', slug: 'views')"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'views')"
 				:snippets="['templating-view', 'templating-component']"
 			></x-home-section>
       <!-- ORM-->
@@ -77,7 +77,7 @@ use function Tempest\uri;
 					'Define models with simple, clean code.',
 				]"
 				link-label="ORM"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'framework', slug: 'models')"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'models')"
 				:snippets="['model', 'orm']"
 			></x-home-section>
       <!-- Much more-->
