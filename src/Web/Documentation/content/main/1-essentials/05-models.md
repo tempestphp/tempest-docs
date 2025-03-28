@@ -258,38 +258,31 @@ A few [console commands](../3-console/02-building-console-commands) are provided
 
 ### Validating migrations
 
-:::warning
-All `migrate:up` and `migrate:fresh` commands validate migration files to ensure their integrity by default.
+By default, an integrity check is done before applying database migrations with the `migrate:up` and `migrate:fresh` commands. This validation works by comparing the current migration hash with the one stored in the `migrations` table, if it was already applied in your environment.
 
-If you don't want to validate migration files, you can use the `--no-validate` argument.
-:::
+If a migration file has been tampered with, the command will report it as a validation failure. Note that you may opt-out of this behavior by using the `--no-validate` argument.
 
-The `migrate:validate` command checks the integrity of migration files by comparing their current hash with the stored hash in the database. If a migration file has been tampered with, the command will report it as a validation failure.
+Additionally, you may use the `migrate:validate` command to validate the integrity of migrations at any point, in any environment:
 
 ```sh
-{:hl-comment:# Validate migration files:}
 ./tempest migrate:validate
 ```
 
-If any migration fails validation, it will be reported with an error message specifying the issue.
-
-:::info
-Only the actual SQL commands (minified and stripped of comments) are hashed during validation. This means that code-style changes, such as indentation or formatting, and comments will not impact the validation process.
+:::tip
+Only the actual SQL query of a migration, minified and stripped of comments, is hashed during validation. This means that code-style changes, such as indentation, formatting, and comments will not impact the validation process.
 :::
 
-### Rehashing Migrations
+### Rehashing migrations
 
-The `migrate:rehash` command bypasses integrity checks to update stored migration hashes in the database.
-
-:::warning
-This operation can mask serious issues like tampered migration files or schema inconsistencies.
-
-Only use this command when absolutely necessary and when you're confident that your migration files are correct and consistent across environments.
-:::
+You may use the `migrate:rehash` command to bypass migration integrity checks and update the hashes of migrations in the database.
 
 ```sh
 ./tempest migrate:rehash
 ```
+
+:::warning
+Note that deliberately bypassing migration integrity checks may result in a broken database state. Only use this command when absolutely necessary, if you are confident that your migration files are correct and consistent accross environments.
+:::
 
 ## Database configuration
 
