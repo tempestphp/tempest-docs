@@ -78,7 +78,7 @@
             {!! $this->currentChapter->body !!}
           </div>
           <!-- Docs footer -->
-          <nav class="not-prose grid grid-cols-2 mb-12 justify-between gap-4">
+          <nav class="not-prose grid grid-cols-2 my-10 justify-between gap-4">
             <div>
               <a :if="$this->previousChapter()" :href="$this->previousChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
                 <x-icon name="tabler:arrow-left" class="size-5" />
