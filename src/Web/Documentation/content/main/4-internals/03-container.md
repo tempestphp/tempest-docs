@@ -1,16 +1,15 @@
 ---
 title: The container
+description: "Tempest's container has a unique synergy with discovery. Learn how it differs from other frameworks' implementations."
 ---
 
-Here's a short summary of how the Tempest container works.
+In contrast to other frameworks, Tempest doesn't have a concept of service provider. Instead, the instantiation process of dependencies is specified in [initializer classes](../1-essentials/01-container#dependency-initializers), which are automatically [discovered](./02-discovery).
 
-- Tempest doesn't have service providers like Laravel. Instead, it has **initializer** classes. Think of an initializer as a class that knows how to construct an object or interface.
-- Tempest will discover these initializer classes for you. You don't need to register them anywhere.
-- The container will also **autowire** as much as possible, so you only need initializer classes if you need to do manual setup work
+Additionally, the container will also [autowire](../1-essentials/01-container#injecting-dependencies) dependencies as much as possible, so initializer classes may only be used when there is the need for specific, manual set-up code.
 
-Here's an example of a very simple initializer class:
+The following is an example of an initializer:
 
-```php
+```php LoggerInitializer.php
 #[Singleton]
 final readonly class LoggerInitializer implements Initializer
 {
@@ -23,10 +22,6 @@ final readonly class LoggerInitializer implements Initializer
 }
 ```
 
-A couple of things to note about it:
+Tempest knows that this initializer produces a `Logger` or `LoggerInterface` thanks to the return type of the `initialize()` method. The first time one of these objects is injected as a dependency, the container will call this initializer class.
 
-- It has the `#[Singleton]` attribute, which means that this dependency will be registered as a **singleton**
-- Tempest knows what kind of objects this initializer can create, based on the **return type**. This initializer will be used any time a `LoggerInterface` or `Logger` is requested from the container
-- Again, you don't need to register this class anywhere. Tempest will discover it for you automatically
-
-If you want to know more about initializer discovery in particular, you can check out `\Tempest\Container\InitializerDiscovery`
+Additionally, thanks to the `#[Singleton]` attribute, the logger instance will be registered as a singleton—which means this initializer will be called only once by the container.
