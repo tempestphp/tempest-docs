@@ -16,6 +16,7 @@ final class Chapter
         public string $slug,
         public string $body,
         public string $title,
+        public string $path,
         public ?string $description = null,
     ) {
     }
@@ -28,5 +29,10 @@ final class Chapter
     public function getMetaUri(): string
     {
         return uri([MetaImageController::class, 'documentation'], version: $this->version, category: $this->category, slug: $this->slug);
+    }
+
+    public function getEditPageUri(): string
+    {
+        return "https://github.com/tempestphp/tempest-docs/edit/main/{$this->path}";
     }
 }

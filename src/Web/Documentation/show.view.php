@@ -78,7 +78,7 @@
             {!! $this->currentChapter->body !!}
           </div>
           <!-- Docs footer -->
-          <nav class="not-prose grid grid-cols-2 my-10 justify-between gap-4">
+          <nav class="not-prose grid grid-cols-2 mb-12 justify-between gap-4">
             <div>
               <a :if="$this->previousChapter()" :href="$this->previousChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
                 <x-icon name="tabler:arrow-left" class="size-5" />
@@ -112,7 +112,14 @@
 							</li>
 						</x-template>
           </ul>
-					<div class="my-10 mt-auto flex">
+          <!-- Suggest changes -->
+					<div class="mt-auto text-sm">
+						<a class="mt-4 text-(--ui-text-dimmed) hover:text-(--ui-text) transition inline-flex items-center gap-x-1.5" :href="$this->currentChapter->getEditPageUri()" target="_blank">
+							<x-icon name="tabler:edit" />
+							<span>Suggest changes to this page</span>
+						</a>
+					</div>
+					<div class="my-10 flex">
 						<a href="#top" class="border border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition rounded-lg p-2">
 							<x-icon name="tabler:arrow-up" class="size-5" />
 						</a>
