@@ -6,13 +6,14 @@ namespace App\Markdown;
 
 use App\Markdown\Alerts\AlertExtension;
 use App\Markdown\CodeBlockRenderer;
+use App\Markdown\Symbols\AttributeParser;
+use App\Markdown\Symbols\FqcnParser;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalinkExtension;
 use League\CommonMark\MarkdownConverter;
 use Tempest\Container\Container;
 use Tempest\Container\Initializer;
@@ -34,6 +35,7 @@ final readonly class MarkdownInitializer implements Initializer
             ->addExtension(new AlertExtension())
             ->addInlineParser(new TempestPackageParser())
             ->addInlineParser(new FqcnParser())
+            ->addInlineParser(new AttributeParser())
             ->addInlineParser(new HandleParser())
             ->addRenderer(FencedCode::class, new CodeBlockRenderer($highlighter))
             ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Markdown;
+namespace App\Markdown\Symbols;
 
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
@@ -8,10 +8,7 @@ use League\CommonMark\Parser\Inline\InlineParserInterface;
 use League\CommonMark\Parser\Inline\InlineParserMatch;
 use League\CommonMark\Parser\InlineParserContext;
 
-use function Tempest\Support\Namespace\to_base_class_name;
-use function Tempest\Support\Namespace\to_namespace;
 use function Tempest\Support\str;
-use function Tempest\Support\Str\after_last;
 use function Tempest\Support\Str\class_basename;
 use function Tempest\Support\Str\strip_start;
 
