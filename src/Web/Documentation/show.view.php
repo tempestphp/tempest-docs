@@ -18,13 +18,13 @@
           <ul class="flex flex-col border-s border-(--ui-border)">
             <li :foreach="$this->chaptersForCategory($category) as $chapter" class="-ms-px ps-1.5">
               <a
-								:href="$chapter->getUri()"
-								class="
-									group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors
-								 <?= $this->isCurrent($chapter)
-    								 ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
-    								 : 'text-(--ui-text-muted)' ?>
-								">
+                :href="$chapter->getUri()"
+                class="
+                  group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors
+                 <?= $this->isCurrent($chapter)
+                     ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
+                     : 'text-(--ui-text-muted)' ?>
+                ">
                 {{ $chapter->title }}
               </a>
             </li>
@@ -96,34 +96,43 @@
       </article>
       <!-- On this page -->
       <nav class="w-2xs shrink-0 hidden xl:flex flex-col sticky max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 pl-12 pr-4">
-        <div :if="($subChapters = $this->getSubChapters()) !== []" class="text-sm flex flex-col grow">
-          <span class="inline-block font-bold text-[--primary] mb-3">On this page</span>
-          <ul class="flex flex-col">
-						<x-template :foreach="$subChapters as $url => $chapter">
-							<li>
-								<a :href="$url" :data-on-this-page="$chapter['title']" class="group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
-									{{ \Tempest\Support\Str\strip_tags($chapter['title']) }}
-								</a>
-							</li>
-							<li :foreach="$chapter['children'] as $url => $title">
-								<a :href="$url" :data-on-this-page="$title" class="pl-4 group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-dimmed) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
-									{{ \Tempest\Support\Str\strip_tags($title) }}</span>
-								</a>
-							</li>
-						</x-template>
-          </ul>
-          <!-- Suggest changes -->
-					<div class="mt-auto text-sm">
-						<a class="mt-4 text-(--ui-text-dimmed) hover:text-(--ui-text) transition inline-flex items-center gap-x-1.5" :href="$this->currentChapter->getEditPageUri()" target="_blank">
-							<x-icon name="tabler:edit" />
-							<span>Suggest changes to this page</span>
-						</a>
-					</div>
-					<div class="my-10 flex">
-						<a href="#top" class="border border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition rounded-lg p-2">
-							<x-icon name="tabler:arrow-up" class="size-5" />
-						</a>
-					</div>
+        <div class="text-sm flex flex-col grow">
+          <x-template :if="($subChapters = $this->getSubChapters()) !== []">
+            <span class="inline-block font-bold text-[--primary] mb-3">On this page</span>
+            <ul class="flex flex-col">
+              <x-template :foreach="$subChapters as $url => $chapter">
+                <li>
+                  <a :href="$url" :data-on-this-page="$chapter['title']" class="group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
+                    {{ \Tempest\Support\Str\strip_tags($chapter['title']) }}
+                  </a>
+                </li>
+                <li :foreach="$chapter['children'] as $url => $title">
+                  <a :href="$url" :data-on-this-page="$title" class="pl-4 group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-dimmed) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
+                    {{ \Tempest\Support\Str\strip_tags($title) }}</span>
+                  </a>
+                </li>
+              </x-template>
+            </ul>
+          </x-template>
+          <div class="mt-auto flex flex-col gap-y-4">
+            <!-- Version warning -->
+            <div :if="$this->currentChapter->version === \App\Web\Documentation\Version::MAIN">
+              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
+                <x-icon name="tabler:info-circle" class="translate-y-[2px] size-4 shrink-0" />
+                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
+              </div>
+            </div>
+            <!-- Suggest changes -->
+            <a class="text-sm text-(--ui-text-dimmed) hover:text-(--ui-text) transition inline-flex items-center gap-x-1.5" :href="$this->currentChapter->getEditPageUri()" target="_blank">
+              <x-icon name="tabler:edit" class="size-4 shrink-0" />
+              <span>Suggest changes to this page</span>
+            </a>
+          </div>
+          <div class="my-10 flex">
+            <a href="#top" class="border border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition rounded-lg p-2">
+              <x-icon name="tabler:arrow-up" class="size-5" />
+            </a>
+          </div>
         </div>
       </nav>
     </div>
