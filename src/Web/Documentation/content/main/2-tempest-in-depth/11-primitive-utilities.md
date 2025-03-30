@@ -1,45 +1,53 @@
 ---
 title: Primitive utilities
+description: "Working with strings and arrays in PHP is notoriously hard due to the lack of a standard library. Tempest comes with a bunch of utilities to improve the experience in this area."
 ---
 
-Tempest comes with a handful of classes that improve working with primitive types such as strings and arrays. The most important feature is an object-oriented API around PHP's built-in primitive helper functions. Let's take a look at what's available.
+## Overview
 
-## Strings
+Tempest provides a set of classes that make working with scalar values easier. It provides an object-oriented API for handling strings and arrays, along with many namespaced functions to work with regular expressions, random values, pluralization or filesystem paths.
 
-The `ImmutableString` and `MutableString` classes wraps a normal string, and provide a fluent API to manipulate that string.
+## Namespaced functions
+
+Most utilities provided by Tempest have a function-based implementation under the [`Tempest\Support`](https://github.com/tempestphp/tempest-framework/tree/main/src/Tempest/Support/src) namespace. You may look at what is available on GitHub:
+
+- [Regular expressions](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Regex/functions.php)
+- [Random values](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Random/functions.php)
+- [Filesystem paths](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Path/functions.php)
+- [Pluralization](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Language/functions.php)
+- [PHP namespaces](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Namespace/functions.php)
+
+Tempest also [provides a trait](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/IsEnumHelper.php) to work with enumerations, since a functional API is not useful in this case.
+
+## String utilities
+
+Tempest provides string utilities through [namespaced functions](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Str/functions.php) or a fluent, object-oriented API, which comes in an immutable and a mutable flavor.
+
+Providing a string value, you may create an instance of {`\Tempest\Support\Str\ImmutableString`} or {`\Tempest\Support\Str\MutableString`}:
 
 ```php
 use Tempest\Support\Str\ImmutableString;
 
-$slug = new ImmutableString('https://tempestphp.com/docs/framework/14-primitive-helpers')
-    ->trim('/')
+$slug = new ImmutableString('/blog/01-chasing-bugs-down-the-rabbit-hole/')
+    ->stripEnd('/')
     ->afterLast('/')
     ->replaceRegex('/\d+-/', '')
+    ->slug()
     ->toString();
 ```
 
-Note that you can also use the `str()` helper function, which is a shorthand for `ImmutableString`:
+Note that you may use the `str()` function as a shorthand to create an {b`\Tempest\Support\Str\ImmutableString`} instance.
 
-```php
-use function Tempest\Support\str;
+## Array utilities
 
-$path = str('https://tempestphp.com/docs/framework/14-primitive-helpers');
+Tempest provides array utilities through [namespaced functions](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Arr/functions.php) or a fluent, object-oriented API, which comes in an immutable and a mutable flavor.
 
-if (! $path->startsWith('/docs')) {
-    // …
-}
-```
-
-These string helpers encapsulate many of PHP's built-in string functions, as well as several regex-based functions. You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Str/ManipulatesString.php).
-
-## Arrays
-
-The `ImmutableArray` and `MutableArray` classes wrap an array, and provide a fluent API to manipulate it.
+Providing a iterable value, you may create an instance of {`\Tempest\Support\Arr\ImmutableArray`} or {`\Tempest\Support\Arr\MutableArray`}:
 
 ```php
 use Tempest\Support\Arr\ImmutableArray;
 
-$items = new ImmutableArray(glob(__DIR__ . '/Content/*.md'))
+$items = new ImmutableArray(glob(__DIR__ . '/content/*.md'))
     ->reverse()
     ->map(function (string $path) {
         // …
@@ -47,43 +55,4 @@ $items = new ImmutableArray(glob(__DIR__ . '/Content/*.md'))
     ->mapTo(BlogPost::class);
 ```
 
-Note that you can also use the `arr()` helper function instead of manually creating an `ImmutableArray` object:
-
-```php
-use function Tempest\Support\arr;
-
-$codeBlocks = arr(glob(__DIR__ . '/*.md'))
-    ->mapWithKeys(function (string $path) {
-        preg_match('/(\d+).md/', $path, $matches);
-
-        $index = $matches[1];
-
-        yield "code{$index}" => $this->markdown->convert(file_get_contents($path));
-    })
-    ->toArray();
-```
-
-You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/Arr/ManipulatesArray.php).
-
-## Enums
-
-The `IsEnumHelper` traits provides a bunch of useful methods that can be added to any enum:
-
-```php
-use Tempest\Support\IsEnumHelper;
-
-enum MyEnum
-{
-    use IsEnumHelper;
-
-    case FOO;
-    case BAR;
-}
-
-MyEnum::FOO->is(MyEnum::BAR);
-MyEnum::names();
-
-// …
-```
-
-You can check out the [full API on GitHub](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/IsEnumHelper.php).
+Note that you may use the `arr()` function as a shorthand to create an {b`\Tempest\Support\Arr\ImmutableArray`} instance.
