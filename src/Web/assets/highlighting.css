@@ -75,7 +75,6 @@
 }
 .hl-comment {
 	color: var(--code-comment);
-	font-style: italic;
 }
 .hl-variable {
   color: var(--code-variable);
