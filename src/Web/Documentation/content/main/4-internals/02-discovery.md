@@ -57,7 +57,7 @@ Most of Tempest's features are built on top of discovery. The following describe
 
 Tempest will discover classes that implement {`\Tempest\Discovery\Discovery`}. You may create one, and implement the `discover()` and `apply` methods.
 
-The `discover()` method accepts a {b`Tempest\Core\DiscoveryLocation`} and a {b`Tempest\Reflection\ClassReflector`} parameter. You may use the later to loop through a class' attributes, methods, parameters or anything else.
+The `discover()` method accepts a {b`Tempest\Core\DiscoveryLocation`} and a {b`Tempest\Reflection\ClassReflector`} parameter. You may use the latter to loop through a class' attributes, methods, parameters or anything else.
 
 If you find what you are interested in, you may register it using `$this->discoveryItems->add()`. As an example, the following is a simplified version of the event bus discovery:
 
