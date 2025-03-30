@@ -114,9 +114,9 @@
               </x-template>
             </ul>
           </x-template>
-          <div class="mt-auto flex flex-col gap-y-4">
+          <div class="justify-end mt-4 grow flex flex-col gap-y-4">
             <!-- Version warning -->
-            <div :if="$this->currentChapter->version === \App\Web\Documentation\Version::MAIN">
+            <div :if="$this->currentChapter->version === \App\Web\Documentation\Version::MAIN" class="mt-4">
               <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
                 <x-icon name="tabler:info-circle" class="translate-y-[2px] size-4 shrink-0" />
                 <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
