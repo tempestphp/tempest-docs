@@ -35,10 +35,9 @@ Optionally, you may install a basic front-end scaffolding that includes [Vite](h
 {:hl-keyword:php:} tempest install vite --tailwind
 ```
 
-<!-- TODO: docs -->
-The assets created by this wizard, `main.entrypoint.ts` and `main.entrypoint.css`, are automatically discovered by Tempest. You can serve them using the `<x-vite-tags />` component in your templates.
+The assets created by this wizard, `main.entrypoint.ts` and `main.entrypoint.css`, are automatically discovered by Tempest. You can serve them using the [`<x-vite-tags />`](../1-essentials/03-views#x-vite-tags) component in your templates.
 
-You may then run the front-end development server, which will serve your assets on-the-fly:
+You may then [run the front-end development server](../1-essentials/04-asset-bundling#running-the-development-server), which will serve your assets on-the-fly:
 
 ```bash
 {:hl-keyword:npm:} run dev
@@ -108,9 +107,9 @@ From Tempest's perspective, it's all the same.
 
 ## About Discovery
 
-Discovery works by scanning your project code, and looking at each file and method individually to determine what that code does. For production application, Tempest will cache the discovery process, avoiding any performance overhead.
+Discovery works by scanning your project code, and looking at each file and method individually to determine what that code does. In production environments, [Tempest will cache the discovery process](../4-internals/02-discovery#discovery-in-production), avoiding any performance overhead.
 
-As an example, Tempest is able to determine which methods are controller methods based on their route attributes:
+As an example, Tempest is able to determine which methods are controller methods based on their route attributes, such as `#[Get]` or `#[Post]`:
 
 ```php app/BlogPostController.php
 use Tempest\Router\Get;
@@ -129,7 +128,7 @@ final readonly class BlogPostController
 }
 ```
 
-And likewise, it's able to detect console commands based on their console command attribute:
+Likewise, it is able to detect console commands based on the `#[ConsoleCommand]` attribute:
 
 ```php src/RssSyncCommand.php
 use Tempest\Console\HasConsole;
@@ -144,45 +143,3 @@ final readonly class RssSyncCommand
     { /* … */ }
 }
 ```
-
-### Discovery in production
-
-While discovery is a really powerful feature, it also comes with some performance considerations. In production environments, you want to make sure that the discovery workflow is cached. This is done by using the `DISCOVERY_CACHE` environment variable:
-
-```env .env
-{:hl-property:DISCOVERY_CACHE:}={:hl-keyword:true:}
-```
-
-The most important step is to generate that cache. This is done by running the `discovery:generate`, which should be part of your deployment pipeline. Make sure to run it before any other Tempest command.
-
-```console
-~ ./tempest discovery:generate
- ℹ  Clearing existing discovery cache…
- ✓  Discovery cached has been cleared
- ℹ  Generating new discovery cache… (cache strategy used: all)
- ✓  Cached 1119 items
-```
-
-### Discovery for local development
-
-By default, the discovery cache is disabled in local development. Depending on your local setup, it is likely that you will not run into noticeable slowdowns. However, for larger projects, you might benefit from enabling a partial discovery cache:
-
-```env .env
-{:hl-property:DISCOVERY_CACHE:}={:hl-keyword:partial:}
-```
-
-This caching strategy will only cache discovery for vendor files. For this reason, it is recommended to run `discovery:generate` after every composer update:
-
-```json
-{
-  "scripts": {
-    "post-package-update": [
-      "php tempest discovery:generate"
-    ]
-  }
-}
-```
-
-:::info
-Note that, if you've created your project using {`tempest/app`}, you'll have the `post-package-update` script already included. You may read the [internal documentation about discovery](../3-internals/02-discovery) to learn more.
-:::

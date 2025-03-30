@@ -9,8 +9,10 @@ use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
 
+use function Tempest\root_path;
 use function Tempest\Support\arr;
 use function Tempest\Support\Arr\get_by_key;
+use function Tempest\Support\Path\to_relative_path;
 use function Tempest\Support\Regex\replace;
 use function Tempest\Support\str;
 
@@ -50,6 +52,7 @@ final readonly class ChapterRepository
             slug: $slug,
             body: $markdown->getContent(),
             title: $title,
+            path: to_relative_path(root_path(), $path),
             description: $description ?? null,
         );
     }
@@ -71,6 +74,7 @@ final readonly class ChapterRepository
                     'slug' => replace($matches['slug'], '/^\d+-/', ''),
                     'index' => $matches['index'],
                     'category' => $category->toString(),
+                    'path' => to_relative_path(root_path(), $path),
                     ...YamlFrontMatter::parse($content)->matter(),
                 ];
             })

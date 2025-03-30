@@ -36,13 +36,13 @@ The next step is to add the [`{html}<x-vite-tags />`](./03-views#x-vite-tags) co
 
 During development, the purpose of Vite is to transpile asset files on-the-fly to a format that the browser understands. This is the concept that makes Vite really fast—it doesn't need to bundle the whole application everytime some code is updated.
 
-For Vite to be able to transpile assets, its server needs to be started. This is done by running its CLI, `vite`.
+For Vite to be able to transpile assets, its server needs to be started. This is done by running its command-line interface, `vite`.
 
 ```sh
-npm run vite
+npm run dev
 ```
 
-The command above looks for the `vite` script in `package.json`, which in turns runs the `vite` CLI. This is the equivalent of running the `{sh}npx vite` command.
+The command above looks for the `dev` script in `package.json`, which in turns runs the `vite` CLI. This is the equivalent of running the `{sh}npx vite` command.
 
 ## Entrypoints
 

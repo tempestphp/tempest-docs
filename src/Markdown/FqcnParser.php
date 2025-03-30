@@ -11,13 +11,16 @@ use League\CommonMark\Parser\InlineParserContext;
 use function Tempest\Support\Namespace\to_base_class_name;
 use function Tempest\Support\Namespace\to_namespace;
 use function Tempest\Support\str;
+use function Tempest\Support\Str\after_last;
+use function Tempest\Support\Str\class_basename;
+use function Tempest\Support\Str\strip_start;
 
 final readonly class FqcnParser implements InlineParserInterface
 {
     #[\Override]
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::regex("{`((?:\\\{1,2}\w+|\w+\\\{1,2})(?:\w+\\\{0,2})+)`}");
+        return InlineParserMatch::regex("{(b)?`((?:\\\{1,2}\w+|\w+\\\{1,2})(?:\w+\\\{0,2})+)`}");
     }
 
     #[\Override]
@@ -32,7 +35,7 @@ final readonly class FqcnParser implements InlineParserInterface
 
         $cursor->advanceBy($inlineContext->getFullMatchLength());
 
-        [$fqcn] = $inlineContext->getSubMatches();
+        [$flag, $fqcn] = $inlineContext->getSubMatches();
         $url = str($fqcn)
             ->stripStart(['\\Tempest\\', 'Tempest\\'])
             ->replaceRegex("/^(\w+)/", 'src/Tempest/$0/src')
@@ -41,7 +44,7 @@ final readonly class FqcnParser implements InlineParserInterface
             ->append('.php');
 
         $link = new Link($url);
-        $link->appendChild(new Code($fqcn));
+        $link->appendChild(new Code($flag === 'b' ? class_basename($fqcn) : strip_start($fqcn, '\\')));
         $inlineContext->getContainer()->appendChild($link);
 
         return true;
