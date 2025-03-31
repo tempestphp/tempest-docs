@@ -14,7 +14,7 @@ final readonly class HandleParser implements InlineParserInterface
     #[\Override]
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::regex('{(twitter|x|bluesky|bsky|gh|github):(.+?)(?:,(.+))?}');
+        return InlineParserMatch::regex('{(twitter|x|bluesky|bsky|gh|github):(.+?)(?:,(.+?))?}');
     }
 
     #[\Override]
