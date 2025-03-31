@@ -158,8 +158,8 @@ By extending {`Tempest\Framework\Testing\IntegrationTest`} from your test case, 
 These utilities include a way to replace the event bus with a testing implementation, as well as a few assertion methods to ensure that events have been dispatched or are being listened to.
 
 ```php
-// Replace the event bus in the container
-$this->eventBus->fake();
+// Prevents events from being handled
+$this->eventBus->preventEventHandling();
 
 // Assert that an event has been dispatched
 $this->eventBus->assertDispatched(AircraftRegistered::class);
@@ -185,10 +185,10 @@ $this->eventBus->assertListeningTo(AircraftRegistered::class);
 
 When testing code that dispatches events, you may want to prevent Tempest from handling them. This can be useful when the event’s handlers are tested separately, or when the side-effects of these handlers are not desired for this test case.
 
-To disable event handling, the event bus instance must be replaced with a testing implementation in the container. This may be achieved by calling the `fake()` method on the `eventBus` property.
+To disable event handling, the event bus instance must be replaced with a testing implementation in the container. This may be achieved by calling the `preventEventHandling()` method on the `eventBus` property.
 
 ```php tests/MyServiceTest.php
-$this->eventBus->fake();
+$this->eventBus->preventEventHandling();
 ```
 
 ### Testing a method-based handler
@@ -212,7 +212,7 @@ This handler may be tested by resolving the service class from the container, an
 
 ```php src/AircraftObserverTest.php
 // Replace the event bus in the container
-$this->eventBus->fake();
+$this->eventBus->preventEventHandling();
 
 // Resolve the service class
 $observer = $this->container->get(AircraftObserver::class);
