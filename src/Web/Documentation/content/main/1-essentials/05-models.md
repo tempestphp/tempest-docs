@@ -92,12 +92,12 @@ $books[0]->chapters[2]->delete();
 
 ### Table naming
 
-Tempest will infer a table name for your models based on the model's class name. You can override this name by using the `TableName` attribute:
+Tempest will infer a table name for your models based on the model's class name. You can override this name by using the `Table` attribute:
 
 ```php
-use Tempest\Database\TableName;
+use Tempest\Database\Table;
 
-#[TableName('my_books')]
+#[Table('my_books')]
 final class Book
 {
     // …
