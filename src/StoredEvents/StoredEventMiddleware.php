@@ -9,7 +9,7 @@ use Tempest\EventBus\EventBusMiddlewareCallable;
 final readonly class StoredEventMiddleware implements EventBusMiddleware
 {
     #[\Override]
-    public function __invoke(object $event, EventBusMiddlewareCallable $next): void
+    public function __invoke(string|object $event, EventBusMiddlewareCallable $next): void
     {
         if ($event instanceof ShouldBeStored) {
             new StoredEvent(

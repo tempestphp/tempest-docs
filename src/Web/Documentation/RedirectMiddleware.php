@@ -2,9 +2,7 @@
 
 namespace App\Web\Documentation;
 
-use Tempest\Container\Container;
-use Tempest\Core\KernelEvent;
-use Tempest\EventBus\EventHandler;
+use Tempest\Core\Priority;
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
 use Tempest\Router\MatchedRoute;
@@ -20,17 +18,12 @@ use function Tempest\Support\Regex\matches;
 use function Tempest\Support\str;
 use function Tempest\uri;
 
+#[Priority(Priority::HIGHEST)]
 final readonly class RedirectMiddleware implements HttpMiddleware
 {
     public function __construct(
         private Router $router,
     ) {
-    }
-
-    #[EventHandler(KernelEvent::BOOTED)]
-    public function register(): void
-    {
-        $this->router->addMiddleware(self::class);
     }
 
     #[\Override]
