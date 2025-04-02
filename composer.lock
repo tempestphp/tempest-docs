@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c37f0bc2c1111d8d14d54e92902b6c34",
+    "content-hash": "df7f44f4f8ba0087c38efb5ff5a1b71f",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3802,16 +3802,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "dev-middleware-priority",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "8df450096d55ebfa43466d73e62add03f4182c92"
+                "reference": "da6665c80af48f04b4f025aab1be975c1cffd8ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/8df450096d55ebfa43466d73e62add03f4182c92",
-                "reference": "8df450096d55ebfa43466d73e62add03f4182c92",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/da6665c80af48f04b4f025aab1be975c1cffd8ea",
+                "reference": "da6665c80af48f04b4f025aab1be975c1cffd8ea",
                 "shasum": ""
             },
             "require": {
@@ -3897,6 +3897,7 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
+            "default-branch": true,
             "bin": [
                 "src/Tempest/Console/bin/tempest"
             ],
@@ -3958,7 +3959,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/middleware-priority"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
             "funding": [
                 {
@@ -3966,7 +3967,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-02T08:46:41+00:00"
+            "time": "2025-04-02T11:17:49+00:00"
         },
         {
             "name": "tempest/highlight",
