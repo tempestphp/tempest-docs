@@ -142,18 +142,28 @@ class MyCommandBusMiddleware implements CommandBusMiddleware
 }
 ```
 
-Note that command bus middleware **is not discovered automatically**. This is because in many cases you'll need fine-grained control over the order of how middleware is executed, which is the same for HTTP and console middleware. In order to register your middleware classes, you must register them via `CommandBusConfig`:
+### Middleware priority
+
+All command bus middleware classes get sorted based on their priority. By default, each middleware gets the "normal" priority, but you can override it using the `#[Priority]` attribute:
 
 ```php
-// app/Config/events.php
+use Tempest\Core\Priority;
 
-use Tempest\CommandBus\CommandBusConfig;
+#[Priority(Priority::HIGH)]
+final readonly class MyCommandBusMiddleware implements CommandBusMiddleware
+{ /* … */ }
+```
 
-return new CommandBusConfig(
-    // …
+Note that priority is defined using an integer. You can however use one of the built-in `Priority` constants: `Priority::FRAMEWORK`, `Priority::HIGHEST`, `Priority::HIGH`, `Priority::NORMAL`, `Priority::LOW`, `Priority::LOWEST`.
 
-    middleware: [
-        MyCommandBusMiddleware::class,
-    ],
-);
+### Middleware discovery
+
+Global command bus middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[DoNotDiscover]` attribute:
+
+```php
+use Tempest\Discovery\DoNotDiscover;
+
+#[DoNotDiscover]
+final readonly class MyCommandBusMiddleware implements CommandBusMiddleware
+{ /* … */ }
 ```

@@ -122,7 +122,7 @@ final readonly class EventLoggerMiddleware implements EventBusMiddleware
         private Logger $logger,
     ) {}
 
-    public function __invoke(object $event, EventBusMiddlewareCallable $next): void
+    public function __invoke(string|object $event, EventBusMiddlewareCallable $next): void
     {
         $next($event);
 
@@ -133,15 +133,32 @@ final readonly class EventLoggerMiddleware implements EventBusMiddleware
 }
 ```
 
-Note that event bus middleware are not automatically discovered. This design choice ensures you have precise control over the execution order, just like with HTTP and console middleware. To register your middleware classes, you need to register them in the {b`Tempest\EventBus\EventBusConfig`}:
+### Middleware priority
 
-```php src/eventbus.config.php
-return new EventBusConfig(
-    middleware: [
-        MyEventBusMiddleware::class,
-    ],
-);
+All event bus middleware classes get sorted based on their priority. By default, each middleware gets the "normal" priority, but you can override it using the `#[Priority]` attribute:
+
+```php
+use Tempest\Core\Priority;
+
+#[Priority(Priority::HIGH)]
+final readonly class EventLoggerMiddleware implements EventBusMiddleware
+{ /* … */ }
 ```
+
+Note that priority is defined using an integer. You can however use one of the built-in `Priority` constants: `Priority::FRAMEWORK`, `Priority::HIGHEST`, `Priority::HIGH`, `Priority::NORMAL`, `Priority::LOW`, `Priority::LOWEST`.
+
+### Middleware discovery
+
+Global event bus middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[DoNotDiscover]` attribute:
+
+```php
+use Tempest\Discovery\DoNotDiscover;
+
+#[DoNotDiscover]
+final readonly class EventLoggerMiddleware implements EventBusMiddleware
+{ /* … */ }
+```
+
 
 ## Built-in framework events
 

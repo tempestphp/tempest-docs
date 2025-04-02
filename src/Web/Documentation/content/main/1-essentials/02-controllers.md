@@ -278,16 +278,20 @@ final readonly class ReceiveInteractionController
 }
 ```
 
-The middleware class must be an invokable class that implements the {`Tempest\Router\HttpMiddleware`} interface. This interface has an `{php}__invoke()` method that accepts the current request as its first parameter and {`Tempest\Router\HttpMiddlewareCallable`} as its second parameter.
+The middleware class must be an invokable class that implements the {`Tempest\Router\HttpMiddleware`} interface. This interface has an `{:hl-property:__invoke:}()` method that accepts the current request as its first parameter and {`Tempest\Router\HttpMiddlewareCallable`} as its second parameter.
 
 `HttpMiddlewareCallable` is an invokable class that forwards the `$request` to its next step in the pipeline.
 
-```php app/ValidateWebhook.php
+```php
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
 use Tempest\Router\Request;
 use Tempest\Router\Response;
+use Tempest\Discovery\DoNotDiscover;
+use Tempest\Core\Priority;
 
+#[DoNotDiscover]
+#[Priority(Priority::LOW)]
 final readonly class ValidateWebhook implements HttpMiddleware
 {
     public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
@@ -300,6 +304,32 @@ final readonly class ValidateWebhook implements HttpMiddleware
         return $next($request);
     }
 }
+```
+
+### Middleware priority
+
+All middleware classes get sorted based on their priority. By default, each middleware gets the "normal" priority, but you can override it using the `#[Priority]` attribute:
+
+```php
+use Tempest\Core\Priority;
+
+#[Priority(Priority::HIGH)]
+final readonly class ValidateWebhook implements HttpMiddleware
+{ /* … */ }
+```
+
+Note that priority is defined using an integer. You can however use one of the built-in `Priority` constants: `Priority::FRAMEWORK`, `Priority::HIGHEST`, `Priority::HIGH`, `Priority::NORMAL`, `Priority::LOW`, `Priority::LOWEST`.
+
+### Middleware discovery
+
+Global middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[DoNotDiscover]` attribute:
+
+```php
+use Tempest\Discovery\DoNotDiscover;
+
+#[DoNotDiscover]
+final readonly class ValidateWebhook implements HttpMiddleware
+{ /* … */ }
 ```
 
 ## Responses

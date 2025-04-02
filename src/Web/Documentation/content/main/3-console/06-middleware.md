@@ -4,26 +4,7 @@ title: Middleware
 
 `tempest/console` has support for middleware, a well known concept within the context of web applications, which also makes building a lot of console features easier.
 
-Console middleware can be applied both globally (to all console commands), or on a per-command basis.
-
-The global middleware stack is defined within `{php}ConsoleConfig`. Note that the default stack is provided out of the box, you only need to add a custom config file if you want to change this stack.
-
-```php
-// app/Config/console.config.php
-
-use Tempest\Console\ConsoleConfig;
-
-return new ConsoleConfig(
-    // …
-
-    middleware: [
-        OverviewMiddleware::class,
-        ResolveOrRescueMiddleware::class,
-        ConsoleExceptionMiddleware::class,
-        HelpMiddleware::class,
-    ],
-);
-```
+Console middleware can be applied both globally (to all console commands), or on a per-command basis. Global console middleware will be discovered automatically, and sorted based on their priority. Tempest comes with a bunch of console middleware out of the box.
 
 Individual middleware can be added on top of this stack by passing it into the `{php}#[ConsoleCommand]` attribute:
 
@@ -44,6 +25,66 @@ final readonly class ForceCommand
     public function __invoke(): void { /* … */ }
 }
 ```
+
+## Building your own middleware
+
+You can create your own console middleware by implementing the `{php}ConsoleMiddleware` interface:
+
+```php
+// app/HelloWorldMiddleware.php
+
+use Tempest\Console\HasConsole;
+use Tempest\Console\ConsoleMiddleware;
+use Tempest\Console\ConsoleMiddlewareCallable;
+
+final readonly class HelloWorldMiddleware implements ConsoleMiddleware
+{
+    use HasConsole;
+
+    public function __invoke(Invocation $invocation, ConsoleMiddlewareCallable $next): ExitCode|int
+    {
+        if ($invocation->argumentBag->get('hello')) {
+            $this->writeln('Hello world!')
+        }
+
+        return $next($invocation);
+    }
+}
+```
+
+Middleware classes will be autowired by the container, so you can use the constructor to inject any dependency you'd like. The `{php}Invocation` object contains everything you need about the context for the current console command invocation:
+
+- `{php}$invocation->argumentBag` contains the argument bag with all the input provided by the user.
+- `{php}$invocation->consoleCommand` an instance of the `{php}#[ConsoleCommand]` attribute for the matched console command. This property will be `null` if you're not using `{php}ResolveOrRescueMiddleware` or if your middleware runs before it.
+
+### Middleware priority
+
+All console middleware classes get sorted based on their priority. By default, each middleware gets the "normal" priority, but you can override it using the `#[Priority]` attribute:
+
+```php
+use Tempest\Core\Priority;
+
+#[Priority(Priority::HIGH)]
+final readonly class HelloWorldMiddleware implements ConsoleMiddleware
+{ /* … */ }
+```
+
+Note that priority is defined using an integer. You can however use one of the built-in `Priority` constants: `Priority::FRAMEWORK`, `Priority::HIGHEST`, `Priority::HIGH`, `Priority::NORMAL`, `Priority::LOW`, `Priority::LOWEST`.
+
+### Middleware discovery
+
+Global console middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[DoNotDiscover]` attribute:
+
+```php
+use Tempest\Discovery\DoNotDiscover;
+
+#[DoNotDiscover]
+final readonly class HelloWorldMiddleware implements ConsoleMiddleware
+{ /* … */ }
+```
+
+## Built-in middleware
+
 
 Let's take a look at the built-in middleware that Tempest provides.
 
@@ -151,34 +192,3 @@ public function __invoke(): void
 <h2>Caution! Do you wish to continue?</h2> [<em><u>yes</u></em>/no]
 <error>something cautionous</error>
 ```
-
-## Building your own middleware
-
-You can create your own middleware by implementing the `{php}ConsoleMiddleware` interface:
-
-```php
-// app/HelloWorldMiddleware.php
-
-use Tempest\Console\HasConsole;
-use Tempest\Console\ConsoleMiddleware;
-use Tempest\Console\ConsoleMiddlewareCallable;
-
-final readonly class HelloWorldMiddleware implements ConsoleMiddleware
-{
-    use HasConsole;
-
-    public function __invoke(Invocation $invocation, ConsoleMiddlewareCallable $next): ExitCode|int
-    {
-        if ($invocation->argumentBag->get('hello')) {
-            $this->writeln('Hello world!')
-        }
-
-        return $next($invocation);
-    }
-}
-```
-
-Middleware classes will be autowired by the container, so you can use the constructor to inject any dependency you'd like. The `{php}Invocation` object contains everything you need about the context for the current console command invocation:
-
-- `{php}$invocation->argumentBag` contains the argument bag with all the input provided by the user.
-- `{php}$invocation->consoleCommand` an instance of the `{php}#[ConsoleCommand]` attribute for the matched console command. This property will be `null` if you're not using `{php}ResolveOrRescueMiddleware` or if your middleware runs before it.
