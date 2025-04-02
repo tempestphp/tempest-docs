@@ -379,3 +379,22 @@ class MyCommand
 ```
 
 For these edge cases, it's nicer to make the trait self-contained without having to rely on constructor injection. That's why injected properties are supported.
+
+## Lazy loading
+The container supports lazy loading of dependencies using the `#[Lazy]` attribute. Using this attribute on a property (that has `#[Inject]`) or a constructor parameter
+will allow the container to instead inject a lazy proxy.
+Since lazy proxies are transparent to the consumer you do not need to change anything else in your code.
+The primary use case for this are heavy dependencies that may or may not be used.
+
+```php
+// app/BookController.php
+
+use Tempest\Container\Tag;
+
+final readonly class BookController
+{
+    public function __constructor(
+        #[Lazy] VerySlowClass $verySlowClass
+    ) { /* … */ }
+}
+```
