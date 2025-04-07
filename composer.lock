@@ -3806,12 +3806,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "da6665c80af48f04b4f025aab1be975c1cffd8ea"
+                "reference": "237e5014047e89077882fff58f798f81391eeb62"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/da6665c80af48f04b4f025aab1be975c1cffd8ea",
-                "reference": "da6665c80af48f04b4f025aab1be975c1cffd8ea",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/237e5014047e89077882fff58f798f81391eeb62",
+                "reference": "237e5014047e89077882fff58f798f81391eeb62",
                 "shasum": ""
             },
             "require": {
@@ -3876,9 +3876,10 @@
             },
             "require-dev": {
                 "aidan-casey/mock-client": "dev-master",
-                "carthage-software/mago": "0.22.0",
+                "carthage-software/mago": "0.22.2",
                 "guzzlehttp/psr7": "^2.6.1",
                 "illuminate/view": "~11.7.0",
+                "masterminds/html5": "^2.9",
                 "mikey179/vfsstream": "^2.0@dev",
                 "nesbot/carbon": "^3.8",
                 "nyholm/psr7": "^1.8",
@@ -3967,7 +3968,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-02T11:17:49+00:00"
+            "time": "2025-04-07T07:08:24+00:00"
         },
         {
             "name": "tempest/highlight",
