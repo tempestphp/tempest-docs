@@ -367,6 +367,7 @@ Tempest provides several classes, all implementing the {`Tempest\Router\Response
 - `{php}Ok` — the 200 response. Accepts an optional body.
 - `{php}Created` — the 201 response. Accepts an optional body.
 - `{php}Redirect` — redirects to the specified URI.
+- `{php}Back` — redirects to previous page, accepts a fallback.
 - `{php}Download` — downloads a file from the browser.
 - `{php}File` — shows a file in the browser.
 - `{php}Invalid` — a response with form validation errors, redirecting to the previous page.
