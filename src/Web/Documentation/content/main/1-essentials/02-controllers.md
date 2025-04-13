@@ -287,10 +287,10 @@ use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
 use Tempest\Router\Request;
 use Tempest\Router\Response;
-use Tempest\Discovery\DoNotDiscover;
+use Tempest\Discovery\SkipDiscovery;
 use Tempest\Core\Priority;
 
-#[DoNotDiscover]
+#[SkipDiscovery]
 #[Priority(Priority::LOW)]
 final readonly class ValidateWebhook implements HttpMiddleware
 {
@@ -322,12 +322,12 @@ Note that priority is defined using an integer. You can however use one of the b
 
 ### Middleware discovery
 
-Global middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[DoNotDiscover]` attribute:
+Global middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[SkipDiscovery]` attribute:
 
 ```php
-use Tempest\Discovery\DoNotDiscover;
+use Tempest\Discovery\SkipDiscovery;
 
-#[DoNotDiscover]
+#[SkipDiscovery]
 final readonly class ValidateWebhook implements HttpMiddleware
 { /* … */ }
 ```
