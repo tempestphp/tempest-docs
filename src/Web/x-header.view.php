@@ -40,7 +40,9 @@ use function Tempest\is_current_uri;
 				</a>
         <a
 					:href="uri([BlogController::class, 'index'])"
-					class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index']) ? 'md:text-(--ui-primary)' : '' ?>"
+					class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index'])
+    					? 'md:text-(--ui-primary)'
+    					: '' ?>"
 				>Blog</a>
 				<a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
 					<x-icon name="tabler:brand-github" class="size-6" />

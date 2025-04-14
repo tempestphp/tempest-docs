@@ -7,6 +7,7 @@ namespace App\Web\Documentation;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\View\IsView;
 use Tempest\View\View;
+
 use function Tempest\Support\Arr\map_iterable;
 use function Tempest\Support\str;
 
