@@ -7,7 +7,7 @@ use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
 use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
-use Tempest\Database\Query;
+use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 
 use function Tempest\Support\arr;
 use function Tempest\Support\str;
@@ -46,7 +46,9 @@ final readonly class EventsReplayCommand
             return;
         }
 
-        $eventCount = new Query(sprintf('SELECT COUNT(*) as `count` FROM `%s`', StoredEvent::table()->tableName))->fetchFirst()['count'];
+        $eventCount = new QueryBuilder(StoredEvent::class)
+            ->select('COUNT(*) as `count`')
+            ->first()['count'];
 
         $confirm = $this->confirm(sprintf(
             'We\'re going to replay %d events on %d %s, this will take a while. Continue?',
