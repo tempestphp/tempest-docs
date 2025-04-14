@@ -15,16 +15,20 @@ use function Tempest\is_current_uri;
 			id="header"
 		>
       <!-- Left side -->
-      <a href="/" class="flex items-center gap-4">
-        <!-- Logo -->
-        <div class="size-8">
-          <img src="/img/logo-transparent.svg" alt="Tempest logo" class="size-full" />
-        </div>
-        <span class="font-medium hidden lg:inline">Tempest</span>
-				<span class="hidden md:inline text-xs tracking-wide font-medium text-(--ui-text-muted) bg-(--ui-bg)/50 px-2 py-1 rounded-lg border border-(--ui-border)">
-					v{{ \Tempest\Core\Kernel::VERSION }}
-				</span>
-      </a>
+      <div class="flex items-center gap-4">
+          <a href="/" class="flex items-center gap-4">
+              <!-- Logo -->
+              <div class="size-8">
+                  <img src="/img/logo-transparent.svg" alt="Tempest logo" class="size-full" />
+              </div>
+              <span class="font-medium hidden lg:inline">Tempest</span>
+          </a>
+
+          <a class="hidden md:inline text-xs tracking-wide font-medium text-(--ui-text-muted) bg-(--ui-bg)/50 px-2 py-1 rounded-lg border border-(--ui-border)" href="https://github.com/tempestphp/tempest-framework/releases/{{ $latest_release }}">
+              {{ $latest_release }}
+          </a>
+      </div>
+
       <!-- Center -->
       <div class="flex items-center gap-4">
         <x-search />
