@@ -4,7 +4,7 @@ namespace App\Web\Analytics\VisitsPerDay;
 
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PageVisited;
-use Tempest\Database\Query;
+use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 use Tempest\EventBus\EventHandler;
 
 final readonly class VisitsPerDayProjector implements Projector
@@ -20,12 +20,9 @@ final readonly class VisitsPerDayProjector implements Projector
     #[\Override]
     public function clear(): void
     {
-        $query = new Query(sprintf(
-            'DELETE FROM %s',
-            VisitsPerDay::table(),
-        ));
-
-        $query->execute();
+        new QueryBuilder(VisitsPerDay::class)
+            ->delete()
+            ->execute();
     }
 
     #[EventHandler]
