@@ -8,8 +8,10 @@ use Throwable;
 
 final class GetLatestRelease
 {
-    public function __construct(private HttpClient $httpClient)
-    {}
+    public function __construct(
+        private HttpClient $httpClient,
+    ) {
+    }
 
     public function __invoke(): ?string
     {
@@ -17,8 +19,7 @@ final class GetLatestRelease
         $defaultRelease = sprintf('v%s', Kernel::VERSION);
 
         try {
-            $body = $this
-                ->httpClient
+            $body = $this->httpClient
                 ->get('https://api.github.com/repos/tempestphp/tempest-framework/releases/latest')
                 ->body;
 
