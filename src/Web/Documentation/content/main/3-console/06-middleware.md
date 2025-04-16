@@ -73,12 +73,12 @@ Note that priority is defined using an integer. You can however use one of the b
 
 ### Middleware discovery
 
-Global console middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[DoNotDiscover]` attribute:
+Global console middleware classes are discovered and sorted based on their priority. You can make a middleware class non-global by adding the `#[SkipDiscovery]` attribute:
 
 ```php
-use Tempest\Discovery\DoNotDiscover;
+use Tempest\Discovery\SkipDiscovery;
 
-#[DoNotDiscover]
+#[SkipDiscovery]
 final readonly class HelloWorldMiddleware implements ConsoleMiddleware
 { /* … */ }
 ```

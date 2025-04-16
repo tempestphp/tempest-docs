@@ -4,14 +4,14 @@ title: Package development
 
 Tempest comes with a handful of tools to help third-party package developers.
 
-## DoNotDiscover
+## SkipDiscovery
 
-Tempest has an attribute called `#[DoNotDiscover]`, which you can add on classes. Any class within your package that has this attribute won't be discovered by Tempest. You can still use that class internally, or allow you package to publish it (see [installers](#installers)).
+Tempest has an attribute called `#[SkipDiscovery]`, which you can add on classes. Any class within your package that has this attribute won't be discovered by Tempest. You can still use that class internally, or allow you package to publish it (see [installers](#installers)).
 
 ```php
-use Tempest\Core\DoNotDiscover;
+use Tempest\Discovery\SkipDiscovery;
 
-#[DoNotDiscover]
+#[SkipDiscovery]
 final readonly class UserMigration implements Migration
 {
     // …
@@ -23,9 +23,9 @@ final readonly class UserMigration implements Migration
 Packages can have one or more installers, which can be used to set up your package within a project. For example: a package can optionally publish migration files that will only be discovered when they are published. Take, for example, a look at the `AuthInstaller`, which will install the `User` model, as well as other related models and their migrations:
 
 ```php
-use Tempest\Core\DoNotDiscover;
 use Tempest\Core\Installer;
 use Tempest\Core\PublishesFiles;
+use Tempest\Discovery\SkipDiscovery;
 use Tempest\Generation\ClassManipulator;
 use function Tempest\src_namespace;
 use function Tempest\src_path;
@@ -83,7 +83,7 @@ Running the installer looks like this:
 <success>Done</success>
 ```
 
-Note that you can use `src_path()` to generate paths to the project's source folder. This folder be either `src/` or `app/`, depending on the project's preferences. If you're using the `PublishesFiles` trait, then Tempest will also automatically adjust class namespaces and remove `#[DoNotDiscover]` attributes when publishing files.
+Note that you can use `src_path()` to generate paths to the project's source folder. This folder be either `src/` or `app/`, depending on the project's preferences. If you're using the `PublishesFiles` trait, then Tempest will also automatically adjust class namespaces and remove `#[SkipDiscovery]` attributes when publishing files.
 
 On top of that, you can pass a callback to the `publish()` method, which gives you even more control over the published files:
 
