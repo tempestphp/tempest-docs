@@ -4,6 +4,7 @@ namespace App\Web\Analytics\PackageDownloadsPerHour;
 
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PackageDownloadsListed;
+use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 use Tempest\Database\Query;
 use Tempest\EventBus\EventHandler;
 
@@ -12,12 +13,9 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
     #[\Override]
     public function clear(): void
     {
-        $query = new Query(sprintf(
-            'DELETE FROM %s',
-            PackageDownloadsPerHour::table(),
-        ));
-
-        $query->execute();
+        new QueryBuilder(PackageDownloadsPerHour::class)
+            ->delete()
+            ->execute();
     }
 
     #[\Override]

@@ -34,7 +34,7 @@ final class ChapterView implements View
 
     public function getSubChapters(): array
     {
-        // TODO: clean up
+        // TODO(@innocenzi): clean up
         preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $h2Matches);
         preg_match_all('/<h3.*>.*<a.*href="(?<h3uri>.*?)".*<\/span>(?<h3title>.*)<\/a><\/h3>/', $this->currentChapter->body, $h3Matches);
 

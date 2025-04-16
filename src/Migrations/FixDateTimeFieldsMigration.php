@@ -12,7 +12,7 @@ final class FixDateTimeFieldsMigration
     use HasConsole;
 
     #[ConsoleCommand(name: 'fix:projections')]
-    public function __invoke()
+    public function __invoke(): void
     {
         foreach (VisitsPerDay::all() as $visitsPerDay) {
             $visitsPerDay->save();
