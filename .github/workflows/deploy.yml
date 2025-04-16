@@ -36,6 +36,8 @@ jobs:
 
       - name: Deploy
         run: php ./tempest deploy
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
 
