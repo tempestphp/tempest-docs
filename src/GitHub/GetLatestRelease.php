@@ -32,7 +32,7 @@ final class GetLatestRelease
             $body = $this->httpClient
                 ->get(
                     uri: 'https://api.github.com/repos/tempestphp/tempest-framework/releases/latest',
-                    headers: $headers
+                    headers: $headers,
                 )
                 ->body;
 

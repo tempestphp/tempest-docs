@@ -4,6 +4,7 @@ namespace App\GitHub;
 
 use Tempest\HttpClient\HttpClient;
 use Throwable;
+
 use function Tempest\env;
 
 final class GetStargazersCount
@@ -26,7 +27,7 @@ final class GetStargazersCount
         try {
             $body = $this->httpClient->get(
                 uri: 'https://api.github.com/repos/tempestphp/tempest-framework',
-                headers: $headers
+                headers: $headers,
             )->body;
             $stargazers = json_decode($body)->stargazers_count ?? null;
 
