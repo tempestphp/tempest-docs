@@ -419,6 +419,16 @@ final readonly class ViteTagsComponent implements ViewComponent
 
 The above is a simplified implementation of the built-in `{html}<x-vite-tags />`. The `{php}compile` method is expected to return normal PHP, that will not be parsed again by the templating engine.
 
+### Dynamic view components
+
+On some occasions, you might want to dynamically render view components, ie. render a view component whose name is determined at runtime. You can use the `{html}<x-component :is="">` element to do so:
+
+```html
+<!-- $name = 'x-post' -->
+
+<x-component :is="$name" :title="$title" />
+```
+
 ## Built-in components
 
 Besides components that you may create yourself, Tempest provides a default set of useful built-in components to improve your developer experience.
