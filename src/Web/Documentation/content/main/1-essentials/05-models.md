@@ -159,6 +159,20 @@ $data = query('chapters')
 ```
 
 ```php
+$data = query('chapters')
+    ->count()
+    ->where('title = ?', 'Timeline Taxi')
+    ->andWhere('index <> ?', '1')
+    ->execute();
+```
+
+```php
+$data = query('chapters')
+    ->count('title')
+    ->execute();
+```
+
+```php
 query('chapters')
     ->update(
         title: 'Chapter 01',
