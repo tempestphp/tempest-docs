@@ -6,26 +6,35 @@ Tempest is still a work in progress, and we're actively working towards a stable
 
 You're more than welcome to [contribute to Tempest](https://github.com/tempestphp/tempest-framework), and can even work on features in future milestones if anything is of particular interest to you. The best way to get in touch about Tempest development is to [join our Discord server](https://discord.gg/pPhpTGUMPQ).
 
-## Next stages of development
+## Version stability
 
-### Alpha
+Tempest is going through several stability stages:
 
-Currently, we release a new alpha version of Tempest every month or two.
+- **Alpha**: during this phase, we'll add new features and refactorings, there will be breaking changes.
+- **Beta**: we focus on bug fixing in preparation for the next major release
+- **Stable**: the final release
 
-Alpha versions can still contain breaking changes, but already include a framework that can be used to tinker with and build small project with. For example, this website is written using Tempest.
+Tempest is currently in the last 1.0 alpha version, the next tagged version will be beta.1, and thus focus on preparing for a stable 1.0 release.
 
-### Beta
+## Experimental features
 
-Once Tempest is tagged as beta, we're committed to not do any more breaking changes, and only focus on bug fixing. Any issue included in [the alpha and pre-1.0 milestones](https://github.com/tempestphp/tempest-framework/milestones) will have to be fixed before we consider tagging beta.
+Given the size of the project, we decided to mark a couple of features as _experimental_. These features might still change after a stable 1.0 release has been tagged. Our goal is to rid all experimental components before Tempest 2.0. Here's the list of experimental features:
 
-### Stable
+- [tempest/view](/main/essentials/views): you can use both [Twig](/main/essentials/views#using-twig) or [Blade](/main/essentials/views#using-blade) as alternatives.
+- [The command bus](/main/tempest-in-depth/commands): you can plug in any other command bus if you'd like.
+- [Authentication and authorization](/main/tempest-in-depth/auth): the current implementation is very lightweight, and we welcome people to experiment with more complex implementations as third-party packages before committing to a framework-provided solution.
+- [ORM](/main/essentials/models): you can use existing ORMs like [Doctrine](https://www.doctrine-project.org/) as an alternative
+- [The DateTime component](https://github.com/tempestphp/tempest-framework/tree/main/src/Tempest/DateTime): you can use [Carbon](https://carbon.nesbot.com/docs/) or [Psl](https://github.com/azjezz/psl) as alternatives
 
-We're committing ourselves that from 1.0 on, any subsequent versions of Tempest with breaking changes will get an automated upgrade path.
+Please note that we're committed to making all of these components stable as soon as possible. In order to do so, we will need real-life feedback from the community. By marking these components as experimental, we acknowledge that we probably won't get it right from the get-go, and we want to be clear about that up front.
 
-We will most likely ship custom Rectors with every new major release, so that you can run a script to automatically upgrade your codebase to be compatible with the newest Tempest release.
+## Upcoming features
 
-### After 1.0
+Apart from experimental features, we're also aware that Tempest isn't feature-complete yet. Here's a list of items on our todo-list, feel free to contact us via [GitHub](https://github.com/tempestphp/tempest-framework) or [Discord](https://discord.gg/pPhpTGUMPQ) if you'd like to suggest other features, or want to help out with one of these:
 
-We have a range of features that are not planned for 1.0, but should be added afterward. A couple of examples are mail support, multiple database connections, or custom exception pages.
-
-You can [read the full list on GitHub](https://github.com/tempestphp/tempest-framework/milestone/13).
+- Internationalization support
+- Dedicated support for API development
+- Mail support
+- HTMX support combined with tempest/view
+- Form builder
+- Event bus and command bus improvements (transport support, async messaging, event sourcing, …)
