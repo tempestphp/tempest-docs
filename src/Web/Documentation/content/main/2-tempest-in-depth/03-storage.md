@@ -79,7 +79,7 @@ $storage->fileOrDirectoryExists($location);
 
 ## Configuration
 
-Tempest provides a different configuration object for each storage provider. Below are the
+Tempest provides a different configuration object for each storage provider. Below are the ones that are currently supported:
 
 - {`Tempest\Storage\Config\R2StorageConfig`}
 - {`Tempest\Storage\Config\S3StorageConfig`}
