@@ -4,7 +4,7 @@ namespace App\Web\Homepage;
 
 use League\CommonMark\MarkdownConverter;
 use Tempest\Router\Get;
-use Tempest\Router\Responses\Redirect;
+use Tempest\Http\Responses\Redirect;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
 

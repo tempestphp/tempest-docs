@@ -8,9 +8,9 @@ use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\Themes\CssTheme;
 use Tempest\Router\Get;
 use Tempest\Router\Post;
-use Tempest\Router\Request;
-use Tempest\Router\Response;
-use Tempest\Router\Responses\Redirect;
+use Tempest\Http\Request;
+use Tempest\Http\Response;
+use Tempest\Http\Responses\Redirect;
 use Tempest\View\View;
 
 use function Tempest\uri;
