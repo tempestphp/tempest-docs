@@ -284,38 +284,11 @@ $container->get(Highlighter::class, tag: 'cli');
 [This blog post](https://stitcher.io/blog/tagged-singletons), by {gh:brendt}, provides in-depth explanations about tagged singletons.
 :::
 
-### The HasTag interface
+### Dynamic tags
 
-Besides attaching tags during singleton registration, you can also have a singleton class itself define a tag. This is done by implementing the `HasTag` interface:
+Some components implement the {`Tempest\Container\HasTag`} interface, which requires a `tag` property. Singletons using this interface are tagged by the `tag` property, essentially providing the ability to have dynamic tags.
 
-```php
-use Tempest\Container\HasTag;
-
-final class MysqlConfig implements DatabaseConfig, HasTag
-{
-    // …
-    
-    public function __construct(
-        public null|string|UnitEnum $tag = null,
-    ) {}
-}
-```
-
-Objects implementing the `HasTag` interface essentially get a user-configurable tag. This is especially useful for tagging config objects (as illustrated with the previous example):
-
-```php db-tenant-1.config.php
-return new SQLiteConfig(
-    path: 'db-tenant-1.sqlite',
-    tag: 'tenant-1',
-);
-```
-
-```php db-tenant-2.config.php
-return new SQLiteConfig(
-    path: 'db-tenant-2.sqlite',
-    tag: 'tenant-2',
-);
-```
+This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](./05-models.md#using-multiple-connections) is implemented.
 
 ## Built-in types dependencies
 
