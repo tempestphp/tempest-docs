@@ -38,3 +38,4 @@ Apart from experimental features, we're also aware that Tempest isn't feature-co
 - HTMX support combined with tempest/view
 - Form builder
 - Event bus and command bus improvements (transport support, async messaging, event sourcing, …)
+- Queuing and messaging components
