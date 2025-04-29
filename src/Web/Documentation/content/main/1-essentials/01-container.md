@@ -284,6 +284,39 @@ $container->get(Highlighter::class, tag: 'cli');
 [This blog post](https://stitcher.io/blog/tagged-singletons), by {gh:brendt}, provides in-depth explanations about tagged singletons.
 :::
 
+### The HasTag interface
+
+Besides attaching tags during singleton registration, you can also have a singleton class itself define a tag. This is done by implementing the `HasTag` interface:
+
+```php
+use Tempest\Container\HasTag;
+
+final class MysqlConfig implements DatabaseConfig, HasTag
+{
+    // …
+    
+    public function __construct(
+        public null|string|UnitEnum $tag = null,
+    ) {}
+}
+```
+
+Objects implementing the `HasTag` interface essentially get a user-configurable tag. This is especially useful for tagging config objects (as illustrated with the previous example):
+
+```php db-tenant-1.config.php
+return new SQLiteConfig(
+    path: 'db-tenant-1.sqlite',
+    tag: 'tenant-1',
+);
+```
+
+```php db-tenant-2.config.php
+return new SQLiteConfig(
+    path: 'db-tenant-2.sqlite',
+    tag: 'tenant-2',
+);
+```
+
 ## Built-in types dependencies
 
 Besides being able to depend on objects, sometimes you'd want to depend on built-in types like `string`, `int` or more often `array`. It is possible to depend on these built-in types, but these cannot be autowired and must be initialized through a [tagged singleton](#tagged-singletons).
