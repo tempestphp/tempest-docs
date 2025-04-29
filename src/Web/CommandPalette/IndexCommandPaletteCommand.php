@@ -31,6 +31,7 @@ final readonly class IndexCommandPaletteCommand
             ]),
         );
 
+        $this->console->writeln();
         $this->console->success('Exported index.');
 
         return ExitCode::SUCCESS;
