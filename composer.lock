@@ -3939,12 +3939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "278253dc0844dbe351455d2cbd05eda2211d796b"
+                "reference": "d6a7d92374650b2d1c39567e933d83251874e4eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/278253dc0844dbe351455d2cbd05eda2211d796b",
-                "reference": "278253dc0844dbe351455d2cbd05eda2211d796b",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/d6a7d92374650b2d1c39567e933d83251874e4eb",
+                "reference": "d6a7d92374650b2d1c39567e933d83251874e4eb",
                 "shasum": ""
             },
             "require": {
@@ -4043,68 +4043,65 @@
                 "ext-posix": "Required to use some interactive console components."
             },
             "default-branch": true,
-            "bin": [
-                "src/Tempest/Console/bin/tempest"
-            ],
             "type": "library",
             "autoload": {
                 "files": [
-                    "src/Tempest/Clock/src/functions.php",
-                    "src/Tempest/CommandBus/src/functions.php",
-                    "src/Tempest/Container/src/functions.php",
-                    "src/Tempest/Core/src/functions.php",
-                    "src/Tempest/Database/src/functions.php",
-                    "src/Tempest/DateTime/src/constants.php",
-                    "src/Tempest/DateTime/src/functions.php",
-                    "src/Tempest/Debug/src/functions.php",
-                    "src/Tempest/EventBus/src/functions.php",
-                    "src/Tempest/Mapper/src/functions.php",
-                    "src/Tempest/Reflection/src/functions.php",
-                    "src/Tempest/Router/src/functions.php",
-                    "src/Tempest/Support/src/Arr/functions.php",
-                    "src/Tempest/Support/src/Comparison/functions.php",
-                    "src/Tempest/Support/src/Filesystem/functions.php",
-                    "src/Tempest/Support/src/Html/functions.php",
-                    "src/Tempest/Support/src/Json/functions.php",
-                    "src/Tempest/Support/src/Language/functions.php",
-                    "src/Tempest/Support/src/Math/constants.php",
-                    "src/Tempest/Support/src/Math/functions.php",
-                    "src/Tempest/Support/src/Namespace/functions.php",
-                    "src/Tempest/Support/src/Path/functions.php",
-                    "src/Tempest/Support/src/Random/functions.php",
-                    "src/Tempest/Support/src/Regex/functions.php",
-                    "src/Tempest/Support/src/Str/constants.php",
-                    "src/Tempest/Support/src/Str/functions.php",
-                    "src/Tempest/Support/src/functions.php",
-                    "src/Tempest/View/src/functions.php",
-                    "src/Tempest/Vite/src/functions.php"
+                    "packages/clock/src/functions.php",
+                    "packages/command-bus/src/functions.php",
+                    "packages/container/src/functions.php",
+                    "packages/core/src/functions.php",
+                    "packages/database/src/functions.php",
+                    "packages/datetime/src/constants.php",
+                    "packages/datetime/src/functions.php",
+                    "packages/debug/src/functions.php",
+                    "packages/event-bus/src/functions.php",
+                    "packages/mapper/src/functions.php",
+                    "packages/reflection/src/functions.php",
+                    "packages/router/src/functions.php",
+                    "packages/support/src/Arr/functions.php",
+                    "packages/support/src/Comparison/functions.php",
+                    "packages/support/src/Filesystem/functions.php",
+                    "packages/support/src/Html/functions.php",
+                    "packages/support/src/Json/functions.php",
+                    "packages/support/src/Language/functions.php",
+                    "packages/support/src/Math/constants.php",
+                    "packages/support/src/Math/functions.php",
+                    "packages/support/src/Namespace/functions.php",
+                    "packages/support/src/Path/functions.php",
+                    "packages/support/src/Random/functions.php",
+                    "packages/support/src/Regex/functions.php",
+                    "packages/support/src/Str/constants.php",
+                    "packages/support/src/Str/functions.php",
+                    "packages/support/src/functions.php",
+                    "packages/view/src/functions.php",
+                    "packages/vite/src/functions.php"
                 ],
                 "psr-4": {
-                    "Tempest\\Log\\": "src/Tempest/Log/src",
-                    "Tempest\\Auth\\": "src/Tempest/Auth/src/",
-                    "Tempest\\Core\\": "src/Tempest/Core/src",
-                    "Tempest\\Http\\": "src/Tempest/Http/src",
-                    "Tempest\\View\\": "src/Tempest/View/src",
-                    "Tempest\\Vite\\": "src/Tempest/Vite/src",
-                    "Tempest\\Cache\\": "src/Tempest/Cache/src/",
-                    "Tempest\\Clock\\": "src/Tempest/Clock/src/",
-                    "Tempest\\Debug\\": "src/Tempest/Debug/src",
-                    "Tempest\\Mapper\\": "src/Tempest/Mapper/src",
-                    "Tempest\\Router\\": "src/Tempest/Router/src",
-                    "Tempest\\Console\\": "src/Tempest/Console/src",
-                    "Tempest\\Storage\\": "src/Tempest/Storage/src",
-                    "Tempest\\Support\\": "src/Tempest/Support/src",
-                    "Tempest\\Database\\": "src/Tempest/Database/src",
-                    "Tempest\\DateTime\\": "src/Tempest/DateTime/src",
-                    "Tempest\\EventBus\\": "src/Tempest/EventBus/src",
-                    "Tempest\\Container\\": "src/Tempest/Container/src",
-                    "Tempest\\Discovery\\": "src/Tempest/Discovery/src",
+                    "Tempest\\Log\\": "packages/log/src",
+                    "Tempest\\Auth\\": "packages/auth/src",
+                    "Tempest\\Core\\": "packages/core/src",
+                    "Tempest\\Http\\": "packages/http/src",
+                    "Tempest\\View\\": "packages/view/src",
+                    "Tempest\\Vite\\": "packages/vite/src",
+                    "Tempest\\Cache\\": "packages/cache/src",
+                    "Tempest\\Clock\\": "packages/clock/src",
+                    "Tempest\\Debug\\": "packages/debug/src",
+                    "Tempest\\Mapper\\": "packages/mapper/src",
+                    "Tempest\\Router\\": "packages/router/src",
+                    "Tempest\\Console\\": "packages/console/src",
+                    "Tempest\\Storage\\": "packages/storage/src",
+                    "Tempest\\Support\\": "packages/support/src",
+                    "Tempest\\Database\\": "packages/database/src",
+                    "Tempest\\DateTime\\": "packages/datetime/src",
+                    "Tempest\\EventBus\\": "packages/event-bus/src",
+                    "Tempest\\Container\\": "packages/container/src",
+                    "Tempest\\Discovery\\": "packages/discovery/src",
                     "Tempest\\Framework\\": "src/Tempest/Framework",
-                    "Tempest\\CommandBus\\": "src/Tempest/CommandBus/src",
-                    "Tempest\\Generation\\": "src/Tempest/Generation/src",
-                    "Tempest\\HttpClient\\": "src/Tempest/HttpClient/src",
-                    "Tempest\\Reflection\\": "src/Tempest/Reflection/src",
-                    "Tempest\\Validation\\": "src/Tempest/Validation/src"
+                    "Tempest\\CommandBus\\": "packages/command-bus/src",
+                    "Tempest\\Generation\\": "packages/generation/src",
+                    "Tempest\\HttpClient\\": "packages/http-client/src",
+                    "Tempest\\Reflection\\": "packages/reflection/src",
+                    "Tempest\\Validation\\": "packages/validation/src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4122,7 +4119,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-04-29T12:20:52+00:00"
+            "time": "2025-04-29T15:09:23+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4397,16 +4394,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.0",
+            "version": "1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414"
+                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/024473a478be9df5fdaca2c793f2232fe788e414",
-                "reference": "024473a478be9df5fdaca2c793f2232fe788e414",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/1720ddd719e16cf0db4eb1c6eca108031636d46c",
+                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c",
                 "shasum": ""
             },
             "require": {
@@ -4445,7 +4442,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.0"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.1"
             },
             "funding": [
                 {
@@ -4453,7 +4450,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-02-12T12:17:51+00:00"
+            "time": "2025-04-29T12:36:36+00:00"
         },
         {
             "name": "phar-io/manifest",
