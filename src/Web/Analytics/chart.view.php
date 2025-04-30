@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Analytics\Chart $chart
+ * @var \App\Web\Analytics\Chart $chart
  * @var string $label
  * @var string $title
  */

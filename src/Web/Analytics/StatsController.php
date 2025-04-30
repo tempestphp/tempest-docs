@@ -9,6 +9,7 @@ use DateInterval;
 use DateTimeImmutable;
 use Tempest\Clock\Clock;
 use Tempest\Database\Query;
+use Tempest\DateTime\Duration;
 use Tempest\Router\Get;
 use Tempest\View\View;
 
@@ -24,26 +25,26 @@ final readonly class StatsController
 
         $visitsPerHour = arr(
             VisitsPerHour::select()
-                ->where('date >= ?', $now->sub(DateInterval::createFromDateString('24 hours'))->format('Y-m-d H:i:s'))
+                ->where('date >= ?', $now->minus(Duration::hours(24))->format('Y-m-d H:i:s'))
                 ->all(),
         );
 
         $visitsPerDay = arr(
             VisitsPerDay::select()
-                ->where('date >= ?', $now->sub(DateInterval::createFromDateString('30 days'))->format('Y-m-d H:i:s'))
+                ->where('date >= ?', $now->minus(Duration::days(30))->format('Y-m-d H:i:s'))
                 ->all(),
         );
 
         $packageDownloadsPerHour = arr(new Query(<<<SQL
         SELECT `date`, SUM(`count`) as `count` FROM package_downloads_per_hours WHERE `date` >= :date GROUP BY `date`
         SQL)->fetch(
-            date: $now->sub(DateInterval::createFromDateString('24 hours'))->format('Y-m-d H:i:s'),
+            date: $now->minus(Duration::days(24))->format('Y-m-d H:i:s'),
         ));
 
         $packageDownloadsPerDay = arr(new Query(<<<SQL
         SELECT `date`, SUM(`count`) as `count` FROM package_downloads_per_days WHERE date >= :date GROUP BY `date`
         SQL)->fetch(
-            date: $now->sub(DateInterval::createFromDateString('30 days'))->format('Y-m-d H:i:s'),
+            date: $now->minus(Duration::days(30))->format('Y-m-d H:i:s'),
         ));
 
         return view(

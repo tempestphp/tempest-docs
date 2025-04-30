@@ -3,6 +3,10 @@ title: Authentication and authorization
 keywords: "Experimental"
 ---
 
+:::warning
+The authentication implementation is currently experimental and is not covered by our backwards compatibility promise.
+:::
+
 ## Overview
 
 :::warning

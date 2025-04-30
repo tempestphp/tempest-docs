@@ -6,10 +6,10 @@ use Tempest\Core\Priority;
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
 use Tempest\Router\MatchedRoute;
-use Tempest\Router\Request;
-use Tempest\Router\Response;
-use Tempest\Router\Responses\NotFound;
-use Tempest\Router\Responses\Redirect;
+use Tempest\Http\Request;
+use Tempest\Http\Response;
+use Tempest\Http\Responses\NotFound;
+use Tempest\Http\Responses\Redirect;
 use Tempest\Router\Router;
 
 use function Tempest\get;

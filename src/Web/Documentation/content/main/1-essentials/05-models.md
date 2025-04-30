@@ -6,8 +6,6 @@ keywords: ["experimental", "orm", "database"]
 
 :::warning
 The ORM is currently experimental and is not covered by our backwards compatibility promise. Important features such as query builder relationships are not polished nor documented.
-
-We are currently discussing about taking a different approach to the ORM. [We'd like to hear your opinion](https://github.com/tempestphp/tempest-framework/issues/1074)!
 :::
 
 ## Overview
@@ -317,4 +315,53 @@ return new PostgresConfig(
     password: env('DB_PASSWORD'),
     database: env('DB_DATABASE'),
 );
+```
+
+### Using multiple databases
+
+If you need to work with multiple databases, you may do so by creating a [tagged configuration](./01-container.md#dynamic-tags). It is the same as a normal configuration file, except the `tag` property must be specified. This tag will identify the connection in the container.
+
+```php src/database.backup.config.php
+return new PostgresConfig(
+    tag: 'backup',
+    host: env('BACKUP_DB_HOST'),
+    port: env('BACKUP_DB_PORT'),
+    username: env('BACKUP_DB_USERNAME'),
+    password: env('BACKUP_DB_PASSWORD'),
+    database: env('BACKUP_DB_DATABASE'),
+);
+```
+
+To use a named connection, you may resolve it from the container [using its tag](./01-container.md#tagged-singletons):
+
+```php src/BackupService.php
+use Tempest\Database\Database;
+use Tempest\Container\Tag;
+
+final readonly class BackupService
+{
+    public function __construct(
+        #[Tag('backup')]
+        private Database $database,
+    ) {}
+
+    // …
+}
+```
+
+### Configuring databases at runtime
+
+There may be situations where you need to define a database connection at runtime, for instance when dealing with per-tenant databases. This may be done by registering a tagged database configuration in the container:
+
+```php
+$this->container->config(new SQliteConfig(
+    tag: $tenant->name,
+    path: $tenant->databasePath,
+));
+```
+
+Resolving the {b`Tempest\Database\Database`} interface from the container with the same tag will use that configuration.
+
+```php
+$tenantDatabase = $this->container->get(Database::class, tag: $tenant->name);
 ```

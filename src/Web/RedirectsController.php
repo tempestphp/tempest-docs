@@ -3,7 +3,7 @@
 namespace App\Web;
 
 use Tempest\Router\Get;
-use Tempest\Router\Responses\Redirect;
+use Tempest\Http\Responses\Redirect;
 
 final readonly class RedirectsController
 {
