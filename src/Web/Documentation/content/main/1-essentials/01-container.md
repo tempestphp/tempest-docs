@@ -393,16 +393,14 @@ will allow the container to instead inject a lazy proxy.
 Since lazy proxies are transparent to the consumer you do not need to change anything else in your code.
 The primary use case for this are heavy dependencies that may or may not be used.
 
-```php
-// app/BookController.php
-
-use Tempest\Container\Tag;
+```php app/BookController.php
 use Tempest\Container\Proxy;
 
 final readonly class BookController
 {
-    public function __constructor(
-        #[Proxy] VerySlowClass $verySlowClass
+    public function __construct(
+        #[Proxy] 
+        private VerySlowClass $verySlowClass
     ) { /* … */ }
 }
 ```
