@@ -37,7 +37,7 @@ final readonly class BookController
 }
 ```
 
-The above snippet is an example of a controller controller. It features [attribute-based routes](../1-framework/03-controllers), mapping a request to a data object using the [mapper](../1-framework/11-mapper), [URL generation](../1-framework/03-controllers#generating-uris) and [dependency injection](../1-framework/02-the-container#autowired-dependencies).
+The above snippet is an example of a controller controller. It features [attribute-based routes](../1-essentials/02-controllers), mapping a request to a data object using the [mapper](../2-tempest-in-depth/01-mapper), [URL generation](../1-essentials/02-controllers#generating-uris) and [dependency injection](../1-essentials/01-container#autowired-dependencies).
 
 ```php
 use Tempest\Console\Console;
@@ -83,12 +83,12 @@ final readonly class MigrateUpCommand
 }
 ```
 
-This is a [console command](../2-console/02-building-console-commands). Console commands can be defined in any class, as long as the `#[ConsoleCommand]` attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
+This is a [console command](../3-console/02-building-console-commands). Console commands can be defined in any class, as long as the `#[ConsoleCommand]` attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
 
-This example also shows how to [register events globally](../1-framework/07-events) using the `#[EventHandler]`.
+This example also shows how to [register events globally](../2-tempest-in-depth/03-events) using the `#[EventHandler]`.
 
 ---
 
 :::info Ready to give it a try?
-Keep on reading and consider [**giving Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and if you feel like contributing, you can check out our [contributing guide](/docs/internals/contributing)!
+Keep on reading and consider [**giving Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and if you feel like contributing, you can check out our [contributing guide](/docs/extra-topics/contributing)!
 :::
