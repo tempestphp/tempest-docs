@@ -81,13 +81,13 @@ $storage->fileOrDirectoryExists($location);
 
 Tempest provides a different configuration object for each storage provider. Below are the ones that are currently supported:
 
+- {`Tempest\Storage\Config\LocalStorageConfig`}
 - {`Tempest\Storage\Config\R2StorageConfig`}
 - {`Tempest\Storage\Config\S3StorageConfig`}
 - {`Tempest\Storage\Config\AzureStorageConfig`}
 - {`Tempest\Storage\Config\FTPStorageConfig`}
 - {`Tempest\Storage\Config\GoogleCloudStorageConfig`}
 - {`Tempest\Storage\Config\InMemoryStorageConfig`}
-- {`Tempest\Storage\Config\LocalStorageConfig`}
 - {`Tempest\Storage\Config\SFTPStorageConfig`}
 - {`Tempest\Storage\Config\StorageConfig`}
 - {`Tempest\Storage\Config\ZipArchiveStorageConfig`}
@@ -145,7 +145,7 @@ composer require league/flysystem-read-only
 
 Once this is done, you may pass the `readonly` parameter to the adapter configuration and set it to `true`.
 
-```php src/data-snapshots.storage.confg.php
+```php src/data-snapshots.storage.config.php
 return new S3StorageConfig(
     tag: StorageLocation::DATA_SNAPSHOTS,
     readonly: true,
@@ -153,6 +153,18 @@ return new S3StorageConfig(
     region: env('DATA_SNAPSHOTS_S3_REGION'),
     accessKeyId: env('DATA_SNAPSHOTS_S3_ACCESS_KEY_ID'),
     secretAccessKey: env('DATA_SNAPSHOTS_S3_SECRET_ACCESS_KEY'),
+);
+```
+
+### Custom storage
+
+If you need to implement your own adapter for an unsupported provider, you may do so by implementing the `League\Flysystem\FilesystemAdapter` interface.
+
+Tempest provides a {b`Tempest\Storage\Config\CustomStorageConfig`} configuration object which accepts any `FilesystemAdapter`, which will be resolved through the container.
+
+```php src/custom-storage.config.php
+return new CustomStorageConfig(
+    adapter: App\MyCustomFilesystemAdapter::class,
 );
 ```
 
