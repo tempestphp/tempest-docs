@@ -14,6 +14,7 @@ use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
+use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
 use League\CommonMark\MarkdownConverter;
 use Tempest\Container\Container;
@@ -41,6 +42,7 @@ final readonly class MarkdownInitializer implements Initializer
             ->addInlineParser(new HandleParser())
             ->addRenderer(FencedCode::class, new CodeBlockRenderer($highlighter))
             ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
+            ->addRenderer(Link::class, new LinkRenderer())
             ->addRenderer(Heading::class, new HeadingRenderer());
 
         return new MarkdownConverter($environment);
