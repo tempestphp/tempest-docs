@@ -9,6 +9,7 @@ use App\Markdown\CodeBlockRenderer;
 use App\Markdown\Symbols\AttributeParser;
 use App\Markdown\Symbols\FqcnParser;
 use League\CommonMark\Environment\Environment;
+use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
@@ -32,6 +33,7 @@ final readonly class MarkdownInitializer implements Initializer
         $environment
             ->addExtension(new CommonMarkCoreExtension())
             ->addExtension(new FrontMatterExtension())
+            ->addExtension(new AttributesExtension())
             ->addExtension(new AlertExtension())
             ->addInlineParser(new TempestPackageParser())
             ->addInlineParser(new FqcnParser())
