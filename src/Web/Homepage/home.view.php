@@ -57,7 +57,7 @@ use function Tempest\uri;
 				]"
 				link-label="Discovery"
 				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'internals', slug: 'discovery')"
-				:snippets="['controller', 'view-processor']"
+				:snippets="['controller', 'view-component', 'event-handler']"
 			></x-home-section>
       <!-- Template engine -->
 			<x-home-section
@@ -94,7 +94,7 @@ use function Tempest\uri;
 			<x-home-section
 				heading="And much, much more."
 				:paragraphs="[
-					'Configuration objects for easy autocompletion and injection, a data mapper, a powerful dependency container with autowiring. Tempest is designed to be frictionless.',
+					'Configuration objects for easy autocompletion and injection, data mapping, a powerful dependency container with autowiring. Tempest is designed to be frictionless.',
 				]"
 				link-label="Get started"
 				:link-uri="uri([ChapterController::class, 'index'])"

@@ -1,23 +1,23 @@
 ```php
-use Tempest\Console\ConsoleCommand;
-use Tempest\Console\HasConsole;
-
-final readonly class PackageCommand
+final readonly class PackagesCommand
 {
     use HasConsole;
     
+    public function __construct(
+        private PackageRepository $repository,
+    ) {}
+    
     #[ConsoleCommand]
-    public function all(): void
+    public function find(): void
     {
-        $this->search('')
+        $package = $this->search(
+            'Find your package',
+            $this->repository->find(...),
+        );
     }
 
-    #[ConsoleCommand]
-    public function info(string $name, bool $detailed = false): void 
-    { /* … */ }
-
     #[ConsoleCommand(middleware: [CautionMiddleware::class])]
-    public function delete(string $name): void 
+    public function delete(string $name, bool $verbose = false): void 
     { /* … */ }
 }
 ```
