@@ -1,9 +1,9 @@
 ```html
-<!-- x-post.view.php-->
+<!-- x-book.view.php-->
 
 <article>
-    <h1>{{ $post->title }}</h1>
+    <h1>{{ $book->title }}</h1>
     
-    {!! $post->body !!}
+    {!! $book->body !!}
 </article>
 ```
