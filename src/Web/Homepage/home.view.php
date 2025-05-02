@@ -53,7 +53,7 @@ use function Tempest\uri;
 			<x-home-section
 				heading="Zero-config code discovery"
 				:paragraphs="[
-					'Tempest scans your code and finds out what to do with it without you having to write a single line of configuration or bootstrap code.',
+					'Tempest doesn\'t require hand-holding. Your code is scanned and everything is configured automatically: routes, view components, console commands, event handlers, middleware, migrations — everything.',
 				]"
 				link-label="Discovery"
 				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'internals', slug: 'discovery')"
@@ -72,13 +72,23 @@ use function Tempest\uri;
 			></x-home-section>
       <!-- ORM-->
 			<x-home-section
-				heading="An ORM that embraces modern PHP"
+				heading="A truly decoupled ORM"
 				:paragraphs="[
-					'Define models with simple, clean code.',
+					'Models in Tempest embrace modern PHP and are designed to be decoupled from the database; they don\'t even have to persist to the database and can be mapped to any kind of data source.',
 				]"
 				link-label="ORM"
 				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'models')"
 				:snippets="['model', 'orm']"
+			></x-home-section>
+      <!-- Console-->
+			<x-home-section
+				heading="Console applications reimagined"
+				:paragraphs="[
+					'Thinking out of the box, Tempest\'s console component is a brand new approach to building console applications with PHP',
+				]"
+				link-label="Console"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'console', slug: 'introduction')"
+				:snippets="['console']"
 			></x-home-section>
       <!-- Much more-->
 			<x-home-section
