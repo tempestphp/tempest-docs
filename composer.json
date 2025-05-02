@@ -55,6 +55,7 @@
         "allow-plugins": {
             "php-http/discovery": true,
             "carthage-software/mago": true
+
         }
     }
 }

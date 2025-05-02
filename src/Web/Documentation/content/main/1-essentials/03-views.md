@@ -251,12 +251,12 @@ The example above demonstrates how to pass data to a component using an [express
 
 Attributes and [expression attributes](#expression-attributes) may be passed into view components. They work the same way as normal elements, and their values will be available in variables of the same name:
 
-```php home.view.php
+```html home.view.php
 <x-base :title="$this->post->title">
 	// ...
 </x-base>
 ```
-```php x-base.view.php
+```html x-base.view.php
 // ...
 <title :if="$title">{{ $title }}</title>
 ```

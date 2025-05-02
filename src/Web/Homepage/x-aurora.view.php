@@ -1,5 +1,4 @@
-<x-component name="x-aurora">
-  <div class="absolute inset-0 overflow-hidden pointer-events-none z-[-1] safari-hide" :class="$class">
+<div class="absolute inset-0 overflow-hidden pointer-events-none z-[-1] safari-hide" :class="$class">
     <div class=" 
           [--color-white-gradient:repeating-linear-gradient(100deg,white_0%,white_7%,transparent_10%,transparent_12%,white_16%)]
           [--color-aurora-gradient:repeating-linear-gradient(100deg,var(--color-aurora-1)_10%,var(--color-aurora-2)_15%,var(--color-aurora-3)_20%,var(--color-aurora-4)_25%,var(--color-aurora-5)_30%)]
@@ -27,5 +26,4 @@
           will-change-auto
           [mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,transparent_70%)]
       "></div>
-  </div>
-</x-component>
+</div>
