@@ -49,11 +49,6 @@ final readonly class RedirectMiddleware implements HttpMiddleware
             return new Redirect($path->replace("/{$matched->params['version']}/", "/{$version->value}/"));
         }
 
-        // Redirect to docs index if not found
-        if ($response instanceof NotFound) {
-            return new Redirect(uri([ChapterController::class, 'index']));
-        }
-
         return $response;
     }
 }

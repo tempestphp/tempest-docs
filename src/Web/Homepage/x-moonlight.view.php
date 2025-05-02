@@ -1,5 +1,6 @@
 <!-- Moonlight container -->
 <div class="
+				safari-hide
 				hidden
 				dark:block
 				[--color-white-gradient:repeating-linear-gradient(100deg,rgba(255,255,255,.8)_0%,rgba(255,255,255,.4)_1%,transparent_10%,transparent_12%,rgba(255,255,255,.4)_16%)]

@@ -73,7 +73,7 @@ Tempest won't impose any file structure on you: one of its core features is that
 For instance, Tempest is able to differentiate between a controller method and a console command by looking at the code, instead of relying on naming conventions or configuration files.
 
 :::info
-This concept is called [discovery](../3-internals/02-discovery), and is one of Tempest's most powerful features.
+This concept is called [discovery](../4-internals/02-discovery), and is one of Tempest's most powerful features.
 :::
 
 ### Examples
