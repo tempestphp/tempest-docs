@@ -98,7 +98,7 @@ use function Tempest\uri;
 				]"
 				link-label="Get started"
 				:link-uri="uri([ChapterController::class, 'index'])"
-				:snippets="['config', 'query', 'markdown-initializer']"
+				:snippets="['config', 'static-pages', 'query', 'markdown-initializer']"
 			></x-home-section>
     </main>
   </div>

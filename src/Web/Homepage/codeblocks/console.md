@@ -1,23 +1,23 @@
 ```php
-final readonly class PackagesCommand
+final readonly class BooksCommand
 {
     use HasConsole;
     
     public function __construct(
-        private PackageRepository $repository,
+        private BookRepository $repository,
     ) {}
     
     #[ConsoleCommand]
     public function find(): void
     {
-        $package = $this->search(
-            'Find your package',
+        $book = $this->search(
+            'Find your book',
             $this->repository->find(...),
         );
     }
 
     #[ConsoleCommand(middleware: [CautionMiddleware::class])]
-    public function delete(string $name, bool $verbose = false): void 
+    public function delete(string $title, bool $verbose = false): void 
     { /* … */ }
 }
 ```
