@@ -1,10 +1,10 @@
 ```console
-./tempest static:generate
+<dim>./tempest static:generate</dim>
 
-- <em>/framework/01-getting-started</em> > <u>/public/framework/01-getting-started/index.html</u>
-- <em>/framework/02-the-container</em> > <u>/public/framework/02-the-container/index.html</u>
-- <em>/framework/03-controllers</em> > <u>/public/framework/03-controllers/index.html</u>
-- <em>/framework/04-views</em> > <u>/public/framework/04-views/index.html</u>
-- <em>/framework/05-models</em> > <u>/public/framework/05-models/index.html</u>
-- <comment>…</comment>
+/framework/01-getting-started <dim>....</dim> <em>/public/framework/01-getting-started/index.html</em>
+/framework/02-the-container <dim>........</dim> <em>/public/framework/02-the-container/index.html</em>
+/framework/03-controllers <dim>............</dim> <em>/public/framework/03-controllers/index.html</em>
+/framework/04-views <dim>........................</dim> <em>/public/framework/04-views/index.html</em>
+/framework/05-models <dim>......................</dim> <em>/public/framework/05-models/index.html</em>
+<comment>…</comment>
 ```
