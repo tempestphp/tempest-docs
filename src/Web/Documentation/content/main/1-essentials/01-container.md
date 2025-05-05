@@ -43,7 +43,7 @@ Using named arguments, it is also possible to manually specify parameters on the
 $this->container->invoke(TrackOperatingAircraft::class, type: AircraftType::PC12);
 ```
 
-The `{php}\Tempest\invoke()` serves the same purpose when the container is not directly accessible.
+The `{php}\Tempest\invoke()` function serves the same purpose when the container is not directly accessible.
 
 ### Locating a dependency
 

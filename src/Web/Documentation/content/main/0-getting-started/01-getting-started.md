@@ -20,7 +20,7 @@ To get started with a new Tempest project, you may use {`tempest/app`} as the st
 {:hl-keyword:cd:} {:hl-type:my-app:}
 ```
 
-If you have a dedicated development environment, you may then access your application by opening `https://my-app.test` in your browser. Otherwise, you may use PHP's built-in server:
+If you have a dedicated development environment, you may then access your application by opening `{txt}https://my-app.test` in your browser. Otherwise, you may use PHP's built-in server:
 
 ```sh
 {:hl-keyword:php:} tempest serve

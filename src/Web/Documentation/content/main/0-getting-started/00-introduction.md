@@ -83,9 +83,9 @@ final readonly class MigrateUpCommand
 }
 ```
 
-This is a [console command](../3-console/02-building-console-commands). Console commands can be defined in any class, as long as the `#[ConsoleCommand]` attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
+This is a [console command](../3-console/02-building-console-commands). Console commands can be defined in any class, as long as the {b`#[Tempest\Console\ConsoleCommand]`} attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
 
-This example also shows how to [register events globally](../2-tempest-in-depth/03-events) using the `#[EventHandler]`.
+This example also shows how to [register events globally](../2-tempest-in-depth/03-events) using the {b`#[Tempest\EventBus\EventHandler]`}.
 
 ---
 
