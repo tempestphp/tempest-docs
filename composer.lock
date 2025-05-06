@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df7f44f4f8ba0087c38efb5ff5a1b71f",
+    "content-hash": "f2977d7f2d2a7ab773aeadb62144d3c7",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3940,12 +3940,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "215671fb884b8a0cf92184e7e3baf60d90f68da9"
+                "reference": "453e1cb587641185b3375dcb72cdd0180e96c6b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/215671fb884b8a0cf92184e7e3baf60d90f68da9",
-                "reference": "215671fb884b8a0cf92184e7e3baf60d90f68da9",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/453e1cb587641185b3375dcb72cdd0180e96c6b7",
+                "reference": "453e1cb587641185b3375dcb72cdd0180e96c6b7",
                 "shasum": ""
             },
             "require": {
@@ -4120,7 +4120,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-02T08:43:07+00:00"
+            "time": "2025-05-06T22:49:28+00:00"
         },
         {
             "name": "tempest/highlight",
