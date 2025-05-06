@@ -8,7 +8,6 @@ keywords: "Experimental"
 Tempest/view is currently experimental and is not covered by our backwards compatibility promise.
 :::
 
-
 ## Overview
 
 Views in Tempest use a syntax that can be thought of as a superset of HTML. Under the hood, [PHP 8.4's DOM parser](https://www.php.net/manual/en/book.dom.php) is used to parse templates before compiling them.
@@ -43,7 +42,7 @@ Inside, a `x-post` [component](#view-components) is rendered multiple times than
 
 ## Rendering views
 
-As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
+As specified in the documentation about [sending responses](./02-controllers#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;

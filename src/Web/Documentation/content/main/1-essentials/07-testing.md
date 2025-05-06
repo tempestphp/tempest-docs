@@ -8,7 +8,7 @@ keywords: ["phpunit", "pest"]
 
 Tempest uses [PHPUnit](https://phpunit.de) for testing and provides an integration through the [`Tempest\Framework\Testing\IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case. This class boots the framework with configuration suitable for testing, and provides access to multiple utilities.
 
-Testing utilities specific to components are documented in their respective chapters. For instance, testing the router is described in the [routing documentation](./02-routing#testing).
+Testing utilities specific to components are documented in their respective chapters. For instance, testing the router is described in the [routing documentation](./02-controllers#testing).
 
 ## Running tests
 
