@@ -45,7 +45,9 @@
         "qa": [
             "composer mago:fmt",
             "composer phpunit",
-            "composer mago:lint"
+            "composer mago:lint",
+            "@php ./tempest static:generate",
+            "@php ./tempest static:clean"
         ]
     },
     "minimum-stability": "dev",
