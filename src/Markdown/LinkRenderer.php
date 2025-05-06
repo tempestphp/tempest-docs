@@ -16,7 +16,8 @@ use Tempest\Support\Regex;
 final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
 {
     private ConfigurationInterface $config;
-    
+
+    #[\Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
     {
         if (! ($node instanceof Link)) {
@@ -25,25 +26,28 @@ final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterf
 
         // Replace .md at the end, before a / or a #
         $node->setUrl(
-            Regex\replace($node->getUrl(), '/\.md((?=[\/#?])|$)/', '')
+            Regex\replace($node->getUrl(), '/\.md((?=[\/#?])|$)/', ''),
         );
 
-        $renderer = new InlineLinkRenderer;
+        $renderer = new InlineLinkRenderer();
         $renderer->setConfiguration($this->config);
 
         return $renderer->render($node, $childRenderer);
     }
 
+    #[\Override]
     public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->config = $configuration;
     }
 
+    #[\Override]
     public function getXmlTagName(Node $node): string
     {
         return 'link';
     }
 
+    #[\Override]
     public function getXmlAttributes(Node $node): array
     {
         if (! ($node instanceof Link)) {

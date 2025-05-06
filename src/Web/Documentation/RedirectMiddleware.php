@@ -3,13 +3,13 @@
 namespace App\Web\Documentation;
 
 use Tempest\Core\Priority;
-use Tempest\Router\HttpMiddleware;
-use Tempest\Router\HttpMiddlewareCallable;
-use Tempest\Router\MatchedRoute;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
+use Tempest\Router\HttpMiddleware;
+use Tempest\Router\HttpMiddlewareCallable;
+use Tempest\Router\MatchedRoute;
 use Tempest\Router\Router;
 
 use function Tempest\get;
