@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
-use Tempest\Router\Get;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
+use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\Support\Str\ImmutableString;
 use Tempest\View\View;

@@ -2,7 +2,7 @@
 title: Validation
 ---
 
-Validation with Tempest is done by taking an array of raw input data, and validating whether that array of data is valid against a class. While validation and [data mapping](/main/framework/validation) often work together, the two are separate components and can also be used separately.
+Validation with Tempest is done by taking an array of raw input data, and validating whether that array of data is valid against a class. While validation and [data mapping](./01-mapper) often work together, the two are separate components and can also be used separately.
 
 Here's an object that can be validated:
 
@@ -51,13 +51,13 @@ final class Book
 
     #[NotEmpty]
     public string $description;
-    
+
     #[DateTimeFormat('Y-m-d')]
     public ?DateTimeImmutable $publishedAt = null;
 }
 ```
 
-A list of all available validation rules can be found on [GitHub](https://github.com/tempestphp/tempest-framework/tree/main/src/Tempest/Validation/src/Rules). 
+A list of all available validation rules can be found on [GitHub](https://github.com/tempestphp/tempest-framework/tree/main/src/Tempest/Validation/src/Rules).
 
 ## Skipping Validation
 

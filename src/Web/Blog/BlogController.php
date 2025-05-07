@@ -5,6 +5,7 @@ namespace App\Web\Blog;
 use App\Web\Meta\MetaType;
 use DateTimeImmutable;
 use Tempest\Cache\Cache;
+use Tempest\DateTime\DateTime;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Ok;
@@ -47,7 +48,7 @@ final readonly class BlogController
         $xml = $cache->resolve(
             key: 'rss',
             cache: fn () => $this->renderRssFeed($repository->all(loadContent: true)),
-            expiresAt: new DateTimeImmutable('+1 hour'),
+            expiresAt: DateTime::now()->plusHours(1),
         );
 
         return new Ok($xml)

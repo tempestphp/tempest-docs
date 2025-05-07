@@ -8,7 +8,6 @@ keywords: "Experimental"
 Tempest/view is currently experimental and is not covered by our backwards compatibility promise.
 :::
 
-
 ## Overview
 
 Views in Tempest use a syntax that can be thought of as a superset of HTML. Under the hood, [PHP 8.4's DOM parser](https://www.php.net/manual/en/book.dom.php) is used to parse templates before compiling them.
@@ -43,7 +42,7 @@ Inside, a `x-post` [component](#view-components) is rendered multiple times than
 
 ## Rendering views
 
-As specified in the documentation about [sending responses](./02-routing#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
+As specified in the documentation about [sending responses](./02-controllers#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
@@ -260,12 +259,12 @@ The example above demonstrates how to pass data to a component using an [express
 
 Attributes and [expression attributes](#expression-attributes) may be passed into view components. They work the same way as normal elements, and their values will be available in variables of the same name:
 
-```php home.view.php
+```html home.view.php
 <x-base :title="$this->post->title">
 	// ...
 </x-base>
 ```
-```php x-base.view.php
+```html x-base.view.php
 // ...
 <title :if="$title">{{ $title }}</title>
 ```

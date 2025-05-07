@@ -5,7 +5,7 @@ author: brent
 tag: Tutorial
 ---
 
-Tempest's tagline is "the framework that gets out of your way". One of the best examples of that principle in action is request validation. A pattern I learned to appreciate over the years was to represent "raw data" (like for example, request data), as typed objects in PHP — so-called "data transfer objects". The sooner I have a typed object within my app's lifecycle, the sooner I have a bunch of guarantees about that data, which makes coding a lot easier. 
+Tempest's tagline is "the framework that gets out of your way". One of the best examples of that principle in action is request validation. A pattern I learned to appreciate over the years was to represent "raw data" (like for example, request data), as typed objects in PHP — so-called "data transfer objects". The sooner I have a typed object within my app's lifecycle, the sooner I have a bunch of guarantees about that data, which makes coding a lot easier.
 
 For example: not having to worry about whether the "title of the book" is actually present in the request's body. If we have an object of `BookData`, and that object has a typed property `public string $title` then we don't have to worry about adding extra `isset` or `null` checks, and fallbacks all over the place.
 
@@ -24,7 +24,7 @@ final class BookData
 }
 ```
 
-It doesn't get much simpler than this, right? We have an object representing the fields we expect from the request. Now how do we get the request data into that object? There are several ways of doing so. I'll start by showing the most verbose way, mostly to understand what's going on. This approach makes use of the `map()` function. Tempest has a built-in [mapper component](/docs/framework/mapper), which is responsible to map data from one point to another. It could from an array to an object, object to json, one class to another, … Or, in our case: the request to our data object. 
+It doesn't get much simpler than this, right? We have an object representing the fields we expect from the request. Now how do we get the request data into that object? There are several ways of doing so. I'll start by showing the most verbose way, mostly to understand what's going on. This approach makes use of the `map()` function. Tempest has a built-in [mapper component](/main/2-tempest-in-depth/01-mapper), which is responsible to map data from one point to another. It could from an array to an object, object to json, one class to another, … Or, in our case: the request to our data object.
 
 Here's what that looks like in practice:
 
@@ -38,7 +38,7 @@ final readonly class BookController
     public function store(Request $request): Redirect
     {
         $bookData = map($request)->to(BookData::class);
-        
+
         // Do something with that book data
     }
 }
@@ -110,7 +110,6 @@ final class Book
 
 Now any request mapped to `Book` will expect the `author.name` and `author.email` fields to be present as well.
 
-
 ## Request Objects
 
 With validation out of the way, let's take a look at other approaches of mapping request data to objects. Since request objects are such a common use case, Tempest allows you to make custom request implementations. There's only a very small difference between a standalone data object and a request object though: a request object implements the `Request` interface. Tempest also provides a `IsRequest` trait that will take care of all the interface-related code. This interface/trait combination is a pattern you'll see all throughout Tempest, it's a very deliberate choice instead of relying on abstract classes, but that's a topic for another day.
@@ -129,7 +128,7 @@ final class BookRequest implements Request
     public string $title;
 
     public string $description;
-    
+
     // …
 }
 ```
@@ -151,7 +150,7 @@ final readonly class BookController
 
 ## Mapping to models
 
-You might be thinking: a request can be mapped to virtually any kind of object. What about models then? Indeed. Requests can be mapped to models directly as well! Let's do some quick setup work. 
+You might be thinking: a request can be mapped to virtually any kind of object. What about models then? Indeed. Requests can be mapped to models directly as well! Let's do some quick setup work.
 
 First we add `database.config.php`, Tempest will discover it, so you can place it anywhere you like. In this example we'll use sqlite as our database:
 
@@ -165,7 +164,7 @@ return new SQLiteConfig(
 );
 ```
 
-Next, create a migration. For the sake of simplicity I like to use raw SQL migrations. You can read more about them [here](/docs/framework/models/#migrations). These are discovered as well, so you can place them wherever suits you: 
+Next, create a migration. For the sake of simplicity I like to use raw SQL migrations. You can read more about them [here](/main/1-essentials/05-models#migrations). These are discovered as well, so you can place them wherever suits you:
 
 ```sql
 -- app/Migrations/CreateBookTable.sql
@@ -219,12 +218,12 @@ final readonly class BookController
     public function store(Request $request): Redirect
     {
         $book = map($request)->to(Book::class);
-        
+
         $book->save();
-        
+
         // …
     }
 }
 ```
 
-And that is all! Pretty clean, right?  
+And that is all! Pretty clean, right?

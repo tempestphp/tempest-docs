@@ -41,4 +41,4 @@ final readonly class Package
 }
 ```
 
-You can read all about how to use the Tempest console and how to create your own console commands in the [console docs](/docs/console/01-getting-started).
+You can read all about how to use the Tempest console and how to create your own console commands in the [console docs](./02-building-console-commands).

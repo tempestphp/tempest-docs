@@ -84,7 +84,7 @@ The gutter will show additions and deletions, and can start at any given line nu
   }
 ```
 
-Finally, you can enable gutter rendering on the fly if you're using [commonmark code blocks](#commonmark-integration) by appending <code>{startAt}</code> to the language definition:
+Finally, you can enable gutter rendering on the fly if you're using [commonmark code blocks](#common-mark-integration) by appending <code>{startAt}</code> to the language definition:
 
 <pre>
 &#96;&#96;&#96;php{10}
@@ -194,7 +194,7 @@ Within inline Markdown code tags, you can specify the language by prepending it 
 &#96;{php}public function before(TokenType $tokenType): string&#96;
 </pre>
 
-You'll need to set up [commonmark](#commonmark-integration) properly to get this to work.
+You'll need to set up [commonmark](#common-mark-integration) properly to get this to work.
 
 ## CommonMark integration
 
