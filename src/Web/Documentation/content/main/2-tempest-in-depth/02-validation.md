@@ -39,7 +39,7 @@ final class Book
 }
 ```
 
-If validation fails, `$failingRules` will contain a list of fields and their respective failed rules.
+If validation fails, `validateValuesForClass()` returns a list of fields and their respective failed rules.
 
 ### Adding more rules
 
@@ -93,4 +93,40 @@ $validator->validateValues([
 ]);
 ```
 
+If validation fails, `validateValues()` returns a list of fields and their respective failing rules.
+
 A list of all available validation rules can be found on [GitHub](https://github.com/tempestphp/tempest-framework/tree/main/packages/validation/src/Rules).
+
+## Validating a single value
+
+You may validate a single value against a set of rules using the `validateValue` method.
+
+```php
+$validator->validateValue('jon@doe.co', [new Email()]);
+```
+
+Alternatively, you may provide a closure for validation. The closure should return `true` if validation passes, or `false` otherwise. You may also return a string to specify the validation failure message.
+
+```php
+$validator->validateValue('jon@doe.co', function (mixed $value) {
+    return str_contains($value, '@');
+});
+```
+
+## Accessing error messages
+
+When validation fails, a list of fields and their respective failing rules is returned. You may call the `message` method on any rule to get a validation message.
+
+```php
+use Tempest\Support\Arr;
+
+// Validate some value
+$failures = $validator->validateValue('jon@doe.co', new Email());
+
+// Map failures to their message
+$errors = Arr\map($failures, fn (Rule $failure) => $failure->message());
+```
+
+:::info
+Note that we expect to improve the way validation messages work in the future. See [this conversation](https://discord.com/channels/1236153076688359495/1294321824498323547/1294321824498323547) on our [Discord server](https://tempestphp.com/discord).
+:::
