@@ -26,6 +26,7 @@ final readonly class ChapterController
 
     #[Get('/docs')]
     #[Get('/documentation')]
+    #[Get('/main/framework/getting-started')]
     public function index(): Redirect
     {
         $version = Version::default();
