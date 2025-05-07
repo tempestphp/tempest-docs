@@ -95,7 +95,7 @@ Tempest provides a different configuration object for each storage provider. Bel
 
 ### Multiple storages
 
-If you need to work with multiple storage locations, you create multiple storage configurations using tags. This tag may then be used to resolve the {b`Tempest\Storage\Storage`} interface, which will use the corresponding configuration.
+If you need to work with multiple storage locations, you may create multiple storage configurations using tags. These tags may then be used to resolve the {b`Tempest\Storage\Storage`} interface, which will use the corresponding configuration.
 
 It's a good practice to use an enum for the tag:
 
@@ -183,7 +183,7 @@ You may generate a fake, testing-only storage by calling the `fake()` method on 
 $storage = $this->storage->fake();
 
 // Replace the specified storage with a fake implementation
-$storage = $this->storage->fake('user-profile-pictures');
+$storage = $this->storage->fake(StorageLocation::DATA_SNAPSHOTS);
 
 // Asserts that the specified file exists
 $storage->assertFileExists('file.txt');
@@ -198,5 +198,5 @@ It may be useful to prevent code from using any of the registered storages durin
 This may be achieved by calling the `preventUsageWithoutFake()` method on the `storage` property.
 
 ```php tests/MyServiceTest.php
-$this->storage->preventEventHandling();
+$this->storage->preventUsageWithoutFake();
 ```
