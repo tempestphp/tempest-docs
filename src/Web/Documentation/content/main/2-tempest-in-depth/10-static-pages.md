@@ -1,74 +1,64 @@
 ---
 title: Static pages
+description: "When rendering pages with no dynamic component, booting the whole framework is not necessary. Tempest provides a way to generate static pages that can be rendered directly from your web server."
 ---
 
-Tempest comes with a built-in static site generator. When a controller action is tagged with `#[StaticPage]`, it can be compiled by Tempest as a static HTML page. These pages can then directly be served via your webserver.
+## Overview
 
-```php
-// app/HomeController.php
+When a controller action is tagged with {b`#[Tempest\Router\StaticPage]`}, it can be compiled by Tempest as a static HTML page. These pages can then directly be served directly through your web server.
 
+```php src/Marketing/FrontPageController.php
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
 use function Tempest\view;
 
-final readonly class HomeController
+final readonly class FrontPageController
 {
     #[StaticPage]
     #[Get('/')]
-    public function home(): View
+    public function frontpage(): View
     {
-        return view('home');
+        return view('./front-page');
     }
 }
 ```
 
-Compiling all static pages is done with the `{txt}static:generate` command:
+Compiling and cleaning up static pages is done using the `{txt}static:generate` and `{txt}static:clean` commands, respectively. Note that the latter removes all HTML files and empty directories in your `/public` directory.
 
+```sh
+{:hl-comment:./tempest:} static:generate
+{:hl-comment:./tempest:} static:clean
 ```
-./tempest static:generate
-```
-
-You can also remove all statically generated pages with the `{txt}static:clean` command:
-
-```
-./tempest static:clean
-```
-
-Note that `{txt}static:clean` will **remove all HTML pages in your public folder**, use this command with caution!
 
 ## Data providers
 
 Since most pages require some form of dynamic data, static pages can be assigned a data provider, which will generate multiple pages for one controller action.
 
-Let's take a look at the controller action for this docs website:
+Let's take a look at the controller action for this very website:
 
-```php
-// app/DocsController.php
-
+```php src/Documentation/ChapterController.php
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
 
-final readonly class DocsController
+final readonly class ChapterController
 {
-    #[StaticPage(DocsDataProvider::class)]
+    #[StaticPage(ChapterDataProvider::class)]
     #[Get('/{category}/{slug}')]
-    public function show(string $category, string $slug, ChapterRepository $chapterRepository): View
+    public function show(string $category, string $slug, ChapterRepository $chapters): View
     {
-        return new DocsView(
-            chapterRepository: $chapterRepository,
-            currentChapter: $chapterRepository->find($category, $slug),
+        return new ChapterView(
+            repository: $chapters,
+            current: $chapters->find($category, $slug),
         );
     }
 }
 ```
 
-In this case, the `#[StaticPage]` attribute gets a reference to the `DocsDataProvider`, which implements the `\Tempest\Router\DataProvider` interface:
+In this case, the {b`#[Tempest\Router\StaticPage]`} attribute gets a reference to the `ChapterDataProvider`, which implements the {`\Tempest\Router\DataProvider`} interface:
 
-```php
-// app/DocsDataProvider.php
-
+```php src/Documentation/ChapterDataProvider.php
 use Tempest\Router\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider
@@ -80,24 +70,24 @@ final readonly class DocsDataProvider implements DataProvider
 }
 ```
 
-A data provider's goal is to generate multiple pages for one controller action. It does so by yielding an array of controller action parameters for every page the needs to be generated. In case of the docs controller, the action needs a `$category` and `$slug`, as well as a `$chapterRepository`. That `$chapterRepository` is injected by the container, so we don't need to worry about it here. What we _do_ need to provide is a category and slug for each page we want to generate.
+A data provider's goal is to generate multiple pages for one controller action. It does so by yielding an array of controller action parameters for every page that needs to be generated. In case of the documentation chapter controller, the action needs a `$category` and `$slug`, as well as the chapter repository.
 
-In other words: we want to generate a page for every docs chapter. We can use the `ChapterRepository` to get a list of all available chapters. Eventually, our data provider looks like this:
+That repository is injected by the container, so we don't need to worry about it here. What we do need to provide is a category and slug for each page we want to generate.
 
-```php
-// app/DocsDataProvider.php
+In other words: we want to generate a page for every documentation chapter. We can use the `ChapterRepository` to get a list of all available chapters. Eventually, our data provider looks like this:
 
+```php src/Documentation/ChapterDataProvider.php
 use Tempest\Router\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider
 {
     public function __construct(
-        private ChapterRepository $chapterRepository
+        private ChapterRepository $chapters
     ) {}
 
     public function provide(): Generator
     {
-        foreach ($this->chapterRepository->all() as $chapter) {
+        foreach ($this->chapters->all() as $chapter) {
             // Yield an array of parameters that should be passed to the controller action,
             yield [
                 'category' => $chapter->category,
@@ -111,18 +101,18 @@ final readonly class DocsDataProvider implements DataProvider
 The only thing left to do is to generate the static pages:
 
 ```console
-./tempest static:generate
+<dim>./tempest static:generate</dim>
 
-- <em>/framework/01-getting-started</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/01-getting-started/index.html</u>
-- <em>/framework/02-the-container</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/02-the-container/index.html</u>
-- <em>/framework/03-controllers</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/03-controllers/index.html</u>
-- <em>/framework/04-views</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/04-views/index.html</u>
-- <em>/framework/05-models</em> > <u>/Users/brent/Dev/tempest-docs/public/framework/05-models/index.html</u>
-- <comment>…</comment>
+/framework/01-getting-started <dim>.............</dim> <em>/public/framework/01-getting-started/index.html</em>
+/framework/02-the-container <dim>.................</dim> <em>/public/framework/02-the-container/index.html</em>
+/framework/03-controllers <dim>.....................</dim> <em>/public/framework/03-controllers/index.html</em>
+/framework/04-views <dim>.................................</dim> <em>/public/framework/04-views/index.html</em>
+/framework/05-models <dim>...............................</dim> <em>/public/framework/05-models/index.html</em>
+<comment>…</comment>
 ```
 
-## Deployments
+## Production
 
-All static pages are compiled to `./public/path-to-page/index.html`, most webservers will automatically serve these static pages for you without any additional setup.
+Static pages are generated in the `/public` directory, as `index.html` files. Most web servers will automatically serve these static pages for you without any additional setup.
 
-Finally, keep in mind that static pages should be regenerated on every deploy. You should add the `{txt}./tempest static:generate` command in your deployment pipeline.
+Note that static pages are meant to be generated as part of your deployment script. That means the `{txt}./tempest static:generate` command should be in your deployment pipeline.
