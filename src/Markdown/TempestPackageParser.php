@@ -35,8 +35,8 @@ final readonly class TempestPackageParser implements InlineParserInterface
         $url = match ($package) {
             'app' => 'https://github.com/tempestphp/tempest-app',
             default => $url = str($package)
-                ->pascal()
-                ->prepend('https://github.com/tempestphp/tempest-framework/tree/main/src/Tempest/')
+                ->kebab()
+                ->prepend('https://github.com/tempestphp/tempest-framework/tree/main/packages/')
                 ->toString(),
         };
 
