@@ -37,7 +37,7 @@ final readonly class BookController
 }
 ```
 
-The above snippet is an example of a controller controller. It features [attribute-based routes](../1-essentials/02-controllers), mapping a request to a data object using the [mapper](../2-tempest-in-depth/01-mapper), [URL generation](../1-essentials/02-controllers#generating-uris) and [dependency injection](../1-essentials/01-container#autowired-dependencies).
+The above snippet is an example of a controller. It features [attribute-based routes](../1-essentials/02-controllers), mapping a request to a data object using the [mapper](../2-tempest-in-depth/01-mapper), [URL generation](../1-essentials/02-controllers#generating-uris) and [dependency injection](../1-essentials/01-container#autowired-dependencies).
 
 ```php
 use Tempest\Console\Console;
