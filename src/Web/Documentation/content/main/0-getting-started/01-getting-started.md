@@ -16,7 +16,7 @@ Once the prerequisites are installed, you can chose your installation method. Te
 To get started with a new Tempest project, you may use {`tempest/app`} as the starting point. The `composer create-project` command will scaffold it for you:
 
 ```sh
-{:hl-keyword:composer:} create-project tempest/app {:hl-type:my-app:} --stability alpha
+{:hl-keyword:composer:} create-project tempest/app {:hl-type:my-app:} --stability beta
 {:hl-keyword:cd:} {:hl-type:my-app:}
 ```
 
