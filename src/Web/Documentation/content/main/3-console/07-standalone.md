@@ -9,7 +9,7 @@ title: Standalone
 You can install `tempest/console` like so:
 
 ```
-composer require tempest/console:1.0-alpha.6
+composer require tempest/console:1.0-beta.1
 ```
 
 And run it like so:

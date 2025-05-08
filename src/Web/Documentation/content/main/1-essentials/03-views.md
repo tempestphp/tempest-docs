@@ -168,6 +168,15 @@ Using an expression attribute that return a boolean variable will follow the HTM
 
 Depending on whether `$selected` evaluates to `true` or `false`, the above example may or may not render the `selected` attribute.
 
+Apart from HTMLs boolean attributes, the same syntax can be used with any expression attribute as well:
+
+```html
+<div :data-active="{$isActive}"></div>
+
+<!-- <div></div> when $isActive is falsy -->
+<!-- <div data-active></div> when $isActive is truthy -->
+```
+
 ### Control flow directives
 
 #### `:if`, `:elseif` and `:else`
