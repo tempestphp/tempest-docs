@@ -24,7 +24,7 @@ If you have a dedicated development environment, you may then access your applic
 
 ```sh
 {:hl-keyword:php:} tempest serve
-{:hl-comment:PHP 8.3.3 Development Server (http://localhost:8000) started:}
+{:hl-comment:PHP 8.4.5 Development Server (http://localhost:8000) started:}
 ```
 
 ### Scaffolding front-end assets
