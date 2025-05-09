@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "df7f44f4f8ba0087c38efb5ff5a1b71f",
+    "content-hash": "f2977d7f2d2a7ab773aeadb62144d3c7",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -510,16 +510,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php-lite",
-            "version": "9.0.4",
+            "version": "9.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php-lite.git",
-                "reference": "6b36e32fddce37738c4f6df66e49dd9a2475841c"
+                "reference": "342981f32855240387c44790a4d92ec8ae3153ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/6b36e32fddce37738c4f6df66e49dd9a2475841c",
-                "reference": "6b36e32fddce37738c4f6df66e49dd9a2475841c",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/342981f32855240387c44790a4d92ec8ae3153ca",
+                "reference": "342981f32855240387c44790a4d92ec8ae3153ca",
                 "shasum": ""
             },
             "require": {
@@ -584,7 +584,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php-lite/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php-lite"
             },
-            "time": "2025-04-28T07:26:55+00:00"
+            "time": "2025-05-08T07:10:02+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1970,7 +1970,7 @@
         },
         {
             "name": "psr-discovery/http-client-implementations",
-            "version": "1.x-dev",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/psr-discovery/http-client-implementations.git",
@@ -1997,7 +1997,6 @@
                 "vimeo/psalm": "^5.8",
                 "wikimedia/composer-merge-plugin": "^2.0"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "merge-plugin": {
@@ -3940,12 +3939,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "c4a9237bac733a71210e57536ec0dbf7e9ddcb07"
+                "reference": "f3a21a545ce1d68af8ed908394d50c779b699d04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/c4a9237bac733a71210e57536ec0dbf7e9ddcb07",
-                "reference": "c4a9237bac733a71210e57536ec0dbf7e9ddcb07",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/f3a21a545ce1d68af8ed908394d50c779b699d04",
+                "reference": "f3a21a545ce1d68af8ed908394d50c779b699d04",
                 "shasum": ""
             },
             "require": {
@@ -3968,8 +3967,8 @@
                 "nette/php-generator": "^4.1.6",
                 "nikic/php-parser": "^5.3",
                 "php": "^8.4",
-                "psr-discovery/http-client-implementations": "1.x-dev",
-                "psr-discovery/http-factory-implementations": "1.x-dev",
+                "psr-discovery/http-client-implementations": "^1.2",
+                "psr-discovery/http-factory-implementations": "^1.4",
                 "psr/cache": "^3.0",
                 "psr/clock": "^1.0.0",
                 "psr/http-client": "^1.0.0",
@@ -4123,7 +4122,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-05-07T11:49:20+00:00"
+            "time": "2025-05-09T10:24:03+00:00"
         },
         {
             "name": "tempest/highlight",
