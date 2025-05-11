@@ -1,7 +1,7 @@
 ---
-title: Models
-description: "Model classes represent the heart of our application logic. Tempest provides a powerful way of persisting model data."
-keywords: ["experimental", "orm", "database", "sqlite", "psotgresql", "pgsql", "mysql", "query", "sql", "connection"]
+title: Database
+description: "The database represents the heart of our application logic. Tempest provides a powerful way of persisting model data."
+keywords: ["experimental", "orm", "database", "sqlite", "psotgresql", "pgsql", "mysql", "query", "sql", "connection", "models"]
 ---
 
 :::warning
