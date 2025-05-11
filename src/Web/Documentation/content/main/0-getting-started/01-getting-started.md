@@ -1,65 +1,34 @@
 ---
 title: Getting started
-description: Tempest can be installed as a standalone PHP project, as well as a package within existing projects. The framework modules can also be installed individually, including in projects built on other frameworks.
+description: Tempest is a PHP framework for web and console applications, designed to get out of your way. Its core philosophy is to help developers focus on their application code, without being bothered with configuring or hand-holding the framework. 
 ---
 
 ## Installation
 
-Tempest requires PHP [8.4+](https://www.php.net/downloads.php) and [Composer](https://getcomposer.org/) to be installed. Optionally, you may install either [Bun](https://bun.sh) or [Node](https://nodejs.org) if you chose to bundle front-end assets.
+Thanks to Tempest's design, you can install the whole framework or individual components, both in new projects and existing ones. It's even possible to use Tempest in existing projects, alongside other frameworks. 
 
-For a better experience, it is recommended to have a complete development environment, such as [ServBay](https://www.servbay.com), [Herd](https://herd.laravel.com/docs), or [Valet](https://laravel.com/docs/valet). However, Tempest can serve applications using PHP's built-in server just fine.
+Start by creating a project from scratch:
 
-Once the prerequisites are installed, you can chose your installation method. Tempest can be a standalone application, or be added in an existing project—even one built on top of another framework.
-
-## Creating a Tempest application
-
-To get started with a new Tempest project, you may use {`tempest/app`} as the starting point. The `composer create-project` command will scaffold it for you:
-
-```sh
-{:hl-keyword:composer:} create-project tempest/app {:hl-type:my-app:} --stability beta
-{:hl-keyword:cd:} {:hl-type:my-app:}
+```shell
+{:hl-keyword:composer:} create-project tempest/app my-app --stability beta
+{:hl-keyword:cd:} my-app
 ```
 
-If you have a dedicated development environment, you may then access your application by opening `{txt}https://my-app.test` in your browser. Otherwise, you may use PHP's built-in server:
-
-```sh
-{:hl-keyword:php:} tempest serve
-{:hl-comment:PHP 8.4.5 Development Server (http://localhost:8000) started:}
-```
-
-### Scaffolding front-end assets
-
-Optionally, you may install a basic front-end scaffolding that includes [Vite](https://vite.dev/) and [Tailwind CSS](https://tailwindcss.com/). To do so, run the Vite installer and follow through the wizard:
-
-```sh
-{:hl-keyword:php:} tempest install vite --tailwind
-```
-
-The assets created by this wizard, `main.entrypoint.ts` and `main.entrypoint.css`, are automatically discovered by Tempest. You can serve them using the [`<x-vite-tags />`](../1-essentials/03-views#x-vite-tags) component in your templates.
-
-You may then [run the front-end development server](../1-essentials/04-asset-bundling#running-the-development-server), which will serve your assets on-the-fly:
-
-```bash
-{:hl-keyword:npm:} run dev
-```
-
-## Tempest as a package
-
-If you already have a project, you can opt to install {`tempest/framework`} as a standalone package. You could do this in any project; it could already contain code, or it could be an empty project.
+Or by requiring tempest in an existing codebase:
 
 ```sh
 {:hl-keyword:composer:} require tempest/framework:1.0-beta.1
 ```
 
-:::warning
-Because Tempest is currently in beta (and still has two dev dependencies), you will need to allow dev dependencies as your minimum stability in `composer.json`: `{json}"minimum-stability": "dev",`, you should also ensure that composer still prefers stable versions if they are available: `{json}"prefer-stable": true,`. These composer properties are only necessary as long as Tempest isn't stable yet.
-:::
+If you required `tempest/framework` into an existing project, you may optionally install framework-related files:
 
-Installing Tempest this way will give you access to the Tempest console, `./vendor/bin/tempest`. Optionally, you can choose to install Tempest's entry points in your project. To do so, you may run the framework installer:
-
-```txt
+```sh
 {:hl-keyword:./vendor/bin/tempest:} install framework
 ```
+
+:::info
+In these docs, we'll always use `{:hl-keyword:php:} tempest` to access the Tempest console. If you didn't publish the file within your project, you can still access it via `{:hl-keyword:php:} vendor/bin/tempest`
+:::
 
 This installer will prompt you to install the following files into your project:
 
@@ -70,46 +39,65 @@ This installer will prompt you to install the following files into your project:
 
 You can choose which files you want to install, and you can always rerun the `install` command at a later point in time.
 
-## Project structure
-
-Tempest won't impose any file structure on you: one of its core features is that it will scan all project and package code for you, and will automatically discover any files the framework needs to know about.
-
-For instance, Tempest is able to differentiate between a controller method and a console command by looking at the code, instead of relying on naming conventions or configuration files.
-
-:::info
-This concept is called [discovery](../4-internals/02-discovery), and is one of Tempest's most powerful features.
+:::warning
+Because Tempest is currently in beta (and still has two dev dependencies), you will need to allow dev dependencies as your minimum stability in `composer.json`: `{json}"minimum-stability": "dev",`, you should also ensure that composer still prefers stable versions if they are available: `{json}"prefer-stable": true,`. These composer properties are only necessary as long as Tempest isn't stable yet.
 :::
 
-### Examples
+### Installation requirements
 
-The following projects structures work the same way in Tempest, without requiring any specific configuration:
+Tempest requires [PHP 8.4+](https://www.php.net/downloads.php) and [Composer](https://getcomposer.org/) to be installed. Optionally, you may install either [Bun](https://bun.sh) or [Node](https://nodejs.org) if you chose to bundle front-end assets.
 
-```txt
-app
-├── Console
-│   └── RssSyncCommand.php
-├── Controllers
-│   ├── BlogPostController.php
-│   └── HomeController.php
-└── Views
-    ├── blog.view.php
-    └── home.view.php
+For a better experience, it is recommended to have a complete development environment, such as [ServBay](https://www.servbay.com), [Herd](https://herd.laravel.com/docs), or [Valet](https://laravel.com/docs/valet). However, Tempest can serve applications using PHP's built-in server as well:
+
+
+```sh
+{:hl-keyword:php:} tempest serve
 ```
 
-```txt
-src
-├── Blog
-│   ├── BlogPostController.php
-│   ├── RssSyncCommand.php
-│   └── blog.view.php
-└── Home
-    ├── HomeController.php
-    └── home.view.php
+
+### Scaffolding front-end assets
+
+After having installed Tempest, you can optionally install a basic front-end scaffolding that includes [Vite](https://vite.dev/) and [Tailwind CSS](https://tailwindcss.com/). To do so, run the Vite installer and follow through the wizard:
+
+```sh
+{:hl-keyword:php:} tempest install vite
 ```
 
-From Tempest's perspective, it's all the same.
+The assets created by this wizard, `main.entrypoint.ts` and `main.entrypoint.css`, are automatically discovered by Tempest. You can serve them using the [`{html}<x-vite-tags />`](../1-essentials/03-views#x-vite-tags) component in your templates.
 
-## About Discovery
+You may then [run the front-end development server](../1-essentials/04-asset-bundling#running-the-development-server), which will serve your assets on-the-fly:
+
+```bash
+{:hl-keyword:npm:} run dev
+```
+
+## Project structure
+
+Tempest won't impose any fixed file structure on you: the framework gives you the freedom to design your project the way you and your team want. Tempest can give you this freedom without any configuration overhead thanks to one of its core features called [discovery](../4-internals/02-discovery).
+
+For example, here are two different project structures side by side:
+
+```txt
+.                                    .
+└── src                              └── src
+    ├── Authors                          ├── Controllers
+    │   ├── Author.php                   │   ├── AuthorController.php
+    │   ├── AuthorController.php         │   └── BookController.php
+    │   └── authors.view.php             ├── Models
+    ├── Books                            │   ├── Author.php
+    │   ├── Book.php                     │   ├── Book.php
+    │   ├── BookController.php           │   └── Chapter.php
+    │   ├── Chapter.php                  ├── Services
+    │   └── books.view.php               │   └── PublisherGateway.php
+    ├── Publishers                       └── Views
+    │   └── PublisherGateway.php             ├── authors.view.php
+    └── Support                              ├── books.view.php
+        └── x-base.view.php                  └── x-base.view.php      
+```
+
+From Tempest's perspective, your project structure doesn't make a difference.
+
+### About Discovery
 
 Discovery works by scanning your project code, and looking at each file and method individually to determine what that code does. In production environments, [Tempest will cache the discovery process](../4-internals/02-discovery#discovery-in-production), avoiding any performance overhead.
 
@@ -147,3 +135,31 @@ final readonly class RssSyncCommand
     { /* … */ }
 }
 ```
+
+Or event listeners:
+
+```php app/MigrationListeners.php
+use Tempest\Console\Console;
+use Tempest\EventBus\EventHandler;
+
+final readonly class MigrationListeners
+{
+    public function __construct(
+        private Console $console,
+    ) {}
+    
+    #[EventHandler]
+    public function onTableDropped(TableDropped $event): void
+    {
+        $this->console->writeln("- Dropped {$event->name}");
+    }
+
+    #[EventHandler]
+    public function onMigrationMigrated(MigrationMigrated $migrationMigrated): void
+    {
+        $this->console->writeln("- {$migrationMigrated->name}");
+    }
+}
+```
+
+Discovery is one of Tempest's most powerful features, if you want to better understand the framework, you could read this article to learn about [discovery in depth](/blog/discovery-explained). You can also continue reading the docs to learn about Tempest's essential components next.
