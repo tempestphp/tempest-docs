@@ -5,7 +5,7 @@ description: Tempest is a PHP framework for web and console applications, design
 
 ## Installation
 
-Thanks to Tempest's design, you can install the whole framework or individual components, both in new projects and existing ones. It's even possible to use Tempest in existing projects, alongside other frameworks. 
+Because of Tempest's design, you can install the whole framework or individual components, both in new projects and existing ones. It's even possible to use Tempest in existing projects, alongside other frameworks. 
 
 Start by creating a project from scratch:
 
@@ -23,7 +23,7 @@ Or by requiring tempest in an existing codebase:
 If you required `tempest/framework` into an existing project, you may optionally install framework-related files:
 
 ```sh
-{:hl-keyword:./vendor/bin/tempest:} install framework
+{:hl-keyword:php:} vendor/bin/tempest install framework
 ```
 
 :::info
