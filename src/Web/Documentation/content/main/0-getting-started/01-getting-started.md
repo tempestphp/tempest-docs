@@ -27,10 +27,10 @@ If you required `tempest/framework` into an existing project, you may optionally
 ```
 
 :::info
-In these docs, we'll always use `{:hl-keyword:php:} tempest` to access the Tempest console. If you didn't publish the file within your project, you can still access it via `{:hl-keyword:php:} vendor/bin/tempest`
+The `tempest` console is the entry point for many framework-related tasks, as well as your own console commands. In these docs, we'll always use `{:hl-keyword:php:} tempest` to access it. If you didn't publish the console  file within your project though, you can still access it via `{:hl-keyword:php:} vendor/bin/tempest`
 :::
 
-This installer will prompt you to install the following files into your project:
+Using the `{txt}install framework` command will prompt you to install the following files into your project:
 
 - `public/index.php` — the web application entry point
 - `tempest` – the console application entry point
@@ -40,7 +40,7 @@ This installer will prompt you to install the following files into your project:
 You can choose which files you want to install, and you can always rerun the `install` command at a later point in time.
 
 :::warning
-Because Tempest is currently in beta (and still has two dev dependencies), you will need to allow dev dependencies as your minimum stability in `composer.json`: `{json}"minimum-stability": "dev",`, you should also ensure that composer still prefers stable versions if they are available: `{json}"prefer-stable": true,`. These composer properties are only necessary as long as Tempest isn't stable yet.
+Because Tempest is currently in beta, you will need to allow dev dependencies as your minimum stability in `composer.json`: `{json}"minimum-stability": "dev",`, you should also ensure that composer still prefers stable versions if they are available: `{json}"prefer-stable": true,`. These composer properties are only necessary as long as Tempest isn't stable yet.
 :::
 
 ### Installation requirements
