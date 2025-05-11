@@ -288,7 +288,7 @@ $container->get(Highlighter::class, tag: 'cli');
 
 Some components implement the {`Tempest\Container\HasTag`} interface, which requires a `tag` property. Singletons using this interface are tagged by the `tag` property, essentially providing the ability to have dynamic tags.
 
-This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](./05-models.md#using-multiple-connections) is implemented.
+This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](05-database.md#using-multiple-connections) is implemented.
 
 ## Built-in types dependencies
 
@@ -399,7 +399,7 @@ use Tempest\Container\Proxy;
 final readonly class BookController
 {
     public function __construct(
-        #[Proxy] 
+        #[Proxy]
         private VerySlowClass $verySlowClass
     ) { /* … */ }
 }
