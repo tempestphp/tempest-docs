@@ -1,6 +1,6 @@
 ---
 title: Container
-description: "Learn how and why Tempest's dependency container is the heart of the framework, most features being built upon it."
+description: "Learn how Tempest's container works, how to inject and resolve dependencies, and how to implement initialization logic for your service classes when they need it."
 ---
 
 ## Overview
@@ -288,7 +288,7 @@ $container->get(Highlighter::class, tag: 'cli');
 
 Some components implement the {`Tempest\Container\HasTag`} interface, which requires a `tag` property. Singletons using this interface are tagged by the `tag` property, essentially providing the ability to have dynamic tags.
 
-This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](05-database.md#using-multiple-connections) is implemented.
+This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](../1-features/05-database.md#using-multiple-connections) is implemented.
 
 ## Built-in types dependencies
 
