@@ -62,7 +62,7 @@ final readonly class ChapterController
 
         $currentChapter = $chapterRepository->find($version, $category, $slug);
 
-        if (! $currentChapter) {
+        if (! $currentChapter || $currentChapter->hidden) {
             return new NotFound();
         }
 

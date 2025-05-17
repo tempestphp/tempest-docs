@@ -1,8 +1,5 @@
 ---
 title: Mail
 description: ""
+hidden: true
 ---
-
-:::info
-This is an upcoming feature that has yet to be documented.
-:::

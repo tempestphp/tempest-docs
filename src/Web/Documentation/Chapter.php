@@ -17,6 +17,7 @@ final class Chapter
         public string $body,
         public string $title,
         public string $path,
+        public bool $hidden = false,
         public ?string $description = null,
     ) {
     }
