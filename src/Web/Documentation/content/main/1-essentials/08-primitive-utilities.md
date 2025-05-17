@@ -5,7 +5,7 @@ description: "Working with strings and arrays in PHP is notoriously hard due to 
 
 ## Overview
 
-Tempest provides a set of classes that make working with scalar values easier. It provides an object-oriented API for handling strings and arrays, along with many namespaced functions to work with arithmetic operations, regular expressions, random values, pluralization, filesystem paths and more.
+Tempest provides a set of utilities that make working with primitive values easier. It provides an object-oriented API for handling strings and arrays, along with many namespaced functions to work with arithmetic operations, regular expressions, random values, pluralization, filesystem paths and more.
 
 ## Namespaced functions
 
@@ -20,7 +20,7 @@ Most utilities provided by Tempest have a function-based implementation under th
 - [Pluralization](https://github.com/tempestphp/tempest-framework/blob/main/packages/support/src/Language/functions.php)
 - [PHP namespaces](https://github.com/tempestphp/tempest-framework/blob/main/packages/support/src/Namespace/functions.php)
 
-Tempest also [provides a trait](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Support/src/IsEnumHelper.php) to work with enumerations, since a functional API is not useful in this case.
+Tempest also provids the {`Tempest\Support\IsEnumHelper`} trait to work with enumerations, since a functional API is not useful in this case.
 
 ## String utilities
 
@@ -69,3 +69,23 @@ $items = new ImmutableArray(glob(__DIR__ . '/content/*.md'))
 ```
 
 Note that you may use the `arr()` function as a shorthand to create an {b`\Tempest\Support\Arr\ImmutableArray`} instance.
+
+## Recommendations
+
+We recommend working with primitive utilities when possible instead of using PHP's built-in methods. For instance, you may read a file by using `Filesystem\read_file`:
+
+```php
+use Tempest\Support\Filesystem;
+
+$contents = Filesystem\read_file(__DIR__ . '/content.md');
+```
+
+Using this function covers more edge cases and throws clear exceptions that are easier to catch. Similarly, it may not be useful to always reach for the object-oriented array and string helpers. Sometimes, you may simply use a single function:
+
+```php
+use Tempest\Support\Str;
+use function Tempest\Support\str;
+
+{- $title = str('My title')->title()->toString(); -}
+{+ $title = Str\to_title_case('My title'); +}
+```

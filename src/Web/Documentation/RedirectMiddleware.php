@@ -5,7 +5,6 @@ namespace App\Web\Documentation;
 use Tempest\Core\Priority;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
-use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
@@ -16,7 +15,6 @@ use function Tempest\get;
 use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Regex\matches;
 use function Tempest\Support\str;
-use function Tempest\uri;
 
 #[Priority(Priority::HIGHEST)]
 final readonly class RedirectMiddleware implements HttpMiddleware

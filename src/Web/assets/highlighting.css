@@ -107,7 +107,6 @@
 }
 .hl-console-em {
 	color: var(--code-keyword);
-	font-weight: bold;
 }
 .hl-console-dim {
 	color: var(--code-comment);
@@ -118,10 +117,7 @@
 .hl-console-success,
 .hl-console-h1,
 .hl-console-h2 {
-	color: #fff;
 	display: inline-block;
-	line-height: 1.9em;
-	padding: 0 5px;
 }
 
 .hl-console-question {
@@ -134,9 +130,8 @@
 	background-color: var(--code-property);
 }
 .hl-console-h1 {
-	background-color: #4ab1d1;
+	color: var(--code-keyword);
 	font-weight: bold;
-	line-height: 2em;
 }
 .hl-console-h2 {
 	background-color: var(--code-keyword);

@@ -1,11 +1,11 @@
 ---
-title: "Controllers"
-description: "Controllers manage the flow of any web application. In Tempest, attributes are used to route an HTTP request to any class' method, which is responsible for returning a response."
+title: "Routing"
+description: "Learn how to route requests to controllers. In Tempest, this is done using attributes, which are automatically discovered by the framework."
 ---
 
 ## Overview
 
-In Tempest, a route may be associated to any class' method, although this is usually done in dedicated controller classes.
+In Tempest, you may associate a route to any class method. Usually, this is done in dedicated controller classes, but it could be any class of your choice.
 
 Tempest provides many attributes, named after HTTP verbs, to attach URIs to controller actions. These attributes implement the {`Tempest\Router\Route`} interface, so you can write your own if you need to.
 
@@ -24,21 +24,11 @@ final readonly class HomeController
 }
 ```
 
-Out of the box, the following attributes are available:
-
-- {`Tempest\Router\Get`}
-- {`Tempest\Router\Post`}
-- {`Tempest\Router\Delete`}
-- {`Tempest\Router\Put`}
-- {`Tempest\Router\Patch`}
-- {`Tempest\Router\Options`}
-- {`Tempest\Router\Connect`}
-- {`Tempest\Router\Trace`}
-- {`Tempest\Router\Head`}
+Out of the box, an attribute for every HTTP verb is available: {b`Tempest\Router\Get`}, {b`Tempest\Router\Post`}, {b`Tempest\Router\Delete`}, {b`Tempest\Router\Put`}, {b`Tempest\Router\Patch`}, {b`Tempest\Router\Options`}, {b`Tempest\Router\Connect`}, {b`Tempest\Router\Trace`} and {b`Tempest\Router\Head`}.
 
 ## Route parameters
 
-You can define dynamic segments in your route URIs by wrapping them in curly braces `{}`. The segment name inside the braces will be passed as a parameter to your controller method.
+You may define dynamic segments in your route URIs by wrapping them in curly braces. The segment name inside the braces will be passed as a parameter to your controller method.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
