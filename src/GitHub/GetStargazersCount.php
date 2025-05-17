@@ -16,19 +16,14 @@ final class GetStargazersCount
 
     public function __invoke(): ?string
     {
-        // Added by Aidan Casey to combat the GitHub rate limits.
-        // We will inject the GH_TOKEN using our workflow.
-        $headers = [];
-
-        if ($githubToken = env('GH_TOKEN')) {
-            $headers['Authorization'] = 'Bearer ' . $githubToken;
+        if ($stargazers = env('TEMPEST_BUILD_STARGAZERS')) {
+            return $stargazers;
         }
 
         try {
-            $body = $this->httpClient->get(
-                uri: 'https://api.github.com/repos/tempestphp/tempest-framework',
-                headers: $headers,
-            )->body;
+            $body = $this->httpClient
+                ->get(uri: 'https://api.github.com/repos/tempestphp/tempest-framework')
+                ->body;
             $stargazers = json_decode($body)->stargazers_count ?? null;
 
             return $stargazers > 999
