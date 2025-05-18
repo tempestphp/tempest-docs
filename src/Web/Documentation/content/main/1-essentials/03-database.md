@@ -93,7 +93,7 @@ final class Book
 }
 ```
 
-Such a model is not tied to the database. Tempest's [mapper](../2-tempest-in-depth/01-mapper) is able to map data from many different sources to such a model. For instance, you can specify the path to a JSON file or object to create an instance of a model, and the other way around.
+Such a model is not tied to the database. Tempest's [mapper](../2-features/01-mapper.md) is able to map data from many different sources to such a model. For instance, you can specify the path to a JSON file or object to create an instance of a model, and the other way around.
 
 ```php
 use function Tempest\map;

@@ -162,7 +162,7 @@ final class ConfigureViteNonce implements HttpMiddleware
 }
 ```
 
-The `register` method above is an [event handler](../2-tempest-in-depth/07-events) that is called when Tempest boots. It registers the middleware on the injected {`Tempest\Router\Router`} instance, effectively registering it for every route.
+The `register` method above is an [event handler](../2-features/08-events.md) that is called when Tempest boots. It registers the middleware on the injected {`Tempest\Router\Router`} instance, effectively registering it for every route.
 
 Alternatively, you may also set the `nonce` directly in the event handler. However, keep in mind that this would be called every time the framework boots, even when only using console commands.
 

@@ -37,7 +37,7 @@ final readonly class BookController
 }
 ```
 
-The above snippet is an example of a controller. It features [attribute-based routes](../1-essentials/02-controllers), mapping a request to a data object using the [mapper](../2-tempest-in-depth/01-mapper), [URL generation](../1-essentials/02-controllers#generating-uris) and [dependency injection](../1-essentials/01-container#autowired-dependencies).
+The above snippet is an example of a controller. It features [attribute-based routes](../1-essentials/01-routing.md), mapping a request to a data object using the [mapper](../2-features/01-mapper.md), [URL generation](../1-essentials/01-routing.md#generating-uris) and [dependency injection](../1-essentials/05-container.md#autowired-dependencies).
 
 ```php
 use Tempest\Console\Console;
@@ -85,7 +85,7 @@ final readonly class MigrateUpCommand
 
 This is a [console command](../3-console/02-building-console-commands). Console commands can be defined in any class, as long as the {b`#[Tempest\Console\ConsoleCommand]`} attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
 
-This example also shows how to [register events globally](../2-tempest-in-depth/03-events) using the {b`#[Tempest\EventBus\EventHandler]`}.
+This example also shows how to [register events globally](../2-features/08-events.md) using the {b`#[Tempest\EventBus\EventHandler]`}.
 
 ---
 

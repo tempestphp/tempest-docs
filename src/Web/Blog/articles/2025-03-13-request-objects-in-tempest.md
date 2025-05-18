@@ -24,7 +24,7 @@ final class BookData
 }
 ```
 
-It doesn't get much simpler than this, right? We have an object representing the fields we expect from the request. Now how do we get the request data into that object? There are several ways of doing so. I'll start by showing the most verbose way, mostly to understand what's going on. This approach makes use of the `map()` function. Tempest has a built-in [mapper component](/main/2-tempest-in-depth/01-mapper), which is responsible to map data from one point to another. It could from an array to an object, object to json, one class to another, … Or, in our case: the request to our data object.
+It doesn't get much simpler than this, right? We have an object representing the fields we expect from the request. Now how do we get the request data into that object? There are several ways of doing so. I'll start by showing the most verbose way, mostly to understand what's going on. This approach makes use of the `map()` function. Tempest has a built-in [mapper component](/main/features/mapper), which is responsible to map data from one point to another. It could from an array to an object, object to json, one class to another, … Or, in our case: the request to our data object.
 
 Here's what that looks like in practice:
 
