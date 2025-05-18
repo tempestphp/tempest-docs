@@ -20,7 +20,7 @@ return new RedisCacheConfig(
 
 In this example, the Redis credentials are specified in the `.env`, so a different bucket and credentials can be configured depending on the environment. Of course, you may use different, more specific environment variables if needed.
 
-Once your cache is configured, you may interact with it by using the {`Tempest\Cache\Cache`} interface. This is usually done through [dependency injection](../1-features/01-container.md#injecting-dependencies):
+Once your cache is configured, you may interact with it by using the {`Tempest\Cache\Cache`} interface. This is usually done through [dependency injection](../1-essentials/05-container.md#injecting-dependencies):
 
 ```php src/OrderService.php
 use Tempest\Cache\Cache;

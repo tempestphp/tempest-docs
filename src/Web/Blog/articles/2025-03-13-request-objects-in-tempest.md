@@ -164,7 +164,7 @@ return new SQLiteConfig(
 );
 ```
 
-Next, create a migration. For the sake of simplicity I like to use raw SQL migrations. You can read more about them [here](/main/1-essentials/05-models#migrations). These are discovered as well, so you can place them wherever suits you:
+Next, create a migration. For the sake of simplicity I like to use raw SQL migrations. You can read more about them [here](/main/essentials/database#migrations). These are discovered as well, so you can place them wherever suits you:
 
 ```sql
 -- app/Migrations/CreateBookTable.sql

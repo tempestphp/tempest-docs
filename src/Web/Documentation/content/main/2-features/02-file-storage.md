@@ -26,7 +26,7 @@ return new S3StorageConfig(
 
 In this example, the S3 credentials are specified in the `.env`, so a different bucket and credentials can be configured depending on the environment.
 
-Once your storage is configured, you may interact with it by using the {`Tempest\Storage\Storage`} interface. This is usually done through [dependency injection](../1-features/01-container.md#injecting-dependencies):
+Once your storage is configured, you may interact with it by using the {`Tempest\Storage\Storage`} interface. This is usually done through [dependency injection](../1-essentials/05-container.md#injecting-dependencies):
 
 ```php src/UserService.php
 final readonly class UserService

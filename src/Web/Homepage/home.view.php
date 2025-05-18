@@ -77,7 +77,7 @@ use function Tempest\uri;
 					'Models in Tempest embrace modern PHP and are designed to be decoupled from the database; they don\'t even have to persist to the database and can be mapped to any kind of data source.',
 				]"
 				link-label="ORM"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'models')"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'database')"
 				:snippets="['model', 'orm']"
 			></x-home-section>
       <!-- Console-->
@@ -87,7 +87,7 @@ use function Tempest\uri;
 					'Thinking out of the box, Tempest\'s console component is a brand new approach to building console applications with PHP',
 				]"
 				link-label="Console"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'console', slug: 'introduction')"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'console-commands')"
 				:snippets="['console']"
 			></x-home-section>
       <!-- Much more-->

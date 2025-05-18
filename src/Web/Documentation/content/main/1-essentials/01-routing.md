@@ -72,7 +72,7 @@ final readonly class AircraftController
 
 ### Route binding
 
-In controller actions, you may want to receive an object instead of a scalar value such as an identifier. This is especially useful in the case of [models](/main/essentials/models) to avoid having to write the fetching logic in each controller.
+In controller actions, you may want to receive an object instead of a scalar value such as an identifier. This is especially useful in the case of [models](./03-database.md#models) to avoid having to write the fetching logic in each controller.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
@@ -151,7 +151,7 @@ uri([AircraftController::class, 'show'], id: $aircraft->id);
 ```
 
 :::info
-Note that Tempest does not have named routes, and currently doesn't plan on adding them. However, if you have an argument for them, feel free to hop on our [Discord server](/discord) to discuss it.
+Note that Tempest does not have named routes, and currently doesn't plan on adding them. However, if you have an argument for them, feel free to hop on our [Discord server](/discord){:ssg-ignore="true"} to discuss it.
 :::
 
 ## Matching the current URI
@@ -181,7 +181,7 @@ A core pattern of any web application is to access data from the current request
 
 In most situations, the data you expect to receive from a request is structured. You expect clients to send specific values, and you want them to follow specific rules.
 
-The idiomatic way to achieve this is by using request classes. They are classes with public properties that correspond to the data you want to retrieve from the request. Tempest will automatically validate these properties using PHP's type system, in addition to optional [validation attributes](../1-tempest-in-depth/02-validation) if needed.
+The idiomatic way to achieve this is by using request classes. They are classes with public properties that correspond to the data you want to retrieve from the request. Tempest will automatically validate these properties using PHP's type system, in addition to optional [validation attributes](../2-features/06-validation) if needed.
 
 A request class must implement {`Tempest\Router\Request`} and should use the {`Tempest\Router\IsRequest`} trait, which provides the default implementation.
 
@@ -228,7 +228,7 @@ final readonly class AirportController
 ```
 
 :::info A note on data mapping
-The `map()` function is a powerful feature that sets Tempest apart. It allows mapping any data from any source into objects of your choice. You may read more about them in [their documentation](../1-tempest-in-depth/01-mapper).
+The `map()` function is a powerful feature that sets Tempest apart. It allows mapping any data from any source into objects of your choice. You may read more about them in [their documentation](../2-features/01-mapper.md).
 :::
 
 ### Retrieving data directly
@@ -348,7 +348,7 @@ final readonly class AircraftController
 }
 ```
 
-Tempest has a powerful templating system inspired by modern front-end frameworks. You may read more about views in their [dedicated chapter](./03-views).
+Tempest has a powerful templating system inspired by modern front-end frameworks. You may read more about views in their [dedicated chapter](./02-views.md).
 
 ### Using built-in response classes
 
@@ -471,7 +471,7 @@ final readonly class JsonController
 
 There are some situations in which you may need to act on a response right before it is sent to the client. For instance, you may want to display custom error error pages when an exception occurred, or redirect somewhere instead of displaying the [built-in HTTP 404](/hello-from-the-void){:ssg-ignore="true"} page.
 
-This may be done using a response processor. Similar to [view processors](./03-views#pre-processing-views), they are classes that implement the {`Tempest\Response\ResponseProcessor`} interface. In the `process()` method, you may mutate and return the response object:
+This may be done using a response processor. Similar to [view processors](./02-views.md#pre-processing-views), they are classes that implement the {`Tempest\Response\ResponseProcessor`} interface. In the `process()` method, you may mutate and return the response object:
 
 ```php src/ErrorResponseProcessor.php
 use function Tempest\view;
@@ -555,7 +555,7 @@ Task deferring only works if [`fastcgi_finish_request()`](https://www.php.net/ma
 
 ## Testing
 
-Tempest provides a router testing utility accessible through the `http` property of the [`IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case. You may learn more about testing in the [dedicated chapter](./07-testing).
+Tempest provides a router testing utility accessible through the `http` property of the [`IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case. You may learn more about testing in the [dedicated chapter](./07-testing.md).
 
 The router testing utility provides methods for all HTTP verbs. These method return an instance of [`TestResponseHelper`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/Http/TestResponseHelper.php), giving access to multiple assertion methods.
 

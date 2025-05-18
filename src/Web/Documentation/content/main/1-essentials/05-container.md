@@ -11,7 +11,7 @@ Tempest has a dependency container capable of resolving dependencies without any
 
 ## Injecting dependencies
 
-The constructors of classes resolved by the container may be any class or interface associated with a [dependency initializer](#dependency-initializers). Similarly, invoked methods such as [event handlers](../2-tempest-in-depth/07-events), [console commands](../3-console/02-building-console-commands) and invokable classes may also be called directly from the container.
+The constructors of classes resolved by the container may be any class or interface associated with a [dependency initializer](#dependency-initializers). Similarly, invoked methods such as [event handlers](../2-features/08-events.md), [console commands](../3-console/02-building-console-commands) and invokable classes may also be called directly from the container.
 
 ```php src/Aircraft/AircraftService.php
 use App\Aircraft\ExternalAircraftProvider;
@@ -288,7 +288,7 @@ $container->get(Highlighter::class, tag: 'cli');
 
 Some components implement the {`Tempest\Container\HasTag`} interface, which requires a `tag` property. Singletons using this interface are tagged by the `tag` property, essentially providing the ability to have dynamic tags.
 
-This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](../1-features/05-database.md#using-multiple-connections) is implemented.
+This is specifically useful to get multiple instances of the same configuration. This is how [multiple database connections support](../1-essentials/03-database.md#using-multiple-connections) is implemented.
 
 ## Built-in types dependencies
 

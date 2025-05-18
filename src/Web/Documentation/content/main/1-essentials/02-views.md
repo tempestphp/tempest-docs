@@ -42,7 +42,7 @@ Inside, a `x-post` [component](#view-components) is rendered multiple times than
 
 ## Rendering views
 
-As specified in the documentation about [sending responses](./02-controllers#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
+As specified in the documentation about [sending responses](./01-routing.md#view-responses), views may be returned from controller actions using the `{php}view` function. This function is a shorthand for instantiating a {`Tempest\View\View`} object.
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
@@ -458,7 +458,7 @@ Iconify has a large collection of icon sets, which you may browse using the [Ic√
 
 ### `x-vite-tags`
 
-Tempest has built-in support for [Vite](https://vite.dev/), the most popular front-end development server and build tool. You may read more about [asset bundling](./04-asset-bundling) in the dedicated documentation.
+Tempest has built-in support for [Vite](https://vite.dev/), the most popular front-end development server and build tool. You may read more about [asset bundling](../2-features/05-asset-bundling.md) in the dedicated documentation.
 
 This component simply inject registered entrypoints where it is called.
 
@@ -514,7 +514,7 @@ Tempest views are always compiled to plain PHP code before being rendered. Durin
 {:hl-property:VIEW_CACHE:}={:hl-keyword:true:}
 ```
 
-During deployments, that cache must be cleared in order to not serve outdated views to users. You may do that by running `tempest view:clear` on every deploy. You can read more about caching and view caching in [the cache chapter](../1-tempest-in-depth/04-caching).
+During deployments, that cache must be cleared in order to not serve outdated views to users. You may do that by running `tempest view:clear` on every deploy.
 
 ## Using other engines
 
@@ -615,7 +615,7 @@ return new ViewConfig(
 
 #### Initializing your engine
 
-The renderer will be called every time a view is rendered. If your engine has an initialization step, it may be a good idea to use a singleton [initializer](../1-essentials/01-container#dependency-initializers) to construct it.
+The renderer will be called every time a view is rendered. If your engine has an initialization step, it may be a good idea to use a singleton [initializer](../1-essentials/05-container.md#dependency-initializers) to construct it.
 
 As an example, here is a simplified version of the initializer that creates the `Blade` object, used by the Blade renderer:
 

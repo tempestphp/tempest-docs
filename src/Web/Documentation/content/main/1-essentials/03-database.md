@@ -10,7 +10,7 @@ The ORM is currently experimental and is not covered by our backwards compatibil
 
 ## Overview
 
-Tempest provides a database abstraction layer with support for PostgreSQL, MySQL and SQLite. Querying the database can be done using [raw SQL](#querying-the-database) or [our query builder](#database-persistence).
+Tempest provides a database abstraction layer with support for PostgreSQL, MySQL and SQLite. Querying the database can be done using [raw SQL](#querying-the-database) or [our query builder](#non-object-models).
 
 Additionally, [database models](#models) are completely decoupled from the ORM.
 
