@@ -22,17 +22,17 @@ final readonly class IndexCommandPaletteCommand
     #[ConsoleCommand('command-palette:index', 'Exports available commands to a JSON index file that can be consumed by the front-end.')]
     public function __invoke(): ExitCode
     {
-        file_put_contents(
-            __DIR__ . '/index.json',
-            json_encode([
-                ...($this->documentationIndexer)(Version::default()),
-                ...($this->blogIndexer)(),
-                ...($this->commandIndexer)(),
-            ]),
+        $this->console->task(
+            label: 'Exporting search index',
+            handler: fn () => file_put_contents(
+                __DIR__ . '/index.json',
+                json_encode([
+                    ...($this->documentationIndexer)(Version::default()),
+                    ...($this->blogIndexer)(),
+                    ...($this->commandIndexer)(),
+                ]),
+            ),
         );
-
-        $this->console->writeln();
-        $this->console->success('Exported index.');
 
         return ExitCode::SUCCESS;
     }
