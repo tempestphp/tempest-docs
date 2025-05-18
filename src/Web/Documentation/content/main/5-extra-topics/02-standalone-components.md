@@ -2,9 +2,11 @@
 title: Standalone components
 ---
 
+## Overview
+
 Many Tempest components can be installed as standalone packages in existing or new projects: `tempest/console`, `tempest/http`, `tempest/event-bus`, `tempest/debug`, `tempest/command-bus`, etc.
 
-**A note up front**: since Tempest is still in its early stages, some components depend on `tempest/core`, which shouldn't. There's a lot of work to be done to make components like `tempest/mapper` truly independent.
+Note that Tempest is in its early stages—some components still depend on `tempest/core`, while they ideally should not. This may change in the future.
 
 ## `tempest/console`
 

@@ -45,6 +45,7 @@ final readonly class ChapterRepository
         $frontmatter = $markdown->getFrontMatter();
         $title = get_by_key($frontmatter, 'title');
         $description = get_by_key($frontmatter, 'description');
+        $hidden = get_by_key($frontmatter, 'hidden');
 
         return new Chapter(
             version: $version,
@@ -53,6 +54,7 @@ final readonly class ChapterRepository
             body: $markdown->getContent(),
             title: $title,
             path: to_relative_path(root_path(), $path),
+            hidden: $hidden ?? false,
             description: $description ?? null,
         );
     }
@@ -78,6 +80,7 @@ final readonly class ChapterRepository
                     ...YamlFrontMatter::parse($content)->matter(),
                 ];
             })
+            ->filter(fn (array $chapter) => get_by_key($chapter, 'hidden') !== true)
             ->mapTo(Chapter::class);
     }
 }

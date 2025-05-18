@@ -1,7 +1,7 @@
 ---
-title: Models
-description: "Model classes represent the heart of our application logic. Tempest provides a powerful way of persisting model data."
-keywords: ["experimental", "orm", "database", "sqlite", "psotgresql", "pgsql", "mysql", "query", "sql", "connection"]
+title: Database
+description: "Learn how data persistence works within Tempest. We provide a minimal ORM with decoupled models, and a way to execute raw SQL queries."
+keywords: ["experimental", "orm", "database", "sqlite", "postgresql", "pgsql", "mysql", "query", "sql", "connection", "models"]
 ---
 
 :::warning
@@ -9,6 +9,71 @@ The ORM is currently experimental and is not covered by our backwards compatibil
 :::
 
 ## Overview
+
+Tempest provides a database abstraction layer with support for PostgreSQL, MySQL and SQLite. Querying the database can be done using [raw SQL](#querying-the-database) or [our query builder](#database-persistence).
+
+Additionally, [database models](#models) are completely decoupled from the ORM.
+
+## Database configuration
+
+By default, Tempest uses an SQLite database stored in the `vendor/.tempest` directory. Changing databases is done by providing a {`Tempest\Database\Config\DatabaseConfig`} [configuration object](./06-configuration).
+
+Tempest ships with support for SQLite, PostgreSQL and MySQL. The corresponding configuration classes are `SQLiteConfig`, `PostgresConfig` and `MysqlConfig`, respectively.
+
+For instance, you may configure Tempest to connect to a PostreSQL database by creating the following `database.config.php` file:
+
+```php src/database.config.php
+use Tempest\Database\Config\PostgresConfig;
+use function Tempest\env;
+
+return new PostgresConfig(
+    host: env('DB_HOST'),
+    port: env('DB_PORT'),
+    username: env('DB_USERNAME'),
+    password: env('DB_PASSWORD'),
+    database: env('DB_DATABASE'),
+);
+```
+
+## Querying the database
+
+There are multiple way to query the database. You may use the `query()` function by passing it a table name or a model class name, or you may inject the {`Tempest\Database\Database`} interface in a service class.
+
+```php
+use Tempest\Database\Database;
+
+use function Tempest\map;
+
+final class UsersRepository
+{
+    public function __construct(
+        private readonly Database $database,
+    ) {}
+
+    public function findById(int $id): User
+    {
+        $user = $this->database->fetchFirst(new Query(
+            sql: <<<SQL
+                SELECT id, name, email FROM users WHERE id = ?
+            SQL,
+            bindings: [$id],
+        ));
+
+        return map($user)->to(User::class);
+    }
+}
+```
+
+Alternatively, the `query()` function offers access to the query builder. Its first argument may be a table name, or a [model](#models) class.
+
+```php
+$user = query(User::class)
+		->select('id', 'name', 'email')
+		->whereField('id', $id)
+		->first();
+```
+
+## Models
 
 Any object with public, typed properties can represent a model—these objects don't have to implement anything, they may be plain-old PHP objects.
 
@@ -28,23 +93,22 @@ final class Book
 }
 ```
 
-## Model mapping
-
-[Tempest's mapper](../2-tempest-in-depth/01-mapper) is able to map data from many different sources to a model. For instance, you can specify the path to a JSON file or object to create an instance of a model, and the other way around.
+Such a model is not tied to the database. Tempest's [mapper](../2-tempest-in-depth/01-mapper) is able to map data from many different sources to such a model. For instance, you can specify the path to a JSON file or object to create an instance of a model, and the other way around.
 
 ```php
 use function Tempest\map;
 
-$books = map($json)->collection()->to(Book::class);
-
-$json = map($books)->toJson();
+$books = map($json)->collection()->to(Book::class); // from JSON source to Book collection
+$json = map($books)->toJson(); // from Book collection to JSON
 ```
 
-However, the most common use case is to persist models to databases, so Tempest comes with a set of tools specifically aimed at database models.
+However, the most common use case is database persistence, so Tempest comes with a set of tools specifically aimed at database models.
 
-## Database persistence
+### Database models
 
-Tempest comes with a bunch of query builders that can work with any object and convert them into database queries. We'll start by exploring the {`Tempest\Database\IsDatabaseModel`} trait first though: this is a higher-level trait that can be used to any object and adds a bunch of convenient shorthand methods to those objects to interact with the database. Note that using `IsDatabaseModel` is optional, we'll explore other ways of interacting with the database later in this chapter.
+Sometimes, it's more convenient to have a model that is aware of the database, so you can easily create, update, and delete records.
+
+Tempest provides a way to do this by using the {`Tempest\Database\IsDatabaseModel`} trait. As specified in the previous section, this trait is entirely optional.
 
 ```php
 use Tempest\Database\IsDatabaseModel;
@@ -65,7 +129,7 @@ final class Book
 }
 ```
 
-Thanks to the `IsDatabaseModel` trait, you can directly interact with the database via the model class:
+Thanks to the {b`Tempest\Database\IsDatabaseModel`} trait, you can directly interact with the database via the model class:
 
 ```php
 $book = Book::create(
@@ -296,30 +360,9 @@ You may use the `migrate:rehash` command to bypass migration integrity checks an
 Note that deliberately bypassing migration integrity checks may result in a broken database state. Only use this command when absolutely necessary, if you are confident that your migration files are correct and consistent accross environments.
 :::
 
-## Database configuration
+## Using multiple databases
 
-By default, Tempest uses a SQLite database stored in the `vendor/.tempest` directory. Changing databases is done by providing a {`Tempest\Database\Config\DatabaseConfig`} [configuration object](./06-configuration).
-
-Tempest ships with support for SQLite, PostgreSQL and MySQL. The corresponding configuration classes are `SQLiteConfig`, `PostgresConfig` and `MysqlConfig`, respectively.
-
-For instance, you may configure Tempest to connect to a PostreSQL database by creating the following `database.config.php` file:
-
-```php src/database.config.php
-use Tempest\Database\Config\PostgresConfig;
-use function Tempest\env;
-
-return new PostgresConfig(
-    host: env('DB_HOST'),
-    port: env('DB_PORT'),
-    username: env('DB_USERNAME'),
-    password: env('DB_PASSWORD'),
-    database: env('DB_DATABASE'),
-);
-```
-
-### Using multiple databases
-
-If you need to work with multiple databases, you may do so by creating a [tagged configuration](./01-container.md#dynamic-tags). It is the same as a normal configuration file, except the `tag` property must be specified. This tag will identify the connection in the container.
+If you need to work with multiple databases, you may do so by creating a [tagged configuration](05-container.md1-container.md#dynamic-tags). It is the same as a normal configuration file, except the `tag` property must be specified. This tag will identify the connection in the container.
 
 ```php src/database.backup.config.php
 return new PostgresConfig(
@@ -332,7 +375,7 @@ return new PostgresConfig(
 );
 ```
 
-To use a named connection, you may resolve it from the container [using its tag](./01-container.md#tagged-singletons):
+To use a named connection, you may resolve it from the container [using its tag](05-container.md1-container.md#tagged-singletons):
 
 ```php src/BackupService.php
 use Tempest\Database\Database;
@@ -349,7 +392,7 @@ final readonly class BackupService
 }
 ```
 
-### Configuring databases at runtime
+## Configuring databases at runtime
 
 There may be situations where you need to define a database connection at runtime, for instance when dealing with per-tenant databases. This may be done by registering a tagged database configuration in the container:
 
