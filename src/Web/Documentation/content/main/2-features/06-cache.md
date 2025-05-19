@@ -47,7 +47,7 @@ final readonly class OrderService
 
 ## The cache interface
 
-Once you have access to the the {b`Tempest\cache\cache`} interface, you gain access to a few useful methods for working with cache items. All methods are documented, so you are free to explore the source to get an understanding of what you can do with it.
+Once you have access to the the {b`Tempest\Cache\Cache`} interface, you gain access to a few useful methods for working with cache items. All methods are documented, so you are free to explore the source to get an understanding of what you can do with it.
 
 Below are a few useful methods that you may need more often than the others:
 
