@@ -1,5 +1,87 @@
 ---
 title: 'Datetime'
-description: ''
-hidden: true
+description: "Tempest provides a complete alternative to PHP's datetime implementation, with a better API, deeply integrated into Tempest."
+keywords: ["timezone", "date", "time", "time zone"]
 ---
+
+## Overview
+
+PHP provides multiple date and time implementations. There is [`DateTime`](https://www.php.net/manual/en/class.datetime.php) and [`DateTimeImmutable`](https://www.php.net/manual/en/class.datetimeimmutable.php), based on [`DateTimeInterface`](https://www.php.net/manual/en/class.datetimeinterface.php), as well as [`IntlCalendar`](https://www.php.net/manual/en/class.intlcalendar.php). Unfortunately, those implementation have rough, low-level, awkward APIs, which are not pleasant to work with.
+
+Tempest provides an alternative to [`DateTimeInterface`](https://www.php.net/manual/en/class.datetimeinterface.php), partially based on [`IntlCalendar`](https://www.php.net/manual/en/class.intlcalendar.php). This implementation provides a better API with a more consistent interface. It was initially created by {x:azjezz} for the [PSL](https://github.com/azjezz/psl), and was ported to Tempest so it could be deeply integrated.
+
+## Creating date instances
+
+The {`Tempest\DateTime\DateTime`} class provides a `DateTime::parse()` method to create a date from a string, a timestamp, or another datetime instance. This is the most flexible way to create a date instance.
+
+```php
+DateTime::parse('2025-09-19 02:00:00');
+```
+
+Alternatively, if you know the format of the date string you are working with, you may use the `DateTime::fromPattern()`. It accepts a standard [ICU format](https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax).
+
+Finally, for more specific use cases, the `DateTime::fromString()` method may be used to create a date from a localized date and time string.
+
+### For the current date and time
+
+You may create a {b`Tempest\DateTime\DateTime`} instance for the current time using the `DateTime::now()` method or the `Tempest\now()` function.
+
+```php
+$now = DateTime::now();
+```
+
+### From a known format pattern
+
+If you know the format of the date string you are working with, you should prefer using the `DateTime::fromPattern()` method. It accepts a standard [ICU format](https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax).
+
+```php
+DateTime::fromPattern('2025-09-19 02:00', pattern: 'yyyy-MM-dd HH:mm');
+```
+
+## Manipulating dates
+
+The {b`Tempest\DateTime\DateTime`} class provides multiple methods to manipulate dates. You may add or subtract time from a date using the `plus()` and `minus()` methods, which accept a {b`Tempest\DateTime\Duration`} instance.
+
+For convenience, more specific manipulation methods are also provided.
+
+```php
+// Adding a set duration
+$date->plus(Duration::seconds(30));
+
+// Using convenience methods
+$date->plusHour();
+$date->plusMinutes(30);
+$date->minusDay();
+$date->endOfDay();
+```
+
+## Converting timezones
+
+All datetime creation methods accept a `timezone` parameter. This parameter accepts an instance of the {b`Tempest\DateTime\Timezone`} enumeration. When not provided, the default timezone, provided by [`date.timezone`](https://www.php.net/manual/en/datetime.configuration.php#ini.date.timezone), will be used.
+
+You may convert the timezone of an existing instance by calling the `convertToTimezone()` method:
+
+```php
+use Tempest\DateTime\DateTime;
+use Tempest\DateTime\Timezone;
+
+$date = DateTime::now();
+$date->convertToTimezone(Timezone::EUROPE_PARIS);
+```
+
+## Testing time
+
+Tempest provides a time-related testing utilities accessible through the `clock` method of the [`IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case.
+
+Calling this method replaces the {b`Tempest\Clock\Clock`} instance in the container with a testing one, on which a specific date and time can be defined. {b`Tempest\DateTime\DateTime`} instances created with the `DateTime::now()` method or `Tempest\now()` function will use the date and time specified by the testing clock.
+
+```php
+// Create a testing clock
+$clock = $this->clock();
+
+// Set a specific date and time
+$clock->setNow('2025-09-19 02:00:00');
+
+// Advance time by the specified duration
+$clock->sleep(milliseconds: 250);
+```
