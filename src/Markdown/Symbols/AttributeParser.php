@@ -35,6 +35,7 @@ final readonly class AttributeParser implements InlineParserInterface
         $url = str($fqcn)
             ->stripStart(['\\Tempest\\', 'Tempest\\'])
             ->replaceRegex("/^(\w+)/", fn (array $matches) => sprintf('packages/%s/src', Str\to_kebab_case($matches[0])))
+            ->replaceEvery(['date-time' => 'datetime'])
             ->replace('\\', '/')
             ->prepend('https://github.com/tempestphp/tempest-framework/blob/main/')
             ->append('.php');
