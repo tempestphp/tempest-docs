@@ -1,6 +1,6 @@
 ---
 title: 'Datetime'
-description: "Tempest provides a complete alternative to PHP's datetime implementation, with a better API, deeply integrated into Tempest."
+description: "Tempest provides a complete alternative to the DateTime implementation, with a higher-level API, deeply integrated into the framework."
 keywords: ["timezone", "date", "time", "time zone"]
 ---
 
@@ -55,7 +55,7 @@ $date->minusDay();
 $date->endOfDay();
 ```
 
-## Converting timezones
+### Converting timezones
 
 All datetime creation methods accept a `timezone` parameter. This parameter accepts an instance of the {b`Tempest\DateTime\Timezone`} enumeration. When not provided, the default timezone, provided by [`date.timezone`](https://www.php.net/manual/en/datetime.configuration.php#ini.date.timezone), will be used.
 
@@ -67,6 +67,49 @@ use Tempest\DateTime\Timezone;
 
 $date = DateTime::now();
 $date->convertToTimezone(Timezone::EUROPE_PARIS);
+```
+
+### Computing a duration
+
+By calling the `between()` method on a date instance, you may compute the duration between this date and a second one. This method returns a {b`Tempest\DateTime\Duration`} instance.
+
+```php
+use Tempest\DateTime\DateTime;
+
+$date1 = DateTime::now();
+$date2 = DateTime::parse('2025-09-19 02:00:00');
+$duration = $date1->between($date2);
+```
+
+### Comparing dates
+
+The {b`Tempest\DateTime\DateTime`} instance provides multiple methods to compare dates against each other, or against the current time. For instance, you may check if a date is before or after another date using the `isBefore()` and `isAfter()` methods, respectively.
+
+```php
+// Check if a date is before another date, inclusively
+$date->isBefore($other);
+
+// Check if a date is before another date, exclusively
+$date->isBeforeOrAtTheSameTime($other);
+
+// Check if a date between two other dates, inclusively
+$date->betweenTimeInclusive($otherDate1, $otherDate2);
+
+// Check if a date is in the future
+$date->isFuture();
+```
+
+## Formatting dates
+
+You may format a {b`Tempest\DateTime\DateTime`} instance in a specific format using the `format()` method. This method accepts an optional format string, which is a standard [ICU format](https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax), and an optional locale.
+
+```php
+use Tempest\DateTime\FormatPattern;
+use Tempest\DateTime\Locale;
+
+$date->format(); // 19 Sept 2025, 02:00:00
+$date->format(pattern: FormatPattern::COOKIE); // Monday, 19-Sept-2025 02:00:00 BST
+$date->format(locale: Locale::FRENCH); // 19 sept. 2025, 02:00:00
 ```
 
 ## Testing time
