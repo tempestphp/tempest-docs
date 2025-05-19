@@ -24,7 +24,9 @@ Finally, for more specific use cases, the `DateTime::fromString()` method may be
 
 ### For the current date and time
 
-You may create a {b`Tempest\DateTime\DateTime`} instance for the current time using the `DateTime::now()` method or the `Tempest\now()` function.
+The recommended approach for getting the current time is by calling the `now()` method on the {`Tempest\Clock\Clock`} interface, [which may be injected as a dependency](#clock-interface) in any class.
+
+However, for convenience, you may also create a {b`Tempest\DateTime\DateTime`} instance for the current time using the `DateTime::now()` method or the `Tempest\now()` function.
 
 ```php
 $now = DateTime::now();
@@ -110,6 +112,30 @@ use Tempest\DateTime\Locale;
 $date->format(); // 19 Sept 2025, 02:00:00
 $date->format(pattern: FormatPattern::COOKIE); // Monday, 19-Sept-2025 02:00:00 BST
 $date->format(locale: Locale::FRENCH); // 19 sept. 2025, 02:00:00
+```
+
+## Clock interface
+
+Tempest provides a {`Tempest\Clock\Clock`} interface which may be [injected as a dependency](../1-essentials/05-container.md#injecting-dependencies) in any class. This is the recommended way of working with time.
+
+```php
+final readonly class HomeController
+{
+    public function __construct(
+        private readonly Clock $clock,
+    ) {}
+
+    public function __invoke(): View
+    {
+        return view('./home.view.php', currentTime: $this->clock->now());
+    }
+}
+```
+
+Note that because Tempest has its own {b`Tempest\DateTime\DateTime`} implementation, the {b`Tempest\Clock\Clock`} interface is not compatible with PSR-20. However, you may get a PSR-20 implementation by calling the `toPsrClock()` method.
+
+```php
+$psrClock = $clock->toPsrClock();
 ```
 
 ## Testing time
