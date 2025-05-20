@@ -15,9 +15,10 @@ final class AlertBlockParser implements BlockContinueParserInterface
 
     public function __construct(
         protected string $alertType,
-        protected string $title,
+        protected ?string $icon,
+        protected ?string $title,
     ) {
-        $this->block = new AlertBlock($alertType, $title);
+        $this->block = new AlertBlock($alertType, $icon, $title);
     }
 
     #[\Override]

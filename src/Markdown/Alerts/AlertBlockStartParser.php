@@ -17,7 +17,7 @@ final class AlertBlockStartParser implements BlockStartParserInterface
             return BlockStart::none();
         }
 
-        $match = RegexHelper::matchFirst('/^:::(?!group)([a-z]+) ?(.*?)$/i', $cursor->getLine());
+        $match = RegexHelper::matchFirst('/^:::(?!group)(?<type>[a-z]+)({(?<icon>.*?)})? ?(?<title>.*?)$/i', $cursor->getLine());
 
         if ($match === null) {
             return BlockStart::none();
@@ -25,9 +25,10 @@ final class AlertBlockStartParser implements BlockStartParserInterface
 
         $cursor->advanceToEnd();
 
-        $alertType = $match[1];
-        $title = $match[2];
+        $alertType = $match['type'];
+        $icon = $match['icon'] ?: null;
+        $title = $match['title'] ?: null;
 
-        return BlockStart::of(new AlertBlockParser($alertType, $title))->at($cursor);
+        return BlockStart::of(new AlertBlockParser($alertType, $icon, $title))->at($cursor);
     }
 }
