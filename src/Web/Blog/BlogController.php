@@ -47,8 +47,8 @@ final readonly class BlogController
     ): Response {
         $xml = $cache->resolve(
             key: 'rss',
-            cache: fn () => $this->renderRssFeed($repository->all(loadContent: true)),
-            expiresAt: DateTime::now()->plusHours(1),
+            callback: fn () => $this->renderRssFeed($repository->all(loadContent: true)),
+            expiration: DateTime::now()->plusHours(1),
         );
 
         return new Ok($xml)

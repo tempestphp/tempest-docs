@@ -7,7 +7,7 @@ description: "The cache component is based on Symfony's Cache, providing access 
 
 By default, Tempest uses a filesystem-based caching strategy. You may use a different cache back-end by creating a configuration file for the desired cache adapter.
 
-For instance, you may use Redis as your cache back-end by creating a `cache.config.php` file returning an instance of {b`Tempest\Cache\Config\RedisCacheConfig`}:
+<!-- For instance, you may use Redis as your cache back-end by creating a `cache.config.php` file returning an instance of {b`Tempest\Cache\Config\RedisCacheConfig`}:
 
 ```php src/cache.config.php
 return new RedisCacheConfig(
@@ -18,7 +18,7 @@ return new RedisCacheConfig(
 );
 ```
 
-In this example, the Redis credentials are specified in the `.env`, so a different bucket and credentials can be configured depending on the environment. Of course, you may use different, more specific environment variables if needed.
+In this example, the Redis credentials are specified in the `.env`, so a different bucket and credentials can be configured depending on the environment. Of course, you may use different, more specific environment variables if needed. -->
 
 Once your cache is configured, you may interact with it by using the {`Tempest\Cache\Cache`} interface. This is usually done through [dependency injection](../1-essentials/05-container.md#injecting-dependencies):
 

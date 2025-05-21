@@ -8,6 +8,7 @@ use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
 use Tempest\Console\Schedule;
 use Tempest\Console\Scheduler\Every;
+use Tempest\DateTime\Duration;
 use Tempest\HttpClient\HttpClient;
 use Throwable;
 
@@ -56,8 +57,8 @@ final readonly class ParsePackagistCommand
             try {
                 $data = $this->cache->resolve(
                     key: "packagist-{$package}",
-                    cache: fn () => json_decode($this->httpClient->get($url)->body, associative: true),
-                    expiresAt: new DateTimeImmutable('+ 30 minutes'),
+                    callback: fn () => json_decode($this->httpClient->get($url)->body, associative: true),
+                    expiration: Duration::minutes(30),
                 );
 
                 event(new PackageDownloadsListed(
