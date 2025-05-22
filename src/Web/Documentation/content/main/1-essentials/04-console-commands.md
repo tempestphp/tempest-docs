@@ -297,4 +297,23 @@ Tempest provides a few built-in middleware that you may use on your console comm
 
 ## Scheduling
 
+Console commands—or any public class method—may be scheduled by using the {b`#[Tempest\Console\Schedule]`} attribute, which accepts an {b`Tempest\Console\Scheduler\Interval`} or {b`Tempest\Console\Scheduler\Every`} value. Methods with this attributes are automatically [discovered](../4-internals/02-discovery.md), so there is nothing more to add.
+
+You may read more on the [dedicated chapter](../2-features/11-scheduling.md).
+
 ## Testing
+
+Tempest provides a console command testing utility accessible through the `console` property of the [`IntegrationTest`](https://github.com/tempestphp/tempest-framework/blob/main/src/Tempest/Framework/Testing/IntegrationTest.php) test case. You may learn more about testing in the [dedicated chapter](./07-testing.md).
+
+```php tests/ExportUsersCommandTest.php
+$this->console
+    ->call(ExportUsersCommand::class)
+    ->assertSuccess()
+    ->assertSee('12 users exported');
+
+$this->console
+    ->call(WipeDatabaseCommand::class)
+    ->assertSee('caution')
+    ->submit()
+    ->assertSuccess();
+```
