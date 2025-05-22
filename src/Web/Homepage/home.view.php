@@ -42,7 +42,7 @@ use function Tempest\uri;
         </div>
         <button data-copy="#install-tempest-snippet" class="hidden md:flex group mt-6 md:mt-8 xl:mt-10  items-center justify-start gap-x-2 text-base font-mono relative cursor-pointer">
             <x-icon name="tabler:terminal" class="size-5 text-(--ui-primary)" />
-            <span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer create-project tempest/app --stability alpha</span>
+            <span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer create-project tempest/app --stability beta</span>
             <span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
                 <x-icon name="tabler:copy" class="size-5 absolute" />
                 <x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition text-(--ui-success)" />
@@ -53,11 +53,11 @@ use function Tempest\uri;
 			<x-home-section
 				heading="Zero-config code discovery"
 				:paragraphs="[
-					'Tempest scans your code and finds out what to do with it without you having to write a single line of configuration or bootstrap code.',
+					'Tempest doesn\'t require hand-holding. Your code is scanned and everything is configured automatically: routes, view components, console commands, event handlers, middleware, migrations — everything.',
 				]"
 				link-label="Discovery"
 				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'internals', slug: 'discovery')"
-				:snippets="['controller', 'view-processor']"
+				:snippets="['controller', 'view-component', 'event-handler']"
 			></x-home-section>
       <!-- Template engine -->
 			<x-home-section
@@ -72,23 +72,33 @@ use function Tempest\uri;
 			></x-home-section>
       <!-- ORM-->
 			<x-home-section
-				heading="An ORM that embraces modern PHP"
+				heading="A truly decoupled ORM"
 				:paragraphs="[
-					'Define models with simple, clean code.',
+					'Models in Tempest embrace modern PHP and are designed to be decoupled from the database; they don\'t even have to persist to the database and can be mapped to any kind of data source.',
 				]"
 				link-label="ORM"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'models')"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'database')"
 				:snippets="['model', 'orm']"
+			></x-home-section>
+      <!-- Console-->
+			<x-home-section
+				heading="Console applications reimagined"
+				:paragraphs="[
+					'Thinking out of the box, Tempest\'s console component is a brand new approach to building console applications with PHP',
+				]"
+				link-label="Console"
+				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'console-commands')"
+				:snippets="['console']"
 			></x-home-section>
       <!-- Much more-->
 			<x-home-section
 				heading="And much, much more."
 				:paragraphs="[
-					'Configuration objects for easy autocompletion and injection, a data mapper, a powerful dependency container with autowiring. Tempest is designed to be frictionless.',
+					'Configuration objects for easy autocompletion and injection, data mapping, a powerful dependency container with autowiring. Tempest is designed to be frictionless.',
 				]"
 				link-label="Get started"
 				:link-uri="uri([ChapterController::class, 'index'])"
-				:snippets="['config', 'query', 'markdown-initializer']"
+				:snippets="['config', 'static-pages', 'query', 'markdown-initializer']"
 			></x-home-section>
     </main>
   </div>

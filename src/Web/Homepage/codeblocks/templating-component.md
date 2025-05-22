@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en" class="h-dvh flex flex-col">
 <head>
-    <title :if="isset($title)">{{ $title }} — Bookish</title>
-    <title :else>Bookish</title>
+    <title :if="isset($title)">{{ $title }} — Books</title>
+    <title :else>Books</title>
 	
     <x-vite-tags />
     

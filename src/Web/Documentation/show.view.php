@@ -33,7 +33,7 @@
       </nav>
     </div>
     <!-- Mobile sidebar button -->
-    <button onclick="toggleSideBar()" class="fixed md:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
+    <button onclick="toggleSideBar()" class="fixed lg:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
       <x-icon name="tabler:list" class="size-6" />
     </button>
     <!-- Mobile sidebar -->
@@ -108,7 +108,7 @@
                 </li>
                 <li :foreach="$chapter['children'] as $url => $title">
                   <a :href="$url" :data-on-this-page="$title" class="pl-4 group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-dimmed) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
-                    {{ \Tempest\Support\Str\strip_tags($title) }}</span>
+                    <span>{{ \Tempest\Support\Str\strip_tags($title) }}</span>
                   </a>
                 </li>
               </x-template>

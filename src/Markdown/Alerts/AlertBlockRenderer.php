@@ -7,6 +7,9 @@ use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\HtmlRenderer;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
+use Tempest\View\Components\Icon;
+
+use function Tempest\get;
 
 final class AlertBlockRenderer implements NodeRendererInterface
 {
@@ -21,19 +24,39 @@ final class AlertBlockRenderer implements NodeRendererInterface
             throw new \InvalidArgumentException('Incompatible renderer type: ' . get_class($childRenderer));
         }
 
-        $cssClass = 'alert alert-' . $node->alertType;
+        $iconName = match ($node->icon) {
+            'false' => null,
+            null => match ($node->alertType) {
+                'warning' => 'tabler:exclamation-circle',
+                'info' => 'tabler:info-circle',
+                'success' => 'tabler:check-circle',
+                'error' => 'tabler:exclamation-circle',
+                default => null,
+            },
+            default => $node->icon,
+        };
+
+        $icon = $iconName ? get(Icon::class)->render($iconName, class: 'alert-icon') : null;
+
         $content = new HtmlElement(
             tagName: 'div',
             attributes: ['class' => 'alert-wrapper'],
             contents: [
-                $node->title ? new HtmlElement('span', attributes: ['class' => 'alert-title'], contents: $node->title) : null,
-                $childRenderer->renderNodes($node->children()),
+                $icon ? new HtmlElement('div', attributes: ['class' => 'alert-icon-wrapper'], contents: $icon) : null,
+                new HtmlElement(
+                    tagName: 'div',
+                    attributes: ['class' => 'alert-content'],
+                    contents: [
+                        $node->title ? new HtmlElement('span', attributes: ['class' => 'alert-title'], contents: $node->title) : null,
+                        $childRenderer->renderNodes($node->children()),
+                    ],
+                ),
             ],
         );
 
         return new HtmlElement(
             'div',
-            ['class' => $cssClass],
+            ['class' => "alert alert-{$node->alertType}"],
             $content,
         );
     }

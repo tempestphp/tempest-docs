@@ -8,12 +8,11 @@ use App\Web\Documentation\Version;
 use Spatie\Browsershot\Browsershot;
 use Tempest\Container\Tag;
 use Tempest\Core\Kernel;
+use Tempest\Http\Request;
+use Tempest\Http\Response;
+use Tempest\Http\Responses\File;
+use Tempest\Http\Responses\Ok;
 use Tempest\Router\Get;
-use Tempest\Router\Request;
-use Tempest\Router\Response;
-use Tempest\Router\Responses\File;
-use Tempest\Router\Responses\NotFound;
-use Tempest\Router\Responses\Ok;
 use Tempest\View\ViewRenderer;
 
 use function Tempest\support\path;

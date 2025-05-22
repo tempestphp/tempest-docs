@@ -4,15 +4,15 @@
     "description": "Documentation website for the Tempest framework",
     "require": {
         "tempest/framework": "dev-main",
-        "league/commonmark": "^2.6.1",
-        "symfony/yaml": "^6.4.20",
+        "league/commonmark": "^2.7.0",
+        "symfony/yaml": "^6.4.21",
         "spatie/yaml-front-matter": "^2.1",
         "spatie/browsershot": "^4.4",
         "assertchris/ellison": "^1.0.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5.45",
-        "symfony/var-dumper": "^7.2.3",
+        "phpunit/phpunit": "^10.5.46",
+        "symfony/var-dumper": "^7.2.6",
         "carthage-software/mago": "^0.19.5"
     },
     "autoload": {
@@ -45,7 +45,9 @@
         "qa": [
             "composer mago:fmt",
             "composer phpunit",
-            "composer mago:lint"
+            "composer mago:lint",
+            "@php ./tempest static:generate",
+            "@php ./tempest static:clean"
         ]
     },
     "minimum-stability": "dev",
@@ -55,6 +57,7 @@
         "allow-plugins": {
             "php-http/discovery": true,
             "carthage-software/mago": true
+
         }
     }
 }

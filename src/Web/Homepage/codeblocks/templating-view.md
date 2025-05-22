@@ -1,12 +1,12 @@
 ```html
 <x-base :title="$this->seo->title">
     <ul>
-        <li :foreach="$this->posts as $post">
-            {{ $post->title }}
+        <li :foreach="$this->books as $book">
+            {{ $book->title }}
 
-            <span :if="$this->showDate($post)">
+            <span :if="$this->showDate($book)">
                 <x-tag>
-                    {{ $post->date }}
+                    {{ $book->publishedAt }}
                 </x-tag>
             </span>
         </li>

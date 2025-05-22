@@ -70,7 +70,7 @@ final readonly class EventsReplayCommand
 
             $this->info(sprintf('Replaying <style="underline">%s</style>', $projectorClass));
 
-            /** @var \Tempest\StoredEvents\Projector $projector */
+            /** @var \App\StoredEvents\Projector $projector */
             $projector = $this->container->get($projectorClass);
 
             $projector->clear();

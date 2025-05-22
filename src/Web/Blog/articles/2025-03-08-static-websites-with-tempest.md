@@ -134,4 +134,4 @@ On a final note, you can always clean up the generated HTML files by running `{c
 <success>Done</success>
 ```
 
-It's a pretty cool feature that requires minimal effort, but will have a huge impact on your website's performance. If you want more insights into Tempest's static pages, you can head over to [the docs](/docs/framework/static-pages) to learn more.
+It's a pretty cool feature that requires minimal effort, but will have a huge impact on your website's performance. If you want more insights into Tempest's static pages, you can head over to [the docs](/main/features/static-pages) to learn more.

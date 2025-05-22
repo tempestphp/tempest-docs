@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use Tempest\Http\Response;
+use Tempest\Http\Responses\NotFound;
+use Tempest\Http\Responses\Redirect;
 use Tempest\Router\Get;
-use Tempest\Router\Response;
-use Tempest\Router\Responses\NotFound;
-use Tempest\Router\Responses\Redirect;
 use Tempest\Router\StaticPage;
 use Tempest\Support\Str\ImmutableString;
 use Tempest\View\View;
@@ -26,6 +26,7 @@ final readonly class ChapterController
 
     #[Get('/docs')]
     #[Get('/documentation')]
+    #[Get('/main/framework/getting-started')]
     public function index(): Redirect
     {
         $version = Version::default();
@@ -61,7 +62,7 @@ final readonly class ChapterController
 
         $currentChapter = $chapterRepository->find($version, $category, $slug);
 
-        if (! $currentChapter) {
+        if (! $currentChapter || $currentChapter->hidden) {
             return new NotFound();
         }
 

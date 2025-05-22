@@ -6,10 +6,10 @@ namespace App\Web\Code;
 
 use Tempest\Container\Tag;
 use Tempest\Highlight\Highlighter;
+use Tempest\Http\Request;
+use Tempest\Http\Responses\Redirect;
 use Tempest\Router\Get;
 use Tempest\Router\Post;
-use Tempest\Router\Request;
-use Tempest\Router\Responses\Redirect;
 use Tempest\View\View;
 
 use function Tempest\uri;

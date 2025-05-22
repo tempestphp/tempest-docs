@@ -4,14 +4,10 @@ namespace App\Markdown;
 
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
-use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
-use League\CommonMark\Extension\HeadingPermalink\HeadingPermalink;
-use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
-use Tempest\Highlight\Highlighter;
 use Tempest\Support\Str\ImmutableString;
 
 final class HeadingRenderer implements NodeRendererInterface

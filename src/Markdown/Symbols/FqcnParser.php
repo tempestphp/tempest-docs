@@ -7,10 +7,9 @@ use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
 use League\CommonMark\Parser\Inline\InlineParserMatch;
 use League\CommonMark\Parser\InlineParserContext;
+use Tempest\Support\Str;
 
 use function Tempest\Support\str;
-use function Tempest\Support\Str\class_basename;
-use function Tempest\Support\Str\strip_start;
 
 final readonly class FqcnParser implements InlineParserInterface
 {
@@ -35,13 +34,14 @@ final readonly class FqcnParser implements InlineParserInterface
         [$flag, $fqcn] = $inlineContext->getSubMatches();
         $url = str($fqcn)
             ->stripStart(['\\Tempest\\', 'Tempest\\'])
-            ->replaceRegex("/^(\w+)/", 'src/Tempest/$0/src')
+            ->replaceRegex("/^(\w+)/", fn (array $matches) => sprintf('packages/%s/src', Str\to_kebab_case($matches[0])))
+            ->replaceEvery(['date-time' => 'datetime'])
             ->replace('\\', '/')
             ->prepend('https://github.com/tempestphp/tempest-framework/blob/main/')
             ->append('.php');
 
         $link = new Link($url);
-        $link->appendChild(new Code($flag === 'b' ? class_basename($fqcn) : strip_start($fqcn, '\\')));
+        $link->appendChild(new Code($flag === 'b' ? Str\class_basename($fqcn) : Str\strip_start($fqcn, '\\')));
         $inlineContext->getContainer()->appendChild($link);
 
         return true;
