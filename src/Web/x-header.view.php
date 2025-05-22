@@ -35,23 +35,25 @@ use function Tempest\is_current_uri;
         </div>
         <!-- Right side -->
         <div class="flex items-center gap-4 font-medium">
+          <div class="flex items-center gap-4 font-medium flex-row-reverse lg:flex-row">
             <a
-                    :href="uri([ChapterController::class, 'index'])"
-                    class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([ChapterController::class, '__invoke']) ? 'md:text-(--ui-primary)' : '' ?>"
+              :href="uri([ChapterController::class, 'index'])"
+              class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([ChapterController::class, '__invoke']) ? 'md:text-(--ui-primary)' : '' ?>"
             >
-                <span class="sm:hidden">Docs</span>
-                <span class="hidden sm:inline">Documentation</span>
+              <span class="sm:hidden">Docs</span>
+              <span class="hidden sm:inline">Documentation</span>
             </a>
             <a
-                    :href="uri([BlogController::class, 'index'])"
-                    class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index'])
-                        ? 'md:text-(--ui-primary)'
-                        : '' ?>"
+              :href="uri([BlogController::class, 'index'])"
+              class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index'])
+                  ? 'md:text-(--ui-primary)'
+                  : '' ?>"
             >Blog</a>
-            <a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
-                <x-icon name="tabler:brand-github" class="size-6"/>
-                <span class="font-semibold hidden lg:inline">{{ $stargazers_count }}</span>
-            </a>
+          </div>
+          <a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
+              <x-icon name="tabler:brand-github" class="size-6"/>
+              <span class="font-semibold hidden lg:inline">{{ $stargazers_count }}</span>
+          </a>
         </div>
     </header>
 </div>

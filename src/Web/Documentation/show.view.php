@@ -33,7 +33,7 @@
       </nav>
     </div>
     <!-- Mobile sidebar button -->
-    <button onclick="toggleSideBar()" class="fixed md:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
+    <button onclick="toggleSideBar()" class="fixed lg:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
       <x-icon name="tabler:list" class="size-6" />
     </button>
     <!-- Mobile sidebar -->
