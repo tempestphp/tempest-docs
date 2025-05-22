@@ -17,12 +17,8 @@ final class GetLatestRelease
 
     public function __invoke(): ?string
     {
-        // Added by Aidan Casey to combat the GitHub rate limits.
-        // We will inject the GH_TOKEN using our workflow.
-        $headers = [];
-
-        if ($githubToken = env('GH_TOKEN')) {
-            $headers['Authorization'] = 'Bearer ' . $githubToken;
+        if ($latestRelease = env('TEMPEST_BUILD_LATEST_RELEASE')) {
+            return $latestRelease;
         }
 
         // Default release to the currently running version of Tempest.
@@ -30,16 +26,12 @@ final class GetLatestRelease
 
         try {
             $body = $this->httpClient
-                ->get(
-                    uri: 'https://api.github.com/repos/tempestphp/tempest-framework/releases/latest',
-                    headers: $headers,
-                )
+                ->get('https://api.github.com/repos/tempestphp/tempest-framework/releases/latest')
                 ->body;
 
             return json_decode($body)->tag_name ?? $defaultRelease;
-        } catch (Throwable $e) {
-            ll($e);
-            return Kernel::VERSION;
+        } catch (Throwable) {
+            return $defaultRelease;
         }
     }
 }
