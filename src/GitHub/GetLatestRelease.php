@@ -30,9 +30,8 @@ final class GetLatestRelease
                 ->body;
 
             return json_decode($body)->tag_name ?? $defaultRelease;
-        } catch (Throwable $e) {
-            ll($e);
-            return Kernel::VERSION;
+        } catch (Throwable) {
+            return $defaultRelease;
         }
     }
 }
