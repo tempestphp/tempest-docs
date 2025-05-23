@@ -2,8 +2,8 @@
 
 namespace App\GitHub;
 
-use PDO;
 use Tempest\HttpClient\HttpClient;
+use Tempest\Support\Number;
 use Throwable;
 
 use function Tempest\env;
@@ -18,9 +18,7 @@ final class GetStargazersCount
     public function __invoke(): ?string
     {
         if ($stargazers = $this->getStargazersCount()) {
-            return $stargazers > 999
-                ? (round($stargazers / 1000, 1) . 'K')
-                : $stargazers;
+            return Number\to_human_readable($stargazers, maxPrecision: 1);
         }
 
         return null;
