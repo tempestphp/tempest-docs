@@ -10,44 +10,35 @@ Tempest's database component is currently experimental and is not covered by our
 
 ## Connecting to a database
 
-By default, Tempest will connect to a local SQLite database located in its internal storage: `vendor/.tempest/database.sqlite`. You can connect to another database by creating a new config file:
+By default, Tempest will connect to a local SQLite database located in its internal storage, `vendor/.tempest/database.sqlite`. You may override the default database connection by creating a [configuration file](../1-essentials/06-configuration.md#configuration-files):
 
 ```php src/Config/database.config.php
 use Tempest\Database\Config\SQLiteConfig;
+use function Tempest\root_path;
 
 return new SQLiteConfig(
-    path: __DIR__ . '/../database.sqlite',
+    path: root_path('database.sqlite'),
 );
 ```
 
-Alternatively, you can connect to another database by returning another config object from that config file. You can choose between {b`Tempest\Database\Config\SQLiteConfig`}, {b`Tempest\Database\Config\MysqlConfig`}, or {b`Tempest\Database\Config\PostgresConfig`}:
-
-
-```php src/Config/database.config.php
-use Tempest\Database\Config\MysqlConfig;
-
-return new MysqlConfig();
-```
-
-Each database has its own connection parameters, and you can pass them in depending on the connection you're making:
+Alternatively, you can connect to another database by returning another configuration object from file. You may choose between {b`Tempest\Database\Config\SQLiteConfig`}, {b`Tempest\Database\Config\MysqlConfig`}, or {b`Tempest\Database\Config\PostgresConfig`}:
 
 ```php src/Config/database.config.php
 use Tempest\Database\Config\PostgresConfig;
 use function Tempest\env;
 
 return new PostgresConfig(
-    host: env('DATBASE_HOST','127.0.0.1'),
-    port: env('DATBASE_PORT','5432'),
-    username: env('DATBASE_USERNAME','postgres'),
-    password: env('DATBASE_PASSWORD','postgres'),
-    database: env('DATBASE_DATABASE','postgres'),
+    host: env('DATBASE_HOST', default: '127.0.0.1'),
+    port: env('DATBASE_PORT', default: '5432'),
+    username: env('DATBASE_USERNAME', default: 'postgres'),
+    password: env('DATBASE_PASSWORD', default: 'postgres'),
+    database: env('DATBASE_DATABASE', default: 'postgres'),
 );
 ```
 
 ## Querying the database
 
 There are multiple ways to query the database, but all of them eventually do the same thing: execute a {b`Tempest\Database\Query`} on the {b`Tempest\Database\Database`} class. The most straight-forward way to query the database is thus by injecting {b`Tempest\Database\Database`}:
-
 
 ```php
 use Tempest\Database\Database;
@@ -69,7 +60,7 @@ final class BookRepository
 }
 ```
 
-Manually building and executing queries gives you the most flexibility, but often you'll be to use Tempest's query builder as a more convenient way to interact with the database. The query builder gives you fluent methods to build queries with and will take your database's dialect into account when actually building the query. No need to worry about database-specific syntax differences, the query builder takes care of that for you behind the scenes. 
+Manually building and executing queries gives you the most flexibility. However, using Tempest's query builder is more convenient—it gives you fluent methods to build queries with without needing to worry about database-specific syntax differences.
 
 ```php
 use function Tempest\Database\query;
@@ -114,7 +105,7 @@ final class BookRepository
 There are multiple types of query builders, all of them are available via the `query()` function. If you prefer to manually create a query builder though, you can also instantiate them directly:
 
 ```php
-use \Tempest\Database\Builder\QueryBuilders\SelectQueryBuilder;
+use Tempest\Database\Builder\QueryBuilders\SelectQueryBuilder;
 
 $builder = new SelectQueryBuilder('books');
 ```
@@ -133,7 +124,9 @@ Finally, you can make your own query builders if you want by implementing the {b
 
 ## Models
 
-A common use case in many applications is to represent persisted data as objects within your codebase. This is where model classes come in. Tempest tries to decouple models as best as possible from the database, so any object with public typed properties can represent a model. These objects don't have to implement any interface, they should be plain-old PHP objects:
+A common use case in many applications is to represent persisted data as objects within your codebase. This is where model classes come in. Tempest tries to decouple models as best as possible from the database, so any object with public typed properties can represent a model.
+
+These objects don't have to implement any interface—they may be plain-old PHP objects:
 
 ```php app/Book.php
 use Tempest\Validation\Rules\Length;
@@ -164,9 +157,9 @@ That being said, persistence most often happens on the database level, so let's 
 
 ### Models and query builders
 
-The easiest (and most decoupled way) of persisting models to a database is by using the query builder we've mentioned before. Tempest's query builder cannot just deal with tables and arrays, but also knows how to map data from and to model objects. All you need to do is specify which class you want to query, and Tempest will do the rest. 
+The easiest way of persisting models to a database is by using the query builder. Tempest's query builder cannot just deal with tables and arrays, but also knows how to map data from and to model objects. All you need to do is specify which class you want to query, and Tempest will do the rest.
 
-In the following example, we'll query the table related to the `Book` model, we'll select all fields, load its related `chapters` and `author` as well, specify the ID of the book we're searching, and then return the first result:  
+In the following example, we'll query the table related to the `Book` model, we'll select all fields, load its related `chapters` and `author` as well, specify the ID of the book we're searching, and then return the first result:
 
 ```php
 use App\Models\Book;
@@ -185,7 +178,7 @@ final class BookRepository
 }
 ```
 
-Tempest will infer all relation-type information from the model class, specifically by looking at the property types. For example, a property with the `Author` type is assumed to be a `BelongsTo` relation, while a property with the `/** @var \App\Chapter[] */` docblock is assumed to be a `HasMany` relation on the `Chapter` model.
+Tempest will infer all relation-type information from the model class, specifically by looking at the property types. For example, a property with the `Author` type is assumed to be a "belongs to" relation, while a property with the `/** @var \App\Chapter[] */` docblock is assumed to be a "has many" relation on the `Chapter` model.
 
 Apart from selecting models, it's of course possible to use any other query builder with them as well:
 
@@ -205,12 +198,12 @@ final class BookRepository
 ```
 
 :::info
-Currently it's not possible to insert or update `HasMany` or `HasOne` relations directly by inserting or updating the parent model. You should first insert or update the parent model and then insert or update the child models separately. This shortcoming will be fixed in [the future](https://github.com/tempestphp/tempest-framework/issues/1087). 
+Currently it's not possible to insert or update {b`Tempest\Database\HasMany`} or {b`Tempest\Database\HasOne`} relations directly by inserting or updating the parent model. You should first insert or update the parent model and then insert or update the child models separately. This shortcoming will be fixed in [the future](https://github.com/tempestphp/tempest-framework/issues/1087).
 :::
 
 ### Model relations
 
-As mentioned before, Tempest will infer relations based on type information it gets from the model class: a public property with a reference to another class will be assumed to be a `BelongsTo` relation, while a property with a docblock that defining an array type is assumed to be a `HasMany` relation. 
+As mentioned before, Tempest will infer relations based on type information it gets from the model class. A public property with a reference to another class will be assumed to be a {b`Tempest\Database\BelongsTo`} relation, while a property with a docblock that defines an array type is assumed to be a {b`Tempest\Database\HasMany`} relation.
 
 ```php
 use App\Author;
@@ -218,21 +211,21 @@ use App\Author;
 final class Book
 {
     // This is a BelongsTo relation:
-    public ?Author $author = null; 
+    public ?Author $author = null;
 
     // This is a HasMany relation:
     /** @var \App\Chapter[] */
-    public array $chapters = []; 
+    public array $chapters = [];
 }
 ```
 
-Tempest will infer all the information it needs to build the right queries for you. However, there might be cases where property names and type information don't map 1-to-1 on your database schema. In that case you can use dedicated attributes to define relations.
+Tempest will infer all the information it needs to build the right queries for you. However, there might be cases where property names and type information don't map one-to-one on your database schema. In that case you can use dedicated attributes to define relations.
 
 ### Relation attributes
 
-Tempest will infer relation names based on property names and types. However, you can override these names with the `#[HasMany]`, `#[HasOne]`, and `#[BelongsTo]` attributes. These attributes all take two optional arguments:
+Tempest will infer relation names based on property names and types. However, you can override these names with the {b`#[Tempest\Database\HasMany]`}, {b`#[Tempest\Database\HasOne]`}, and {b`#[Tempest\Database\BelongsTo]`} attributes. These attributes all take two optional arguments:
 
-- `ownerJoin`, which is used to build the owner's side of join query; and
+- `ownerJoin`, which is used to build the owner's side of join query,
 - `relationJoin`, which is used to build the relation's side of the join query.
 
 ```php
@@ -279,7 +272,7 @@ final class Book
 
 ### Table names
 
-Tempest will infer the table name for a model class based on the model's classname. By default the table name will by the pluralized, snake_cased version of that classname. You can override this name by using the {b`Tempest\Database\Table`} attribute:
+Tempest will infer the table name for a model class based on the model's classname. By default the table name will by the pluralized, `snake_cased` version of that classname. You can override this name by using the {b`Tempest\Database\Table`} attribute:
 
 ```php
 use Tempest\Database\Table;
@@ -324,23 +317,25 @@ By default, all public properties are considered to be part of the model's query
 
 ```php
 use Tempest\Database\Virtual;
+use Tempest\DateTime\DateTime;
+use Tempest\DateTime\Duration;
 
-class Book
+final class Book
 {
     // …
 
-    public DateTimeImmutable $publishedAt;
+    public DateTime $publishedAt;
 
     #[Virtual]
-    public DateTimeImmutable $saleExpiresAt {
-        get => $this->publishedAt->add(new DateInterval('P5D'));
+    public DateTime $saleExpiresAt {
+        get => $this->publishedAt->add(Duration::days(5)));
     }
 }
 ```
 
-### The IsDatabaseModel trait
+### The `IsDatabaseModel` trait
 
-People who are used to Eloquent might prefer a more "active record" style to handling their models. In that case, there's the {b`Tempest\Database\IsDatabaseModel`} trait which you can use in your model classes: 
+People who are used to Eloquent might prefer a more "active record" style to handling their models. In that case, there's the {b`Tempest\Database\IsDatabaseModel`} trait which you can use in your model classes:
 
 ```php
 use Tempest\Database\IsDatabaseModel;
@@ -542,7 +537,7 @@ final class DatabaseBackupCommand
         private Database $main,
         #[Tag(DatabaseType::BACKUP)] private Database $backup,
     ) {}
-    
+
     public function __invoke(): void
     {
         $books = $this->main->fetch(
@@ -550,7 +545,7 @@ final class DatabaseBackupCommand
                 ->select()
                 ->where('published_at < ?', '2025-01-01')
         );
-        
+
         $this->backup->execute(
             query(Book::class)->insert(...$books)
         );
@@ -573,7 +568,7 @@ final class DatabaseBackupCommand
             ->where('published_at < ?', '2025-01-01')
             ->onDatabase(DatabaseType::MAIN)
             ->all();
-        
+
         query(Book::class)
             ->insert(...$books)
             ->onDatabase(DatabaseType::BACKUP)
@@ -595,7 +590,7 @@ final class DatabaseBackupCommand
             ->where('published_at < ?', '2025-01-01')
             ->onDatabase(DatabaseType::MAIN)
             ->all();
-        
+
         Book::insert(...$books)
             ->onDatabase(DatabaseType::BACKUP)
             ->execute();
@@ -662,7 +657,7 @@ final class ConnectTenant
 }
 ```
 
-Furthermore, you can run migrations programmatically on such dynamically defined databases using the `MigrationManager`:
+Furthermore, you can run migrations programmatically on such dynamically defined databases using the {`Tempest\Database\Migrations\MigrationManager`}:
 
 ```php
 use Tempest\Database\Migrations\MigrationManager;
@@ -672,14 +667,14 @@ final class OnboardTenant
     public function __construct(
         private MigrationManager $migrationManager,
     ) {}
-    
+
     public function __invoke(string $tenantId): void
     {
         $setupMigrations = [
             new CreateMigrationsTable(),
             // …
         ];
-        
+
         foreach ($setupMigrations as $migration) {
             $this->migrationManager->onDatabase($tenantId)->executeUp($migration);
         }
@@ -700,13 +695,13 @@ final class ConnectTenantMiddleware implements HttpMiddleware
     public function __construct(
         private Container $container,
     ) {}
-    
+
     public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
         $tenantId = // Resolve tenant ID from the request
-        
+
         (new ConnectTennant)($tenantId);
-    
+
         return $next($request);
     }
 }
