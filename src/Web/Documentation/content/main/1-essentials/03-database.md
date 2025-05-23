@@ -395,7 +395,9 @@ use Tempest\Database\QueryStatements\DropTableStatement;
 
 final readonly class CreateBookTable implements DatabaseMigration
 {
-    public string $name = '2024-08-12_create_book_table';
+    public function __construct(
+        public string $name = '2024-08-12_create_book_table'
+    ) {}
 
     public function up(): QueryStatement|null
     {
