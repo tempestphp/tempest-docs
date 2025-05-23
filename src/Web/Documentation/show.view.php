@@ -103,12 +103,12 @@
               <x-template :foreach="$subChapters as $url => $chapter">
                 <li>
                   <a :href="$url" :data-on-this-page="$chapter['title']" class="group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
-                    {{ \Tempest\Support\Str\strip_tags($chapter['title']) }}
+                    {{ $chapter['title'] }}
                   </a>
                 </li>
                 <li :foreach="$chapter['children'] as $url => $title">
                   <a :href="$url" :data-on-this-page="$title" class="pl-4 group relative text-sm flex items-center focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-dimmed) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
-                    <span>{{ \Tempest\Support\Str\strip_tags($title) }}</span>
+                    <span>{{ $title }}</span>
                   </a>
                 </li>
               </x-template>

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Web\Documentation;
 
 use Tempest\Support\Arr\ImmutableArray;
+use Tempest\Support\Str;
 use Tempest\View\IsView;
 use Tempest\View\View;
 
@@ -35,14 +36,14 @@ final class ChapterView implements View
     public function getSubChapters(): array
     {
         // TODO(@innocenzi): clean up
-        preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $h2Matches);
-        preg_match_all('/<h3.*>.*<a.*href="(?<h3uri>.*?)".*<\/span>(?<h3title>.*)<\/a><\/h3>/', $this->currentChapter->body, $h3Matches);
+        preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*?<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $h2Matches);
+        preg_match_all('/<h3.*>.*<a.*href="(?<h3uri>.*?)".*?<\/span>(?<h3title>.*)<\/a><\/h3>/', $this->currentChapter->body, $h3Matches);
 
         $subChapters = [];
 
         foreach ($h2Matches[0] as $key => $match) {
             $h2Uri = $h2Matches['uri'][$key];
-            $h2Title = $h2Matches['title'][$key];
+            $h2Title = Str\strip_tags($h2Matches['title'][$key]);
             $subChapters[$h2Uri] = [
                 'title' => $h2Title,
                 'children' => [],
@@ -51,7 +52,7 @@ final class ChapterView implements View
 
         foreach ($h3Matches[0] as $key => $match) {
             $h3Uri = $h3Matches['h3uri'][$key];
-            $h3Title = $h3Matches['h3title'][$key];
+            $h3Title = Str\strip_tags($h3Matches['h3title'][$key]);
             $parentH2Uri = null;
             $h3Position = strpos($this->currentChapter->body, $match);
 
