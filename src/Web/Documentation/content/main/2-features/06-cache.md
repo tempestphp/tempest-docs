@@ -37,7 +37,7 @@ final readonly class OrderService
         return $this->cache->resolve(
             key: 'orders_count',
             resolve: fn () => $this->fetchOrdersCountFromDatabase(),
-            duration: Duration::hours(12)
+            expiration: Duration::hours(12)
         );
     }
 

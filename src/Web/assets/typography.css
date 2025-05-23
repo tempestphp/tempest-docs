@@ -67,7 +67,7 @@
 			content: none;
 		}
 
-		@apply px-1.5 pt-0.5 pb-px text-sm font-mono font-medium rounded-md inline-block border border-(--ui-border-muted) bg-(--ui-bg-muted) text-inherit;
+		@apply px-1.5 pt-0.5 -mt-0.5 pb-px -mb-px text-sm font-mono font-medium rounded-md inline-block border border-(--ui-border-muted) bg-(--ui-bg-muted) text-inherit;
 	}
 
 	a:not(:is(.not-prose, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {

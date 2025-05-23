@@ -34,10 +34,21 @@ jobs:
       - name: List Installed Dependencies
         run: composer show -D
 
+      - name: Get latest GitHub statistics
+        id: stats
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          STARS=$(curl -s -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/tempestphp/tempest-framework | jq '.stargazers_count // empty')
+          TAG=$(curl -s -H "Authorization: Bearer $GH_TOKEN" https://api.github.com/repos/tempestphp/tempest-framework/releases/latest | jq -r '.tag_name // empty')
+          echo "Stars: $STARS"
+          echo "Latest version: $TAG"
+          echo "stars=$STARS" >> "$GITHUB_OUTPUT"
+          echo "latest_tag=$TAG" >> "$GITHUB_OUTPUT"
+
       - name: Deploy
         run: php ./tempest deploy
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
+          TEMPEST_BUILD_STARGAZERS: ${{ steps.stats.outputs.stars }}
+          TEMPEST_BUILD_LATEST_RELEASE: ${{ steps.stats.outputs.latest_tag }}
