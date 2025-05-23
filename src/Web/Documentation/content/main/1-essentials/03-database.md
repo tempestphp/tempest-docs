@@ -617,3 +617,29 @@ To run migrations on a specific database, you must specify the `database` flag t
 :::info
 When no database is provided, the default database will be used, this is the database that doesn't have a specific tag attached to it.
 :::
+
+### Database-specific migrations
+
+Sometimes you might only want to run specific migrations on specific databases. Any database migration class may implement the {b`Tempest\Database\ShouldMigrate`}, which adds a `shouldMigrate()` method to determine whether a migration should run or not, based on the database:
+
+```php
+use Tempest\Database\Database;
+use Tempest\Database\DatabaseMigration;
+use Tempest\Database\ShouldMigrate;
+
+final class MigrationForBackup implements DatabaseMigration, ShouldMigrate
+{
+    public string $name = '…';
+
+    public function shouldMigrate(Database $database): bool
+    {
+        return $database->tag === 'backup';
+    }
+
+    public function up(): QueryStatement
+    { /* … */ }
+
+    public function down(): QueryStatement
+    { /* … */ }
+}
+```
