@@ -643,3 +643,71 @@ final class MigrationForBackup implements DatabaseMigration, ShouldMigrate
     { /* … */ }
 }
 ```
+
+### Dynamic databases
+
+In systems with dynamic databases, like, for example, multi-tenant systems; you might not always have a hard-coded tag available to configure and resolve the right database. In those cases, it's trivial to add as many dynamic databases as you'd like:
+
+```php
+final class ConnectTenant
+{
+    public function __invoke(string $tenantId): void
+    {
+        // Use any database config you'd like:
+        $this->container->config(new SQLiteConfig(
+            path: __DIR__ . "/tenant-{$tenantId}.sqlite",
+            tag: $tenantId,
+        ));
+    }
+}
+```
+
+Furthermore, you can run migrations programmatically on such dynamically defined databases using the `MigrationManager`:
+
+```php
+use Tempest\Database\Migrations\MigrationManager;
+
+final class OnboardTenant
+{
+    public function __construct(
+        private MigrationManager $migrationManager,
+    ) {}
+    
+    public function __invoke(string $tenantId): void
+    {
+        $setupMigrations = [
+            new CreateMigrationsTable(),
+            // …
+        ];
+        
+        foreach ($setupMigrations as $migration) {
+            $this->migrationManager->onDatabase($tenantId)->executeUp($migration);
+        }
+    }
+}
+```
+
+Finally, you should register your dynamic database connections as well within the entry points of your application. This could be done with [middleware](/main/essentials/routing#route-middleware), or with a [kernel event hook](/main/extra-topics/package-development#provider-classes); that's up to you:
+
+```php
+use Tempest\Container\Container;
+use Tempest\Router\HttpMiddleware;
+use Tempest\Core\Priority;
+
+#[Priority(Priority::HIGHEST)]
+final class ConnectTenantMiddleware implements HttpMiddleware
+{
+    public function __construct(
+        private Container $container,
+    ) {}
+    
+    public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
+    {
+        $tenantId = // Resolve tenant ID from the request
+        
+        (new ConnectTennant)($tenantId);
+    
+        return $next($request);
+    }
+}
+```
