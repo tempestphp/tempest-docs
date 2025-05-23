@@ -203,3 +203,15 @@ This caching strategy will only cache discovery for vendor files. For this reaso
 :::info
 Note that, if you've created your project using {`tempest/app`}, you'll have the `post-package-update` script already included. You may read the [internal documentation about discovery](../3-internals/02-discovery) to learn more.
 :::
+
+## Excluding files and classes from discovery
+
+If needed, you can always exclude discovered files and classes by providing a discovery config file:
+
+```php app/discovery.config.php
+use Tempest\Core\DiscoveryConfig;
+
+return new DiscoveryConfig()
+    ->skipClasses(GlobalHiddenDiscovery::class)
+    ->skipPaths(__DIR__ . '/../../Fixtures/GlobalHiddenPathDiscovery.php');
+```
