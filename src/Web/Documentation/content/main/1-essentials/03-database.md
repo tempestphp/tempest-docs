@@ -393,7 +393,7 @@ use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\CreateTableStatement;
 use Tempest\Database\QueryStatements\DropTableStatement;
 
-final readonly class CreateBookTable implements DatabaseMigration
+final class CreateBookTable implements DatabaseMigration
 {
     public string $name = '2024-08-12_create_book_table';
 
