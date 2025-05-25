@@ -60,7 +60,7 @@ final class BookRepository
 }
 ```
 
-Manually building and executing queries gives you the most flexibility. However, using Tempest's query builder is more convenient—it gives you fluent methods to build queries with without needing to worry about database-specific syntax differences.
+Manually building and executing queries gives you the most flexibility. However, using Tempest's query builder is more convenient—it gives you fluent methods to build queries without needing to worry about database-specific syntax differences.
 
 ```php
 use function Tempest\Database\query;
