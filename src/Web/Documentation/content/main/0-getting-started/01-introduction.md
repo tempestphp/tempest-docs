@@ -1,94 +1,187 @@
 ---
 title: Introduction
-description: "Tempest is a PHP framework for web and console applications, designed to get out of your way. Its core philosophy is to help developers focus on their application code, without being bothered with configuring or hand-holding the framework."
+description: "Tempest is a framework for PHP development, designed to get out of your way. Its core philosophy is to help you focus on your application code, without being bothered hand-holding the framework."
 ---
 
-Tempest makes writing PHP applications pleasant thanks to carefully crafted quality-of-life features that feel like a natural extension of vanilla PHP.
+Tempest's goal is to make you more productive when building web and console apps in PHP. It handles all the boilerplate parts of such projects for you, so that you can focus on what matters the most: writing application code.
 
-It embraces modern PHP syntax in its implementation of routing, ORM, console commands, messaging, logging, it takes inspiration from the best front-end frameworks for its templating engine syntax, and provides unique capabilities, such as [discovery](../3-internals/02-discovery), to improve developer experience.
+People using Tempest say it's the sweet spot between the robustness of Symfony and the eloquence of Laravel. It feels lightweight and close to vanilla PHP; and yet powerful and feature-rich. On this page, you'll read what sets Tempest apart as a framework for modern PHP development. If you're already convinced, you can head over to the [installation page](../0-getting-started/02-installation.md) and get started with Tempest.
 
-You may be interested in reading how it has an [unfair advantage](/blog/unfair-advantage) over other frameworks—but code says more than words, so here are a few examples of code written on top of Tempest:
+## Vision
+
+Tempest's vision can be summarized like this: **it's a community-driven, modern PHP framework that gets out of your way and dares to think outside the box**. Let's dissect that vision in depth.
+
+### Community driven
+
+Tempest started out as an educational project, without the intention for it to be something real. People picked up on it, though, and it was only after a strong community had formed that we considered making it something real.
+
+Currently, there are three core members dedicating a lot of their time to Tempest, as well as over [50 additional contributors](https://github.com/tempestphp/tempest-framework). We have an active [Discord server](/discord) with close to 400 members.
+
+Tempest isn't a solo project and never has been. It is a new framework and has a way to go compared to Symfony or Laravel, but there already is significant momentum and will only keep growing.
+
+### Embracing modern PHP
+
+The benefit of starting from scratch like Tempest did is having a clean slate. Tempest embraced modern PHP features from the start, and its goal is to keep doing this in the future by shipping built-in upgraders whenever breaking changes happen (think of it as Laravel Shift, but built into the framework).
+
+Just to name a couple of examples, Tempest uses property hooks:
 
 ```php
-use Tempest\Router\Get;
-use Tempest\Router\Post;
-use Tempest\Router\Response;
-use Tempest\Router\Responses\Ok;
-use Tempest\Router\Responses\Redirect;
-use function Tempest\uri;
+interface DatabaseMigration
+{
+    public string $name {
+        get;
+    }
+
+    public function up(): ?QueryStatement;
+
+    public function down(): ?QueryStatement;
+}
+```
+
+Attributes:
+
+```php
+final class BookController
+{
+    #[Get('/books/{book}')]
+    public function show(Book $book): Response { /* … */ }
+}
+```
+
+Proxy objects:
+
+```php
+use Tempest\Container\Proxy;
 
 final readonly class BookController
 {
-    #[Get('/books/{book}')]
-    public function show(Book $book): Response
-    {
-        return new Ok($book);
-    }
-
-    #[Post('/books')]
-    public function store(CreateBookRequest $request): Response
-    {
-        $book = map($request)->to(Book::class)->save();
-
-        return new Redirect(uri([self::class, 'show'], book: $book->id));
-    }
-
-    // …
+    public function __construct(
+        #[Proxy] private SlowDependency $slowDependency,
+    ) { /* … */ }
 }
 ```
 
-The above snippet is an example of a controller. It features [attribute-based routes](../1-essentials/01-routing.md), mapping a request to a data object using the [mapper](../2-features/01-mapper.md), [URL generation](../1-essentials/01-routing.md#generating-uris) and [dependency injection](../1-essentials/05-container.md#autowired-dependencies).
+And a lot more.
+
+### Getting out of your way
+
+A core part of Tempest's philosophy is that it wants to "get out of your way" as best as possible. For starters, Tempest is designed to structure your project code however you want, without making any assumptions or forcing conventions on you. You can prefer a classic MVC applications, DDD or hexagonal design, microservices, or something else; Tempest works with any project structure out of the box without any configuration.
+
+Behind Tempest's flexibility is one of its most powerful features: [discovery](../internals/discovery). Discovery gives Tempest a great number of insights into your codebase, without any handholding. Discovery handles routing, console commands, view components, event listeners, command handlers, middleware, schedules, migrations, and more.
 
 ```php
-use Tempest\Console\Console;
-use Tempest\Console\ConsoleCommand;
-use Tempest\Console\Middleware\ForceMiddleware;
-use Tempest\Console\Middleware\CautionMiddleware;
-use Tempest\EventBus\EventHandler;
-
-final readonly class MigrateUpCommand
+final class ConsoleCommandDiscovery implements Discovery
 {
+    use IsDiscovery;
+
     public function __construct(
-        private Console $console,
-        private MigrationManager $migrationManager,
+        private readonly ConsoleConfig $consoleConfig,
     ) {}
 
-    #[ConsoleCommand(
-        name: 'migrate:up',
-        description: 'Run all new migrations',
-        middleware: [ForceMiddleware::class, CautionMiddleware::class],
-    )]
-    public function __invoke(bool $fresh = false): void
+    public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
-        if ($fresh) {
-            $this->migrationManager->dropAll();
-            $this->console->success("Database dropped.");
+        foreach ($class->getPublicMethods() as $method) {
+            if ($consoleCommand = $method->getAttribute(ConsoleCommand::class)) {
+                $this->discoveryItems->add($location, [$method, $consoleCommand]);
+            }
         }
-
-        $this->migrationManager->up();
-        $this->console->success("Migrations applied.");
     }
 
-    #[EventHandler]
-    public function onTableDropped(TableDropped $event): void
+    public function apply(): void
     {
-        $this->console->writeln("- Dropped {$event->name}");
-    }
-
-    #[EventHandler]
-    public function onMigrationMigrated(MigrationMigrated $migrationMigrated): void
-    {
-        $this->console->writeln("- {$migrationMigrated->name}");
+        foreach ($this->discoveryItems as [$method, $consoleCommand]) {
+            $this->consoleConfig->addCommand($method, $consoleCommand);
+        }
     }
 }
 ```
 
-This is a [console command](../3-console/02-building-console-commands). Console commands can be defined in any class, as long as the {b`#[Tempest\Console\ConsoleCommand]`} attribute is used on a method. Command arguments are defined as the method's arguments, effectively removing the need to learn some specific framework syntax.
+Discovery makes Tempest truly understand your codebase so that you don't have to explain the framework how to use it. Of course, discovery is heavily optimized for local development and entirely cached in production, so there's no performance overhead. Even better: discovery isn't just a core framework feature, you're encouraged to write your own project-specific discovery classes wherever they make sense. That's the Tempest way.
 
-This example also shows how to [register events globally](../2-features/08-events.md) using the {b`#[Tempest\EventBus\EventHandler]`}.
+Besides Discovery, Tempest is designed to be extensible. You'll find that any part of the framework can be replaced and hooked into by implementing an interface and plugging it into the container. No fighting the framework, Tempest gets out of your way.
 
----
+### Thinking outside the box
 
-:::info Ready to give it a try?
-Keep on reading and consider [**giving Tempest a star️ on GitHub**](https://github.com/tempestphp/tempest-framework). If you want to be part of the community, you can [**join our Discord server**](https://discord.gg/pPhpTGUMPQ), and if you feel like contributing, you can check out our [contributing guide](/docs/extra-topics/contributing)!
-:::
+Finally, since Tempest originated as an educational project, many Tempest features dare to rethink the things we've gotten used to. For example, [console commands](../1-essentials/04-console-commands), which in Tempest are designed to be very similar to controller actions:
+
+```php
+final readonly class BooksCommand
+{
+    use HasConsole;
+    
+    public function __construct(
+        private BookRepository $repository,
+    ) {}
+    
+    #[ConsoleCommand]
+    public function find(?string $initial = null): void
+    {
+        $book = $this->search(
+            'Find your book',
+            $this->repository->find(...),
+        );
+    }
+
+    #[ConsoleCommand(middleware: [CautionMiddleware::class])]
+    public function delete(string $title, bool $verbose = false): void 
+    { /* … */ }
+}
+```
+
+Or what about [Tempest's ORM](../1-essentials/03-database), which aims to have truly decoupled models:
+
+```php 
+use Tempest\Validation\Rules\Length;
+use App\Author;
+
+final class Book
+{
+    #[Length(min: 1, max: 120)]
+    public string $title;
+
+    public ?Author $author = null;
+
+    /** @var \App\Chapter[] */
+    public array $chapters = [];
+}
+```
+
+```php
+final class BookRepository
+{
+    public function findById(int $id): Book
+    {
+        return query(Book::class)
+            ->select()
+            ->with('chapters', 'author')
+            ->where('id = ?', $id)
+            ->first();
+    }
+}
+```
+
+Then there's our view engine, which embraces the most original template engine of all time: HTML;
+
+```html
+<x-base :title="$this->seo->title">
+    <ul>
+        <li :foreach="$this->books as $book">
+            {{ $book->title }}
+
+            <span :if="$this->showDate($book)">
+                <x-tag>
+                    {{ $book->publishedAt }}
+                </x-tag>
+            </span>
+        </li>
+    </ul>
+</x-base>
+```
+
+## Getting started
+
+Are you intrigued? Want to give Tempest a try? Head over to [the next chapter](../0-getting-started/02-installation.md) to learn about how to get started with Tempest.
+
+If you want to become part of our community, you're more than welcome to [join our Discord server](/discord), and to check out [Tempest on GitHub](https://github.com/tempestphp/tempest-framework).
+
+Enjoy!

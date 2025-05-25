@@ -80,7 +80,7 @@ For instance, Tempest is able to differentiate between a controller method and a
 This concept is called [discovery](../4-internals/02-discovery), and is one of Tempest's most powerful features.
 :::
 
-The following projects structures work the same way in Tempest, without requiring any specific configuration:
+The following project structures work the same way in Tempest, without requiring any specific configuration:
 
 ```txt
 .                                    .
