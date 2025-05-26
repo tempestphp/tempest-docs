@@ -1,7 +1,7 @@
 ---
-title: 'Datetime'
+title: 'Date and time'
 description: "Tempest provides a complete alternative to the DateTime implementation, with a higher-level API, deeply integrated into the framework."
-keywords: ["timezone", "date", "time", "time zone"]
+keywords: ["timezone", "date", "time", "time zone", "carbon"]
 ---
 
 ## Overview
