@@ -48,6 +48,10 @@ final readonly class DocumentationIndexer
                 $title = get_by_key($markdown->getFrontMatter(), 'title');
                 $keywords = get_by_key($markdown->getFrontMatter(), 'keywords');
 
+                if (get_by_key($markdown->getFrontMatter(), 'hidden') === true) {
+                    return [];
+                }
+
                 $main = new Command(
                     type: Type::URI,
                     title: $title,
