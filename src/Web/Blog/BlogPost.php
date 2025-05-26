@@ -16,6 +16,7 @@ final class BlogPost
     public ?string $tag = null;
     public ?string $description = null;
     public bool $published = true;
+    public array $meta = [];
     public string $uri {
         get {
             return uri([BlogController::class, 'show'], slug: $this->slug);

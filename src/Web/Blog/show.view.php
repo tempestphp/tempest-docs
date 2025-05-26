@@ -6,7 +6,13 @@ use function Tempest\uri;
 
 ?>
 
-<x-base :meta-image-uri="uri([MetaImageController::class, 'blog'], slug: $post->slug)" :title="$post->title" :description="$post->description" :copy-code-blocks="true">
+<x-base
+        :meta-image-uri="uri([MetaImageController::class, 'blog'], slug: $post->slug)"
+        :title="$post->title"
+        :description="$post->description"
+        :copy-code-blocks="true"
+        :meta="$post->meta"
+>
   <!-- Main container -->
   <main class="container px-4 mx-auto xl:px-8 flex flex-col grow isolate items-center relative">
     <!-- Main content -->

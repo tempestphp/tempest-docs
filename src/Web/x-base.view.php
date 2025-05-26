@@ -1,13 +1,18 @@
 <html lang="en" class="h-dvh flex flex-col scroll-smooth">
 <head>
     <!-- Meta title -->
-    <?php $title = match (true) {
+    <?php use App\Web\Meta\MetaType;
+
+    $title = match (true) {
         isset($fullTitle) => $fullTitle,
         isset($title) => "{$title} — Tempest",
         default => 'Tempest',
     }; ?>
 
     <title>{{ $title }}</title>
+
+    <link :if="$meta['canonical'] ?? null" rel="canonical" :href="$meta['canonical']" />
+
     <meta name="title" :content="$title">
     <meta name="twitter:title" :content="$title">
     <meta property="og:title" :content="$title">
@@ -28,7 +33,7 @@
     <meta itemprop="description" :content="$description">
 
     <!-- Meta image -->
-    <?php $metaImageUri ??= ($meta ?? \App\Web\Meta\MetaType::HOME)->uri(); ?>
+    <?php $metaImageUri ??= ($metaType ?? \App\Web\Meta\MetaType::HOME)->uri(); ?>
     <meta property="og:image" :content="$metaImageUri"/>
     <meta property="twitter:image" :content="$metaImageUri"/>
     <meta name="image" :content="$metaImageUri"/>

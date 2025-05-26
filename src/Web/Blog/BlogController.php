@@ -24,7 +24,7 @@ final readonly class BlogController
     {
         $posts = $repository->all();
 
-        return view('./index.view.php', posts: $posts, meta: MetaType::BLOG);
+        return view('./index.view.php', posts: $posts, metaType: MetaType::BLOG);
     }
 
     #[Get('/blog/{slug}')]
