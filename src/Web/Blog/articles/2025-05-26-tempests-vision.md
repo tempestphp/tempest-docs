@@ -69,7 +69,7 @@ And a lot more.
 
 A core part of Tempest's philosophy is that it wants to "get out of your way" as best as possible. For starters, Tempest is designed to structure project code however you want, without making any assumptions or forcing conventions on you. You can prefer a classic MVC application, DDD or hexagonal design, microservices, or something else; Tempest works with any project structure out of the box without any configuration.
 
-Behind Tempest's flexibility is one of its most powerful features: [discovery](../internals/discovery). Discovery gives Tempest a great number of insights into your codebase, without any handholding. Discovery handles routing, console commands, view components, event listeners, command handlers, middleware, schedules, migrations, and more.
+Behind Tempest's flexibility is one of its most powerful features: [discovery](/main/internals/discovery). Discovery gives Tempest a great number of insights into your codebase, without any handholding. Discovery handles routing, console commands, view components, event listeners, command handlers, middleware, schedules, migrations, and more.
 
 ```php
 final class ConsoleCommandDiscovery implements Discovery
@@ -110,7 +110,7 @@ $container->singleton(ViewRenderer::class, $myCustomViewRenderer);
 
 ## Thinking outside the box
 
-Finally, since Tempest originated as an educational project, many Tempest features dare to rethink the things we've gotten used to. For example, [console commands](../1-essentials/04-console-commands), which in Tempest are designed to be very similar to controller actions:
+Finally, since Tempest originated as an educational project, many Tempest features dare to rethink the things we've gotten used to. For example, [console commands](/main/1-essentials/04-console-commands), which in Tempest are designed to be very similar to controller actions:
 
 ```php
 final readonly class BooksCommand
@@ -136,7 +136,7 @@ final readonly class BooksCommand
 }
 ```
 
-Or what about [Tempest's ORM](../1-essentials/03-database), which aims to have truly decoupled models:
+Or what about [Tempest's ORM](/main/1-essentials/03-database), which aims to have truly decoupled models:
 
 ```php 
 use Tempest\Validation\Rules\Length;
