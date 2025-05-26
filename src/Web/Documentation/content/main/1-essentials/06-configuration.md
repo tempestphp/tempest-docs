@@ -118,9 +118,28 @@ final class SlackConnector extends HttpConnector
 }
 ```
 
-## Configuration cache
+## Per-environment configuration
 
-During development, Tempest will discover configuration files every time the framework is booted. In a production environment, you should bypass this process to improve the performance by setting the `{txt}{:hl-property:CONFIG_CACHE:}` environment variable to `true`.
+Whenever possible, you should have a single configuration file per feature. You may use the `Tempest\env()` function inside that file to reference credentials and environment-specific values.
+
+However, it's sometimes needed to have completely different configurations in development and in production. For instance, you may use S3 for your [storage](../2-features/05-file-storage.md) in production, but use the local filesystem during development.
+
+When this happens, you may create environment-specific configuration files by using the `.<env>.config.php` suffix. For instance, a production-only configuration file could be `storage.prod.config.php`:
+
+```php src/storage.prod.config.php
+return new S3StorageConfig(
+    bucket: env('S3_BUCKET'),
+    region: env('S3_REGION'),
+    accessKeyId: env('S3_ACCESS_KEY_ID'),
+    secretAccessKey: env('S3_SECRET_ACCESS_KEY'),
+);
+```
+
+## Disabling the configuration cache
+
+During development, Tempest will discover configuration files every time the framework is booted. In a production environment, configuration files are automatically cached.
+
+You may override this behavior by setting the `{txt}{:hl-property:CONFIG_CACHE:}` environment variable to `true`.
 
 ```env .env
 {:hl-property:CONFIG_CACHE:}={:hl-keyword:true:}
