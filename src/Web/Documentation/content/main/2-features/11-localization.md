@@ -134,6 +134,18 @@ cart:
       *       *     {{Masz {$count} elementów w koszyku.}}
 ```
 
+### Using markup
+
+Markup may be added to translation messages using a [dedicated syntax](https://messageformat.unicode.org/docs/reference/markup/) defined in the MessageFormat specification. Tempest provides a markup implementation that renders HTML tags and Iconify icons.
+
+```yaml
+bold_text: 'This is {#strong}bold{/strong}.'
+ui:
+  open_menu: '{#icon-tabler-menu/} Open menu'
+```
+
+It is possible to implement your own markup by implementing the {b`Tempest\Intl\MessageFormat\MarkupFormatter`} or {b`Tempest\Intl\MessageFormat\StandaloneMarkupFormatter`} interfaces. Classes implementing these interfaces are automatically discovered by Tempest.
+
 ### Custom formatting functions
 
 The [MessageFormat 2.0](https://messageformat.unicode.org/) specification allows for defining custom formatting functions that can be used in translation messages. By default, Tempest provides formatting functions for strings, numbers and dates.
