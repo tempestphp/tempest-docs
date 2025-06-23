@@ -518,7 +518,7 @@ During deployments, that cache must be cleared in order to not serve outdated vi
 
 ## Using other engines
 
-While Tempest View is simple to use, it currently lacks tooling support from editors and IDEs. You may also simply prefer other templating engines. For these reasons, you may use any other engine or your choice.
+While Tempest View is simple to use, it currently lacks tooling support from editors and IDEs. You may also simply prefer other templating engines. For these reasons, you may use any other engine of your choice.
 
 Out-of-the-box, Tempest has support for Twig and Blade. Note that the view loaders for other engines are not based on Tempest's discovery, so the syntax to refer to a specific view might differ.
 
