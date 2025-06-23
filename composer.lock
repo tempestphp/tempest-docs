@@ -3941,12 +3941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "8d0d780e5f0974ab64c5b9d0a07dfec08091cb7a"
+                "reference": "7597029b62d43b5bb6f4f3ad2c4f6181d1dce3eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/8d0d780e5f0974ab64c5b9d0a07dfec08091cb7a",
-                "reference": "8d0d780e5f0974ab64c5b9d0a07dfec08091cb7a",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/7597029b62d43b5bb6f4f3ad2c4f6181d1dce3eb",
+                "reference": "7597029b62d43b5bb6f4f3ad2c4f6181d1dce3eb",
                 "shasum": ""
             },
             "require": {
@@ -4013,7 +4013,6 @@
                 "tempest/vite": "self.version"
             },
             "require-dev": {
-                "aidan-casey/mock-client": "dev-master",
                 "carthage-software/mago": "0.24.1",
                 "guzzlehttp/psr7": "^2.6.1",
                 "illuminate/view": "~11.7.0",
@@ -4032,7 +4031,7 @@
                 "phpat/phpat": "^0.11.0",
                 "phpbench/phpbench": "84.x-dev",
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^11.5.17",
+                "phpunit/phpunit": "^12.2.3",
                 "rector/rector": "^2.0-rc2",
                 "spatie/phpunit-snapshot-assertions": "^5.1.8",
                 "spaze/phpstan-disallowed-calls": "^4.0",
@@ -4125,7 +4124,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-23T07:19:07+00:00"
+            "time": "2025-06-23T13:19:42+00:00"
         },
         {
             "name": "tempest/highlight",
