@@ -107,7 +107,7 @@ You may format a {b`Tempest\DateTime\DateTime`} instance in a specific format us
 
 ```php
 use Tempest\DateTime\FormatPattern;
-use Tempest\DateTime\Locale;
+use Tempest\Intl\Locale;
 
 $date->format(); // 19 Sept 2025, 02:00:00
 $date->format(pattern: FormatPattern::COOKIE); // Monday, 19-Sept-2025 02:00:00 BST
