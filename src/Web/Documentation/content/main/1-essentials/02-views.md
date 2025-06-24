@@ -327,6 +327,23 @@ The example above defines a button component with default classes, and a slot in
 </x-button>
 ```
 
+### Default slot content
+
+A view component's slot can define a default value, which will be used when a view using that component doesn't pass any value to it:
+
+```html x-component.view.php
+<div>
+    <x-slot>Fallback value</x-slot>
+    <x-slot name="a">Fallback value for named slot</x-slot>
+</div>
+```
+
+```html
+<x-component />
+
+<!-- Will render "Fallback value" and "Fallback value for named slot" -->
+```
+
 ### Named slots
 
 When a single slot is not enough, names can be attached to them. When using a component with named slot, you may use the `<x-slot>` tag with a `name` attribute to render content in a named outlet:

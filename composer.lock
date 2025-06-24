@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23e9c466da12c08ea01e745536661c4a",
+    "content-hash": "ee353ca31a278fb81d6268966ae0d59f",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3937,16 +3937,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "dev-main",
+            "version": "dev-default-slot-content",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "17eeebc44cb7779800faf1643bc3a5e818f7e8f4"
+                "reference": "bdc4333fb37aa6c77241354a620f725d46305587"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/17eeebc44cb7779800faf1643bc3a5e818f7e8f4",
-                "reference": "17eeebc44cb7779800faf1643bc3a5e818f7e8f4",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/bdc4333fb37aa6c77241354a620f725d46305587",
+                "reference": "bdc4333fb37aa6c77241354a620f725d46305587",
                 "shasum": ""
             },
             "require": {
@@ -4045,7 +4045,6 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
-            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4119,7 +4118,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/default-slot-content"
             },
             "funding": [
                 {
@@ -4127,7 +4126,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-24T08:29:10+00:00"
+            "time": "2025-06-24T11:01:09+00:00"
         },
         {
             "name": "tempest/highlight",
