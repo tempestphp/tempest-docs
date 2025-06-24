@@ -3,7 +3,7 @@
 namespace App\GitHub;
 
 use Tempest\HttpClient\HttpClient;
-use Tempest\Support\Number;
+use Tempest\Intl\Number;
 use Throwable;
 
 use function Tempest\env;
