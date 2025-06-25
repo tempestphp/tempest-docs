@@ -510,16 +510,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php-lite",
-            "version": "9.0.7",
+            "version": "9.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php-lite.git",
-                "reference": "353fdd900277e8974b42c23a1f8b2c943e126791"
+                "reference": "35d9623fafd8c1cc707ee7f4fd2f1675a4673bb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/353fdd900277e8974b42c23a1f8b2c943e126791",
-                "reference": "353fdd900277e8974b42c23a1f8b2c943e126791",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/35d9623fafd8c1cc707ee7f4fd2f1675a4673bb4",
+                "reference": "35d9623fafd8c1cc707ee7f4fd2f1675a4673bb4",
                 "shasum": ""
             },
             "require": {
@@ -584,7 +584,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php-lite/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php-lite"
             },
-            "time": "2025-06-09T07:26:43+00:00"
+            "time": "2025-06-24T16:47:49+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -3941,12 +3941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "e34e120eecc59166e1c09ecf4a13c51c1ffc98dc"
+                "reference": "9b802b89f1411992df549953107b4ad9daa071e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e34e120eecc59166e1c09ecf4a13c51c1ffc98dc",
-                "reference": "e34e120eecc59166e1c09ecf4a13c51c1ffc98dc",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/9b802b89f1411992df549953107b4ad9daa071e6",
+                "reference": "9b802b89f1411992df549953107b4ad9daa071e6",
                 "shasum": ""
             },
             "require": {
@@ -4127,7 +4127,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-24T12:39:25+00:00"
+            "time": "2025-06-25T12:04:57+00:00"
         },
         {
             "name": "tempest/highlight",

@@ -270,6 +270,37 @@ final class Book
 }
 ```
 
+### DTO properties
+
+Sometimes, you might want to store data objects as-is in a table, without there needing to be a relation to another table. To do so, it's enough to add a serializer and caster to the data object's class, and Tempest will know that these objects aren't meant to be treated as database models. Next, you can store the object's data as a json field on the table (see [migrations](#migrations) for more info).
+
+```php
+use Tempest\Database\IsDatabaseModel;
+use Tempest\Mapper\CastWith;
+use Tempest\Mapper\SerializeWith;
+use Tempest\Mapper\Casters\DtoCaster;
+use Tempest\Mapper\Serializers\DtoSerializer;
+
+final class DebugItem
+{
+    use IsDatabaseModel;
+    
+    /* … */
+    
+    public Backtrace $backtrace,
+}
+
+#[CastWith(DtoCaster::class)]
+#[SerializeWith(DtoSerializer::class)]
+final class Backtrace
+{
+    // This object won't be considered a relation,
+    // but rather serialized and stored in a JSON column.
+
+    public array $frames = [];
+}
+```
+
 ### Table names
 
 Tempest will infer the table name for a model class based on the model's classname. By default the table name will by the pluralized, `snake_cased` version of that classname. You can override this name by using the {b`Tempest\Database\Table`} attribute:
