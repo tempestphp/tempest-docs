@@ -20,7 +20,7 @@ use function Tempest\report;
 
 try {
     // Some code that may throw an exception
-} catch (SomeException $e) {
+} catch (SomethingFailed $e) {
     report($e);
 }
 ```
