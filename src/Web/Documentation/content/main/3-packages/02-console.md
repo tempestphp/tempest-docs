@@ -36,11 +36,11 @@ Tempest will discover all console commands within namespaces configured as valid
 
 ```json
 {
-  "autoload": {
-    "psr-4": {
-      "App\\": "app/"
-    }
-  }
+	"autoload": {
+		"psr-4": {
+			"App\\": "app/"
+		}
+	}
 }
 ```
 

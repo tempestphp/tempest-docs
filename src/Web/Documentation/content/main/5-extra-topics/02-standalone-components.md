@@ -55,7 +55,6 @@ You can install the necessary files with the built-in tempest console:
 Or you can manually create an `index.php` file in your project's public folder:
 
 ```php
-
 <?php
 use \Tempest\Router\HttpApplication;
 

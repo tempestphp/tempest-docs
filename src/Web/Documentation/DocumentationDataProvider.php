@@ -9,8 +9,7 @@ final readonly class DocumentationDataProvider implements DataProvider
 {
     public function __construct(
         private ChapterRepository $chapterRepository,
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function provide(): Generator

@@ -5,8 +5,8 @@ function extractPlainText(pre: HTMLElement, button?: HTMLButtonElement): string 
 			node.nodeType === Node.TEXT_NODE
 				? node.textContent || ''
 				: node.nodeType === Node.ELEMENT_NODE
-					? (node as HTMLElement).textContent || ''
-					: '',
+				? (node as HTMLElement).textContent || ''
+				: ''
 		)
 		.join('')
 		.trim()
@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	document.querySelectorAll<HTMLPreElement>('.prose pre').forEach((pre) => {
-		const copyButton = (template.content.cloneNode(true) as DocumentFragment).querySelector('button') as HTMLButtonElement | null
+		const copyButton = (template.content.cloneNode(true) as DocumentFragment).querySelector('button') as
+			| HTMLButtonElement
+			| null
 		if (!copyButton) {
 			return
 		}

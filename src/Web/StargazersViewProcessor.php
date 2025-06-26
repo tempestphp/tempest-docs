@@ -10,8 +10,7 @@ final readonly class StargazersViewProcessor implements ViewProcessor
 {
     public function __construct(
         private GetStargazersCount $getStargazersCount,
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function process(View $view): View

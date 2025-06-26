@@ -1,26 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns="http://commonmark.org/xml/1.0">
-    <paragraph>
-        <code>tempest/console</code>
-        <text> is a standalone package used to build console applications. </text>
-        <link destination="https://github.com/tempestphp/tempest-console" title="">
-            <strong>
-                <text>Give it a ⭐️ on GitHub</text>
-            </strong>
-        </link>
-        <text>!</text>
-    </paragraph>
-    <paragraph>
-        <text>You can install </text>
-        <code>tempest/console</code>
-        <text> like so:</text>
-    </paragraph>
-    <code_block>composer require tempest/console:1.0-alpha.5
+	<paragraph>
+		<code>tempest/console</code>
+		<text> is a standalone package used to build console applications. </text>
+		<link destination="https://github.com/tempestphp/tempest-console" title="">
+			<strong>
+				<text>Give it a ⭐️ on GitHub</text>
+			</strong>
+		</link>
+		<text>!</text>
+	</paragraph>
+	<paragraph>
+		<text>You can install </text>
+		<code>tempest/console</code>
+		<text> like so:</text>
+	</paragraph>
+	<code_block>composer require tempest/console:1.0-alpha.5
 </code_block>
-    <paragraph>
-        <text>And run it like so:</text>
-    </paragraph>
-    <code_block info="php">{:hl-comment:#!/usr/bin/env php:}
+	<paragraph>
+		<text>And run it like so:</text>
+	</paragraph>
+	<code_block
+		info="php"
+	>{:hl-comment:#!/usr/bin/env php:}
 &lt;?php
 
 use Tempest\Console\ConsoleApplication;
@@ -29,17 +31,20 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 ConsoleApplication::boot()-&gt;run();
 </code_block>
-    <heading level="2">
-        <text>Configuration</text>
-        <custom_inline_headingpermalink slug="configuration" />
-    </heading>
-    <paragraph>
-        <code>tempest/console</code>
-        <text> uses on Tempest's discovery to find and register console commands. That means you don't have to register any commands manually, and any method within your codebase using the </text>
-        <code>{php}#[ConsoleCommand]</code>
-        <text> attribute will automatically be discovered by your console application.</text>
-    </paragraph>
-    <code_block info="php">// app/InteractiveCommand.php
+	<heading level="2">
+		<text>Configuration</text>
+		<custom_inline_headingpermalink slug="configuration" />
+	</heading>
+	<paragraph>
+		<code>tempest/console</code>
+		<text
+		> uses on Tempest's discovery to find and register console commands. That means you don't have to register any commands manually, and any method within your codebase using the </text>
+		<code>{php}#[ConsoleCommand]</code>
+		<text> attribute will automatically be discovered by your console application.</text>
+	</paragraph>
+	<code_block
+		info="php"
+	>// app/InteractiveCommand.php
 
 use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
@@ -57,23 +62,29 @@ final readonly class InteractiveCommand
     }
 }
 </code_block>
-    <paragraph>
-        <text>Tempest will discover all console commands within namespaces configured as composer PSR-4 autoload namespaces, as well as all third-party packages that require Tempest.</text>
-    </paragraph>
-    <code_block info="json">&quot;autoload&quot;: {
+	<paragraph>
+		<text
+		>Tempest will discover all console commands within namespaces configured as composer PSR-4 autoload namespaces, as well as all third-party packages that require Tempest.</text>
+	</paragraph>
+	<code_block
+		info="json"
+	>&quot;autoload&quot;: {
     &quot;psr-4&quot;: {
         &quot;App\\&quot;: &quot;app/&quot;
     }
 },
 </code_block>
-    <paragraph>
-        <text>In case you need more fine-grained control over which directories to discover, you can provide a custom </text>
-        <code>{php}AppConfig</code>
-        <text> instance to the </text>
-        <code>{php}ConsoleApplication::boot()</code>
-        <text> method:</text>
-    </paragraph>
-    <code_block info="php">use Tempest\AppConfig;
+	<paragraph>
+		<text
+		>In case you need more fine-grained control over which directories to discover, you can provide a custom </text>
+		<code>{php}AppConfig</code>
+		<text> instance to the </text>
+		<code>{php}ConsoleApplication::boot()</code>
+		<text> method:</text>
+	</paragraph>
+	<code_block
+		info="php"
+	>use Tempest\AppConfig;
 use Tempest\Core\DiscoveryLocation;
 use Tempest\Console\ConsoleApplication;
 

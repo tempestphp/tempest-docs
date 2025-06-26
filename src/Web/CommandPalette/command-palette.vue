@@ -1,8 +1,16 @@
 <script setup lang="ts">
+import {
+	ComboboxContent,
+	ComboboxEmpty,
+	ComboboxGroup,
+	ComboboxInput,
+	ComboboxItem,
+	ComboboxLabel,
+	ComboboxRoot,
+} from 'reka-ui'
 import { ref } from 'vue'
-import { ComboboxContent, ComboboxEmpty, ComboboxGroup, ComboboxInput, ComboboxItem, ComboboxLabel, ComboboxRoot } from 'reka-ui'
-import { registerPalette } from './register-palette'
 import BaseDialog from './base-dialog.vue'
+import { registerPalette } from './register-palette'
 import { handleCommand, useSearch } from './use-search'
 
 const open = ref(false)
@@ -14,7 +22,11 @@ registerPalette({ value: open })
 </script>
 
 <template>
-	<base-dialog v-model:open="open" content-class="w-full h-full sm:h-auto sm:max-w-xl md:max-w-2xl" title="Command palette">
+	<base-dialog
+		v-model:open="open"
+		content-class="w-full h-full sm:h-auto sm:max-w-xl md:max-w-2xl"
+		title="Command palette"
+	>
 		<combobox-root
 			:open="true"
 			:ignore-filter="true"
@@ -60,7 +72,10 @@ registerPalette({ value: open })
 						@select="(e) => handleCommand(item, e)"
 					>
 						<div class="flex items-center gap-x-1 text-(--ui-text-dimmed)">
-							<template v-for="(breadcrumb, i) in item.hierarchy.slice(1)" :key="breadcrumb + i + c">
+							<template
+								v-for="(breadcrumb, i) in item.hierarchy.slice(1)"
+								:key="breadcrumb + i + c"
+							>
 								<template v-if="breadcrumb !== item.title">
 									<span class="inline-block font-medium text-sm" v-text="breadcrumb" />
 									<svg
@@ -78,7 +93,8 @@ registerPalette({ value: open })
 											stroke-linejoin="round"
 											stroke-width="2"
 											d="m7 7l5 5l-5 5m6-10l5 5l-5 5"
-										/></svg>
+										/>
+									</svg>
 								</template>
 							</template>
 						</div>

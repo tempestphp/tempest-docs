@@ -26,8 +26,7 @@ final readonly class DocumentationIndexer
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {
-    }
+    ) {}
 
     /**
      * @return ImmutableArray<Command>

@@ -12,8 +12,7 @@ final class VisitsPerHour
     public function __construct(
         private(set) DateTimeImmutable $date,
         private(set) int $count,
-    ) {
-    }
+    ) {}
 
     public function increment(): self
     {

@@ -16,8 +16,7 @@ final class CodeBlockRenderer implements NodeRendererInterface
 {
     public function __construct(
         private Highlighter $highlighter = new Highlighter(),
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): string

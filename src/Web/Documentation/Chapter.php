@@ -19,8 +19,7 @@ final class Chapter
         public string $path,
         public bool $hidden = false,
         public ?string $description = null,
-    ) {
-    }
+    ) {}
 
     public function getUri(): string
     {

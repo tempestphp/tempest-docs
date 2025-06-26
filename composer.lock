@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b4cb946c07dbf2ec23df5bb1f12adb6f",
+    "content-hash": "40d75fec1a194d81db1b6f590e5c70e0",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3941,12 +3941,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "07873ea0280722d081bfa17f05c26b46f7bd398b"
+                "reference": "4820908e7711ce2ba4f57ae456d1e070587308dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/07873ea0280722d081bfa17f05c26b46f7bd398b",
-                "reference": "07873ea0280722d081bfa17f05c26b46f7bd398b",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/4820908e7711ce2ba4f57ae456d1e070587308dc",
+                "reference": "4820908e7711ce2ba4f57ae456d1e070587308dc",
                 "shasum": ""
             },
             "require": {
@@ -4127,7 +4127,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-26T12:01:43+00:00"
+            "time": "2025-06-26T15:09:42+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4349,16 +4349,16 @@
     "packages-dev": [
         {
             "name": "carthage-software/mago",
-            "version": "0.24.5",
+            "version": "0.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/carthage-software/mago.git",
-                "reference": "0b0e9bee45d5fca4f11c928d5e566b473e235389"
+                "reference": "eadb9c0fb62569c425b0964698964c7518080ac6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/carthage-software/mago/zipball/0b0e9bee45d5fca4f11c928d5e566b473e235389",
-                "reference": "0b0e9bee45d5fca4f11c928d5e566b473e235389",
+                "url": "https://api.github.com/repos/carthage-software/mago/zipball/eadb9c0fb62569c425b0964698964c7518080ac6",
+                "reference": "eadb9c0fb62569c425b0964698964c7518080ac6",
                 "shasum": ""
             },
             "require": {
@@ -4396,7 +4396,7 @@
             ],
             "support": {
                 "issues": "https://github.com/carthage-software/mago/issues",
-                "source": "https://github.com/carthage-software/mago/tree/0.24.5"
+                "source": "https://github.com/carthage-software/mago/tree/0.25.0"
             },
             "funding": [
                 {
@@ -4404,7 +4404,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-16T10:33:19+00:00"
+            "time": "2025-06-24T20:46:56+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4920,16 +4920,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.2.3",
+            "version": "12.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "60a8ea2d8b2f070000051b56778009e11576e7d1"
+                "reference": "63f78466588d51e0f886c1d3b1ac22a7351cd026"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60a8ea2d8b2f070000051b56778009e11576e7d1",
-                "reference": "60a8ea2d8b2f070000051b56778009e11576e7d1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/63f78466588d51e0f886c1d3b1ac22a7351cd026",
+                "reference": "63f78466588d51e0f886c1d3b1ac22a7351cd026",
                 "shasum": ""
             },
             "require": {
@@ -4997,7 +4997,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.2.3"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.2.4"
             },
             "funding": [
                 {
@@ -5021,7 +5021,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-20T11:33:06+00:00"
+            "time": "2025-06-26T15:03:18+00:00"
         },
         {
             "name": "sebastian/cli-parser",

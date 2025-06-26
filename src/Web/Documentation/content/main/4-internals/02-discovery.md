@@ -192,11 +192,11 @@ This caching strategy will only cache discovery for vendor files. For this reaso
 
 ```json
 {
-  "scripts": {
-    "post-package-update": [
-      "php tempest discovery:generate"
-    ]
-  }
+	"scripts": {
+		"post-package-update": [
+			"php tempest discovery:generate"
+		]
+	}
 }
 ```
 

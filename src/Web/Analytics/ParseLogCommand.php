@@ -18,8 +18,7 @@ final class ParseLogCommand
     public function __construct(
         private readonly Clock $clock,
         private readonly AnalyticsConfig $config,
-    ) {
-    }
+    ) {}
 
     private const array URL_BLACKLIST = [
         '.png',
@@ -153,7 +152,7 @@ final class ParseLogCommand
             if ($previousDateForIp && $previousDateForIp->diff($event->visitedAt)->s < 1) {
                 self::$ips[$event->ip] = $event->visitedAt;
 
-                $this->writeln("<style=\"bg-red fg-white\"> {$date->format('Y-m-d H:i:s')} </style> {$event->url} (throttled)");
+                $this->writeln(sprintf("<style=\"bg-red fg-white\"><%s </style> %s (throttled)", $date->format('Y-m-d H:i:s'), $event->url));
 
                 continue;
             }
@@ -162,7 +161,7 @@ final class ParseLogCommand
 
             self::$ips[$event->ip] = $event->visitedAt;
 
-            $this->writeln("<style=\"bg-blue fg-white\"> {$date->format('Y-m-d H:i:s')} </style> {$event->url}");
+            $this->writeln(sprintf("<style=\"bg-blue fg-white\"><%s </style> %s", $date->format('Y-m-d H:i:s'), $event->url));
         }
     }
 }

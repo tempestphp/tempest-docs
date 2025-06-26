@@ -1,14 +1,14 @@
-@import 'tailwindcss' theme(static);
-@import './typography.css';
-@import './highlighting.css';
+@import "tailwindcss" theme(static);
+@import "./typography.css";
+@import "./highlighting.css";
 
 @custom-variant light (&:where(.light, .light *));
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
 	--container-8xl: 96rem;
-	--font-display: 'Kantumruy Pro Variable';
-	--font-sans: 'Public Sans Variable';
+	--font-display: "Kantumruy Pro Variable";
+	--font-sans: "Public Sans Variable";
 
 	/* Falling leaves */
 	--color-leaf-1: var(--color-amber-500);
@@ -134,7 +134,8 @@
 */
 
 a:focus-visible {
-	@apply outline-none underline decoration-dashed decoration-(--ui-primary) underline-offset-8 transition duration-200;
+	@apply outline-none underline decoration-dashed decoration-(--ui-primary)
+		underline-offset-8 transition duration-200;
 }
 
 button:focus {
@@ -192,7 +193,7 @@ pre {
 */
 
 @supports (background: -webkit-named-image(i)) {
-  .safari-hide {
-    display: none !important;
-  }
+	.safari-hide {
+		display: none !important;
+	}
 }

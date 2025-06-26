@@ -20,8 +20,7 @@ final readonly class ChapterRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {
-    }
+    ) {}
 
     public function find(Version $version, string $category, string $slug): ?Chapter
     {

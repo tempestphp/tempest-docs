@@ -173,10 +173,10 @@ Tempest will detect [subresource integrity](https://developer.mozilla.org/en-US/
 Integrity hashes are not included in Vite manifests by default, but the `vite-plugin-manifest-sri` plugin provides this functionality. You may install it through `bun` or `npm` and register it like any other Vite plugin in your configuration file:
 
 ```js vite.config.ts
-import { defineConfig } from 'vite'
 import tailwindcss from '@tailwindcss/vite'
-import tempest from 'vite-plugin-tempest'
+import { defineConfig } from 'vite'
 import sri from 'vite-plugin-manifest-sri'
+import tempest from 'vite-plugin-tempest'
 
 export default defineConfig({
 	plugins: [

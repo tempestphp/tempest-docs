@@ -67,7 +67,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				x,
 				y,
 				alpha: 1,
-				color: `hsla(${rainSettings.color}, ${rainSettings.saturation}%, ${rainSettings.lightness}%, ${rainSettings.opacity})`,
+				color:
+					`hsla(${rainSettings.color}, ${rainSettings.saturation}%, ${rainSettings.lightness}%, ${rainSettings.opacity})`,
 			})
 		}
 	}
@@ -88,7 +89,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	function render(ctx: CanvasRenderingContext2D) {
 		ctx.save()
-		ctx.fillStyle = `rgba(${rainSettings.backgroundColor.red}, ${rainSettings.backgroundColor.green}, ${rainSettings.backgroundColor.blue}, ${rainSettings.backgroundColor.alpha})`
+		ctx.fillStyle =
+			`rgba(${rainSettings.backgroundColor.red}, ${rainSettings.backgroundColor.green}, ${rainSettings.backgroundColor.blue}, ${rainSettings.backgroundColor.alpha})`
 		ctx.fillRect(0, 0, width, height)
 
 		const tau = Math.PI * 2

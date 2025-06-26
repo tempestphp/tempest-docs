@@ -1,4 +1,5 @@
 <?php
+
 /** @var \App\Web\Blog\BlogPost $post */
 ?>
 

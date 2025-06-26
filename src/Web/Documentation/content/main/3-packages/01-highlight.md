@@ -368,7 +368,6 @@ class HtmlLanguage extends BaseLanguage
         ];
     }
 }
-
 ```
 
 This `{php}HtmlLanguage` class specifies the following things:
@@ -436,13 +435,13 @@ final readonly class BladeKeywordPattern implements Pattern
 And register it in our `{php}BladeLanguage` class:
 
 ```php
-    public function getPatterns(): array
-    {
-        return [
-            ...parent::getPatterns(),
-            new BladeKeywordPattern(),
-        ];
-    }
+public function getPatterns(): array
+{
+    return [
+        ...parent::getPatterns(),
+        new BladeKeywordPattern(),
+    ];
+}
 ```
 
 Next, there are a couple of places within Blade where you can write PHP code: within the `{blade}@php` keyword, as well as within keyword brackets: `{blade}@if (count(…))`. Let's write two injections for that:
@@ -488,14 +487,14 @@ final readonly class BladeKeywordInjection implements Injection
 Let's add these to our `{php}BladeLanguage` class as well:
 
 ```php
-    public function getInjections(): array
-    {
-        return [
-            ...parent::getInjections(),
-            new BladePhpInjection(),
-            new BladeKeywordInjection(),
-        ];
-    }
+public function getInjections(): array
+{
+    return [
+        ...parent::getInjections(),
+        new BladePhpInjection(),
+        new BladeKeywordInjection(),
+    ];
+}
 ```
 
 Next, you can write `{{ … }}` and `{!! … !!}` to echo output. Whatever is between these brackets is also considered PHP, so, one more injection:
@@ -558,8 +557,8 @@ Some people or projects might want more fine-grained control over how specific w
 
 ```json
 {
-  "null-property": null,
-  "value-property": "value"
+	"null-property": null,
+	"value-property": "value"
 }
 ```
 
@@ -652,7 +651,6 @@ There we have it!
 You can add as many patterns as you like, you can even make your own `{php}TokenType` implementation if you don't want to rely on `{php}DynamicTokenType`:
 
 ```php
-
 enum ExtendedTokenType: string implements TokenType
 {
     case VALUE_NULL = 'null';
@@ -720,31 +718,31 @@ You'll have to add some additional CSS classes to your stylesheet as well:
 
 ```css
 .hl-moderate-sentence {
-    background-color: #fef9c3;
+	background-color: #fef9c3;
 }
 
 .hl-complex-sentence {
-    background-color: #fee2e2;
+	background-color: #fee2e2;
 }
 
 .hl-adverb-phrase {
-    background-color: #e0f2fe;
+	background-color: #e0f2fe;
 }
 
 .hl-passive-phrase {
-    background-color: #dcfce7;
+	background-color: #dcfce7;
 }
 
 .hl-complex-phrase {
-    background-color: #f3e8ff;
+	background-color: #f3e8ff;
 }
 
 .hl-qualified-phrase {
-    background-color: #f1f5f9;
+	background-color: #f1f5f9;
 }
 
 pre[data-lang="ellison"] {
-    text-wrap: wrap;
+	text-wrap: wrap;
 }
 ```
 

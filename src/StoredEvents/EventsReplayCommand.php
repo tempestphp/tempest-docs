@@ -20,8 +20,7 @@ final readonly class EventsReplayCommand
         private StoredEventConfig $storedEventConfig,
         private Console $console,
         private Container $container,
-    ) {
-    }
+    ) {}
 
     #[ConsoleCommand(middleware: [ForceMiddleware::class])]
     public function __invoke(?string $replay = null): void

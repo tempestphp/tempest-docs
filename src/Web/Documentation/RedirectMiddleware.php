@@ -21,8 +21,7 @@ final readonly class RedirectMiddleware implements HttpMiddleware
 {
     public function __construct(
         private Router $router,
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function __invoke(Request $request, HttpMiddlewareCallable $next): Response

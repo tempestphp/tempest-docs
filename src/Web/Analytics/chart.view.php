@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\Web\Analytics\Chart $chart
  * @var string $label

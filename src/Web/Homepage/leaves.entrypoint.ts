@@ -32,7 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	let shouldRemoveLeaves = false
 
 	function createLeaf() {
-		if (activeLeaves >= MAX_LEAVES || shouldRemoveLeaves || window.matchMedia('(prefers-reduced-motion: reduce)').matches === true) {
+		if (
+			activeLeaves >= MAX_LEAVES || shouldRemoveLeaves
+			|| window.matchMedia('(prefers-reduced-motion: reduce)').matches === true
+		) {
 			return
 		}
 
@@ -48,7 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
 		const totalDistance = container.clientHeight + 100
 		const duration = totalDistance / fallSpeed
 
-		const leafNode = templates[Math.floor(Math.random() * templates.length)]?.content.cloneNode(true) as DocumentFragment
+		const leafNode = templates[Math.floor(Math.random() * templates.length)]?.content.cloneNode(
+			true,
+		) as DocumentFragment
 		const leaf = leafNode.querySelector('.leaf') as HTMLDivElement
 
 		leaf.style.color = `var(${color})`

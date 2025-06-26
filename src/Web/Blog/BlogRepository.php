@@ -16,8 +16,7 @@ final readonly class BlogRepository
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {
-    }
+    ) {}
 
     /**
      * @return ImmutableArray<\App\Web\Blog\BlogPost>

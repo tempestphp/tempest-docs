@@ -159,7 +159,6 @@ final readonly class EventLoggerMiddleware implements EventBusMiddleware
 { /* … */ }
 ```
 
-
 ## Built-in framework events
 
 Tempest includes a few built-in events that are primarily used internally. While most applications won’t need them, you are free to listen to them if desired.

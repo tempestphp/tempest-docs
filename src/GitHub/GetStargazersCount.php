@@ -12,8 +12,7 @@ final class GetStargazersCount
 {
     public function __construct(
         private HttpClient $httpClient,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): ?string
     {
