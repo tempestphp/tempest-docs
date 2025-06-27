@@ -13,8 +13,7 @@ final readonly class Command implements JsonSerializable
         public ?string $uri = null,
         public ?string $javascript = null,
         public array $fields = [],
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function jsonSerialize(): array

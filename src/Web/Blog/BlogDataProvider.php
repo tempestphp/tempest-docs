@@ -9,8 +9,7 @@ final readonly class BlogDataProvider implements DataProvider
 {
     public function __construct(
         private BlogRepository $repository,
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function provide(): Generator

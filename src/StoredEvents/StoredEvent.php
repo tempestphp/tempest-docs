@@ -15,8 +15,7 @@ final class StoredEvent
         public string $eventClass,
         public string $payload,
         public DateTimeImmutable $createdAt = new DateTimeImmutable(),
-    ) {
-    }
+    ) {}
 
     public function getEvent(): object
     {

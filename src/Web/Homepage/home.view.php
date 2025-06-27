@@ -1,4 +1,5 @@
 <?php
+
 use App\Web\Blog\BlogController;
 use App\Web\Documentation\ChapterController;
 use App\Web\RedirectsController;

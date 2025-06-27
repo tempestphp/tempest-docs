@@ -16,8 +16,7 @@ final readonly class IndexCommandPaletteCommand
         private DocumentationIndexer $documentationIndexer,
         private CommandIndexer $commandIndexer,
         private BlogIndexer $blogIndexer,
-    ) {
-    }
+    ) {}
 
     #[ConsoleCommand('command-palette:index', 'Exports available commands to a JSON index file that can be consumed by the front-end.')]
     public function __invoke(): ExitCode

@@ -9,6 +9,5 @@ final readonly class Chart
     public function __construct(
         public ImmutableArray $labels,
         public ImmutableArray $values,
-    ) {
-    }
+    ) {}
 }

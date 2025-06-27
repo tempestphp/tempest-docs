@@ -16,8 +16,7 @@ final readonly class HomeController
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {
-    }
+    ) {}
 
     #[StaticPage]
     #[Get('/')]

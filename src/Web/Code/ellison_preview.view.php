@@ -1,4 +1,5 @@
 <?php /** @var \Tempest\View\GenericView $this */
+
 ?>
 
 <html lang="en">

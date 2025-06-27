@@ -38,8 +38,8 @@ use function Tempest\is_current_uri;
 					<a
 						:href="uri([BlogController::class, 'index'])"
 						class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index'])
-								? 'md:text-(--ui-primary)'
-								: '' ?>"
+    						? 'md:text-(--ui-primary)'
+    						: '' ?>"
 					>Blog</a>
 					<a
 						:href="uri([ChapterController::class, 'index'])"

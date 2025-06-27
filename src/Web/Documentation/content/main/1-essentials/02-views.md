@@ -264,12 +264,14 @@ Attributes and [expression attributes](#expression-attributes) may be passed int
 	// ...
 </x-base>
 ```
+
 ```html x-base.view.php
 // ...
 <title :if="$title">{{ $title }}</title>
 ```
 
 Note that the casing of attributes will affect the associated variable name:
+
 - `{txt}camelCase` and `{txt}PascalCase` attributes will be converted to `$lowercase` variables
 - `{txt}kebab-case` and `{txt}snake_case` attributes will be converted to `$camelCase` variables.
 
@@ -385,6 +387,7 @@ The above example uses a slot named `styles` in its `<head>` element. The `<body
 Within a view component, a `$slots` variable will always be provided, allowing you to dynamically access the named slots within the component.
 
 This variable is an instance of {`Tempest\View\Slot`}, with has a handful of properties:
+
 - `{php}$slot->name`: the slot's name
 - `{php}$slot->content`: the compiled content of the slot
 - `{php}$slot->attributes`: all the attributes defined on the slot

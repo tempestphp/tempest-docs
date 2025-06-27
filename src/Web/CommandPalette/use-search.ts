@@ -1,8 +1,8 @@
+import { useTimeoutFn } from '@vueuse/core'
 import type { FuseResult } from 'fuse.js'
 import Fuse from 'fuse.js'
 import type { Ref } from 'vue'
 import { shallowRef, watch } from 'vue'
-import { useTimeoutFn } from '@vueuse/core'
 import index from './index.json'
 
 interface Options {
@@ -82,7 +82,14 @@ export function useSearch(options: Options) {
 	// Filters the palette commands based on the query, specifying default commands if empty
 	watch(options.query, (query) => {
 		if (!query.length) {
-			results.value = { Commands: { title: 'Commands', type: 'uri', hierarchy: ['Commands'], children: index.filter((item) => item.hierarchy.at(0) === 'Commands') } }
+			results.value = {
+				Commands: {
+					title: 'Commands',
+					type: 'uri',
+					hierarchy: ['Commands'],
+					children: index.filter((item) => item.hierarchy.at(0) === 'Commands'),
+				},
+			}
 		} else {
 			results.value = buildHierarchyTree(fuse.search(query) as SearchResultItem[])
 		}

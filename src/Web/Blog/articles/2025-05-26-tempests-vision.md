@@ -7,9 +7,9 @@ meta:
     canonical: https://tempestphp.com/main/getting-started/introduction
 ---
 
-Today I want to share a bit of Tempest's vision. People often ask about the "why" of building a new framework, and so I wanted to take some time to properly think and write down my thoughts. 
+Today I want to share a bit of Tempest's vision. People often ask about the "why" of building a new framework, and so I wanted to take some time to properly think and write down my thoughts.
 
-I tried to summarize Tempest's vision in one sentence, and came up with this: **Tempest is a community-driven, modern PHP framework that gets out of your way and dares to think outside the box**. 
+I tried to summarize Tempest's vision in one sentence, and came up with this: **Tempest is a community-driven, modern PHP framework that gets out of your way and dares to think outside the box**.
 
 There's a lot packed in one sentence though, so let's go through it in depth.
 
@@ -138,7 +138,7 @@ final readonly class BooksCommand
 
 Or what about [Tempest's ORM](/main/1-essentials/03-database), which aims to have truly decoupled models:
 
-```php 
+```php
 use Tempest\Validation\Rules\Length;
 use App\Author;
 

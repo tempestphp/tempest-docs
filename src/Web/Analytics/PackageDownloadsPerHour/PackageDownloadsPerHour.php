@@ -14,6 +14,5 @@ final class PackageDownloadsPerHour
         public string $package,
         public int $count,
         public int $total,
-    ) {
-    }
+    ) {}
 }

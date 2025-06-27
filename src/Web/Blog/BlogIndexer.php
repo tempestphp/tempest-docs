@@ -17,8 +17,7 @@ final readonly class BlogIndexer
 {
     public function __construct(
         private MarkdownConverter $markdown,
-    ) {
-    }
+    ) {}
 
     public function __invoke(): ImmutableArray
     {

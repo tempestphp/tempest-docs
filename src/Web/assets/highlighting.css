@@ -77,7 +77,7 @@
 	color: var(--code-comment);
 }
 .hl-variable {
-  color: var(--code-variable);
+	color: var(--code-variable);
 }
 .hl-blur {
 	filter: blur(2px);
@@ -192,6 +192,6 @@
 	background-color: var(--code-qualified);
 }
 
-pre[data-lang='ellison'] {
+pre[data-lang="ellison"] {
 	text-wrap: wrap;
 }

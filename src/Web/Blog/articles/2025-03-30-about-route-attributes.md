@@ -36,9 +36,9 @@ Not everyone agrees that route attributes are the better solution to configuring
 
 ## Route Visibility
 
-The number one argument against route attributes compared to a route configuration file is that routes get spread across multiple files, which makes it difficult to get a global sense of which routes are available. People argue that having all routes listed within a single file is better, because all route configuration is bundled in that one place. Whenever you need to make routing changes, you can find all of them grouped together. 
+The number one argument against route attributes compared to a route configuration file is that routes get spread across multiple files, which makes it difficult to get a global sense of which routes are available. People argue that having all routes listed within a single file is better, because all route configuration is bundled in that one place. Whenever you need to make routing changes, you can find all of them grouped together.
 
-This argument quickly falls apart though. First, every decent framework offers a CLI command to list all routes, essentially giving you an overview of available routes and which controller action they handle. Whether you use route attributes or not, you'll always be able to generate a quick overview list of all routes. 
+This argument quickly falls apart though. First, every decent framework offers a CLI command to list all routes, essentially giving you an overview of available routes and which controller action they handle. Whether you use route attributes or not, you'll always be able to generate a quick overview list of all routes.
 
 ```console
 <em>// REGISTERED ROUTES</em>
@@ -156,7 +156,7 @@ This makes it so that `{txt}/books/new` is the first hit, and thus prevents the 
 
 First of all, there are a couple of ways to circumvent route collisions, using route files or attributes, all the same; that don't require you to rely on route ordering:
 
-- You could change your URI, so that there are no potential collisions:  `/books/{book}/show`; or
+- You could change your URI, so that there are no potential collisions: `/books/{book}/show`; or
 - you could use regex validation to only match numeric ids: `/books/{book:\d+}`.
 
 Now, as a sidenote: in Tempest, `/books/{book}` and `{txt}/book/new` would never collide, no matter their order. That's because Tempest differentiates between static and dynamic routes, i.e. routes without or with variables. If there's a static route match, it will always get precedence over any dynamic routes that might match. That being said, there are still some cases where route collisions might occur, so it's good to know that, even with route attributes, there are multiple ways of dealing with those situations.
@@ -171,7 +171,7 @@ The answer in Tempest's case is simple: discovery is Tempest's core, not just fo
 
 A completely different approach to route configuration is to simply use the document structure to define routes. So a URI like `/admin/books/{book}/show` would match `App\Controllers\Admin\BooksController::show()`. There are a number of issues file-based routing doesn't address: there's no way to solve the route group issue, you can't configure middleware on a per-route basis, and it's very limiting at scale to have your file structure be defined by the URL scheme.
 
-On the other hand, there's a simplicity to file-based routing that I can appreciate as well. 
+On the other hand, there's a simplicity to file-based routing that I can appreciate as well.
 
 ## Single Responsibility
 
@@ -179,7 +179,7 @@ Finally, the argument that route attributes mix responsibility: a controller act
 
 The best way to show this is to make a controller action. First you create a class and method, and then what? You make a route for it. Isn't it weird that you should go to another file to register the route, only to then return immediately to the controller file to continue your work?
 
-Routes need controllers and controllers need routes. They cannot live without each other, and so keeping them together is the most sensible thing to do. 
+Routes need controllers and controllers need routes. They cannot live without each other, and so keeping them together is the most sensible thing to do.
 
 ## Closing Thoughts
 

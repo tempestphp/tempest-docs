@@ -26,8 +26,7 @@ final readonly class MetaImageController
         private ViewRenderer $viewRenderer,
         #[Tag('meta')]
         private Browsershot $browsershot,
-    ) {
-    }
+    ) {}
 
     #[Get('/meta/blog/{slug}')]
     public function blog(string $slug, Request $request, BlogRepository $repository): Response

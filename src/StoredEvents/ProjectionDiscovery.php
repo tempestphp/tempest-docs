@@ -13,8 +13,7 @@ final class ProjectionDiscovery implements Discovery
 
     public function __construct(
         private readonly StoredEventConfig $config,
-    ) {
-    }
+    ) {}
 
     #[\Override]
     public function discover(DiscoveryLocation $location, ClassReflector $class): void

@@ -20,7 +20,7 @@ use function Tempest\report;
 
 try {
     // Some code that may throw an exception
-} catch (SomeException $e) {
+} catch (SomethingFailed $e) {
     report($e);
 }
 ```
@@ -60,7 +60,7 @@ Sometimes, an exception may have information that you would like to be logged. B
 ```php
 use Tempest\Core\HasContext;
 
-final readonly class UserNotFound extends Exception implements HasContext
+final readonly class UserWasNotFound extends Exception implements HasContext
 {
     public function __construct(private string $userId)
     {
@@ -78,27 +78,27 @@ final readonly class UserNotFound extends Exception implements HasContext
 
 ## Customizing the error page
 
-In production, when an uncaught exception occurs, Tempest displays a minimalistic, generic error page. You may customize this behavior by providing your own response to the {b`Tempest\Http\HttpException`}.
+In production, when an uncaught exception occurs, Tempest displays a minimalistic, generic error page. You may customize this behavior by adding a middleware dedicated to catching {b`Tempest\Http\HttpRequestFailed`} exceptions.
 
 For instance, you may display a branded error page by providing a view:
 
 ```php
-use Tempest\Http\GenericResponse;
-use Tempest\Http\HttpException;
-use Throwable;
+use Tempest\Http\HttpRequestFailed;
+use Tempest\Router\HttpMiddleware;
+use function Tempest\view;
 
-final class UncaughtExceptionProcessor implements ExceptionProcessor
+final class CatchHttpRequestFailuresMiddleware implements HttpMiddleware
 {
-    public function process(Throwable $throwable): Throwable
+    public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
-        if ($throwable instanceof HttpException) {
-            $throwable->response = new GenericResponse(
-                status: $throwable->status,
-                body: view('./error.view.php', exception: $throwable),
+        try {
+            return $next($request);
+        } catch (HttpRequestFailed $failure) {
+            return new GenericResponse(
+                status: $failure->status,
+                body: view('./error.view.php', failure: $failure),
             );
         }
-
-        return $throwable;
     }
 }
 ```

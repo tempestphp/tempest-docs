@@ -27,7 +27,7 @@ final class BookController
 
 You can place this file anywhere in your project, Tempest will recognise it as a controller action, and register the route into the router. Now, that in itself isn't all that impressive: Symfony, for example, does something similar as well. But let's take a look at some more examples.
 
-Event handlers are marked with  the `#[EventHandler]` attribute, the concrete event they handle is determined by the argument type:
+Event handlers are marked with the `#[EventHandler]` attribute, the concrete event they handle is determined by the argument type:
 
 ```php
 use Tempest\EventBus\EventHandler;
@@ -212,11 +212,11 @@ For local development, the [`tempest/app`](https://github.com/tempestphp/tempest
 
 ```json
 {
-  "scripts": {
-    "post-package-update": [
-      "@php ./tempest discovery:generate"
-    ]
-  }
+	"scripts": {
+		"post-package-update": [
+			"@php ./tempest discovery:generate"
+		]
+	}
 }
 ```
 

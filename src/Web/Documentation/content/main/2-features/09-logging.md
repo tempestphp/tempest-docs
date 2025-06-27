@@ -75,7 +75,7 @@ final readonly class Rss
 }
 ```
 
-If you're familiar with [monolog](https://seldaek.github.io/monolog/), you know how it supports multiple handlers to handle a log message. Tempest adds a small layer on top of these handlers called channels, they  can be configured within `LogConfig`:
+If you're familiar with [monolog](https://seldaek.github.io/monolog/), you know how it supports multiple handlers to handle a log message. Tempest adds a small layer on top of these handlers called channels, they can be configured within `LogConfig`:
 
 ```php
 // app/Config/log.config.php

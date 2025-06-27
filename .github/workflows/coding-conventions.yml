@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
- check-style:
+  check-style:
     name: Run style check
     runs-on: ubuntu-latest
     steps:
@@ -22,7 +22,7 @@ jobs:
           composer update --prefer-dist --no-interaction
           composer mago:install-binary
 
-      - name: Run Mago 
+      - name: Run Mago
         run: |
           ./vendor/bin/mago fmt --dry-run
           ./vendor/bin/mago lint --reporting-format=github

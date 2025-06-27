@@ -183,6 +183,7 @@ final readonly class AddressCaster implements Caster
     }
 }
 ```
+
 ```php src/AddressSerializer.php
 use Tempest\Mapper\Serializer;
 

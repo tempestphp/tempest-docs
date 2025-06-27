@@ -21,8 +21,7 @@ final readonly class ParsePackagistCommand
     public function __construct(
         private HttpClient $httpClient,
         private Cache $cache,
-    ) {
-    }
+    ) {}
 
     #[Schedule(Every::HOUR)]
     #[ConsoleCommand]

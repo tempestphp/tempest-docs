@@ -136,7 +136,7 @@ final readonly class BooksCommand
 
 Or what about [Tempest's ORM](../1-essentials/03-database), which aims to have truly decoupled models:
 
-```php 
+```php
 use Tempest\Validation\Rules\Length;
 use App\Author;
 
