@@ -125,7 +125,7 @@ Let's take use the concept of route model binding as an example. A controller mi
 
 ```php app/BookController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 
 final readonly class BookController
 {

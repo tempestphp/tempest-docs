@@ -104,7 +104,7 @@ As an example, Tempest is able to determine which methods are controller methods
 
 ```php app/BlogPostController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 use Tempest\View\View;
 
 final readonly class BlogPostController
