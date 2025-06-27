@@ -45,7 +45,7 @@ final class UserHandlers
 }
 ```
 
-Note that handler method names can be anything: invokable methods, `handleCreateUser()`, `handleCreateUser()`, `whateverYouWant()`, …
+Note that handler method names can be anything: invokable methods, `handleCreateUser()`, `handle()`, `whateverYouWant()`, …
 
 Dispatching a command can be done with the `command()` function:
 
