@@ -3,7 +3,7 @@
 	"type": "project",
 	"description": "Documentation website for the Tempest framework",
 	"require": {
-		"tempest/framework": "dev-main",
+		"tempest/framework": "^1.0",
 		"league/commonmark": "^2.7.0",
 		"symfony/yaml": "^7.3",
 		"spatie/yaml-front-matter": "^2.1",

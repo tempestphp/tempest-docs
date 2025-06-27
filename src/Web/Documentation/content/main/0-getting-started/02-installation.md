@@ -16,7 +16,7 @@ Once the prerequisites are installed, you can chose your installation method. Te
 To get started with a new Tempest project, you may use {`tempest/app`} as the starting point. The `composer create-project` command will scaffold it for you:
 
 ```sh
-{:hl-keyword:composer:} create-project tempest/app {:hl-type:my-app:} --stability beta
+{:hl-keyword:composer:} create-project tempest/app {:hl-type:my-app:}
 {:hl-keyword:cd:} {:hl-type:my-app:}
 ```
 
@@ -48,12 +48,8 @@ You may then [run the front-end development server](../1-essentials/04-asset-bun
 If you already have a project, you can opt to install {`tempest/framework`} as a standalone package. You could do this in any project; it could already contain code, or it could be an empty project.
 
 ```sh
-{:hl-keyword:composer:} require tempest/framework:1.0-beta.1
+{:hl-keyword:composer:} require tempest/framework
 ```
-
-:::warning
-Because Tempest is currently in beta (and still has two dev dependencies), you will need to allow dev dependencies as your minimum stability in `composer.json`: `{json}"minimum-stability": "dev",`, you should also ensure that composer still prefers stable versions if they are available: `{json}"prefer-stable": true,`. These composer properties are only necessary as long as Tempest isn't stable yet.
-:::
 
 Installing Tempest this way will give you access to the Tempest console, `./vendor/bin/tempest`. Optionally, you can choose to install Tempest's entry points in your project. To do so, you may run the framework installer:
 

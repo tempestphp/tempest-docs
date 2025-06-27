@@ -8,7 +8,7 @@ description: "The console component can be used as a standalone package to build
 Tempest's console component can be used standalone. You simply need to require the `tempest/console` package:
 
 ```sh
-composer require tempest/console:1.0-beta.1
+composer require tempest/console
 ```
 
 Once installed, you may boot a console application as follows.

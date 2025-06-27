@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "23e9c466da12c08ea01e745536661c4a",
+    "content-hash": "a782099743ff53ce8a0fa3c6f3cebb65",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -1252,16 +1252,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.29.1",
+            "version": "3.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "edc1bb7c86fab0776c3287dbd19b5fa278347319"
+                "reference": "2203e3151755d874bb2943649dae1eb8533ac93e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/edc1bb7c86fab0776c3287dbd19b5fa278347319",
-                "reference": "edc1bb7c86fab0776c3287dbd19b5fa278347319",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/2203e3151755d874bb2943649dae1eb8533ac93e",
+                "reference": "2203e3151755d874bb2943649dae1eb8533ac93e",
                 "shasum": ""
             },
             "require": {
@@ -1285,13 +1285,13 @@
                 "composer/semver": "^3.0",
                 "ext-fileinfo": "*",
                 "ext-ftp": "*",
-                "ext-mongodb": "^1.3",
+                "ext-mongodb": "^1.3|^2",
                 "ext-zip": "*",
                 "friendsofphp/php-cs-fixer": "^3.5",
                 "google/cloud-storage": "^1.23",
                 "guzzlehttp/psr7": "^2.6",
                 "microsoft/azure-storage-blob": "^1.1",
-                "mongodb/mongodb": "^1.2",
+                "mongodb/mongodb": "^1.2|^2",
                 "phpseclib/phpseclib": "^3.0.36",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^9.5.11|^10.0",
@@ -1329,22 +1329,22 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.29.1"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.30.0"
             },
-            "time": "2024-10-08T08:58:34+00:00"
+            "time": "2025-06-25T13:29:59+00:00"
         },
         {
             "name": "league/flysystem-local",
-            "version": "3.29.0",
+            "version": "3.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem-local.git",
-                "reference": "e0e8d52ce4b2ed154148453d321e97c8e931bd27"
+                "reference": "6691915f77c7fb69adfb87dcd550052dc184ee10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/e0e8d52ce4b2ed154148453d321e97c8e931bd27",
-                "reference": "e0e8d52ce4b2ed154148453d321e97c8e931bd27",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-local/zipball/6691915f77c7fb69adfb87dcd550052dc184ee10",
+                "reference": "6691915f77c7fb69adfb87dcd550052dc184ee10",
                 "shasum": ""
             },
             "require": {
@@ -1378,9 +1378,9 @@
                 "local"
             ],
             "support": {
-                "source": "https://github.com/thephpleague/flysystem-local/tree/3.29.0"
+                "source": "https://github.com/thephpleague/flysystem-local/tree/3.30.0"
             },
-            "time": "2024-08-09T21:24:39+00:00"
+            "time": "2025-05-21T10:34:19+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -3937,16 +3937,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "dev-main",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "9b802b89f1411992df549953107b4ad9daa071e6"
+                "reference": "e2d8bb2cc656e42072809d19778da4d76d922c20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/9b802b89f1411992df549953107b4ad9daa071e6",
-                "reference": "9b802b89f1411992df549953107b4ad9daa071e6",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e2d8bb2cc656e42072809d19778da4d76d922c20",
+                "reference": "e2d8bb2cc656e42072809d19778da4d76d922c20",
                 "shasum": ""
             },
             "require": {
@@ -4003,6 +4003,7 @@
                 "tempest/generation": "self.version",
                 "tempest/http": "self.version",
                 "tempest/http-client": "self.version",
+                "tempest/icon": "self.version",
                 "tempest/intl": "self.version",
                 "tempest/log": "self.version",
                 "tempest/mapper": "self.version",
@@ -4045,7 +4046,6 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
-            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4061,6 +4061,7 @@
                     "packages/datetime/src/functions.php",
                     "packages/debug/src/functions.php",
                     "packages/event-bus/src/functions.php",
+                    "packages/icon/src/functions.php",
                     "packages/intl/src/Number/functions.php",
                     "packages/intl/src/functions.php",
                     "packages/mapper/src/functions.php",
@@ -4088,6 +4089,7 @@
                     "Tempest\\Auth\\": "packages/auth/src",
                     "Tempest\\Core\\": "packages/core/src",
                     "Tempest\\Http\\": "packages/http/src",
+                    "Tempest\\Icon\\": "packages/icon/src",
                     "Tempest\\Intl\\": "packages/intl/src",
                     "Tempest\\View\\": "packages/view/src",
                     "Tempest\\Vite\\": "packages/vite/src",
@@ -4119,7 +4121,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.0.0"
             },
             "funding": [
                 {
@@ -4127,7 +4129,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-25T12:04:57+00:00"
+            "time": "2025-06-27T08:50:32+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4920,16 +4922,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.2.3",
+            "version": "12.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "60a8ea2d8b2f070000051b56778009e11576e7d1"
+                "reference": "b71849b29f7a8d7574e4401873cb8b539896613f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/60a8ea2d8b2f070000051b56778009e11576e7d1",
-                "reference": "60a8ea2d8b2f070000051b56778009e11576e7d1",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b71849b29f7a8d7574e4401873cb8b539896613f",
+                "reference": "b71849b29f7a8d7574e4401873cb8b539896613f",
                 "shasum": ""
             },
             "require": {
@@ -4997,7 +4999,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.2.3"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.2.5"
             },
             "funding": [
                 {
@@ -5021,7 +5023,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-20T11:33:06+00:00"
+            "time": "2025-06-27T04:37:55+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -5965,9 +5967,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tempest/framework": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
