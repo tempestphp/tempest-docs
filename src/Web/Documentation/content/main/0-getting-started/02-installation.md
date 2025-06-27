@@ -9,7 +9,7 @@ Tempest requires PHP [8.4+](https://www.php.net/downloads.php) and [Composer](ht
 
 For a better experience, it is recommended to have a complete development environment, such as [ServBay](https://www.servbay.com), [Herd](https://herd.laravel.com/docs), or [Valet](https://laravel.com/docs/valet). However, Tempest can serve applications using PHP's built-in server just fine.
 
-Once the prerequisites are installed, you can chose your installation method. Tempest can be a [standalone application](#creating-a-tempest-application), or be added [in an existing project](#tempest-as-a-package)—even one built on top of another framework.
+Once the prerequisites are installed, you can choose your installation method. Tempest can be a [standalone application](#creating-a-tempest-application), or be added [in an existing project](#tempest-as-a-package)—even one built on top of another framework.
 
 ## Creating a Tempest application
 
