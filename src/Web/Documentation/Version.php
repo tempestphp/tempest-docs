@@ -10,11 +10,11 @@ enum Version: string
     use IsEnumHelper;
 
     case MAIN = 'main';
-    // case VERSION_1 = '1.x';
+    case VERSION_1 = '1.x';
 
     public static function default(): self
     {
-        return self::MAIN;
+        return self::VERSION_1;
     }
 
     public static function tryFromString(?string $case): ?static
