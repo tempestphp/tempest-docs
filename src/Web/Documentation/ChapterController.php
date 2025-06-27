@@ -21,7 +21,7 @@ final readonly class ChapterController
     #[Get('/docs/{path:.*}')]
     public function docsRedirect(string $path): Redirect
     {
-        return new Redirect('/main/' . $path);
+        return new Redirect(sprintf('/%s/%s', Version::default()->value, $path));
     }
 
     #[Get('/docs')]
