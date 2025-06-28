@@ -470,7 +470,7 @@ This component provides the ability to inject any icon from the [Iconify](https:
 <x-icon name="material-symbols:php" class="size-4 text-indigo-400" />
 ```
 
-The first time a specific icon is being rendered, Tempest will query the [Iconify API](https://iconify.design/docs/api/queries.html) to fetch the corresponding SVG tag. The result of this query will be cached indefinitely, so it can be reused at no furthemr cost.
+The first time a specific icon is being rendered, Tempest will query the [Iconify API](https://iconify.design/docs/api/queries.html) to fetch the corresponding SVG tag. The result of this query will be cached indefinitely, so it can be reused at no further cost.
 
 :::info
 Iconify has a large collection of icon sets, which you may browse using the [Icônes](https://icones.js.org/) directory.
