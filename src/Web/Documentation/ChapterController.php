@@ -19,6 +19,7 @@ use function Tempest\uri;
 final readonly class ChapterController
 {
     #[Get('/docs/{path:.*}')]
+    #[Get('/current/{path:.*}')]
     public function docsRedirect(string $path): Redirect
     {
         return new Redirect(sprintf('/%s/%s', Version::default()->value, $path));
