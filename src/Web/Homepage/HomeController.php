@@ -32,12 +32,12 @@ final readonly class HomeController
     #[Get('/view')]
     public function viewRedirect(): Redirect
     {
-        return new Redirect('/main/framework/views');
+        return new Redirect('/current/essentials/views');
     }
 
     #[Get('/console')]
     public function consoleRedirect(): Redirect
     {
-        return new Redirect('/main/console/getting-started');
+        return new Redirect('current/packages/console');
     }
 }
