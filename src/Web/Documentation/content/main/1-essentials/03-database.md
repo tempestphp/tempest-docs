@@ -10,7 +10,7 @@ Tempest's database component is currently experimental and is not covered by our
 
 ## Connecting to a database
 
-By default, Tempest will connect to a local SQLite database located in its internal storage, `vendor/.tempest/database.sqlite`. You may override the default database connection by creating a [configuration file](../1-essentials/06-configuration.md#configuration-files):
+By default, Tempest will connect to a local SQLite database located in its internal storage, `.tempest/database.sqlite`. You may override the default database connection by creating a [configuration file](../1-essentials/06-configuration.md#configuration-files):
 
 ```php src/Config/database.config.php
 use Tempest\Database\Config\SQLiteConfig;

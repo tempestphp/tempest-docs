@@ -189,7 +189,7 @@ $storage = $this->storage->fake(StorageLocation::DATA_SNAPSHOTS);
 $storage->assertFileExists('file.txt');
 ```
 
-These fake storages are located in `vendor/.tempest/tests/storage`. They get erased every time the `fake()` method is called. To prevent this, you may set the `persist` argument to `true`.
+These fake storages are located in `.tempest/tests/storage`. They get erased every time the `fake()` method is called. To prevent this, you may set the `persist` argument to `true`.
 
 ### Preventing storage access during tests
 
