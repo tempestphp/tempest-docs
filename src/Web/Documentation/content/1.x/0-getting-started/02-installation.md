@@ -121,7 +121,7 @@ final readonly class BlogPostController
 
 Likewise, it is able to detect console commands based on the `#[ConsoleCommand]` attribute:
 
-```php src/RssSyncCommand.php
+```php app/RssSyncCommand.php
 use Tempest\Console\HasConsole;
 use Tempest\Console\ConsoleCommand;
 

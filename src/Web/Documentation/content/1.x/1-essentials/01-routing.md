@@ -473,7 +473,7 @@ There are some situations in which you may need to act on a response right befor
 
 This may be done using a response processor. Similar to [view processors](./02-views.md#pre-processing-views), they are classes that implement the {`Tempest\Response\ResponseProcessor`} interface. In the `process()` method, you may mutate and return the response object:
 
-```php src/ErrorResponseProcessor.php
+```php app/ErrorResponseProcessor.php
 use function Tempest\view;
 
 final class ErrorResponseProcessor implements ResponseProcessor

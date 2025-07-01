@@ -109,7 +109,7 @@ final class AircraftView implements View
 
 In a view file rendered by a view object, you may add a type annotation for `$this`. This allows IDEs like [PhpStorm](https://www.jetbrains.com/phpstorm/) to infer variables and methods.
 
-```html src/Aircraft/aircraft.view.php
+```html app/Aircraft/aircraft.view.php
 <?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
 <p :if="$this->type === AircraftType::PC24">
