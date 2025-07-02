@@ -2,9 +2,9 @@
 
 namespace App\GitHub;
 
+use Tempest\Cache\Cache;
 use Tempest\HttpClient\HttpClient;
 use Tempest\Intl\Number;
-use Throwable;
 
 use function Tempest\env;
 
@@ -12,11 +12,19 @@ final class GetStargazersCount
 {
     public function __construct(
         private HttpClient $httpClient,
+        private Cache $cache,
     ) {}
 
     public function __invoke(): ?string
     {
-        if ($stargazers = $this->getStargazersCount()) {
+        $stargazers = $this->cache->resolve(
+            'stargazers',
+            function () {
+                return $this->getStargazersCount();
+            },
+        );
+
+        if ($stargazers) {
             return Number\to_human_readable($stargazers, maxPrecision: 1);
         }
 

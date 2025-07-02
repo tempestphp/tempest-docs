@@ -2,6 +2,7 @@
 
 namespace App\GitHub;
 
+use Tempest\Cache\Cache;
 use Tempest\Core\Kernel;
 use Tempest\HttpClient\HttpClient;
 use Throwable;
@@ -12,6 +13,7 @@ final class GetLatestRelease
 {
     public function __construct(
         private HttpClient $httpClient,
+        private Cache $cache,
     ) {}
 
     public function __invoke(): ?string
@@ -24,11 +26,16 @@ final class GetLatestRelease
         $defaultRelease = sprintf('v%s', Kernel::VERSION);
 
         try {
-            $body = $this->httpClient
-                ->get('https://api.github.com/repos/tempestphp/tempest-framework/releases/latest')
-                ->body;
+            return $this->cache->resolve(
+                'latest_release',
+                function () {
+                    $body = $this->httpClient
+                        ->get('https://api.github.com/repos/tempestphp/tempest-framework/releases/latest')
+                        ->body;
 
-            return json_decode($body)->tag_name ?? $defaultRelease;
+                    return json_decode($body)->tag_name ?? null;
+                }
+            )  ?? $defaultRelease;
         } catch (Throwable) {
             return $defaultRelease;
         }
