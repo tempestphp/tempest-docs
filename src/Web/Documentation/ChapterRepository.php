@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use App\Support\HasMemoization;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -16,10 +17,12 @@ use function Tempest\Support\Path\to_relative_path;
 use function Tempest\Support\Regex\replace;
 use function Tempest\Support\str;
 
-final readonly class ChapterRepository
+final class ChapterRepository
 {
+    use HasMemoization;
+
     public function __construct(
-        private MarkdownConverter $markdown,
+        private readonly MarkdownConverter $markdown,
     ) {}
 
     public function find(Version $version, string $category, string $slug): ?Chapter
@@ -63,23 +66,26 @@ final readonly class ChapterRepository
      */
     public function all(Version $version, string $category = '*'): ImmutableArray
     {
-        return arr(glob(__DIR__ . "/content/{$version->value}/*{$category}/*.md"))
-            ->map(function (string $path) use ($version) {
-                $content = file_get_contents($path);
-                $category = str($path)->beforeLast('/')->afterLast('/')->replaceRegex('/^\d+-/', '');
+        return $this->memoize(
+            $version->value . $category,
+            fn () => arr(glob(__DIR__ . "/content/{$version->value}/*{$category}/*.md"))
+                ->map(function (string $path) use ($version) {
+                    $content = file_get_contents($path);
+                    $category = str($path)->beforeLast('/')->afterLast('/')->replaceRegex('/^\d+-/', '');
 
-                preg_match('/(?<index>\d+-)?(?<slug>.*)\.md/', pathinfo($path, PATHINFO_BASENAME), $matches);
+                    preg_match('/(?<index>\d+-)?(?<slug>.*)\.md/', pathinfo($path, PATHINFO_BASENAME), $matches);
 
-                return [
-                    'version' => $version,
-                    'slug' => replace($matches['slug'], '/^\d+-/', ''),
-                    'index' => $matches['index'],
-                    'category' => $category->toString(),
-                    'path' => to_relative_path(root_path(), $path),
-                    ...YamlFrontMatter::parse($content)->matter(),
-                ];
-            })
-            ->filter(fn (array $chapter) => get_by_key($chapter, 'hidden') !== true)
-            ->mapTo(Chapter::class);
+                    return [
+                        'version' => $version,
+                        'slug' => replace($matches['slug'], '/^\d+-/', ''),
+                        'index' => $matches['index'],
+                        'category' => $category->toString(),
+                        'path' => to_relative_path(root_path(), $path),
+                        ...YamlFrontMatter::parse($content)->matter(),
+                    ];
+                })
+                ->filter(fn (array $chapter) => get_by_key($chapter, 'hidden') !== true)
+                ->mapTo(Chapter::class),
+        );
     }
 }

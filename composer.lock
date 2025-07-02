@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "848cdea78af9cc612f31e462e6e2a6d2",
+    "content-hash": "40d75fec1a194d81db1b6f590e5c70e0",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -2762,16 +2762,16 @@
         },
         {
             "name": "symfony/cache",
-            "version": "v7.3.0",
+            "version": "v7.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/cache.git",
-                "reference": "c4b217b578c11ec764867aa0c73e602c602965de"
+                "reference": "a7c6caa9d6113cebfb3020b427bcb021ebfdfc9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/cache/zipball/c4b217b578c11ec764867aa0c73e602c602965de",
-                "reference": "c4b217b578c11ec764867aa0c73e602c602965de",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/a7c6caa9d6113cebfb3020b427bcb021ebfdfc9e",
+                "reference": "a7c6caa9d6113cebfb3020b427bcb021ebfdfc9e",
                 "shasum": ""
             },
             "require": {
@@ -2840,7 +2840,7 @@
                 "psr6"
             ],
             "support": {
-                "source": "https://github.com/symfony/cache/tree/v7.3.0"
+                "source": "https://github.com/symfony/cache/tree/v7.3.1"
             },
             "funding": [
                 {
@@ -2856,7 +2856,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-06T19:00:13+00:00"
+            "time": "2025-06-27T19:55:54+00:00"
         },
         {
             "name": "symfony/cache-contracts",
@@ -3630,16 +3630,16 @@
         },
         {
             "name": "symfony/uid",
-            "version": "v7.3.0",
+            "version": "v7.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/uid.git",
-                "reference": "7beeb2b885cd584cd01e126c5777206ae4c3c6a3"
+                "reference": "a69f69f3159b852651a6bf45a9fdd149520525bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/uid/zipball/7beeb2b885cd584cd01e126c5777206ae4c3c6a3",
-                "reference": "7beeb2b885cd584cd01e126c5777206ae4c3c6a3",
+                "url": "https://api.github.com/repos/symfony/uid/zipball/a69f69f3159b852651a6bf45a9fdd149520525bb",
+                "reference": "a69f69f3159b852651a6bf45a9fdd149520525bb",
                 "shasum": ""
             },
             "require": {
@@ -3684,7 +3684,7 @@
                 "uuid"
             ],
             "support": {
-                "source": "https://github.com/symfony/uid/tree/v7.3.0"
+                "source": "https://github.com/symfony/uid/tree/v7.3.1"
             },
             "funding": [
                 {
@@ -3700,20 +3700,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-24T14:28:13+00:00"
+            "time": "2025-06-27T19:55:54+00:00"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v7.3.0",
+            "version": "v7.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "548f6760c54197b1084e1e5c71f6d9d523f2f78e"
+                "reference": "6e209fbe5f5a7b6043baba46fe5735a4b85d0d42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/548f6760c54197b1084e1e5c71f6d9d523f2f78e",
-                "reference": "548f6760c54197b1084e1e5c71f6d9d523f2f78e",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/6e209fbe5f5a7b6043baba46fe5735a4b85d0d42",
+                "reference": "6e209fbe5f5a7b6043baba46fe5735a4b85d0d42",
                 "shasum": ""
             },
             "require": {
@@ -3768,7 +3768,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v7.3.0"
+                "source": "https://github.com/symfony/var-dumper/tree/v7.3.1"
             },
             "funding": [
                 {
@@ -3784,7 +3784,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-27T18:39:23+00:00"
+            "time": "2025-06-27T19:55:54+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -3865,16 +3865,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v7.3.0",
+            "version": "v7.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "cea40a48279d58dc3efee8112634cb90141156c2"
+                "reference": "0c3555045a46ab3cd4cc5a69d161225195230edb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/cea40a48279d58dc3efee8112634cb90141156c2",
-                "reference": "cea40a48279d58dc3efee8112634cb90141156c2",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/0c3555045a46ab3cd4cc5a69d161225195230edb",
+                "reference": "0c3555045a46ab3cd4cc5a69d161225195230edb",
                 "shasum": ""
             },
             "require": {
@@ -3917,7 +3917,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/v7.3.0"
+                "source": "https://github.com/symfony/yaml/tree/v7.3.1"
             },
             "funding": [
                 {
@@ -3933,20 +3933,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-04T10:10:33+00:00"
+            "time": "2025-06-03T06:57:57+00:00"
         },
         {
             "name": "tempest/framework",
-            "version": "v1.0.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "e2d8bb2cc656e42072809d19778da4d76d922c20"
+                "reference": "f6eabfe9b660fc734f0d5c641e993f2ed0550264"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/e2d8bb2cc656e42072809d19778da4d76d922c20",
-                "reference": "e2d8bb2cc656e42072809d19778da4d76d922c20",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/f6eabfe9b660fc734f0d5c641e993f2ed0550264",
+                "reference": "f6eabfe9b660fc734f0d5c641e993f2ed0550264",
                 "shasum": ""
             },
             "require": {
@@ -4046,6 +4046,7 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
+            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4121,7 +4122,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.0.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
             "funding": [
                 {
@@ -4129,7 +4130,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-06-27T08:50:32+00:00"
+            "time": "2025-07-02T07:47:02+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -5967,7 +5968,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "tempest/framework": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
