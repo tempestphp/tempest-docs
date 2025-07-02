@@ -80,6 +80,45 @@ The cache may programmatically by cleared by calling the `clear()` method on a c
 
 By default, this would clear the main cache. If there are multiple configured caches, you will be prompted to choose which one to clear.
 
+## Disabling caches
+
+During development, all internal caches except the icon one are disabled. This is to ensure that you always get the latest changes when working on your application.
+
+In production, all caches are automatically enabled without you needing to tweak any configuration. In all environments, you may forcefully enable or disable caches by adding a dedicated environment variable to your `.env`.
+
+### Disabling project caches
+
+You may set the `CACHE_ENABLED` environment variable to `false` to forcefully disable your project cache. When disabled, the cache will not save any value and will return default values for getter methods.
+
+```ini .env
+# Force-disables user cache
+CACHE_ENABLED=false
+
+# Force-disables a tagged cache named `custom`
+CACHE_CUSTOM_ENABLED=false
+```
+
+### Disabling internal caches
+
+Tempest has a few internal caches for views, discovery, configuration and icons. You may forcefully disable these caches, individually or all at once, by setting the following environment variables in your `.env` file:
+
+```ini .env
+# Force-disables all internal caches
+INTERNAL_CACHES=false
+
+# Force-disables the view cache
+VIEW_CACHE=false
+
+# Force-disables the icon cache
+ICON_CACHE=false
+
+# Force-disables the discovery cache
+DISCOVERY_CACHE=false
+
+# Force-disables the config cache
+CONFIG_CACHE=false
+```
+
 ## Locks
 
 You may create a lock by calling the `lock()` method on a cache instance. After being created, the lock needs to be acquired by calling the `acquire()`, and released by calling the `release()` method.
@@ -120,9 +159,10 @@ Tempest provides a different configuration object for each cache provider. Below
 - {`Tempest\Cache\Config\FilesystemCacheConfig`}
 - {`Tempest\Cache\Config\InMemoryCacheConfig`}
 - {`Tempest\Cache\Config\PhpCacheConfig`}
-- {`Tempest\Cache\Config\RedisCacheConfig`}
+
+<!-- - {`Tempest\Cache\Config\RedisCacheConfig`}
 - {`Tempest\Cache\Config\PredisCacheConfig`}
-- {`Tempest\Cache\Config\ValkeyCacheConfig`}
+- {`Tempest\Cache\Config\ValkeyCacheConfig`} -->
 
 ## Testing
 
