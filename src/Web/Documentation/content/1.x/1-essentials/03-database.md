@@ -10,9 +10,9 @@ Tempest's database component is currently experimental and is not covered by our
 
 ## Connecting to a database
 
-By default, Tempest will connect to a local SQLite database located in its internal storage, `vendor/.tempest/database.sqlite`. You may override the default database connection by creating a [configuration file](../1-essentials/06-configuration.md#configuration-files):
+By default, Tempest will connect to a local SQLite database located in its internal storage, `.tempest/database.sqlite`. You may override the default database connection by creating a [configuration file](../1-essentials/06-configuration.md#configuration-files):
 
-```php src/Config/database.config.php
+```php app/Config/database.config.php
 use Tempest\Database\Config\SQLiteConfig;
 use function Tempest\root_path;
 
@@ -23,16 +23,16 @@ return new SQLiteConfig(
 
 Alternatively, you can connect to another database by returning another configuration object from file. You may choose between {b`Tempest\Database\Config\SQLiteConfig`}, {b`Tempest\Database\Config\MysqlConfig`}, or {b`Tempest\Database\Config\PostgresConfig`}:
 
-```php src/Config/database.config.php
+```php app/Config/database.config.php
 use Tempest\Database\Config\PostgresConfig;
 use function Tempest\env;
 
 return new PostgresConfig(
-    host: env('DATBASE_HOST', default: '127.0.0.1'),
-    port: env('DATBASE_PORT', default: '5432'),
-    username: env('DATBASE_USERNAME', default: 'postgres'),
-    password: env('DATBASE_PASSWORD', default: 'postgres'),
-    database: env('DATBASE_DATABASE', default: 'postgres'),
+    host: env('DATABASE_HOST', default: '127.0.0.1'),
+    port: env('DATABASE_PORT', default: '5432'),
+    username: env('DATABASE_USERNAME', default: 'postgres'),
+    password: env('DATABASE_PASSWORD', default: 'postgres'),
+    database: env('DATABASE_DATABASE', default: 'postgres'),
 );
 ```
 
@@ -333,7 +333,7 @@ final class PrefixedPascalCaseStrategy implements NamingStrategy
 }
 ```
 
-```php src/Config/database.config.php
+```php app/Config/database.config.php
 use Tempest\Database\Config\SQLiteConfig;
 
 return new SQLiteConfig(
@@ -518,7 +518,7 @@ Multiple database support on Windows is currently untested. We welcome anyone wh
 
 If you want to connect to multiple databases, you should make multiple database config files and attach a tag to each database config object:
 
-```php src/Config/database.config.php
+```php app/Config/database.config.php
 use Tempest\Database\Config\SQLiteConfig;
 
 return new SQLiteConfig(
@@ -527,7 +527,7 @@ return new SQLiteConfig(
 );
 ```
 
-```php src/Config/database-backup.config.php
+```php app/Config/database-backup.config.php
 use Tempest\Database\Config\SQLiteConfig;
 
 return new SQLiteConfig(
@@ -538,7 +538,7 @@ return new SQLiteConfig(
 
 When preferred, you can use a self-defined enum as the tag as well:
 
-```php src/Config/database-backup.config.php
+```php app/Config/database-backup.config.php
 use Tempest\Database\Config\SQLiteConfig;
 use App\Database\DatabaseType;
 

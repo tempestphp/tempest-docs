@@ -9,7 +9,7 @@ By default, Tempest uses a filesystem-based caching strategy. You may use a diff
 
 <!-- For instance, you may use Redis as your cache back-end by creating a `cache.config.php` file returning an instance of {b`Tempest\Cache\Config\RedisCacheConfig`}:
 
-```php src/cache.config.php
+```php app/cache.config.php
 return new RedisCacheConfig(
     host: env('REDIS_HOST', default: '127.0.0.1'),
     port: env('REDIS_PORT', default: 6379),
@@ -22,7 +22,7 @@ In this example, the Redis credentials are specified in the `.env`, so a differe
 
 Once your cache is configured, you may interact with it by using the {`Tempest\Cache\Cache`} interface. This is usually done through [dependency injection](../1-essentials/05-container.md#injecting-dependencies):
 
-```php src/OrderService.php
+```php app/OrderService.php
 use Tempest\Cache\Cache;
 use Tempest\DateTime\Duration;
 

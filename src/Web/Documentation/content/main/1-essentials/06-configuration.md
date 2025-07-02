@@ -13,7 +13,7 @@ Even though the framework is designed to use as little configuration as possible
 
 Files ending with `*.config.php` are recognized by Tempest's [discovery](../4-internals/02-discovery) as configuration objects, and will be registered as [singletons](./01-container#singletons) in the container.
 
-```php src/postgres.config.php
+```php app/postgres.config.php
 use Tempest\Database\Config\PostgresConfig;
 use function Tempest\env;
 
@@ -74,7 +74,7 @@ As your application grows, you may need to create your own configuration objects
 
 You may first create a class representing the configuration needed for your feature. It can have default values for its properties, and even methods if needed.
 
-```php src/Slack/SlackConfig.php
+```php app/Slack/SlackConfig.php
 final class SlackConfig
 {
     public function __construct(
@@ -88,7 +88,7 @@ final class SlackConfig
 
 The next step is to register this configuration object in the container. This can be done by creating a `slack.config.php` file, which will be discovered by Tempest and registered as a [singleton](./01-container#singletons).
 
-```php src/Slack/slack.config.php
+```php app/Slack/slack.config.php
 use function Tempest\env;
 
 return new SlackConfig(
@@ -101,7 +101,7 @@ return new SlackConfig(
 
 You may now inject the `SlackConfig` class into a service, a controller, an action, or anything that can be resolved by the container.
 
-```php src/Slack/SlackConnector.php
+```php app/Slack/SlackConnector.php
 final class SlackConnector extends HttpConnector
 {
     public function __construct(
@@ -126,7 +126,7 @@ However, it's sometimes needed to have completely different configurations in de
 
 When this happens, you may create environment-specific configuration files by using the `.<env>.config.php` suffix. For instance, a production-only configuration file could be `storage.prod.config.php`:
 
-```php src/storage.prod.config.php
+```php app/storage.prod.config.php
 return new S3StorageConfig(
     bucket: env('S3_BUCKET'),
     region: env('S3_REGION'),

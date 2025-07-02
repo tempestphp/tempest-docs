@@ -13,7 +13,7 @@ In Tempest, events can be anything from a scalar value to a simple data class. A
 
 Most events are typically simple data classes that store information relevant to the event. As a best practice, they should not include any logic.
 
-```php src/AircraftRegistered.php
+```php app/AircraftRegistered.php
 final readonly class AircraftRegistered
 {
     public function __construct(
@@ -24,7 +24,7 @@ final readonly class AircraftRegistered
 
 When event classes are too much, you may also use scalar values—such as strings or enumerations—to define events. The latter is highly recommended for a better experience.
 
-```php src/AircraftLifecycle.php
+```php app/AircraftLifecycle.php
 enum AircraftLifecycle
 {
     case REGISTERED;
@@ -36,7 +36,7 @@ enum AircraftLifecycle
 
 The {`Tempest\EventBus\EventBus`} interface implements a `dispatch()` method, which you may use to dispatch any event. The event bus may be [injected as a dependency](../1-essentials/01-container) like any other service:
 
-```php src/AircraftService.php
+```php app/AircraftService.php
 use Tempest\EventBus\EventBus;
 
 final readonly class AircraftService
@@ -66,7 +66,7 @@ Events are only useful if they are listened for. In Tempest, this is done by cal
 
 Attribute-based event handling is most useful when events should be listened to application-wide. In other words, this is the option you should adopt when the associated event must be acted on every time it is dispatched.
 
-```php src/AircraftObserver.php
+```php app/AircraftObserver.php
 final readonly class AircraftObserver
 {
     #[EventHandler]
@@ -81,7 +81,7 @@ final readonly class AircraftObserver
 
 When an event is only meant to be listened for in a specific situation, it is better to register it only when relevant. Such a situation could be, for instance, a [console command](../3-console/01-introduction) that needs logging when an event is dispatched.
 
-```php src/SyncUsersCommand.php
+```php app/SyncUsersCommand.php
 final readonly class SyncUsersCommand
 {
     public function __construct(
@@ -112,7 +112,7 @@ When an event is dispatched, it is sent to the event bus, which then forwards it
 
 Event bus middleware can be used for various purposes, such as logging specific events, adding metadata, or performing other pre—or post-processing tasks. These middleware are defined as classes that implement the {`Tempest\EventBus\EventBusMiddleware`} interface.
 
-```php src/EventLoggerMiddleware.php
+```php app/EventLoggerMiddleware.php
 use Tempest\EventBus\EventBusMiddleware;
 use Tempest\EventBus\EventBusMiddlewareCallable;
 
@@ -213,7 +213,7 @@ When handlers are registered as methods, instead of dispatching the correspondin
 
 As an example, the following class contains an handler for the `AircraftRegistered` event:
 
-```php src/AircraftObserver.php
+```php app/AircraftObserver.php
 final readonly class AircraftObserver
 {
     #[EventHandler]
@@ -226,7 +226,7 @@ final readonly class AircraftObserver
 
 This handler may be tested by resolving the service class from the container, and calling the method with an instance of the event created for this purpose.
 
-```php src/AircraftObserverTest.php
+```php app/AircraftObserverTest.php
 // Replace the event bus in the container
 $this->eventBus->preventEventHandling();
 

@@ -7,7 +7,7 @@ description: "When rendering pages with no dynamic component, booting the whole 
 
 When a controller action is tagged with {b`#[Tempest\Router\StaticPage]`}, it can be compiled by Tempest as a static HTML page. These pages can then directly be served directly through your web server.
 
-```php src/Marketing/FrontPageController.php
+```php app/Marketing/FrontPageController.php
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
@@ -37,7 +37,7 @@ Since most pages require some form of dynamic data, static pages can be assigned
 
 Let's take a look at the controller action for this very website:
 
-```php src/Documentation/ChapterController.php
+```php app/Documentation/ChapterController.php
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
@@ -58,7 +58,7 @@ final readonly class ChapterController
 
 In this case, the {b`#[Tempest\Router\StaticPage]`} attribute gets a reference to the `ChapterDataProvider`, which implements the {`\Tempest\Router\DataProvider`} interface:
 
-```php src/Documentation/ChapterDataProvider.php
+```php app/Documentation/ChapterDataProvider.php
 use Tempest\Router\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider
@@ -76,7 +76,7 @@ That repository is injected by the container, so we don't need to worry about it
 
 In other words: we want to generate a page for every documentation chapter. We can use the `ChapterRepository` to get a list of all available chapters. Eventually, our data provider looks like this:
 
-```php src/Documentation/ChapterDataProvider.php
+```php app/Documentation/ChapterDataProvider.php
 use Tempest\Router\DataProvider;
 
 final readonly class DocsDataProvider implements DataProvider

@@ -76,7 +76,7 @@ In controller actions, you may want to receive an object instead of a scalar val
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 use App\Aircraft;
 
 final class AircraftController
@@ -109,7 +109,7 @@ You may inject string-backed enumerations to controller actions. Tempest will tr
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 use App\AircraftType;
 
 final readonly class AircraftController
@@ -175,7 +175,7 @@ is_current_uri(AircraftController::class, id: 2); // false
 
 ## Accessing request data
 
-A core pattern of any web application is to access data from the current request. You may do so by injecting {`Tempest\Router\Request`} to a controller action. This class provides access to the request's body, query parameters, method, and other attributes through dedicated class properties.
+A core pattern of any web application is to access data from the current request. You may do so by injecting {`Tempest\Http\Request`} to a controller action. This class provides access to the request's body, query parameters, method, and other attributes through dedicated class properties.
 
 ### Using request classes
 
@@ -183,11 +183,11 @@ In most situations, the data you expect to receive from a request is structured.
 
 The idiomatic way to achieve this is by using request classes. They are classes with public properties that correspond to the data you want to retrieve from the request. Tempest will automatically validate these properties using PHP's type system, in addition to optional [validation attributes](../2-features/06-validation) if needed.
 
-A request class must implement {`Tempest\Router\Request`} and should use the {`Tempest\Router\IsRequest`} trait, which provides the default implementation.
+A request class must implement {`Tempest\Http\Request`} and should use the {`Tempest\Http\IsRequest`} trait, which provides the default implementation.
 
 ```php app/RegisterAirportRequest.php
-use Tempest\Router\Request;
-use Tempest\Router\IsRequest;
+use Tempest\Http\Request;
+use Tempest\Http\IsRequest;
 use Tempest\Validation\Rules\Length;
 
 final class RegisterAirportRequest implements Request
@@ -211,7 +211,7 @@ Once you have created a request class, you may simply inject it into a controlle
 
 ```php app/AirportController.php
 use Tempest\Router\Post;
-use Tempest\Router\Responses\Redirect;
+use Tempest\Http\Responses\Redirect;
 use function Tempest\map;
 use function Tempest\uri;
 
@@ -237,7 +237,7 @@ For simpler use cases, you may simply retrieve a value from the body or the quer
 
 ```php app/AircraftController.php
 use Tempest\Router\Get;
-use Tempest\Router\Request;
+use Tempest\Http\Request;
 
 final readonly class AircraftController
 {
@@ -256,7 +256,7 @@ Middleware can be applied to handle tasks in between receiving a request and sen
 
 ```php app/ReceiveInteractionController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 
 final readonly class ReceiveInteractionController
 {
@@ -275,8 +275,8 @@ The middleware class must be an invokable class that implements the {`Tempest\Ro
 ```php
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
-use Tempest\Router\Request;
-use Tempest\Router\Response;
+use Tempest\Http\Request;
+use Tempest\Http\Response;
 use Tempest\Discovery\SkipDiscovery;
 use Tempest\Core\Priority;
 
@@ -352,7 +352,7 @@ Tempest has a powerful templating system inspired by modern front-end frameworks
 
 ### Using built-in response classes
 
-Tempest provides several classes, all implementing the {`Tempest\Router\Response`} interface, mostly named after HTTP statuses.
+Tempest provides several classes, all implementing the {`Tempest\Http\Response`} interface, mostly named after HTTP statuses.
 
 - `{php}Ok` — the 200 response. Accepts an optional body.
 - `{php}Created` — the 201 response. Accepts an optional body.
@@ -368,9 +368,9 @@ The following example conditionnally returns a `Redirect`, otherwise letting the
 
 ```php app/FlightPlanController.php
 use Tempest\Router\Get;
-use Tempest\Router\Responses\Download;
-use Tempest\Router\Responses\Redirect;
-use Tempest\Router\Response;
+use Tempest\Http\Responses\Download;
+use Tempest\Http\Responses\Redirect;
+use Tempest\Http\Response;
 
 final readonly class FlightPlanController
 {
@@ -392,14 +392,14 @@ final readonly class FlightPlanController
 
 It might happen that you need to dynamically compute the response's status code, and would rather not use a condition to send the corresponding response object.
 
-You may then return an instance of {`Tempest\Router\GenericResponse`}, specifying the status code and an optional body.
+You may then return an instance of {`Tempest\Http\GenericResponse`}, specifying the status code and an optional body.
 
 ```php app/CreateFlightController.php
 use Tempest\Router\Get;
-use Tempest\Router\Responses\Download;
-use Tempest\Router\Responses\Redirect;
-use Tempest\Router\GenericResponse;
-use Tempest\Router\Response;
+use Tempest\Http\Responses\Download;
+use Tempest\Http\Responses\Redirect;
+use Tempest\Http\GenericResponse;
+use Tempest\Http\Response;
 
 final readonly class CreateFlightController
 {
@@ -421,12 +421,12 @@ final readonly class CreateFlightController
 
 There are situations where you might send the same kind of response in a lot of places, or you might want to have a proper API for sending a structured response.
 
-You may create your own response class by implementing {`Tempest\Router\Response`}, which default implementation is provided by the {`Tempest\Router\IsResponse`} trait:
+You may create your own response class by implementing {`Tempest\Http\Response`}, which default implementation is provided by the {`Tempest\Http\IsResponse`} trait:
 
 ```php app/AircraftRegistered.php
-use Tempest\Router\IsResponse;
-use Tempest\Router\Response;
-use Tempest\Router\Status;
+use Tempest\Http\IsResponse;
+use Tempest\Http\Response;
+use Tempest\Http\Status;
 
 final class AircraftRegistered implements Response
 {
@@ -452,8 +452,8 @@ However, you may override the content type manually by specifying the `setConten
 ```php app/JsonController.php
 use Tempest\Router\Get;
 use Tempest\Router\ContentType;
-use Tempest\Router\Response;
-use Tempest\Router\Responses\Ok;
+use Tempest\Http\Response;
+use Tempest\Http\Responses\Ok;
 
 final readonly class JsonController
 {
@@ -473,7 +473,7 @@ There are some situations in which you may need to act on a response right befor
 
 This may be done using a response processor. Similar to [view processors](./02-views.md#pre-processing-views), they are classes that implement the {`Tempest\Response\ResponseProcessor`} interface. In the `process()` method, you may mutate and return the response object:
 
-```php src/ErrorResponseProcessor.php
+```php app/ErrorResponseProcessor.php
 use function Tempest\view;
 
 final class ErrorResponseProcessor implements ResponseProcessor
@@ -530,8 +530,8 @@ Tempest provides a way to perform that task after the response has been sent, so
 ```php app/TrackVisitMiddleware.php
 use Tempest\Router\HttpMiddleware;
 use Tempest\Router\HttpMiddlewareCallable;
-use Tempest\Router\Request;
-use Tempest\Router\Response;
+use Tempest\Http\Request;
+use Tempest\Http\Response;
 
 use function Tempest\defer;
 use function Tempest\event;

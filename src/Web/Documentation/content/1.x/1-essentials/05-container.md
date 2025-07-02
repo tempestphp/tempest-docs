@@ -13,7 +13,7 @@ Tempest has a dependency container capable of resolving dependencies without any
 
 The constructors of classes resolved by the container may be any class or interface associated with a [dependency initializer](#dependency-initializers). Similarly, invoked methods such as [event handlers](../2-features/08-events.md), [console commands](../3-console/02-building-console-commands) and invokable classes may also be called directly from the container.
 
-```php src/Aircraft/AircraftService.php
+```php app/Aircraft/AircraftService.php
 use App\Aircraft\ExternalAircraftProvider;
 use App\Aircraft\AircraftRepository;
 use Tempest\Console\ConsoleCommand;
@@ -125,7 +125,7 @@ Let's take use the concept of route model binding as an example. A controller mi
 
 ```php app/BookController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 
 final readonly class BookController
 {

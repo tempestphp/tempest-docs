@@ -15,7 +15,7 @@ To get started with file storage, you will first need to create a configuration 
 
 Tempest provides a different configuration object for each provider. For instance, if you wish to interact with an Amazon S3 bucket, you may create a `s3.config.php` file returning an instance of {b`Tempest\Storage\Config\S3StorageConfig`}:
 
-```php src/s3.config.php
+```php app/s3.config.php
 return new S3StorageConfig(
     bucket: env('S3_BUCKET'),
     region: env('S3_REGION'),
@@ -28,7 +28,7 @@ In this example, the S3 credentials are specified in the `.env`, so a different 
 
 Once your storage is configured, you may interact with it by using the {`Tempest\Storage\Storage`} interface. This is usually done through [dependency injection](../1-essentials/05-container.md#injecting-dependencies):
 
-```php src/UserService.php
+```php app/UserService.php
 final readonly class UserService
 {
     public function __construct(
@@ -99,7 +99,7 @@ If you need to work with multiple storage locations, you may create multiple sto
 
 It's a good practice to use an enum for the tag:
 
-```php src/userdata.storage.config.php
+```php app/userdata.storage.config.php
 return new S3StorageConfig(
     tag: StorageLocation::USER_DATA,
     bucket: env('USERDATA_S3_BUCKET'),
@@ -109,7 +109,7 @@ return new S3StorageConfig(
 );
 ```
 
-```php src/backup.storage.config.php
+```php app/backup.storage.config.php
 return new R2StorageConfig(
     tag: StorageLocation::BACKUPS,
     bucket: env('BACKUPS_R2_BUCKET'),
@@ -121,7 +121,7 @@ return new R2StorageConfig(
 
 Once you have configured your storages and your tags, you may inject the {b`Tempest\Storage\Storage`} interface using the corresponding tag:
 
-```php src/BackupService.php
+```php app/BackupService.php
 final readonly class BackupService
 {
     public function __construct(
@@ -145,7 +145,7 @@ composer require league/flysystem-read-only
 
 Once this is done, you may pass the `readonly` parameter to the adapter configuration and set it to `true`.
 
-```php src/data-snapshots.storage.config.php
+```php app/data-snapshots.storage.config.php
 return new S3StorageConfig(
     tag: StorageLocation::DATA_SNAPSHOTS,
     readonly: true,
@@ -162,7 +162,7 @@ If you need to implement your own adapter for an unsupported provider, you may d
 
 Tempest provides a {b`Tempest\Storage\Config\CustomStorageConfig`} configuration object which accepts any `FilesystemAdapter`, which will be resolved through the container.
 
-```php src/custom-storage.config.php
+```php app/custom-storage.config.php
 return new CustomStorageConfig(
     adapter: App\MyCustomFilesystemAdapter::class,
 );
@@ -189,7 +189,7 @@ $storage = $this->storage->fake(StorageLocation::DATA_SNAPSHOTS);
 $storage->assertFileExists('file.txt');
 ```
 
-These fake storages are located in `vendor/.tempest/tests/storage`. They get erased every time the `fake()` method is called. To prevent this, you may set the `persist` argument to `true`.
+These fake storages are located in `.tempest/tests/storage`. They get erased every time the `fake()` method is called. To prevent this, you may set the `persist` argument to `true`.
 
 ### Preventing storage access during tests
 

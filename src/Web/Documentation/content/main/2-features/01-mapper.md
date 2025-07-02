@@ -168,7 +168,7 @@ Casters are responsible for mapping serialized data to a complex type. Similarly
 
 You may create your own casters and serializers by implementing the {`\Tempest\Mapper\Caster`} and {`\Tempest\Mapper\Serializer`} interfaces, respectively.
 
-```php src/AddressCaster.php
+```php app/AddressCaster.php
 use Tempest\Mapper\Caster;
 
 final readonly class AddressCaster implements Caster
@@ -184,7 +184,7 @@ final readonly class AddressCaster implements Caster
 }
 ```
 
-```php src/AddressSerializer.php
+```php app/AddressSerializer.php
 use Tempest\Mapper\Serializer;
 
 final readonly class AddressSerializer implements Serializer

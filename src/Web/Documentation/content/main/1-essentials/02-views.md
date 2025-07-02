@@ -109,7 +109,7 @@ final class AircraftView implements View
 
 In a view file rendered by a view object, you may add a type annotation for `$this`. This allows IDEs like [PhpStorm](https://www.jetbrains.com/phpstorm/) to infer variables and methods.
 
-```html src/Aircraft/aircraft.view.php
+```html app/Aircraft/aircraft.view.php
 <?php /** @var \App\Modules\Home\HomeView $this */ ?>
 
 <p :if="$this->type === AircraftType::PC24">
@@ -470,7 +470,7 @@ This component provides the ability to inject any icon from the [Iconify](https:
 <x-icon name="material-symbols:php" class="size-4 text-indigo-400" />
 ```
 
-The first time a specific icon is being rendered, Tempest will query the [Iconify API](https://iconify.design/docs/api/queries.html) to fetch the corresponding SVG tag. The result of this query will be cached indefinitely, so it can be reused at no furthemr cost.
+The first time a specific icon is being rendered, Tempest will query the [Iconify API](https://iconify.design/docs/api/queries.html) to fetch the corresponding SVG tag. The result of this query will be cached indefinitely, so it can be reused at no further cost.
 
 :::info
 Iconify has a large collection of icon sets, which you may browse using the [Icônes](https://icones.js.org/) directory.

@@ -11,7 +11,7 @@ Routing in Tempest is done with route attributes: each controller action can hav
 use Tempest\Router\Get;
 use Tempest\Router\Post;
 use Tempest\Router\Delete;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 
 final class BookAdminController
 {
@@ -99,7 +99,7 @@ And then you simply use that attribute for admin routes:
 
 ```php
 use Tempest\Http\Method;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 
 final class BookAdminController
 {

@@ -104,7 +104,7 @@ As an example, Tempest is able to determine which methods are controller methods
 
 ```php app/BlogPostController.php
 use Tempest\Router\Get;
-use Tempest\Router\Response;
+use Tempest\Http\Response;
 use Tempest\View\View;
 
 final readonly class BlogPostController
@@ -121,7 +121,7 @@ final readonly class BlogPostController
 
 Likewise, it is able to detect console commands based on the `#[ConsoleCommand]` attribute:
 
-```php src/RssSyncCommand.php
+```php app/RssSyncCommand.php
 use Tempest\Console\HasConsole;
 use Tempest\Console\ConsoleCommand;
 

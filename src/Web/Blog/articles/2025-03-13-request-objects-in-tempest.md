@@ -29,7 +29,7 @@ It doesn't get much simpler than this, right? We have an object representing the
 Here's what that looks like in practice:
 
 ```php
-use Tempest\Router\Request;
+use Tempest\Http\Request;
 use function Tempest\map;
 
 final readonly class BookController
@@ -117,8 +117,8 @@ With validation out of the way, let's take a look at other approaches of mapping
 Here's what our `BookRequest` looks like:
 
 ```php
-use Tempest\Router\IsRequest;
-use Tempest\Router\Request;
+use Tempest\Http\IsRequest;
+use Tempest\Http\Request;
 
 final class BookRequest implements Request
 {

@@ -19,7 +19,7 @@ To run tasks on your server, a single cron task is required. This task should ca
 
 Any method using the `{php}#[Schedule]` attribute will be run by the scheduler. As with everything Tempest, these methods are discovered automatically.
 
-```php src/ScheduledTasks.php
+```php app/ScheduledTasks.php
 use Tempest\Console\Schedule;
 use Tempest\Console\Scheduler\Every;
 
