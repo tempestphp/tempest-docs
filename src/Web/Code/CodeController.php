@@ -52,17 +52,23 @@ final readonly class CodeController
 
         $language = $request->get('lang') ?? 'php';
 
-        $editUrl = uri([self::class, 'paste'], lang: $language, code: $code);
 
         $highlightedCode = $highlighter->parse(urldecode(base64_decode($code, strict: true)), $language);
 
         $center = $request->has('center');
+
+        $clean = $request->has('clean');
+
+        $editUrl = uri([self::class, 'paste'], lang: $language, code: $code);
+        $cleanUrl = uri([self::class, 'preview'], lang: $language, code: $code, center: $center, clean: true);
 
         return view(__DIR__ . '/code_preview.view.php')->data(
             code: $highlightedCode,
             editUrl: $editUrl,
             language: $language,
             center: $center,
+            clean: $clean,
+            cleanUrl: $cleanUrl,
         );
     }
 }
