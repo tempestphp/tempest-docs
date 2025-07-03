@@ -56,10 +56,13 @@ final readonly class CodeController
 
         $highlightedCode = $highlighter->parse(urldecode(base64_decode($code, strict: true)), $language);
 
+        $center = $request->has('center');
+
         return view(__DIR__ . '/code_preview.view.php')->data(
             code: $highlightedCode,
             editUrl: $editUrl,
             language: $language,
+            center: $center,
         );
     }
 }

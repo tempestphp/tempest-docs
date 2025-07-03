@@ -23,7 +23,7 @@
     </div>
 
     <div class="flex items-center justify-center h-full absolute top-0 left-0 w-full">
-        <div class="bg-(--ui-bg) border border-(--ui-border) rounded-md p-8 max-h-[75%] overflow-scroll" id="screenshot">
+        <div class="bg-(--ui-bg) border border-(--ui-border) rounded-md p-8 max-h-[75%] overflow-scroll" :class="$center ? 'text-center' : ''" id="screenshot">
             <pre data-lang="<?= $language ?>"><?= $code ?></pre>
         </div>
     </div>
