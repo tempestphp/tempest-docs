@@ -435,7 +435,6 @@ final class CreateBookTable implements DatabaseMigration
             ->text('title')
             ->datetime('created_at')
             ->datetime('published_at', nullable: true)
-            ->integer('author_id', unsigned: true)
             ->belongsTo('books.author_id', 'authors.id');
     }
 
