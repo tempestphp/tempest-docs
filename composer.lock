@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33dad01810c831513b75580eb187bd4e",
+    "content-hash": "0dd0873faa76b80066ee020913e129ec",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3937,16 +3937,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "dev-main",
+            "version": "dev-database-seeders",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "d28e89613d1a6c39f367b5d421a11d66ec2b9bc2"
+                "reference": "87214e0ef6c6882d139c757fdf0d22b995254118"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/d28e89613d1a6c39f367b5d421a11d66ec2b9bc2",
-                "reference": "d28e89613d1a6c39f367b5d421a11d66ec2b9bc2",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/87214e0ef6c6882d139c757fdf0d22b995254118",
+                "reference": "87214e0ef6c6882d139c757fdf0d22b995254118",
                 "shasum": ""
             },
             "require": {
@@ -4046,7 +4046,6 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
-            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4122,7 +4121,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/database-seeders"
             },
             "funding": [
                 {
@@ -4130,7 +4129,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-02T10:00:35+00:00"
+            "time": "2025-07-04T12:38:06+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4923,16 +4922,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "12.2.5",
+            "version": "12.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "b71849b29f7a8d7574e4401873cb8b539896613f"
+                "reference": "638644c62a58f04974da115f98981c9b48564021"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/b71849b29f7a8d7574e4401873cb8b539896613f",
-                "reference": "b71849b29f7a8d7574e4401873cb8b539896613f",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/638644c62a58f04974da115f98981c9b48564021",
+                "reference": "638644c62a58f04974da115f98981c9b48564021",
                 "shasum": ""
             },
             "require": {
@@ -5000,7 +4999,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.2.5"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/12.2.6"
             },
             "funding": [
                 {
@@ -5024,7 +5023,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-06-27T04:37:55+00:00"
+            "time": "2025-07-04T06:00:16+00:00"
         },
         {
             "name": "sebastian/cli-parser",

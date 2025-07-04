@@ -503,8 +503,73 @@ You may use the `migrate:rehash` command to bypass migration integrity checks an
 ```
 
 :::warning
-Note that deliberately bypassing migration integrity checks may result in a broken database state. Only use this command when absolutely necessary, if you are confident that your migration files are correct and consistent accross environments.
+Note that deliberately bypassing migration integrity checks may result in a broken database state. Only use this command when necessary if you are confident that your migration files are correct and consistent across environments.
 :::
+
+## Database seeders
+
+Whenever you need to fill your database with dummy data, you can provide database seeders. These are classes that are used to fill your database with whatever data you want. To get started, you should implement the `\Tempest\Database\DatabaseSeeder` interface.
+
+```php
+use Tempest\Database\DatabaseSeeder;
+use UnitEnum;
+
+final class BookSeeder implements DatabaseSeeder
+{
+    public function run(null|string|UnitEnum $database): void
+    {
+        query(Book::class)
+            ->insert(
+                title: 'Timeline Taxi',
+            )
+            ->onDatabase($database)
+            ->execute();
+    }
+}
+```
+
+Note how the `$database` property is passed into the `run()` method. In case a user has specified a database for this seeder to run on, this property will reflect that choice.
+
+Running database seeders can be done in two ways: either via the `database:seed` command, or via the `migrate:fresh` command. Not that `database:seed` will always append the seeded data on the existing database.
+
+```console
+./tempest database:seed
+./tempest migrate:fresh --seed
+```
+
+### Multiple seeders
+
+If you want to, you can create multiple seeder classes. Each seeder class could be used to bring the database into a specific state, or you could use multiple seeder classes to seed specific parts of your database.
+
+Whenever you have multiple seeder classes, Tempest will prompt you which ones to run:
+
+```console
+./tempest database:seed
+
+ │ <em>Which seeders do you want to run?</em>
+ │ / <dim>Filter...</dim>
+ │ → ⋅ Tests\Tempest\Fixtures\MailingSeeder
+ │   ⋅ Tests\Tempest\Fixtures\InvoiceSeeder
+```
+
+Both the `database:seed` and `migrate:fresh` commands also allow to pick one specific seeder or run all seeders automatically.
+
+```console
+./tempest database:seed --all
+./tempest database:seed --seeder="Tests\Tempest\Fixtures\MailingSeeder"
+
+./tempest migrate:fresh --seed --all
+./tempest migrate:fresh --seeder="Tests\Tempest\Fixtures\MailingSeeder"
+```
+
+### Seeding on multiple databases
+
+Seeders have built-in support for multiple databases, which you can specify with the `--database` option. Continue reading to learn more about multiple databases.
+
+```console
+./tempest database:seed --database="backup"
+./tempest migrate:fresh --database="main"
+```
 
 ## Multiple databases
 
