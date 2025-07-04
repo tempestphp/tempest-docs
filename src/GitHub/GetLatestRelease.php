@@ -34,8 +34,8 @@ final class GetLatestRelease
                         ->body;
 
                     return json_decode($body)->tag_name ?? null;
-                }
-            )  ?? $defaultRelease;
+                },
+            ) ?? $defaultRelease;
         } catch (Throwable) {
             return $defaultRelease;
         }
