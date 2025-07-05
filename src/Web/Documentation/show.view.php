@@ -117,12 +117,12 @@
           </x-template>
           <div class="justify-end mt-4 grow flex flex-col gap-y-4">
             <!-- Version warning -->
-            <div :if="$this->currentChapter->version === \App\Web\Documentation\Version::MAIN" class="mt-4">
-              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
-                <x-icon name="tabler:info-circle" class="translate-y-[2px] size-4 shrink-0" />
-                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
-              </div>
-            </div>
+<!--            <div :if="$this->currentChapter->version === \App\Web\Documentation\Version::MAIN" class="mt-4">-->
+<!--              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">-->
+<!--                <x-icon name="tabler:info-circle" class="translate-y-[2px] size-4 shrink-0" />-->
+<!--                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>-->
+<!--              </div>-->
+<!--            </div>-->
             <!-- Suggest changes -->
             <a class="text-sm text-(--ui-text-dimmed) hover:text-(--ui-text) transition inline-flex items-center gap-x-1.5" :href="$this->currentChapter->getEditPageUri()" target="_blank">
               <x-icon name="tabler:edit" class="size-4 shrink-0" />
