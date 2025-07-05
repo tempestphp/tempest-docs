@@ -18,3 +18,4 @@ tempest-access.log
 vite-tempest
 public/build/
 database.sqlite
+database-old.sqlite

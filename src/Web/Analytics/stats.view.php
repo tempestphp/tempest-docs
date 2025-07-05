@@ -14,7 +14,6 @@
     <div class="w-full flex flex-col ">
         <div class="w-full z-10 md:py-24 pt-12">
             <div class="w-full mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-12 md:px-24 px-8">
-                <x-chart :chart="$visitsPerHour" label="Visits per hour" title="Website visits last 24 hours"></x-chart>
                 <x-chart :chart="$visitsPerDay" label="Visits per day" title="Website visits last 30 days"></x-chart>
             </div>
         </div>
