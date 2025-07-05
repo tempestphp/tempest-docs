@@ -23,6 +23,8 @@ Inside, a `x-post` [component](#view-components) is rendered multiple times than
 ```html
 <x-base title="Home">
     <x-post :foreach="$this->posts as $post">
+        {{-- a comment which won't be rendered to HTML --}}
+        
         {!! $post->title !!}
 
         <span :if="$this->showDate($post)">
