@@ -9,7 +9,7 @@ The authentication and authorization implementations of Tempest are currently ex
 
 ## Overview
 
-Logging in (authentication )and verifying whether a user is allowed to perform a specific action (authorization) are two crucial parts of any web application. Tempest comes with a built-in authenticator and authorizer, as well as a base `User` and `Permission` model (if you want to).
+Logging in (authentication) and verifying whether a user is allowed to perform a specific action (authorization) are two crucial parts of any web application. Tempest comes with a built-in authenticator and authorizer, as well as a base `User` and `Permission` model (if you want to).
 
 ## Authentication
 
