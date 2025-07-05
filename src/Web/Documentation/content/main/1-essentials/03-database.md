@@ -508,7 +508,7 @@ Note that deliberately bypassing migration integrity checks may result in a brok
 
 ## Database seeders
 
-Whenever you need to fill your database with dummy data, you can provide database seeders. These are classes that are used to fill your database with whatever data you want. To get started, you should implement the `\Tempest\Database\DatabaseSeeder` interface.
+Whenever you need to fill your database with dummy data, you can provide database seeders. These are classes that are used to fill your database with whatever data you want. To get started, you should implement the {`\Tempest\Database\DatabaseSeeder`} interface.
 
 ```php
 use Tempest\Database\DatabaseSeeder;

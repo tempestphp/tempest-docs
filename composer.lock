@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dd0873faa76b80066ee020913e129ec",
+    "content-hash": "c36f81291fabd8727d33309e9b726bad",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3937,16 +3937,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "dev-database-seeders",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "87214e0ef6c6882d139c757fdf0d22b995254118"
+                "reference": "c740c1934bc10de68d2225da06690c5ba07ead0f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/87214e0ef6c6882d139c757fdf0d22b995254118",
-                "reference": "87214e0ef6c6882d139c757fdf0d22b995254118",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/c740c1934bc10de68d2225da06690c5ba07ead0f",
+                "reference": "c740c1934bc10de68d2225da06690c5ba07ead0f",
                 "shasum": ""
             },
             "require": {
@@ -4121,7 +4121,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/database-seeders"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.1.0"
             },
             "funding": [
                 {
@@ -4129,7 +4129,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-04T12:38:06+00:00"
+            "time": "2025-07-05T06:08:58+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4410,16 +4410,16 @@
         },
         {
             "name": "myclabs/deep-copy",
-            "version": "1.13.1",
+            "version": "1.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c"
+                "reference": "d25e62e636b0a9b01e3bdebb7823b474876dd829"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/1720ddd719e16cf0db4eb1c6eca108031636d46c",
-                "reference": "1720ddd719e16cf0db4eb1c6eca108031636d46c",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/d25e62e636b0a9b01e3bdebb7823b474876dd829",
+                "reference": "d25e62e636b0a9b01e3bdebb7823b474876dd829",
                 "shasum": ""
             },
             "require": {
@@ -4458,7 +4458,7 @@
             ],
             "support": {
                 "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.1"
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.13.2"
             },
             "funding": [
                 {
@@ -4466,7 +4466,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-04-29T12:36:36+00:00"
+            "time": "2025-07-04T14:07:32+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -5967,9 +5967,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tempest/framework": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
