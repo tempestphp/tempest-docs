@@ -586,7 +586,7 @@ If you want to connect to multiple databases, you should make multiple database 
 use Tempest\Database\Config\SQLiteConfig;
 
 return new SQLiteConfig(
-    path: __DIR__ . '/../database-backup.sqlite',
+    path: __DIR__ . '/../database.sqlite',
     tag: 'main',
 );
 ```
