@@ -52,7 +52,6 @@ final readonly class CodeController
 
         $language = $request->get('lang') ?? 'php';
 
-
         $highlightedCode = $highlighter->parse(urldecode(base64_decode($code, strict: true)), $language);
 
         $center = $request->has('center');
