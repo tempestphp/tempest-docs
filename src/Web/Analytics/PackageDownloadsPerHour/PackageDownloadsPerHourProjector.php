@@ -15,6 +15,7 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
     {
         new QueryBuilder(PackageDownloadsPerHour::class)
             ->delete()
+            ->allowAll()
             ->execute();
     }
 

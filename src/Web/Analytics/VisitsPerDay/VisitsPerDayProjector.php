@@ -22,6 +22,7 @@ final readonly class VisitsPerDayProjector implements Projector
     {
         new QueryBuilder(VisitsPerDay::class)
             ->delete()
+            ->allowAll()
             ->execute();
     }
 

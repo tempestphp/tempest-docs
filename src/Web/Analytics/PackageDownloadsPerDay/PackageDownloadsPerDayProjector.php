@@ -4,9 +4,10 @@ namespace App\Web\Analytics\PackageDownloadsPerDay;
 
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PackageDownloadsListed;
+use PDOException;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
-use Tempest\Database\Query;
 use Tempest\EventBus\EventHandler;
+use function Tempest\Database\query;
 
 final readonly class PackageDownloadsPerDayProjector implements Projector
 {
@@ -15,6 +16,7 @@ final readonly class PackageDownloadsPerDayProjector implements Projector
     {
         new QueryBuilder(PackageDownloadsPerDay::class)
             ->delete()
+            ->allowAll()
             ->execute();
     }
 
@@ -29,19 +31,28 @@ final readonly class PackageDownloadsPerDayProjector implements Projector
     #[EventHandler]
     public function onPackageDownloadsListed(PackageDownloadsListed $event): void
     {
+        $date = $event->date->setTime(0, 0);
+
         $count = $event->total;
 
         $count = max($count, 0);
 
-        PackageDownloadsPerDay::updateOrCreate(
-            [
-                'date' => $event->date,
-                'package' => $event->package,
-            ],
-            [
-                'total' => $event->total,
-                'count' => $count,
-            ],
-        );
+        $packageDownloadsPerDay = query(PackageDownloadsPerDay::class)
+            ->select()
+            ->where('date = ? AND package = ?', $date, $event->package)
+            ->first();
+
+        if (!$packageDownloadsPerDay) {
+            $packageDownloadsPerDay = new PackageDownloadsPerDay(
+                date: $date,
+                package: $event->package,
+                count: 0,
+                total: 0,
+            );
+        }
+
+        $packageDownloadsPerDay->total = $event->total;
+        $packageDownloadsPerDay->count = $count;
+        $packageDownloadsPerDay->save();
     }
 }

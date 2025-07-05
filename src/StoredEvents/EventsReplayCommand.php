@@ -9,6 +9,7 @@ use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 
+use function Tempest\Database\query;
 use function Tempest\Support\arr;
 use function Tempest\Support\str;
 
@@ -45,9 +46,7 @@ final readonly class EventsReplayCommand
             return;
         }
 
-        $eventCount = new QueryBuilder(StoredEvent::class)
-            ->select('COUNT(*) as `count`')
-            ->first()['count'];
+        $eventCount = query(StoredEvent::class)->count()->execute();
 
         $confirm = $this->confirm(sprintf(
             'We\'re going to replay %d events on %d %s, this will take a while. Continue?',
