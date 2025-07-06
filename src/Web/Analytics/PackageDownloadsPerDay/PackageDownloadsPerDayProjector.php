@@ -7,6 +7,7 @@ use App\Web\Analytics\PackageDownloadsListed;
 use PDOException;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 use Tempest\EventBus\EventHandler;
+
 use function Tempest\Database\query;
 
 final readonly class PackageDownloadsPerDayProjector implements Projector
@@ -42,7 +43,7 @@ final readonly class PackageDownloadsPerDayProjector implements Projector
             ->where('date = ? AND package = ?', $date, $event->package)
             ->first();
 
-        if (!$packageDownloadsPerDay) {
+        if (! $packageDownloadsPerDay) {
             $packageDownloadsPerDay = new PackageDownloadsPerDay(
                 date: $date,
                 package: $event->package,
