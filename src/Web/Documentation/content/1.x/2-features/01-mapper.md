@@ -234,3 +234,5 @@ $container->get(CasterFactory::class)
 $container->get(SerializerFactory::class)
 	->addSerializer(Address::class, AddressSerializer::class);
 ```
+
+If you're looking for the right place where to put this logic, [provider classes](/docs/extra-topics/package-development#provider-classes) is our recommendation. 
