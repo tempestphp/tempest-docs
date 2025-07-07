@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c36f81291fabd8727d33309e9b726bad",
+    "content-hash": "bb33b8683b16bbeed1966065622ae312",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3937,16 +3937,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "c740c1934bc10de68d2225da06690c5ba07ead0f"
+                "reference": "2dd9ffa72d1f1c7177e4ae9095285a12b07842ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/c740c1934bc10de68d2225da06690c5ba07ead0f",
-                "reference": "c740c1934bc10de68d2225da06690c5ba07ead0f",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/2dd9ffa72d1f1c7177e4ae9095285a12b07842ca",
+                "reference": "2dd9ffa72d1f1c7177e4ae9095285a12b07842ca",
                 "shasum": ""
             },
             "require": {
@@ -3962,7 +3962,7 @@
                 "ext-simplexml": "*",
                 "filp/whoops": "^2.15",
                 "giggsey/libphonenumber-for-php-lite": "^9.0",
-                "guzzlehttp/guzzle": "^7.8",
+                "guzzlehttp/guzzle": "^7.8.2",
                 "laminas/laminas-diactoros": "^3.3",
                 "league/flysystem": "^3.29.1",
                 "monolog/monolog": "^3.7.0",
@@ -4016,18 +4016,20 @@
                 "tempest/vite": "self.version"
             },
             "require-dev": {
-                "carthage-software/mago": "0.24.1",
+                "azure-oss/storage-blob-flysystem": "^1.2",
+                "carthage-software/mago": "0.26.1",
                 "guzzlehttp/psr7": "^2.6.1",
-                "illuminate/view": "~11.7.0",
                 "league/flysystem-aws-s3-v3": "^3.0",
                 "league/flysystem-azure-blob-storage": "^3.0",
                 "league/flysystem-ftp": "^3.0",
                 "league/flysystem-google-cloud-storage": "^3.0",
+                "league/flysystem-local": "^3.25.1",
                 "league/flysystem-memory": "^3.0",
                 "league/flysystem-read-only": "^3.0",
                 "league/flysystem-sftp-v3": "^3.0",
                 "league/flysystem-ziparchive": "^3.0",
                 "masterminds/html5": "^2.9",
+                "microsoft/azure-storage-blob": "^1.5",
                 "mikey179/vfsstream": "^2.0@dev",
                 "nesbot/carbon": "^3.8",
                 "nyholm/psr7": "^1.8",
@@ -4121,7 +4123,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.1.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.2.0"
             },
             "funding": [
                 {
@@ -4129,7 +4131,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-05T06:08:58+00:00"
+            "time": "2025-07-07T11:55:19+00:00"
         },
         {
             "name": "tempest/highlight",
