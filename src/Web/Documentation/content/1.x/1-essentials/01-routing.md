@@ -272,7 +272,14 @@ $errors = get(Session::class)->get(Session::VALIDATION_ERRORS)[$name ?? null] ??
 
 <div :if="$errors !== null" :class="$class ?? ''">
     <div :foreach="$errors as $error">
-        {{ $error->message() }}
+        <div :if="is_array($error->message())">
+            <div :foreach="$error->message() as $message">
+                {{ $message }}
+            </div>
+        </div>
+        <div :else>
+            {{ $error->message() }}
+        </div>
     </div>
 </div>
 ```
