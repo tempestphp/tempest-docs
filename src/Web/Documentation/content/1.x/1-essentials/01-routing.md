@@ -228,7 +228,7 @@ final readonly class AirportController
 ```
 
 :::info A note on data mapping
-The `map()` function is a powerful feature that sets Tempest apart. It allows mapping any data from any source into objects of your choice. You may read more about them in [their documentation](../2-features/01-mapper.md).
+The `map()` function allows mapping any data from any source into objects of your choice. You may read more about them in [their documentation](../2-features/01-mapper.md).
 :::
 
 ### Retrieving data directly
@@ -249,6 +249,49 @@ final readonly class AircraftController
     }
 }
 ```
+
+## Form validation
+
+Oftentimes you'll want to submit form data from a website to be processed in the backend. In the previous section we've explained that Tempest will automatically map and validate request data unto request objects, but how do you then show validation errors back on the frontend?
+
+Whenever a validation error occurs, Tempest will redirect back to the page the request was submitted on, or send a 400 invalid response (in case you're sending API requests). The validation errors can be found in two places:
+
+- As a JSON encoded string in the `{txt}X-Validation` header
+- Within the session with the `Session::VALIDATION_ERRORS` key
+
+The JSON encoded header is available for when you're building APIs with Tempest. The session errors are available for when you're building web pages. In the case of the latter, you need a way to actually show the errors on a web page. Tempest's recommended way to do so is by creating a custom [view component](/docs/essentials/views#view-components):
+
+```html app/x-error.view.php
+<?php
+use Tempest\Http\Session\Session;
+use function Tempest\get;
+
+/** @var Tempest\Validation\Rule[]|null $errors */
+$errors = get(Session::class)->get(Session::VALIDATION_ERRORS)[$name ?? null] ?? null;
+?>
+
+<div :if="$errors !== null" :class="$class ?? ''">
+    <div :foreach="$errors as $error">
+        {{ $error->message() }}
+    </div>
+</div>
+```
+
+This view component will be discovered and can then be used to display validation errors likes so:
+
+```html
+<form action="/register" method="post">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" autofocus class="border"/>
+    <x-error name="name" class="text-red-400 …" />
+    
+    <!-- … -->
+</form>
+```
+
+:::info
+Currently, Tempest doesn't include built-in view components to handle form validation. That's because we don't have a strategy yet for dealing with different frontend frameworks. We rather give control to the user to build their own form components for maximum flexibility. This is likely to change in the future, but for now you'll have to make your own `x-error` component.
+:::
 
 ## Route middleware
 
