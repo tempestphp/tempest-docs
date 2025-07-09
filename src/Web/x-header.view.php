@@ -2,7 +2,7 @@
 
 use App\Web\Blog\BlogController;
 use App\Web\Documentation\ChapterController;
-use App\Web\RedirectsController;
+use App\Web\Community\CommunityController;
 
 use function Tempest\is_current_uri;
 
@@ -35,6 +35,12 @@ use function Tempest\is_current_uri;
         </div>
         <!-- Right side -->
         <div class="flex items-center gap-4 font-medium">
+					<a
+						:href="uri([CommunityController::class, 'index'])"
+						class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([CommunityController::class, 'index'])
+    						? 'md:text-(--ui-primary)'
+    						: '' ?>"
+					>Community</a>
 					<a
 						:href="uri([BlogController::class, 'index'])"
 						class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index'])
