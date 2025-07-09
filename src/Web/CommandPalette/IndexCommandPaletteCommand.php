@@ -22,6 +22,8 @@ final readonly class IndexCommandPaletteCommand
     )]
     public function __invoke(): void
     {
+        $this->console->header('Indexing…');
+
         $index = [];
 
         foreach ($this->indexerConfig->indexerClasses as $indexerClass) {
