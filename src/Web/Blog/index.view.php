@@ -32,15 +32,10 @@
 					<div class="flex items-center mt-6 gap-x-4 justify-between">
 						<span
 							:if="$post->tag"
-							:style="match ($post->tag) {
-								'Release' => '--badge: var(--ui-primary)',
-								'Thoughts' => '--badge: var(--ui-secondary)',
-								'Tutorial' => '--badge: var(--ui-info)',
-								default => '--badge: var(--ui-secondary)',
-							}"
-							class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded ring ring-inset ring-(--badge)/50 text-(--badge)"
+							:class="$post->tag->getStyle()"
+							class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded ring ring-inset"
 						>
-							{{ $post->tag }}
+							{{ $post->tag->value }}
 						</span>
 						<span :if="$post->author" class="text-(--ui-text-muted) text-sm">
 							by <span class="font-medium">{{ $post->author->getName() }}</span> on <span class="font-medium">{{ $post->createdAt->format('F d, Y') }}</span>

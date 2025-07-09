@@ -11,8 +11,8 @@ final class CommunityController
 {
     #[StaticPage]
     #[Get('/community')]
-    public function index(): View
+    public function index(CommunityPostsRepository $repository): View
     {
-        return view('community.view.php');
+        return view('community.view.php', communityPosts: $repository->all());
     }
 }

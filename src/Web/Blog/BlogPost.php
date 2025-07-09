@@ -13,7 +13,7 @@ final class BlogPost
     public ?Author $author;
     public string $content;
     public DateTimeImmutable $createdAt;
-    public ?string $tag = null;
+    public ?BlogPostTag $tag = null;
     public ?string $description = null;
     public bool $published = true;
     public array $meta = [];

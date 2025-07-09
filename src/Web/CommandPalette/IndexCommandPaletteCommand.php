@@ -3,6 +3,7 @@
 namespace App\Web\CommandPalette;
 
 use App\Web\Blog\BlogIndexer;
+use App\Web\Community\CommunityPostIndexer;
 use App\Web\Documentation\DocumentationIndexer;
 use App\Web\Documentation\Version;
 use Tempest\Console\Console;
@@ -16,6 +17,7 @@ final readonly class IndexCommandPaletteCommand
         private DocumentationIndexer $documentationIndexer,
         private CommandIndexer $commandIndexer,
         private BlogIndexer $blogIndexer,
+        private CommunityPostIndexer $communityPostIndexer,
     ) {}
 
     #[ConsoleCommand('command-palette:index', 'Exports available commands to a JSON index file that can be consumed by the front-end.')]
@@ -29,6 +31,7 @@ final readonly class IndexCommandPaletteCommand
                     ...($this->documentationIndexer)(Version::default()),
                     ...($this->blogIndexer)(),
                     ...($this->commandIndexer)(),
+                    ...($this->communityPostIndexer)(),
                 ]),
             ),
         );

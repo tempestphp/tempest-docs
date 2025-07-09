@@ -1,0 +1,13 @@
+- uri: https://github.com/happytodev/authentik
+  title: Authentik
+  description: A package for TempestPHP to handle OAuth authentication with providers like GitHub, Google, and X.
+  type: Package
+  wip: true
+- uri: https://www.youtube.com/@phpannotated
+  title: PHP Annotated
+  description: Weekly livestreams on Tempest's development
+  type: Video
+- uri: https://stitcher.io/blog/building-a-framework
+  title: Tagging a framework
+  description: Tempest's origin story
+  type: Blog

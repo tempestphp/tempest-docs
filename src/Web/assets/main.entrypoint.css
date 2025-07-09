@@ -197,3 +197,7 @@ pre {
 		display: none !important;
 	}
 }
+
+@source inline("ring-amber-200 text-amber-400");
+@source inline("ring-blue-200 text-blue-400");
+@source inline("ring-teal-200 text-teal-400");
