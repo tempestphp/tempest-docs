@@ -3,59 +3,58 @@
 namespace App\Web\CommandPalette;
 
 use App\Web\Blog\BlogController;
-use App\Web\CommandPalette\Command;
 use App\Web\Documentation\ChapterController;
 use App\Web\RedirectsController;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\uri;
 
-final readonly class CommandIndexer
+final readonly class CommandIndexer implements Indexer
 {
-    public function __invoke(): ImmutableArray
+    public function index(): ImmutableArray
     {
         return new ImmutableArray([
             new Command(
-                type: Type::URI,
                 title: 'Read the documentation',
+                type: Type::URI,
                 hierarchy: ['Commands', 'Documentation'],
                 uri: uri([ChapterController::class, 'index']),
             ),
             new Command(
-                type: Type::URI,
                 title: 'Visit the blog',
+                type: Type::URI,
                 hierarchy: ['Commands', 'Blog'],
                 uri: uri([BlogController::class, 'index']),
             ),
             new Command(
-                type: Type::URI,
                 title: 'See the code on GitHub',
+                type: Type::URI,
                 hierarchy: ['Commands', 'Link'],
                 uri: uri([RedirectsController::class, 'github']),
             ),
             new Command(
-                type: Type::URI,
                 title: 'Join our Discord server',
+                type: Type::URI,
                 hierarchy: ['Commands', 'Link'],
                 uri: uri([RedirectsController::class, 'discord']),
             ),
             new Command(
-                type: Type::URI,
                 title: 'Follow me on Bluesky',
+                type: Type::URI,
                 hierarchy: ['Commands', 'Link'],
                 uri: uri([RedirectsController::class, 'bluesky']),
             ),
             new Command(
-                type: Type::URI,
                 title: 'Follow me on X',
+                type: Type::URI,
                 hierarchy: ['Commands', 'Link'],
                 uri: uri([RedirectsController::class, 'twitter']),
             ),
             new Command(
-                type: Type::JAVASCRIPT,
                 title: 'Toggle dark mode',
-                javascript: 'toggleDarkMode',
+                type: Type::JAVASCRIPT,
                 hierarchy: ['Commands', 'Command'],
+                javascript: 'toggleDarkMode',
             ),
         ]);
     }

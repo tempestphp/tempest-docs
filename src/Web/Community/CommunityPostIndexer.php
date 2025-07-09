@@ -3,16 +3,17 @@
 namespace App\Web\Community;
 
 use App\Web\CommandPalette\Command;
+use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
 use Tempest\Support\Arr\ImmutableArray;
 
-final readonly class CommunityPostIndexer
+final readonly class CommunityPostIndexer implements Indexer
 {
     public function __construct(
         private CommunityPostsRepository $repository,
     ) {}
 
-    public function __invoke(): ImmutableArray
+    public function index(): ImmutableArray
     {
         return $this->repository->all()
             ->map(function (CommunityPost $post) {

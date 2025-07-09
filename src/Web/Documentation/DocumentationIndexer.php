@@ -3,6 +3,7 @@
 namespace App\Web\Documentation;
 
 use App\Web\CommandPalette\Command;
+use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
@@ -22,7 +23,7 @@ use function Tempest\uri;
 /**
  * Indexes the blog.
  */
-final readonly class DocumentationIndexer
+final readonly class DocumentationIndexer implements Indexer
 {
     public function __construct(
         private MarkdownConverter $markdown,
@@ -31,8 +32,10 @@ final readonly class DocumentationIndexer
     /**
      * @return ImmutableArray<Command>
      */
-    public function __invoke(Version $version): ImmutableArray
+    public function index(): ImmutableArray
     {
+        $version = Version::default();
+
         return arr(glob(__DIR__ . "/content/{$version->value}/*/*.md"))
             ->flatMap(function (string $path) use ($version) {
                 $markdown = $this->markdown->convert(file_get_contents($path));

@@ -2,40 +2,41 @@
 
 namespace App\Web\CommandPalette;
 
-use App\Web\Blog\BlogIndexer;
-use App\Web\Community\CommunityPostIndexer;
-use App\Web\Documentation\DocumentationIndexer;
-use App\Web\Documentation\Version;
-use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
-use Tempest\Console\ExitCode;
+use Tempest\Console\HasConsole;
+use Tempest\Container\Container;
 
 final readonly class IndexCommandPaletteCommand
 {
+    use HasConsole;
+
     public function __construct(
-        private Console $console,
-        private DocumentationIndexer $documentationIndexer,
-        private CommandIndexer $commandIndexer,
-        private BlogIndexer $blogIndexer,
-        private CommunityPostIndexer $communityPostIndexer,
+        private IndexerConfig $indexerConfig,
+        private Container $container,
     ) {}
 
-    #[ConsoleCommand('command-palette:index', 'Exports available commands to a JSON index file that can be consumed by the front-end.')]
-    public function __invoke(): ExitCode
+    #[ConsoleCommand(
+        name: 'command-palette:index',
+        description: 'Exports available commands to a JSON index file that can be consumed by the front-end.',
+        aliases: ['index']
+    )]
+    public function __invoke(): void
     {
-        $this->console->task(
-            label: 'Exporting search index',
-            handler: fn () => file_put_contents(
-                __DIR__ . '/index.json',
-                json_encode([
-                    ...($this->documentationIndexer)(Version::default()),
-                    ...($this->blogIndexer)(),
-                    ...($this->commandIndexer)(),
-                    ...($this->communityPostIndexer)(),
-                ]),
-            ),
+        $index = [];
+
+        foreach ($this->indexerConfig->indexerClasses as $indexerClass) {
+            /** @var \App\Web\CommandPalette\Indexer $indexer */
+            $indexer = $this->container->get($indexerClass);
+            $index = [...$index, ...$indexer->index()];
+
+            $this->keyValue($indexerClass, "<style='fg-green'>DONE</style>");
+        }
+
+        file_put_contents(
+            __DIR__ . '/index.json',
+            json_encode($index),
         );
 
-        return ExitCode::SUCCESS;
+        $this->keyValue('Saving index', "<style='fg-green'>DONE</style>");
     }
 }

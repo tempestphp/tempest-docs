@@ -3,6 +3,7 @@
 namespace App\Web\Blog;
 
 use App\Web\CommandPalette\Command;
+use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
@@ -13,13 +14,13 @@ use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Arr\wrap;
 use function Tempest\uri;
 
-final readonly class BlogIndexer
+final readonly class BlogIndexer implements Indexer
 {
     public function __construct(
         private MarkdownConverter $markdown,
     ) {}
 
-    public function __invoke(): ImmutableArray
+    public function index(): ImmutableArray
     {
         return arr(glob(__DIR__ . '/articles/*.md'))
             ->map(function (string $path) {
