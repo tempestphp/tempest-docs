@@ -173,7 +173,7 @@ use Tempest\Mapper\Caster;
 
 final readonly class AddressCaster implements Caster
 {
-    public function cast(mixed $input): DateTimeInterface
+    public function cast(mixed $input): Address
     {
         return new Address(
             street: $input['street'],
