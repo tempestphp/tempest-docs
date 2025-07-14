@@ -1,3 +1,13 @@
+- uri: https://github.com/NeoIsRecursive/inertia-tempest
+  title: Inertia tempest
+  description: An Inertia adapter for the tempestphp framework
+  type: Package
+  wip: true
+- uri: https://github.com/happytodev/cyclone
+  title: cyclone
+  description: A simple blog engine for Tempest
+  type: Package
+  wip: true
 - uri: https://github.com/happytodev/authentik
   title: Authentik
   description: A package for TempestPHP to handle OAuth authentication with providers like GitHub, Google, and X.
