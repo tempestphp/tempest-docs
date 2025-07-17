@@ -13,6 +13,7 @@ Given the size of the project, we decided to mark a couple of features as experi
 - [Authentication and authorization](/main/features/authentication): the current implementation is very lightweight, and we welcome people to experiment with more complex implementations as third-party packages before committing to a framework-provided solution.
 - [ORM](/main/essentials/database): you can use existing ORMs like [Doctrine](https://www.doctrine-project.org/) as an alternative.
 - [The DateTime component](https://github.com/tempestphp/tempest-framework/tree/main/packages/datetime): you can use [Carbon](https://carbon.nesbot.com/docs/) or [Psl](https://github.com/azjezz/psl) as alternatives.
+- [The mail component](/docs/features/mail): this is a newly added component in Tempest 1.4, and is kept experimental for a couple of feature releases to make sure we can fix all edge cases before calling it "stable".
 
 Please note that we're committed to making all of these components stable as soon as possible. To do so, we will need real-life feedback from the community. By marking these components as experimental, we acknowledge that we probably won't get it right from the get-go, and we want to be clear about that up front.
 
@@ -21,7 +22,6 @@ Please note that we're committed to making all of these components stable as soo
 Apart from experimental features, we're also aware that Tempest isn't feature-complete yet. Below is a list of items in our priority list. Feel free to contact us via [GitHub](https://github.com/tempestphp/tempest-framework) or [Discord](https://tempestphp.com/discord) if you'd like to suggest other features, or want to help out with one of these:
 
 - Dedicated support for API development
-- Mail support
 - HTMX support combined with tempest/view
 - Form builder
 - Event bus and command bus improvements (transport support, async messaging, event sourcing, …)
