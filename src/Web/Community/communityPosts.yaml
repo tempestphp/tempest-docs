@@ -1,3 +1,7 @@
+- uri: https://sevalla.com/blog/tempest-php/
+  title: Tempted by Tempest
+  description: An educational look into the Tempest PHP framework
+  type: Blog
 - uri: https://github.com/NeoIsRecursive/inertia-tempest
   title: Inertia tempest
   description: An Inertia adapter for the tempestphp framework
