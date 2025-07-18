@@ -7,7 +7,7 @@
     <title>Ellison | Tempest</title>
 
     <style>
-        <?= file_get_contents(__DIR__ . '/../../public/main.css') ?>
+        <?= file_get_contents(__DIR__ . '/../../../public/main.css') ?>
 
         pre, code {
             color: #000;
@@ -32,7 +32,7 @@
 </head>
 <body>
 <div class="flex justify-center my-8">
-    <pre data-lang="ellison"><?= $this->raw('ellison') ?></pre>
+    {!! $ellison !!}
 </div>
 </body>
 </html>
