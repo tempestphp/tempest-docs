@@ -9,6 +9,7 @@ use App\Web\Code\EllisonController;
 <x-base>
 	<div class="h-full">
     <form action="<?= \Tempest\uri([EllisonController::class, 'submit']) ?>" method="POST">
+        <x-csrf-token />
         <div class="flex justify-center items-center flex-col w-3/5 mx-auto gap-4 font-mono">
             <label for="ellison" class="text-xl">Paste your text to be analysed</label>
             <textarea name="ellison" id="ellison" class="border-2 border-blue-300 w-full p-4 rounded" rows="20" autofocus></textarea>
