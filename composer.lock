@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0806b3e679c5569e5618108a3a42f221",
+    "content-hash": "33dad01810c831513b75580eb187bd4e",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -510,16 +510,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php-lite",
-            "version": "9.0.9",
+            "version": "9.0.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php-lite.git",
-                "reference": "d7ae8dd1186b54ce1451aec437346dd772321492"
+                "reference": "205492b2d54e3cc808110f1ba6e7c53a1b839196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/d7ae8dd1186b54ce1451aec437346dd772321492",
-                "reference": "d7ae8dd1186b54ce1451aec437346dd772321492",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/205492b2d54e3cc808110f1ba6e7c53a1b839196",
+                "reference": "205492b2d54e3cc808110f1ba6e7c53a1b839196",
                 "shasum": ""
             },
             "require": {
@@ -584,7 +584,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php-lite/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php-lite"
             },
-            "time": "2025-07-08T08:38:23+00:00"
+            "time": "2025-07-18T06:46:03+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -4257,16 +4257,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v1.4.0",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "92ae568e29635b784d9010ff1659d597b1f64772"
+                "reference": "2bb4fcf8de8fa774f779d2d77eb031e7a76a94f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/92ae568e29635b784d9010ff1659d597b1f64772",
-                "reference": "92ae568e29635b784d9010ff1659d597b1f64772",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/2bb4fcf8de8fa774f779d2d77eb031e7a76a94f7",
+                "reference": "2bb4fcf8de8fa774f779d2d77eb031e7a76a94f7",
                 "shasum": ""
             },
             "require": {
@@ -4372,6 +4372,7 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
+            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4448,7 +4449,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.4.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
             },
             "funding": [
                 {
@@ -4456,7 +4457,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-17T09:45:41+00:00"
+            "time": "2025-07-18T09:11:40+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -6294,7 +6295,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "tempest/framework": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},

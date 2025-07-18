@@ -19,6 +19,7 @@ use function Tempest\uri;
 
     <div class="hero-bg h-full flex justify-center">
         <x-form :action="uri([CodeController::class, 'submit'])" class="w-full">
+            <x-csrf-token />
             <div class="grid gap-4 max-full max-w-[66%] mx-auto">
                 <input type="hidden" name="lang" :value="$language" />
                 <label for="code" class="text-xl">Paste your code</label>
