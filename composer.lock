@@ -1063,16 +1063,16 @@
         },
         {
             "name": "league/commonmark",
-            "version": "2.7.0",
+            "version": "2.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "6fbb36d44824ed4091adbcf4c7d4a3923cdb3405"
+                "reference": "10732241927d3971d28e7ea7b5712721fa2296ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/6fbb36d44824ed4091adbcf4c7d4a3923cdb3405",
-                "reference": "6fbb36d44824ed4091adbcf4c7d4a3923cdb3405",
+                "url": "https://api.github.com/repos/thephpleague/commonmark/zipball/10732241927d3971d28e7ea7b5712721fa2296ca",
+                "reference": "10732241927d3971d28e7ea7b5712721fa2296ca",
                 "shasum": ""
             },
             "require": {
@@ -1101,7 +1101,7 @@
                 "symfony/process": "^5.4 | ^6.0 | ^7.0",
                 "symfony/yaml": "^2.3 | ^3.0 | ^4.0 | ^5.0 | ^6.0 | ^7.0",
                 "unleashedtech/php-coding-standard": "^3.1.1",
-                "vimeo/psalm": "^4.24.0 || ^5.0.0"
+                "vimeo/psalm": "^4.24.0 || ^5.0.0 || ^6.0.0"
             },
             "suggest": {
                 "symfony/yaml": "v2.3+ required if using the Front Matter extension"
@@ -1166,7 +1166,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-05-05T12:20:28+00:00"
+            "time": "2025-07-20T12:47:49+00:00"
         },
         {
             "name": "league/config",
@@ -4261,12 +4261,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "361c2fbf6a39e9a0b17b99fff7e2991a62a85daa"
+                "reference": "1089f61c4d72aa4c25b9823b1d84eabe8c77dd97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/361c2fbf6a39e9a0b17b99fff7e2991a62a85daa",
-                "reference": "361c2fbf6a39e9a0b17b99fff7e2991a62a85daa",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/1089f61c4d72aa4c25b9823b1d84eabe8c77dd97",
+                "reference": "1089f61c4d72aa4c25b9823b1d84eabe8c77dd97",
                 "shasum": ""
             },
             "require": {
@@ -4390,6 +4390,7 @@
                     "packages/datetime/src/functions.php",
                     "packages/debug/src/functions.php",
                     "packages/event-bus/src/functions.php",
+                    "packages/http/src/functions.php",
                     "packages/icon/src/functions.php",
                     "packages/intl/src/Number/functions.php",
                     "packages/intl/src/functions.php",
@@ -4460,7 +4461,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-19T06:34:32+00:00"
+            "time": "2025-07-22T04:56:48+00:00"
         },
         {
             "name": "tempest/highlight",
