@@ -6,6 +6,7 @@ namespace App\Highlight;
 
 use App\Highlight\Injections\TempestViewEchoInjection;
 use App\Highlight\Injections\TempestViewPhpInjection;
+use App\Highlight\Patterns\TempestViewCommentPattern;
 use App\Highlight\Patterns\TempestViewDynamicAttributePattern;
 use Tempest\Highlight\Languages\Html\HtmlLanguage;
 
@@ -39,6 +40,7 @@ final class TempestViewLanguage extends HtmlLanguage
         return [
             ...parent::getPatterns(),
             new TempestViewDynamicAttributePattern(),
+            new TempestViewCommentPattern(),
         ];
     }
 }
