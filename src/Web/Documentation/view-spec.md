@@ -551,3 +551,11 @@ Pressing the same keyboard short twice will toggle between server-side and clien
 <!-- this text was selected then commented out via a keyboard shortcut --> — Second press
 this text was selected then commented out via a keyboard shortcut — Third press, reverts back to normal
 ```
+
+## Meta commands
+
+Tempest comes with a hidden console command to gather information about view components:
+
+```console
+./tempest meta:view-component [view-component]
+```
