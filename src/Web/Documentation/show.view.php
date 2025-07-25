@@ -34,9 +34,9 @@
       </nav>
     </div>
     <!-- Mobile sidebar button -->
-    <button onclick="toggleSideBar()" class="fixed lg:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
-      <x-icon name="tabler:list" class="size-6" />
-    </button>
+<!--    <button onclick="toggleSideBar()" class="fixed lg:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">-->
+<!--      <x-icon name="tabler:list" class="size-6" />-->
+<!--    </button>-->
     <!-- Mobile sidebar -->
     <div data-sidebar class="hidden fixed md:hidden inset-0 overflow-auto z-[9] bg-(--ui-bg) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition opacity-100 scale-100 origin-bottom-right">
       <!-- Menu -->

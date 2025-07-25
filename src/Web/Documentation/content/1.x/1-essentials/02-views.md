@@ -499,6 +499,15 @@ Optionally, it accepts an `entrypoint` attribute. If it is passed, the component
 <x-vite-tags entrypoint="src/main.ts" />
 ```
 
+### `x-markdown`
+
+The `{html}x-markdown` component can be used to render markdown content, either directly from your view files, or by passing a content variables into it:
+
+```html
+<x-markdown># hi</x-markdown>
+<x-markdown :content="$text" />
+```
+
 ## Pre-processing views
 
 In most applications, some views will need access to common data. To avoid having to manually provide this data to views through controller methods, it is possible to use view processors to manipulate views before they are rendered.

@@ -160,7 +160,7 @@ final class BookView implements View
 </div>
 ```
 
-### `x-template`
+### Templates
 
 The built-in `{html}<x-template>` element may be used as a placeholder when you want to use a directive without rendering an actual element in the DOM.
 
@@ -441,6 +441,29 @@ On some occasions, you might want to dynamically render view components, ie. ren
 
 Besides components that you may create yourself, Tempest provides a default set of useful built-in components to improve your developer experience.
 
+All meta-data about discovered view components can be retrieved via the hidden `meta:view-component` command.
+
+```console
+./tempest meta:view-component [view-component]
+```
+
+```json
+{
+    "file": "/…/tempest-framework/packages/view/src/Components/x-markdown.view.php",
+    "name": "x-markdown",
+    "slots": [],
+    "variables": [
+        {
+            "type": "string|null",
+            "name": "$content",
+            "attributeName": "content",
+            "description": "The markdown content from a variable"
+        }
+    ]
+}
+
+```
+
 ### `x-icon`
 
 This component provides the ability to inject any icon from the [Iconify](https://iconify.design/) project in your templates.
@@ -474,6 +497,23 @@ Optionally, it accepts an `entrypoint` attribute. If it is passed, the component
 
 ```html x-base.view.php
 <x-vite-tags entrypoint="src/main.ts" />
+```
+
+### `x-template`
+
+See [Templates](#templates).
+
+### `x-slot`
+
+See [Using slots](#using-slots).
+
+### `x-markdown`
+
+A component that will render markdown contents:
+
+```html
+<x-markdown># hi</x-markdown>
+<x-markdown :content="$text" />
 ```
 
 ## Possible IDE integrations
@@ -550,12 +590,4 @@ Pressing the same keyboard short twice will toggle between server-side and clien
 {{-- this text was selected then commented out via a keyboard shortcut --}} — First press
 <!-- this text was selected then commented out via a keyboard shortcut --> — Second press
 this text was selected then commented out via a keyboard shortcut — Third press, reverts back to normal
-```
-
-## Meta commands
-
-Tempest comes with a hidden console command to gather information about view components:
-
-```console
-./tempest meta:view-component [view-component]
 ```
