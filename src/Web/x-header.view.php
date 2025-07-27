@@ -25,7 +25,7 @@ use function Tempest\is_current_uri;
             </a>
 
             <a class="hidden md:inline text-xs tracking-wide font-medium text-(--ui-text-muted) bg-(--ui-bg)/50 px-2 py-1 rounded-lg border border-(--ui-border)" href="https://github.com/tempestphp/tempest-framework/releases/{{ $latest_release }}">
-                {{ $latest_release }}
+                {{ $this->latest_release }}
             </a>
         </div>
 
@@ -56,7 +56,7 @@ use function Tempest\is_current_uri;
 					</a>
           <a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
               <x-icon name="tabler:brand-github" class="size-6"/>
-              <span class="font-semibold hidden lg:inline">{{ $stargazers_count }}</span>
+              <span class="font-semibold hidden lg:inline">{{ $this->stargazers_count }}</span>
           </a>
         </div>
     </header>

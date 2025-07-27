@@ -20,7 +20,7 @@
         <!-- Right -->
         <div class="flex flex-col gap-2 p-2 text-sm bg-(--ui-bg)/20 rounded-xl tracking-normal">
             <div :foreach="$snippets as $snippet" class="bg-(--ui-bg)/50 border border-(--ui-border) rounded-md p-4 [&_pre]:h-full [&_pre]:overflow-x-auto">
-                {!! $codeBlocks[$snippet] !!}
+                {!! $this->codeBlocks[$snippet] !!}
             </div>
         </div>
     </div>

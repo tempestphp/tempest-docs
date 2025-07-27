@@ -7,9 +7,10 @@ use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\HtmlRenderer;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
-use Tempest\View\Components\Icon;
 
+use Tempest\View\ViewRenderer;
 use function Tempest\get;
+use function Tempest\view;
 
 final class AlertBlockRenderer implements NodeRendererInterface
 {
@@ -36,7 +37,9 @@ final class AlertBlockRenderer implements NodeRendererInterface
             default => $node->icon,
         };
 
-        $icon = $iconName ? get(Icon::class)->render($iconName, class: 'alert-icon') : null;
+        $icon = $iconName
+            ? get(ViewRenderer::class)->render(view('<x-icon :name="$name" class="alert-icon" />', name: $iconName))
+            : null;
 
         $content = new HtmlElement(
             tagName: 'div',

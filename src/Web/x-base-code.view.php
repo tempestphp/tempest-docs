@@ -1,7 +1,11 @@
+<?php
+use App\Web\Meta\MetaType;
+?>
+
 <html lang="en" class="h-dvh flex flex-col scroll-smooth">
 <head>
     <!-- Meta title -->
-    <?php use App\Web\Meta\MetaType;
+    <?php
 
     $title = match (true) {
         isset($fullTitle) => $fullTitle,

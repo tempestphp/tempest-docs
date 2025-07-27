@@ -1,7 +1,11 @@
+<?php
+use App\Web\Meta\MetaType;
+?>
+
 <html lang="en" class="h-dvh flex flex-col scroll-smooth">
 <head>
     <!-- Meta title -->
-    <?php use App\Web\Meta\MetaType;
+    <?php
 
     $title = match (true) {
         isset($fullTitle) => $fullTitle,
@@ -77,7 +81,7 @@
 <div class="absolute pointer-events-none inset-0 bg-repeat" style="background-image: url(/noise.svg)">
     <div id="command-palette"></div>
 </div>
-<x-header :stargazers="$stargazers"/>
+<x-header :stargazers="$this->stargazers"/>
 <x-slot/>
 <x-footer/>
 <x-slot name="scripts"/>
