@@ -2,14 +2,14 @@
 
 namespace App\Web\Documentation;
 
+use Tempest\Http\Responses\Redirect;
 use Tempest\Router\Get;
-use Tempest\View\View;
 
 final class ViewSpecController
 {
     #[Get('/docs/view-spec')]
-    public function __invoke(): View
+    public function __invoke(): Redirect
     {
-        return markdown(__DIR__ . '/view-spec.md');
+        return new Redirect('/docs/internals/view-spec');
     }
 }
