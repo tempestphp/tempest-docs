@@ -398,6 +398,40 @@ On some occasions, you might want to dynamically render view components, ie. ren
 <x-component :is="$name" :title="$title" />
 ```
 
+### View component scope
+
+View components act almost exactly the same as PHP's closures: they only have access to the variables you explicitly provide them, and any variable defined within a view component won't leak into the out scope.
+
+The only difference with normal closures is that view components also have access to view-defined variables as local variables.
+
+```html
+<?php 
+$title = 'foo';
+?>
+
+<!-- $title will need to be passed in explicitly, 
+     otherwise `x-post` wouldn't know about it: -->
+
+<x-post :title="$title"></x-post> 
+```
+
+```php
+/* View-defined data will be available within the component directly */
+final class HomeController
+{
+    #[Get('/')]
+    public function __invoke(): View
+    {
+        return view('<x-base />', siteTitle: 'Tempest');
+    }
+}
+```
+
+```html x-base.view.php
+
+<h1>{{ $siteTitle }}</h1>
+```
+
 ## Built-in components
 
 Besides components that you may create yourself, Tempest provides a default set of useful built-in components to improve your developer experience.
@@ -518,6 +552,18 @@ A component that will render markdown contents:
 <x-markdown># hi</x-markdown>
 <x-markdown :content="$text" />
 ```
+
+### `x-component`
+
+A reserved component to render dynamic view components:
+
+```html
+<x-component is="x-post" :title="$title">
+    Content
+</x-component>
+```
+
+The attributes and content of dynamic components are passed to the underlying component.
 
 ## Possible IDE integrations
 
