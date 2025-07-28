@@ -335,7 +335,7 @@ The example above defines a button component with default classes, and a slot in
 
 A view component's slot can define a default value, which will be used when a view using that component doesn't pass any value to it:
 
-```html x-component.view.php
+```html x-my-component.view.php
 <div>
     <x-slot>Fallback value</x-slot>
     <x-slot name="a">Fallback value for named slot</x-slot>
@@ -343,7 +343,7 @@ A view component's slot can define a default value, which will be used when a vi
 ```
 
 ```html
-<x-component />
+<x-my-component />
 
 <!-- Will render "Fallback value" and "Fallback value for named slot" -->
 ```
@@ -412,47 +412,9 @@ For instance, the snippet below implements a tab component that accepts any numb
 </x-tabs>
 ```
 
-### View component classes
-
-While anonymous components are useful on their own, there is sometimes the need to have more logic regarding the rendering of an element.
-
-By creating a class that implements {`Tempest\View\ViewComponent`}, you may affect the rendering process of a component. As with everything in Tempest, class components are automatically discovered and registered.
-
-```php ViteTagsComponent.php
-use Tempest\View\Elements\ViewComponentElement;
-use Tempest\View\ViewComponent;
-
-final readonly class ViteTagsComponent implements ViewComponent
-{
-    public function __construct(
-        private ViteConfig $viteConfig,
-    ) {
-    }
-
-    public static function getName(): string
-    {
-        return 'x-vite-tags';
-    }
-
-    public function compile(ViewComponentElement $element): string
-    {
-        $entrypoints = match (true) {
-            $element->hasAttribute('entrypoints') => '$entrypoints',
-            default => var_export($this->viteConfig->entrypoints, return: true),
-        };
-
-        return <<<HTML
-            <?= \Tempest\\vite_tags({$entrypoints}) ?>
-        HTML;
-    }
-}
-```
-
-The above is a simplified implementation of the built-in `{html}<x-vite-tags />`. The `{php}compile` method is expected to return normal PHP, that will not be parsed again by the templating engine.
-
 ### Dynamic view components
 
-On some occasions, you might want to dynamically render view components, ie. render a view component whose name is determined at runtime. You can use the `{html}<x-component :is="">` element to do so:
+On some occasions, you might want to dynamically render view components, for example, render a view component whose name is determined at runtime. You can use the `{html}<x-component :is="">` element to do so:
 
 ```html
 <!-- $name = 'x-post' -->
@@ -460,9 +422,101 @@ On some occasions, you might want to dynamically render view components, ie. ren
 <x-component :is="$name" :title="$title" />
 ```
 
+### View component scope
+
+View components act almost exactly the same as PHP's closures: they only have access to the variables you explicitly provide them, and any variable defined within a view component won't leak into the out scope.
+
+The only difference with normal closures is that view components also have access to view-defined variables as local variables.
+
+```html
+<?php 
+$title = 'foo';
+?>
+
+<!-- $title will need to be passed in explicitly, 
+     otherwise `x-post` wouldn't know about it: -->
+
+<x-post :title="$title"></x-post> 
+```
+
+```php
+/* View-defined data will be available within the component directly */
+final class HomeController
+{
+    #[Get('/')]
+    public function __invoke(): View
+    {
+        return view('<x-base />', siteTitle: 'Tempest');
+    }
+}
+```
+
+```html x-base.view.php
+
+<h1>{{ $siteTitle }}</h1>
+```
+
 ## Built-in components
 
-Besides components that you may create yourself, Tempest provides a default set of useful built-in components to improve your developer experience.
+Besides components that you may create yourself, Tempest provides a default set of useful built-in components to improve your developer experience. Any vendor-provided component can be published in your own project by running the `tempest install` command:
+
+```console
+./tempest install view-components
+
+ <dim>│</dim> <em>Select which view components you want to install</em>
+ <dim>│</dim> / <dim>Filter...</dim>
+ <dim>│</dim> → ⋅ x-csrf-token
+ <dim>│</dim>   ⋅ x-markdown
+ <dim>│</dim>   ⋅ x-input
+ <dim>│</dim>   ⋅ x-icon
+ 
+<comment>…</comment>
+```
+
+Any component with the same name that lives in your local project will get precedence over vendor-defined components.
+
+### `x-base`
+
+A base template you can install into your own project as a starting point. This one includes the Tailwind CDN for quick prototyping.
+
+```html
+<x-base :title="Blog">
+    <h1>Welcome!</h1>
+</x-base>
+```
+
+### `x-form`
+
+This component provides a form element that will post by default instead of get:
+
+```html
+<?php
+use function \Tempest\uri;
+?>
+
+<x-form :action="uri(StorePostController::class)">
+    <!-- … -->
+</x-form>
+```
+
+### `x-input`
+
+A versatile input component that will render labels and validation errors automatically.
+
+```html
+<x-input name="title" />
+<x-input name="content" type="textarea" label="Write your content" />
+<x-input name="email" type="email" id="other_email" />
+```
+
+### `x-submit`
+
+A submit button component that prefills with a "Submit" label:
+
+```html
+<x-submit />
+<x-submit label="Send" />
+```
 
 ### `x-icon`
 

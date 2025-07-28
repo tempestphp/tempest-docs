@@ -388,45 +388,6 @@ For instance, the snippet below implements a tab component that accepts any numb
 </x-tabs>
 ```
 
-
-### View component classes
-
-While anonymous components are useful on their own, there is sometimes the need to have more logic regarding the rendering of an element.
-
-By creating a class that implements {`Tempest\View\ViewComponent`}, you may affect the rendering process of a component. As with everything in Tempest, class components are automatically discovered and registered.
-
-```php ViteTagsComponent.php
-use Tempest\View\Elements\ViewComponentElement;
-use Tempest\View\ViewComponent;
-
-final readonly class ViteTagsComponent implements ViewComponent
-{
-    public function __construct(
-        private ViteConfig $viteConfig,
-    ) {
-    }
-
-    public static function getName(): string
-    {
-        return 'x-vite-tags';
-    }
-
-    public function compile(ViewComponentElement $element): string
-    {
-        $entrypoints = match (true) {
-            $element->hasAttribute('entrypoints') => '$entrypoints',
-            default => var_export($this->viteConfig->entrypoints, return: true),
-        };
-
-        return <<<HTML
-            <?= \Tempest\\vite_tags({$entrypoints}) ?>
-        HTML;
-    }
-}
-```
-
-The above is a simplified implementation of the built-in `{html}<x-vite-tags />`. The `{php}compile` method is expected to return normal PHP, that will not be parsed again by the templating engine.
-
 ### Dynamic view components
 
 On some occasions, you might want to dynamically render view components, ie. render a view component whose name is determined at runtime. You can use the `{html}<x-component :is="">` element to do so:
@@ -461,7 +422,49 @@ All meta-data about discovered view components can be retrieved via the hidden `
         }
     ]
 }
+```
 
+### `x-base`
+
+A base template you can install into your own project as a starting point. This one includes the Tailwind CDN for quick prototyping.
+
+```html
+<x-base :title="Blog">
+    <h1>Welcome!</h1>
+</x-base>
+```
+
+### `x-form`
+
+This component provides a form element that will post by default instead of get:
+
+```html
+<?php
+use function \Tempest\uri;
+?>
+
+<x-form :action="uri(StorePostController::class)">
+    <!-- … -->
+</x-form>
+```
+
+### `x-input`
+
+A versatile input component that will render labels and validation errors automatically.
+
+```html
+<x-input name="title" />
+<x-input name="content" type="textarea" label="Write your content" />
+<x-input name="email" type="email" id="other_email" />
+```
+
+### `x-submit`
+
+A submit button component that prefills with a "Submit" label:
+
+```html
+<x-submit />
+<x-submit label="Send" />
 ```
 
 ### `x-icon`
