@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33dad01810c831513b75580eb187bd4e",
+    "content-hash": "735c385932285946727873aa8eb43377",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -4257,16 +4257,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "dev-main",
+            "version": "v1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "3483fe4f051035ee025a073ecce1515df1ec31bb"
+                "reference": "479d39e8a319047695f062ac09b10716c83eafcc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/3483fe4f051035ee025a073ecce1515df1ec31bb",
-                "reference": "3483fe4f051035ee025a073ecce1515df1ec31bb",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/479d39e8a319047695f062ac09b10716c83eafcc",
+                "reference": "479d39e8a319047695f062ac09b10716c83eafcc",
                 "shasum": ""
             },
             "require": {
@@ -4375,7 +4375,6 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
-            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4454,7 +4453,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/main"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v1.5.0"
             },
             "funding": [
                 {
@@ -4462,7 +4461,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-07-28T12:21:06+00:00"
+            "time": "2025-07-28T13:31:24+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -6300,9 +6299,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tempest/framework": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},
