@@ -130,7 +130,7 @@ While this style might require some getting used to for some people, I think it 
 
 ## Work in progress IDE support
 
-Then, the final (very much WORK IN PROGRESS) feature: Nicolas and Márk have stepped up to build an [LSP for Tempest](https://github.com/nhedger/tempest-ls), as well as plugins for [PhpStorm](https://plugins.jetbrains.com/plugin/27971-tempest/edit) and [VSCode](https://marketplace.visualstudio.com/items?itemName=nhedger.tempest).
+Then, the final (very much WORK IN PROGRESS) feature: Nicolas and Márk have stepped up to build an [LSP for Tempest](https://github.com/nhedger/tempest-ls), as well as plugins for [PhpStorm](https://plugins.jetbrains.com/plugin/27971-tempest) and [VSCode](https://marketplace.visualstudio.com/items?itemName=nhedger.tempest).
 
 There is a lot of work to be done, but it's amazing to see this moving forward. If you want to get involved, definitely [join our Discord server](/discord), and you can also check out the [Tempest View specification](/docs/internals/view-spec) to learn more about the language itself.
 
