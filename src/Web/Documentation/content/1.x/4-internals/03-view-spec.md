@@ -1,9 +1,9 @@
 ---
-title: Tempest/view spec
-description: Technical specification for tempest/view, to be used for static analysis and IDE integration 
+title: Tempest View spec
+description: Technical specification for Tempest View, to be used for static analysis and IDE integration 
 ---
 
-Tempest/view is a server-side templating engine powered by PHP. Most of its syntax is inspired by [Vue.js](https://vuejs.org/). Tempest/view aims to stay as close as possible to HTML, using PHP where needed. All syntax builds on top of HTML and PHP so that developers don't need to learn any new syntax.
+Tempest View is a server-side templating engine powered by PHP. Most of its syntax is inspired by [Vue.js](https://vuejs.org/). Tempest View aims to stay as close as possible to HTML, using PHP where needed. All syntax builds on top of HTML and PHP so that developers don't need to learn any new syntax.
 
 ## Basic Syntax
 

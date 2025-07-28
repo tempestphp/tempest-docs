@@ -5,14 +5,12 @@ keywords: "Experimental"
 ---
 
 :::warning
-Tempest/view is currently experimental and is not covered by our backwards compatibility promise.
+Tempest View is currently experimental and is not covered by our backwards compatibility promise.
 :::
 
 ## Overview
 
-Views in Tempest use a syntax that can be thought of as a superset of HTML. Under the hood, [PHP 8.4's DOM parser](https://www.php.net/manual/en/book.dom.php) is used to parse templates before compiling them.
-
-If you prefer using a templating engine with more widespread support, [you may also use Blade, Twig, or any other](#using-other-engines)—as long as you provide a way to initialize it.
+Views in Tempest are parsed by Tempest View, our own templating engine. Tempest View uses a syntax that can be thought of as a superset of HTML. If you prefer using a templating engine with more widespread support, [you may also use Blade, Twig, or any other](#using-other-engines)—as long as you provide a way to initialize it.
 
 ### Syntax overview
 
