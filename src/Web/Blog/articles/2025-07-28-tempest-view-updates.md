@@ -134,6 +134,12 @@ Then, the final (very much WORK IN PROGRESS) feature: Nicolas and Márk have ste
 
 There is a lot of work to be done, but it's amazing to see this moving forward. If you want to get involved, definitely [join our Discord server](/discord), and you can also check out the [Tempest View specification](/docs/internals/view-spec) to learn more about the language itself.
 
+## All breaking changes listed
+
+- `{html}<x-csrf-token />` must now be added to all forms ([#1411](https://github.com/tempestphp/tempest-framework/pull/1411)).
+- View component variables must be passed explicitly ([#1435](https://github.com/tempestphp/tempest-framework/pull/1435)).
+- The `ViewComponent` interface and `{html}<x-component name="">` have been removed ([#1439](https://github.com/tempestphp/tempest-framework/pull/1439)). You must now always use file-based view components.
+
 ## What's next?
 
 From the beginning I've said that IDE support is a must for any project to succeed. It now looks like there's a real chance of that happening, which is amazing. Besides IDE support, there are a couple of big features to tackle: I want Tempest to ship with some form of "standard component library" that people can use as a scaffold, we're looking into adding HTMX support (or something alike) to build async components, and we plan on making bridges for Laravel and Symfony so that you can use Tempest View in projects outside of Tempest as well. 
