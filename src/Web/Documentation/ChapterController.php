@@ -46,8 +46,7 @@ final readonly class ChapterController
             ->toString();
 
         return new Redirect(uri(
-            [self::class, '__invoke'],
-            version: $version,
+            [self::class, 'default'],
             category: $category,
             slug: $slug,
         ));
