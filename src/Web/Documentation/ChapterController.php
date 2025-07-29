@@ -25,6 +25,7 @@ final readonly class ChapterController
         return new Redirect(sprintf('/%s/%s', Version::default()->value, $path));
     }
 
+    #[Get('/docs')]
     #[Get('/documentation')]
     #[Get('/main/framework/getting-started')]
     public function index(): Redirect
