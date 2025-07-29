@@ -18,7 +18,6 @@ use function Tempest\uri;
 
 final readonly class ChapterController
 {
-    #[Get('/docs/{path:.*}')]
     #[Get('/current/{path:.*}')]
     #[Get('/main/{path:.*}')]
     public function docsRedirect(string $path): Redirect
@@ -54,18 +53,34 @@ final readonly class ChapterController
         ));
     }
 
+    #[StaticPage(DefaultDocumentationDataProvider::class)]
+    #[Get('/docs/{category}/{slug}')]
+    public function default(string $category, string $slug, ChapterRepository $chapterRepository): View|Response
+    {
+        return $this->chapterView(Version::default(), $category, $slug, $chapterRepository) ?? new NotFound();
+    }
+
     #[StaticPage(DocumentationDataProvider::class)]
     #[Get('/{version}/{category}/{slug}')]
     public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): View|Response
     {
+        if ($version === Version::default()->value) {
+            return new Redirect(uri([self::class, 'default'], category: $category, slug: $slug));
+        }
+
         if (is_null($version = Version::tryFromString($version))) {
             return new NotFound();
         }
 
+        return $this->chapterView($version, $category, $slug, $chapterRepository) ?? new NotFound();
+    }
+
+    private function chapterView(Version $version, string $category, string $slug, ChapterRepository $chapterRepository): ?ChapterView
+    {
         $currentChapter = $chapterRepository->find($version, $category, $slug);
 
         if (! $currentChapter || $currentChapter->hidden) {
-            return new NotFound();
+            return null;
         }
 
         return new ChapterView(
