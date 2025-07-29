@@ -1,7 +1,7 @@
 <?php
 
 use App\Web\Blog\BlogController;
-use App\Web\Documentation\ChapterController;
+use App\Web\Documentation\DocumentationController;
 use App\Web\Community\CommunityController;
 
 use function Tempest\is_current_uri;
@@ -48,8 +48,8 @@ use function Tempest\is_current_uri;
     						: '' ?>"
 					>Blog</a>
 					<a
-						:href="uri([ChapterController::class, 'index'])"
-						class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([ChapterController::class, '__invoke']) ? 'md:text-(--ui-primary)' : '' ?>"
+						:href="uri([DocumentationController::class, 'index'])"
+						class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([DocumentationController::class, '__invoke']) ? 'md:text-(--ui-primary)' : '' ?>"
 					>
 						<span class="sm:hidden">Docs</span>
 						<span class="hidden sm:inline">Documentation</span>

@@ -57,7 +57,7 @@ final readonly class DocumentationIndexer implements Indexer
                 $main = new Command(
                     type: Type::URI,
                     title: $title,
-                    uri: uri(ChapterController::class, version: $version, category: $category, slug: $chapter),
+                    uri: uri(DocumentationController::class, version: $version, category: $category, slug: $chapter),
                     hierarchy: [
                         'Documentation',
                         to_sentence_case($category),

@@ -23,7 +23,7 @@ final class Chapter
 
     public function getUri(): string
     {
-        return uri(ChapterController::class, version: $this->version, category: $this->category, slug: $this->slug);
+        return uri(DocumentationController::class, version: $this->version, category: $this->category, slug: $this->slug);
     }
 
     public function getMetaUri(): string

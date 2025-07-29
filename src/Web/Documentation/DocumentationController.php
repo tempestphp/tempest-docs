@@ -16,7 +16,7 @@ use function Tempest\Support\arr;
 use function Tempest\Support\Str\before_first;
 use function Tempest\uri;
 
-final readonly class ChapterController
+final readonly class DocumentationController
 {
     #[Get('/current/{path:.*}')]
     #[Get('/main/{path:.*}')]
@@ -47,8 +47,8 @@ final readonly class ChapterController
 
         return new Redirect(uri(
             [self::class, 'default'],
-            category: $category,
-            slug: $slug,
+            category: str_replace('0-', '', $category),
+            slug: str_replace('01-', '', $slug),
         ));
     }
 

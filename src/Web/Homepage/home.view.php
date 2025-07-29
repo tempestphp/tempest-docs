@@ -1,7 +1,7 @@
 <?php
 
 use App\Web\Blog\BlogController;
-use App\Web\Documentation\ChapterController;
+use App\Web\Documentation\DocumentationController;
 use App\Web\RedirectsController;
 
 use function Tempest\uri;
@@ -30,7 +30,7 @@ use function Tempest\uri;
             Tempest embraces modern PHP and covers a wide range of features, giving you all the tools you need to focus on your code.
         </p>
         <div class="mt-6 md:mt-8 xl:mt-10 flex gap-x-4 items-center font-medium text-lg">
-          <a :href="uri([ChapterController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
+          <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
             Get started
           </a>
           <a :href="uri([RedirectsController::class, 'github'])" class="hidden min-[401px]:flex text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-6 py-2.5 items-center gap-x-1.5 transition">
@@ -57,7 +57,7 @@ use function Tempest\uri;
 					'Tempest doesn\'t require hand-holding. Your code is scanned and everything is configured automatically: routes, view components, console commands, event handlers, middleware, migrations — everything.',
 				]"
 				link-label="Discovery"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'internals', slug: 'discovery')"
+				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'internals', slug: 'discovery')"
 				:snippets="['controller', 'view-component', 'event-handler']"
 			></x-home-section>
       <!-- Template engine -->
@@ -68,7 +68,7 @@ use function Tempest\uri;
 					'Do you prefer something tried and tested? Tempest has built-in support for Blade and Twig as well.',
 				]"
 				link-label="Templating"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'views')"
+				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'views')"
 				:snippets="['templating-view', 'templating-component']"
 			></x-home-section>
       <!-- ORM-->
@@ -78,7 +78,7 @@ use function Tempest\uri;
 					'Models in Tempest embrace modern PHP and are designed to be decoupled from the database; they don\'t even have to persist to the database and can be mapped to any kind of data source.',
 				]"
 				link-label="ORM"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'database')"
+				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'database')"
 				:snippets="['model', 'orm']"
 			></x-home-section>
       <!-- Console-->
@@ -88,7 +88,7 @@ use function Tempest\uri;
 					'Thinking out of the box, Tempest\'s console component is a brand new approach to building console applications with PHP',
 				]"
 				link-label="Console"
-				:link-uri="uri(ChapterController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'console-commands')"
+				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'console-commands')"
 				:snippets="['console']"
 			></x-home-section>
       <!-- Much more-->
@@ -98,7 +98,7 @@ use function Tempest\uri;
 					'Configuration objects for easy autocompletion and injection, data mapping, a powerful dependency container with autowiring. Tempest is designed to be frictionless.',
 				]"
 				link-label="Get started"
-				:link-uri="uri([ChapterController::class, 'index'])"
+				:link-uri="uri([DocumentationController::class, 'index'])"
 				:snippets="['config', 'static-pages', 'query', 'markdown-initializer']"
 			></x-home-section>
     </main>

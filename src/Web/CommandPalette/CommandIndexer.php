@@ -3,7 +3,7 @@
 namespace App\Web\CommandPalette;
 
 use App\Web\Blog\BlogController;
-use App\Web\Documentation\ChapterController;
+use App\Web\Documentation\DocumentationController;
 use App\Web\RedirectsController;
 use Tempest\Support\Arr\ImmutableArray;
 
@@ -18,7 +18,7 @@ final readonly class CommandIndexer implements Indexer
                 title: 'Read the documentation',
                 type: Type::URI,
                 hierarchy: ['Commands', 'Documentation'],
-                uri: uri([ChapterController::class, 'index']),
+                uri: uri([DocumentationController::class, 'index']),
             ),
             new Command(
                 title: 'Visit the blog',
