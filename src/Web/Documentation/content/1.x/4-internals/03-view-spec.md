@@ -470,7 +470,7 @@ A base template you can install into your own project as a starting point. This 
 
 ### `x-form`
 
-This component provides a form element that will post by default instead of get:
+This component provides a form element that will post by default and includes the csrf token out of the box:
 
 ```html
 <?php
@@ -499,6 +499,16 @@ A submit button component that prefills with a "Submit" label:
 ```html
 <x-submit />
 <x-submit label="Send" />
+```
+
+### `x-csrf-token`
+
+Includes the CSRF token in a form
+
+```html
+<form action="…">
+    <x-csrf-token />
+</form>
 ```
 
 ### `x-icon`

@@ -1,6 +1,7 @@
 <?php
 
 /** @var \App\Web\Blog\BlogPost[] $posts */
+use function Tempest\Support\str;
 ?>
 
 <x-base title="Blog">
@@ -35,7 +36,7 @@
 							:class="$post->tag->getStyle()"
 							class="font-medium inline-flex items-center text-xs px-2 py-1 gap-1 rounded ring ring-inset"
 						>
-							{{ $post->tag->value }}
+							{{ str($post->tag->value)->title() }}
 						</span>
 						<span :if="$post->author" class="text-(--ui-text-muted) text-sm">
 							by <span class="font-medium">{{ $post->author->getName() }}</span> on <span class="font-medium">{{ $post->createdAt->format('F d, Y') }}</span>

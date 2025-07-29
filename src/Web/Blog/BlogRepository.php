@@ -36,6 +36,14 @@ final readonly class BlogRepository
                     ...YamlFrontMatter::parse(file_get_contents($path))->matter(),
                 ];
 
+                if (isset($data['tag'])) {
+                    $data['tag'] = strtolower($data['tag']);
+                }
+
+                if (isset($data['author'])) {
+                    $data['author'] = strtolower($data['author']);
+                }
+
                 if ($loadContent) {
                     $data['content'] = $this->parseContent($path)->getContent();
                 }
@@ -62,6 +70,14 @@ final readonly class BlogRepository
             'createdAt' => $this->parseDate($path),
             ...$content->getFrontMatter(),
         ];
+
+        if (isset($data['tag'])) {
+            $data['tag'] = strtolower($data['tag']);
+        }
+
+        if (isset($data['author'])) {
+            $data['author'] = strtolower($data['author']);
+        }
 
         return map($data)->to(BlogPost::class);
     }

@@ -4,9 +4,9 @@ namespace App\Web\Blog;
 
 enum BlogPostTag: string
 {
-    case RELEASE = 'Release';
-    case THOUGHTS = 'Thoughts';
-    case TUTORIAL = 'Tutorial';
+    case RELEASE = 'release';
+    case THOUGHTS = 'thoughts';
+    case TUTORIAL = 'tutorial';
 
     public function getStyle(): string
     {
