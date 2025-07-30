@@ -38,13 +38,37 @@ final class HomeControllerTest extends IntegrationTestCase
 }
 ```
 
+## Test-specific discovery locations
+
+Tempest does not discover files outside of the namespaces defined in the `require` object of `composer.json`. If you need Tempest to discover test-specific fixture files, you may specify paths using the `discoveryLocations` property of the provided `IntegrationTestCase` class.
+
+For instance, you may create a `tests/config` directory that contains test-specific configuration files, and instruct Tempest to discover them:
+
+```php tests/IntegrationTestCase.php
+use Tempest\Core\DiscoveryLocation;
+
+final class IntegrationTestCase extends TestCase
+{
+    protected string $root = __DIR__ . '/../';
+
+    protected function setUp(): void
+    {
+        $this->discoveryLocations = [
+            new DiscoveryLocation(namespace: 'Tests\\Config', path: __DIR__ . '/config'),
+        ];
+
+        parent::setUp();
+    }
+}
+```
+
 ## Changing the location of tests
 
 The `phpunit.xml` file contains a `{html}<testsuite>` element that configures the directory in which PHPUnit looks for test files. This may be changed to follow any rule of your convenience.
 
 For instance, you may colocate test files and their corresponding class by changing the `{html}suffix` attribute in `phpunit.xml` to the following:
 
-```diff
+```diff phpunit.xml
 <testsuites>
 	<testsuite name="Tests">
 -		<directory suffix="Test.php">./tests</directory>
