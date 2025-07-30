@@ -38,13 +38,11 @@ final class HomeControllerTest extends IntegrationTestCase
 }
 ```
 
-## Additional configuration
+## Test-specific discovery locations
 
-By default, only the entries inside the `require` key of the `composer.json` file are discovered.
-As such if the tests need additional configuration, these locations need to be discovered manually.
-In which case you may add these locations to the `discoveryLocations` property of the `IntegrationTestCase` class.
+Tempest does not discover files outside of the namespaces defined in the `require` object of `composer.json`. If you need Tempest to discover test-specific fixture files, you may specify paths using the `discoveryLocations` property of the provided `IntegrationTestCase` class.
 
-For example `tests/Config` contains configuration that is only needed for tests, like database configuration.
+For instance, you may create a `tests/config` directory that contains test-specific configuration files, and instruct Tempest to discover them:
 
 ```php tests/IntegrationTestCase.php
 use Tempest\Core\DiscoveryLocation;
@@ -56,7 +54,7 @@ final class IntegrationTestCase extends TestCase
     protected function setUp(): void
     {
         $this->discoveryLocations = [
-            new DiscoveryLocation(namespace: 'Tests\\Config', path: __DIR__ . '/Config'),
+            new DiscoveryLocation(namespace: 'Tests\\Config', path: __DIR__ . '/config'),
         ];
 
         parent::setUp();
