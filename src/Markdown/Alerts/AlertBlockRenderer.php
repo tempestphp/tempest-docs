@@ -7,8 +7,8 @@ use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\HtmlRenderer;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
-
 use Tempest\View\ViewRenderer;
+
 use function Tempest\get;
 use function Tempest\view;
 

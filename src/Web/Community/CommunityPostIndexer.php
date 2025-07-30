@@ -13,9 +13,11 @@ final readonly class CommunityPostIndexer implements Indexer
         private CommunityPostsRepository $repository,
     ) {}
 
+    #[\Override]
     public function index(): ImmutableArray
     {
-        return $this->repository->all()
+        return $this->repository
+            ->all()
             ->map(function (CommunityPost $post) {
                 return new Command(
                     title: $post->title,

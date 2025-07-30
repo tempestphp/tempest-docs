@@ -32,10 +32,10 @@ final readonly class HandleParser implements InlineParserInterface
         [$platform, $handle, $text] = $inlineContext->getSubMatches() + [null, null, null];
 
         $url = match ($platform) {
-            'bluesky', 'bsky' => "https://bsky.app/profile/$handle",
-            'gh', 'github' => "https://github.com/$handle",
-            'x', 'twitter' => "https://x.com/$handle",
-            default => throw new \RuntimeException("Unknown platform: $platform"),
+            'bluesky', 'bsky' => "https://bsky.app/profile/{$handle}",
+            'gh', 'github' => "https://github.com/{$handle}",
+            'x', 'twitter' => "https://x.com/{$handle}",
+            default => throw new \RuntimeException("Unknown platform: {$platform}"),
         };
 
         $inlineContext->getContainer()->appendChild(

@@ -18,7 +18,7 @@ final readonly class IndexCommandPaletteCommand
     #[ConsoleCommand(
         name: 'command-palette:index',
         description: 'Exports available commands to a JSON index file that can be consumed by the front-end.',
-        aliases: ['index']
+        aliases: ['index'],
     )]
     public function __invoke(): void
     {

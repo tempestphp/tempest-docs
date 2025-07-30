@@ -11,6 +11,7 @@ use function Tempest\uri;
 
 final readonly class CommandIndexer implements Indexer
 {
+    #[\Override]
     public function index(): ImmutableArray
     {
         return new ImmutableArray([

@@ -4,6 +4,7 @@ use App\Markdown\MarkdownPost;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
 use Tempest\View\View;
+
 use function Tempest\get;
 use function Tempest\map;
 use function Tempest\view;

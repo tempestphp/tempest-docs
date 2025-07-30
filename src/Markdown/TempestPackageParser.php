@@ -41,7 +41,7 @@ final readonly class TempestPackageParser implements InlineParserInterface
         };
 
         $link = new Link($url);
-        $link->appendChild(new Code("tempest/$package"));
+        $link->appendChild(new Code("tempest/{$package}"));
         $inlineContext->getContainer()->appendChild($link);
 
         return true;

@@ -15,6 +15,7 @@ final class IndexerDiscovery implements Discovery
         private readonly IndexerConfig $indexerConfig,
     ) {}
 
+    #[\Override]
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         if ($class->implements(Indexer::class)) {
@@ -22,6 +23,7 @@ final class IndexerDiscovery implements Discovery
         }
     }
 
+    #[\Override]
     public function apply(): void
     {
         foreach ($this->discoveryItems as $className) {

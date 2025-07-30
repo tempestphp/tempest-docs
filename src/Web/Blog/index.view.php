@@ -2,6 +2,7 @@
 
 /** @var \App\Web\Blog\BlogPost[] $posts */
 use function Tempest\Support\str;
+
 ?>
 
 <x-base title="Blog">

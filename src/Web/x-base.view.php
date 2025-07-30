@@ -1,5 +1,6 @@
 <?php
 use App\Web\Meta\MetaType;
+
 ?>
 
 <html lang="en" class="h-dvh flex flex-col scroll-smooth">

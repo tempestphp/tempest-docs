@@ -13,7 +13,7 @@
 	"require-dev": {
 		"phpunit/phpunit": "^12.2.5",
 		"symfony/var-dumper": "^7.3.1",
-		"carthage-software/mago": "^0.25.0"
+		"carthage-software/mago": "^0.26.1"
 	},
 	"autoload": {
 		"psr-4": {
@@ -45,9 +45,10 @@
 		"qa": [
 			"composer mago:fmt",
 			"composer phpunit",
-			"composer mago:lint",
+      "bun run build",
 			"@php ./tempest static:generate",
-			"@php ./tempest static:clean"
+			"@php ./tempest static:clean",
+      "rm -rf public/build"
 		]
 	},
 	"minimum-stability": "dev",

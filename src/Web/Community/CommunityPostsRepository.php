@@ -4,6 +4,7 @@ namespace App\Web\Community;
 
 use Symfony\Component\Yaml\Yaml;
 use Tempest\Support\Arr\ImmutableArray;
+
 use function Tempest\Support\arr;
 
 final class CommunityPostsRepository

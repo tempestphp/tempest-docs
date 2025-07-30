@@ -1,8 +1,8 @@
 <?php
 
 use App\Web\Blog\BlogController;
-use App\Web\Documentation\DocumentationController;
 use App\Web\Community\CommunityController;
+use App\Web\Documentation\DocumentationController;
 
 use function Tempest\is_current_uri;
 

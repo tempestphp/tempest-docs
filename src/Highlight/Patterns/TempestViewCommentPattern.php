@@ -15,6 +15,7 @@ final readonly class TempestViewCommentPattern implements Pattern
         return '(?<match>\{\{\-\-(.|\n)*?\-\-\}\})';
     }
 
+    #[\Override]
     public function getTokenType(): TokenTypeEnum
     {
         return TokenTypeEnum::COMMENT;

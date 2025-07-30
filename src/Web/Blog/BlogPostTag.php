@@ -10,7 +10,7 @@ enum BlogPostTag: string
 
     public function getStyle(): string
     {
-        return match($this) {
+        return match ($this) {
             self::THOUGHTS => 'ring-amber-200 text-amber-400',
             self::RELEASE => 'ring-blue-200 text-blue-400',
             self::TUTORIAL => 'ring-teal-200 text-teal-400',

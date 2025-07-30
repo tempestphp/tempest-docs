@@ -32,6 +32,7 @@ final readonly class DocumentationIndexer implements Indexer
     /**
      * @return ImmutableArray<Command>
      */
+    #[\Override]
     public function index(): ImmutableArray
     {
         $version = Version::default();

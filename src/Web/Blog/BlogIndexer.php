@@ -20,6 +20,7 @@ final readonly class BlogIndexer implements Indexer
         private MarkdownConverter $markdown,
     ) {}
 
+    #[\Override]
     public function index(): ImmutableArray
     {
         return arr(glob(__DIR__ . '/articles/*.md'))

@@ -39,6 +39,6 @@ final readonly class EllisonController
 
         $ellison = $highlighter->parse(base64_decode($request->getSessionValue('ellison') ?? base64_encode('Hello World'), strict: true), 'ellison');
 
-        return view(__DIR__ . '/ellison_preview.view.php')->data(ellison: '<pre data-lang="ellison">' . $ellison .'</pre>');
+        return view(__DIR__ . '/ellison_preview.view.php')->data(ellison: '<pre data-lang="ellison">' . $ellison . '</pre>');
     }
 }
