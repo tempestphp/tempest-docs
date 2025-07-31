@@ -2,6 +2,7 @@
 
 namespace App\Web\Blog;
 
+use App\Web\Meta\MetaImageController;
 use DateTimeImmutable;
 
 use function Tempest\uri;
@@ -18,8 +19,9 @@ final class BlogPost
     public bool $published = true;
     public array $meta = [];
     public string $uri {
-        get {
-            return uri([BlogController::class, 'show'], slug: $this->slug);
-        }
+        get => uri([BlogController::class, 'show'], slug: $this->slug);
+    }
+    public string $metaImageUri {
+        get => uri([MetaImageController::class, 'blog'], slug: $this->slug);
     }
 }

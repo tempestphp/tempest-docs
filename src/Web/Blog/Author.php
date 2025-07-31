@@ -6,6 +6,13 @@ enum Author: string
 {
     case BRENT = 'brent';
 
+    public function getFullName(): string
+    {
+        return match ($this) {
+            self::BRENT => 'Brent Roose',
+        };
+    }
+
     public function getName(): string
     {
         return match ($this) {
