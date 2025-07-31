@@ -1,6 +1,6 @@
 ---
-title: Tempest View spec
-description: Technical specification for Tempest View, to be used for static analysis and IDE integration 
+title: View specifications
+description: Read the technical specifications for Tempest View, our templating language.
 ---
 
 Tempest View is a server-side templating engine powered by PHP. Most of its syntax is inspired by [Vue.js](https://vuejs.org/). Tempest View aims to stay as close as possible to HTML, using PHP where needed. All syntax builds on top of HTML and PHP so that developers don't need to learn any new syntax.
@@ -412,7 +412,7 @@ $title = 'foo';
 <!-- $title will need to be passed in explicitly, 
      otherwise `x-post` wouldn't know about it: -->
 
-<x-post :title="$title"></x-post> 
+<x-post :title="$title"></x-post>
 ```
 
 ```php
@@ -428,7 +428,6 @@ final class HomeController
 ```
 
 ```html x-base.view.php
-
 <h1>{{ $siteTitle }}</h1>
 ```
 
@@ -444,17 +443,17 @@ All meta-data about discovered view components can be retrieved via the hidden `
 
 ```json
 {
-    "file": "/…/tempest-framework/packages/view/src/Components/x-markdown.view.php",
-    "name": "x-markdown",
-    "slots": [],
-    "variables": [
-        {
-            "type": "string|null",
-            "name": "$content",
-            "attributeName": "content",
-            "description": "The markdown content from a variable"
-        }
-    ]
+	"file": "/…/tempest-framework/packages/view/src/Components/x-markdown.view.php",
+	"name": "x-markdown",
+	"slots": [],
+	"variables": [
+		{
+			"type": "string|null",
+			"name": "$content",
+			"attributeName": "content",
+			"description": "The markdown content from a variable"
+		}
+	]
 }
 ```
 
