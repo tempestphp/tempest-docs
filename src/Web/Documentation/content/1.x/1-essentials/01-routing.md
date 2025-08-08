@@ -130,6 +130,18 @@ enum AircraftType: string
 }
 ```
 
+### Regex parameters
+
+You may use regular expressions to match route parameters. This can be useful to create catch-all routes or to match a route parameter to any kind of regex pattern. Add a colon `:` followed by a pattern to the parameter's name to indicate that it should be matched using a regular expression.
+
+```php
+#[Get('/main/{path:.*}')]
+public function docsRedirect(string $path): Redirect
+{
+    // …
+}
+```
+
 ## Generating URIs
 
 Tempest provides a `\Tempest\uri` function that can be used to generate an URI to a controller method. This function accepts the FQCN of the controller or a callable to a method as its first argument, and named parameters as [the rest of its arguments](https://www.php.net/manual/en/functions.arguments.php#functions.variable-arg-list).
