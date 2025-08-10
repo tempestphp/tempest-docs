@@ -48,7 +48,8 @@
       "bun run build",
 			"@php ./tempest static:generate",
 			"@php ./tempest static:clean",
-      "rm -rf public/build"
+      "rm -rf public/build",
+			"composer mago:lint"
 		]
 	},
 	"minimum-stability": "dev",
