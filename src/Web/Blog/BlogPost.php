@@ -7,6 +7,9 @@ use DateTimeImmutable;
 
 use function Tempest\uri;
 
+/**
+ * @mago-expect maintainability/too-many-properties
+ */
 final class BlogPost
 {
     public string $slug;

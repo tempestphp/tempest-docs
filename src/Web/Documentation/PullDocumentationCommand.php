@@ -12,13 +12,13 @@ use Tempest\Support\Filesystem;
 use function Tempest\root_path;
 use function Tempest\Support\path;
 
-final class PullDocumentationCommand
+final readonly class PullDocumentationCommand
 {
-    private const CLONE_DIRECTORY = 'clone';
-    private const DOCS_DIRECTORY = 'docs';
+    private const string CLONE_DIRECTORY = 'clone';
+    private const string DOCS_DIRECTORY = 'docs';
 
     public function __construct(
-        private readonly Console $console,
+        private Console $console,
     ) {}
 
     #[ConsoleCommand('docs:pull')]

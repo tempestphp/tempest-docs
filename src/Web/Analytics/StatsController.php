@@ -16,7 +16,7 @@ use function Tempest\view;
 final readonly class StatsController
 {
     #[Get('/stats')]
-    public function __invoke(Clock $clock): View
+    public function __invoke(): View
     {
         $limit = 30;
 
@@ -44,7 +44,7 @@ final readonly class StatsController
             packageDownloadsPerDay: new Chart(
                 labels: $packageDownloadsPerDay->map(fn (PackageDownloadsPerDay $item) => $item->date->format('Y-m-d')),
                 values: $packageDownloadsPerDay->map(fn (PackageDownloadsPerDay $item) => $item->total),
-                min: $packageDownloadsPerDay->sortByCallback(fn (PackageDownloadsPerDay $a, PackageDownloadsPerDay $b) => $a->total)->first()->total,
+                min: $packageDownloadsPerDay->sortByCallback(fn (PackageDownloadsPerDay $a, PackageDownloadsPerDay $_b) => $a->total)->first()->total,
             ),
         );
     }

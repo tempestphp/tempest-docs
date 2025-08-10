@@ -28,6 +28,12 @@ empty_line_after_opening_tag = false
 default_plugins = true
 plugins = ["symfony", "php-unit"]
 
+# Good rule but needs some work
+[[linter.rules]]
+name = "best-practices/literal-named-argument"
+level = "off"
+# level = "error"
+
 # MAINTENABILITY
 [[linter.rules]]
 name = "maintainability/too-many-enum-cases"
