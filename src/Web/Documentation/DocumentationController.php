@@ -28,9 +28,11 @@ final readonly class DocumentationController
     }
 
     #[Get('/documentation')]
-    public function index(): Redirect
+    #[Get('/docs')]
+    #[Get('/{version}')]
+    public function index(?string $version): Redirect
     {
-        $version = Version::default();
+        $version = Version::tryFromString($version);
 
         $category = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*", flags: GLOB_ONLYDIR))
             ->tap(fn (ImmutableArray $files) => $files->isEmpty() ? throw new \RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)

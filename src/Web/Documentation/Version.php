@@ -11,18 +11,15 @@ enum Version: string
     case VERSION_1 = '1.x';
     case VERSION_2 = '2.x';
 
+    public static function default(): self
+    {
+        return self::VERSION_1;
+    }
+
     public function isNext(): bool
     {
         return match ($this) {
             self::VERSION_2 => true,
-            default => false,
-        };
-    }
-
-    public function isCurrent(): bool
-    {
-        return match ($this) {
-            self::VERSION_1 => true,
             default => false,
         };
     }
@@ -37,10 +34,7 @@ enum Version: string
 
     public function getUrlSegment(): string
     {
-        return match ($this) {
-            self::VERSION_1 => '1.x',
-            self::VERSION_2 => '2.x',
-        };
+        return $this->value;
     }
 
     public function isPrevious(): bool
@@ -48,17 +42,17 @@ enum Version: string
         return ! $this->isNext() && ! $this->isCurrent();
     }
 
+    public function isCurrent(): bool
+    {
+        return $this === self::default();
+    }
+
     public static function tryFromString(?string $case): ?static
     {
         return match ($case) {
             'default', 'current', 'main', null => self::default(),
-            'next' => self::VERSION_2,
+            'next' => array_find(self::cases(), fn (self $version) => $version->isNext()),
             default => self::tryFrom($case),
         };
-    }
-
-    public static function default(): self
-    {
-        return self::VERSION_1;
     }
 }
