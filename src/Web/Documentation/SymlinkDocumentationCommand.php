@@ -18,7 +18,7 @@ final readonly class SymlinkDocumentationCommand
     ) {}
 
     #[ConsoleCommand('docs:symlink')]
-    public function __invoke(string $path = '../tempest-framework', ?Version $version = null): ExitCode
+    public function __invoke(?Version $version = null, string $path = '../tempest-framework'): ExitCode
     {
         $version ??= Version::default();
         $from = root_path($path, '/docs');
