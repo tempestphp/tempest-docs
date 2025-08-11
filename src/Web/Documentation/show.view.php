@@ -130,10 +130,15 @@
                 <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
               </div>
             </div>
-            <div :else-if="$this->currentChapter->version->isPrevious()" class="mt-4">
-              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
-                <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
-                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
+            <div :elseif="$this->currentChapter->version->isPrevious()" class="mt-4">
+              <div class="text-sm text-(--ui-warning) flex flex-col gap-y-2">
+                <span class="inline-flex items-baseline gap-x-1.5">
+                  <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
+                  <div class="flex flex-col gap-y-1.5">
+                    <span>This documentation is for a previous version of Tempest.</span>
+                    <span>Visit the <a class="decoration-dotted underline underline-offset-[4px] hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
+                  </div>
+                </span>
               </div>
             </div>
             <!-- Suggest changes -->
