@@ -39,6 +39,8 @@ final readonly class SymlinkDocumentationCommand
             );
         }
 
+        Filesystem\create_directory_for_file($to);
+
         $this->console->task(
             label: "Creating symlink from {$from} to {$to}.",
             handler: fn () => $this->run('ln -s ' . escapeshellarg($from) . ' ' . escapeshellarg($to)),
