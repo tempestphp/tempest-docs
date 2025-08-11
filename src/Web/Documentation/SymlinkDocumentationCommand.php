@@ -18,10 +18,11 @@ final readonly class SymlinkDocumentationCommand
     ) {}
 
     #[ConsoleCommand('docs:symlink')]
-    public function __invoke(string $path = '../tempest-framework'): ExitCode
+    public function __invoke(string $path = '../tempest-framework', ?Version $version = null): ExitCode
     {
+        $version ??= Version::default();
         $from = root_path($path, '/docs');
-        $to = root_path('src/Web/Documentation/content/', Version::default()->getUrlSegment());
+        $to = root_path('src/Web/Documentation/content/', $version->getUrlSegment());
 
         $this->console->header('Symlinking documentation');
 
