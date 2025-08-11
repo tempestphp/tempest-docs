@@ -3,11 +3,18 @@
 /** @var \App\Web\Documentation\ChapterView $this */
 ?>
 
-<x-base :copy-code-blocks="true" :description="$this->currentChapter->description ?? null">
+<x-base
+  :copy-code-blocks="true"
+  :description="$this->currentChapter->description ?? null"
+>
+  <x-slot name="head">
+    <link :if="$this->currentChapter->version->isCurrent()" rel="canonical" :href="$this->currentChapter->getCanonicalUri()" />
+    <meta :if="! $this->currentChapter->version->isCurrent()" name="robots" content="noindex">
+  </x-slot>
   <!-- Main container -->
-  <main class="container grow px-4 mx-auto xl:px-8 flex">
+  <main class="flex mx-auto px-4 xl:px-8 container grow">
     <!-- Sidebar -->
-    <div data-save-scroll="docs-sidebar" class="hidden lg:block xl:px-6 sticky xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 shrink-0">
+    <div data-save-scroll="docs-sidebar" class="hidden lg:block top-28 sticky xl:px-6 pt-4 xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
       <!-- Menu -->
       <nav class="flex flex-col gap-y-6 pb-8">
         <div :foreach="$this->categories() as $category" class="flex flex-col">
@@ -41,7 +48,7 @@
     <div data-sidebar class="hidden fixed md:hidden inset-0 overflow-auto z-[9] bg-(--ui-bg) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition opacity-100 scale-100 origin-bottom-right">
       <!-- Menu -->
       <nav class="flex flex-col gap-y-8 pb-16 overflow-hidden">
-        <div :foreach="$this->categories() as $category" class="flex flex-col text-right text-lg">
+        <div :foreach="$this->categories() as $category" class="flex flex-col text-lg text-right">
           <!-- Category title -->
           <span class="font-semibold text-(--ui-text) mb-2">
             <?= ucfirst($category) ?>
@@ -58,9 +65,9 @@
       </nav>
     </div>
     <!-- Main content -->
-    <div class="grow px-2 w-full lg:pl-12 flex min-w-0">
+    <div class="flex px-2 lg:pl-12 w-full min-w-0 grow">
       <!-- Documentation page -->
-      <article class="grow w-full flex flex-col min-w-0">
+      <article class="flex flex-col w-full min-w-0 grow">
         <x-template :if="$this->currentChapter">
           <!-- Header -->
           <div class="relative border-b border-(--ui-border) pb-8">
@@ -75,11 +82,11 @@
             </div>
           </div>
           <!-- Docs content -->
-          <div :if="$this->currentChapter" class="prose prose-large dark:prose-invert mt-8 space-y-12" highlights-titles>
+          <div :if="$this->currentChapter" class="space-y-12 dark:prose-invert mt-8 prose prose-large" highlights-titles>
             {!! $this->currentChapter->body !!}
           </div>
           <!-- Docs footer -->
-          <nav class="not-prose grid grid-cols-2 my-10 justify-between gap-4">
+          <nav class="justify-between gap-4 grid grid-cols-2 my-10 not-prose">
             <div>
               <a :if="$this->previousChapter()" :href="$this->previousChapter()?->getUri()" class="p-4 flex items-center gap-x-3 size-full hover:border-(--ui-border-accented) hover:text-(--ui-text) transition rounded-md text-(--ui-text-muted) border border-(--ui-border) bg-(--ui-bg-elevated)">
                 <x-icon name="tabler:arrow-left" class="size-5" />
@@ -96,10 +103,10 @@
         </x-template>
       </article>
       <!-- On this page -->
-      <nav class="w-2xs shrink-0 hidden xl:flex flex-col sticky max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto top-28 pt-4 pl-12 pr-4">
-        <div class="text-sm flex flex-col grow">
+      <nav class="hidden top-28 sticky xl:flex flex-col pt-4 pr-4 pl-12 w-2xs max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
+        <div class="flex flex-col text-sm grow">
           <x-template :if="($subChapters = $this->getSubChapters()) !== []">
-            <span class="inline-block font-bold text-[--primary] mb-3">On this page</span>
+            <span class="inline-block mb-3 font-bold text-[--primary]">On this page</span>
             <ul class="flex flex-col">
               <x-template :foreach="$subChapters as $url => $chapter">
                 <li>
@@ -115,21 +122,27 @@
               </x-template>
             </ul>
           </x-template>
-          <div class="justify-end mt-4 grow flex flex-col gap-y-4">
+          <div class="flex flex-col justify-end gap-y-4 mt-4 grow">
             <!-- Version warning -->
-<!--            <div :if="$this->currentChapter->version === \App\Web\Documentation\Version::MAIN" class="mt-4">-->
-<!--              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">-->
-<!--                <x-icon name="tabler:info-circle" class="translate-y-[2px] size-4 shrink-0" />-->
-<!--                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>-->
-<!--              </div>-->
-<!--            </div>-->
+            <div :if="$this->currentChapter->version->isNext()" class="mt-4">
+              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
+                <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
+                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
+              </div>
+            </div>
+            <div :else-if="$this->currentChapter->version->isPrevious()" class="mt-4">
+              <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
+                <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
+                <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
+              </div>
+            </div>
             <!-- Suggest changes -->
             <a class="text-sm text-(--ui-text-dimmed) hover:text-(--ui-text) transition inline-flex items-center gap-x-1.5" :href="$this->currentChapter->getEditPageUri()" target="_blank">
               <x-icon name="tabler:edit" class="size-4 shrink-0" />
               <span>Suggest changes to this page</span>
             </a>
           </div>
-          <div class="my-10 flex">
+          <div class="flex my-10">
             <a href="#top" class="border border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition rounded-lg p-2">
               <x-icon name="tabler:arrow-up" class="size-5" />
             </a>

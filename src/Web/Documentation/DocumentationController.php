@@ -9,6 +9,7 @@ use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
 use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
+use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str\ImmutableString;
 use Tempest\View\View;
 
@@ -20,25 +21,27 @@ final readonly class DocumentationController
 {
     #[Get('/current/{path:.*}')]
     #[Get('/main/{path:.*}')]
-    public function docsRedirect(string $path): Redirect
+    #[Get('/docs/{path:.*}')]
+    public function redirect(string $path): Redirect
     {
-        return new Redirect(sprintf('/%s/%s', Version::default()->value, $path));
+        return new Redirect(sprintf('/%s/%s', Version::default()->getUrlSegment(), $path));
     }
 
-    #[Get('/docs')]
     #[Get('/documentation')]
-    #[Get('/main/framework/getting-started')]
-    public function index(): Redirect
+    #[Get('/docs')]
+    #[Get('/{version}')]
+    public function index(?string $version): Redirect
     {
-        $version = Version::default();
+        $version = Version::tryFromString($version);
 
-        $category = arr(glob(__DIR__ . "/content/{$version->value}/*", flags: GLOB_ONLYDIR))
+        $category = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*", flags: GLOB_ONLYDIR))
+            ->tap(fn (ImmutableArray $files) => $files->isEmpty() ? throw new \RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)
             ->sort()
             ->mapFirstTo(ImmutableString::class)
             ->basename()
             ->toString();
 
-        $slug = arr(glob(__DIR__ . "/content/{$version->value}/{$category}/*.md"))
+        $slug = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/{$category}/*.md"))
             ->map(fn (string $path) => before_first(basename($path), '.'))
             ->sort()
             ->mapFirstTo(ImmutableString::class)
@@ -46,32 +49,22 @@ final readonly class DocumentationController
             ->toString();
 
         return new Redirect(uri(
-            [self::class, 'default'],
+            [self::class, '__invoke'],
+            version: $version,
             category: str_replace('0-', '', $category),
             slug: str_replace('01-', '', $slug),
         ));
-    }
-
-    #[StaticPage(DefaultDocumentationDataProvider::class)]
-    #[Get('/docs/{category}/{slug}')]
-    public function default(string $category, string $slug, ChapterRepository $chapterRepository): View|Response
-    {
-        return $this->chapterView(Version::default(), $category, $slug, $chapterRepository) ?? new NotFound();
     }
 
     #[StaticPage(DocumentationDataProvider::class)]
     #[Get('/{version}/{category}/{slug}')]
     public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): View|Response
     {
-        if ($version === Version::default()->value) {
-            return new Redirect(uri([self::class, 'default'], category: $category, slug: $slug));
-        }
-
         if (is_null($version = Version::tryFromString($version))) {
             return new NotFound();
         }
 
-        return $this->chapterView($version, $category, $slug, $chapterRepository) ?? new NotFound();
+        return $this->chapterView($version, $category, $slug, $chapterRepository) ?? new Redirect(uri(self::class, 'index'));
     }
 
     private function chapterView(Version $version, string $category, string $slug, ChapterRepository $chapterRepository): ?ChapterView

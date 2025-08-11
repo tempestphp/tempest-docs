@@ -1,6 +1,7 @@
 .tempest
 node_modules/
 vendor/
+docs-clone/
 /public/main.css
 /package-lock.json
 .env

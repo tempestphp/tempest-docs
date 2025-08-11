@@ -23,7 +23,22 @@ final class Chapter
 
     public function getUri(): string
     {
-        return uri(DocumentationController::class, version: $this->version, category: $this->category, slug: $this->slug);
+        return uri(
+            DocumentationController::class,
+            version: $this->version,
+            category: $this->category,
+            slug: $this->slug,
+        );
+    }
+
+    public function getCanonicalUri(): string
+    {
+        return uri(
+            DocumentationController::class,
+            version: $this->version->default(),
+            category: $this->category,
+            slug: $this->slug,
+        );
     }
 
     public function getMetaUri(): string
