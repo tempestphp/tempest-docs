@@ -44,6 +44,7 @@ final readonly class PullDocumentationCommand
 
         $this->console->writeln();
         $this->console->success('Documentation fetched successfully.');
+
         return ExitCode::SUCCESS;
     }
 
