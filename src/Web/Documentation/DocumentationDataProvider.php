@@ -2,6 +2,7 @@
 
 namespace App\Web\Documentation;
 
+use Override;
 use Generator;
 use Tempest\Router\DataProvider;
 
@@ -11,7 +12,7 @@ final readonly class DocumentationDataProvider implements DataProvider
         private ChapterRepository $chapterRepository,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function provide(): Generator
     {
         foreach (Version::collect() as $version) {

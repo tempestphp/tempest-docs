@@ -2,16 +2,17 @@
 
 namespace App\Web\CommandPalette;
 
+use Override;
 use App\Web\Blog\BlogController;
 use App\Web\Documentation\DocumentationController;
 use App\Web\RedirectsController;
 use Tempest\Support\Arr\ImmutableArray;
 
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 final readonly class CommandIndexer implements Indexer
 {
-    #[\Override]
+    #[Override]
     public function index(): ImmutableArray
     {
         return new ImmutableArray([

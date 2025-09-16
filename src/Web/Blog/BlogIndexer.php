@@ -2,6 +2,8 @@
 
 namespace App\Web\Blog;
 
+use Override;
+use RuntimeException;
 use App\Web\CommandPalette\Command;
 use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
@@ -12,7 +14,7 @@ use Tempest\Support\Arr\ImmutableArray;
 use function Tempest\Support\arr;
 use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Arr\wrap;
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 final readonly class BlogIndexer implements Indexer
 {
@@ -20,7 +22,7 @@ final readonly class BlogIndexer implements Indexer
         private MarkdownConverter $markdown,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function index(): ImmutableArray
     {
         return arr(glob(__DIR__ . '/articles/*.md'))
@@ -29,7 +31,7 @@ final readonly class BlogIndexer implements Indexer
                 preg_match('/\d+-\d+-\d+-(?<slug>.*)\.md/', $path, $matches);
 
                 if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
-                    throw new \RuntimeException(sprintf('Blog entry [%s] is missing a frontmatter.', $path));
+                    throw new RuntimeException(sprintf('Blog entry [%s] is missing a frontmatter.', $path));
                 }
 
                 $frontmatter = $markdown->getFrontMatter();

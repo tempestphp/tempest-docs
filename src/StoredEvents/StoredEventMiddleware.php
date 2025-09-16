@@ -2,13 +2,14 @@
 
 namespace App\StoredEvents;
 
+use Override;
 use DateTimeImmutable;
 use Tempest\EventBus\EventBusMiddleware;
 use Tempest\EventBus\EventBusMiddlewareCallable;
 
 final readonly class StoredEventMiddleware implements EventBusMiddleware
 {
-    #[\Override]
+    #[Override]
     public function __invoke(string|object $event, EventBusMiddlewareCallable $next): void
     {
         if ($event instanceof ShouldBeStored) {

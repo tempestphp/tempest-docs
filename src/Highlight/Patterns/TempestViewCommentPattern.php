@@ -2,6 +2,7 @@
 
 namespace App\Highlight\Patterns;
 
+use Override;
 use Tempest\Highlight\IsPattern;
 use Tempest\Highlight\Pattern;
 use Tempest\Highlight\Tokens\TokenTypeEnum;
@@ -15,7 +16,7 @@ final readonly class TempestViewCommentPattern implements Pattern
         return '(?<match>\{\{\-\-(.|\n)*?\-\-\}\})';
     }
 
-    #[\Override]
+    #[Override]
     public function getTokenType(): TokenTypeEnum
     {
         return TokenTypeEnum::COMMENT;

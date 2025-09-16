@@ -2,6 +2,7 @@
 
 namespace App\Web\Analytics;
 
+use Override;
 use App\StoredEvents\ShouldBeStored;
 use DateTimeImmutable;
 use Symfony\Component\Uid\Uuid;
@@ -20,7 +21,7 @@ final class PackageDownloadsListed implements ShouldBeStored
         $this->uuid = Uuid::v4()->toString();
     }
 
-    #[\Override]
+    #[Override]
     public function serialize(): string
     {
         return json_encode([
@@ -33,7 +34,7 @@ final class PackageDownloadsListed implements ShouldBeStored
         ]);
     }
 
-    #[\Override]
+    #[Override]
     public static function unserialize(string $payload): self
     {
         $data = json_decode($payload, true);

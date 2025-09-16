@@ -2,6 +2,10 @@
 
 namespace App\Web\Documentation;
 
+use function Tempest\Support\Filesystem\exists;
+use function Tempest\Support\Filesystem\is_symbolic_link;
+use function Tempest\Support\Filesystem\is_file;
+use function Tempest\Support\Filesystem\create_directory_for_file;
 use RuntimeException;
 use Symfony\Component\Process\Process;
 use Tempest\Console\Console;
@@ -26,20 +30,20 @@ final readonly class SymlinkDocumentationCommand
 
         $this->console->header('Symlinking documentation');
 
-        if (! Filesystem\exists($from)) {
+        if (! exists($from)) {
             $this->console->error("The source path does not exist (tried {$from}).");
 
             return ExitCode::ERROR;
         }
 
-        if (Filesystem\is_symbolic_link($to) || Filesystem\is_file($to)) {
+        if (is_symbolic_link($to) || is_file($to)) {
             $this->console->task(
                 label: "Removing existing symlink at {$to}.",
                 handler: fn () => $this->run('rm -rf ' . escapeshellarg($to)),
             );
         }
 
-        Filesystem\create_directory_for_file($to);
+        create_directory_for_file($to);
 
         $this->console->task(
             label: "Creating symlink from {$from} to {$to}.",

@@ -2,6 +2,7 @@
 
 namespace App\Web;
 
+use Override;
 use App\GitHub\GetLatestRelease;
 use Tempest\View\View;
 use Tempest\View\ViewProcessor;
@@ -12,7 +13,7 @@ final readonly class LatestReleaseViewProcessor implements ViewProcessor
         private GetLatestRelease $getLatestRelease,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function process(View $view): View
     {
         return $view->data(latest_release: ($this->getLatestRelease)());

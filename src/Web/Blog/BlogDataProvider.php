@@ -2,6 +2,7 @@
 
 namespace App\Web\Blog;
 
+use Override;
 use Generator;
 use Tempest\Router\DataProvider;
 
@@ -11,7 +12,7 @@ final readonly class BlogDataProvider implements DataProvider
         private BlogRepository $repository,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function provide(): Generator
     {
         foreach ($this->repository->all() as $post) {

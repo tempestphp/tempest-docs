@@ -2,6 +2,7 @@
 
 namespace App\Browsershot;
 
+use Override;
 use Spatie\Browsershot\Browsershot;
 use Tempest\Container\Container;
 use Tempest\Container\Initializer;
@@ -11,7 +12,7 @@ use function Tempest\env;
 
 final readonly class BrowsershotInitializer implements Initializer
 {
-    #[\Override]
+    #[Override]
     #[Singleton(tag: 'meta')]
     public function initialize(Container $container): Browsershot
     {

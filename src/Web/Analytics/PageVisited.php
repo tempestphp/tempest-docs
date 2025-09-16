@@ -2,6 +2,7 @@
 
 namespace App\Web\Analytics;
 
+use Override;
 use App\StoredEvents\HasCreatedAtDate;
 use App\StoredEvents\ShouldBeStored;
 use DateTimeImmutable;
@@ -25,7 +26,7 @@ final class PageVisited implements ShouldBeStored, HasCreatedAtDate
         get => $this->visitedAt;
     }
 
-    #[\Override]
+    #[Override]
     public function serialize(): string
     {
         return json_encode([
@@ -39,7 +40,7 @@ final class PageVisited implements ShouldBeStored, HasCreatedAtDate
         ]);
     }
 
-    #[\Override]
+    #[Override]
     public static function unserialize(string $payload): self
     {
         $data = json_decode($payload, true);

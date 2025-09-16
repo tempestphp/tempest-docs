@@ -2,6 +2,7 @@
 
 namespace App\Web\Community;
 
+use Override;
 use App\Web\CommandPalette\Command;
 use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
@@ -13,7 +14,7 @@ final readonly class CommunityPostIndexer implements Indexer
         private CommunityPostsRepository $repository,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function index(): ImmutableArray
     {
         return $this->repository

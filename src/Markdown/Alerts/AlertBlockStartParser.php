@@ -2,6 +2,7 @@
 
 namespace App\Markdown\Alerts;
 
+use Override;
 use League\CommonMark\Parser\Block\BlockStart;
 use League\CommonMark\Parser\Block\BlockStartParserInterface;
 use League\CommonMark\Parser\Cursor;
@@ -10,7 +11,7 @@ use League\CommonMark\Util\RegexHelper;
 
 final class AlertBlockStartParser implements BlockStartParserInterface
 {
-    #[\Override]
+    #[Override]
     public function tryStart(Cursor $cursor, MarkdownParserStateInterface $parserState): ?BlockStart
     {
         if ($cursor->isIndented()) {

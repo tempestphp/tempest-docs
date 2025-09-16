@@ -2,6 +2,7 @@
 
 namespace App\Web\CommandPalette;
 
+use Override;
 use Tempest\Discovery\Discovery;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Discovery\IsDiscovery;
@@ -15,7 +16,7 @@ final class IndexerDiscovery implements Discovery
         private readonly IndexerConfig $indexerConfig,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         if ($class->implements(Indexer::class)) {
@@ -23,7 +24,7 @@ final class IndexerDiscovery implements Discovery
         }
     }
 
-    #[\Override]
+    #[Override]
     public function apply(): void
     {
         foreach ($this->discoveryItems as $className) {

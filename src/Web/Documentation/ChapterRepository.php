@@ -50,7 +50,7 @@ final class ChapterRepository
         $markdown = $this->markdown->convert(file_get_contents($path));
 
         if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
-            throw new \RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
+            throw new RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
         }
 
         $frontmatter = $markdown->getFrontMatter();

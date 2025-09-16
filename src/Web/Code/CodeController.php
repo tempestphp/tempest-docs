@@ -12,7 +12,7 @@ use Tempest\Router\Get;
 use Tempest\Router\Post;
 use Tempest\View\View;
 
-use function Tempest\uri;
+use function Tempest\Router\uri;
 use function Tempest\view;
 
 final readonly class CodeController

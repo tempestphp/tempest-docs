@@ -2,6 +2,7 @@
 
 namespace App\Markdown;
 
+use Override;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Node\Node;
@@ -15,7 +16,7 @@ final class InlineCodeBlockRenderer implements NodeRendererInterface
         private Highlighter $highlighter = new Highlighter(),
     ) {}
 
-    #[\Override]
+    #[Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?string
     {
         if (! ($node instanceof Code)) {

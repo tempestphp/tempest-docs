@@ -2,6 +2,7 @@
 
 namespace App\Markdown;
 
+use Override;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Node\Node;
@@ -12,7 +13,7 @@ use Tempest\Support\Str\ImmutableString;
 
 final class HeadingRenderer implements NodeRendererInterface
 {
-    #[\Override]
+    #[Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?string
     {
         if (! ($node instanceof Heading)) {

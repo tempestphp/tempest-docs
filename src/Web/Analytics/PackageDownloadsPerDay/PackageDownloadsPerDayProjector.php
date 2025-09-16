@@ -2,6 +2,7 @@
 
 namespace App\Web\Analytics\PackageDownloadsPerDay;
 
+use Override;
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PackageDownloadsListed;
 use PDOException;
@@ -12,7 +13,7 @@ use function Tempest\Database\query;
 
 final readonly class PackageDownloadsPerDayProjector implements Projector
 {
-    #[\Override]
+    #[Override]
     public function clear(): void
     {
         new QueryBuilder(PackageDownloadsPerDay::class)
@@ -21,7 +22,7 @@ final readonly class PackageDownloadsPerDayProjector implements Projector
             ->execute();
     }
 
-    #[\Override]
+    #[Override]
     public function replay(object $event): void
     {
         if ($event instanceof PackageDownloadsListed) {

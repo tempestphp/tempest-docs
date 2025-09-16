@@ -2,6 +2,8 @@
 
 namespace App\Markdown;
 
+use Override;
+use RuntimeException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
 use League\CommonMark\Parser\Inline\InlineParserMatch;
@@ -11,13 +13,13 @@ use function Tempest\Support\str;
 
 final readonly class HandleParser implements InlineParserInterface
 {
-    #[\Override]
+    #[Override]
     public function getMatchDefinition(): InlineParserMatch
     {
         return InlineParserMatch::regex('{(twitter|x|bluesky|bsky|gh|github):(.+?)(?:,(.+?))?}');
     }
 
-    #[\Override]
+    #[Override]
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();
@@ -35,7 +37,7 @@ final readonly class HandleParser implements InlineParserInterface
             'bluesky', 'bsky' => "https://bsky.app/profile/{$handle}",
             'gh', 'github' => "https://github.com/{$handle}",
             'x', 'twitter' => "https://x.com/{$handle}",
-            default => throw new \RuntimeException("Unknown platform: {$platform}"),
+            default => throw new RuntimeException("Unknown platform: {$platform}"),
         };
 
         $inlineContext->getContainer()->appendChild(

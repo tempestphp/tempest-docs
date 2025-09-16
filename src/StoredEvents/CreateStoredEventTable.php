@@ -2,18 +2,18 @@
 
 namespace App\StoredEvents;
 
-use Tempest\Database\DatabaseMigration;
+use Override;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\CreateTableStatement;
 
-final class CreateStoredEventTable implements DatabaseMigration
+final class CreateStoredEventTable implements \Tempest\Database\MigratesUp
 {
     public string $name {
         get => '00-00-0000-create_stored_events_table';
     }
 
-    #[\Override]
-    public function up(): ?QueryStatement
+    #[Override]
+    public function up(): QueryStatement
     {
         return CreateTableStatement::forModel(StoredEvent::class)
             ->primary()
@@ -21,13 +21,5 @@ final class CreateStoredEventTable implements DatabaseMigration
             ->text('eventClass')
             ->text('payload')
             ->datetime('createdAt');
-    }
-
-    #[\Override]
-    public function down(): ?QueryStatement
-    {
-        // @mago-expect comment/no-untagged-todo
-        // TODO: Implement down() method.
-        return null;
     }
 }

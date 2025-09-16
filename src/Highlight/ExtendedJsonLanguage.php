@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace App\Highlight;
 
+use Override;
 use Tempest\Highlight\Languages\Json\JsonLanguage;
 
 class ExtendedJsonLanguage extends JsonLanguage
 {
-    #[\Override]
+    #[Override]
     public function getName(): string
     {
         return 'json_extended';
     }
 
-    #[\Override]
+    #[Override]
     public function getPatterns(): array
     {
         return [

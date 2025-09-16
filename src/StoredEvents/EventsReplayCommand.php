@@ -68,7 +68,7 @@ final readonly class EventsReplayCommand
 
             $this->info(sprintf('Replaying <style="underline">%s</style>', $projectorClass));
 
-            /** @var \App\StoredEvents\Projector $projector */
+            /** @var Projector $projector */
             $projector = $this->container->get($projectorClass);
 
             $projector->clear();
@@ -76,7 +76,7 @@ final readonly class EventsReplayCommand
             StoredEvent::select()
                 ->orderBy('createdAt ASC')
                 ->chunk(
-                    function (array $storedEvents) use ($projector) {
+                    function (array $storedEvents) use ($projector): void {
                         $this->write('.');
 
                         foreach ($storedEvents as $storedEvent) {

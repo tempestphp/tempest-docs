@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown;
 
+use Override;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
@@ -18,7 +19,7 @@ final class CodeBlockRenderer implements NodeRendererInterface
         private Highlighter $highlighter = new Highlighter(),
     ) {}
 
-    #[\Override]
+    #[Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): string
     {
         if (! ($node instanceof FencedCode)) {

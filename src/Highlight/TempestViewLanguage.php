@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Highlight;
 
+use Override;
 use App\Highlight\Injections\TempestViewEchoInjection;
 use App\Highlight\Injections\TempestViewPhpInjection;
 use App\Highlight\Patterns\TempestViewCommentPattern;
@@ -12,19 +13,19 @@ use Tempest\Highlight\Languages\Html\HtmlLanguage;
 
 final class TempestViewLanguage extends HtmlLanguage
 {
-    #[\Override]
+    #[Override]
     public function getName(): string
     {
         return 'html';
     }
 
-    #[\Override]
+    #[Override]
     public function getAliases(): array
     {
         return [];
     }
 
-    #[\Override]
+    #[Override]
     public function getInjections(): array
     {
         return [
@@ -34,7 +35,7 @@ final class TempestViewLanguage extends HtmlLanguage
         ];
     }
 
-    #[\Override]
+    #[Override]
     public function getPatterns(): array
     {
         return [

@@ -2,6 +2,7 @@
 
 namespace App\Markdown\Alerts;
 
+use Override;
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
@@ -21,30 +22,30 @@ final class AlertBlockParser implements BlockContinueParserInterface
         $this->block = new AlertBlock($alertType, $icon, $title);
     }
 
-    #[\Override]
+    #[Override]
     public function addLine(string $line): void
     {
     }
 
-    #[\Override]
+    #[Override]
     public function getBlock(): AbstractBlock
     {
         return $this->block;
     }
 
-    #[\Override]
+    #[Override]
     public function isContainer(): bool
     {
         return true;
     }
 
-    #[\Override]
+    #[Override]
     public function canContain(AbstractBlock $childBlock): bool
     {
         return true;
     }
 
-    #[\Override]
+    #[Override]
     public function canHaveLazyContinuationLines(): bool
     {
         return false;
@@ -55,7 +56,7 @@ final class AlertBlockParser implements BlockContinueParserInterface
         return true;
     }
 
-    #[\Override]
+    #[Override]
     public function tryContinue(Cursor $cursor, BlockContinueParserInterface $activeBlockParser): ?BlockContinue
     {
         if ($cursor->isIndented()) {
@@ -71,7 +72,7 @@ final class AlertBlockParser implements BlockContinueParserInterface
         return BlockContinue::at($cursor);
     }
 
-    #[\Override]
+    #[Override]
     public function closeBlock(): void
     {
         // Nothing to do here

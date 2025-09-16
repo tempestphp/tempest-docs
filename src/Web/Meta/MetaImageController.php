@@ -16,7 +16,7 @@ use Tempest\Router\Get;
 use Tempest\View\ViewRenderer;
 
 use function Tempest\support\path;
-use function Tempest\uri;
+use function Tempest\Router\uri;
 use function Tempest\view;
 
 final readonly class MetaImageController

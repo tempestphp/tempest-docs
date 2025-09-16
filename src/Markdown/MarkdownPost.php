@@ -2,6 +2,7 @@
 
 namespace App\Markdown;
 
+use function Tempest\Support\Str\strip_tags;
 use Tempest\Support\Str;
 
 final class MarkdownPost
@@ -21,7 +22,7 @@ final class MarkdownPost
 
         foreach ($h2Matches[0] as $key => $match) {
             $h2Uri = $h2Matches['uri'][$key];
-            $h2Title = Str\strip_tags($h2Matches['title'][$key]);
+            $h2Title = strip_tags($h2Matches['title'][$key]);
             $subChapters[$h2Uri] = [
                 'title' => $h2Title,
                 'children' => [],
@@ -30,7 +31,7 @@ final class MarkdownPost
 
         foreach ($h3Matches[0] as $key => $match) {
             $h3Uri = $h3Matches['h3uri'][$key];
-            $h3Title = Str\strip_tags($h3Matches['h3title'][$key]);
+            $h3Title = strip_tags($h3Matches['h3title'][$key]);
             $parentH2Uri = null;
             $h3Position = strpos($this->content, $match);
 

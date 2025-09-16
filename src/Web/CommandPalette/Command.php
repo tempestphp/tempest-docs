@@ -2,6 +2,7 @@
 
 namespace App\Web\CommandPalette;
 
+use Override;
 use JsonSerializable;
 
 final readonly class Command implements JsonSerializable
@@ -15,7 +16,7 @@ final readonly class Command implements JsonSerializable
         public array $fields = [],
     ) {}
 
-    #[\Override]
+    #[Override]
     public function jsonSerialize(): array
     {
         return [

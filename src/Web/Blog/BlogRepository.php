@@ -19,7 +19,7 @@ final readonly class BlogRepository
     ) {}
 
     /**
-     * @return ImmutableArray<\App\Web\Blog\BlogPost>
+     * @return ImmutableArray<BlogPost>
      */
     public function all(bool $loadContent = false): ImmutableArray
     {

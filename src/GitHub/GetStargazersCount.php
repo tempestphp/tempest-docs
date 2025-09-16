@@ -2,6 +2,8 @@
 
 namespace App\GitHub;
 
+use Throwable;
+use function Tempest\Intl\Number\to_human_readable;
 use Tempest\Cache\Cache;
 use Tempest\HttpClient\HttpClient;
 use Tempest\Intl\Number;
@@ -25,7 +27,7 @@ final class GetStargazersCount
         );
 
         if ($stargazers) {
-            return Number\to_human_readable($stargazers, maxPrecision: 1);
+            return to_human_readable($stargazers, maxPrecision: 1);
         }
 
         return null;
@@ -43,7 +45,7 @@ final class GetStargazersCount
                 ->body;
 
             return $stargazers = json_decode($body)->stargazers_count ?? null;
-        } catch (\Throwable) {
+        } catch (Throwable) {
             return null;
         }
     }

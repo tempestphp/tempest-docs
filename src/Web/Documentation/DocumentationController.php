@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use RuntimeException;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
@@ -15,7 +16,7 @@ use Tempest\View\View;
 
 use function Tempest\Support\arr;
 use function Tempest\Support\Str\before_first;
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 final readonly class DocumentationController
 {
@@ -35,7 +36,7 @@ final readonly class DocumentationController
         $version = Version::tryFromString($version);
 
         $category = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*", flags: GLOB_ONLYDIR))
-            ->tap(fn (ImmutableArray $files) => $files->isEmpty() ? throw new \RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)
+            ->tap(fn (ImmutableArray $files) => $files->isEmpty() ? throw new RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)
             ->sort()
             ->mapFirstTo(ImmutableString::class)
             ->basename()

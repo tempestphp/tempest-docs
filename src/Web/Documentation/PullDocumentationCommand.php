@@ -2,6 +2,9 @@
 
 namespace App\Web\Documentation;
 
+use function Tempest\Support\Filesystem\ensure_directory_empty;
+use function Tempest\Support\Filesystem\move;
+use function Tempest\Support\Filesystem\delete_directory;
 use RuntimeException;
 use Symfony\Component\Process\Process;
 use Tempest\Console\Console;
@@ -53,8 +56,8 @@ final readonly class PullDocumentationCommand
         $versionedDocsDirectory = root_path('src/Web/Documentation/content/', $version->getUrlSegment());
         $temporaryDirectory = root_path('docs-clone');
 
-        Filesystem\ensure_directory_empty($versionedDocsDirectory);
-        Filesystem\ensure_directory_empty($temporaryDirectory);
+        ensure_directory_empty($versionedDocsDirectory);
+        ensure_directory_empty($temporaryDirectory);
 
         $this->run(
             command: sprintf(
@@ -75,8 +78,8 @@ final readonly class PullDocumentationCommand
             cwd: path($temporaryDirectory, self::CLONE_DIRECTORY),
         );
 
-        Filesystem\move(path($temporaryDirectory, self::CLONE_DIRECTORY, self::DOCS_DIRECTORY), $versionedDocsDirectory, overwrite: true);
-        Filesystem\delete_directory($temporaryDirectory);
+        move(path($temporaryDirectory, self::CLONE_DIRECTORY, self::DOCS_DIRECTORY), $versionedDocsDirectory, overwrite: true);
+        delete_directory($temporaryDirectory);
     }
 
     private function run(string $command, string $cwd): string

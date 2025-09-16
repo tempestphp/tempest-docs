@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown;
 
+use Override;
 use App\Markdown\Alerts\AlertExtension;
 use App\Markdown\CodeBlockRenderer;
 use App\Markdown\Symbols\AttributeParser;
@@ -24,7 +25,7 @@ use Tempest\Highlight\Highlighter;
 
 final readonly class MarkdownInitializer implements Initializer
 {
-    #[\Override]
+    #[Override]
     #[Singleton]
     public function initialize(Container $container): MarkdownConverter
     {

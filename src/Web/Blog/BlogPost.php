@@ -5,7 +5,7 @@ namespace App\Web\Blog;
 use App\Web\Meta\MetaImageController;
 use DateTimeImmutable;
 
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 /**
  * @mago-expect maintainability/too-many-properties

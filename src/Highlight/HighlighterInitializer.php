@@ -2,6 +2,7 @@
 
 namespace App\Highlight;
 
+use Override;
 use Tempest\Container\Container;
 use Tempest\Container\Initializer;
 use Tempest\Container\Singleton;
@@ -10,7 +11,7 @@ use Tempest\Highlight\Themes\CssTheme;
 
 final readonly class HighlighterInitializer implements Initializer
 {
-    #[\Override]
+    #[Override]
     #[Singleton(tag: 'project')]
     public function initialize(Container $container): Highlighter
     {

@@ -2,6 +2,7 @@
 
 namespace App\Web\Analytics\PackageDownloadsPerHour;
 
+use Override;
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PackageDownloadsListed;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
@@ -10,7 +11,7 @@ use Tempest\EventBus\EventHandler;
 
 final readonly class PackageDownloadsPerHourProjector implements Projector
 {
-    #[\Override]
+    #[Override]
     public function clear(): void
     {
         new QueryBuilder(PackageDownloadsPerHour::class)
@@ -19,7 +20,7 @@ final readonly class PackageDownloadsPerHourProjector implements Projector
             ->execute();
     }
 
-    #[\Override]
+    #[Override]
     public function replay(object $event): void
     {
         if ($event instanceof PackageDownloadsListed) {

@@ -2,6 +2,8 @@
 
 namespace App\Markdown\Alerts;
 
+use Override;
+use InvalidArgumentException;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\HtmlRenderer;
@@ -14,15 +16,15 @@ use function Tempest\view;
 
 final class AlertBlockRenderer implements NodeRendererInterface
 {
-    #[\Override]
+    #[Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): mixed
     {
         if (! ($node instanceof AlertBlock)) {
-            throw new \InvalidArgumentException('Incompatible node type: ' . get_class($node));
+            throw new InvalidArgumentException('Incompatible node type: ' . get_class($node));
         }
 
         if (! ($childRenderer instanceof HtmlRenderer)) {
-            throw new \InvalidArgumentException('Incompatible renderer type: ' . get_class($childRenderer));
+            throw new InvalidArgumentException('Incompatible renderer type: ' . get_class($childRenderer));
         }
 
         $iconName = match ($node->icon) {

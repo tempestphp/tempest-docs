@@ -27,7 +27,7 @@ final readonly class IndexCommandPaletteCommand
         $index = [];
 
         foreach ($this->indexerConfig->indexerClasses as $indexerClass) {
-            /** @var \App\Web\CommandPalette\Indexer $indexer */
+            /** @var Indexer $indexer */
             $indexer = $this->container->get($indexerClass);
             $index = [...$index, ...$indexer->index()];
 

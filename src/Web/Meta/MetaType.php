@@ -2,7 +2,7 @@
 
 namespace App\Web\Meta;
 
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 enum MetaType: string
 {

@@ -6,7 +6,7 @@ namespace App\Web\Documentation;
 
 use App\Web\Meta\MetaImageController;
 
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 final class Chapter
 {

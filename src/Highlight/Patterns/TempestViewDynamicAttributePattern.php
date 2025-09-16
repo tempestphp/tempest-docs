@@ -2,6 +2,7 @@
 
 namespace App\Highlight\Patterns;
 
+use Override;
 use Tempest\Highlight\IsPattern;
 use Tempest\Highlight\Pattern;
 use Tempest\Highlight\Tokens\TokenType;
@@ -16,7 +17,7 @@ final readonly class TempestViewDynamicAttributePattern implements Pattern
         return '<.*? :(?<match>\w+)';
     }
 
-    #[\Override]
+    #[Override]
     public function getTokenType(): TokenType
     {
         return TokenTypeEnum::PROPERTY;

@@ -2,6 +2,7 @@
 
 namespace App\Web\Analytics\VisitsPerHour;
 
+use Override;
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PageVisited;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
@@ -10,7 +11,7 @@ use Tempest\EventBus\EventHandler;
 
 final readonly class VisitsPerHourProjector implements Projector
 {
-    #[\Override]
+    #[Override]
     public function replay(object $event): void
     {
         if ($event instanceof PageVisited) {
@@ -18,7 +19,7 @@ final readonly class VisitsPerHourProjector implements Projector
         }
     }
 
-    #[\Override]
+    #[Override]
     public function clear(): void
     {
         new QueryBuilder(VisitsPerHour::class)

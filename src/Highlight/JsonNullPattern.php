@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Highlight;
 
+use Override;
 use Tempest\Highlight\IsPattern;
 use Tempest\Highlight\Pattern;
 use Tempest\Highlight\Tokens\DynamicTokenType;
@@ -18,7 +19,7 @@ final readonly class JsonNullPattern implements Pattern
         return '\: (?<match>null)';
     }
 
-    #[\Override]
+    #[Override]
     public function getTokenType(): TokenType
     {
         return new DynamicTokenType('hl-null');

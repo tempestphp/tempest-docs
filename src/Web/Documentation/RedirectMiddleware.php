@@ -2,6 +2,7 @@
 
 namespace App\Web\Documentation;
 
+use Override;
 use Tempest\Core\Priority;
 use Tempest\Http\Request;
 use Tempest\Http\Response;
@@ -16,7 +17,7 @@ use function Tempest\get;
 use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Regex\matches;
 use function Tempest\Support\str;
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 #[Priority(Priority::HIGHEST)]
 final readonly class RedirectMiddleware implements HttpMiddleware
@@ -26,7 +27,7 @@ final readonly class RedirectMiddleware implements HttpMiddleware
         private MatchedRoute $route,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function __invoke(Request $request, HttpMiddlewareCallable $next): Response
     {
         $path = str($request->path);

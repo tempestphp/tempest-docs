@@ -2,6 +2,9 @@
 
 namespace App\Markdown;
 
+use Override;
+use Stringable;
+use function Tempest\Support\Regex\replace;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Renderer\Inline\LinkRenderer as InlineLinkRenderer;
@@ -17,8 +20,8 @@ final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterf
 {
     private ConfigurationInterface $config;
 
-    #[\Override]
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer): \Stringable
+    #[Override]
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): Stringable
     {
         if (! ($node instanceof Link)) {
             throw new InvalidArgumentException('Node must be instance of ' . Link::class);
@@ -26,7 +29,7 @@ final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterf
 
         // Replace .md at the end, before a / or a #
         $node->setUrl(
-            Regex\replace($node->getUrl(), '/\.md((?=[\/#?])|$)/', ''),
+            replace($node->getUrl(), '/\.md((?=[\/#?])|$)/', ''),
         );
 
         $renderer = new InlineLinkRenderer();
@@ -35,19 +38,19 @@ final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterf
         return $renderer->render($node, $childRenderer);
     }
 
-    #[\Override]
+    #[Override]
     public function setConfiguration(ConfigurationInterface $configuration): void
     {
         $this->config = $configuration;
     }
 
-    #[\Override]
+    #[Override]
     public function getXmlTagName(Node $node): string
     {
         return 'link';
     }
 
-    #[\Override]
+    #[Override]
     public function getXmlAttributes(Node $node): array
     {
         if (! ($node instanceof Link)) {

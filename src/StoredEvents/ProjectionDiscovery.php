@@ -2,6 +2,7 @@
 
 namespace App\StoredEvents;
 
+use Override;
 use Tempest\Discovery\Discovery;
 use Tempest\Discovery\DiscoveryLocation;
 use Tempest\Discovery\IsDiscovery;
@@ -15,7 +16,7 @@ final class ProjectionDiscovery implements Discovery
         private readonly StoredEventConfig $config,
     ) {}
 
-    #[\Override]
+    #[Override]
     public function discover(DiscoveryLocation $location, ClassReflector $class): void
     {
         if ($class->implements(Projector::class)) {
@@ -23,7 +24,7 @@ final class ProjectionDiscovery implements Discovery
         }
     }
 
-    #[\Override]
+    #[Override]
     public function apply(): void
     {
         foreach ($this->discoveryItems as $className) {

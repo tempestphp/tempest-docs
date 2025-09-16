@@ -2,6 +2,8 @@
 
 namespace App\Web\Documentation;
 
+use Override;
+use RuntimeException;
 use App\Web\CommandPalette\Command;
 use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
@@ -18,7 +20,7 @@ use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Arr\wrap;
 use function Tempest\Support\Str\to_kebab_case;
 use function Tempest\Support\Str\to_sentence_case;
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 /**
  * Indexes the blog.
@@ -32,7 +34,7 @@ final readonly class DocumentationIndexer implements Indexer
     /**
      * @return ImmutableArray<Command>
      */
-    #[\Override]
+    #[Override]
     public function index(): ImmutableArray
     {
         $version = Version::default();
@@ -42,7 +44,7 @@ final readonly class DocumentationIndexer implements Indexer
                 $markdown = $this->markdown->convert(file_get_contents($path));
 
                 if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
-                    throw new \RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
+                    throw new RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
                 }
 
                 $path = new ImmutableString($path);

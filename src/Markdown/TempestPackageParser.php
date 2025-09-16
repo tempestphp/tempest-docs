@@ -2,6 +2,7 @@
 
 namespace App\Markdown;
 
+use Override;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
@@ -12,13 +13,13 @@ use function Tempest\Support\str;
 
 final readonly class TempestPackageParser implements InlineParserInterface
 {
-    #[\Override]
+    #[Override]
     public function getMatchDefinition(): InlineParserMatch
     {
         return InlineParserMatch::regex("{`tempest\\/([\w-]+)`}");
     }
 
-    #[\Override]
+    #[Override]
     public function parse(InlineParserContext $inlineContext): bool
     {
         $cursor = $inlineContext->getCursor();

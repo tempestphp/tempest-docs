@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use function Tempest\Support\Str\strip_tags;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str;
 use Tempest\View\IsView;
@@ -43,7 +44,7 @@ final class ChapterView implements View
 
         foreach ($h2Matches[0] as $key => $match) {
             $h2Uri = $h2Matches['uri'][$key];
-            $h2Title = Str\strip_tags($h2Matches['title'][$key]);
+            $h2Title = strip_tags($h2Matches['title'][$key]);
             $subChapters[$h2Uri] = [
                 'title' => $h2Title,
                 'children' => [],
@@ -52,7 +53,7 @@ final class ChapterView implements View
 
         foreach ($h3Matches[0] as $key => $match) {
             $h3Uri = $h3Matches['h3uri'][$key];
-            $h3Title = Str\strip_tags($h3Matches['h3title'][$key]);
+            $h3Title = strip_tags($h3Matches['h3title'][$key]);
             $parentH2Uri = null;
             $h3Position = strpos($this->currentChapter->body, $match);
 

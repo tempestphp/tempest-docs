@@ -4,7 +4,7 @@ use App\Web\Blog\BlogController;
 use App\Web\Documentation\DocumentationController;
 use App\Web\RedirectsController;
 
-use function Tempest\uri;
+use function Tempest\Router\uri;
 
 ?>
 
