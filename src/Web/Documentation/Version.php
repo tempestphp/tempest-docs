@@ -13,13 +13,13 @@ enum Version: string
 
     public static function default(): self
     {
-        return self::VERSION_1;
+        return self::VERSION_2;
     }
 
     public function isNext(): bool
     {
         return match ($this) {
-            self::VERSION_2 => true,
+            // self::VERSION_3 => true,
             default => false,
         };
     }
@@ -27,8 +27,8 @@ enum Version: string
     public function getBranch(): string
     {
         return match ($this) {
-            self::VERSION_1 => 'main',
-            self::VERSION_2 => '2.x',
+            self::VERSION_1 => '1.x',
+            self::VERSION_2 => 'main',
         };
     }
 
