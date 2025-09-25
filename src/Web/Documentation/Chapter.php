@@ -7,6 +7,7 @@ namespace App\Web\Documentation;
 use App\Web\Meta\MetaImageController;
 
 use function Tempest\Router\uri;
+use function Tempest\Support\str;
 
 final class Chapter
 {
@@ -48,6 +49,11 @@ final class Chapter
 
     public function getEditPageUri(): string
     {
-        return "https://github.com/tempestphp/tempest-docs/edit/main/{$this->path}";
+        $file = str($this->path)
+            ->afterLast('content/')
+            ->stripStart($this->version->getBranch())
+            ->stripStart('/');
+
+        return "https://github.com/tempestphp/tempest-framework/edit/{$this->version->getBranch()}/docs/{$file}";
     }
 }
