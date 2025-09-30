@@ -171,9 +171,9 @@ This is when I realized: the DOM parser _probably_ only allows HTML tags in the 
 ```html
 <html lang="en">
 <head>
+    <style></style>
 </head>
 <body>
-    <style></style>
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
 </body>
 </html>
