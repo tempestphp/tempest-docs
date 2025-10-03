@@ -1,5 +1,6 @@
-import { useMagicKeys, whenever } from '@vueuse/core'
-import type { Ref } from 'vue'
+import { useActiveElement, useMagicKeys, whenever } from '@vueuse/core'
+import { logicAnd } from '@vueuse/math'
+import { computed, type Ref, watchEffect } from 'vue'
 
 interface Options {
 	value: Ref<boolean>
@@ -13,9 +14,14 @@ export function registerPalette(options: Options) {
 		target: document.body,
 		passive: false,
 		onEventFired(e) {
+			if (['INPUT', 'TEXTAREA'].includes((e.target as Element).tagName ?? '')) {
+				return
+			}
+
 			if (e.key === '/' && e.type === 'keydown') {
 				e.preventDefault()
 			}
+
 			if (e.key === 'k' && e.type === 'keydown' && e.metaKey) {
 				e.preventDefault()
 			}
@@ -33,6 +39,13 @@ export function registerPalette(options: Options) {
 		element.addEventListener('click', toggleCommandPalette)
 	})
 
-	whenever(Meta_K, () => options.value.value = !options.value.value)
-	whenever(Slash, () => options.value.value = true)
+	const activeElement = useActiveElement()
+	const notUsingInput = computed(() => !['INPUT', 'TEXTAREA'].includes(activeElement.value?.tagName ?? ''))
+
+	watchEffect(() => {
+		console.log({ Meta_K, Slash, notUsingInput })
+	})
+
+	whenever(logicAnd(Meta_K, notUsingInput), () => options.value.value = !options.value.value)
+	whenever(logicAnd(Slash, notUsingInput), () => options.value.value = true)
 }
