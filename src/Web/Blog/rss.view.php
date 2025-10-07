@@ -2,11 +2,12 @@
 /** @var \App\Web\Blog\BlogPost[] $posts */
 ?>
 
+<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/">
     <id>https://tempestphp.com/rss</id>
-    <link rel="self" type="application/atom+xml" href="https://tempestphp.com/rss"/>
+    <link rel="self" type="application/atom+xml" href="https://tempestphp.com/rss" />
     <title>Tempest</title>
-    <updated><?= date('c') ?></updated>
+    <updated>{{ date('c') }}</updated>
     <entry :foreach="$posts as $post">
         <title><![CDATA[ {!! $post->title !!} ]]></title>
         <link rel="alternate" :href="$post->uri"/>

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1669704bb688cbb8d5de5131acce7e00",
+    "content-hash": "b748ceb39f16e37d64d5665a8bc81595",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -2690,21 +2690,21 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.1.7",
+            "version": "2.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "c34cc07c4698f007a20dc5c99ff820089ae413ce"
+                "reference": "e1aaf3061e9ae9342ed0824865e3a3360defddeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/c34cc07c4698f007a20dc5c99ff820089ae413ce",
-                "reference": "c34cc07c4698f007a20dc5c99ff820089ae413ce",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/e1aaf3061e9ae9342ed0824865e3a3360defddeb",
+                "reference": "e1aaf3061e9ae9342ed0824865e3a3360defddeb",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.4|^8.0",
-                "phpstan/phpstan": "^2.1.18"
+                "phpstan/phpstan": "^2.1.26"
             },
             "conflict": {
                 "rector/rector-doctrine": "*",
@@ -2738,7 +2738,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.1.7"
+                "source": "https://github.com/rectorphp/rector/tree/2.2.1"
             },
             "funding": [
                 {
@@ -2746,7 +2746,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-09-10T11:13:58+00:00"
+            "time": "2025-10-06T21:25:14+00:00"
         },
         {
             "name": "spatie/browsershot",
@@ -4491,16 +4491,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v2.3.0",
+            "version": "v2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "f7ab318f6ca6c421134c5db2f80e9ce77e61d232"
+                "reference": "bd5bd2a8cce0bd048cfff72d9c3fdab82986b8a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/f7ab318f6ca6c421134c5db2f80e9ce77e61d232",
-                "reference": "f7ab318f6ca6c421134c5db2f80e9ce77e61d232",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/bd5bd2a8cce0bd048cfff72d9c3fdab82986b8a5",
+                "reference": "bd5bd2a8cce0bd048cfff72d9c3fdab82986b8a5",
                 "shasum": ""
             },
             "require": {
@@ -4709,7 +4709,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.3.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.3.1"
             },
             "funding": [
                 {
@@ -4717,7 +4717,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-06T11:53:17+00:00"
+            "time": "2025-10-07T07:17:05+00:00"
         },
         {
             "name": "tempest/highlight",
