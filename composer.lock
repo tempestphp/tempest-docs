@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "197778118b9d646a055500bbfbdd7075",
+    "content-hash": "1669704bb688cbb8d5de5131acce7e00",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -4491,16 +4491,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v2.2.1",
+            "version": "v2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "5792907fe2ff44ffbe0c9152a92f5fce67525124"
+                "reference": "f7ab318f6ca6c421134c5db2f80e9ce77e61d232"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/5792907fe2ff44ffbe0c9152a92f5fce67525124",
-                "reference": "5792907fe2ff44ffbe0c9152a92f5fce67525124",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/f7ab318f6ca6c421134c5db2f80e9ce77e61d232",
+                "reference": "f7ab318f6ca6c421134c5db2f80e9ce77e61d232",
                 "shasum": ""
             },
             "require": {
@@ -4709,7 +4709,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.2.1"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.3.0"
             },
             "funding": [
                 {
@@ -4717,7 +4717,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-03T07:23:12+00:00"
+            "time": "2025-10-06T11:53:17+00:00"
         },
         {
             "name": "tempest/highlight",
