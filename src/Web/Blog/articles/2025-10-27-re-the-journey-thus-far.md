@@ -33,7 +33,7 @@ Thank you! <small>Bracing for impact</small>
 
 > That being said... I definitely missed the scope of what Discovery can do.
 
-Ah, yes. This highlights a crucial drawback in our documentation. I did write a blog post about discovery to [explain it more in depth](https://tempestphp.com.test/blog/discovery-explained), but it's rather hidden. Our docs currently assume too much that people already understand the concept of discovery, and this might be confusing to newcomers (Vyygir definitely isn't the only one). Also, [noted](https://github.com/tempestphp/tempest-framework/issues/1666).
+Ah, yes. This highlights a crucial drawback in our documentation. I did write a blog post about discovery to [explain it more in depth](/blog/discovery-explained), but it's rather hidden. Our docs currently assume too much that people already understand the concept of discovery, and this might be confusing to newcomers (Vyygir definitely isn't the only one). Also, [noted](https://github.com/tempestphp/tempest-framework/issues/1666).
 
 However, there was one critique about discovery that I didn't fully understand:
 
