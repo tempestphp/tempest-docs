@@ -191,6 +191,10 @@
 .hl-qualified-phrase {
 	background-color: var(--code-qualified);
 }
+.hl-error {
+	border-bottom: 2px dotted var(--code-gutter-deletion);
+	background-color: var(--code-complex);
+}
 
 pre[data-lang="ellison"] {
 	text-wrap: wrap;
