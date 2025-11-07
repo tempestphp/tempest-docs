@@ -12,7 +12,10 @@ use Tempest\Http\Request;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\File;
 use Tempest\Http\Responses\Ok;
+use Tempest\Http\Session\VerifyCsrfMiddleware;
 use Tempest\Router\Get;
+use Tempest\Router\SetCurrentUrlMiddleware;
+use Tempest\Router\Stateless;
 use Tempest\View\ViewRenderer;
 
 use function Tempest\support\path;
@@ -28,7 +31,7 @@ final readonly class MetaImageController
         private Browsershot $browsershot,
     ) {}
 
-    #[Get('/meta/blog/{slug}')]
+    #[Stateless, Get('/meta/blog/{slug}')]
     public function blog(string $slug, Request $request, BlogRepository $repository): Response
     {
         $post = $repository->find($slug);
@@ -55,7 +58,7 @@ final readonly class MetaImageController
         return new File($path);
     }
 
-    #[Get('/meta/documentation/{version}/{category}/{slug}')]
+    #[Get('/meta/documentation/{version}/{category}/{slug}', without: [SetCurrentUrlMiddleware::class, VerifyCsrfMiddleware::class])]
     public function documentation(string $version, string $category, string $slug, Request $request, ChapterRepository $repository): Response
     {
         $version = Version::from($version);
@@ -83,7 +86,7 @@ final readonly class MetaImageController
         return new File($path);
     }
 
-    #[Get('/meta/{type}')]
+    #[Get('/meta/{type}', without: [SetCurrentUrlMiddleware::class, VerifyCsrfMiddleware::class])]
     public function default(string $type, Request $request): Response
     {
         $type = MetaType::tryFrom($type) ?? MetaType::HOME;

@@ -9,6 +9,7 @@ use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
 use Tempest\Router\Get;
+use Tempest\Router\Stateless;
 use Tempest\Router\StaticPage;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str\ImmutableString;
@@ -20,6 +21,7 @@ use function Tempest\Router\uri;
 
 final readonly class DocumentationController
 {
+    #[Stateless]
     #[Get('/current/{path:.*}')]
     #[Get('/main/{path:.*}')]
     #[Get('/docs/{path:.*}')]
@@ -28,6 +30,7 @@ final readonly class DocumentationController
         return new Redirect(sprintf('/%s/%s', Version::default()->getUrlSegment(), $path));
     }
 
+    #[Stateless]
     #[Get('/documentation')]
     #[Get('/docs')]
     #[Get('/{version}')]

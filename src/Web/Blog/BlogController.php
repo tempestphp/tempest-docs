@@ -3,15 +3,16 @@
 namespace App\Web\Blog;
 
 use App\Web\Meta\MetaType;
-use DateTimeImmutable;
 use Tempest\Cache\Cache;
 use Tempest\DateTime\DateTime;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Ok;
+use Tempest\Http\Session\VerifyCsrfMiddleware;
 use Tempest\Router\Get;
+use Tempest\Router\SetCurrentUrlMiddleware;
+use Tempest\Router\Stateless;
 use Tempest\Router\StaticPage;
-use Tempest\Support\Arr\ImmutableArray;
 use Tempest\View\View;
 
 use Tempest\View\ViewRenderer;
@@ -41,7 +42,7 @@ final readonly class BlogController
         return view('./show.view.php', post: $post);
     }
 
-    #[Get('/rss')]
+    #[Stateless, Get('/rss', without: [SetCurrentUrlMiddleware::class, VerifyCsrfMiddleware::class])]
     public function rss(
         Cache $cache,
         ViewRenderer $viewRenderer,
