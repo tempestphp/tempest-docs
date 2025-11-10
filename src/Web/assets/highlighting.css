@@ -64,6 +64,7 @@
 .hl-property > .hl-keyword {
 	color: var(--code-property);
 }
+.hl-type > span,
 .hl-type {
 	color: var(--code-type);
 }
