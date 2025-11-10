@@ -73,7 +73,7 @@ Route::middleware([AdminMiddleware::class])
 
 Laravel's approach is really useful because you can configure several routes as a single group, so that you don't have to repeat middleware configuration, prefixes, etc. for _every individual route_. With route attributes, you cannot do that — or can you?
 
-Tempest's route attributes are designed so that you can make your own. Even better: you're encouraged to do so! Let's say we have a route group specifically for admins: they need to be prefixed, and they need an extra middleware for checking authentication. Here's what that looks like in Tempest. First you make a `RouteAdmin` class representing the route group:
+Tempest's route attributes are designed so that you can make your own. Even better: you're encouraged to do so! Let's say we have a route group specifically for admins: they need to be prefixed, and they need an extra middleware for checking authentication. Here's what that looks like in Tempest. First you make a `AdminRoute` class representing the route group:
 
 ```php
 use Attribute;
