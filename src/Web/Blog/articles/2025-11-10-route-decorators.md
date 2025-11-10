@@ -148,19 +148,19 @@ Furthermore, route decorators can also be defined on the controller level, which
 #[{:hl-type:Admin:}, {:hl-type:Books:}]
 final class BookAdminController
 {
-    #[Get('/books')]
+    #[Get('/')]
     public function index(): View { /* … */ }
     
-    #[Get('/books/{book}/show')]
+    #[Get('/{book}/show')]
     public function show(Book $book): View { /* … */ }
     
-    #[Post('/books/new')]
+    #[Post('/new')]
     public function new(): View { /* … */ }
     
-    #[Post('/books/{book}/update')]
+    #[Post('/{book}/update')]
     public function update(): View { /* … */ }
     
-    #[Delete('/books/{book}/delete')]
+    #[Delete('/{book}/delete')]
     public function delete(): View { /* … */ }
 }
 ```
