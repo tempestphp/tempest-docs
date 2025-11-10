@@ -177,7 +177,7 @@ final readonly class Admin implements RouteDecorator
     public function decorate(Route $route): Route
     {
         $route->uri = path('/admin', $route->uri)->toString();
-        $route->middleare[] = AdminMiddleware::class;
+        $route->middleware[] = AdminMiddleware::class;
 
         return $route;
     }
