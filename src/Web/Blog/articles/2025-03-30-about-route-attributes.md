@@ -57,6 +57,10 @@ The second reason this argument fails is that in real project, route files becom
 
 ## Route Grouping
 
+:::info
+Since writing this blog post, route grouping in Tempest has gotten a serious update. Read all about it [here](/blog/route-decorators)
+:::
+
 The second-biggest argument against route attributes is the "route grouping" argument. A single route configuration file like for example in Laravel, allows you to reuse route configuration by grouping them together:
 
 ```php
@@ -73,56 +77,30 @@ Route::middleware([AdminMiddleware::class])
 
 Laravel's approach is really useful because you can configure several routes as a single group, so that you don't have to repeat middleware configuration, prefixes, etc. for _every individual route_. With route attributes, you cannot do that — or can you?
 
-Tempest's route attributes are designed so that you can make your own. Even better: you're encouraged to do so! Let's say we have a route group specifically for admins: they need to be prefixed, and they need an extra middleware for checking authentication. Here's what that looks like in Tempest. First you make a `AdminRoute` class representing the route group:
+Tempest has a concept called [route decorators](/2.x/essentials/routing#route-decorators-route-groups) which are a super convenient way to model route groups and share behavior. They look like this:
 
 ```php
-use Attribute;
-use Tempest\Http\Method;
-use Tempest\Router\Route;
-use function Tempest\Support\path;
-
-#[Attribute]
-final class AdminRoute implements Route
-{
-    public function __construct(
-        public string $uri,
-        public array $middleware = [],
-        public Method $method = Method::GET,
-    ) {
-        $this->uri = path('/admin', $uri);
-        $this->middleware = [AdminMiddleware::class, ...$middleware];
-    }
-}
-```
-
-And then you simply use that attribute for admin routes:
-
-```php
-use Tempest\Http\Method;
-use Tempest\Http\Response;
-
+#[{:hl-type:Admin:}, {:hl-type:Books:}]
 final class BookAdminController
 {
-    #[AdminRoute('/books')]
-    public function index(): Response { /* … */ }
+    #[Get('/books')]
+    public function index(): View { /* … */ }
     
-    #[AdminRoute('/books/{book}/show')]
-    public function show(Book $book): Response { /* … */ }
+    #[Get('/books/{book}/show')]
+    public function show(Book $book): View { /* … */ }
     
-    #[AdminRoute('/books/new', method: Method::POST)]
-    public function new(StoreBookRequest $request): Response { /* … */ }
+    #[Post('/books/new')]
+    public function new(): View { /* … */ }
     
-    #[AdminRoute('/books/{book}/update', method: Method::POST)]
-    public function update(BookRequest $bookRequest, Book $book): Response { /* … */ }
+    #[Post('/books/{book}/update')]
+    public function update(): View { /* … */ }
     
-    #[AdminRoute('/books/{book}/delete', method: Method::DELETE)]
-    public function delete(Book $book): Response { /* … */ }
+    #[Delete('/books/{book}/delete')]
+    public function delete(): View { /* … */ }
 }
 ```
 
-Of course, you could make variations like `AdminGet`, `AdminPost`, and `AdminDelete` as well, whatever fits your case. You could even make a `BookRoute` specifically for books.
-
-So, the second argument against route attributes also falls short: you can in fact create route groups. I'd even say I prefer modelling route groups as classes instead of relying on configuration. That might be preference, of course, but I definitely don't feel like one approach is better than the other; which means the second argument fails as well.
+You can read more about its design in [this blog post](/blog/route-decorators).
 
 ## Route Collisions
 

@@ -4497,16 +4497,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v2.7.2",
+            "version": "v2.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "926ae3ea5ef544f04dba970bd444544674224bc2"
+                "reference": "6bdc0fc3d47f1812476ee20c7918bf774dbd94c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/926ae3ea5ef544f04dba970bd444544674224bc2",
-                "reference": "926ae3ea5ef544f04dba970bd444544674224bc2",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/6bdc0fc3d47f1812476ee20c7918bf774dbd94c4",
+                "reference": "6bdc0fc3d47f1812476ee20c7918bf774dbd94c4",
                 "shasum": ""
             },
             "require": {
@@ -4715,7 +4715,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.7.2"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.8.0"
             },
             "funding": [
                 {
@@ -4723,7 +4723,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-11-10T05:55:44+00:00"
+            "time": "2025-11-10T08:50:09+00:00"
         },
         {
             "name": "tempest/highlight",
