@@ -19,6 +19,7 @@ php8.4 tempest docs:pull --no-interaction
 php8.4 tempest command-palette:index
 /home/forge/.bun/bin/bun run build
 php8.4 tempest cache:clear --force
+php8.4 tempest view:clear --force
 php8.4 tempest static:generate --verbose=true
 
 # Supervisor
