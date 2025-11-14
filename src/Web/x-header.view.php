@@ -19,7 +19,7 @@ use function Tempest\Router\is_current_uri;
             <a href="/" class="flex items-center gap-4">
                 <!-- Logo -->
                 <div class="size-8">
-                    <img src="/img/logo-transparent.svg" alt="Tempest logo" class="size-full"/>
+                    <img src="/img/tempest-logo.svg" alt="Tempest logo" class="size-full"/>
                 </div>
                 <span class="font-medium hidden lg:inline">Tempest</span>
             </a>
