@@ -42,10 +42,6 @@ export function registerPalette(options: Options) {
 	const activeElement = useActiveElement()
 	const notUsingInput = computed(() => !['INPUT', 'TEXTAREA'].includes(activeElement.value?.tagName ?? ''))
 
-	watchEffect(() => {
-		console.log({ Meta_K, Slash, notUsingInput })
-	})
-
 	whenever(logicAnd(Meta_K, notUsingInput), () => options.value.value = !options.value.value)
 	whenever(logicAnd(Slash, notUsingInput), () => options.value.value = true)
 }
