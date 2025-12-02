@@ -1,9 +1,9 @@
-<section class="mb-20 lg:mb-[7vh] flex justify-center flex-col tracking-tighter px-6">
-    <div class="grid grid-cols-1 lg:grid-cols-2 items-center">
+<section class="flex flex-col justify-center mb-20 lg:mb-[7vh] px-6 tracking-tighter">
+    <div class="items-center grid grid-cols-1 lg:grid-cols-2">
         <!-- Left -->
-        <div class="p-2 lg:p-0 mr-6">
+        <div class="mr-6 p-2 lg:p-0">
             <div class="max-w-xl text-sans">
-					<span class="text-xl md:text-4xl xl:text-5xl font-semibold leading-none flex flex-col text-display">
+					<span class="flex flex-col font-semibold text-display text-xl md:text-4xl xl:text-5xl leading-none">
 						{{ $heading }}
 					</span>
                 <p :foreach="$paragraphs as $paragraph" class="mt-3 md:mt-2 xl:mt-4 text-lg xl:text-2xl text-(--ui-text-muted)">
@@ -25,5 +25,3 @@
         </div>
     </div>
 </section>
-<style>
-</style>

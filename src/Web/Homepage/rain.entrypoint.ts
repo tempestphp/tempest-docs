@@ -17,38 +17,41 @@ interface Droplet {
 	color: string
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-	let rainIntensityTarget = 2
-	let currentRainIntensity = 2
+const config = {
+	canvas: 'rain-canvas',
+	baseCount: 5,
+	baseRainCount: 2,
+	color: 200,
+	opacity: 1,
+	saturation: 50,
+	lightness: 15,
+	initialRainIntensity: 2,
+	intensityChangeSpeed: 0.01,
+	backgroundColor: { red: 0, green: 0, blue: 0, alpha: 1 },
+}
 
-	const canvas = document.createElement('canvas')
+function initializeRain(canvas: HTMLCanvasElement) {
+	let rainIntensityTarget = config.initialRainIntensity
+	let currentRainIntensity = config.initialRainIntensity
+
 	canvas.style.width = '100%'
 	canvas.style.height = '100%'
 
 	const ctx = canvas.getContext('2d')!
-	const rainContainer = document.getElementById('rain-container')!
-
-	if (!rainContainer) {
-		return
-	}
-
-	rainContainer.appendChild(canvas)
 
 	let width = 0
 	let height = 0
 
 	const particles: Particle[] = []
 	const droplets: Droplet[] = []
-	const baseCount = 5
-	const baseRainCount = 2
 
 	const rainSettings = {
-		color: 200,
-		opacity: 1,
-		saturation: 50,
-		lightness: 15,
-		rainIntensity: 2,
-		backgroundColor: { red: 0, green: 0, blue: 0, alpha: 1 },
+		color: config.color,
+		opacity: config.opacity,
+		saturation: config.saturation,
+		lightness: config.lightness,
+		rainIntensity: config.initialRainIntensity,
+		backgroundColor: config.backgroundColor,
 	}
 
 	function resizeCanvas() {
@@ -56,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 		height = canvas.height = window.innerHeight
 	}
 
-	window.onresize = resizeCanvas
+	window.addEventListener('resize', resizeCanvas)
 	resizeCanvas()
 
-	function createRain(x: number, y: number, count: number = baseRainCount) {
+	function createRain(x: number, y: number, count: number = config.baseRainCount) {
 		while (count--) {
 			particles.push({
 				velocityX: Math.random() * 0.25,
@@ -73,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	function createExplosion(x: number, y: number, color: string, count: number = baseCount) {
+	function createExplosion(x: number, y: number, color: string, count: number = config.baseCount) {
 		while (count--) {
 			droplets.push({
 				velocityX: Math.random() * 4 - 2,
@@ -151,15 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
 	loop()
 
 	function updateRainIntensity() {
-		const intensityChangeSpeed = 0.01
-
 		if (currentRainIntensity < rainIntensityTarget) {
-			currentRainIntensity += intensityChangeSpeed
+			currentRainIntensity += config.intensityChangeSpeed
 			if (currentRainIntensity > rainIntensityTarget) {
 				currentRainIntensity = rainIntensityTarget
 			}
 		} else if (currentRainIntensity > rainIntensityTarget) {
-			currentRainIntensity -= intensityChangeSpeed
+			currentRainIntensity -= config.intensityChangeSpeed
 			if (currentRainIntensity < rainIntensityTarget) {
 				currentRainIntensity = rainIntensityTarget
 			}
@@ -170,9 +171,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	document.addEventListener('theme-changed', ({ detail }: any) => {
 		if (detail.isDark) {
-			rainIntensityTarget = 2
+			rainIntensityTarget = config.initialRainIntensity
 		} else {
 			rainIntensityTarget = 0
 		}
 	})
-})
+}
+
+function setup() {
+	document.getElementById(config.canvas)?.remove()
+	const container = document.getElementById('background')
+	if (!container) {
+		return
+	}
+
+	const canvas = document.createElement('canvas')
+	canvas.id = config.canvas
+	container.appendChild(canvas)
+
+	// @ts-expect-error
+	if (window.isDark?.()) {
+		initializeRain(canvas)
+	}
+}
+
+document.addEventListener('theme-changed', setup)
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', setup)
+} else {
+	setup()
+}

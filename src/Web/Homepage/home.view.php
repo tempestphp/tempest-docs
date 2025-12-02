@@ -9,43 +9,36 @@ use function Tempest\Router\uri;
 ?>
 
 <x-base full-title="Tempest, the PHP framework that gets out of your way" :stargazers="$this->stargazers" body-class="bg-[#f1f7ff] dark:bg-[black]">
-  <div class="flex flex-col grow font-display">
-    <!-- Falling leaves -->
-    <x-falling-leaves class="dark:hidden" />
-    <!-- Aurora -->
-    <x-aurora class="dark:hidden" />
-    <!-- Rain -->
-    <x-rain />
-    <!-- Moonlight -->
-    <x-moonlight />
+  <div class="flex flex-col font-display grow">
+    <div id="background" class="z-[-1] absolute inset-0 w-full h-full overflow-hidden pointer-events-none" />
     <!-- Content -->
     <main class="container mx-auto relative flex flex-col gap-4 grow -mt-(--ui-header-height)" style="tab-size: 2">
       <!-- Hero -->
-      <section class="md:h-[85svh] min-h-[75vh] md:pt-24 flex justify-center flex-col tracking-tighter px-6 mt-32 md:mt-0">
-        <h1 class="text-4xl md:text-5xl xl:text-6xl leading-none flex flex-col">
+      <section class="flex flex-col justify-center mt-32 md:mt-0 px-6 md:pt-24 md:h-[85svh] min-h-[75vh] tracking-tighter">
+        <h1 class="flex flex-col text-4xl md:text-5xl xl:text-6xl leading-none">
           <span>The framework that</span>
           <span class="text-(--ui-primary)">gets out of your way.</span>
         </h1>
         <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned)">
             Tempest embraces modern PHP and covers a wide range of features, giving you all the tools you need to focus on your code.
         </p>
-        <div class="mt-6 md:mt-8 xl:mt-10 flex gap-x-4 items-center font-medium text-lg">
+        <div class="flex items-center gap-x-4 mt-6 md:mt-8 xl:mt-10 font-medium text-lg">
           <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
             Get started
           </a>
           <a :href="uri([RedirectsController::class, 'github'])" class="hidden min-[401px]:flex text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-6 py-2.5 items-center gap-x-1.5 transition">
             <x-icon name="tabler:brand-github" class="size-6" />
             Source code
-            <svg class="group-hover:translate-x-0 size-5 scale-85 group-hover:scale-100 transition opacity-0 group-hover:opacity-100 -translate-x-full" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <svg class="opacity-0 group-hover:opacity-100 size-5 scale-85 group-hover:scale-100 transition -translate-x-full group-hover:translate-x-0" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
               <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 7l5 5l-5 5m6-10l5 5l-5 5" />
             </svg>
           </a>
         </div>
-        <button data-copy="#install-tempest-snippet" class="hidden md:flex group mt-6 md:mt-8 xl:mt-10  items-center justify-start gap-x-2 text-base font-mono relative cursor-pointer">
+        <button data-copy="#install-tempest-snippet" class="group hidden relative md:flex justify-start items-center gap-x-2 mt-6 md:mt-8 xl:mt-10 font-mono text-base cursor-pointer">
             <x-icon name="tabler:terminal" class="size-5 text-(--ui-primary)" />
             <span id="install-tempest-snippet" class="text-(--ui-text-muted)">composer create-project tempest/app</span>
             <span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
-                <x-icon name="tabler:copy" class="size-5 absolute" />
+                <x-icon name="tabler:copy" class="absolute size-5" />
                 <x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition text-(--ui-success)" />
             </span>
         </button>
