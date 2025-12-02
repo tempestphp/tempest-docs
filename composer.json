@@ -3,18 +3,18 @@
 	"type": "project",
 	"description": "Documentation website for the Tempest framework",
 	"require": {
-		"tempest/framework": "^2.7.0",
-		"league/commonmark": "^2.7.1",
-		"symfony/yaml": "^7.3.3",
-		"spatie/yaml-front-matter": "^2.1",
-		"spatie/browsershot": "^4.4",
+		"tempest/framework": "^2.12.0",
+		"league/commonmark": "^2.8.0",
+		"symfony/yaml": "^7.4.0",
+		"spatie/yaml-front-matter": "^2.1.1",
+		"spatie/browsershot": "^5.1.1",
 		"assertchris/ellison": "^1.0.2"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^12.4.0",
-		"symfony/var-dumper": "^7.3.4",
+		"phpunit/phpunit": "^12.4.5",
+		"symfony/var-dumper": "^7.4.0",
 		"carthage-software/mago": "^0.26.1",
-		"rector/rector": "^2.1.7"
+		"rector/rector": "^2.2.11"
 	},
 	"autoload": {
 		"psr-4": {
