@@ -3,7 +3,6 @@
 namespace App\Markdown;
 
 use function Tempest\Support\Str\strip_tags;
-use Tempest\Support\Str;
 
 final class MarkdownPost
 {

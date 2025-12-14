@@ -67,6 +67,41 @@
 		}
 	}
 
+	.code-group {
+		@apply my-[1.71em] flex flex-col gap-y-0 rounded-lg border
+			border-(--ui-border) bg-(--ui-bg-elevated)/20;
+
+		.code-block-name {
+			@apply hidden;
+		}
+
+		.code-group-tabs {
+			@apply flex gap-x-1 px-2 py-1 pt-1.5;
+
+			.code-group-tab {
+				@apply px-3 py-1.5 font-mono text-sm text-(--ui-text-dimmed) rounded-md
+					hover:text-(--ui-text-highlighted) transition-colors cursor-pointer;
+
+				&.active {
+					@apply text-(--ui-text-highlighted) border-(--ui-border)
+						bg-(--ui-bg-elevated) border-b-transparent;
+				}
+			}
+		}
+
+		.code-group-panel {
+			@apply hidden;
+
+			&.active {
+				@apply block;
+			}
+
+			.code-block {
+				@apply my-0 border-0 rounded-none bg-transparent;
+			}
+		}
+	}
+
 	code {
 		&::before,
 		&::after {

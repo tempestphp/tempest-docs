@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Markdown;
+namespace App\Markdown\CodeBlocks;
 
-use Override;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Override;
 use Tempest\Highlight\Highlighter;
 use Tempest\Highlight\WebTheme;
 
@@ -44,13 +44,17 @@ final class CodeBlockRenderer implements NodeRendererInterface
             if ($node->getInfoWords()[1] ?? false) {
                 return <<<HTML
                 <div class="code-block named-code-block">
-                     <div class="code-block-name">{$node->getInfoWords()[1]}</div>
+                    <div class="code-block-name">{$node->getInfoWords()[1]}</div>
                     {$pre}
                 </div>
                 HTML;
             }
 
-            return $pre;
+            return <<<HTML
+            <div class="code-block named-code-block">
+                {$pre}
+            </div>
+            HTML;
         }
 
         return '<pre data-lang="' . $language . '" class="notranslate">' . $parsed . '</pre>';

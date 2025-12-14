@@ -2,12 +2,12 @@
 
 namespace App\Markdown\Alerts;
 
-use Override;
 use League\CommonMark\Parser\Block\BlockStart;
 use League\CommonMark\Parser\Block\BlockStartParserInterface;
 use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Parser\MarkdownParserStateInterface;
 use League\CommonMark\Util\RegexHelper;
+use Override;
 
 final class AlertBlockStartParser implements BlockStartParserInterface
 {
@@ -21,6 +21,10 @@ final class AlertBlockStartParser implements BlockStartParserInterface
         $match = RegexHelper::matchFirst('/^:::(?!group)(?<type>[a-z]+)({(?<icon>.*?)})? ?(?<title>.*?)$/i', $cursor->getLine());
 
         if ($match === null) {
+            return BlockStart::none();
+        }
+
+        if (str_starts_with($match[0], needle: ':::code-group')) {
             return BlockStart::none();
         }
 

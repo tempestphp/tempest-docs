@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Markdown;
+namespace App\Markdown\CodeBlocks;
 
-use Override;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
+use Override;
 use Tempest\Highlight\Highlighter;
 
 final class InlineCodeBlockRenderer implements NodeRendererInterface

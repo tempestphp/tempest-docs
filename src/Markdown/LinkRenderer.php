@@ -2,9 +2,6 @@
 
 namespace App\Markdown;
 
-use Override;
-use Stringable;
-use function Tempest\Support\Regex\replace;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\CommonMark\Renderer\Inline\LinkRenderer as InlineLinkRenderer;
@@ -14,7 +11,10 @@ use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Xml\XmlNodeRendererInterface;
 use League\Config\ConfigurationAwareInterface;
 use League\Config\ConfigurationInterface;
-use Tempest\Support\Regex;
+use Override;
+use Stringable;
+
+use function Tempest\Support\Regex\replace;
 
 final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterface, ConfigurationAwareInterface
 {
