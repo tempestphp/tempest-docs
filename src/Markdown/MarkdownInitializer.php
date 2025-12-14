@@ -12,6 +12,7 @@ use App\Markdown\CodeGroups\CodeGroupBlockRenderer;
 use App\Markdown\CodeGroups\CodeGroupExtension;
 use App\Markdown\Symbols\AttributeParser;
 use App\Markdown\Symbols\FqcnParser;
+use App\Markdown\Symbols\FunctionParser;
 use App\Markdown\Symbols\HandleParser;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
@@ -48,6 +49,7 @@ final readonly class MarkdownInitializer implements Initializer
             ->addInlineParser(new TempestPackageParser())
             ->addInlineParser(new FqcnParser())
             ->addInlineParser(new AttributeParser())
+            ->addInlineParser(new FunctionParser())
             ->addInlineParser(new HandleParser())
             ->addRenderer(FencedCode::class, $codeBlockRenderer)
             ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
