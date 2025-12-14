@@ -15,9 +15,9 @@ use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str\ImmutableString;
 use Tempest\View\View;
 
+use function Tempest\Router\uri;
 use function Tempest\Support\arr;
 use function Tempest\Support\Str\before_first;
-use function Tempest\Router\uri;
 
 final readonly class DocumentationController
 {
@@ -36,7 +36,7 @@ final readonly class DocumentationController
     #[Get('/{version}')]
     public function index(?string $version): Redirect
     {
-        $version = Version::tryFromString($version);
+        $version = Version::tryFromString($version) ?? Version::default();
 
         $category = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*", flags: GLOB_ONLYDIR))
             ->tap(fn (ImmutableArray $files) => $files->isEmpty() ? throw new RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)
