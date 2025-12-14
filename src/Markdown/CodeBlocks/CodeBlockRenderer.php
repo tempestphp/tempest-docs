@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown\CodeBlocks;
 
+use App\Markdown\ResolvesInfoWords;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
@@ -15,6 +16,8 @@ use Tempest\Highlight\WebTheme;
 
 final class CodeBlockRenderer implements NodeRendererInterface
 {
+    use ResolvesInfoWords;
+
     public function __construct(
         private Highlighter $highlighter = new Highlighter(),
     ) {}
@@ -41,10 +44,10 @@ final class CodeBlockRenderer implements NodeRendererInterface
         if ($theme instanceof WebTheme) {
             $pre = $theme->preBefore($highlighter) . $parsed . $theme->preAfter($highlighter);
 
-            if ($node->getInfoWords()[1] ?? false) {
+            if ($this->getInfoWords($node)[1] ?? false) {
                 return <<<HTML
                 <div class="code-block named-code-block">
-                    <div class="code-block-name">{$node->getInfoWords()[1]}</div>
+                    <div class="code-block-name">{$this->getInfoWords($node)[1]}</div>
                     {$pre}
                 </div>
                 HTML;

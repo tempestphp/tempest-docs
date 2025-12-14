@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Markdown\CodeGroups;
 
 use App\Markdown\CodeBlocks\CodeBlockRenderer;
+use App\Markdown\ResolvesInfoWords;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;
 use League\CommonMark\Node\Node;
@@ -15,6 +16,8 @@ use Override;
 
 final class CodeGroupBlockRenderer implements NodeRendererInterface
 {
+    use ResolvesInfoWords;
+
     public function __construct(
         private CodeBlockRenderer $code_block_renderer,
     ) {}
@@ -35,7 +38,7 @@ final class CodeGroupBlockRenderer implements NodeRendererInterface
                 continue;
             }
 
-            $info_words = $child->getInfoWords();
+            $info_words = $this->getInfoWords($child);
             $filename = $info_words[1] ?? "Tab {$index}";
 
             $is_active = $index === 0;
