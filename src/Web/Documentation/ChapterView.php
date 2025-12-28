@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
+use App\Markdown\SubChapterExtractor;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str;
 use Tempest\View\IsView;
@@ -11,11 +12,7 @@ use Tempest\View\View;
 
 use function Tempest\Support\Arr\map_iterable;
 use function Tempest\Support\str;
-use function Tempest\Support\Str\strip_tags;
 
-/**
- * @mago-expect lint:kan-defect
- */
 final class ChapterView implements View
 {
     use IsView;
@@ -37,49 +34,12 @@ final class ChapterView implements View
         return $this->currentChapter->category === $other->category && $this->currentChapter->slug === $other->slug;
     }
 
+    /**
+     * @return array<string, array{title: string, children: array<string, string>}>
+     */
     public function getSubChapters(): array
     {
-        // TODO(@innocenzi): clean up
-        preg_match_all('/<h2.*>.*<a.*href="(?<uri>.*?)".*?<\/span>(?<title>.*)<\/a><\/h2>/', $this->currentChapter->body, $h2Matches);
-        preg_match_all('/<h3.*>.*<a.*href="(?<h3uri>.*?)".*?<\/span>(?<h3title>.*)<\/a><\/h3>/', $this->currentChapter->body, $h3Matches);
-
-        $subChapters = [];
-
-        foreach ($h2Matches[0] as $key => $match) {
-            $h2Uri = $h2Matches['uri'][$key];
-            $h2Title = strip_tags($h2Matches['title'][$key]);
-            $subChapters[$h2Uri] = [
-                'title' => $h2Title,
-                'children' => [],
-            ];
-        }
-
-        foreach ($h3Matches[0] as $key => $match) {
-            $h3Uri = $h3Matches['h3uri'][$key];
-            $h3Title = strip_tags($h3Matches['h3title'][$key]);
-            $parentH2Uri = null;
-            $h3Position = strpos($this->currentChapter->body, $match);
-
-            foreach ($h2Matches[0] as $h2Key => $h2Match) {
-                $h2Position = strpos($this->currentChapter->body, $h2Match);
-                if ($h2Position < $h3Position) {
-                    $parentH2Uri = $h2Matches['uri'][$h2Key];
-                } else { // @mago-expect lint:no-else-clause
-                    break;
-                }
-            }
-
-            if ($parentH2Uri !== null && isset($subChapters[$parentH2Uri])) {
-                $subChapters[$parentH2Uri]['children'][$h3Uri] = $h3Title;
-            } else { // @mago-expect lint:no-else-clause
-                $subChapters[$h3Uri] = [
-                    'title' => $h3Title,
-                    'children' => [],
-                ];
-            }
-        }
-
-        return $subChapters;
+        return SubChapterExtractor::extract($this->currentChapter->body);
     }
 
     public function chaptersForCategory(string $category): ImmutableArray
