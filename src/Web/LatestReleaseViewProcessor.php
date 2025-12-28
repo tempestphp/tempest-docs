@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web;
 
-use Override;
 use App\GitHub\GetLatestRelease;
+use Override;
 use Tempest\View\View;
 use Tempest\View\ViewProcessor;
 

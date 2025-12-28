@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics;
 
-use Override;
 use App\StoredEvents\ShouldBeStored;
 use DateTimeImmutable;
+use Override;
 use Symfony\Component\Uid\Uuid;
 
 final class PackageDownloadsListed implements ShouldBeStored

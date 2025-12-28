@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Highlight\Injections;
 
 use Tempest\Highlight\Highlighter;

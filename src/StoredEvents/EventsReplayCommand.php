@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\StoredEvents;
 
 use Tempest\Console\Console;
@@ -7,7 +9,6 @@ use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
 use Tempest\Console\Middleware\ForceMiddleware;
 use Tempest\Container\Container;
-use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 
 use function Tempest\Database\query;
 use function Tempest\Support\arr;
@@ -30,7 +31,7 @@ final readonly class EventsReplayCommand
 
         if ($replay) {
             $replay = [$replay];
-        } else {
+        } else { // @mago-expect lint:no-else-clause
             $replay = $this->ask(
                 question: 'Which projects should be replayed?',
                 options: $projectors->toArray(),

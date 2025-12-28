@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics\VisitsPerDay;
 
-use Override;
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PageVisited;
+use Override;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 use Tempest\EventBus\EventHandler;
 

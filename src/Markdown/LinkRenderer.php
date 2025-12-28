@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown;
 
 use InvalidArgumentException;
@@ -23,7 +25,7 @@ final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterf
     #[Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): Stringable
     {
-        if (! ($node instanceof Link)) {
+        if (! $node instanceof Link) {
             throw new InvalidArgumentException('Node must be instance of ' . Link::class);
         }
 
@@ -53,7 +55,7 @@ final class LinkRenderer implements NodeRendererInterface, XmlNodeRendererInterf
     #[Override]
     public function getXmlAttributes(Node $node): array
     {
-        if (! ($node instanceof Link)) {
+        if (! $node instanceof Link) {
             throw new InvalidArgumentException('Node must be instance of ' . Link::class);
         }
 

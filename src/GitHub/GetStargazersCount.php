@@ -1,14 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\GitHub;
 
-use Throwable;
-use function Tempest\Intl\Number\to_human_readable;
 use Tempest\Cache\Cache;
 use Tempest\HttpClient\HttpClient;
 use Tempest\Intl\Number;
+use Throwable;
 
 use function Tempest\env;
+use function Tempest\Intl\Number\to_human_readable;
 
 final class GetStargazersCount
 {
@@ -21,9 +23,7 @@ final class GetStargazersCount
     {
         $stargazers = $this->cache->resolve(
             'stargazers',
-            function () {
-                return $this->getStargazersCount();
-            },
+            fn () => $this->getStargazersCount(),
         );
 
         if ($stargazers) {

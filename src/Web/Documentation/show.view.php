@@ -30,8 +30,8 @@
                 class="
                   group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors
                  <?= $this->isCurrent($chapter)
-                     ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
-                     : 'text-(--ui-text-muted)' ?>
+    ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
+    : 'text-(--ui-text-muted)' ?>
                 ">
                 {{ $chapter->title }}
               </a>
@@ -82,7 +82,7 @@
             </div>
           </div>
           <!-- Docs content -->
-          <div :if="$this->currentChapter" class="space-y-12 dark:prose-invert mt-8 prose prose-large" highlights-titles>
+          <div :if="$this->currentChapter" class="space-y-12 dark:prose-invert mt-8 prose prose-large grow" highlights-titles>
             {!! $this->currentChapter->body !!}
           </div>
           <!-- Docs footer -->

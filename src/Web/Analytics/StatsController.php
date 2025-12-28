@@ -1,11 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics;
 
 use App\Web\Analytics\PackageDownloadsPerDay\PackageDownloadsPerDay;
 use App\Web\Analytics\VisitsPerDay\VisitsPerDay;
-use Tempest\Clock\Clock;
-use Tempest\DateTime\Duration;
 use Tempest\Router\Get;
 use Tempest\View\View;
 
@@ -37,14 +37,14 @@ final readonly class StatsController
             __DIR__ . '/stats.view.php',
 
             visitsPerDay: new Chart(
-                labels: $visitsPerDay->map(fn (VisitsPerDay $item) => $item->date->format('Y-m-d')),
-                values: $visitsPerDay->map(fn (VisitsPerDay $item) => $item->count),
+                labels: $visitsPerDay->map(static fn (VisitsPerDay $item) => $item->date->format('Y-m-d')),
+                values: $visitsPerDay->map(static fn (VisitsPerDay $item) => $item->count),
             ),
 
             packageDownloadsPerDay: new Chart(
-                labels: $packageDownloadsPerDay->map(fn (PackageDownloadsPerDay $item) => $item->date->format('Y-m-d')),
-                values: $packageDownloadsPerDay->map(fn (PackageDownloadsPerDay $item) => $item->total),
-                min: $packageDownloadsPerDay->sortByCallback(fn (PackageDownloadsPerDay $a, PackageDownloadsPerDay $_b) => $a->total)->first()->total,
+                labels: $packageDownloadsPerDay->map(static fn (PackageDownloadsPerDay $item) => $item->date->format('Y-m-d')),
+                values: $packageDownloadsPerDay->map(static fn (PackageDownloadsPerDay $item) => $item->total),
+                min: $packageDownloadsPerDay->sortByCallback(static fn (PackageDownloadsPerDay $a, PackageDownloadsPerDay $_b) => $a->total)->first()->total,
             ),
         );
     }

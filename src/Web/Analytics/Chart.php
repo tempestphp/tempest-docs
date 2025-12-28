@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics;
 
 use Tempest\Support\Arr\ImmutableArray;

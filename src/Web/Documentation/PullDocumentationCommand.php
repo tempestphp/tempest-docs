@@ -1,10 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Documentation;
 
-use function Tempest\Support\Filesystem\ensure_directory_empty;
-use function Tempest\Support\Filesystem\move;
-use function Tempest\Support\Filesystem\delete_directory;
 use RuntimeException;
 use Symfony\Component\Process\Process;
 use Tempest\Console\Console;
@@ -13,6 +12,9 @@ use Tempest\Console\ExitCode;
 use Tempest\Support\Filesystem;
 
 use function Tempest\root_path;
+use function Tempest\Support\Filesystem\delete_directory;
+use function Tempest\Support\Filesystem\ensure_directory_empty;
+use function Tempest\Support\Filesystem\move;
 use function Tempest\Support\path;
 
 final readonly class PullDocumentationCommand

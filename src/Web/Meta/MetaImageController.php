@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Meta;
 
 use App\Web\Blog\BlogRepository;
@@ -18,8 +20,8 @@ use Tempest\Router\SetCurrentUrlMiddleware;
 use Tempest\Router\Stateless;
 use Tempest\View\ViewRenderer;
 
-use function Tempest\support\path;
 use function Tempest\Router\uri;
+use function Tempest\support\path;
 use function Tempest\view;
 
 final readonly class MetaImageController

@@ -5,16 +5,16 @@
 	"require": {
 		"tempest/framework": "^2.14.0",
 		"league/commonmark": "^2.8.0",
-		"symfony/yaml": "^7.4.0",
+		"symfony/yaml": "^7.4.1",
 		"spatie/yaml-front-matter": "^2.1.1",
-		"spatie/browsershot": "^5.1.1",
+		"spatie/browsershot": "^5.2.0",
 		"assertchris/ellison": "^1.0.2"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^12.4.5",
+		"phpunit/phpunit": "^12.5.4",
 		"symfony/var-dumper": "^7.4.0",
-		"carthage-software/mago": "^0.26.1",
-		"rector/rector": "^2.2.11"
+		"carthage-software/mago": "^1.0.3",
+		"rector/rector": "^2.3.0"
 	},
 	"autoload": {
 		"psr-4": {
@@ -37,20 +37,20 @@
 		}
 	],
 	"scripts": {
-		"post-autoload-dump": [
-			"@php ./tempest discovery:generate"
-		],
+		"post-autoload-dump": "@php ./tempest discovery:generate",
 		"phpunit": "vendor/bin/phpunit --display-warnings --display-skipped --display-deprecations --display-errors --display-notices",
-		"mago:fmt": "vendor/bin/mago fmt",
-		"mago:lint": "vendor/bin/mago lint --fix && vendor/bin/mago lint",
+		"fmt": "vendor/bin/mago fmt",
+		"lint:fix": "vendor/bin/mago lint --fix --format-after-fix",
+		"lint": "vendor/bin/mago lint",
 		"qa": [
-			"composer mago:fmt",
+			"composer fmt",
+			"composer lint:fix",
+			"composer lint",
 			"composer phpunit",
       "bun run build",
 			"@php ./tempest static:generate",
 			"@php ./tempest static:clean",
-      "rm -rf public/build",
-			"composer mago:lint"
+      "rm -rf public/build"
 		]
 	},
 	"minimum-stability": "dev",

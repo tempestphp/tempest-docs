@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Tempest\DateTime\Duration;
 use Tempest\Http\Session\Config\DatabaseSessionConfig;
 

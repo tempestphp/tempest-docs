@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown;
 
 use League\CommonMark\Extension\CommonMark\Node\Block\FencedCode;

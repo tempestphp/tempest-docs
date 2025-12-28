@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\Symbols;
 
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
@@ -38,9 +40,11 @@ final readonly class HandleParser implements InlineParserInterface
             default => throw new RuntimeException("Unknown platform: {$platform}"),
         };
 
-        $inlineContext->getContainer()->appendChild(
-            new Link($url, label: $text ?? ('@' . $handle)),
-        );
+        $inlineContext
+            ->getContainer()
+            ->appendChild(
+                new Link($url, label: $text ?? '@' . $handle),
+            );
 
         return true;
     }

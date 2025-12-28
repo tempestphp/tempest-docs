@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics;
 
 use App\StoredEvents\StoredEvent;
@@ -133,9 +135,11 @@ final class ParseLogCommand
             $userAgent = str($line->match('/"([\,\-\w\d\.\/\s\(\)\:\;\+\=\&\~\\\\\@\{\}\%\'\!\?\[\]\<\>\|]+)"$/'))->lower();
 
             foreach (self::USER_AGENT_BLACKLIST as $blockedUserAgent) {
-                if ($userAgent->contains($blockedUserAgent)) {
-                    continue 2;
+                if (! $userAgent->contains($blockedUserAgent)) {
+                    continue;
                 }
+
+                continue 2;
             }
 
             // Create event

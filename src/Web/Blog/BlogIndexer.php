@@ -1,20 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Blog;
 
-use Override;
-use RuntimeException;
 use App\Web\CommandPalette\Command;
 use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;
+use Override;
+use RuntimeException;
 use Tempest\Support\Arr\ImmutableArray;
 
+use function Tempest\Router\uri;
 use function Tempest\Support\arr;
 use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Arr\wrap;
-use function Tempest\Router\uri;
 
 final readonly class BlogIndexer implements Indexer
 {
@@ -30,7 +32,7 @@ final readonly class BlogIndexer implements Indexer
                 $markdown = $this->markdown->convert(file_get_contents($path));
                 preg_match('/\d+-\d+-\d+-(?<slug>.*)\.md/', $path, $matches);
 
-                if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
+                if (! $markdown instanceof RenderedContentWithFrontMatter) {
                     throw new RuntimeException(sprintf('Blog entry [%s] is missing a frontmatter.', $path));
                 }
 
@@ -41,7 +43,7 @@ final readonly class BlogIndexer implements Indexer
                 $keywords = get_by_key($frontmatter, 'keywords');
                 $tags = get_by_key($frontmatter, 'tag');
 
-                $main = new Command(
+                return new Command(
                     type: Type::URI,
                     title: $title,
                     uri: uri([BlogController::class, 'show'], slug: $matches['slug']),
@@ -57,8 +59,6 @@ final readonly class BlogIndexer implements Indexer
                         ...wrap($tags),
                     ],
                 );
-
-                return $main;
             });
     }
 }

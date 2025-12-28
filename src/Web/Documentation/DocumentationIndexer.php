@@ -1,9 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Documentation;
 
-use Override;
-use RuntimeException;
 use App\Web\CommandPalette\Command;
 use App\Web\CommandPalette\Indexer;
 use App\Web\CommandPalette\Type;
@@ -12,15 +12,17 @@ use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatte
 use League\CommonMark\MarkdownConverter;
 use League\CommonMark\Node\Inline\Text;
 use League\CommonMark\Node\Query;
+use Override;
+use RuntimeException;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str\ImmutableString;
 
+use function Tempest\Router\uri;
 use function Tempest\Support\arr;
 use function Tempest\Support\Arr\get_by_key;
 use function Tempest\Support\Arr\wrap;
 use function Tempest\Support\Str\to_kebab_case;
 use function Tempest\Support\Str\to_sentence_case;
-use function Tempest\Router\uri;
 
 /**
  * Indexes the blog.
@@ -43,7 +45,7 @@ final readonly class DocumentationIndexer implements Indexer
             ->flatMap(function (string $path) use ($version) {
                 $markdown = $this->markdown->convert(file_get_contents($path));
 
-                if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
+                if (! $markdown instanceof RenderedContentWithFrontMatter) {
                     throw new RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
                 }
 
@@ -77,7 +79,7 @@ final readonly class DocumentationIndexer implements Indexer
                     ->findAll($markdown->getDocument());
 
                 $indices = arr(iterator_to_array($matchingNodes))
-                    ->map(function (Heading $heading) use ($main) {
+                    ->map(static function (Heading $heading) use ($main) {
                         /** @var Text */
                         $text = $heading->firstChild();
                         $slug = to_kebab_case($text->getLiteral());

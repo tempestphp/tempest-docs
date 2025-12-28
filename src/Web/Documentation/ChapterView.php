@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Web\Documentation;
 
-use function Tempest\Support\Str\strip_tags;
 use Tempest\Support\Arr\ImmutableArray;
 use Tempest\Support\Str;
 use Tempest\View\IsView;
@@ -12,7 +11,11 @@ use Tempest\View\View;
 
 use function Tempest\Support\Arr\map_iterable;
 use function Tempest\Support\str;
+use function Tempest\Support\Str\strip_tags;
 
+/**
+ * @mago-expect lint:kan-defect
+ */
 final class ChapterView implements View
 {
     use IsView;
@@ -61,14 +64,14 @@ final class ChapterView implements View
                 $h2Position = strpos($this->currentChapter->body, $h2Match);
                 if ($h2Position < $h3Position) {
                     $parentH2Uri = $h2Matches['uri'][$h2Key];
-                } else {
+                } else { // @mago-expect lint:no-else-clause
                     break;
                 }
             }
 
             if ($parentH2Uri !== null && isset($subChapters[$parentH2Uri])) {
                 $subChapters[$parentH2Uri]['children'][$h3Uri] = $h3Title;
-            } else {
+            } else { // @mago-expect lint:no-else-clause
                 $subChapters[$h3Uri] = [
                     'title' => $h3Title,
                     'children' => [],
@@ -120,7 +123,7 @@ final class ChapterView implements View
     {
         return map_iterable(
             array: glob(__DIR__ . "/content/{$this->version->getUrlSegment()}/*", flags: GLOB_ONLYDIR),
-            map: fn (string $path) => str($path)->afterLast('/')->replaceRegex('/^\d+-/', '')->toString(),
+            map: static fn (string $path) => str($path)->afterLast('/')->replaceRegex('/^\d+-/', '')->toString(),
         );
     }
 }

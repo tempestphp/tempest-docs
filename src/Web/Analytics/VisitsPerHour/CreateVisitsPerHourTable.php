@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics\VisitsPerHour;
 
 use Override;
@@ -10,6 +12,7 @@ use Tempest\Database\QueryStatements\DropTableStatement;
 final class CreateVisitsPerHourTable implements \Tempest\Database\MigratesUp, \Tempest\Database\MigratesDown
 {
     public string $name = '2024-12-13_01_create_visits_per_hour_table';
+
     #[Override]
     public function up(): QueryStatement
     {
@@ -19,6 +22,7 @@ final class CreateVisitsPerHourTable implements \Tempest\Database\MigratesUp, \T
             ->integer('count')
             ->index('date');
     }
+
     #[Override]
     public function down(): QueryStatement
     {

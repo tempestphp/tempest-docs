@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Documentation;
 
 use Tempest\Support\IsEnumHelper;
@@ -53,7 +55,7 @@ enum Version: string
     {
         return match ($case) {
             'default', 'current', 'main', null => self::default(),
-            'next' => array_find(self::cases(), fn (self $version) => $version->isNext()),
+            'next' => array_find(self::cases(), static fn (self $version) => $version->isNext()),
             default => self::tryFrom($case),
         };
     }

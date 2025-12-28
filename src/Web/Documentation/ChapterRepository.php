@@ -9,8 +9,6 @@ use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatte
 use League\CommonMark\MarkdownConverter;
 use RuntimeException;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
-use Tempest\Http\HttpRequestFailed;
-use Tempest\Http\Status;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\root_path;
@@ -49,7 +47,7 @@ final class ChapterRepository
 
         $markdown = $this->markdown->convert(file_get_contents($path));
 
-        if (! ($markdown instanceof RenderedContentWithFrontMatter)) {
+        if (! $markdown instanceof RenderedContentWithFrontMatter) {
             throw new RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
         }
 
@@ -77,8 +75,8 @@ final class ChapterRepository
     {
         return $this->memoize(
             $version->value . $category,
-            fn () => arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*{$category}/*.md"))
-                ->map(function (string $path) use ($version) {
+            static fn () => arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*{$category}/*.md"))
+                ->map(static function (string $path) use ($version) {
                     $content = file_get_contents($path);
                     $category = str($path)->beforeLast('/')->afterLast('/')->replaceRegex('/^\d+-/', '');
 
@@ -93,7 +91,7 @@ final class ChapterRepository
                         ...YamlFrontMatter::parse($content)->matter(),
                     ];
                 })
-                ->filter(fn (array $chapter) => get_by_key($chapter, 'hidden') !== true)
+                ->filter(static fn (array $chapter) => get_by_key($chapter, 'hidden') !== true)
                 ->mapTo(Chapter::class),
         );
     }

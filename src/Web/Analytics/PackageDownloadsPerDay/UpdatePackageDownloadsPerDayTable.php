@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics\PackageDownloadsPerDay;
 
 use Override;
-use App\Web\Analytics\PackageDownloadsPerHour\PackageDownloadsPerHour;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\AlterTableStatement;
 use Tempest\Database\QueryStatements\IntegerStatement;

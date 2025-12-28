@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\CodeBlocks;
 
 use InvalidArgumentException;
@@ -19,7 +21,7 @@ final class InlineCodeBlockRenderer implements NodeRendererInterface
     #[Override]
     public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?string
     {
-        if (! ($node instanceof Code)) {
+        if (! $node instanceof Code) {
             throw new InvalidArgumentException('Block must be instance of ' . Code::class);
         }
 

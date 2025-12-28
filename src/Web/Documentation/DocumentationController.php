@@ -39,14 +39,14 @@ final readonly class DocumentationController
         $version = Version::tryFromString($version) ?? Version::default();
 
         $category = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/*", flags: GLOB_ONLYDIR))
-            ->tap(fn (ImmutableArray $files) => $files->isEmpty() ? throw new RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)
+            ->tap(static fn (ImmutableArray $files) => $files->isEmpty() ? throw new RuntimeException('Documentation has not been fetched. Run `tempest docs:pull`.') : null)
             ->sort()
             ->mapFirstTo(ImmutableString::class)
             ->basename()
             ->toString();
 
         $slug = arr(glob(__DIR__ . "/content/{$version->getUrlSegment()}/{$category}/*.md"))
-            ->map(fn (string $path) => before_first(basename($path), '.'))
+            ->map(static fn (string $path) => before_first(basename($path), '.'))
             ->sort()
             ->mapFirstTo(ImmutableString::class)
             ->basename()

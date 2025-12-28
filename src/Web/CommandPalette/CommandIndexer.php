@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\CommandPalette;
 
-use Override;
 use App\Web\Blog\BlogController;
 use App\Web\Documentation\DocumentationController;
 use App\Web\RedirectsController;
+use Override;
 use Tempest\Support\Arr\ImmutableArray;
 
 use function Tempest\Router\uri;

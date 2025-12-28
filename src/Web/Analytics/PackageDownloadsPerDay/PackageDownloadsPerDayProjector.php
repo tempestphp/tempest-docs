@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics\PackageDownloadsPerDay;
 
-use Override;
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PackageDownloadsListed;
-use PDOException;
+use Override;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 use Tempest\EventBus\EventHandler;
 

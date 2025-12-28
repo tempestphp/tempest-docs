@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Documentation;
 
-use Override;
 use Generator;
+use Override;
 use Tempest\Router\DataProvider;
 
 final readonly class DocumentationDataProvider implements DataProvider

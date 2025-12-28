@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\Alerts;
 
 use League\CommonMark\Parser\Block\BlockStart;

@@ -1,17 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\Symbols;
 
-use Override;
-use function Tempest\Support\Str\to_kebab_case;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
 use League\CommonMark\Parser\Inline\InlineParserMatch;
 use League\CommonMark\Parser\InlineParserContext;
+use Override;
 use Tempest\Support\Str;
 
 use function Tempest\Support\str;
+use function Tempest\Support\Str\to_kebab_case;
 
 final readonly class AttributeParser implements InlineParserInterface
 {
@@ -36,15 +38,16 @@ final readonly class AttributeParser implements InlineParserInterface
         [$flag, $fqcn] = $inlineContext->getSubMatches();
         $url = str($fqcn)
             ->stripStart(['\\Tempest\\', 'Tempest\\'])
-            ->replaceRegex("/^(\w+)/", fn (array $matches) => sprintf('packages/%s/src', to_kebab_case($matches[0])))
+            ->replaceRegex("/^(\w+)/", static fn (array $matches) => sprintf('packages/%s/src', to_kebab_case($matches[0])))
             ->replaceEvery(['date-time' => 'datetime'])
             ->replace('\\', '/')
             ->prepend('https://github.com/tempestphp/tempest-framework/blob/main/')
-            ->append('.php');
+            ->append('.php')
+            ->toString();
 
         $attribute = str($fqcn)
             ->stripStart('\\')
-            ->when($flag === 'b', fn ($s) => $s->classBasename())
+            ->when($flag === 'b', static fn ($s) => $s->classBasename())
             ->wrap(before: '#[', after: ']')
             ->toString();
 

@@ -25,7 +25,7 @@ final class CodeGroupBlockRenderer implements NodeRendererInterface
     #[Override]
     public function render(Node $node, ChildNodeRendererInterface $child_renderer): mixed
     {
-        if (! ($node instanceof CodeGroupBlock)) {
+        if (! $node instanceof CodeGroupBlock) {
             throw new InvalidArgumentException('Incompatible node type: ' . $node::class);
         }
 
@@ -34,7 +34,7 @@ final class CodeGroupBlockRenderer implements NodeRendererInterface
         $index = 0;
 
         foreach ($node->children() as $child) {
-            if (! ($child instanceof FencedCode)) {
+            if (! $child instanceof FencedCode) {
                 continue;
             }
 

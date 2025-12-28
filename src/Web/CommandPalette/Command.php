@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\CommandPalette;
 
-use Override;
 use JsonSerializable;
+use Override;
 
 final readonly class Command implements JsonSerializable
 {

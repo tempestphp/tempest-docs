@@ -27,13 +27,13 @@ final readonly class CommentInjection implements Injection
                 [
                     '/*',
                     ...array_map(
-                        fn (string $line) => " * {$line}",
+                        static fn (string $line) => " * {$line}",
                         $lines,
                     ),
                     ' */',
                 ],
             );
-        } else {
+        } else { // @mago-expect lint:no-else-clause
             $comment = '// ' . $lines[0];
         }
 

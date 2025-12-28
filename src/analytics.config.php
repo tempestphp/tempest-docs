@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Web\Analytics\AnalyticsConfig;
 
 use function Tempest\env;

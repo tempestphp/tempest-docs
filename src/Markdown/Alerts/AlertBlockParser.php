@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\Alerts;
 
-use Override;
 use League\CommonMark\Node\Block\AbstractBlock;
 use League\CommonMark\Parser\Block\BlockContinue;
 use League\CommonMark\Parser\Block\BlockContinueParserInterface;
 use League\CommonMark\Parser\Cursor;
 use League\CommonMark\Util\RegexHelper;
+use Override;
 
 final class AlertBlockParser implements BlockContinueParserInterface
 {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Homepage;
 
 use League\CommonMark\MarkdownConverter;
@@ -22,9 +24,10 @@ final readonly class HomeController
     #[Get('/')]
     public function __invoke(): View
     {
-        $codeBlocks = map_with_keys(glob(__DIR__ . '/codeblocks/*.md'), function (string $path) {
-            return yield strip_end(basename($path), '.md') => $this->markdown->convert(file_get_contents($path));
-        });
+        $codeBlocks = map_with_keys(
+            glob(__DIR__ . '/codeblocks/*.md'),
+            fn (string $path) => yield strip_end(basename($path), '.md') => $this->markdown->convert(file_get_contents($path)),
+        );
 
         return view('./home.view.php', codeBlocks: $codeBlocks);
     }

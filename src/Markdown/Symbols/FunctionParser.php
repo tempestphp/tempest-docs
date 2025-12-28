@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\Symbols;
 
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
@@ -39,7 +41,7 @@ final readonly class FunctionParser implements InlineParserInterface
         $reflection = $this->createReflectionFromFqf($fqf);
         $function = str($fqf)
             ->stripStart('\\')
-            ->when($flag === 'b', fn (ImmutableString $s) => $s->afterLast('\\'))
+            ->when($flag === 'b', static fn (ImmutableString $s) => $s->afterLast('\\'))
             ->append('()')
             ->toString();
 

@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Analytics\PackageDownloadsPerHour;
 
-use Override;
 use App\StoredEvents\Projector;
 use App\Web\Analytics\PackageDownloadsListed;
+use Override;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
-use Tempest\Database\Query;
 use Tempest\EventBus\EventHandler;
 
 final readonly class PackageDownloadsPerHourProjector implements Projector

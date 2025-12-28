@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown\Alerts;
 
-use Override;
 use League\CommonMark\Environment\EnvironmentBuilderInterface;
 use League\CommonMark\Extension\ExtensionInterface;
+use Override;
 
 final class AlertExtension implements ExtensionInterface
 {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Markdown\MarkdownPost;
 use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatter;
 use League\CommonMark\MarkdownConverter;

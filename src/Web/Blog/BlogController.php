@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Blog;
 
 use App\Web\Meta\MetaType;
@@ -14,8 +16,8 @@ use Tempest\Router\SetCurrentUrlMiddleware;
 use Tempest\Router\Stateless;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
-
 use Tempest\View\ViewRenderer;
+
 use function Tempest\view;
 
 final readonly class BlogController
@@ -47,11 +49,10 @@ final readonly class BlogController
         Cache $cache,
         ViewRenderer $viewRenderer,
         BlogRepository $repository,
-    ): Response
-    {
+    ): Response {
         $xml = $cache->resolve(
             key: 'rss',
-            callback: fn () => $viewRenderer->render(view('rss.view.php', posts: $repository->all(loadContent: true))),
+            callback: static fn () => $viewRenderer->render(view('rss.view.php', posts: $repository->all(loadContent: true))),
             expiration: DateTime::now()->plusHours(1),
         );
 

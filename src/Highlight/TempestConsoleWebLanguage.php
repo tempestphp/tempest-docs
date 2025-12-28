@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Highlight;
 
-use Override;
 use App\Highlight\Injections\CommentInjection;
 use App\Highlight\Injections\DimInjection;
 use App\Highlight\Injections\EmphasizeInjection;
@@ -15,6 +14,7 @@ use App\Highlight\Injections\QuestionInjection;
 use App\Highlight\Injections\StrongInjection;
 use App\Highlight\Injections\SuccessInjection;
 use App\Highlight\Injections\UnderlineInjection;
+use Override;
 use Tempest\Highlight\Language;
 
 final readonly class TempestConsoleWebLanguage implements Language

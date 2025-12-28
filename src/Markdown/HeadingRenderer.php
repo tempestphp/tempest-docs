@@ -1,22 +1,25 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Markdown;
 
-use Override;
 use InvalidArgumentException;
 use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Node\Node;
 use League\CommonMark\Renderer\ChildNodeRendererInterface;
 use League\CommonMark\Renderer\NodeRendererInterface;
 use League\CommonMark\Util\HtmlElement;
+use Override;
+use Stringable;
 use Tempest\Support\Str\ImmutableString;
 
 final class HeadingRenderer implements NodeRendererInterface
 {
     #[Override]
-    public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?string
+    public function render(Node $node, ChildNodeRendererInterface $childRenderer): ?Stringable
     {
-        if (! ($node instanceof Heading)) {
+        if (! $node instanceof Heading) {
             throw new InvalidArgumentException('Block must be instance of ' . Heading::class);
         }
 

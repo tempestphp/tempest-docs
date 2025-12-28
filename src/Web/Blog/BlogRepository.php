@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Web\Blog;
 
 use DateTimeImmutable;
@@ -20,6 +22,7 @@ final readonly class BlogRepository
 
     /**
      * @return ImmutableArray<BlogPost>
+     * @mago-expect lint:no-boolean-flag-parameter
      */
     public function all(bool $loadContent = false): ImmutableArray
     {
@@ -51,7 +54,7 @@ final readonly class BlogRepository
                 return $data;
             })
             ->mapTo(BlogPost::class)
-            ->filter(fn (BlogPost $post) => $post->published);
+            ->filter(static fn (BlogPost $post) => $post->published);
     }
 
     public function find(string $slug): ?BlogPost
@@ -84,7 +87,7 @@ final readonly class BlogRepository
 
     private function parseContent(string $path): ?RenderedContentWithFrontMatter
     {
-        $content = @file_get_contents($path);
+        $content = @file_get_contents($path); // @mago-expect lint:no-error-control-operator
 
         if (! $content) {
             return null;
@@ -92,7 +95,7 @@ final readonly class BlogRepository
 
         $parsed = $this->markdown->convert($content);
 
-        if (! ($parsed instanceof RenderedContentWithFrontMatter)) {
+        if (! $parsed instanceof RenderedContentWithFrontMatter) {
             throw new Exception("Missing frontmatter or content in {$path}");
         }
 
