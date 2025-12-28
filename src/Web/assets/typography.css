@@ -76,11 +76,12 @@
 		}
 
 		.code-group-tabs {
-			@apply flex gap-x-1 px-2 py-1 pt-1.5;
+			@apply flex gap-x-1 px-2 py-1 pt-1.5 overflow-x-auto;
 
 			.code-group-tab {
-				@apply px-3 py-1.5 font-mono text-sm text-(--ui-text-dimmed) rounded-md
-					hover:text-(--ui-text-highlighted) transition-colors cursor-pointer;
+				@apply px-3 whitespace-nowrap grow py-1.5 font-mono text-sm
+					text-(--ui-text-dimmed) rounded-md hover:text-(--ui-text-highlighted)
+					transition-colors cursor-pointer;
 
 				&.active {
 					@apply text-(--ui-text-highlighted) border-(--ui-border)
