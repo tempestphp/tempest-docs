@@ -9,6 +9,7 @@
 	--container-8xl: 96rem;
 	--font-display: "Kantumruy Pro Variable";
 	--font-sans: "Public Sans Variable";
+	--font-mono: "JetBrains Mono Variable";
 
 	/* Falling leaves */
 	--color-leaf-1: var(--color-amber-500);
@@ -57,13 +58,14 @@
 
 @layer base {
 	:root, .light {
+		font-size: 15px;
 		--ui-header-height: --spacing(18);
 
 		@media (width > 40rem) {
 			--ui-header-height: --spacing(28);
 		}
 
-		--ui-primary: var(--color-blue-400);
+		--ui-primary: hsl(212.1, 87.8%, 64.5%);
 		--ui-secondary: var(--color-green-500);
 		--ui-success: var(--color-green-500);
 		--ui-info: var(--color-blue-500);
@@ -89,7 +91,7 @@
 	}
 
 	.dark {
-		--ui-primary: var(--color-blue-400);
+		--ui-primary: hsl(212.3, 100%, 74.5%);
 		--ui-secondary: var(--color-neutral-400);
 		--ui-success: var(--color-emerald-400);
 		--ui-info: var(--color-blue-300);
@@ -192,6 +194,59 @@ pre {
 	}
 }
 
-@source inline("ring-amber-200 text-amber-400");
-@source inline("ring-blue-200 text-blue-400");
-@source inline("ring-teal-200 text-teal-400");
+/*
+|--------------------------------------------------------------------------
+| Fonts
+|--------------------------------------------------------------------------
+*/
+
+@font-face {
+	font-family: "JetBrains Mono Variable";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 800;
+	src: url(https://cdn.jsdelivr.net/fontsource/fonts/jetbrains-mono:vf@latest/latin-wght-normal.woff2)
+		format("woff2-variations");
+	unicode-range:
+		U+0000-00FF,
+		U+0131,
+		U+0152-0153,
+		U+02BB-02BC,
+		U+02C6,
+		U+02DA,
+		U+02DC,
+		U+0304,
+		U+0308,
+		U+0329,
+		U+2000-206F,
+		U+20AC,
+		U+2122,
+		U+2191,
+		U+2193,
+		U+2212,
+		U+2215,
+		U+FEFF,
+		U+FFFD;
+}
+
+/*
+|--------------------------------------------------------------------------
+| Home page code blocks
+|--------------------------------------------------------------------------
+*/
+
+.home .code-block {
+	@apply flex flex-col gap-y-0 p-0.5 rounded-xl border border-(--ui-border)
+		bg-(--ui-bg-elevated)/50 overflow-hidden;
+
+	&.named-code-block {
+		.code-block-name {
+			@apply mb-1.5 mt-1 px-2 font-mono text-(--ui-text-dimmed) text-sm;
+		}
+	}
+
+	pre {
+		@apply border border-(--ui-border) rounded-[0.6rem] p-4 my-0
+			bg-(--ui-bg-elevated)/50 overflow-x-auto;
+	}
+}

@@ -76,10 +76,10 @@
 		}
 
 		.code-group-tabs {
-			@apply flex gap-x-1 px-2 py-1 pt-1.5 overflow-x-auto;
+			@apply flex gap-x-1 px-2 py-1 pt-1.5 overflow-x-auto grow;
 
 			.code-group-tab {
-				@apply px-3 whitespace-nowrap grow py-1.5 font-mono text-sm
+				@apply px-3 whitespace-nowrap py-1.5 font-mono text-sm text-left
 					text-(--ui-text-dimmed) rounded-md hover:text-(--ui-text-highlighted)
 					transition-colors cursor-pointer;
 

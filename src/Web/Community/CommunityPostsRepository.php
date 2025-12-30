@@ -13,7 +13,7 @@ final class CommunityPostsRepository
 {
     public function all(): ImmutableArray
     {
-        return arr(Yaml::parseFile(__DIR__ . '/communityPosts.yaml'))
+        return arr(Yaml::parseFile(__DIR__ . '/community-posts.yaml'))
             ->mapTo(CommunityPost::class);
     }
 }

@@ -14,7 +14,7 @@
   <!-- Main container -->
   <main class="flex mx-auto px-4 xl:px-8 container grow">
     <!-- Sidebar -->
-    <div data-save-scroll="docs-sidebar" class="hidden lg:block top-28 sticky xl:px-6 pt-4 xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
+    <div id="sidebar" :data-save-scroll="$this->currentChapter->slug . '_sidebar'" class="hidden lg:block top-28 sticky xl:px-6 pt-4 xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
       <!-- Menu -->
       <nav class="flex flex-col gap-y-6 pb-8">
         <div :foreach="$this->categories() as $category" class="flex flex-col">
@@ -27,6 +27,7 @@
             <li :foreach="$this->chaptersForCategory($category) as $chapter" class="-ms-px ps-1.5">
               <a
                 :href="$chapter->getUri()"
+                <?= $this->isCurrent($chapter) ? 'data-scroll-into-view="sidebar"' : '' ?>
                 class="
                   group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors
                  <?= $this->isCurrent($chapter)
@@ -165,7 +166,6 @@
           setTimeout(() => sidebar.classList.add('hidden'), 250);
         }
       }
-
     </script>
   </main>
 </x-base>

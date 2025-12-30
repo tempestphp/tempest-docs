@@ -1,4 +1,4 @@
-import { useTimeoutFn } from '@vueuse/core'
+import { useTimeoutFn, watchDebounced } from '@vueuse/core'
 import type { FuseResult } from 'fuse.js'
 import Fuse from 'fuse.js'
 import type { Ref } from 'vue'
@@ -43,6 +43,7 @@ function buildHierarchyTree(items: SearchResultItem[]): Record<string, TreeNode>
 
 	for (const { item } of items) {
 		const topLevel = item.hierarchy[0]
+		const key = item.hierarchy.join('_') + item.title
 
 		if (!tree[topLevel]) {
 			tree[topLevel] = {
@@ -55,7 +56,7 @@ function buildHierarchyTree(items: SearchResultItem[]): Record<string, TreeNode>
 			}
 		}
 
-		if (!seenTitles.has(item.hierarchy.join('_'))) {
+		if (!seenTitles.has(key)) {
 			tree[topLevel].children!.push({
 				hierarchy: item.hierarchy,
 				title: item.title,
@@ -63,7 +64,8 @@ function buildHierarchyTree(items: SearchResultItem[]): Record<string, TreeNode>
 				javascript: item.javascript,
 				type: item.type,
 			})
-			seenTitles.add(item.hierarchy.join('_'))
+
+			seenTitles.add(key)
 		}
 	}
 
@@ -80,7 +82,7 @@ export function useSearch(options: Options) {
 	})
 
 	// Filters the palette commands based on the query, specifying default commands if empty
-	watch(options.query, (query) => {
+	watchDebounced(options.query, (query) => {
 		if (!query.length) {
 			results.value = {
 				Commands: {
@@ -91,9 +93,9 @@ export function useSearch(options: Options) {
 				},
 			}
 		} else {
-			results.value = buildHierarchyTree(fuse.search(query) as SearchResultItem[])
+			results.value = buildHierarchyTree(fuse.search(query, { limit: 10 }) as SearchResultItem[])
 		}
-	}, { immediate: true })
+	}, { immediate: true, debounce: 50 })
 
 	// Resets the command palette after 3s of being closed
 	const reset = useTimeoutFn(() => options.query.value = '', 3_000)

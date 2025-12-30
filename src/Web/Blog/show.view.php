@@ -10,25 +10,25 @@
   :meta="$post->meta"
 >
   <!-- Main container -->
-  <main class="isolate relative flex flex-col items-center mx-auto px-4 xl:px-8 container grow">
+  <main class="isolate relative flex flex-col items-center mx-auto px-4 xl:px-8 font-mono container grow">
     <!-- Main content -->
     <article class="flex flex-col lg:mt-10 px-2 w-full md:w-auto min-w-0 max-w-3xl grow">
 			<!-- Breadcrumbs -->
-			<nav class="text-(--ui-text-dimmed) font-medium flex items-center mb-4 text-sm gap-x-1.5">
+			<nav class="text-(--ui-text-dimmed) font-medium flex items-center mb-6 text-sm gap-x-1.5">
 				<x-icon name="tabler:news" class="mr-1 size-5" />
 				<a :href="uri([BlogController::class, 'index'])" class="hover:text-(--ui-text) transition">Blog</a>
 				<span>/</span>
 				<span class="text-(--ui-primary)">{{ $post->title }}</span>
 			</nav>
 			<!-- Header -->
-			<div class="flex flex-col pb-8 border-b border-(--ui-border) max-w-[65ch]">
-				<h1 class="font-bold text-gray-900 dark:text-white text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+			<div class="flex flex-col pb-8 border-b border-(--ui-border) w-full">
+				<h1 class="max-w-[65ch] font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
 				{{ $post->title }}
 				</h1>
-				<p class="mt-4 text-gray-500 dark:text-gray-400 text-lg">
+				<p class="mt-4 text-lg text-(--ui-text-muted)">
 					{{ $post->description }}
 				</p>
-				<span :if="$post->author" class="text-(--ui-text-muted) text-sm mt-8">
+				<span :if="$post->author" class="text-(--ui-text-dimmed) text-sm mt-4">
 					by <span class="font-medium">{{ $post->author->getName() }}</span> on <span class="font-medium">{{ $post->createdAt->format('F d, Y') }}</span>
 				</span>
 			</div>

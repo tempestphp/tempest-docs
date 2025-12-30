@@ -5,7 +5,7 @@
 				Search docs, blog...
 			</span>
         <div class="flex py-1.5 pr-1.5">
-            <kbd class="inline-flex items-center rounded px-2 font-sans text-(--ui-text-dimmed) font-medium">
+            <kbd class="inline-flex items-center rounded px-2 text-(--ui-text-dimmed) font-medium">
                 <x-icon name="tabler:command" class="size-4"/>
                 <span class="text-[.95rem]">K</span>
             </kbd>

@@ -36,7 +36,7 @@ $isBlog = is_current_uri([BlogController::class, 'show']) || is_current_uri([Blo
         <x-search />
       </div>
       <!-- Right side -->
-      <div class="flex items-center gap-4 font-medium">
+      <div class="flex items-center gap-5 font-medium text-(--ui-text-muted)">
         <a
           :href="uri([CommunityController::class, 'index'])"
           class="transition hover:text-(--ui-text-highlighted) <?= is_current_uri([CommunityController::class, 'index']) ? 'md:text-(--ui-primary)' : '' ?>"

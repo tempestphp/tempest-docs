@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Web\CommandPalette;
 
 use App\Web\Blog\BlogController;
+use App\Web\Community\CommunityController;
 use App\Web\Documentation\DocumentationController;
 use App\Web\RedirectsController;
 use Override;
@@ -31,6 +32,12 @@ final readonly class CommandIndexer implements Indexer
                 uri: uri([BlogController::class, 'index']),
             ),
             new Command(
+                title: 'Check out community resources',
+                type: Type::URI,
+                hierarchy: ['Commands', 'Community'],
+                uri: uri([CommunityController::class, 'index']),
+            ),
+            new Command(
                 title: 'See the code on GitHub',
                 type: Type::URI,
                 hierarchy: ['Commands', 'Link'],
@@ -43,16 +50,34 @@ final readonly class CommandIndexer implements Indexer
                 uri: uri([RedirectsController::class, 'discord']),
             ),
             new Command(
-                title: 'Follow me on Bluesky',
+                title: 'Follow Brent from the core team on Bluesky',
                 type: Type::URI,
-                hierarchy: ['Commands', 'Link'],
-                uri: uri([RedirectsController::class, 'bluesky']),
+                hierarchy: ['Commands', 'Link', 'Core team'],
+                uri: uri([RedirectsController::class, 'blueskyBrent']),
             ),
             new Command(
-                title: 'Follow me on X',
+                title: 'Follow Brent from the core team on X',
                 type: Type::URI,
-                hierarchy: ['Commands', 'Link'],
-                uri: uri([RedirectsController::class, 'twitter']),
+                hierarchy: ['Commands', 'Link', 'Core team'],
+                uri: uri([RedirectsController::class, 'twitterBrent']),
+            ),
+            new Command(
+                title: 'Follow Enzo from the core team on Bluesky',
+                type: Type::URI,
+                hierarchy: ['Commands', 'Link', 'Core team'],
+                uri: uri([RedirectsController::class, 'blueskyEnzo']),
+            ),
+            new Command(
+                title: 'Follow Enzo from the core team on X',
+                type: Type::URI,
+                hierarchy: ['Commands', 'Link', 'Core team'],
+                uri: uri([RedirectsController::class, 'twitterEnzo']),
+            ),
+            new Command(
+                title: 'Follow Aidan from the core team on X',
+                type: Type::URI,
+                hierarchy: ['Commands', 'Link', 'Core team'],
+                uri: uri([RedirectsController::class, 'twitterAidan']),
             ),
             new Command(
                 title: 'Toggle dark mode',

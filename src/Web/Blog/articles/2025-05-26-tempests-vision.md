@@ -1,5 +1,5 @@
 ---
-title: Tempest's Vision
+title: Tempest's vision
 description: What sets Tempest apart as a framework for modern PHP development.
 author: brent
 tag: Thoughts

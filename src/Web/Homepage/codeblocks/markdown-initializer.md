@@ -1,4 +1,4 @@
-```php
+```php src/Blog/MarkdownInitializer.php
 final readonly class MarkdownInitializer implements Initializer
 {
     public function initialize(Container $container): MarkdownConverter
@@ -7,7 +7,7 @@ final readonly class MarkdownInitializer implements Initializer
             ->addLanguage(new TempestViewLanguage());
         
         $environment = new Environment()
-            ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter));
+            ->addRenderer(Code::class, new CodeBlockRenderer($highlighter));
 
         return new MarkdownConverter($environment);
     }

@@ -1,15 +1,17 @@
-```html
+```html app/Books/index.view.php
 <x-base :title="$this->seo->title">
-    <ul>
-        <li :foreach="$this->books as $book">
-            {{ $book->title }}
+  <ul>
+    <li :foreach="$this->books as $book">
+      <!-- Title -->
+      <span>{{ $book->title }}</span>
 
-            <span :if="$this->showDate($book)">
-                <x-tag>
-                    {{ $book->publishedAt }}
-                </x-tag>
-            </span>
-        </li>
-    </ul>
+      <!-- Metadata -->
+      <span :if="$this->showDate($book)">
+        <x-badge variant="outline">
+          {{ $book->publishedAt }}
+        </x-badge>
+      </span>
+    </li>
+  </ul>
 </x-base>
 ```

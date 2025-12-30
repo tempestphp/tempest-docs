@@ -23,7 +23,7 @@ const config = {
 	baseRainCount: 2,
 	color: 200,
 	opacity: 1,
-	saturation: 50,
+	saturation: 10,
 	lightness: 15,
 	initialRainIntensity: 2,
 	intensityChangeSpeed: 0.01,

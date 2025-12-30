@@ -1,5 +1,5 @@
 ---
-title: Request Objects in Tempest
+title: Request objects in Tempest
 description: Why Tempest requests are super intuitive
 author: brent
 tag: Tutorial
