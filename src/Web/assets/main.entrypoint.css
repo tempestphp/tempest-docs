@@ -59,7 +59,7 @@
 @layer base {
 	:root, .light {
 		font-size: 15px;
-		--ui-header-height: --spacing(18);
+		--ui-header-height: --spacing(24);
 
 		@media (width > 40rem) {
 			--ui-header-height: --spacing(28);

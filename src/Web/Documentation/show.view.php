@@ -42,28 +42,50 @@
       </nav>
     </div>
     <!-- Mobile sidebar button -->
-    <button onclick="toggleSideBar()" class="fixed lg:hidden bottom-5 right-5 z-[10] border rounded-lg p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) transition flex items-center justify-center">
-      <x-icon name="tabler:list" class="size-6" />
+    <button onclick="toggleSideBar(this)" data-sidebar-visible="false" class="group fixed xl:hidden bottom-5 right-5 z-[10] shadow-lg border rounded-xl p-3 border-(--ui-border) bg-(--ui-bg-elevated) text-(--ui-text-muted) hover:text-(--ui-text) focus:text-(--ui-text)! transition flex items-center justify-center">
+      <x-icon name="tabler:list-tree" class="group-data-[sidebar-visible=true]:hidden size-6 -translate-x-px" />
+      <x-icon name="tabler:x" class="group-data-[sidebar-visible=false]:hidden size-6 -translate-x-px" />
     </button>
     <!-- Mobile sidebar -->
-    <div data-sidebar class="hidden fixed md:hidden inset-0 overflow-auto z-[9] bg-(--ui-bg) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition opacity-100 scale-100 origin-bottom-right">
-      <!-- Menu -->
-      <nav class="flex flex-col gap-y-8 pb-16 overflow-hidden">
-        <div :foreach="$this->categories() as $category" class="flex flex-col text-lg text-right">
-          <!-- Category title -->
-          <span class="font-semibold text-(--ui-text) mb-2">
-            <?= ucfirst($category) ?>
-          </span>
-          <!-- Chapter list -->
+    <div data-sidebar data-visible="false" class="xl:hidden data-[visible=false]:opacity-0 data-[visible=false]:scale-80 data-[visible=false]:pointer-events-none fixed inset-3 lg:max-h-[50vh] lg:right-3 lg:inset-auto lg:bottom-24 border border-(--ui-border) rounded-xl overflow-auto z-[9] bg-(--ui-bg) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition origin-bottom-right">
+      <div class="gap-x-2 grid grid-cols-1 min-[375px]:grid-cols-2 lg:grid-cols-1 text-sm sm:text-base">
+        <!-- Menu -->
+        <nav class="lg:hidden flex flex-col gap-y-8 overflow-hidden">
+          <div :foreach="$this->categories() as $category" class="flex flex-col">
+            <!-- Category title -->
+            <span class="font-semibold text-(--ui-text) mb-2">
+              <?= ucfirst($category) ?>
+            </span>
+            <!-- Chapter list -->
+            <ul class="flex flex-col">
+              <li :foreach="$this->chaptersForCategory($category) as $chapter" class="-ms-px ps-1.5">
+                <a :href="$chapter->getUri()" class="inline-flex py-1 <?= $this->isCurrent($chapter) ? 'text-(--ui-primary)' : 'text-(--ui-text-muted)' ?>">
+                  {{ $chapter->title }}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- On this page -->
+        <div :if="($subChapters = $this->getSubChapters()) !== []" class="hidden min-[375px]:flex flex-col">
+          <span class="font-semibold text-(--ui-text) mb-2 text-right">On this page</span>
+          <!-- Sub-chapter list -->
           <ul class="flex flex-col">
-            <li :foreach="$this->chaptersForCategory($category) as $chapter" class="-ms-px ps-1.5">
-              <a :href="$chapter->getUri()" class="inline-flex py-1 <?= $this->isCurrent($chapter) ? 'text-(--ui-primary)' : 'text-(--ui-text-muted)' ?>">
-                {{ $chapter->title }}
-              </a>
-            </li>
+            <x-template :foreach="$subChapters as $url => $chapter">
+              <li data-heading class="has-[+_[data-item]]:mt-6">
+                <a :href="$url" :data-on-this-page="$chapter['title']" onclick="toggleSideBar()" class="text-right flex justify-end group relative focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-muted) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
+                  {{ $chapter['title'] }}
+                </a>
+              </li>
+              <li data-item :foreach="$chapter['children'] as $url => $title">
+                <a :href="$url" :data-on-this-page="$title" onclick="toggleSideBar()" class="text-right flex justify-end group relative focus-visible:outline-(--ui-primary) py-1 text-(--ui-text-dimmed) hover:text-(--ui-text) data-[active]:text-(--ui-primary) transition-colors">
+                  <span class="text-right" style="direction:rtl">{{ $title }}</span>
+                </a>
+              </li>
+            </x-template>
           </ul>
         </div>
-      </nav>
+      </div>
     </div>
     <!-- Main content -->
     <div class="flex px-2 lg:pl-12 w-full min-w-0 grow">
@@ -123,7 +145,7 @@
               </x-template>
             </ul>
           </x-template>
-          <div class="flex flex-col justify-end gap-y-4 mt-4 grow">
+          <div class="flex flex-col justify-end gap-y-6 mt-4 grow">
             <!-- Version warning -->
             <div :if="$this->currentChapter->version->isNext()" class="mt-4">
               <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
@@ -131,21 +153,25 @@
                 <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
               </div>
             </div>
-            <div :elseif="$this->currentChapter->version->isPrevious()" class="mt-4">
+            <div :elseif="!$this->currentChapter->version->isPrevious()" class="mt-4">
               <div class="text-sm text-(--ui-warning) flex flex-col gap-y-2">
                 <span class="inline-flex items-baseline gap-x-1.5">
                   <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
                   <div class="flex flex-col gap-y-1.5">
                     <span>This documentation is for a previous version of Tempest.</span>
-                    <span>Visit the <a class="decoration-dotted underline underline-offset-[4px] hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
+                    <span class="text-xs">Visit the <a class="decoration-dotted underline underline-offset-[4px] hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
                   </div>
                 </span>
               </div>
             </div>
             <!-- Suggest changes -->
-            <a class="text-sm text-(--ui-text-dimmed) hover:text-(--ui-text) transition inline-flex items-center gap-x-1.5" :href="$this->currentChapter->getEditPageUri()" target="_blank">
-              <x-icon name="tabler:edit" class="size-4 shrink-0" />
-              <span>Suggest changes to this page</span>
+            <a class="text-sm text-(--ui-text-dimmed) hover:text-(--ui-text) flex flex-col gap-y-2" :href="$this->currentChapter->getEditPageUri()" target="_blank">
+              <span class="inline-flex items-baseline gap-x-1.5">
+                <x-icon name="tabler:pencil" class="size-4 translate-y-[2px] shrink-0" />
+                <div class="flex flex-col gap-y-1.5">
+                  <span>Suggest improvements to this page</span>
+                </div>
+              </span>
             </a>
           </div>
           <div class="flex my-10">
@@ -157,13 +183,18 @@
       </nav>
     </div>
     <script>
-      function toggleSideBar() {
+      function toggleSideBar(element) {
         const sidebar = document.querySelector('[data-sidebar]')
-        if (sidebar.classList.contains('hidden')) {
-          sidebar.classList.remove('hidden', '!opacity-0', '!scale-80', 'pointer-event-none')
+        if (sidebar.dataset.visible === 'false') {
+          sidebar.dataset.visible = true
+          if (element) {
+            element.dataset.sidebarVisible = true
+          }
         } else {
-          sidebar.classList.add('!opacity-0', '!scale-80', 'pointer-event-none')
-          setTimeout(() => sidebar.classList.add('hidden'), 250);
+          sidebar.dataset.visible = false
+          if (element) {
+            element.dataset.sidebarVisible = false
+          }
         }
       }
     </script>
