@@ -153,7 +153,7 @@
                 <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
               </div>
             </div>
-            <div :elseif="!$this->currentChapter->version->isPrevious()" class="mt-4">
+            <div :elseif="$this->currentChapter->version->isPrevious()" class="mt-4">
               <div class="text-sm text-(--ui-warning) flex flex-col gap-y-2">
                 <span class="inline-flex items-baseline gap-x-1.5">
                   <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
