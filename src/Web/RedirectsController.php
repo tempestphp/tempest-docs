@@ -21,15 +21,33 @@ final readonly class RedirectsController
         return new Redirect('https://github.com/tempestphp/tempest-framework');
     }
 
-    #[Get('/bluesky')]
-    public function bluesky(): Redirect
+    #[Get('/bluesky/brent')]
+    public function blueskyBrent(): Redirect
     {
-        return new Redirect('https://bsky.app/profile/brendt.bsky.social');
+        return new Redirect('https://bsky.app/profile/stitcher.io');
     }
 
-    #[Get('/twitter')]
-    public function twitter(): Redirect
+    #[Get('/twitter/brent')]
+    public function twitterBrent(): Redirect
     {
         return new Redirect('https://x.com/brendt_gd');
+    }
+
+    #[Get('/bluesky/enzo')]
+    public function blueskyEnzo(): Redirect
+    {
+        return new Redirect('https://bsky.app/profile/innocenzi.dev');
+    }
+
+    #[Get('/twitter/enzo')]
+    public function twitterEnzo(): Redirect
+    {
+        return new Redirect('https://x.com/enzoinnocenzi');
+    }
+
+    #[Get('/twitter/aidan')]
+    public function twitterAidan(): Redirect
+    {
+        return new Redirect('https://x.com/HelloAidanCasey');
     }
 }
