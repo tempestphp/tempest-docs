@@ -12,7 +12,7 @@
     <meta :if="! $this->currentChapter->version->isCurrent()" name="robots" content="noindex">
   </x-slot>
   <!-- Main container -->
-  <main class="flex mx-auto px-4 xl:px-8 container grow">
+  <main class="flex mx-auto px-4 xl:px-2 container grow">
     <!-- Sidebar -->
     <div id="sidebar" :data-save-scroll="$this->currentChapter->slug . '_sidebar'" class="hidden lg:block top-28 sticky xl:px-6 pt-4 xl:w-[20rem] max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
       <!-- Menu -->
@@ -126,7 +126,7 @@
         </x-template>
       </article>
       <!-- On this page -->
-      <nav class="hidden top-28 sticky xl:flex flex-col pt-4 pr-4 pl-12 w-2xs max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
+      <nav class="hidden top-28 sticky xl:flex flex-col pt-4 pr-4 pl-12 w-xs max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
         <div class="flex flex-col text-sm grow">
           <x-template :if="($subChapters = $this->getSubChapters()) !== []">
             <span class="inline-block mb-3 font-bold text-[--primary]">On this page</span>
@@ -159,7 +159,7 @@
                   <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
                   <div class="flex flex-col gap-y-1.5">
                     <span>This documentation is for a previous version of Tempest.</span>
-                    <span class="text-xs">Visit the <a class="decoration-dotted underline underline-offset-[4px] hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
+                    <span>Visit the <a class="decoration-dotted underline underline-offset-[4px] hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
                   </div>
                 </span>
               </div>
