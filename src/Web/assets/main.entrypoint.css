@@ -65,7 +65,7 @@
 			--ui-header-height: --spacing(28);
 		}
 
-		--ui-primary: var(--color-blue-400);
+		--ui-primary: hsl(212.1, 87.8%, 64.5%);
 		--ui-secondary: var(--color-green-500);
 		--ui-success: var(--color-green-500);
 		--ui-info: var(--color-blue-500);
@@ -91,7 +91,7 @@
 	}
 
 	.dark {
-		--ui-primary: var(--color-blue-400);
+		--ui-primary: hsl(212.3, 100%, 74.5%);
 		--ui-secondary: var(--color-neutral-400);
 		--ui-success: var(--color-emerald-400);
 		--ui-info: var(--color-blue-300);
