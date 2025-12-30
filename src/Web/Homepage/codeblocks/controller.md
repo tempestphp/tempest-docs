@@ -1,4 +1,4 @@
-```php
+```php src/Books/BookController.php
 final readonly class BookController
 {
     #[Post('/books')]

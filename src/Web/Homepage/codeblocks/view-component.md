@@ -1,9 +1,6 @@
-```html
-<!-- x-book.view.php-->
-
+```html src/Books/x-book.view.php
 <article>
-    <h1>{{ $book->title }}</h1>
-    
-    {!! $book->body !!}
+  <h1>{{ $book->title }}</h1>
+  {!! $book->body !!}
 </article>
 ```

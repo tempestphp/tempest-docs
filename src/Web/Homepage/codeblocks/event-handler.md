@@ -1,4 +1,4 @@
-```php
+```php src/Books/BookObserver.php
 final readonly class BookObserver
 {
     #[EventHandler]
