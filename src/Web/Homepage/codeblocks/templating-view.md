@@ -1,4 +1,4 @@
-```html app/Books/index.view.php
+```html src/Books/index.view.php
 <x-base :title="$this->seo->title">
   <ul>
     <li :foreach="$this->books as $book">

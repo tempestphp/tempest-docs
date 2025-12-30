@@ -1,23 +1,31 @@
-```php src/Books/BooksCommand.php
-final readonly class BooksCommand
+```php src/Books/FetchBookCommand.php
+final readonly class FetchBookCommand
 {
     public function __construct(
         private BookRepository $repository,
+        private Isbn $isbn,
         private Console $console,
     ) {}
     
-    #[ConsoleCommand]
-    public function find(): void
+    #[ConsoleCommand(description: 'Synchronize a book from ISBN by its title')]
+    public function __invoke(string $title, bool $force = false): void 
     {
-        $book = $this->search('Find your book', $this->repository->find(...));
+        $data = $this->isbn->findByTitle($title);
 
-        // …
-    }
+        if (! $data) {
+            $this->console->error("No book found matching that title.");
+            return;
+        }
 
-    #[ConsoleCommand(middleware: [CautionMiddleware::class])]
-    public function delete(string $title, bool $verbose = false): void 
-    {
-        // …
+        $book = map($data)->to(Book::class);
+
+        if ($this->repository->exists($book->isbn13) && ! $force) {
+            $this->console->info("Book already exists.");
+            return;
+        }
+
+        $this->repository->save($book);
+        $this->console->success("Synchronized {$book->title}.");
     }
 }
 ```

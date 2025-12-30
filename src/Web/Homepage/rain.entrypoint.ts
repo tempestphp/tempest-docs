@@ -65,7 +65,7 @@ function initializeRain(canvas: HTMLCanvasElement) {
 	function createRain(x: number, y: number, count: number = config.baseRainCount) {
 		while (count--) {
 			particles.push({
-				velocityX: Math.random() * 0.25,
+				velocityX: Math.random() * -5.0,
 				velocityY: Math.random() * 9 + 1,
 				x,
 				y,

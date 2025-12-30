@@ -14,27 +14,25 @@ use function Tempest\Router\uri;
     <!-- Content -->
     <main class="container mx-auto relative flex flex-col gap-4 grow -mt-(--ui-header-height)">
       <!-- Hero -->
-      <section class="relative flex flex-col justify-center md:mt-0 px-6 h-screen tracking-tighter">
-        <h1 class="flex flex-col text-4xl md:text-5xl xl:text-6xl leading-none">
+      <section class="relative flex flex-col justify-center md:mt-0 px-6 h-screen">
+        <h1 class="flex flex-col text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-none">
           <span>The framework that</span>
-          <span class="text-(--ui-primary)">gets out of your way.</span>
+          <span class="text-(--ui-primary)">gets out of your way</span>
         </h1>
-        <p class="mt-4 md:mt-6 xl:mt-8 max-w-xl text-xl xl:text-2xl text-(--ui-text-toned)">
-            Tempest embraces modern PHP and covers a wide range of features, giving you all the tools you need to focus on your code.
+        <p class="mt-4 md:mt-6 lg:mt-8 xl:mt-8 max-w-xl xl:max-w-2xl text-xl lg:text-2xl xl:text-3xl text-(--ui-text-toned) leading-snug">
+            With zero configuration and zero boilerplate, Tempest gives you the architectural freedom to focus entirely on your business logic.
         </p>
-        <div class="flex items-center gap-x-4 mt-6 md:mt-8 xl:mt-10 font-medium text-lg">
+        <div class="flex items-center gap-x-4 mt-6 md:mt-8 lg:mt-10 xl:mt-16 font-medium text-lg">
           <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
             Get started
           </a>
-          <a :href="uri([RedirectsController::class, 'github'])" class="hidden min-[401px]:flex text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-6 py-2.5 items-center gap-x-2 transition">
-            <x-icon name="tabler:brand-github" class="size-6" />
-            Contribute
-            <svg class="opacity-0 group-hover:opacity-100 size-5 scale-85 group-hover:scale-100 transition -translate-x-full group-hover:translate-x-0" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-              <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7 7l5 5l-5 5m6-10l5 5l-5 5" />
-            </svg>
-          </a>
+          <button onclick="scrollToFeatures()" class="cursor-pointer hidden min-[401px]:flex text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-4 py-2.5 items-center gap-x-2 transition">
+            <x-icon name="tabler:info" class="size-6" />
+            <span class="transition translate-x-4 group-hover:translate-x-0">Learn more</span>
+            <x-icon name="tabler:arrow-down" class="opacity-0 group-hover:opacity-100 size-5 scale-90 group-hover:scale-100 transition -translate-y-full group-hover:translate-y-0" />
+          </button>
         </div>
-        <button data-copy="#install-tempest-snippet" class="group relative flex justify-start items-center gap-x-2 mt-6 md:mt-8 xl:mt-10 font-mono text-base cursor-pointer">
+        <button data-copy="#install-tempest-snippet" class="group relative flex justify-start items-center gap-x-2 mt-6 md:mt-8 font-mono text-base cursor-pointer">
           <x-icon name="tabler:terminal" class="size-5 text-(--ui-primary)" />
           <span id="install-tempest-snippet" class="text-(--ui-text-muted) hover:text-(--ui-text) transition">composer create-project tempest/app</span>
           <span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-80 group-hover:scale-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
@@ -46,7 +44,7 @@ use function Tempest\Router\uri;
           <button
             id="scroll-indicator"
             class="flex flex-col items-center gap-2 text-(--ui-text-dimmed) hover:text-(--ui-text) transition cursor-pointer focus:text-(--ui-text-highlighted)!"
-            onclick="window.scrollBy({ top: window.innerHeight * 0.8, left: 0, behavior: 'smooth' });"
+            onclick="scrollToFeatures()"
           >
             <span class="animate-pulse">Learn more</span>
             <x-icon name="tabler:arrow-down" class="size-5" />
@@ -55,9 +53,10 @@ use function Tempest\Router\uri;
       </section>
       <!-- Discovery -->
 			<x-home-section
-				heading="Zero-config code discovery"
+				heading="Zero-configuration with code discovery"
+        icon="tabler:search"
 				:paragraphs="[
-					'Tempest doesn\'t require hand-holding. Your code is scanned and everything is configured automatically: routes, view components, console commands, event handlers, middleware, migrations — everything.',
+					'Tempest scans your code and instantly registers routes, view components, console commands, middleware and more. It doesn’t need hand-holding; it just works.',
 				]"
 				link-label="Discovery"
 				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'internals', slug: 'discovery')"
@@ -66,9 +65,10 @@ use function Tempest\Router\uri;
       <!-- Template engine -->
 			<x-home-section
 				heading="A refreshing new template engine"
+        icon="tabler:file-description"
 				:paragraphs="[
 					'Tempest reimagines templating in PHP with a clean front-end engine, inspired by modern front-end frameworks.',
-					'Do you prefer something tried and tested? Tempest has built-in support for Blade and Twig as well.',
+					'Whether you love our modern syntax or prefer the battle-tested reliability of Blade and Twig, Tempest has you covered.',
 				]"
 				link-label="Templating"
 				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'views')"
@@ -77,18 +77,21 @@ use function Tempest\Router\uri;
       <!-- ORM-->
 			<x-home-section
 				heading="A truly decoupled ORM"
+        icon="tabler:database"
 				:paragraphs="[
-					'Models in Tempest embrace modern PHP and are designed to be decoupled from the database; they don\'t even have to persist to the database and can be mapped to any kind of data source.',
+					'Models in Tempest embrace modern PHP and are designed to be decoupled from the database; they don’t even have to persist to the database and can be mapped to any kind of data source.',
 				]"
-				link-label="ORM"
+				link-label="Database"
 				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'database')"
 				:snippets="['model', 'orm']"
 			></x-home-section>
       <!-- Console-->
 			<x-home-section
 				heading="Console applications reimagined"
+        icon="tabler:terminal"
 				:paragraphs="[
-					'Thinking out of the box, Tempest\'s console component is a brand new approach to building console applications with PHP',
+					'Console commands are automatically discovered and use PHP’s type system to define arguments and flags.',
+          'No need to search the documentation to remember the syntax, just write PHP.'
 				]"
 				link-label="Console"
 				:link-uri="uri(DocumentationController::class, version: \App\Web\Documentation\Version::default(), category: 'essentials', slug: 'console-commands')"
@@ -97,16 +100,21 @@ use function Tempest\Router\uri;
       <!-- Much more-->
 			<x-home-section
 				heading="And much, much more."
+        icon="streamline:tidal-wave"
 				:paragraphs="[
 					'Configuration objects for easy autocompletion and injection, data mapping, a powerful dependency container with autowiring. Tempest is designed to be frictionless.',
 				]"
 				link-label="Get started"
 				:link-uri="uri([DocumentationController::class, 'index'])"
-				:snippets="['config', 'static-pages', 'markdown-initializer']"
+				:snippets="['config', 'initializer', 'static-pages']"
 			></x-home-section>
     </main>
   </div>
   <script>
+    function scrollToFeatures() {
+      window.scrollBy({ top: window.innerHeight * 0.8, left: 0, behavior: 'smooth' });
+    }
+
     document.addEventListener('scroll', function() {
       const button = document.getElementById('scroll-indicator');
       if (!button) {
