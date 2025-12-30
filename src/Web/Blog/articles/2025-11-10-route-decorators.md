@@ -1,5 +1,5 @@
 ---
-title: "Route Decorators in Tempest 2.8" 
+title: "Route decorators in Tempest 2.8"
 description: Taking a deep dive in a new Tempest feature
 author: brent
 tag: release
@@ -70,7 +70,7 @@ While I really like attribute-based routing, grouping route behavior does feel�
 - Tempest's default route attributes are represented by HTTP verbs: `#[Get]`, `#[Post]`, etc. Making admin variants for each verb might be tedious, so in my previous example I decided to use one `#[AdminRoute]`, where the verb would be specified manually. There's nothing stopping me from adding `#[AdminGet]`, `#[AdminPost]`, etc; but it doesn't feel super clean.
 - When you prefer to namespace admin-specific route attributes like `#[Admin\Get]`, and `#[Admin\Post]`, you end up with naming collisions between normal- and admin versions. I've always found those types of ambiguities to increase cognitive load while coding.
 - This approach doesn't really scale: say there are two types of route groups that require a specific middleware (`AuthMiddleware`, for example), then you end up making two or more route attributes, duplicating that logic of adding `AuthMiddleware` to both.
-- Say you want nested route groups: one for admin routes and then one for book routes (with a `/admin/books` prefix), you end up with yet another variant called `#[AdminBookRoute]` attribute, not ideal. 
+- Say you want nested route groups: one for admin routes and then one for book routes (with a `/admin/books` prefix), you end up with yet another variant called `#[AdminBookRoute]` attribute, not ideal.
 
 So… what's the solution? I first looked at Symfony, which also uses attributes for routing:
 
@@ -95,7 +95,7 @@ class BookAdminController extends AbstractController
 }
 ```
 
-I think Symfony's approach gets us halfway there: it has the benefit of being able to define "shared route behavior" on the controller level, but not across controllers. You could create abstract controllers like `AdminController` and `AdminBookController`, which doesn't scale horizontally when you want to combine  multiple route groups, because PHP doesn't have multi-inheritance. On top of that, I also like Tempest's design of using HTTP verbs to model route attributes like `#[Get]` and `#[Post]`, which is missing with Symfony. All of that to say, I like Symfony's approach, but I feel like there's room for improvement.
+I think Symfony's approach gets us halfway there: it has the benefit of being able to define "shared route behavior" on the controller level, but not across controllers. You could create abstract controllers like `AdminController` and `AdminBookController`, which doesn't scale horizontally when you want to combine multiple route groups, because PHP doesn't have multi-inheritance. On top of that, I also like Tempest's design of using HTTP verbs to model route attributes like `#[Get]` and `#[Post]`, which is missing with Symfony. All of that to say, I like Symfony's approach, but I feel like there's room for improvement.
 
 With the scene now being set, let's see the design we ended up with in Tempest.
 

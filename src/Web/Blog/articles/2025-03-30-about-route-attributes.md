@@ -1,5 +1,5 @@
 ---
-title: About Route Attributes
+title: About route attributes
 description: Let's explore Tempest's route attributes in depth
 author: brent
 tag: Thoughts

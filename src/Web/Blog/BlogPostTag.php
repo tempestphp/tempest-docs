@@ -13,9 +13,9 @@ enum BlogPostTag: string
     public function getStyle(): string
     {
         return match ($this) {
-            self::THOUGHTS => 'ring-amber-200 text-amber-400',
-            self::RELEASE => 'ring-blue-200 text-blue-400',
-            self::TUTORIAL => 'ring-teal-200 text-teal-400',
+            self::THOUGHTS => 'bg-yellow-400/20 dark:bg-yellow-400/10 text-yellow-700 dark:text-yellow-400',
+            self::RELEASE => 'bg-blue-400/20 dark:bg-blue-400/10 text-blue-700 dark:text-blue-400',
+            self::TUTORIAL => 'bg-teal-400/20 dark:bg-teal-400/10 text-teal-700 dark:text-teal-400',
         };
     }
 }

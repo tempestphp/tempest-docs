@@ -11,18 +11,18 @@
   description: An educational look into the Tempest PHP framework
   type: Blog
 - uri: https://github.com/NeoIsRecursive/inertia-tempest
-  title: Inertia tempest
-  description: An Inertia adapter for the tempestphp framework
+  title: Inertia for Tempest
+  description: An Inertia adapter for the Tempest framework
   type: Package
   wip: true
 - uri: https://github.com/happytodev/cyclone
-  title: cyclone
+  title: Cyclone
   description: A simple blog engine for Tempest
   type: Package
   wip: true
 - uri: https://github.com/happytodev/authentik
   title: Authentik
-  description: A package for TempestPHP to handle OAuth authentication with providers like GitHub, Google, and X.
+  description: A package for Tempest to handle OAuth authentication with providers like GitHub, Google, and X.
   type: Package
   wip: true
 - uri: https://www.youtube.com/@phpannotated
@@ -31,5 +31,5 @@
   type: Video
 - uri: https://stitcher.io/blog/building-a-framework
   title: Tagging a framework
-  description: Tempest's origin story
+  description: Brent tells the origin story of Tempest
   type: Blog

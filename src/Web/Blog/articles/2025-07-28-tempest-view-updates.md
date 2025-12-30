@@ -1,5 +1,5 @@
 ---
-title: Major updates to Tempest View
+title: Major updates to Tempest views
 description: Tempest 1.5 released with some major improvements to its templating engine
 author: brent
 tag: Release
@@ -7,7 +7,7 @@ tag: Release
 
 Today we released Tempest version 1.5, which includes a bunch of improvements to [Tempest View](/docs/essentials/views), the templating engine that ships by default with the framework. Tempest also has support for Blade and Twig, but we designed Tempest View to take a unique approach to templating with PHP, and I must say: it looks excellent! (I might be biased.)
 
-Designing a new language is hard, even if it's "only" a templating language, which is why we marked Tempest View as experimental when Tempest 1.0 released. This meant the package could still change over time, although we try to keep breaking changes at a minimum. 
+Designing a new language is hard, even if it's "only" a templating language, which is why we marked Tempest View as experimental when Tempest 1.0 released. This meant the package could still change over time, although we try to keep breaking changes at a minimum.
 
 With the release of Tempest 1.5, we did have to make a handful of breaking changes, but overall they shouldn't have a big impact. And I believe both changes are moving the language forward in the right direction. In this post, I want to highlight the new Tempest View features and explain why they needed a breaking change or two.
 
@@ -34,10 +34,12 @@ And likewise, view components won't have access to variables from the outer scop
 ```html
 <!-- $title will need to be passed in explicitly: -->
 
-<x-post :title="$title"></x-post> 
+<x-post :title="$title"></x-post>
 ```
 
 There's one exception to this rule: variables defined by the view itself are directly accessible from within view components. This can be useful when you're using view components that are tied to one specific view, but extracted to a component to avoid code repetition.
+
+:::code-group
 
 ```html x-home-highlight.view.php
 <div class="<!-- … -->">
@@ -48,21 +50,23 @@ There's one exception to this rule: variables defined by the view itself are dir
 <x-home-highlight name="orm" />
 ```
 
-```php
+```php app/HomeController.php
 final class HomeController
 {
     #[Get('/')]
     public function __invoke(HighlightRepository $highlightRepository): View
     {
         return view(
-            'home.view.php',
+            './home.view.php',
              highlights: $highlightRepository->all(),
          );
     }
 }
 ```
 
-Variable scoping now works by compiling view components to PHP closures instead of what we used to do: manage variable scope ourselves. Besides fixing some bugs, it also [simplified view component rendering significantly](https://github.com/tempestphp/tempest-framework/pull/1435), which is great! 
+:::
+
+Variable scoping now works by compiling view components to PHP closures instead of what we used to do: manage variable scope ourselves. Besides fixing some bugs, it also [simplified view component rendering significantly](https://github.com/tempestphp/tempest-framework/pull/1435), which is great!
 
 ## Installable view components
 
@@ -126,7 +130,7 @@ $original = $session->getOriginalValueFor($name, $default);
 </div>
 ```
 
-While this style might require some getting used to for some people, I think it is the right decision to make: class-based view components had a lot of compiler edge cases that we had to take into account, and often lead to subtle bugs when building new components. I do plan on writing an in-depth post on how to build reusable view components with Tempest soon. Stay tuned for that!  
+While this style might require some getting used to for some people, I think it is the right decision to make: class-based view components had a lot of compiler edge cases that we had to take into account, and often lead to subtle bugs when building new components. I do plan on writing an in-depth post on how to build reusable view components with Tempest soon. Stay tuned for that!
 
 ## Work in progress IDE support
 
@@ -142,6 +146,6 @@ There is a lot of work to be done, but it's amazing to see this moving forward. 
 
 ## What's next?
 
-From the beginning I've said that IDE support is a must for any project to succeed. It now looks like there's a real chance of that happening, which is amazing. Besides IDE support, there are a couple of big features to tackle: I want Tempest to ship with some form of "standard component library" that people can use as a scaffold, we're looking into adding HTMX support (or something alike) to build async components, and we plan on making bridges for Laravel and Symfony so that you can use Tempest View in projects outside of Tempest as well. 
+From the beginning I've said that IDE support is a must for any project to succeed. It now looks like there's a real chance of that happening, which is amazing. Besides IDE support, there are a couple of big features to tackle: I want Tempest to ship with some form of "standard component library" that people can use as a scaffold, we're looking into adding HTMX support (or something alike) to build async components, and we plan on making bridges for Laravel and Symfony so that you can use Tempest View in projects outside of Tempest as well.
 
 If you're inspired and interested to help out with any of these features, then you're more than welcome to [join the Tempest Discord](/discord) and take it from there.
