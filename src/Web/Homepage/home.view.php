@@ -12,7 +12,7 @@ use function Tempest\Router\uri;
   <div class="flex flex-col grow">
     <div id="background" class="z-[-1] absolute inset-0 w-full h-full overflow-hidden pointer-events-none" />
     <!-- Content -->
-    <main class="container mx-auto relative flex flex-col gap-4 grow -mt-(--ui-header-height)" style="tab-size: 2">
+    <main class="container mx-auto relative flex flex-col gap-4 grow -mt-(--ui-header-height)">
       <!-- Hero -->
       <section class="relative flex flex-col justify-center md:mt-0 px-6 h-screen tracking-tighter">
         <h1 class="flex flex-col text-4xl md:text-5xl xl:text-6xl leading-none">

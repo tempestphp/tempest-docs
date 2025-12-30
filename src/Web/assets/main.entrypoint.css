@@ -248,5 +248,6 @@ pre {
 	pre {
 		@apply border border-(--ui-border) rounded-[0.6rem] p-4 my-0
 			bg-(--ui-bg-elevated)/50 overflow-x-auto;
+		tab-size: 2;
 	}
 }

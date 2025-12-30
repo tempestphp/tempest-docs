@@ -55,6 +55,7 @@
 	max-width: 100%;
 	overflow-x: auto;
 	width: 100%;
+	tab-size: 2;
 }
 
 .hl-keyword {
