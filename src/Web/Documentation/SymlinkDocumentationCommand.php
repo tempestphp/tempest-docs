@@ -12,10 +12,6 @@ use Tempest\Console\ExitCode;
 use Tempest\Support\Filesystem;
 
 use function Tempest\root_path;
-use function Tempest\Support\Filesystem\create_directory_for_file;
-use function Tempest\Support\Filesystem\exists;
-use function Tempest\Support\Filesystem\is_file;
-use function Tempest\Support\Filesystem\is_symbolic_link;
 
 final readonly class SymlinkDocumentationCommand
 {
@@ -32,20 +28,20 @@ final readonly class SymlinkDocumentationCommand
 
         $this->console->header('Symlinking documentation');
 
-        if (! exists($from)) {
+        if (! Filesystem\exists($from)) {
             $this->console->error("The source path does not exist (tried {$from}).");
 
             return ExitCode::ERROR;
         }
 
-        if (is_symbolic_link($to) || is_file($to)) {
+        if (Filesystem\is_symbolic_link($to) || Filesystem\is_file($to)) {
             $this->console->task(
                 label: "Removing existing symlink at {$to}.",
-                handler: fn () => $this->run('rm -rf ' . escapeshellarg($to)),
+                handler: fn () => Filesystem\delete_file($to),
             );
         }
 
-        create_directory_for_file($to);
+        Filesystem\create_directory_for_file($to);
 
         $this->console->task(
             label: "Creating symlink from {$from} to {$to}.",

@@ -10,12 +10,9 @@ use Tempest\Console\Console;
 use Tempest\Console\ConsoleCommand;
 use Tempest\Console\ExitCode;
 use Tempest\Support\Filesystem;
+use Tempest\Support\Path;
 
 use function Tempest\root_path;
-use function Tempest\Support\Filesystem\delete_directory;
-use function Tempest\Support\Filesystem\ensure_directory_empty;
-use function Tempest\Support\Filesystem\move;
-use function Tempest\Support\path;
 
 final readonly class PullDocumentationCommand
 {
@@ -35,7 +32,7 @@ final readonly class PullDocumentationCommand
 
         foreach ($versions as $version) {
             $success = $this->console->task(
-                label: "Fetching documentation for branch `{$version->getBranch()}`.",
+                label: "Fetching documentation for branch `{$version->getBranch()}` in `{$version->getUrlSegment()}`.",
                 handler: fn () => $this->fetchVersionDocumentation($version),
             );
 
@@ -58,8 +55,12 @@ final readonly class PullDocumentationCommand
         $versionedDocsDirectory = root_path('src/Web/Documentation/content/', $version->getUrlSegment());
         $temporaryDirectory = root_path('docs-clone');
 
-        ensure_directory_empty($versionedDocsDirectory);
-        ensure_directory_empty($temporaryDirectory);
+        if (Filesystem\is_symbolic_link($versionedDocsDirectory)) {
+            Filesystem\delete_file($versionedDocsDirectory);
+        }
+
+        Filesystem\ensure_directory_empty($versionedDocsDirectory);
+        Filesystem\ensure_directory_empty($temporaryDirectory);
 
         $this->run(
             command: sprintf(
@@ -72,16 +73,16 @@ final readonly class PullDocumentationCommand
 
         $this->run(
             command: 'git sparse-checkout set --no-cone /' . self::DOCS_DIRECTORY,
-            cwd: path($temporaryDirectory, self::CLONE_DIRECTORY),
+            cwd: Path\normalize($temporaryDirectory, self::CLONE_DIRECTORY),
         );
 
         $this->run(
             command: 'git checkout',
-            cwd: path($temporaryDirectory, self::CLONE_DIRECTORY),
+            cwd: Path\normalize($temporaryDirectory, self::CLONE_DIRECTORY),
         );
 
-        move(path($temporaryDirectory, self::CLONE_DIRECTORY, self::DOCS_DIRECTORY), $versionedDocsDirectory, overwrite: true);
-        delete_directory($temporaryDirectory);
+        Filesystem\move(Path\normalize($temporaryDirectory, self::CLONE_DIRECTORY, self::DOCS_DIRECTORY), $versionedDocsDirectory, overwrite: true);
+        Filesystem\delete($temporaryDirectory);
     }
 
     private function run(string $command, string $cwd): string
