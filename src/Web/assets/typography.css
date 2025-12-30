@@ -109,14 +109,14 @@
 			content: none;
 		}
 
-		@apply px-1.5 pt-0.5 -mt-0.5 pb-px -mb-px text-sm font-mono font-medium
-			rounded-md inline-block border border-(--ui-border-muted)
-			bg-(--ui-bg-muted) text-inherit;
+		@apply px-1.5 pt-px pb-0.5 text-sm font-mono font-medium rounded-md
+			inline-block border border-(--ui-border-muted) bg-(--ui-bg-muted)
+			text-inherit;
 	}
 
-	a:not(:is(.not-prose, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a)) {
-		@apply hover:text-(--ui-text-highlighted) border-b
-			border-(--ui-border-muted) hover:border-(--ui-text-muted) font-medium
+	a {
+		@apply no-underline border-b border-dashed border-(--ui-border-muted)
+			hover:border-(--ui-text-muted) font-medium
 			focus-visible:outline-(--ui-primary) transition-colors;
 
 		& code {
@@ -124,12 +124,13 @@
 		}
 
 		&:hover code {
-			@apply text-(--ui-primary) border-(--ui-primary);
+			@apply text-(--ui-primary) border-(--ui-text-muted);
 		}
 	}
 
-	a {
-		@apply no-underline;
+	/* disable borders for links in titles and links that have <code> */
+	:is(.not-prose, h1, h2, h3, h4, h5, h6) a, a:has(> code) {
+		@apply border-none;
 	}
 
 	h1,
