@@ -1,10 +1,14 @@
 @plugin "@tailwindcss/typography";
 
 @utility prose {
-	@apply !max-w-[unset];
+	@apply max-w-[unset]!;
+
+	blockquote {
+		font-style: normal;
+	}
 
 	& > h2:first-child {
-		@apply !mt-0;
+		@apply mt-0!;
 	}
 
 	.alert {

@@ -7,22 +7,20 @@
 	},
 	"dependencies": {
 		"highlight.js": "^11.11.1",
-		"puppeteer": "^24.11.2"
+		"puppeteer": "^24.34.0"
 	},
 	"devDependencies": {
-		"@fontsource-variable/kantumruy-pro": "^5.2.6",
-		"@fontsource-variable/public-sans": "^5.2.6",
-		"@tailwindcss/typography": "^0.5.16",
-		"@tailwindcss/vite": "^4.1.11",
-		"@vitejs/plugin-vue": "^6.0.0",
-		"@vueuse/core": "^13.5.0",
-		"@vueuse/math": "^13.9.0",
+		"@tailwindcss/typography": "^0.5.19",
+		"@tailwindcss/vite": "^4.1.18",
+		"@vitejs/plugin-vue": "^6.0.3",
+		"@vueuse/core": "^14.1.0",
+		"@vueuse/math": "^14.1.0",
 		"fuse.js": "^7.1.0",
-		"reka-ui": "^2.3.2",
-		"tailwindcss": "^4.1.11",
-		"typescript": "^5.8.3",
-		"vite": "^6.3.5",
-		"vite-plugin-tempest": "^0.0.2",
-		"vue": "^3.5.17"
+		"reka-ui": "^2.7.0",
+		"tailwindcss": "^4.1.18",
+		"typescript": "^5.9.3",
+		"vite": "^7.3.0",
+		"vite-plugin-tempest": "^2.13.0",
+		"vue": "^3.5.26"
 	}
 }

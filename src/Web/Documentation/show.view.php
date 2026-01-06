@@ -19,7 +19,7 @@
       <nav class="flex flex-col gap-y-6 pb-8">
         <div :foreach="$this->categories() as $category" class="flex flex-col">
           <!-- Category title -->
-          <span class="font-semibold text-(--ui-text) mb-2">
+          <span class="text-(--ui-text) mb-2">
             {{ \Tempest\Support\Str\to_sentence_case($category) }}
           </span>
           <!-- Chapter list -->
@@ -53,7 +53,7 @@
         <nav class="lg:hidden flex flex-col gap-y-8 overflow-hidden">
           <div :foreach="$this->categories() as $category" class="flex flex-col">
             <!-- Category title -->
-            <span class="font-semibold text-(--ui-text) mb-2">
+            <span class="text-(--ui-text) mb-2">
               <?= ucfirst($category) ?>
             </span>
             <!-- Chapter list -->
@@ -68,7 +68,7 @@
         </nav>
         <!-- On this page -->
         <div :if="($subChapters = $this->getSubChapters()) !== []" class="hidden min-[375px]:flex flex-col">
-          <span class="font-semibold text-(--ui-text) mb-2 text-right">On this page</span>
+          <span class="text-(--ui-text) mb-2 text-right">On this page</span>
           <!-- Sub-chapter list -->
           <ul class="flex flex-col">
             <x-template :foreach="$subChapters as $url => $chapter">
@@ -94,7 +94,7 @@
         <x-template :if="$this->currentChapter">
           <!-- Header -->
           <div class="relative border-b border-(--ui-border) pb-8">
-            <a :href="$this->currentChapter->getUri()" class="text-(--ui-info) font-semibold">
+            <a :href="$this->currentChapter->getUri()" class="text-(--ui-info)">
               {{ \Tempest\Support\Str\to_sentence_case($this->currentChapter->category) }}
             </a>
             <h1 id="top" class="mt-2 font-bold text-4xl text-(--ui-text-highlighted) lg:scroll-mt-[calc(1.5*var(--ui-header-height))]">
@@ -129,7 +129,7 @@
       <nav class="hidden top-28 sticky xl:flex flex-col pt-4 pr-4 pl-12 w-xs max-h-[calc(100dvh-var(--ui-header-height))] overflow-auto shrink-0">
         <div class="flex flex-col text-sm grow">
           <x-template :if="($subChapters = $this->getSubChapters()) !== []">
-            <span class="inline-block mb-3 font-bold text-[--primary]">On this page</span>
+            <span class="inline-block mb-3">On this page</span>
             <ul class="flex flex-col">
               <x-template :foreach="$subChapters as $url => $chapter">
                 <li>
@@ -149,17 +149,17 @@
             <!-- Version warning -->
             <div :if="$this->currentChapter->version->isNext()" class="mt-4">
               <div class="text-sm text-(--ui-warning) inline-flex items-baseline gap-x-1.5">
-                <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
+                <x-icon name="tabler:info-circle" class="size-4 translate-y-0.5 shrink-0" />
                 <span>This documentation is for an upcoming version of Tempest and is subject to change.</span>
               </div>
             </div>
             <div :elseif="$this->currentChapter->version->isPrevious()" class="mt-4">
               <div class="text-sm text-(--ui-warning) flex flex-col gap-y-2">
                 <span class="inline-flex items-baseline gap-x-1.5">
-                  <x-icon name="tabler:info-circle" class="size-4 translate-y-[2px] shrink-0" />
+                  <x-icon name="tabler:info-circle" class="size-4 translate-y-0.5 shrink-0" />
                   <div class="flex flex-col gap-y-1.5">
                     <span>This documentation is for a previous version of Tempest.</span>
-                    <span>Visit the <a class="decoration-dotted underline underline-offset-[4px] hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
+                    <span>Visit the <a class="decoration-dotted underline underline-offset-4 hover:text-(--ui-text) transition" :href="$this->currentChapter->getCanonicalUri()">{{ $this->currentChapter->version::default()->value }}</a> documentation.</span>
                   </div>
                 </span>
               </div>
@@ -167,9 +167,9 @@
             <!-- Suggest changes -->
             <a class="text-sm text-(--ui-text-dimmed) hover:text-(--ui-text) flex flex-col gap-y-2" :href="$this->currentChapter->getEditPageUri()" target="_blank">
               <span class="inline-flex items-baseline gap-x-1.5">
-                <x-icon name="tabler:pencil" class="size-4 translate-y-[2px] shrink-0" />
+                <x-icon name="tabler:pencil" class="size-4 translate-y-0.5 shrink-0" />
                 <div class="flex flex-col gap-y-1.5">
-                  <span>Suggest improvements to this page</span>
+                  <span>Suggest changes to this page</span>
                 </div>
               </span>
             </a>

@@ -7,7 +7,7 @@ use function Tempest\Support\str;
 
 <x-base title="Blog">
   <!-- Main container -->
-  <main class="isolate flex flex-col mx-auto px-4 xl:px-8 font-mono container grow">
+  <main class="isolate flex flex-col mx-auto px-4 xl:px-8 container grow">
     <!-- Main content -->
     <div class="flex flex-col lg:mt-10 px-2 lg:pl-12 w-full min-w-0 grow">
 			<!-- Header -->
@@ -40,8 +40,8 @@ use function Tempest\Support\str;
               >
 							  {{ str($post->tag->value)->title() }}
               </span>
-              <span :if="$post->author" class="text-(--ui-text-muted) text-sm">
-                by <span class="font-semibold">{{ $post->author->getName() }}</span> on <span class="font-semibold">{{ $post->createdAt->format('F d, Y') }}</span>
+              <span :if="$post->author" class="text-(--ui-text-dimmed) text-sm">
+                by <span class="text-(--ui-text-muted)">{{ $post->author->getName() }}</span> on <span class="text-(--ui-text-muted)">{{ $post->createdAt->format('F d, Y') }}</span>
               </span>
             </div>
           </div>

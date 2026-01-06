@@ -7,8 +7,7 @@
 
 @theme {
 	--container-8xl: 96rem;
-	--font-display: "Kantumruy Pro Variable";
-	--font-sans: "Public Sans Variable";
+	--font-sans: "iA Writer Quattro";
 	--font-mono: "JetBrains Mono Variable";
 
 	/* Falling leaves */
@@ -58,7 +57,6 @@
 
 @layer base {
 	:root, .light {
-		font-size: 15px;
 		--ui-header-height: --spacing(24);
 
 		@media (width > 40rem) {
@@ -163,7 +161,7 @@ button:focus:has(svg) {
 
 /* Scrollbar thumb (the draggable part) */
 ::-webkit-scrollbar-thumb {
-	background: var(--ui-border-accented);
+	background: var(--ui-border);
 	border-radius: 4px;
 }
 
@@ -175,7 +173,7 @@ button:focus:has(svg) {
 /* Firefox */
 * {
 	scrollbar-width: thin;
-	scrollbar-color: var(--ui-border-accented) transparent;
+	scrollbar-color: var(--ui-border) transparent;
 }
 
 pre {
@@ -227,6 +225,18 @@ pre {
 		U+2215,
 		U+FEFF,
 		U+FFFD;
+}
+
+@font-face {
+	font-family: "iA Writer Quattro";
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src:
+		url(https://cdn.jsdelivr.net/fontsource/fonts/ia-writer-quattro@latest/latin-400-normal.woff2)
+		format("woff2"),
+		url(https://cdn.jsdelivr.net/fontsource/fonts/ia-writer-quattro@latest/latin-400-normal.woff)
+		format("woff");
 }
 
 /*

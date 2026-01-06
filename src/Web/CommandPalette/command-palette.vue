@@ -24,7 +24,7 @@ registerPalette({ value: open })
 <template>
 	<base-dialog
 		v-model:open="open"
-		content-class="w-full h-full sm:h-auto sm:max-w-xl md:max-w-2xl"
+		content-class="w-full h-full sm:h-auto sm:max-w-xl md:max-w-2xl focus-visible:outline-none text-sm"
 		title="Command palette"
 	>
 		<combobox-root
@@ -38,15 +38,16 @@ registerPalette({ value: open })
 				v-model="query"
 				placeholder="Search..."
 				class="bg-transparent px-6 py-4 outline-none w-full placeholder-on-dialog-muted"
+				auto-focus
 				@keydown.enter.prevent
 			/>
 			<!-- Results -->
 			<combobox-content
-				class="p-2 border-(--ui-border) border-t h-full sm:max-h-[40rem] overflow-y-auto"
+				class="p-2 border-(--ui-border) border-t h-full sm:max-h-160 overflow-y-auto"
 				@escape-key-down="open = false"
 			>
 				<!-- No result -->
-				<combobox-empty class="p-4 w-full text-center grow">
+				<combobox-empty class="p-4 w-full text-center grow text-(--ui-text-muted)">
 					<template v-if="query">
 						No result. Try another query.
 					</template>
@@ -58,7 +59,7 @@ registerPalette({ value: open })
 				<!-- Group by category -->
 				<combobox-group v-for="category in results" :key="category.title">
 					<!-- Category title -->
-					<combobox-label class="mt-3 mb-3 px-4 pl-4 font-semibold">
+					<combobox-label class="my-2 px-4 pl-4 text-(--ui-primary)">
 						{{ category.title }}
 					</combobox-label>
 					<!-- Items -->
@@ -68,7 +69,7 @@ registerPalette({ value: open })
 						:as="item.type === 'uri' ? 'a' : 'button'"
 						:value="item"
 						:href="item.uri"
-						class="flex flex-col data-[highlighted]:bg-(--ui-primary)/10 dark:data-[highlighted]:bg-(--ui-bg-elevated)/60 px-4 py-2 pl-4 rounded-md w-full text-(--ui-text-highlighted) text-left transition-colors"
+						class="flex flex-col data-highlighted:bg-(--ui-primary)/10 dark:data-highlighted:bg-(--ui-bg-elevated)/60 px-4 py-2 pl-4 rounded-md w-full text-(--ui-text-highlighted) text-left transition-colors"
 						@select="(e) => handleCommand(item, e)"
 					>
 						<div class="flex items-center gap-x-1 text-(--ui-text-dimmed)">
@@ -78,27 +79,11 @@ registerPalette({ value: open })
 							>
 								<template v-if="breadcrumb !== item.title">
 									<span class="inline-block font-medium text-sm" v-text="breadcrumb" />
-									<svg
-										v-if="i < item.hierarchy.length"
-										xmlns="http://www.w3.org/2000/svg"
-										width="32"
-										height="32"
-										class="last:hidden size-4"
-										viewBox="0 0 24 24"
-									>
-										<path
-											fill="none"
-											stroke="currentColor"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											stroke-width="2"
-											d="m7 7l5 5l-5 5m6-10l5 5l-5 5"
-										/>
-									</svg>
+									<span v-if="i < item.hierarchy.length" class="last:hidden">·</span>
 								</template>
 							</template>
 						</div>
-						<span>{{ item.title }}</span>
+						<span class="text-(--ui-text-toned)">{{ item.title }}</span>
 					</combobox-item>
 				</combobox-group>
 			</combobox-content>

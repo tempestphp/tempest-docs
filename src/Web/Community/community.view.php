@@ -1,5 +1,5 @@
 <x-base title="Community">
-  <main class="isolate flex flex-col mx-auto px-4 xl:px-8 font-mono container grow">
+  <main class="isolate flex flex-col mx-auto px-4 xl:px-8 container grow">
     <!-- Main content -->
     <div class="flex flex-col lg:mt-10 px-2 lg:pl-12 w-full min-w-0 grow">
       <!-- Header -->

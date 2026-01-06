@@ -15,18 +15,18 @@ use function Tempest\Router\uri;
     <main class="container mx-auto relative flex flex-col gap-4 grow -mt-(--ui-header-height)">
       <!-- Hero -->
       <section class="relative flex flex-col justify-center md:mt-0 px-6 h-screen">
-        <h1 class="flex flex-col text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-none">
+        <h1 class="flex flex-col text-3xl md:text-4xl lg:text-5xl leading-none">
           <span>The framework that</span>
           <span class="text-(--ui-primary)">gets out of your way</span>
         </h1>
-        <p class="mt-4 md:mt-6 lg:mt-8 xl:mt-8 max-w-xl xl:max-w-2xl text-xl lg:text-2xl xl:text-3xl text-(--ui-text-toned) leading-snug">
+        <p class="mt-4 md:mt-6 lg:mt-8 xl:mt-8 max-w-xl xl:max-w-2xl text-xl lg:text-2xl text-(--ui-text-toned) leading-snug">
             With zero configuration and zero boilerplate, Tempest gives you the architectural freedom to focus entirely on your business logic.
         </p>
-        <div class="flex items-center gap-x-4 mt-6 md:mt-8 lg:mt-10 xl:mt-16 font-medium text-lg">
-          <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-6 py-2.5 gap-1.5 transition">
+        <div class="flex items-center gap-x-2 mt-6 md:mt-8 lg:mt-10 xl:mt-12 font-medium">
+          <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-5 py-2.5 gap-1.5 transition">
             Get started
           </a>
-          <button onclick="scrollToFeatures()" class="cursor-pointer hidden min-[401px]:flex text(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-4 py-2.5 items-center gap-x-2 transition">
+          <button onclick="scrollToFeatures()" class="cursor-pointer hidden min-[401px]:flex text-(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-4 py-2.5 items-center gap-x-2 transition">
             <x-icon name="tabler:info" class="size-6" />
             <span class="transition translate-x-4 group-hover:translate-x-0">Learn more</span>
             <x-icon name="tabler:arrow-down" class="opacity-0 group-hover:opacity-100 size-5 scale-90 group-hover:scale-100 transition -translate-y-full group-hover:translate-y-0" />
@@ -37,7 +37,7 @@ use function Tempest\Router\uri;
           <span id="install-tempest-snippet" class="text-(--ui-text-muted) hover:text-(--ui-text) transition">composer create-project tempest/app</span>
           <span class="ml-4 flex items-center justify-center opacity-0 group-hover:opacity-100 scale-80 group-hover:scale-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border)">
               <x-icon name="tabler:copy" class="absolute size-5" />
-              <x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-[[data-copied]]:opacity-100 transition text-(--ui-success)" />
+              <x-icon name="tabler:copy-check-filled" class="size-5 absolute opacity-0 group-data-copied:opacity-100 transition text-(--ui-success)" />
           </span>
         </button>
         <div class="bottom-0 absolute inset-x-0 flex justify-center items-center mb-12 p-8">

@@ -79,7 +79,7 @@ use App\Web\Meta\MetaType;
 
     <x-slot name="head"/>
 </head>
-<body :class="trim($bodyClass ?? '')" class="relative antialiased flex flex-col grow selection:bg-(--ui-primary)/20 selection:text-(--ui-primary) font-mono text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark !overflow-visible !pr-0">
+<body :class="trim($bodyClass ?? '')" class="relative antialiased flex flex-col grow selection:bg-(--ui-primary)/20 selection:text-(--ui-primary) font-sans text-(--ui-text) bg-(--ui-bg) scheme-light dark:scheme-dark overflow-visible! pr-0!">
 <div class="absolute inset-0 bg-repeat pointer-events-none" style="background-image: url(/noise.svg)">
     <div id="command-palette"></div>
 </div>
@@ -91,7 +91,7 @@ use App\Web\Meta\MetaType;
     <template id="copy-template">
         <button class="absolute group top-2 right-2 size-7 flex items-center justify-center cursor-pointer opacity-0 group-hover:opacity-100 transition text-(--ui-text-dimmed) bg-(--ui-bg-muted) rounded border border-(--ui-border) hover:text-(--ui-text-highlighted)">
             <x-icon name="tabler:copy" class="absolute size-5"/>
-            <x-icon name="tabler:copy-check-filled" class="absolute opacity-0 group-[[data-copied]]:opacity-100 size-5 transition"/>
+            <x-icon name="tabler:copy-check-filled" class="absolute opacity-0 group-data-copied:opacity-100 size-5 transition"/>
         </button>
     </template>
 </x-template>
