@@ -57,6 +57,8 @@
 
 @layer base {
 	:root, .light {
+		letter-spacing: var(--tracking-tight);
+
 		--ui-header-height: --spacing(24);
 
 		@media (width > 40rem) {
