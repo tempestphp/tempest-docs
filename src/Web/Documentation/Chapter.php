@@ -16,6 +16,7 @@ final class Chapter
         public string $category,
         public string $slug,
         public string $body,
+        public string $raw,
         public string $title,
         public string $path,
         public bool $hidden = false,

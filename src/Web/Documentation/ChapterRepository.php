@@ -45,7 +45,8 @@ final class ChapterRepository
             return null;
         }
 
-        $markdown = $this->markdown->convert(file_get_contents($path));
+        $raw = file_get_contents($path);
+        $markdown = $this->markdown->convert($raw);
 
         if (! $markdown instanceof RenderedContentWithFrontMatter) {
             throw new RuntimeException(sprintf('Documentation entry [%s] is missing a frontmatter.', $path));
@@ -61,6 +62,7 @@ final class ChapterRepository
             category: $category,
             slug: $slug,
             body: $markdown->getContent(),
+            raw: $raw,
             title: $title,
             path: to_relative_path(root_path(), $path),
             hidden: $hidden ?? false,

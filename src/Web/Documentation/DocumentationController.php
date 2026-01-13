@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\Web\Documentation;
 
 use RuntimeException;
+use Tempest\Http\GenericResponse;
 use Tempest\Http\Response;
 use Tempest\Http\Responses\NotFound;
 use Tempest\Http\Responses\Redirect;
+use Tempest\Http\Status;
 use Tempest\Router\Get;
 use Tempest\Router\Stateless;
 use Tempest\Router\StaticPage;
@@ -62,10 +64,21 @@ final readonly class DocumentationController
 
     #[StaticPage(DocumentationDataProvider::class)]
     #[Get('/{version}/{category}/{slug}')]
-    public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): View|Response
+    public function __invoke(string $version, string $category, string $slug, ChapterRepository $chapterRepository): GenericResponse|View|Response
     {
         if (is_null($version = Version::tryFromString($version))) {
             return new NotFound();
+        }
+
+        // TODO: support static generation
+        if (str_ends_with($slug, needle: '.md')) {
+            $markdown = $this->markdownView($version, $category, before_first($slug, '.md'), $chapterRepository);
+
+            if (is_null($markdown)) {
+                return new NotFound();
+            }
+
+            return $markdown;
         }
 
         return $this->chapterView($version, $category, $slug, $chapterRepository) ?? new Redirect(uri(self::class, 'index'));
@@ -83,6 +96,23 @@ final readonly class DocumentationController
             version: $version,
             chapterRepository: $chapterRepository,
             currentChapter: $currentChapter,
+        );
+    }
+
+    private function markdownView(Version $version, string $category, string $slug, ChapterRepository $chapterRepository): ?GenericResponse
+    {
+        $chapter = $chapterRepository->find($version, $category, $slug);
+
+        if (! $chapter || $chapter->hidden) {
+            return null;
+        }
+
+        return new GenericResponse(
+            status: Status::OK,
+            body: $chapter->raw,
+            headers: [
+                'Content-Type' => 'text/markdown; charset=utf-8',
+            ],
         );
     }
 }
