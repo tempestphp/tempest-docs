@@ -4,7 +4,11 @@
 	@apply max-w-[unset]!;
 
 	blockquote {
-		font-style: normal;
+		@apply font-normal;
+	}
+
+	strong {
+		@apply font-normal text-(--ui-text-highlighted);
 	}
 
 	& > h2:first-child {
