@@ -93,7 +93,7 @@ final class ParseLogCommand
             $line = str(fgets($handle) ?: '')->trim();
 
             if ($line->isEmpty()) {
-                usleep(0.1 * 1000000);
+                usleep(100000);
                 fseek($handle, ftell($handle));
                 continue;
             }
