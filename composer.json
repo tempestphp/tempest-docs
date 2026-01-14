@@ -2,6 +2,9 @@
 	"name": "tempest/docs",
 	"type": "project",
 	"description": "Documentation website for the Tempest framework",
+	"repositories": [
+		{"type":  "path", "url": "../tempest-framework", "symlink": true}
+	],
 	"require": {
 		"tempest/framework": "^3.x-dev",
 		"league/commonmark": "^2.8.0",
