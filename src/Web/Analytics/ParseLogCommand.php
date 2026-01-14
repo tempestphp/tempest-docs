@@ -144,10 +144,10 @@ final class ParseLogCommand
 
             // Create event
             $event = new PageVisited(
-                url: $url,
+                url: $url->toString(),
                 visitedAt: $date,
                 ip: $ip,
-                userAgent: $userAgent,
+                userAgent: $userAgent->toString(),
                 raw: $line->toString(),
             );
 
