@@ -16,7 +16,7 @@ enum Version: string
 
     public static function default(): self
     {
-        return self::VERSION_2;
+        return self::VERSION_3;
     }
 
     public function isNext(): bool
@@ -31,7 +31,7 @@ enum Version: string
     {
         return match ($this) {
             self::VERSION_1 => '1.x',
-            self::VERSION_2 => 'main',
+            self::VERSION_2 => '2.x',
             self::VERSION_3 => '3.x',
         };
     }
