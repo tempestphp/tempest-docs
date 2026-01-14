@@ -9,6 +9,7 @@ use App\Web\Analytics\PageVisited;
 use Override;
 use Tempest\Database\Builder\QueryBuilders\QueryBuilder;
 use Tempest\EventBus\EventHandler;
+use function Tempest\Intl\Number\parse_int;
 
 final readonly class VisitsPerHourProjector implements Projector
 {
@@ -33,7 +34,7 @@ final readonly class VisitsPerHourProjector implements Projector
     public function onPageVisited(PageVisited $pageVisited): void
     {
         $visitedAt = $pageVisited->visitedAt->setTime(
-            hour: $pageVisited->visitedAt->format('H'),
+            hour: parse_int($pageVisited->visitedAt->format('H')),
             minute: 0,
         );
 
