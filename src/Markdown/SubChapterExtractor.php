@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown;
 
+use function Tempest\Support\Arr\sort_by_callback;
 use Tempest\Support\Arr;
 
 use function Tempest\Support\Str\strip_tags;
@@ -40,7 +41,7 @@ final class SubChapterExtractor
         }
 
         return self::buildHierarchy(
-            headings: Arr\sort_by_callback($headings, static fn (array $a, array $b) => $a['position'] <=> $b['position']),
+            headings: sort_by_callback($headings, static fn (array $a, array $b) => $a['position'] <=> $b['position']),
         );
     }
 

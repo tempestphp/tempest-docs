@@ -13,7 +13,7 @@ use Tempest\Router\Post;
 use Tempest\View\View;
 
 use function Tempest\Router\uri;
-use function Tempest\view;
+use function Tempest\View\view;
 
 final readonly class CodeController
 {
@@ -27,7 +27,7 @@ final readonly class CodeController
             $code = urldecode(base64_decode($code, strict: true));
         }
 
-        return view(__DIR__ . '/code.view.php', code: $code, language: $language);
+        return \Tempest\View\view(__DIR__ . '/code.view.php', code: $code, language: $language);
     }
 
     #[Post('/code/submit')]
@@ -61,7 +61,7 @@ final readonly class CodeController
         $editUrl = uri([self::class, 'paste'], lang: $language, code: $code);
         $cleanUrl = uri([self::class, 'preview'], lang: $language, code: $code, center: $center, clean: true);
 
-        return view(__DIR__ . '/code_preview.view.php')->data(
+        return \Tempest\View\view(__DIR__ . '/code_preview.view.php')->data(
             code: $highlightedCode,
             editUrl: $editUrl,
             language: $language,

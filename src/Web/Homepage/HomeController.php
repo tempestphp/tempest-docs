@@ -12,7 +12,7 @@ use Tempest\View\View;
 
 use function Tempest\Support\Arr\map_with_keys;
 use function Tempest\Support\Str\strip_end;
-use function Tempest\view;
+use function Tempest\View\view;
 
 final readonly class HomeController
 {
@@ -29,7 +29,7 @@ final readonly class HomeController
             fn (string $path) => yield strip_end(basename($path), '.md') => $this->markdown->convert(file_get_contents($path)),
         );
 
-        return view('./home.view.php', codeBlocks: $codeBlocks);
+        return \Tempest\View\view('./home.view.php', codeBlocks: $codeBlocks);
     }
 
     #[Get('/view')]

@@ -14,14 +14,14 @@ use Tempest\Router\Post;
 use Tempest\View\View;
 
 use function Tempest\Router\uri;
-use function Tempest\view;
+use function Tempest\View\view;
 
 final readonly class EllisonController
 {
     #[Get('/ellison')]
     public function paste(): View
     {
-        return view(__DIR__ . '/ellison.view.php');
+        return \Tempest\View\view(__DIR__ . '/ellison.view.php');
     }
 
     #[Post('/ellison')]
@@ -39,6 +39,6 @@ final readonly class EllisonController
 
         $ellison = $highlighter->parse(base64_decode($request->getSessionValue('ellison') ?? base64_encode('Hello World'), strict: true), 'ellison');
 
-        return view(__DIR__ . '/ellison_preview.view.php')->data(ellison: '<pre data-lang="ellison">' . $ellison . '</pre>');
+        return \Tempest\View\view(__DIR__ . '/ellison_preview.view.php')->data(ellison: '<pre data-lang="ellison">' . $ellison . '</pre>');
     }
 }

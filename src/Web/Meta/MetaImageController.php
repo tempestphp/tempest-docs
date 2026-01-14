@@ -22,7 +22,7 @@ use Tempest\View\ViewRenderer;
 
 use function Tempest\Router\uri;
 use function Tempest\support\path;
-use function Tempest\view;
+use function Tempest\View\view;
 
 final readonly class MetaImageController
 {

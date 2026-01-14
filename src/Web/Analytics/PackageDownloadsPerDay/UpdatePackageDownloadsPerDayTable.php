@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Web\Analytics\PackageDownloadsPerDay;
 
+use Tempest\Database\MigratesUp;
 use Override;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\AlterTableStatement;
 use Tempest\Database\QueryStatements\IntegerStatement;
 
-final class UpdatePackageDownloadsPerDayTable implements \Tempest\Database\MigratesUp
+final class UpdatePackageDownloadsPerDayTable implements MigratesUp
 {
     public string $name = '2024-12-14_03_update_package_downloads_per_day_table';
 

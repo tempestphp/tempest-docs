@@ -14,7 +14,7 @@ use Tempest\DateTime\Duration;
 use Tempest\HttpClient\HttpClient;
 use Throwable;
 
-use function Tempest\event;
+use function Tempest\EventBus\event;
 
 final readonly class ParsePackagistCommand
 {

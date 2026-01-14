@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Web\Analytics\PackageDownloadsPerHour;
 
+use Tempest\Database\MigratesUp;
+use Tempest\Database\MigratesDown;
 use Override;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\CreateTableStatement;
 use Tempest\Database\QueryStatements\DropTableStatement;
 
-final class CreatePackageDownloadsPerHourTable implements \Tempest\Database\MigratesUp, \Tempest\Database\MigratesDown
+final class CreatePackageDownloadsPerHourTable implements MigratesUp, MigratesDown
 {
     public string $name = '2024-12-14_01_create_package_downloads_per_hour_table';
 

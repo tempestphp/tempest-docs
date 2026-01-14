@@ -13,8 +13,8 @@ use League\CommonMark\Util\HtmlElement;
 use Override;
 use Tempest\View\ViewRenderer;
 
-use function Tempest\get;
-use function Tempest\view;
+use function Tempest\Container\get;
+use function Tempest\View\view;
 
 final class AlertBlockRenderer implements NodeRendererInterface
 {

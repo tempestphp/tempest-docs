@@ -11,7 +11,7 @@ use Tempest\View\View;
 
 use function Tempest\Database\query;
 use function Tempest\Support\arr;
-use function Tempest\view;
+use function Tempest\View\view;
 
 final readonly class StatsController
 {
@@ -33,7 +33,7 @@ final readonly class StatsController
                 ->all(),
         )->reverse();
 
-        return view(
+        return \Tempest\View\view(
             __DIR__ . '/stats.view.php',
 
             visitsPerDay: new Chart(
