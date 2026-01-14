@@ -8,7 +8,7 @@ use Tempest\Router\Get;
 use Tempest\Router\StaticPage;
 use Tempest\View\View;
 
-use function Tempest\view;
+use function Tempest\View\view;
 
 final class CommunityController
 {
@@ -16,6 +16,6 @@ final class CommunityController
     #[Get('/community')]
     public function index(CommunityPostsRepository $repository): View
     {
-        return view('community.view.php', communityPosts: $repository->all());
+        return \Tempest\View\view('community.view.php', communityPosts: $repository->all());
     }
 }

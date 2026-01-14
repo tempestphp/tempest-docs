@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\Web\Analytics\VisitsPerDay;
 
+use Tempest\Database\MigratesUp;
+use Tempest\Database\MigratesDown;
 use Override;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\CreateTableStatement;
 use Tempest\Database\QueryStatements\DropTableStatement;
 
-final class CreateVisitsPerDayTable implements \Tempest\Database\MigratesUp, \Tempest\Database\MigratesDown
+final class CreateVisitsPerDayTable implements MigratesUp, MigratesDown
 {
     public string $name = '2024-12-12_01_create_visits_table';
 

@@ -11,7 +11,7 @@ use League\CommonMark\MarkdownConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Tempest\Support\Arr\ImmutableArray;
 
-use function Tempest\map;
+use function Tempest\Mapper\map;
 use function Tempest\Support\arr;
 
 final readonly class BlogRepository

@@ -10,7 +10,7 @@ use Tempest\Clock\Clock;
 use Tempest\Console\ConsoleCommand;
 use Tempest\Console\HasConsole;
 
-use function Tempest\event;
+use function Tempest\EventBus\event;
 use function Tempest\Support\str;
 
 final class ParseLogCommand

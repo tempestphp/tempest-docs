@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace App\StoredEvents;
 
+use Tempest\Database\MigratesUp;
 use Override;
 use Tempest\Database\QueryStatement;
 use Tempest\Database\QueryStatements\CreateTableStatement;
 
-final class CreateStoredEventTable implements \Tempest\Database\MigratesUp
+final class CreateStoredEventTable implements MigratesUp
 {
     public string $name {
         get => '00-00-0000-create_stored_events_table';

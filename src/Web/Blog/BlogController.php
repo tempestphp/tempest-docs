@@ -18,7 +18,7 @@ use Tempest\Router\StaticPage;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;
 
-use function Tempest\view;
+use function Tempest\View\view;
 
 final readonly class BlogController
 {
@@ -28,7 +28,7 @@ final readonly class BlogController
     {
         $posts = $repository->all();
 
-        return view('./index.view.php', posts: $posts, metaType: MetaType::BLOG);
+        return \Tempest\View\view('./index.view.php', posts: $posts, metaType: MetaType::BLOG);
     }
 
     #[Get('/blog/{slug}')]
@@ -41,7 +41,7 @@ final readonly class BlogController
             return new NotFound();
         }
 
-        return view('./show.view.php', post: $post);
+        return \Tempest\View\view('./show.view.php', post: $post);
     }
 
     #[Stateless, Get('/rss', without: [SetCurrentUrlMiddleware::class, VerifyCsrfMiddleware::class])]
@@ -52,7 +52,7 @@ final readonly class BlogController
     ): Response {
         $xml = $cache->resolve(
             key: 'rss',
-            callback: static fn () => $viewRenderer->render(view('rss.view.php', posts: $repository->all(loadContent: true))),
+            callback: static fn () => $viewRenderer->render(\Tempest\View\view('rss.view.php', posts: $repository->all(loadContent: true))),
             expiration: DateTime::now()->plusHours(1),
         );
 

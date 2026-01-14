@@ -7,9 +7,9 @@ use League\CommonMark\Extension\FrontMatter\Output\RenderedContentWithFrontMatte
 use League\CommonMark\MarkdownConverter;
 use Tempest\View\View;
 
-use function Tempest\get;
-use function Tempest\map;
-use function Tempest\view;
+use function Tempest\Container\get;
+use function Tempest\Mapper\map;
+use function Tempest\View\view;
 
 function recursive_search(string $folder, string $pattern): Generator
 {
@@ -38,5 +38,5 @@ function markdown(string $file): View
 
     $post = map($data)->to(MarkdownPost::class);
 
-    return view(__DIR__ . '/Web/markdown.view.php', post: $post);
+    return \Tempest\View\view(__DIR__ . '/Web/markdown.view.php', post: $post);
 }

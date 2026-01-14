@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2d156a1d0cdfbc4446a4165afca841b4",
+    "content-hash": "e25277adc520efe099b9374a6860cc3e",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -2692,16 +2692,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.3.0",
+            "version": "2.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "f7166355dcf47482f27be59169b0825995f51c7d"
+                "reference": "9afc1bb43571b25629f353c61a9315b5ef31383a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/f7166355dcf47482f27be59169b0825995f51c7d",
-                "reference": "f7166355dcf47482f27be59169b0825995f51c7d",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/9afc1bb43571b25629f353c61a9315b5ef31383a",
+                "reference": "9afc1bb43571b25629f353c61a9315b5ef31383a",
                 "shasum": ""
             },
             "require": {
@@ -2740,7 +2740,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.3.0"
+                "source": "https://github.com/rectorphp/rector/tree/2.3.1"
             },
             "funding": [
                 {
@@ -2748,7 +2748,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-25T22:00:18+00:00"
+            "time": "2026-01-13T15:13:58+00:00"
         },
         {
             "name": "spatie/browsershot",
@@ -4502,16 +4502,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v2.14.0",
+            "version": "3.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "7afcdb378399d0d217268a1122f8418fc60a6d60"
+                "reference": "56ba5ea92d8458038af566391e4eb3279481e02f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/7afcdb378399d0d217268a1122f8418fc60a6d60",
-                "reference": "7afcdb378399d0d217268a1122f8418fc60a6d60",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/56ba5ea92d8458038af566391e4eb3279481e02f",
+                "reference": "56ba5ea92d8458038af566391e4eb3279481e02f",
                 "shasum": ""
             },
             "require": {
@@ -4536,7 +4536,7 @@
                 "monolog/monolog": "^3.7.0",
                 "nette/php-generator": "^4.1.6",
                 "nikic/php-parser": "^5.3",
-                "php": "^8.4",
+                "php": "^8.5",
                 "psr-discovery/http-client-implementations": "^1.4",
                 "psr-discovery/http-factory-implementations": "^1.2",
                 "psr/cache": "^3.0",
@@ -4639,6 +4639,7 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
+            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4721,7 +4722,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v2.14.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/3.x"
             },
             "funding": [
                 {
@@ -4729,7 +4730,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-12-12T08:09:51+00:00"
+            "time": "2026-01-13T12:50:41+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -6627,7 +6628,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "tempest/framework": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},

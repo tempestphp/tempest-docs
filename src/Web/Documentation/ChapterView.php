@@ -10,7 +10,7 @@ use Tempest\Support\Str;
 use Tempest\View\IsView;
 use Tempest\View\View;
 
-use function Tempest\Support\Arr\map_iterable;
+use function Tempest\Support\Arr\map;
 use function Tempest\Support\str;
 
 final class ChapterView implements View
@@ -81,7 +81,7 @@ final class ChapterView implements View
 
     public function categories(): array
     {
-        return map_iterable(
+        return map(
             array: glob(__DIR__ . "/content/{$this->version->getUrlSegment()}/*", flags: GLOB_ONLYDIR),
             map: static fn (string $path) => str($path)->afterLast('/')->replaceRegex('/^\d+-/', '')->toString(),
         );
