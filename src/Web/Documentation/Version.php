@@ -22,7 +22,6 @@ enum Version: string
     public function isNext(): bool
     {
         return match ($this) {
-            self::VERSION_3 => true,
             default => false,
         };
     }
