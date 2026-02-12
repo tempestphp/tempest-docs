@@ -123,17 +123,26 @@
 	}
 
 	a {
-		@apply no-underline border-b border-dashed border-(--ui-border-muted)
-			hover:border-(--ui-text-muted) font-medium
-			focus-visible:outline-(--ui-primary) transition-colors;
+		text-decoration: underline;
+		font-weight: bolder;
+		text-decoration-color: var(--ui-primary);
+
+		&:hover {
+			text-decoration: none;
+		}
 
 		& code {
 			@apply border-dashed transition-colors;
+			text-decoration: none;
 		}
 
 		&:hover code {
 			@apply text-(--ui-primary) border-(--ui-text-muted);
 		}
+	}
+
+	h1 a, h2 a, h3 a {
+		text-decoration: none;
 	}
 
 	/* disable borders for links in titles and links that have <code> */
