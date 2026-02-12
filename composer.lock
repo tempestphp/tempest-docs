@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9edab213e9f1a75a68271ac8a2c03780",
+    "content-hash": "63c3bd531bf509f51f3ae574dc92c9d9",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -3350,6 +3350,76 @@
             "time": "2024-09-25T14:21:43+00:00"
         },
         {
+            "name": "symfony/filesystem",
+            "version": "v8.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "d937d400b980523dc9ee946bb69972b5e619058d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/d937d400b980523dc9ee946bb69972b5e619058d",
+                "reference": "d937d400b980523dc9ee946bb69972b5e619058d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.8"
+            },
+            "require-dev": {
+                "symfony/process": "^7.4|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides basic utilities for the filesystem",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/filesystem/tree/v8.0.1"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2025-12-01T09:13:36+00:00"
+        },
+        {
             "name": "symfony/mailer",
             "version": "v7.4.4",
             "source": {
@@ -4502,16 +4572,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "3.x-dev",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "142501411052ce808b122016196b1611fad0ef1f"
+                "reference": "ee9e3849b9b894a8823a550066fde1f4b388ae2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/142501411052ce808b122016196b1611fad0ef1f",
-                "reference": "142501411052ce808b122016196b1611fad0ef1f",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/ee9e3849b9b894a8823a550066fde1f4b388ae2c",
+                "reference": "ee9e3849b9b894a8823a550066fde1f4b388ae2c",
                 "shasum": ""
             },
             "require": {
@@ -4639,7 +4709,6 @@
                 "ext-pcntl": "Required to use some interactive console components.",
                 "ext-posix": "Required to use some interactive console components."
             },
-            "default-branch": true,
             "bin": [
                 "packages/console/bin/tempest"
             ],
@@ -4722,7 +4791,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/3.x"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v3.0.0"
             },
             "funding": [
                 {
@@ -4730,7 +4799,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-11T12:53:23+00:00"
+            "time": "2026-02-12T07:01:02+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -4953,16 +5022,16 @@
     "packages-dev": [
         {
             "name": "carthage-software/mago",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/carthage-software/mago.git",
-                "reference": "70d1644f55c5ad2a7e87c471df26ef927ab6d522"
+                "reference": "8d58c5c129d7259f42e8de596cf17c41b49c293d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/carthage-software/mago/zipball/70d1644f55c5ad2a7e87c471df26ef927ab6d522",
-                "reference": "70d1644f55c5ad2a7e87c471df26ef927ab6d522",
+                "url": "https://api.github.com/repos/carthage-software/mago/zipball/8d58c5c129d7259f42e8de596cf17c41b49c293d",
+                "reference": "8d58c5c129d7259f42e8de596cf17c41b49c293d",
                 "shasum": ""
             },
             "require": {
@@ -5000,7 +5069,7 @@
             ],
             "support": {
                 "issues": "https://github.com/carthage-software/mago/issues",
-                "source": "https://github.com/carthage-software/mago/tree/1.7.0"
+                "source": "https://github.com/carthage-software/mago/tree/1.8.0"
             },
             "funding": [
                 {
@@ -5008,7 +5077,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-09T23:42:45+00:00"
+            "time": "2026-02-12T05:55:55+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6642,9 +6711,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "tempest/framework": 20
-    },
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {},

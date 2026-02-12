@@ -18,8 +18,6 @@ use Tempest\Router\StaticPage;
 use Tempest\View\View;
 use Tempest\View\ViewRenderer;
 
-use function Tempest\View\view;
-
 final readonly class BlogController
 {
     #[Get('/blog')]
