@@ -14,6 +14,7 @@ use App\Markdown\Symbols\AttributeParser;
 use App\Markdown\Symbols\FqcnParser;
 use App\Markdown\Symbols\FunctionParser;
 use App\Markdown\Symbols\HandleParser;
+use App\Web\Documentation\Version;
 use League\CommonMark\Environment\Environment;
 use League\CommonMark\Extension\Attributes\AttributesExtension;
 use League\CommonMark\Extension\CommonMark\CommonMarkCoreExtension;
@@ -39,6 +40,7 @@ final readonly class MarkdownInitializer implements Initializer
         $highlighter = $container->get(Highlighter::class, tag: 'project');
 
         $codeBlockRenderer = new CodeBlockRenderer($highlighter);
+        $version = $container->get(Version::class);
 
         $environment
             ->addExtension(new CommonMarkCoreExtension())
@@ -46,10 +48,10 @@ final readonly class MarkdownInitializer implements Initializer
             ->addExtension(new AttributesExtension())
             ->addExtension(new AlertExtension())
             ->addExtension(new CodeGroupExtension())
-            ->addInlineParser(new TempestPackageParser())
-            ->addInlineParser(new FqcnParser())
-            ->addInlineParser(new AttributeParser())
-            ->addInlineParser(new FunctionParser())
+            ->addInlineParser(new TempestPackageParser($version))
+            ->addInlineParser(new FqcnParser($version))
+            ->addInlineParser(new AttributeParser($version))
+            ->addInlineParser(new FunctionParser($version))
             ->addInlineParser(new HandleParser())
             ->addRenderer(FencedCode::class, $codeBlockRenderer)
             ->addRenderer(Code::class, new InlineCodeBlockRenderer($highlighter))
