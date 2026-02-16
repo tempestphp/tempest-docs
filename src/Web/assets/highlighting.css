@@ -126,10 +126,12 @@
 	background-color: var(--code-keyword);
 }
 .hl-console-error {
-	background-color: var(--code-type);
+	color: var(--code-type);
+	font-weight: bold;
 }
 .hl-console-success {
-	background-color: var(--code-property);
+	color: var(--code-property);
+	font-weight: bold;
 }
 .hl-console-h1 {
 	color: var(--code-keyword);
