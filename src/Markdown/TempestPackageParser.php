@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown;
 
+use App\Web\Documentation\Version;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
@@ -15,6 +16,8 @@ use function Tempest\Support\str;
 
 final readonly class TempestPackageParser implements InlineParserInterface
 {
+    public function __construct(private Version $version) {}
+
     #[Override]
     public function getMatchDefinition(): InlineParserMatch
     {
@@ -37,9 +40,9 @@ final readonly class TempestPackageParser implements InlineParserInterface
 
         $url = match ($package) {
             'app' => 'https://github.com/tempestphp/tempest-app',
-            default => $url = str($package)
+            default => str($package)
                 ->kebab()
-                ->prepend('https://github.com/tempestphp/tempest-framework/tree/main/packages/')
+                ->prepend('https://github.com/tempestphp/tempest-framework/tree/' . $this->version->getBranch() . '/packages/')
                 ->toString(),
         };
 

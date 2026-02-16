@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Markdown\Symbols;
 
+use App\Web\Documentation\Version;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Parser\Inline\InlineParserInterface;
@@ -18,6 +19,8 @@ use function Tempest\Support\str;
 
 final readonly class FunctionParser implements InlineParserInterface
 {
+    public function __construct(private Version $version) {}
+
     #[Override]
     public function getMatchDefinition(): InlineParserMatch
     {
@@ -53,7 +56,7 @@ final readonly class FunctionParser implements InlineParserInterface
 
         $url = str($reflection->getFileName())
             ->afterLast('tempest/framework/')
-            ->prepend('https://github.com/tempestphp/tempest-framework/blob/main/')
+            ->prepend('https://github.com/tempestphp/tempest-framework/blob/' . $this->version->getBranch() . '/')
             ->append("#L{$reflection->getStartLine()}-L{$reflection->getEndLine()}")
             ->toString();
 
