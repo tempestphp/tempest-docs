@@ -5,6 +5,7 @@ use App\Web\Community\CommunityController;
 use App\Web\Documentation\DocumentationController;
 
 use function Tempest\Router\is_current_uri;
+use function Tempest\Router\uri;
 
 $isBlog = is_current_uri([BlogController::class, 'show']) || is_current_uri([BlogController::class, 'index']);
 ?>

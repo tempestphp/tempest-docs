@@ -1,6 +1,6 @@
 <?php
 use App\Web\Meta\MetaType;
-
+use function Tempest\Router\uri;
 ?>
 
 <html lang="en" class="flex flex-col h-dvh scroll-smooth">

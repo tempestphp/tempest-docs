@@ -3,9 +3,14 @@
 	"type": "project",
 	"description": "Documentation website for the Tempest framework",
 	"repositories": [
+		{
+			"type": "path",
+			"url": "../tempest-framework",
+			"symlink": true
+		}
 	],
 	"require": {
-		"tempest/framework": "^3.1",
+		"tempest/framework": "dev-view-includes",
 		"league/commonmark": "^2.8.0",
 		"symfony/yaml": "^7.4.1",
 		"spatie/yaml-front-matter": "^2.1.1",
