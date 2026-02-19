@@ -1,5 +1,6 @@
 <?php
 /** @var \App\Web\Blog\BlogPost $post */
+use App\Web\Blog\BlogController;
 ?>
 
 <x-base
