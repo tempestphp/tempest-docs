@@ -269,3 +269,19 @@ pre {
 	box-shadow: 0 0 15px 5px var(--ui-border);
 }
 
+.swatch {
+	--color: #000;
+	display: flex;
+	align-items: center;
+	gap: 1ch;
+	font-family: var(--font-mono);
+
+	&:before {
+		content: ' ';
+		width: 1.3em;
+		height: 1.3em;
+		border-radius: .2em;
+		background-color: var(--color);
+		display: inline-block;
+	}
+}
