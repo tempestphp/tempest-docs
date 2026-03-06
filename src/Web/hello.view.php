@@ -10,16 +10,16 @@ use App\Web\Blog\BlogController;
         <article class="flex flex-col lg:mt-10 px-2 w-full md:w-auto min-w-0 max-w-3xl grow">
             <!-- Header -->
             <div class="flex flex-col pb-6 w-full">
-<!--                <h1 class="max-w-[65ch] font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">-->
-<!--                    {{ $post->title }}-->
-<!--                </h1>-->
-<!--                <p class="mt-4 text-lg text-(--ui-text-muted)">-->
-<!--                    {{ $post->description }}-->
-<!--                </p>-->
+                <h1 class="max-w-[65ch] font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+                    A quick intro to Tempest
+                </h1>
+                <p class="mt-4 text-lg text-(--ui-text-muted)">
+                    Yes! You scanned the QR code!
+                </p>
             </div>
             <!-- Content -->
             <div class="space-y-12 dark:prose-invert mt-8 pb-24 w-full prose">
-                You scanned the QR code, didn't you?
+                <x-markdown :content="$content"></x-markdown>
             </div>
         </article>
     </main>
