@@ -23,6 +23,7 @@ use League\CommonMark\Extension\CommonMark\Node\Block\Heading;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Code;
 use League\CommonMark\Extension\CommonMark\Node\Inline\Link;
 use League\CommonMark\Extension\FrontMatter\FrontMatterExtension;
+use League\CommonMark\Extension\Table\TableExtension;
 use League\CommonMark\MarkdownConverter;
 use Override;
 use Tempest\Container\Container;
@@ -48,6 +49,7 @@ final readonly class MarkdownInitializer implements Initializer
             ->addExtension(new AttributesExtension())
             ->addExtension(new AlertExtension())
             ->addExtension(new CodeGroupExtension())
+            ->addExtension(new TableExtension())
             ->addInlineParser(new TempestPackageParser($version))
             ->addInlineParser(new FqcnParser($version))
             ->addInlineParser(new AttributeParser($version))
