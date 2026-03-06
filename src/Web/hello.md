@@ -1,5 +1,3 @@
-Amazing that you're interested in learning more about Tempest! Here's a list of places to get you started:
-
 - [Getting Started with Tempest](https://tempestphp.com/3.x/getting-started/introduction) — this is the introduction to our documentation.
 - [The Tempest livestream playlist](https://www.youtube.com/playlist?list=PL0bgkxUS9EaILnUL8Q4np6B3qxjQbE7PH) — this is where it started.
 - [Building a framework](https://stitcher.io/blog/building-a-framework) — even more origin story.

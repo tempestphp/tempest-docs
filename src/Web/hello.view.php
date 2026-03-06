@@ -14,7 +14,7 @@ use App\Web\Blog\BlogController;
                     A quick intro to Tempest
                 </h1>
                 <p class="mt-4 text-lg text-(--ui-text-muted)">
-                    Yes! You scanned the QR code!
+                    Yes! You scanned the QR code! Amazing that you're interested in learning more about Tempest. Here's a list of places to get you started:
                 </p>
             </div>
             <!-- Content -->
