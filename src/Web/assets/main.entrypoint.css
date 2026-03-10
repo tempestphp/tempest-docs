@@ -285,3 +285,7 @@ pre {
 		display: inline-block;
 	}
 }
+
+article table td.nowrap{
+	white-space: nowrap;
+}
