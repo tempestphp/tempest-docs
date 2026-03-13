@@ -7,7 +7,7 @@ author: brent
 
 Making the Tempest components work in all types of projects has been a goal from the very start of the framework. For example, [`tempest/view`](/3.x/essentials/views#tempest-view-as-a-standalone-engine) can already be plugged into any project or framework you'd like. 
 
-Today we're making another component truly standalone: [`tempest/discovery`](/3.x/essentials/discovery). Discovery is what powers Tempest: it reads all your project and vendor code and configures that code in a PSR-11 compliant container for you. It's a simple idea, but really powerful when put into practice. And while frameworks like Symfony and Laravel have similar capabitilies for framework-specific classes, Tempest's discovery is built to be extensible for all code.
+Today we're making another component truly standalone: [`tempest/discovery`](/3.x/essentials/discovery). Discovery is what powers Tempest: it reads all your project and vendor code and configures that code in a PSR-11 compliant container for you. It's a simple idea, but really powerful when put into practice. And while frameworks like Symfony and Laravel have similar capabilities for framework-specific classes, Tempest's discovery is built to be extensible for all code.
 
 In this blog post, I'll show you how to use `tempest/discovery` in any project, with any type of container, and I'll explain the impact for existing Tempest applications.
 
@@ -62,7 +62,7 @@ That's all for the basic setup. If you want more complex configuration and learn
 
 ### An example
 
-Let's say you're building an event-sourced system where "projectors" can be used to replay all previously stored events. You want to build a command that shows all available projectors where the user wants to select all relevant projectors. Furthermore, whenever an event is dispatched, you need to loop over that same list of projectors to find out which events should be passed to which ones. 
+Let's say you're building an event-sourced system where "projectors" can be used to replay all previously stored events. You want to build a command that shows all available projectors where the user can select the relevant projectors. Furthermore, whenever an event is dispatched, you need to loop over that same list of projectors to find out which events should be passed to which ones. 
 
 The interface would look something like this:
 
@@ -99,7 +99,7 @@ final class VisitsPerDayProjector implements Projector
 }
 ```
 
-In other words: we need a list of classes that implement the `Projector` interface. This is where discovery comes in. A discovery class implements the {b`Tempest\Discovery\Discovery`} interface, which themselves are discovered as well. No need to register them anyway; disvovery takes care of it for you.
+In other words: we need a list of classes that implement the `Projector` interface. This is where discovery comes in. A discovery class implements the {b`Tempest\Discovery\Discovery`} interface, which themselves are discovered as well. No need to register them anywhere; discovery takes care of it for you.
 
 ```php src/Discovery/ProjectorDiscovery.php
 use Tempest\Discovery\Discovery;
@@ -131,7 +131,7 @@ final class ProjectorDiscovery implements Discovery
 }
 ```
 
-This discovery class will take care of registering all projectors in whatever directories you specified at the start. It will store them in an object `ProjectorConfig`, which we assume is registered as a singleton in the container — meaning it's accisable throughout the rest of your codebase, and you can inject it anywhere you want. For example, in that console command:
+This discovery class will take care of registering all projectors in whatever directories you specified at the start. It will store them in an object `ProjectorConfig`, which we assume is registered as a singleton in the container — meaning it's accessible throughout the rest of your codebase, and you can inject it anywhere you want. For example, in that console command:
 
 ```php
 final readonly class EventsReplayCommand
