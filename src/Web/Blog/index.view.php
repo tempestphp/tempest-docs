@@ -12,7 +12,7 @@ use function Tempest\Support\str;
     <div class="flex flex-col lg:mt-10 px-2 lg:pl-12 w-full min-w-0 grow">
 			<!-- Header -->
 			<div class="flex flex-col pb-8 max-w-xl">
-				<h1 class="font-bold text-gray-900 dark:text-white text-3xl sm:text-4xl lg:text-5xl tracking-tight">Blog</h1>
+				<h1 class="font-display text-gray-900 dark:text-white text-3xl sm:text-4xl lg:text-5xl tracking-tight">Blog</h1>
 				<p class="mt-4 text-gray-500 dark:text-gray-400 text-lg">
 					Read the latest news and announcements about Tempest, from framework updates to real-world applications and expert insights.
 				</p>

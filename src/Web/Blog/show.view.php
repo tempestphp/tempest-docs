@@ -1,6 +1,7 @@
 <?php
 /** @var \App\Web\Blog\BlogPost $post */
 use App\Web\Blog\BlogController;
+
 ?>
 
 <x-base
@@ -23,7 +24,7 @@ use App\Web\Blog\BlogController;
 			</nav>
 			<!-- Header -->
 			<div class="flex flex-col pb-6 w-full">
-				<h1 class="max-w-[65ch] font-bold text-3xl sm:text-4xl lg:text-5xl tracking-tight">
+				<h1 class="max-w-[65ch] font-display text-3xl sm:text-4xl lg:text-5xl tracking-tight">
 				{{ $post->title }}
 				</h1>
 				<p class="mt-4 text-lg text-(--ui-text-muted)">

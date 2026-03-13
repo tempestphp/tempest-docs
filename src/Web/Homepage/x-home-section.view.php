@@ -3,7 +3,7 @@
     <!-- Left -->
     <div class="mr-6 p-2 lg:p-0">
       <div class="max-w-xl text-sans">
-      <span class="flex flex-col font-semibold text-display text-xl md:text-4xl xl:text-4xl leading-tight text-(--ui-text-toned)">
+      <span class="flex flex-col tracking-tighter text-xl md:text-4xl xl:text-4xl leading-tight text-(--ui-text-toned)">
         {{ $heading }}
       </span>
       <p :foreach="$paragraphs as $paragraph" class="mt-2 md:mt-4 xl:mt-6 text-xl xl:text-2xl text-(--ui-text-muted) leading-snug">

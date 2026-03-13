@@ -50,7 +50,7 @@
 				@apply flex flex-col gap-y-2;
 
 				.alert-title {
-					@apply text-sm font-semibold inline-block;
+					@apply text-sm inline-block;
 				}
 
 				p {
@@ -124,7 +124,7 @@
 
 	a {
 		text-decoration: underline;
-		font-weight: bolder;
+		font-weight: semibold;
 		text-decoration-color: var(--ui-primary);
 
 		&:hover {
@@ -156,19 +156,20 @@
 	h4,
 	h5,
 	h6 {
-		@apply relative text-2xl text-(--ui-text-highlighted) font-bold mt-12 mb-6
+		@apply font-display font-normal relative text-2xl
+			text-(--ui-text-highlighted) mt-12 mb-6
 			lg:scroll-mt-[calc(var(--ui-header-height))]
 			[&>a]:focus-visible:outline-(--ui-primary) [&>a>code]:border-dashed
 			hover:[&>a:not(.heading-permalink)>code]:border-(--ui-primary)
 			hover:[&>a:not(.heading-permalink)>code]:text-(--ui-primary)
-			[&>a>code]:text-xl/7 [&>a>code]:font-bold [&>a>code]:transition-colors;
+			[&>a>code]:text-xl/7 [&>a>code]:font-normal [&>a>code]:transition-colors;
 
 		&:hover a span {
 			@apply opacity-100;
 		}
 
 		& a {
-			@apply inline-flex items-center gap-x-1.5;
+			@apply inline-flex items-center gap-x-1.5 font-normal;
 		}
 
 		& a span:has(svg) {

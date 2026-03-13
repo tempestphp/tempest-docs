@@ -31,8 +31,8 @@
                 class="
                   group relative w-full px-2.5 py-1.5 flex items-center gap-1.5 text-sm focus:outline-none focus-visible:outline-none hover:text-(--ui-text-highlighted) data-[state=open]:text-(--ui-text-highlighted) transition-colors
                  <?= $this->isCurrent($chapter)
-    ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
-    : 'text-(--ui-text-muted)' ?>
+                     ? 'text-(--ui-primary) after:absolute after:-left-1.5 after:inset-y-0.5 after:block after:w-px after:rounded-full after:transition-colors after:bg-(--ui-primary)'
+                     : 'text-(--ui-text-muted)' ?>
                 ">
                 {{ $chapter->title }}
               </a>
@@ -97,7 +97,7 @@
             <a :href="$this->currentChapter->getUri()" class="text-(--ui-info)">
               {{ \Tempest\Support\Str\to_sentence_case($this->currentChapter->category) }}
             </a>
-            <h1 id="top" class="mt-2 font-bold text-4xl text-(--ui-text-highlighted) lg:scroll-mt-[calc(1.5*var(--ui-header-height))]">
+            <h1 id="top" class="mt-2 font-display text-4xl text-(--ui-text-highlighted) lg:scroll-mt-[calc(1.5*var(--ui-header-height))]">
               {{ $this->currentChapter->title }}
             </h1>
             <div :if="$this->currentChapter->description" class="text-lg text-(--ui-text-muted) mt-4">
