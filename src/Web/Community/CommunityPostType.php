@@ -9,6 +9,7 @@ enum CommunityPostType: string
     case BLOG = 'Blog';
     case VIDEO = 'Video';
     case PACKAGE = 'Package';
+    case CHALLENGE = 'Challenge';
 
     public function getStyle(): string
     {
@@ -16,6 +17,7 @@ enum CommunityPostType: string
             self::BLOG => 'bg-yellow-400/20 dark:bg-yellow-400/10 text-yellow-700 dark:text-yellow-400',
             self::VIDEO => 'bg-blue-400/20 dark:bg-blue-400/10 text-blue-700 dark:text-blue-400',
             self::PACKAGE => 'bg-teal-400/20 dark:bg-teal-400/10 text-teal-700 dark:text-teal-400',
+            self::CHALLENGE => 'bg-purple-400/20 dark:bg-purple-400/10 text-purple-700 dark:text-purple-400',
         };
     }
 }

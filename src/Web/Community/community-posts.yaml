@@ -1,3 +1,7 @@
+- uri: /challenges/parsing-100m-lines
+  title: "Parsing 100 Million Lines"
+  description: A performance challenge to parse 100 million rows as fast as possible
+  type: Challenge
 - uri: https://starle.sh/tempest-the-journey-thus-far
   title: "Tempest: The Journey Thus Far"
   description: One user's first steps with Tempest
