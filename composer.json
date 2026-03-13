@@ -5,7 +5,7 @@
 	"repositories": [
 	],
 	"require": {
-		"tempest/framework": "^3.2",
+		"tempest/framework": "^3.4",
 		"league/commonmark": "^2.8.0",
 		"symfony/yaml": "^7.4.1",
 		"spatie/yaml-front-matter": "^2.1.1",
