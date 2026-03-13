@@ -228,6 +228,6 @@ And that's it! Just in case you want to know all the details of this refactor, y
 
 ## In closing
 
-The Tempest community has been using discovery for years, and without any exception, everyone simply loves how frictionless their development workflow has become because of it. Of course there's more to learn on how to configure discovery and setup caching, so head over to [the discovery docs](https://tempestphp.com.test/3.x/essentials/discovery) to learn more.
+The Tempest community has been using discovery for years, and without any exception, everyone simply loves how frictionless their development workflow has become because of it. Of course there's more to learn on how to configure discovery and setup caching, so head over to [the discovery docs](/3.x/essentials/discovery) to learn more.
 
 Finally, come [join our Discord](/discord) if you're interested in Tempest or want to further talk about discovery. We'd love to hear from you!
