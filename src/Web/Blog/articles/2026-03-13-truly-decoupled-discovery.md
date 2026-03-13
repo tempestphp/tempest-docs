@@ -216,9 +216,11 @@ Next, run Rector:
 vendor/bin/rector
 ```
 
-Finally: make sure all discovery caches are regenerated:
+Finally: clear config and discovery caches, and regenerate discovery:
 
 ```
+rm -r .tempest/cache/config
+rm -r .tempest/cache/discovery
 ./tempest discovery:generate
 ```
 
