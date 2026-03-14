@@ -59,7 +59,7 @@ $isBlog = is_current_uri([BlogController::class, 'show']) || is_current_uri([Blo
         </a>
         <a href="https://github.com/tempestphp/tempest-framework" class="transition hover:text-(--ui-text-highlighted) flex items-center gap-x-1.5 ml-4">
           <x-icon name="tabler:brand-github" class="size-6"/>
-          <span class="hidden lg:inline">{{ $this->stargazers_count }}</span>
+          <span class="hidden lg:inline font-mono">{{ $this->stargazers_count }}</span>
         </a>
       </div>
     </div>
