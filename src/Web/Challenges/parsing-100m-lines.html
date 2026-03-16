@@ -1180,7 +1180,7 @@
   };
 
   const MEDALS = ['', '\u{1F947}', '\u{1F948}', '\u{1F949}'];
-  const CHART_COLORS = { AcidBurn86: '#ff6b6b', random767435: '#ffd43b', xHeaven: '#00e7ff' };
+  const CHART_PALETTE = ['#ff6b6b', '#ffd43b', '#00e7ff', '#a78bfa', '#34d399'];
 
   let state = {
     multi: [],
@@ -1368,8 +1368,8 @@
 
     const pointsByName = {};
 
-    names.forEach(name => {
-      const color = CHART_COLORS[name] || '#ffffff';
+    names.forEach((name, ni) => {
+      const color = CHART_PALETTE[ni % CHART_PALETTE.length];
       let points = [];
       let lastVal = null;
 
@@ -1403,8 +1403,8 @@
 
     svg.innerHTML = svgContent;
 
-    legend.innerHTML = names.map(name => {
-      const color = CHART_COLORS[name] || '#ffffff';
+    legend.innerHTML = names.map((name, ni) => {
+      const color = CHART_PALETTE[ni % CHART_PALETTE.length];
       return `<div class="chart-legend-item"><div class="chart-legend-dot" style="background:${color}"></div>${name}</div>`;
     }).join('');
 
