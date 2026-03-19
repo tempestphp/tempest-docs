@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22f182dce33f5023d061a73e1d7361b2",
+    "content-hash": "41c7c92fed2b93e809a0780e7852bf0b",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -505,16 +505,16 @@
         },
         {
             "name": "giggsey/libphonenumber-for-php-lite",
-            "version": "9.0.25",
+            "version": "9.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php-lite.git",
-                "reference": "3288e55938d2fc13883883ec34a860d5c7fb9eae"
+                "reference": "7677b7645fcbd34482fcb3a96d4085f92d28ef98"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/3288e55938d2fc13883883ec34a860d5c7fb9eae",
-                "reference": "3288e55938d2fc13883883ec34a860d5c7fb9eae",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php-lite/zipball/7677b7645fcbd34482fcb3a96d4085f92d28ef98",
+                "reference": "7677b7645fcbd34482fcb3a96d4085f92d28ef98",
                 "shasum": ""
             },
             "require": {
@@ -579,7 +579,7 @@
                 "issues": "https://github.com/giggsey/libphonenumber-for-php-lite/issues",
                 "source": "https://github.com/giggsey/libphonenumber-for-php-lite"
             },
-            "time": "2026-02-26T09:06:21+00:00"
+            "time": "2026-03-13T10:52:10+00:00"
         },
         {
             "name": "graham-campbell/result-type",
@@ -1967,11 +1967,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.1.40",
+            "version": "2.1.42",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/9b2c7aeb83a75d8680ea5e7c9b7fca88052b766b",
-                "reference": "9b2c7aeb83a75d8680ea5e7c9b7fca88052b766b",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/1279e1ce86ba768f0780c9d889852b4e02ff40d0",
+                "reference": "1279e1ce86ba768f0780c9d889852b4e02ff40d0",
                 "shasum": ""
             },
             "require": {
@@ -2016,7 +2016,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-23T15:04:35+00:00"
+            "time": "2026-03-17T14:58:32+00:00"
         },
         {
             "name": "psr-discovery/discovery",
@@ -4577,16 +4577,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v3.4.0",
+            "version": "v3.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "5ab7d446f52aa5132c6e3686b4dfd04f0a2ba640"
+                "reference": "208eb5586974b4c9859de3d02b64696ebf695c2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/5ab7d446f52aa5132c6e3686b4dfd04f0a2ba640",
-                "reference": "5ab7d446f52aa5132c6e3686b4dfd04f0a2ba640",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/208eb5586974b4c9859de3d02b64696ebf695c2a",
+                "reference": "208eb5586974b4c9859de3d02b64696ebf695c2a",
                 "shasum": ""
             },
             "require": {
@@ -4674,7 +4674,7 @@
                 "aws/aws-sdk-php": "^3.338.0",
                 "azure-oss/storage-blob-flysystem": "^1.2",
                 "brianium/paratest": "^7.14",
-                "carthage-software/mago": "1.0.0-beta.28",
+                "carthage-software/mago": "^1.0",
                 "guzzlehttp/psr7": "^2.6.1",
                 "league/flysystem-aws-s3-v3": "^3.25.1",
                 "league/flysystem-ftp": "^3.25.1",
@@ -4803,7 +4803,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v3.4.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v3.5.0"
             },
             "funding": [
                 {
@@ -4811,7 +4811,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-13T10:38:59+00:00"
+            "time": "2026-03-19T09:24:05+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -5034,16 +5034,16 @@
     "packages-dev": [
         {
             "name": "carthage-software/mago",
-            "version": "1.14.0",
+            "version": "1.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/carthage-software/mago.git",
-                "reference": "197dae097f525914ed7451b3d2fd7432adf104a7"
+                "reference": "6caa9a633f012dd484bb5a394e97c01a451b129a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/carthage-software/mago/zipball/197dae097f525914ed7451b3d2fd7432adf104a7",
-                "reference": "197dae097f525914ed7451b3d2fd7432adf104a7",
+                "url": "https://api.github.com/repos/carthage-software/mago/zipball/6caa9a633f012dd484bb5a394e97c01a451b129a",
+                "reference": "6caa9a633f012dd484bb5a394e97c01a451b129a",
                 "shasum": ""
             },
             "require": {
@@ -5078,7 +5078,7 @@
             ],
             "support": {
                 "issues": "https://github.com/carthage-software/mago/issues",
-                "source": "https://github.com/carthage-software/mago/tree/1.14.0"
+                "source": "https://github.com/carthage-software/mago/tree/1.15.2"
             },
             "funding": [
                 {
@@ -5086,7 +5086,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-09T20:07:15+00:00"
+            "time": "2026-03-19T02:27:43+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6006,16 +6006,16 @@
         },
         {
             "name": "sebastian/environment",
-            "version": "8.0.3",
+            "version": "8.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/environment.git",
-                "reference": "24a711b5c916efc6d6e62aa65aa2ec98fef77f68"
+                "reference": "7b8842c2d8e85d0c3a5831236bf5869af6ab2a11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/24a711b5c916efc6d6e62aa65aa2ec98fef77f68",
-                "reference": "24a711b5c916efc6d6e62aa65aa2ec98fef77f68",
+                "url": "https://api.github.com/repos/sebastianbergmann/environment/zipball/7b8842c2d8e85d0c3a5831236bf5869af6ab2a11",
+                "reference": "7b8842c2d8e85d0c3a5831236bf5869af6ab2a11",
                 "shasum": ""
             },
             "require": {
@@ -6058,7 +6058,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/environment/issues",
                 "security": "https://github.com/sebastianbergmann/environment/security/policy",
-                "source": "https://github.com/sebastianbergmann/environment/tree/8.0.3"
+                "source": "https://github.com/sebastianbergmann/environment/tree/8.0.4"
             },
             "funding": [
                 {
@@ -6078,7 +6078,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-08-12T14:11:56+00:00"
+            "time": "2026-03-15T07:05:40+00:00"
         },
         {
             "name": "sebastian/exporter",
