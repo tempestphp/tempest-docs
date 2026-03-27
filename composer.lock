@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41c7c92fed2b93e809a0780e7852bf0b",
+    "content-hash": "e8c857abf319daf301224909eced361c",
     "packages": [
         {
             "name": "assertchris/ellison",
@@ -4577,16 +4577,16 @@
         },
         {
             "name": "tempest/framework",
-            "version": "v3.7.0",
+            "version": "v3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tempestphp/tempest-framework.git",
-                "reference": "c3f70732a08126e1a1f6e6d3686527f51bddf9ff"
+                "reference": "b897120452a5695deb51d37a4f075103ae635d1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/c3f70732a08126e1a1f6e6d3686527f51bddf9ff",
-                "reference": "c3f70732a08126e1a1f6e6d3686527f51bddf9ff",
+                "url": "https://api.github.com/repos/tempestphp/tempest-framework/zipball/b897120452a5695deb51d37a4f075103ae635d1b",
+                "reference": "b897120452a5695deb51d37a4f075103ae635d1b",
                 "shasum": ""
             },
             "require": {
@@ -4674,7 +4674,7 @@
                 "aws/aws-sdk-php": "^3.338.0",
                 "azure-oss/storage-blob-flysystem": "^1.2",
                 "brianium/paratest": "^7.14",
-                "carthage-software/mago": "^1.0",
+                "carthage-software/mago": "1.16.0",
                 "guzzlehttp/psr7": "^2.6.1",
                 "league/flysystem-aws-s3-v3": "^3.25.1",
                 "league/flysystem-ftp": "^3.25.1",
@@ -4803,7 +4803,7 @@
             "description": "The PHP framework that gets out of your way.",
             "support": {
                 "issues": "https://github.com/tempestphp/tempest-framework/issues",
-                "source": "https://github.com/tempestphp/tempest-framework/tree/v3.7.0"
+                "source": "https://github.com/tempestphp/tempest-framework/tree/v3.8.0"
             },
             "funding": [
                 {
@@ -4811,7 +4811,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-24T13:10:44+00:00"
+            "time": "2026-03-27T08:56:38+00:00"
         },
         {
             "name": "tempest/highlight",
@@ -5034,16 +5034,16 @@
     "packages-dev": [
         {
             "name": "carthage-software/mago",
-            "version": "1.15.3",
+            "version": "1.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/carthage-software/mago.git",
-                "reference": "fe9ed0b20fd1ad40083348c8f8e408cee10a9cb0"
+                "reference": "bf44827df56a0321075c1a6d17ecc1efbb67b45d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/carthage-software/mago/zipball/fe9ed0b20fd1ad40083348c8f8e408cee10a9cb0",
-                "reference": "fe9ed0b20fd1ad40083348c8f8e408cee10a9cb0",
+                "url": "https://api.github.com/repos/carthage-software/mago/zipball/bf44827df56a0321075c1a6d17ecc1efbb67b45d",
+                "reference": "bf44827df56a0321075c1a6d17ecc1efbb67b45d",
                 "shasum": ""
             },
             "require": {
@@ -5078,7 +5078,7 @@
             ],
             "support": {
                 "issues": "https://github.com/carthage-software/mago/issues",
-                "source": "https://github.com/carthage-software/mago/tree/1.15.3"
+                "source": "https://github.com/carthage-software/mago/tree/1.16.0"
             },
             "funding": [
                 {
@@ -5086,7 +5086,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-03-20T19:19:36+00:00"
+            "time": "2026-03-26T20:46:03+00:00"
         },
         {
             "name": "myclabs/deep-copy",
