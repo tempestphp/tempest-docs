@@ -18,7 +18,7 @@ php8.5 tempest static:clean --force
 php8.5 tempest docs:pull --no-interaction
 php8.5 tempest command-palette:index
 /home/forge/.bun/bin/bun run build
-php8.5 tempest cache:clear --force
+php8.5 tempest cache:clear --tag=default --force
 php8.5 tempest view:clear --force
 php8.5 tempest static:generate --verbose=true
 
