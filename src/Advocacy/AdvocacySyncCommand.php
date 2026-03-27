@@ -11,7 +11,7 @@ use Tempest\Console\HasConsole;
 use Tempest\Console\Schedule;
 use Tempest\Console\Scheduler\Every;
 
-final readonly class AdvocacyPullCommand
+final readonly class AdvocacySyncCommand
 {
     use HasConsole;
 
@@ -20,13 +20,21 @@ final readonly class AdvocacyPullCommand
         private Discord $discord,
     ) {}
 
-    #[ConsoleCommand('advocacy:pull'), Schedule(Every::HALF_HOUR)]
-    public function __invoke(): void
+    #[ConsoleCommand, Schedule(Every::HALF_HOUR)]
+    public function __invoke(bool $sync = true): void
     {
         $messages = $this->reddit->fetch();
 
+//        $messages = [new Message('1', 'Test', ['tempest'], 'https://tempestphp.com')];
+
         foreach ($messages as $message) {
-            $this->discord->notify($message);
+            if ($sync) {
+                $this->discord->notify($message);
+            }
+
+            $this->info('[' . implode(',', $message->matches) . '] ' . $message->uri);
         }
+
+        $this->success('Done');
     }
 }
