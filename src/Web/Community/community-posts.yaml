@@ -1,3 +1,7 @@
+- uri: https://packagist.org/packages/laylatichy/tempest-debug-bar
+  title: "Tempest debug bar"
+  description: A PHP Debug Bar implementation for Tempest
+  type: Package
 - uri: /challenges/parsing-100m-lines
   title: "Parsing 100 Million Lines"
   description: A performance challenge to parse 100 million rows as fast as possible
