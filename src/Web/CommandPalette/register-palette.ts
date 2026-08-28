@@ -1,16 +1,16 @@
 import { useActiveElement, useMagicKeys, whenever } from '@vueuse/core'
-import { logicAnd } from '@vueuse/math'
-import { computed, type Ref, watchEffect } from 'vue'
+import { logicAnd, logicOr } from '@vueuse/math'
+import { computed, type Ref } from 'vue'
 
 interface Options {
 	value: Ref<boolean>
 }
 
 /**
- * Registers `/` and `Cmd+K` hotkeys, as well as a `toggleCommandPalette` function.
+ * Registers `/` and `Cmd+K`/`Ctrl+K` hotkeys, as well as a `toggleCommandPalette` function.
  */
 export function registerPalette(options: Options) {
-	const { Meta_K, Slash } = useMagicKeys({
+	const { Meta_K, Ctrl_K, Slash } = useMagicKeys({
 		target: document.body,
 		passive: false,
 		onEventFired(e) {
@@ -19,12 +19,16 @@ export function registerPalette(options: Options) {
 			}
 
 			if (e.key === '/' && e.type === 'keydown') {
-				e.preventDefault()
+        e.preventDefault()
 			}
 
-			if (e.key === 'k' && e.type === 'keydown' && e.metaKey) {
+			if (e.key === 'k' && e.type === 'keydown' && e.metaKey /* && OS is MacOS */) {
 				e.preventDefault()
-			}
+      }
+
+      if (e.key === 'k' && e.type === 'keydown' && e.ctrlKey /* && OS is not MacOS */) {
+        e.preventDefault()
+      }
 		},
 	})
 
@@ -39,9 +43,17 @@ export function registerPalette(options: Options) {
 		element.addEventListener('click', toggleCommandPalette)
 	})
 
-	const activeElement = useActiveElement()
-	const notUsingInput = computed(() => !['INPUT', 'TEXTAREA'].includes(activeElement.value?.tagName ?? ''))
+	const activeElement = useActiveElement({ triggerOnRemoval: true })
+  const notUsingInput = computed(() => !['INPUT', 'TEXTAREA'].includes(activeElement.value?.tagName ?? ''))
+  // https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform#determining_the_modifier_key_for_the_users_platform
+  const isMacKbdLayout = navigator.platform.toLowerCase().startsWith('mac')
 
-	whenever(logicAnd(Meta_K, notUsingInput), () => options.value.value = !options.value.value)
+  whenever(
+    logicOr(
+      logicAnd(Meta_K, notUsingInput, isMacKbdLayout),
+      logicAnd(Ctrl_K, notUsingInput, !isMacKbdLayout)
+    ),
+    () => options.value.value = !options.value.value
+  )
 	whenever(logicAnd(Slash, notUsingInput), () => options.value.value = true)
 }
