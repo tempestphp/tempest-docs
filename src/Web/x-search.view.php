@@ -3,7 +3,6 @@
     <x-icon name="tabler:search" class="size-4 shrink-0 text-(--ui-text-dimmed)"/>
     <span class="truncate">Search docs, blog...</span>
     <kbd class="ml-2 inline-flex items-center gap-0.5 rounded border border-(--ui-border) bg-(--ui-bg-muted) px-1.5 py-0.5 text-xs text-(--ui-text-dimmed) font-medium">
-        <x-icon name="tabler:command" class="size-3"/>
-        K
+        /
     </kbd>
 </button>
