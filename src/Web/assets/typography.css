@@ -28,17 +28,17 @@
 	}
 
 	div.warning {
-		@apply bg-(--ui-warning)/10 text-(--ui-warning) ring-(--ui-warning)/25
+		@apply bg-(--ui-warning)/10 border-l-4 border-(--ui-warning) ring-(--ui-warning)/25
 		[--tw-prose-links:var(--ui-warning)];
 	}
 
 	div.info {
-		@apply bg-(--ui-info)/5 text-(--ui-info) ring-(--ui-info)/25
+		@apply bg-(--ui-info)/5 border-l-4 border-(--ui-info) ring-(--ui-info)/25
 		[--tw-prose-links:var(--ui-info)];
 	}
 
 	div.success {
-		@apply bg-(--ui-success)/10 text-(--ui-success) ring-(--ui-success)/25
+		@apply bg-(--ui-success)/10 border-l-4 border-(--ui-success) ring-(--ui-success)/25
 		[--tw-prose-links:var(--ui-success)];
 	}
 
