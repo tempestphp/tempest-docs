@@ -9,9 +9,9 @@
 	--code-value: #515248;
 	--code-variable: #515248;
 	--code-comment: #888888;
-	--code-highlight: #22dddd33;
-	--code-addition: #00ff0022;
-	--code-deletion: #ff000011;
+	--code-highlight: #e8edf3;
+	--code-addition: #e6ffec;
+	--code-deletion: #ffebe9;
 	--code-gutter: #555555;
 	--code-gutter-addition: #34a853;
 	--code-gutter-deletion: #ea4334;
@@ -21,6 +21,8 @@
 	--code-passive: #dcfce7;
 	--code-complex-phrase: #f3e8ff;
 	--code-qualified: #f1f5f9;
+	--code-mark-a: #fdf0a8;
+	--code-mark-b: #f3ddf8;
 }
 
 .dark {
@@ -46,6 +48,8 @@
 	--code-passive: #b877db80;
 	--code-complex-phrase: #25b0bc33;
 	--code-qualified: #6c6f9333;
+	--code-mark-a: #ffff0033;
+	--code-mark-b: #ff00ff33;
 }
 
 .prose pre {
@@ -143,10 +147,10 @@
 }
 
 .hl-a {
-	background-color: #ffff0077;
+	background-color: var(--code-mark-a);
 }
 .hl-b {
-	background-color: #ff00ff33;
+	background-color: var(--code-mark-b);
 }
 
 .hl-addition {
