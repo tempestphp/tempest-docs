@@ -73,10 +73,10 @@
 		--ui-warning: var(--color-yellow-600);
 		--ui-error: var(--color-red-500);
 
-		--ui-text-dimmed: var(--color-slate-400);
-		--ui-text-muted: var(--color-slate-500);
-		--ui-text-toned: var(--color-slate-600);
-		--ui-text: var(--color-slate-700);
+		--ui-text-dimmed: var(--color-slate-500);
+		--ui-text-muted: var(--color-slate-600);
+		--ui-text-toned: var(--color-slate-700);
+		--ui-text: var(--color-slate-800);
 		--ui-text-highlighted: var(--color-slate-900);
 
 		--ui-bg: var(--color-slate-50);
