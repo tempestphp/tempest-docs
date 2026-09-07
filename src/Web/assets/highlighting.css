@@ -1,5 +1,5 @@
 :root {
-	--code-border: var(--ui-border);
+	--code-border: var(--ui-border-accented);
 	--code-background: var(--ui-bg-elevated);
 	--code-foreground: var(--ui-text);
 	--code-keyword: #4f95d1;
