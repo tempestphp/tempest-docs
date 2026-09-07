@@ -89,6 +89,8 @@
 		--ui-border-muted: var(--color-slate-200);
 		--ui-border-accented: var(--color-slate-300);
 		--ui-border-inverted: var(--color-slate-900);
+
+		--ui-shadow: 0 2px 12px rgb(15 23 42 / 0.08);
 	}
 
 	.dark {
@@ -115,6 +117,8 @@
 		--ui-border-muted: var(--color-neutral-700);
 		--ui-border-accented: var(--color-neutral-700);
 		--ui-border-inverted: var(--color-white);
+
+		--ui-shadow: 0 2px 12px rgb(0 0 0 / 0.4);
 
 		--color-ray-1: var(--color-pink-900);
 		--color-ray-2: var(--color-indigo-900);
@@ -304,7 +308,7 @@ pre {
 		display: block;
 		clear:both;
 		padding: 1em 2ch;
-		box-shadow: 0 0 15px 5px var(--ui-border);
+		box-shadow: var(--ui-shadow);
 		overflow-x: auto;
 		line-height: 1.8em;
 	}
@@ -312,7 +316,7 @@ pre {
 
 .prose img {
 	border-radius: 3px;
-	box-shadow: 0 0 15px 5px var(--ui-border);
+	box-shadow: var(--ui-shadow);
 }
 
 .swatch {
