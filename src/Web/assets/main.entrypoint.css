@@ -79,9 +79,9 @@
 		--ui-text: var(--color-slate-700);
 		--ui-text-highlighted: var(--color-slate-900);
 
-		--ui-bg: var(--color-white);
-		--ui-bg-muted: var(--color-slate-50);
-		--ui-bg-elevated: var(--color-slate-50);
+		--ui-bg: var(--color-slate-50);
+		--ui-bg-muted: var(--color-slate-100);
+		--ui-bg-elevated: var(--color-white);
 		--ui-bg-accented: var(--color-slate-200);
 		--ui-bg-inverted: var(--color-slate-900);
 
