@@ -23,7 +23,7 @@ use function Tempest\Router\uri;
             With zero configuration and zero boilerplate, Tempest gives you the architectural freedom to focus entirely on your business logic.
         </p>
         <div class="flex items-center gap-x-2 mt-6 md:mt-8 lg:mt-10 xl:mt-12 font-medium">
-          <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-5 py-2.5 gap-1.5 transition">
+          <a :href="uri([DocumentationController::class, 'index'])" class="bg-(--ui-bg-inverted) text-(--ui-bg-surface) hover:bg-(--ui-bg-inverted)/90 rounded-xl px-5 py-2.5 gap-1.5 transition">
             Get started
           </a>
           <button onclick="scrollToFeatures()" class="cursor-pointer hidden min-[401px]:flex text-(--ui-text) hover:bg-(--ui-info)/10 group rounded-xl px-4 py-2.5 items-center gap-x-2 transition">

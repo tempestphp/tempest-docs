@@ -19,7 +19,7 @@
 
     <div class="top-0 left-0 absolute flex justify-center items-center w-full h-full">
         <div
-                class="bg-(--ui-bg) border-(--ui-border) rounded-md p-8 max-h-[75%] overflow-auto"
+                class="bg-(--ui-bg-surface) border-(--ui-border) rounded-md p-8 max-h-[75%] overflow-auto"
                 :class="implode([
                     $center ? 'text-center' : '',
                     ($clean || $blank) ?: 'border',

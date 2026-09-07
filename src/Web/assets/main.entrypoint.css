@@ -85,6 +85,10 @@
 		--ui-bg-accented: var(--color-slate-200);
 		--ui-bg-inverted: var(--color-slate-900);
 
+		/* Interactive surfaces: sit above the ground, darken on hover */
+		--ui-bg-surface: var(--color-white);
+		--ui-bg-surface-hover: var(--color-slate-100);
+
 		--ui-border: var(--color-slate-200);
 		--ui-border-muted: var(--color-slate-200);
 		--ui-border-accented: var(--color-slate-300);
@@ -112,6 +116,10 @@
 		--ui-bg-elevated: var(--color-neutral-900);
 		--ui-bg-accented: var(--color-neutral-700);
 		--ui-bg-inverted: var(--color-white);
+
+		/* Interactive surfaces: sit on the ground, lighten on hover */
+		--ui-bg-surface: var(--color-neutral-950);
+		--ui-bg-surface-hover: var(--color-neutral-900);
 
 		--ui-border: var(--color-neutral-800);
 		--ui-border-muted: var(--color-neutral-700);

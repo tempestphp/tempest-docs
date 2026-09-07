@@ -47,7 +47,7 @@
       <x-icon name="tabler:x" class="group-data-[sidebar-visible=false]:hidden size-6 -translate-x-px" />
     </button>
     <!-- Mobile sidebar -->
-    <div data-sidebar data-visible="false" class="xl:hidden data-[visible=false]:opacity-0 data-[visible=false]:scale-80 data-[visible=false]:pointer-events-none fixed inset-3 lg:max-h-[50vh] lg:right-3 lg:inset-auto lg:bottom-24 border border-(--ui-border) rounded-xl overflow-auto z-[9] bg-(--ui-bg) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition origin-bottom-right">
+    <div data-sidebar data-visible="false" class="xl:hidden data-[visible=false]:opacity-0 data-[visible=false]:scale-80 data-[visible=false]:pointer-events-none fixed inset-3 lg:max-h-[50vh] lg:right-3 lg:inset-auto lg:bottom-24 border border-(--ui-border) rounded-xl overflow-auto z-[9] bg-(--ui-bg-surface) text-(--ui-text) p-8 starting:opacity-0 starting:scale-90 transition origin-bottom-right">
       <div class="gap-x-2 grid grid-cols-1 min-[375px]:grid-cols-2 lg:grid-cols-1 text-sm sm:text-base">
         <!-- Menu -->
         <nav class="lg:hidden flex flex-col gap-y-8 overflow-hidden">

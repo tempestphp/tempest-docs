@@ -30,7 +30,7 @@ use function Tempest\Router\uri;
                     </p>
                     <textarea name="code" id="code" class="font-mono bg-(--code-background) p-4 border-(--ui-border-muted) border-2 rounded focus:outline-none w-full text-(--foreground)" rows="20" autofocus>{{ $code }}</textarea>
                     <div class="flex justify-end">
-                        <button type="submit" class="no-primary cursor-pointer rounded-md font-medium inline-flex items-center focus:outline-hidden disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-4 py-2 gap-2 ring ring-inset ring-(--ui-border-accented) text-(--ui-text) bg-(--ui-bg) hover:bg-(--ui-bg-elevated) disabled:bg-(--ui-bg) aria-disabled:bg-(--ui-bg) focus-visible:ring-2 focus-visible:ring-(--ui-border-inverted)">
+                        <button type="submit" class="no-primary cursor-pointer rounded-md font-medium inline-flex items-center focus:outline-hidden disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-4 py-2 gap-2 ring ring-inset ring-(--ui-border-accented) text-(--ui-text) bg-(--ui-bg-surface) hover:bg-(--ui-bg-surface-hover) disabled:bg-(--ui-bg-surface) aria-disabled:bg-(--ui-bg-surface) focus-visible:ring-2 focus-visible:ring-(--ui-border-inverted)">
                           Submit
                         </button>
                     </div>

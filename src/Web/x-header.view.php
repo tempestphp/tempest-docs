@@ -27,7 +27,7 @@ $isBlog = is_current_uri([BlogController::class, 'show']) || is_current_uri([Blo
           <span class="hidden lg:inline font-medium">Tempest</span>
         </a>
 
-        <a class="hidden md:inline text-xs tracking-wide font-medium text-(--ui-text-muted) bg-(--ui-bg)/50 px-2 py-1 rounded-lg border border-(--ui-border)" href="https://github.com/tempestphp/tempest-framework/releases/{{ $latest_release }}">
+        <a class="hidden md:inline text-xs tracking-wide font-medium text-(--ui-text-muted) bg-(--ui-bg-surface)/50 px-2 py-1 rounded-lg border border-(--ui-border)" href="https://github.com/tempestphp/tempest-framework/releases/{{ $latest_release }}">
           {{ $this->latest_release }}
         </a>
       </div>
