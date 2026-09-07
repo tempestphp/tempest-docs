@@ -18,9 +18,7 @@ jobs:
           coverage: none
 
       - name: Install dependencies
-        run: |
-          composer update --prefer-dist --no-interaction
-          composer mago:install-binary
+        run: composer update --prefer-dist --no-interaction
 
       - name: Run Mago
         run: |
