@@ -66,7 +66,8 @@
 			--ui-header-height: --spacing(28);
 		}
 
-		--ui-primary: hsl(212.1, 87.8%, 64.5%);
+		/* Logo blue (#0071BC) */
+		--ui-primary: hsl(203.9, 100%, 36.9%);
 		--ui-secondary: var(--color-green-500);
 		--ui-success: var(--color-green-500);
 		--ui-info: var(--color-blue-500);
